@@ -1,0 +1,8 @@
+# .htaccess
+web/.htaccess
+
+# files directory
+web/sites/default/files
+
+# settings.php
+web/sites/default/settings.php
