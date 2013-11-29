@@ -1,0 +1,13 @@
+name = Mforms Example
+description = "Describes the use of Mforms module and provides POC screens"
+core = 7.x
+package = DEV tools
+
+dependencies[] = mforms
+stylesheets[all][] = mforms_example.css
+; Information added by drupal.org packaging script on 2013-10-01
+version = "7.x-1.0+4-dev"
+core = "7.x"
+project = "mforms"
+datestamp = "1380587089"
+
