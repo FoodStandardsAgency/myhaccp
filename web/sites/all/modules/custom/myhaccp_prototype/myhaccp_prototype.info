@@ -1,0 +1,4 @@
+name = MyHACCP Prototype
+description = A basic prototype module for testing and building forms.
+core = 7.x
+package = MyHACCP
