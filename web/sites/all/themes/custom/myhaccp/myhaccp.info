@@ -45,6 +45,9 @@ stylesheets[all][] = css/style.css
 scripts[] = js/script.js
 
 ;-------------- Default cleanup Settings  -------------
+
+settings[cleanup_mediaquery_indicator] = 0
+
 settings[cleanup_rebuild_registry] = 0
 settings[cleanup_poorthemers_helper] = 0
 settings[cleanup_test] = 0
@@ -119,3 +122,11 @@ settings[cleanup_classes_body_freeform] = ''
 settings[cleanup_classes_block_freeform] = ''
 settings[cleanup_classes_node_freeform] = ''
 settings[cleanup_classes_region_freeform] = ''
+
+
+; CSS
+
+settings[cleanup_css_normalize] = 0
+settings[cleanup_css_default] = 0
+settings[cleanup_css_layout] = 0
+settings[cleanup_css_cleanupstyles] = 0
