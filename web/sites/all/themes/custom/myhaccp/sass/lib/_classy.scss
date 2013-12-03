@@ -1,0 +1,17 @@
+/**
+ * Classy.scss
+ * A set of useful mixins & classes for Drupal
+ */
+
+@mixin strip-list {
+	margin: 0;
+  padding: 0;
+	li {
+		list-style-type: none;
+		list-style-image: none;
+	}
+}
+
+ul.menu {
+	@include strip-list;
+}

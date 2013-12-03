@@ -1,0 +1,92 @@
+/**
+ * Colours
+ */
+
+// Main page background
+$page_background: #FAFAFA;
+
+// Main text color
+$text: #000000;
+
+// Lighter text color
+$text-lighter: #676767;
+
+// Dark background, for things like sidebar blocks, headers & footers
+$dark-background: #EEEEEE;
+
+// Text color for text on top of dark backgrounds
+$text-over-dark-background: #000;
+
+/** Brand Colours **/
+
+// Base colour (FSA Dark Green)
+$base-color: #006F51;
+$base-color-lighter: mix($base-color, #FFF, 80%);
+$base-color-lightest: mix($base-color, #FFF, 65%);
+
+$text-over-base-color: #FFF;
+
+// Accents (FSA Light Green)
+$accent-1: #6CB33F;
+$accent-1-lighter: mix($accent-1, #FFF, 80%);
+
+// Accent2 (light blue)
+$accent-2: #007FB2;
+$accent-2-lighter: mix($accent-2, #FFF, 80%);
+
+// Help tips
+$help-tips: #d3d3d3;
+
+// For positive actions, such as submit buttons
+$positive: #4D8F46;
+
+// For negative actions, such as delete buttons
+$negative: #B73939;
+
+/**
+ * Typography
+ */
+
+// Colours
+$heading-font-color-1: $base-color;
+$heading-font-color-2: $accent-2;
+
+// Sizes
+$base-font-size: 20px;
+$base-line-height: 30px;
+
+// http://modularscale.com/scale/?px1=20&px2=30&ra1=1.333&ra2=0
+$h1-font-size: 2    * $base-font-size;
+$h2-font-size: 1.777    * $base-font-size;
+$h3-font-size: 1.333    * $base-font-size;
+$h4-font-size: 1.125    * $base-font-size;
+$h5-font-size: 1        * $base-font-size;
+$h6-font-size: 1        * $base-font-size;
+
+// Faces
+$base-font-family: 'CartoGothicStd', helvetica, arial, serif;
+$heading-font-family: 'CartoGothicStd', helvetica, arial, serif;
+
+/*
+ * Breakpoints
+ */
+$break_small_up: 450px;
+$break_sm_up: 640px;
+$break_med_up: 860px;
+$break_large_up: 1020px;
+$break_massive_up: 1250px;
+
+
+/**
+ * Grid
+ */
+$_columns: 16;
+$_gutter: 15px;
+$_max-width: 1100px;
+
+
+/**
+ * Forms
+ */
+$forms_indent: 25%;
+$forms_max-width: 800px;

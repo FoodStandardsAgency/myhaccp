@@ -1,0 +1,447 @@
+/**
+ * Forms
+ */
+
+/** Variables **/
+
+$form_elements_background_color: #FCFCFC;
+$form_elements_outline_color: $accent-2;
+
+/** General form styling **/
+
+%input-focus {
+  &:focus {
+    outline: 3px solid $form_elements_outline_color;
+  }
+}
+
+// Base elements
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="email"],
+input[type="month"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+input[type="week"],
+select,
+textarea {
+  @include adjust-font-size-to(20px);
+  background: $form_elements_background_color;
+  border: 1px solid $accent-2;
+  padding: 0.25em 0 0.1em 0.4em;
+  min-width: 9em;
+  max-width: 100%;
+}
+
+input:focus,
+textarea:focus,
+select:focus, {
+  @extend %input-focus;
+}
+
+input.text-mini {
+  width: 2em;
+  min-width: inherit;
+}
+
+input.form-text:focus,
+input.form-file:focus,
+textarea.form-textarea:focus,
+select.form-select:focus {
+  color: #000;
+}
+
+.form-item {
+  margin-bottom: 1.5em
+}
+
+label {
+  display: block;
+  &.option {
+    display: inline; /** Checkboxes & Radios **/
+  }
+}
+
+.form-item label,
+.exposed-filters .form-item label,
+.field-group-div > span,
+div.label {
+  font-size: 1.222em;
+  margin: 0;
+  padding: 0.25em 0;
+}
+
+input.form-button-disabled,
+input.form-button-disabled:active {
+  background: #eee none;
+  border-color: #eee;
+  text-shadow: none;
+  color: #999;
+}
+
+
+
+.form-disabled input.form-autocomplete,
+.form-disabled input.form-text,
+.form-disabled input.form-file,
+.form-disabled textarea.form-textarea,
+.form-disabled select.form-select {
+  background-color: #eee;
+  color: #777;
+}
+
+div.description,
+.form-item div.description {
+  margin: 5px 0;
+  line-height: 1.231em;
+  font-size: 0.923em;
+  color: #666;
+}
+
+.form-required {
+  color: $negative;
+  display: none;
+}
+
+ul.tips {
+  padding: 0;
+ li {
+    margin: 0.25em 0 0.25em 1.5em;
+    /* LTR */
+  }
+}
+
+/** Checkboxes & Radios **/
+
+.form-type-checkbox {
+  padding: 0;
+}
+
+.form-item label.option {
+  font-size: 16px;
+  text-transform: none;
+}
+
+.form-item label.option input {
+  vertical-align: middle;
+}
+
+body div.form-type-radio div.description,
+body div.form-type-checkbox div.description {
+  margin-left: 1.5em;
+  /* LTR */
+}
+
+/** File fields **/
+
+.form-managed-file .form-file,
+.form-managed-file .form-submit {
+  margin-left: 10px;
+}
+
+
+/* Fieldsets */
+
+fieldset {
+  border: solid 1px #ddd;
+  border-top: 3px solid #0074BD;
+  padding: 12px;
+  margin: 18px 0;
+  legend {
+    background: white;
+    padding: 0 3px;
+    margin: 0;
+    margin-left: -3px;
+    font-family: Open Sans,Helvetica,sans-serif;
+    font-size: 24px;
+    font-weight: 300;
+  }
+  .form-item {
+    padding: 0 1em 0 0;
+    margin: 0 0 10px;
+  }
+}
+
+/** Buttons **/
+
+// All submit buttons
+input[type=submit] {
+  margin-left: 1em;
+}
+
+// Generic buttons
+input.form-submit,
+a.button,
+div.exposed-filters input#edit-submit {
+  @include agile-button();
+}
+
+// Positive actions
+// E.g Save button
+input#edit-submit,
+input#edit-actions-submit,
+input[id^="save-continue"],
+input[id^="edit-save"],
+input#edit-save,
+input#edit-actions-save,
+input#edit-continue {
+  @include agile-button($style: primary);
+}
+
+// Neutral actions
+// e.g Preview button
+input#edit-preview,
+input#edit-next,
+input#preview-submit,
+input[id^="edit-return"] {
+  @include agile-button();
+}
+
+// Negative actions
+// e.g delete button
+input#edit-delete,
+input#remove-button,
+input#edit-remove,
+input#edit-clear,
+.page-admin-modules-uninstall input#edit-submit {
+  @include agile-button($style: negative);
+  color: #FFF;
+}
+
+// Other buttons
+// e.g Add another
+input#edit-submit.form-add {
+  font-size: 0.9em;
+  float: left;
+  margin-left: 0
+}
+
+.form-actions {
+  clear: both;
+  text-align: right;
+  .previous {
+    float: left;
+    margin-left: 0;
+  }
+}
+
+.add-another {
+  clear: both;
+  margin-top: 1em;
+  margin-bottom: 2em;
+  overflow: hidden;
+}
+
+
+/** Field Groups **/
+
+.field-group-wrapper {
+  margin-bottom: 1em;
+}
+
+/**
+ * Inline field group
+ *
+ * Displays elements of a field group side by side
+ *
+ * Example usage: PR, Step 1 Question 3 (form-pr-c.php)
+ * State start and end points of the HACCP plan
+ */
+
+.group-pr-c-q-3 {
+  @extend %group-inline;
+}
+
+%group-inline {
+  width: 100%;
+  @include clearfix;
+  @media all and (min-width: $break_med_up) {
+    > div {
+      margin: 1em 0 0 1em;
+    }
+    .form-wrapper {
+      float: left;
+      margin-right: 1em;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+    .form-item label {
+      display: inline;
+      margin-right: 0.5em;
+    }
+  }
+}
+
+/** Table style **/
+
+.group-pr-c-hazards {
+  @extend %fieldgroup-table;
+}
+
+%fieldgroup-table {
+  border-collapse: collapse;
+  margin-bottom: 2em;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+    > div.label {
+      display: table-caption;
+      margin-bottom: 1em;
+      font-weight: 500;
+      span {
+        display: table-cell;
+        padding-bottom: 1em;
+      }
+    }
+  > .form-wrapper {
+    padding: 0.5em;
+    border: 1px solid $base_color;
+    @media all and (min-width: $break_sm_up) {
+      display: table-cell;
+    }
+    &:first-child {
+      padding-left: 0;
+    }
+    &:last-child {
+      padding-right: 0;
+    }
+    > .form-item {
+      > label {
+        font-weight: bold;
+        border-bottom: 1px solid $base_color;
+      }
+    }
+  }
+}
+
+.form-1-principle-1 .field-group-principle-1 {
+  @extend %fieldgroup-table-2;
+}
+
+%fieldgroup-table-2 {
+  table {
+    width: 100%;
+  }
+  > .field-group-div {
+    border-bottom: 1px solid $accent_2;
+    overflow: hidden;
+    padding: 1.5em 0;
+  }
+  .form-item {
+    float: left;
+    margin-bottom: 1em;
+    padding-right: 2em;
+  }
+  .field-group-row {
+    clear: both;
+  }
+}
+
+.field-group-principle-1 .form-table {
+  @extend %fieldgroup-responsive-table;
+}
+
+%fieldgroup-responsive-table {
+  border-bottom: 1px solid $accent_2;
+  padding-bottom: 0em;
+  margin-bottom: 2em;
+  input[type="text"] {
+    min-width: inherit;
+  }
+
+}
+
+/** Misc styling for specific forms **/
+
+.field-group-row-wrapper {
+  clear: both;
+  > label {
+    font-weight: 500;
+  }
+}
+
+.field-group-row.hazards .form-item {
+  @media all and (min-width: $break_sm_up) {
+    @include column-split(half);
+    &:first-child {
+      padding-left: 0;
+    }
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+  textarea {
+    width: 95%;
+  }
+}
+
+.p2-q1 {
+  label {
+    display: inline;
+    padding: 0.25em;
+  }
+}
+
+td.radios {
+  min-width: 120px;
+  label {
+    display: inline;
+    padding: 0.25em;
+  }
+}
+
+td.decision-tree-qs {
+  width: 10em;
+  input[type="text"] {
+    width: 2em;
+    min-width: 2em;
+  }
+}
+
+.form-principle-3 {
+  @extend %standard-form-layouts;
+}
+
+%standard-form-layouts {
+  .field-group-wrapper {
+    margin-bottom: 1em;
+  }
+  .group-radios {
+    label {
+      display: inline;
+      padding: 0.25em;
+    }
+  }
+  .field-question-set {
+    border-bottom: 1px solid $accent_2;
+    margin-bottom: 2em;
+    padding-bottom: 1em;
+  }
+}
+
+.form-ps-c-2 {
+  textarea {
+    min-width: inherit;
+    max-width: 100%;
+  }
+  .group-pr-c-hazards > .form-wrapper > div {
+    padding-right: 10px;
+  }
+}
+
+/** ?? **/
+
+div.teaser-checkbox .form-item,
+.form-item .form-item {
+  padding: 5px 0;
+  margin: 0;
+  border: 0;
+}
+

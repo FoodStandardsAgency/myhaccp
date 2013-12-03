@@ -1,0 +1,112 @@
+/**
+ * Agile Grid
+ * A very simple semantic fluid grid system written in SASS
+ * Uses the box-sizing: border box; method to allow for fluid width columns
+ * with fixed gutters.
+ */
+
+@import "compass/utilities/general/clearfix";
+@import "compass/css3/box-sizing";
+
+// main variables
+$_columns: 12 !default;  // Total number of columns
+$_gutter: 20px !default; // Width of the gutter
+
+// column width calculation
+$_colwidth: 100% / $_columns;
+
+@mixin column($column: $_columns, $first: false, $last: false, $float: left) {
+  $thiswidth: $_colwidth * $column;
+  width: $thiswidth;
+
+  @if $float == right {
+    float: right;
+  } @elseif $float == left {
+    float: left;
+  } @elseif $float == none {
+    float: none;
+  }
+
+  @if $first != first {
+    padding-left: $_gutter;
+  }
+
+  @if $last != last {
+    padding-right: $_gutter;
+  }
+
+  @include box-sizing(border-box);
+}
+
+@mixin column-split($split: whole, $first: false, $last: false, $float: left) {
+
+  // Column width
+  @if $split == whole {
+    width: 100%
+  } @elseif $split == fourth {
+    width: 25%;
+  } @elseif $split == third {
+    width: 33.332%
+  }@elseif $split == half {
+    width: 50%;
+  }
+
+  // Floats
+  @if $float == right {
+    float: right;
+  } @elseif $float == left {
+    float: left;
+  } @elseif $float == none {
+    float: none;
+  }
+
+  // First & last column adjustments
+  @if $first != first {
+    padding-left: $_gutter;
+  }
+  @if $last != last {
+    padding-right: $_gutter;
+  }
+
+  @include box-sizing(border-box);
+}
+
+// Push columns to the left
+@mixin push($column: 1) {
+  $thiswidth: $_colwidth * $column;
+  margin-left: $thiswidth;
+  // Add extra fixed width padding to create 'faux' columns
+  padding-left: $_gutter * ($column * 2 +1);
+}
+
+
+// wrapper for full width containers
+@mixin wrapper($center:true) {
+  max-width: $_max-width;
+
+  // If we want the wrapper to be centered (by default we do)
+  @if $center == true {
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  // And clear the mess afterwards:
+  @include pie-clearfix;
+
+}
+
+// Simple staggered layout
+// Works for a 16 col grid
+
+@mixin colum-staggered {
+ @include column();
+ @media all and (min-width: $break_med_up) and (max-width: $break_large_up) {
+  @include column(8);
+ }
+ @media all and (min-width: $break_large_up) and (max-width: $break_massive_up) {
+  @include column(4);
+ }
+ @media all and (min-width: $break_massive_up) {
+  @include column(2);
+ }
+}

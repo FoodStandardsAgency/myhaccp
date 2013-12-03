@@ -1,0 +1,113 @@
+header[role=banner] {
+  background-color: $dark-background;
+  color: $text-over-dark-background;
+  border-bottom: 4px solid $accent-1;
+  .header-inside {
+    @include column();
+    padding-top: 1em;
+    @media all and (min-width: $break_med_up) {
+      padding-top: 1.5em;
+    }
+  }
+
+  /** Styling **/
+
+  .site-details {
+    overflow: hidden;
+    .logo {
+        margin-right: 2em;
+        display: inline-block;
+        float: left;
+      }
+    h1 {
+      @include adjust-font-size-to(35px);
+      margin-top: 4px;
+      margin-bottom: 0;
+      a {
+        color: $text-lighter;
+        text-decoration: none;
+      }
+    }
+
+    @media all and (max-width: $break_med_up) {
+      h1 {
+        font-size: 1.2em;
+      }
+    }
+
+  }
+
+  nav[role="navigation"] {
+    clear: both;
+    position: relative;
+    @media all and (min-width: $break_small_up) {
+      bottom: -4px;
+      margin-top: 1em;
+    }
+  }
+
+  .secondary-nav {
+    margin-bottom: 1em;
+    color: $text-lighter;
+    @include pie-clearfix;
+    @media all and (min-width: $break_med_up) {
+      margin-top: 0.5em;
+    }
+    a {
+      color: $text-lighter;
+    }
+    > input {
+      float: left;
+      margin-right: 1em;
+      @media all and (max-width: $break_small_up) {
+        width: 100%;
+      }
+      @media all and (min-width: $break_med_up) {
+        float: right;
+        margin-left: 1em;
+        margin-right: 0;
+      }
+    }
+    > ul {
+      list-style-type: none;
+      margin: 0.25em 0 0.5em 0;
+      padding: 0;
+      float: right;
+      li {
+        display: inline;
+      }
+    }
+
+  }
+
+  @media all and (min-width: $break_small_up) {
+    .secondary-nav {
+      //float: right;
+      //max-width: 25em;
+        > input {
+          //float:right;
+        }
+    }
+  }
+
+
+
+  @media all and (min-width: $break_med_up) {
+    .secondary-nav {
+      float: right;
+    }
+  }
+
+/**
+  @media all and (min-width: $break_med_up) {
+    .site-details {
+      float: left;
+    }
+    .main-menu {
+      float: right;
+      margin-top: 2em;
+    }
+  }
+**/
+
+}

@@ -1,0 +1,60 @@
+/***
+ * This is a 'base partial'
+ *
+ * Drupal files to nuke:
+ * - system.base.css
+ * - system.menus.css
+ * - system.messages.css
+ * - system.theme.css
+ *
+ */
+
+// Site variables
+@import 'site/fonts';
+@import 'site/variables';
+
+// Compass plugins
+@import "compass/typography/vertical_rhythm";
+@import "compass/support";
+@import "compass/css3";
+
+// Agile Patterns libraries
+@import 'lib/agilebuttons';
+@import 'lib/type';
+@import 'lib/normalize';
+@import 'lib/agilegrid';
+@import 'lib/classy';
+
+// Style guide
+@import 'style-guide/colours';
+@import 'style-guide/buttons';
+@import 'style-guide/grid';
+@import 'style-guide/blockquotes';
+@import 'style-guide/theme';
+
+// Patterns
+@import 'patterns/menu-patterns';
+@import 'patterns/menu';
+@import 'patterns/forms';
+@import 'patterns/messages';
+@import 'patterns/tables';
+@import 'patterns/blocks';
+@import 'patterns/header';
+@import 'patterns/footer';
+@import 'patterns/help-tips';
+
+// Drupal Patterns
+@import 'patterns/drupal/autocomplete';
+@import 'patterns/drupal/drupal-forms';
+@import 'patterns/drupal/progress';
+@import 'patterns/drupal/system-base';
+@import 'patterns/drupal/table-drag';
+@import 'patterns/drupal/table-header';
+
+// Layouts
+@import 'layouts/site-wide';
+@import 'layouts/pattern-page-1';
+@import 'layouts/homepage-1-1';
+
+// Setup for this site
+@import 'site/site-wide';

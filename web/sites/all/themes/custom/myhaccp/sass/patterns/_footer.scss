@@ -1,0 +1,16 @@
+footer[role=contentinfo] {
+  background-color: $dark-background;
+  color: $text-over-dark-background;
+  border-top: 4px solid $base-color;
+}
+
+.footer-inside {
+  @include column();
+  font-size: 0.9em;
+  p.copyright-message {
+    float: left;
+  }
+  ul.links {
+    float: right;
+  }
+}

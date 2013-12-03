@@ -1,0 +1,31 @@
+/**
+ * Fonts
+ * We set the font-family to the same name and specify the font styles to
+ * use the corret source files. This means that specifying <strong> works
+ * correctly, without modification, and specifying font-weight: bold
+ * works correctly.
+ */
+
+/** CartoGothic Std Book **/
+@font-face {
+  font-family: 'CartoGothicStd';
+  src: url('../fonts/CartoGothicStd-Book-webfont.eot');
+  src: url('../fonts/CartoGothicStd-Book-webfont.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/CartoGothicStd-Book-webfont.woff') format('woff'),
+       url('../fonts/CartoGothicStd-Book-webfont.ttf') format('truetype'),
+       url('../fonts/CartoGothicStd-Book-webfont.svg#cartogothic_stdregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/** CartoGothic Std Bold **/
+@font-face {
+  font-family: 'CartoGothicStd';
+  src: url('../fonts/CartoGothicStd-Bold-webfont.eot');
+  src: url('../fonts/CartoGothicStd-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/CartoGothicStd-Bold-webfont.woff') format('woff'),
+       url('../fonts/CartoGothicStd-Bold-webfont.ttf') format('truetype'),
+       url('../fonts/CartoGothicStd-Bold-webfont.svg#cartogothic_stdbold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}

@@ -1,0 +1,38 @@
+.header-wrapper,
+.main-wrapper,
+.highlighted,
+footer .footer-wrapper {
+  @include wrapper();
+}
+
+.page {
+  margin-bottom: 3em;
+}
+
+.region-sidebar-first {
+  @include column(4);
+}
+
+
+section[role=main] {
+  .region-content > .block {
+
+  }
+}
+
+
+section[role=main],
+.region-sidebar-second {
+  @include column();
+}
+
+// Layout, with RHS
+@media all and (min-width: $break_med_up) {
+  //section[role=main] {
+  //  @include column(12);
+  //}
+
+  //.region-sidebar-second {
+  //  @include column(4);
+  //}
+}
