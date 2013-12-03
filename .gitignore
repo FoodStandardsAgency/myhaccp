@@ -9,3 +9,4 @@ web/sites/default/settings.php
 
 # IDE and OS files
 .idea
+.DS_Store
