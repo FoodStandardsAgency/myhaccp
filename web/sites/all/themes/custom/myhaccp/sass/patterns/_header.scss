@@ -37,7 +37,7 @@ header[role=banner] {
 
   }
 
-  nav[role="navigation"] {
+  .header-region nav[role="navigation"] {
     clear: both;
     position: relative;
     @media all and (min-width: $break_small_up) {
@@ -46,7 +46,7 @@ header[role=banner] {
     }
   }
 
-  .secondary-nav {
+  .header-utility {
     margin-bottom: 1em;
     color: $text-lighter;
     @include pie-clearfix;
@@ -68,7 +68,7 @@ header[role=banner] {
         margin-right: 0;
       }
     }
-    > ul {
+    nav > ul {
       list-style-type: none;
       margin: 0.25em 0 0.5em 0;
       padding: 0;
@@ -93,7 +93,7 @@ header[role=banner] {
 
 
   @media all and (min-width: $break_med_up) {
-    .secondary-nav {
+    .header-utility {
       float: right;
     }
   }

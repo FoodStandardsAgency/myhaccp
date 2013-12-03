@@ -1270,11 +1270,6 @@ div.description,
   color: #666;
 }
 
-.form-required {
-  color: #b73939;
-  display: none;
-}
-
 ul.tips {
   padding: 0;
 }
@@ -1921,61 +1916,61 @@ header[role=banner] .site-details h1 a {
     font-size: 1.2em;
   }
 }
-header[role=banner] nav[role="navigation"] {
+header[role=banner] .header-region nav[role="navigation"] {
   clear: both;
   position: relative;
 }
 @media all and (min-width: 450px) {
-  header[role=banner] nav[role="navigation"] {
+  header[role=banner] .header-region nav[role="navigation"] {
     bottom: -4px;
     margin-top: 1em;
   }
 }
-header[role=banner] .secondary-nav {
+header[role=banner] .header-utility {
   margin-bottom: 1em;
   color: #676767;
   *zoom: 1;
 }
-header[role=banner] .secondary-nav:after {
+header[role=banner] .header-utility:after {
   content: "";
   display: table;
   clear: both;
 }
 @media all and (min-width: 860px) {
-  header[role=banner] .secondary-nav {
+  header[role=banner] .header-utility {
     margin-top: 0.5em;
   }
 }
-header[role=banner] .secondary-nav a {
+header[role=banner] .header-utility a {
   color: #676767;
 }
-header[role=banner] .secondary-nav > input {
+header[role=banner] .header-utility > input {
   float: left;
   margin-right: 1em;
 }
 @media all and (max-width: 450px) {
-  header[role=banner] .secondary-nav > input {
+  header[role=banner] .header-utility > input {
     width: 100%;
   }
 }
 @media all and (min-width: 860px) {
-  header[role=banner] .secondary-nav > input {
+  header[role=banner] .header-utility > input {
     float: right;
     margin-left: 1em;
     margin-right: 0;
   }
 }
-header[role=banner] .secondary-nav > ul {
+header[role=banner] .header-utility nav > ul {
   list-style-type: none;
   margin: 0.25em 0 0.5em 0;
   padding: 0;
   float: right;
 }
-header[role=banner] .secondary-nav > ul li {
+header[role=banner] .header-utility nav > ul li {
   display: inline;
 }
 @media all and (min-width: 860px) {
-  header[role=banner] .secondary-nav {
+  header[role=banner] .header-utility {
     float: right;
   }
 }

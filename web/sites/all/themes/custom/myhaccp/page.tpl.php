@@ -14,6 +14,13 @@
   <div class="header-wrapper">
     <div class="header-inside">
 
+
+      <?php if($page['header_utility']): ?>
+        <div class="header-utility">
+          <?php print render($page['header_utility']); ?>
+        </div>
+      <?php endif; ?>
+
       <div class="site-details">
         <?php if ($logo): ?>
           <div class="logo">

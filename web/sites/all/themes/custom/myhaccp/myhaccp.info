@@ -26,6 +26,7 @@ regions[content] = Content
 regions[page_bottom] = Page Bottom
 
 ;-- Core Regions
+regions[header_utility] = Header Utility
 regions[header] = Header
 regions[footer] = Footer
 regions[sidebar_first] = Sidebar First
