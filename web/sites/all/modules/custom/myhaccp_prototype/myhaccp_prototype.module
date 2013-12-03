@@ -2,26 +2,84 @@
 
 /**
  * Implements hook_menu().
- *
- *
  */
 function myhaccp_prototype_menu() {
   $items['prototype'] = array(
-    'title' => 'Functional prototype',
+    'title' => 'My forms',
+    'page callback' => 'myhaccp_prototype_list',
+    'page arguments' => array(),
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+  $items['prototype/form'] = array(
     'page callback' => 'drupal_get_form',
     'page arguments' => array('myhaccp_prototype_form'),
     'access arguments' => array('access content'),
     'type' => MENU_CALLBACK,
   );
-
   return $items;
+}
+
+function myhaccp_prototype_list() {
+  global $user;
+  // Prepare the table header.
+  $header = array(
+    'created' => array(
+      'data' => 'Created on',
+      'field' => 'created',
+      'sort' => 'desc',
+    ),
+    'changed' => array(
+      'data' => 'Last updated',
+      'field' => 'changed',
+    ),
+    'notes' => array(
+      'data' => 'Notes',
+      'field' => 'notes',
+    ),
+    'edit' => array(
+      'data' => 'Edit',
+    ),
+  );
+  $rows = array();
+  // Prepare the empty text in case there aren't any rows.
+  $empty = t('You haven\'t yet started a form. Would you like to !start', array(
+    '!start' => l(t('start one now?'), 'prototype/form/new'),
+  ));
+  // Only display this user's form instances.
+  $query = db_select('mforms_storage', 'm')
+    ->fields('m', array())
+    ->condition('m.uid', $user->uid);
+  $results = $query->execute()->fetchAll();
+  foreach ($results as $delta => $result) {
+    // Build out the rows.
+    $rows[] = array(
+      'data' => array(
+        'created' => format_date($result->created, 'medium'),
+        'changed' => $result->changed ? format_date($result->changed, 'medium') : '',
+        'notes' => isset($result->notes) ? $result->notes : '',
+        'edit' => l(t('Edit'), 'prototype/form/' . $result->iid),
+      ),
+    );
+  }
+  $output = array(
+    'table' => array(
+      '#type' => 'markup',
+      '#markup' => theme('table', array(
+        'header' => $header,
+        'rows' => $rows,
+        'empty' => $empty,
+      )),
+    ),
+  );
+  return $output;
 }
 
 /**
  * Implements hook_STORE_KEY_mforms_init().
  */
 function myhaccp_prototype_myhaccp_mforms_init() {
-  $store = MformsSessionStore::getInstance('myhaccp');
+  $store = MformsDatabaseStore::getInstance('myhaccp');
   $steps = MformsSteps::getInstance($store);
 
   // If using mustistep controls you need to explicitly define form steps and
@@ -30,14 +88,32 @@ function myhaccp_prototype_myhaccp_mforms_init() {
     'myhaccp_prototype_form_step_1' => array('value' => 'Step 1', 'weight' => -103),
     'myhaccp_prototype_form_step_2' => array('value' => 'Step 2', 'weight' => -102),
   ));
-  // Ajaxify the form stepping process.
-//  $controls->ajaxify();
 
   // Init the mforms.
   mforms_init_module('myhaccp_prototype', 'myhaccp', $store, $controls);
 }
 
-function myhaccp_prototype_form($form, &$form_state, $params = NULL) {
+/**
+ * Menu callback which displays the form.
+ */
+function myhaccp_prototype_form($form, &$form_state, $iid = FALSE) {
+  // If we've been passed an IID then set the session to that.
+  if ($iid && $iid !== 'new') {
+    $_SESSION['iid'] = $iid;
+  }
+  else {
+    // If there is no current session open then create a new db row.
+    if ($iid == 'new' || !isset($_SESSION['iid'])) {
+      global $user;
+      $record = array(
+        'uid' => $user->uid,
+        'created' => time(),
+      );
+      drupal_write_record('mforms_storage', $record);
+      // Set the session to this new row.
+      $_SESSION['iid'] = $record['iid'];
+    }
+  }
   return mforms_build('myhaccp', 'myhaccp_prototype_form_step_1', $form_state);
 }
 

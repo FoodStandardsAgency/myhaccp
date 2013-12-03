@@ -1,0 +1,94 @@
+<?php
+
+/**
+ * Implementation of hook_schema().
+ */
+function myhaccp_prototype_schema() {
+  $schema = array();
+
+  $schema['mforms_storage'] = array(
+    'fields' => array(
+      'iid' => array(
+        'description' => 'The instance ID for this form.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'uid' => array(
+        'description' => 'The {users}.uid that created this entry.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'created' => array(
+        'description' => 'The date this entry was started.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'disp-width' => '10',
+      ),
+      'changed' => array(
+        'description' => 'The last updated timestamp.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'notes' => array(
+        'description' => 'A description or notes to differentiate the entries.',
+        'type' => 'varchar',
+        'not null' => FALSE,
+        'length' => 255,
+      ),
+    ),
+    'indexes' => array(
+      'instance_changed' => array('changed'),
+      'instance_created' => array('created'),
+      'uid' => array('uid'),
+    ),
+    'primary key' => array('iid'),
+  );
+
+  $schema['mforms_storage_steps'] = array(
+    'fields' => array(
+      'sid' => array(
+        'description' => 'The primary key for this step.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'iid' => array(
+        'description' => 'The instance ID of the form.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'store_key' => array(
+        'description' => 'The unique key for this aspect of the form.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'store_data' => array(
+        'description' => 'The form_state data.',
+        'type' => 'blob',
+        'not null' => FALSE,
+        'size' => 'big',
+      ),
+    ),
+    'indexes' => array(
+      'sid' => array('sid'),
+      'iid' => array('iid'),
+    ),
+    'primary key' => array('sid'),
+    'foreign keys' => array(
+      'mforms_storage' => array(
+        'table' => 'mforms_storage',
+        'columns' => array('iid' => 'iid'),
+      ),
+    ),
+  );
+
+  return $schema;
+}
