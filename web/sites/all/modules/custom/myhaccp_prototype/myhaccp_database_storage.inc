@@ -70,6 +70,12 @@ class MformsDatabaseStore implements MformsIstore {
       // This is a new record.
       drupal_write_record('mforms_storage_steps', $record);
     }
+    // Finally update the timestamp for the changed field on the parent row.
+    $record = array(
+      'iid' => $this->iid,
+      'changed' => time(),
+    );
+    drupal_write_record('mforms_storage', $record, 'iid');
   }
 
   function getStore($key) {
