@@ -9,26 +9,22 @@ function myhaccp_prototype_menu() {
     'page callback' => 'myhaccp_prototype_list',
     'page arguments' => array(),
     'access callback' => 'myhaccp_prototype_access',
-    'access arguments' => array(
-      1
-    ),
+    'access arguments' => array(1),
+    'file' => 'myhaccp_prototype.pages.inc',
     'type' => MENU_CALLBACK,
   );
   $items['prototype/form'] = array(
     'page callback' => 'drupal_get_form',
     'page arguments' => array('myhaccp_prototype_form'),
     'access callback' => 'myhaccp_prototype_access',
-    'access arguments' => array(
-      1
-    ),
+    'access arguments' => array(1),
+    'file' => 'myhaccp_prototype.pages.inc',
     'type' => MENU_CALLBACK,
   );
   $items['prototype/form/create'] = array(
     'page callback' => 'myhaccp_prototype_create',
     'access callback' => 'myhaccp_prototype_access',
-    'access arguments' => array(
-      'create',
-    ),
+    'access arguments' => array('create'),
     'type' => MENU_CALLBACK,
   );
   return $items;
@@ -56,7 +52,15 @@ function myhaccp_prototype_permission() {
   );
 }
 
-
+/**
+ * Menu access callback.
+ *
+ * @param string $op
+ *   Operation to check against.
+ *
+ * @return bool
+ *   Boolean determining access.
+ */
 function myhaccp_prototype_access($op) {
   if ($op == 'create') {
     return user_access('create myhaccp forms');
@@ -64,85 +68,6 @@ function myhaccp_prototype_access($op) {
   else {
     return user_access('edit any myhaccp forms') && user_access('edit own myhaccp forms');
   }
-}
-
-/**
- * Menu callback which presents a table of forms to edit.
- */
-function myhaccp_prototype_list() {
-  global $user;
-  // Prepare the table header.
-  $header = array(
-    'created' => array(
-      'data' => 'Created on',
-      'field' => 'created',
-      'sort' => 'desc',
-    ),
-    'changed' => array(
-      'data' => 'Last updated',
-      'field' => 'changed',
-    ),
-    'notes' => array(
-      'data' => 'Notes',
-      'field' => 'notes',
-    ),
-    'edit' => array(
-      'data' => 'Edit',
-    ),
-  );
-  $rows = array();
-  // Prepare the empty text in case there aren't any rows.
-  $empty = t('You haven\'t yet started a form. Would you like to !start', array(
-    '!start' => l(t('start one now?'), 'prototype/form/create'),
-  ));
-  // Only display this user's form instances.
-  $query = db_select('mforms_storage', 'm')
-    ->fields('m', array())
-    ->condition('m.uid', $user->uid);
-  $results = $query->execute()->fetchAll();
-  foreach ($results as $delta => $result) {
-    // Build out the rows.
-    $edit = user_access('edit own myhaccp forms') || user_access('edit any myhaccp forms') ? l(t('Edit'), 'prototype/form/' . $result->iid) : '';
-    $rows[] = array(
-      'data' => array(
-        'created' => format_date($result->created, 'medium'),
-        'changed' => $result->changed ? format_date($result->changed, 'medium') : '',
-        'notes' => isset($result->notes) ? $result->notes : '',
-        'edit' => $edit,
-      ),
-    );
-  }
-  $output = array(
-    'table' => array(
-      '#type' => 'markup',
-      '#markup' => theme('table', array(
-        'header' => $header,
-        'rows' => $rows,
-        'empty' => $empty,
-      )),
-    ),
-    'new' => array(
-      '#type' => 'link',
-      '#title' => 'Start a new form',
-      '#href' => 'prototype/form/create',
-    )
-  );
-  return $output;
-}
-
-/**
- * Menu callback for creating a form.
- */
-function myhaccp_prototype_create() {
-  global $user;
-  $record = array(
-    'uid' => $user->uid,
-    'created' => time(),
-  );
-  // Write the new record.
-  drupal_write_record('mforms_storage', $record);
-  // Forward to the beginning of the form.
-  drupal_goto('prototype/form/' . $record['iid']);
 }
 
 /**
@@ -189,108 +114,4 @@ function myhaccp_prototype_form($form, &$form_state, $iid = FALSE) {
     drupal_goto('prototype');
   }
   return mforms_build('myhaccp', 'myhaccp_prototype_form_step_1', $form_state);
-}
-
-/**
- * Prototype form.
- *
- * @return array
- */
-function myhaccp_prototype_form_step_1(&$form_state, &$next_step, $params) {
-  // Define following step callback. If none set, that implies it is
-  // the last step.
-  $next_step = 'myhaccp_prototype_form_step_2';
-
-  // Retrieve submitted values. This comes in handy when back action
-  // occured and we need to display values that were originaly submitted.
-  $data = mforms_get_vals('myhaccp');
-
-  // If we have the data it means we arrived here from back action, so show
-  // them in form as default vals.
-  if (!empty($data)) {
-    $vals = $data;
-  }
-  elseif (isset($form_state['values'])) {
-    $vals = $form_state['values'];
-  }
-
-  $form = array();
-  $form['test1'] = array(
-    '#weight' => '0',
-    '#required' => '0',
-    '#multiple' => '0',
-    '#key_type_toggled' => '0',
-    '#type' => 'select',
-    '#options' => array(
-      '1' => t('Linear'),
-      '2' => t('Modular'),
-      '3' => t('Linear / Modular'),
-      '4' => t('Generic'),
-    ),
-    '#multiple_toggle' => '1',
-    '#title' => t('1. What type of HACCP plan are you producing?'),
-    '#default_value' => isset($vals['test1']) ? $vals['test1'] : NULL
-  );
-  $form['test2'] = array(
-    '#weight' => '1',
-    '#required' => '0',
-    '#type' => 'textarea',
-    '#title' => t('2. State the type of product you are producing and briefly how it is going to be packed:'),
-    '#default_value' => isset($vals['test2']) ? $vals['test2'] : NULL
-  );
-  $form['test3'] = array(
-    '#weight' => '2',
-    '#required' => '0',
-    '#type' => 'textfield',
-    '#title' => t('It will start at '),
-    '#default_value' => isset($vals['test3']) ? $vals['test3'] : NULL
-  );
-  $form['test4'] = array(
-    '#weight' => '3',
-    '#required' => '0',
-    '#type' => 'textfield',
-    '#title' => t('Through to '),
-    '#default_value' => isset($vals['test4']) ? $vals['test4'] : NULL
-  );
-  return $form;
-}
-
-/**
- * Prototype form.
- *
- * @return array
- */
-function myhaccp_prototype_form_step_2(&$form_state, &$next_step, $params) {
-  // Define following step callback. If none set, that implies it is
-  // the last step.
-
-  // Retrieve submitted values. This comes in handy when back action
-  // occured and we need to display values that were originaly submitted.
-  $data = mforms_get_vals('myhaccp');
-
-  // If we have the data it means we arrived here from back action, so show
-  // them in form as default vals.
-  if (!empty($data)) {
-    $vals = $data;
-  }
-  elseif (isset($form_state['values'])) {
-    $vals = $form_state['values'];
-  }
-
-  $form = array();
-  $form['test5'] = array(
-    '#weight' => '0',
-    '#required' => '0',
-    '#multiple' => '0',
-    '#key_type_toggled' => '0',
-    '#type' => 'select',
-    '#options' => array(
-      '1' => t('A test'),
-      '2' => t('Another test'),
-    ),
-    '#multiple_toggle' => '1',
-    '#title' => t('1. This is a test'),
-    '#default_value' => isset($vals['test5']) ? $vals['test5'] : NULL
-  );
-  return $form;
 }
