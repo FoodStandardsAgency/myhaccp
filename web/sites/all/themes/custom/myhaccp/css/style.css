@@ -1376,7 +1376,8 @@ input#edit-actions-submit,
 input[id^="save-continue"],
 input[id^="edit-save"],
 input#edit-save,
-input#edit-actions-save {
+input#edit-actions-save,
+input#edit-continue {
   background-color: #e6e6e6;
   color: rgba(0, 0, 0, 0.8);
   border: 0 none transparent;
@@ -1399,7 +1400,9 @@ input[id^="edit-save"]:focus,
 input#edit-save:hover,
 input#edit-save:focus,
 input#edit-actions-save:hover,
-input#edit-actions-save:focus {
+input#edit-actions-save:focus,
+input#edit-continue:hover,
+input#edit-continue:focus {
   background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
   cursor: pointer;
 }
@@ -1408,7 +1411,8 @@ input#edit-actions-submit.disabled,
 input[id^="save-continue"].disabled,
 input[id^="edit-save"].disabled,
 input#edit-save.disabled,
-input#edit-actions-save.disabled {
+input#edit-actions-save.disabled,
+input#edit-continue.disabled {
   background-image: none;
   cursor: not-allowed;
   opacity: 0.5;
@@ -1423,7 +1427,9 @@ input[id^="edit-save"]:active,
 input#edit-save.active,
 input#edit-save:active,
 input#edit-actions-save.active,
-input#edit-actions-save:active {
+input#edit-actions-save:active,
+input#edit-continue.active,
+input#edit-continue:active {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
 }
 

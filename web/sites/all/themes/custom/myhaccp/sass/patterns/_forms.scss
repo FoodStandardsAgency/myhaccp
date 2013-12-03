@@ -189,7 +189,8 @@ input#edit-actions-submit,
 input[id^="save-continue"],
 input[id^="edit-save"],
 input#edit-save,
-input#edit-actions-save {
+input#edit-actions-save,
+input#edit-continue {
   @include agile-button($style: primary);
 }
 
