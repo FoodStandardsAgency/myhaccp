@@ -1,0 +1,54 @@
+.grid-blocks {
+  clear: both;
+  margin-bottom: 2em;
+  overflow: hidden;
+  .grid-example {
+    & > div span {
+      display: block;
+      background-color: #EEE;
+      border: 1px solid #CDCDCD;
+      text-align: center;
+      line-height: 32px;
+      @include transition(font-size, 0.25s, ease-out);
+      &:hover {
+        font-size: 22px;
+        cursor: pointer;
+      }
+    }
+    &.lots {
+      > div {
+        @include column(1);
+      }
+    }
+    &.some {
+      > div {
+        @include column(4);
+      }
+    }
+    &.few {
+      > div {
+        @include column(8);
+      }
+    }
+  }
+}
+
+.grid-blocks {
+  .grid-example.responsive {
+    > div {
+      @include column;
+      margin-bottom: 2em;
+      span {
+        line-height: 100px;
+      }
+    }
+    @media all and (min-width: $break_large_up) {
+      > div.main-area {
+        @include column(10);
+      }
+      > div.side {
+        @include column(3);
+      }
+    }
+  }
+}

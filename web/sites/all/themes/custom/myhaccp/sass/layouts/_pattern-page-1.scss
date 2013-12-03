@@ -1,0 +1,21 @@
+.pattern-page-1 {
+
+  .main-content,
+  .sidebar-right {
+    @include column();
+  }
+
+  @media all and (min-width: $break_large_up) {
+    .main-content {
+      @include column(10);
+    }
+    .sidebar-right {
+      @include column(6);
+    }
+  }
+
+  .sidebar-right {
+    margin-top: 2em;
+  }
+
+}

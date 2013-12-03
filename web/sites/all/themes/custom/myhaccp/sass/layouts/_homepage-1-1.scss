@@ -1,0 +1,71 @@
+.homepage-1-1 {
+
+$min-height: 400px;
+
+  /** Layout **/
+  section.main-content {
+    @include column();
+    min-height: $min-height;
+  }
+  .region-sidebar-second {
+    @include column();
+    min-height: $min-height;
+  }
+  @media all and (min-width: $break_large_up) {
+    section.main-content {
+      @include column(12);
+    }
+    .region-sidebar-second {
+      @include column(4);
+    }
+  }
+
+  .region-sidebar-first,
+  .region-sidebar-second {
+    background-color: #f2f2f2;
+  }
+  section.main-content {
+    background-color: #ddd;
+  }
+  section.highlighted {
+    min-height: 250px;
+    padding-top: 3em;
+    .highlighted-inner > p {
+      @include column();
+      @media all and (min-width: $break_med_up){
+        @include column(10);
+      }
+      @media all and (min-width: $break_large_up){
+        @include column(12);
+      }
+    }
+  }
+
+  .register-button {
+    @include column();
+    @media all and (min-width: $break_med_up) {
+      @include column(6);
+    }
+    @media all and (min-width: $break_large_up) {
+      @include column(4);
+    }
+    @include agile-button(primary, large);
+    //font-size: 3em;
+  }
+
+}
+
+.speaker-box {
+  @include column();
+  @media all and (min-width: $break_med_up) {
+    @include column(6);
+    min-height: 10em;
+  }
+  @media all and (min-width: $break_large_up) {
+    @include column(4);
+    width: 33.333%;
+  }
+  h3 {
+    font-size: 1em;
+  }
+}
