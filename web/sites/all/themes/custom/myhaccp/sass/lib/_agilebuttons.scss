@@ -1,0 +1,47 @@
+@mixin agile-button($style: plain, $size: normal, $background-color: #E6E6E6, $color: rgba(0, 0, 0, 0.8)) {
+  background-color: $background-color;
+  color: $color;
+  border: 0 none transparent;
+  padding: 0.6em 1.5em 0.5em 1.5em;
+  text-decoration: none;
+
+  // @include border-radius(5px);
+  @include transition(all 0.25s ease);
+
+  &:hover,
+  &:focus {
+    background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+    cursor: pointer;
+  }
+  &.disabled {
+    background-image: none;
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+  &.active, &:active {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
+  }
+
+  @if $style == "primary" {
+    background-color: $base-color;
+    color: #FFF;
+  }
+  @if $style == "positive" {
+    background-color: $positive;
+    color: #FFF;
+  }
+  @if $style == "negative" {
+    background-color: $negative;
+  }
+  @if $style == "dark" {
+    background-color: $dark-background;
+    color: $text-over-dark-background;
+  }
+  @if $size == "large" {
+    font-size: 1.3em;
+  }
+  @if $size == "small" {
+    font-size: 0.8em;
+  }
+
+}

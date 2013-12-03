@@ -1,0 +1,33 @@
+.plain-button {
+  @include agile-button();
+}
+
+.button-colors {
+  .some-link {
+    @include agile-button(primary);
+  }
+  .custom-color-button {
+    @include agile-button($background-color: #1ABC9C, $color: #FEFEFE);
+  }
+  .custom-color-button-alt {
+    @include agile-button($background-color: darkred, $color: #FEFEFE);
+  }
+}
+
+.button-sizes {
+  .important-link {
+    @include agile-button($size: large);
+  }
+  .small-button {
+    @include agile-button($size: small);
+  }
+}
+
+.form-buttons {
+  button {
+    @include agile-button(primary);
+  }
+  input[type="submit"] {
+    @include agile-button(primary);
+  }
+}

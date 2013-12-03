@@ -1,0 +1,19 @@
+.help-tip {
+  background: $help-tips;
+  border-radius: 900px;
+  color: #FFFFFF;
+  display: inline-block;
+  font-size: 22px; // using absolute measurement to ensure complete consistency
+  height: 1.4em;
+  line-height: 1.4;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  width: 1.45em;
+  margin-left: 0.5em;
+  &:link,
+  &:visited {
+    color: #FFFFFF;
+  }
+}

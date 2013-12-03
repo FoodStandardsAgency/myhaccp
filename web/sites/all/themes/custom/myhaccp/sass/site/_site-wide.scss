@@ -1,0 +1,13 @@
+body {
+  background-color: $page_background;
+}
+
+p.intro {
+  @include adjust-font-size-to(22.506px);
+  color: $text-lighter;
+}
+
+a:link {
+  text-decoration: none;
+  color: $base_color;
+}

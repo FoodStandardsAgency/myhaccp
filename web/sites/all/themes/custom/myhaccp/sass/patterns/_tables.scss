@@ -1,0 +1,28 @@
+@mixin tables_basic {
+  td, th {
+    padding: 10px;
+    text-align: left;
+    border-top: 1px solid #DDDDDD;
+  }
+
+  thead:first-child tr:first-child th,
+  thead:first-child tr:first-child td {
+      border-top: 0 none;
+  }
+
+}
+
+@mixin tables_striped {
+  tbody tr:nth-child(2n+1) td,
+  tbody tr:nth-child(2n+1) th {
+      background-color: #F9F9F9;
+  }
+}
+
+table {
+  @include tables_basic;
+}
+
+table.striped {
+  @include tables_striped;
+}

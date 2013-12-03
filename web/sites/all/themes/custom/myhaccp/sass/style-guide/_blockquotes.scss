@@ -1,0 +1,32 @@
+@mixin agile-blockquote {
+  border-left: 0.25em solid #E9E9E9;
+  color: #666666;
+  font-size: 1em;
+  line-height: 1.5;
+  padding: 0 1.5em 0 1em;
+  margin-left: 0
+}
+
+@mixin agile-blockquote-2 {
+  background-color: $dark_background;
+  color: #FFFFFF;
+  float: right;
+  font-size: 1em;
+  line-height: 1.5;
+  margin: 0 -1em 0 1em;
+  padding: 0.5em;
+  width: 15em;
+  p {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+.agile-blockquote blockquote {
+  @include agile-blockquote;
+}
+
+.agile-blockquote-2 blockquote {
+  @include agile-blockquote-2;
+}
+
