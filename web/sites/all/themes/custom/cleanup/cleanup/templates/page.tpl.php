@@ -11,33 +11,32 @@
 <?php print $cleanup_poorthemers_helper; ?>
 
 <header role="banner">
-  <div class="siteinfo">
-    <?php if ($logo): ?>
-      <figure>
-      <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home">
-        <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-      </a>
-      </figure>
-    <?php endif; ?>
+  <div class="header-inside">
 
-    <?php if($site_name OR $site_slogan ): ?>
-    <hgroup>
+    <div class="site-details">
+      <?php if ($logo): ?>
+        <div class="logo">
+        <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home">
+          <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
+        </a>
+        </div>
+      <?php endif; ?>
+
       <?php if($site_name): ?>
         <h1><?php print $site_name; ?></h1>
       <?php endif; ?>
       <?php if ($site_slogan): ?>
         <h2><?php print $site_slogan; ?></h2>
       <?php endif; ?>
-    </hgroup>
-    <?php endif; ?>
-  </div>
-
-  <?php if($page['header']): ?>
-    <div class="header-region">
-      <?php print render($page['header']); ?>
     </div>
-  <?php endif; ?>
 
+    <?php if($page['header']): ?>
+      <div class="header-region">
+        <?php print render($page['header']); ?>
+      </div>
+    <?php endif; ?>
+
+  </div>
 </header>
 
 <div class="page">
@@ -89,6 +88,8 @@
 </div><!-- /page -->
 
 <footer role="contentinfo">
-  <?php print render($page['footer']); ?>
+  <div class="footer-inside">
+    <?php print render($page['footer']); ?>
+  </div>
 </footer>
 
