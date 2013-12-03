@@ -7,6 +7,9 @@ web/sites/default/files
 # settings.php
 web/sites/default/settings.php
 
+# SASS
+.sass-cache
+
 # IDE and OS files
 .idea
 .DS_Store
