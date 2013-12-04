@@ -979,7 +979,7 @@ header .header-region nav li a {
 @media (min-width: 450px) {
   header .header-region nav {
     margin-top: 6px;
-    margin-left: -50px;
+    margin-left: -30px;
     margin-bottom: 0;
     margin-right: 0px;
     text-align: center;
@@ -2081,6 +2081,40 @@ footer[role=contentinfo] {
 }
 .help-tip:link, .help-tip:visited {
   color: #FFFFFF;
+}
+
+.node-homepage.view-mode-full .group-header {
+  border-bottom: 5px solid #eeeeee;
+}
+.node-homepage.view-mode-full .group-left,
+.node-homepage.view-mode-full .group-right {
+  width: 100%;
+}
+@media (min-width: 640px) {
+  .node-homepage.view-mode-full .group-left {
+    width: 50%;
+    float: left;
+    padding-right: 15px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .node-homepage.view-mode-full .group-right {
+    width: 50%;
+    float: left;
+    padding-left: 15px;
+    padding-right: 15px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+}
+.node-homepage.view-mode-full > .group-footer {
+  clear: both;
+}
+.node-homepage.view-mode-full.group-one-column > .group-left, .node-homepage.view-mode-full.group-one-column > .group-right {
+  float: none;
+  width: 100%;
 }
 
 /**
