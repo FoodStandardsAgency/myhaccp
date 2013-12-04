@@ -3,12 +3,54 @@
  * Styles for menus and navigation markup.
  */
 
+/** Main menu (level 1) **/
 header .header-region nav {
   @include nav-horizontal;
   @include nav-toggle;
   @include nav-style;
   ul {
     @include strip-list;
+  }
+}
+
+/** Main menu (level 2) **/
+
+.block-menu-block-2 {
+  border-bottom: 5px solid $dark-background;
+  padding-bottom: 1em;
+  padding-top: 1.25em;
+  ul {
+    @include strip-list;
+    li {
+      display: inline;
+      margin-right: 1em;
+      a {
+        color: $accent-1;
+        &.active {
+          color: $accent-2;
+        }
+      }
+    }
+  }
+}
+
+/** Main menu (level 3) **/
+
+.block-menu-block-3 {
+  padding-bottom: 1em;
+  padding-top: 2em;
+  ul {
+    @include strip-list;
+    li {
+      display: inline;
+      margin-right: 1em;
+      a {
+        color: $accent-3;
+        &.active {
+          color: $accent-2;
+        }
+      }
+    }
   }
 }
 

@@ -29,6 +29,7 @@ regions[page_bottom] = Page Bottom
 regions[header_utility] = Header Utility
 regions[header] = Header
 regions[footer] = Footer
+regions[content_pre] = Pre Content
 regions[sidebar_first] = Sidebar First
 regions[sidebar_second] = Sidebar Second
 regions[help] = Help
