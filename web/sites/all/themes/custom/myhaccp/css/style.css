@@ -1086,7 +1086,7 @@ header .header-region nav ul li {
 .block-menu-block-2 ul li a {
   color: #6cb33f;
 }
-.block-menu-block-2 ul li a.active {
+.block-menu-block-2 ul li a.active, .block-menu-block-2 ul li a.active-trail {
   color: #007fb2;
 }
 
@@ -1110,7 +1110,7 @@ header .header-region nav ul li {
 .block-menu-block-3 ul li a {
   color: #f15d22;
 }
-.block-menu-block-3 ul li a.active {
+.block-menu-block-3 ul li a.active, .block-menu-block-3 ul li a.active-trail {
   color: #007fb2;
 }
 

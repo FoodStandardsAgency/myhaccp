@@ -26,7 +26,8 @@ header .header-region nav {
       margin-right: 1em;
       a {
         color: $accent-1;
-        &.active {
+        &.active,
+        &.active-trail {
           color: $accent-2;
         }
       }
@@ -46,7 +47,8 @@ header .header-region nav {
       margin-right: 1em;
       a {
         color: $accent-3;
-        &.active {
+        &.active,
+        &.active-trail {
           color: $accent-2;
         }
       }
