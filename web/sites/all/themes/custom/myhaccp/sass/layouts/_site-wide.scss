@@ -24,7 +24,7 @@ footer .footer-wrapper {
 @media all and (min-width: $break_med_up) {
   body.sidebar-second {
     .region-sidebar-second {
-      @include column(4);
+      @include column(4, $float: right);
     }
     #main-content {
       @include column(12);

@@ -58,6 +58,18 @@
       </div>
     <?php endif; ?>
 
+    <?php if ($page['sidebar_first']): ?>
+      <div class="region-sidebar-first">
+      <?php print render($page['sidebar_first']); ?>
+      </div>
+    <?php endif; ?>
+
+    <?php if ($page['sidebar_second']): ?>
+      <div class="region-sidebar-second">
+        <?php print render($page['sidebar_second']); ?>
+      </div>
+    <?php endif; ?>
+
     <div role="main" id="main-content">
       <?php print render($title_prefix); ?>
       <?php if ($title): ?>
@@ -86,17 +98,7 @@
 
     </div><!-- /main-->
 
-    <?php if ($page['sidebar_first']): ?>
-      <div class="region-sidebar-first">
-      <?php print render($page['sidebar_first']); ?>
-      </div>
-    <?php endif; ?>
 
-    <?php if ($page['sidebar_second']): ?>
-      <div class="region-sidebar-second">
-        <?php print render($page['sidebar_second']); ?>
-      </div>
-    <?php endif; ?>
   </div>
 </div><!-- /page-->
 

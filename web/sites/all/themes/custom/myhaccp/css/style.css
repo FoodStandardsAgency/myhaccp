@@ -2439,7 +2439,7 @@ footer .footer-wrapper:after {
 @media all and (min-width: 860px) {
   body.sidebar-second .region-sidebar-second {
     width: 25%;
-    float: left;
+    float: right;
     padding-left: 15px;
     padding-right: 15px;
     -webkit-box-sizing: border-box;
