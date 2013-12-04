@@ -26,13 +26,16 @@ $base-color-lightest: mix($base-color, #FFF, 65%);
 
 $text-over-base-color: #FFF;
 
-// Accents (FSA Light Green)
+// Accent 1 (FSA Light Green)
 $accent-1: #6CB33F;
 $accent-1-lighter: mix($accent-1, #FFF, 80%);
 
-// Accent2 (light blue)
+// Accent 2 (FSA Light Blue)
 $accent-2: #007FB2;
 $accent-2-lighter: mix($accent-2, #FFF, 80%);
+
+// Accent 3 (Orange)
+$accent-3: #F15D22;
 
 // Help tips
 $help-tips: #d3d3d3;

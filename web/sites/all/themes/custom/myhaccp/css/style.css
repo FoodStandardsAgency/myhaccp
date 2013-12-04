@@ -97,7 +97,7 @@ h2 {
   font-size: 1.777em;
   line-height: 1.68824em;
   margin-top: 0.84412em;
-  margin-bottom: 0.84412em;
+  margin-bottom: 0.42206em;
   font-family: "CartoGothicStd", helvetica, arial, serif;
   color: #007fb2;
   font-weight: normal;
@@ -107,7 +107,7 @@ h3 {
   font-size: 1.333em;
   line-height: 2.25056em;
   margin-top: 1.12528em;
-  margin-bottom: 1.12528em;
+  margin-bottom: 0.56264em;
   color: #676767;
 }
 
@@ -953,6 +953,7 @@ h4.browser-title {
  * @file
  * Styles for menus and navigation markup.
  */
+/** Main menu (level 1) **/
 header .header-region nav {
   margin-top: 20px;
   position: relative;
@@ -1062,6 +1063,55 @@ header .header-region nav ul {
 header .header-region nav ul li {
   list-style-type: none;
   list-style-image: none;
+}
+
+/** Main menu (level 2) **/
+.block-menu-block-2 {
+  border-bottom: 5px solid #eeeeee;
+  padding-bottom: 1em;
+  padding-top: 1.25em;
+}
+.block-menu-block-2 ul {
+  margin: 0;
+  padding: 0;
+}
+.block-menu-block-2 ul li {
+  list-style-type: none;
+  list-style-image: none;
+}
+.block-menu-block-2 ul li {
+  display: inline;
+  margin-right: 1em;
+}
+.block-menu-block-2 ul li a {
+  color: #6cb33f;
+}
+.block-menu-block-2 ul li a.active {
+  color: #007fb2;
+}
+
+/** Main menu (level 3) **/
+.block-menu-block-3 {
+  padding-bottom: 1em;
+  padding-top: 2em;
+}
+.block-menu-block-3 ul {
+  margin: 0;
+  padding: 0;
+}
+.block-menu-block-3 ul li {
+  list-style-type: none;
+  list-style-image: none;
+}
+.block-menu-block-3 ul li {
+  display: inline;
+  margin-right: 1em;
+}
+.block-menu-block-3 ul li a {
+  color: #f15d22;
+}
+.block-menu-block-3 ul li a.active {
+  color: #007fb2;
 }
 
 /**
@@ -2375,7 +2425,8 @@ footer .footer-wrapper:after {
 }
 
 #main-content,
-.region-sidebar-second {
+.region-sidebar-second,
+.pre-content {
   width: 100%;
   float: left;
   padding-left: 15px;
@@ -2385,6 +2436,26 @@ footer .footer-wrapper:after {
   box-sizing: border-box;
 }
 
+@media all and (min-width: 860px) {
+  body.sidebar-second .region-sidebar-second {
+    width: 25%;
+    float: left;
+    padding-left: 15px;
+    padding-right: 15px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  body.sidebar-second #main-content {
+    width: 75%;
+    float: left;
+    padding-left: 15px;
+    padding-right: 15px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+}
 .pattern-page-1 .main-content,
 .pattern-page-1 .sidebar-right {
   width: 100%;

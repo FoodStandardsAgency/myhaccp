@@ -52,6 +52,12 @@
 
   <div class="main-wrapper">
 
+    <?php if($page['content_pre']): ?>
+      <div class="pre-content">
+        <?php print render($page['content_pre']); ?>
+      </div>
+    <?php endif; ?>
+
     <div role="main" id="main-content">
       <?php print render($title_prefix); ?>
       <?php if ($title): ?>
@@ -74,9 +80,6 @@
         </div>
       <?php } ?>
 
-
-      <?php print render($page['content_pre']); ?>
-
       <?php print render($page['content']); ?>
 
       <?php print render($page['content_post']); ?>
@@ -84,13 +87,13 @@
     </div><!-- /main-->
 
     <?php if ($page['sidebar_first']): ?>
-      <div class="sidebar-first">
+      <div class="region-sidebar-first">
       <?php print render($page['sidebar_first']); ?>
       </div>
     <?php endif; ?>
 
     <?php if ($page['sidebar_second']): ?>
-      <div class="sidebar-second">
+      <div class="region-sidebar-second">
         <?php print render($page['sidebar_second']); ?>
       </div>
     <?php endif; ?>

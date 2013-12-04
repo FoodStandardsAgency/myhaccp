@@ -15,17 +15,19 @@ footer .footer-wrapper {
 
 
 #main-content,
-.region-sidebar-second {
+.region-sidebar-second,
+.pre-content {
   @include column();
 }
 
 // Layout, with RHS
 @media all and (min-width: $break_med_up) {
-  //section[role=main] {
-  //  @include column(12);
-  //}
-
-  //.region-sidebar-second {
-  //  @include column(4);
-  //}
+  body.sidebar-second {
+    .region-sidebar-second {
+      @include column(4);
+    }
+    #main-content {
+      @include column(12);
+    }
+  }
 }
