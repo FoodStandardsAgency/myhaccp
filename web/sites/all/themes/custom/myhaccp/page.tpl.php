@@ -14,7 +14,6 @@
   <div class="header-wrapper">
     <div class="header-inside">
 
-
       <?php if($page['header_utility']): ?>
         <div class="header-utility">
           <?php print render($page['header_utility']); ?>
@@ -59,8 +58,6 @@
         <h1><?php print $title; ?></h1>
       <?php endif; ?>
       <?php print render($title_suffix); ?>
-
-      <?php print $breadcrumb; ?>
 
       <?php if ($action_links): ?>
         <ul class="action-links"><?php print render($action_links); ?></ul>
