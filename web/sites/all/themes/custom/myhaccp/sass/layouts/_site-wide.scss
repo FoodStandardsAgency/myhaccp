@@ -14,14 +14,7 @@ footer .footer-wrapper {
 }
 
 
-section[role=main] {
-  .region-content > .block {
-
-  }
-}
-
-
-section[role=main],
+#main-content,
 .region-sidebar-second {
   @include column();
 }

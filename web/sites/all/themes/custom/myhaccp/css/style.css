@@ -978,7 +978,7 @@ header .header-region nav li a {
 @media (min-width: 450px) {
   header .header-region nav {
     margin-top: 6px;
-    margin-left: -30px;
+    margin-left: -50px;
     margin-bottom: 0;
     margin-right: 0px;
     text-align: center;
@@ -1906,6 +1906,7 @@ header[role=banner] .site-details h1 {
   line-height: 1.71429em;
   margin-top: 4px;
   margin-bottom: 0;
+  color: #676767;
 }
 header[role=banner] .site-details h1 a {
   color: #676767;
@@ -1975,6 +1976,7 @@ header[role=banner] .header-utility nav > ul {
 }
 header[role=banner] .header-utility nav > ul li {
   display: inline;
+  margin-right: 0.5em;
 }
 @media all and (min-width: 860px) {
   header[role=banner] .header-utility {
@@ -1985,7 +1987,7 @@ header[role=banner] .header-utility nav > ul li {
 footer[role=contentinfo] {
   background-color: #eeeeee;
   color: black;
-  border-top: 4px solid #006f51;
+  min-height: 7em;
 }
 
 .footer-inside {
@@ -1999,10 +2001,15 @@ footer[role=contentinfo] {
   font-size: 0.9em;
 }
 .footer-inside p.copyright-message {
-  float: left;
+  margin-bottom: 0;
 }
-.footer-inside ul.links {
-  float: right;
+.footer-inside .footer-links {
+  max-width: 50em;
+  color: #676767;
+  font-size: 0.844em;
+}
+.footer-inside .footer-links a {
+  color: #676767;
 }
 
 .help-tip {
@@ -2365,7 +2372,7 @@ footer .footer-wrapper:after {
   box-sizing: border-box;
 }
 
-section[role=main],
+#main-content,
 .region-sidebar-second {
   width: 100%;
   float: left;

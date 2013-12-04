@@ -23,6 +23,7 @@ header[role=banner] {
       @include adjust-font-size-to(35px);
       margin-top: 4px;
       margin-bottom: 0;
+      color: $text-lighter;
       a {
         color: $text-lighter;
         text-decoration: none;
@@ -83,6 +84,7 @@ header[role=banner] {
         float: right;
         li {
           display: inline;
+          margin-right: 0.5em;
         }
       }
     }
