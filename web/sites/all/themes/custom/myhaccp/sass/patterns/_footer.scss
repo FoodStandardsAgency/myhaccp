@@ -1,16 +1,23 @@
 footer[role=contentinfo] {
   background-color: $dark-background;
   color: $text-over-dark-background;
-  border-top: 4px solid $base-color;
+  min-height: 7em;
+  //border-top: 4px solid $base-color;
 }
 
 .footer-inside {
   @include column();
   font-size: 0.9em;
   p.copyright-message {
-    float: left;
+    margin-bottom: 0;
   }
-  ul.links {
-    float: right;
+  .footer-links {
+    max-width: 50em;
+    color: $text-lighter;
+    font-size: 0.844em;
+    a {
+      color: $text-lighter;
+    }
   }
+
 }

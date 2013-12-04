@@ -7,10 +7,10 @@ if ($classes) {
 }
 
 //add a aria role search if this is the search block
-if($variables['block_html_id'] == "block-search-form"){
+if($variables['block_html_id'] == "block-search-form") {
 	$role = ' role="search"';
-}else{
-$role = '';
+} else{
+  $role = '';
 }
 ?>
 

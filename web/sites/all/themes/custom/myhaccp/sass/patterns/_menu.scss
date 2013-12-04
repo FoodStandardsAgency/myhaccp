@@ -95,7 +95,9 @@ ul.primary {
       margin-right: 0.5em; /* LTR */
       padding: 0 1em;
       text-decoration: none;
-      &:hover {
+      &:hover,
+      &.active,
+      &.active-trail {
         background-color: #eee;
         border-color: #ccc;
         border-bottom-color: #eee;

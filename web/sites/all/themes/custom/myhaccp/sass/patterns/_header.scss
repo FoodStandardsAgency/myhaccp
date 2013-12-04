@@ -1,7 +1,7 @@
 header[role=banner] {
   background-color: $dark-background;
   color: $text-over-dark-background;
-  border-bottom: 4px solid $accent-1;
+  border-bottom: 5px solid $accent-1;
   .header-inside {
     @include column();
     padding-top: 1em;
@@ -23,6 +23,7 @@ header[role=banner] {
       @include adjust-font-size-to(35px);
       margin-top: 4px;
       margin-bottom: 0;
+      color: $text-lighter;
       a {
         color: $text-lighter;
         text-decoration: none;
@@ -41,7 +42,7 @@ header[role=banner] {
     clear: both;
     position: relative;
     @media all and (min-width: $break_small_up) {
-      bottom: -4px;
+      bottom: -5px;
       margin-top: 1em;
     }
   }
@@ -83,6 +84,7 @@ header[role=banner] {
         float: right;
         li {
           display: inline;
+          margin-right: 0.5em;
         }
       }
     }
