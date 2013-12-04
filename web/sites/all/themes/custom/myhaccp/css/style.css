@@ -1944,21 +1944,28 @@ header[role=banner] .header-utility:after {
 header[role=banner] .header-utility a {
   color: #676767;
 }
-header[role=banner] .header-utility > input {
-  float: left;
+header[role=banner] .header-utility div[role="search"] {
+  float: right;
   margin-right: 1em;
 }
+header[role=banner] .header-utility div[role="search"] .form-actions {
+  display: none;
+}
 @media all and (max-width: 450px) {
-  header[role=banner] .header-utility > input {
+  header[role=banner] .header-utility div[role="search"] input {
     width: 100%;
   }
 }
 @media all and (min-width: 860px) {
-  header[role=banner] .header-utility > input {
+  header[role=banner] .header-utility div[role="search"] input {
     float: right;
     margin-left: 1em;
     margin-right: 0;
+    max-width: 12em;
   }
+}
+header[role=banner] .header-utility nav {
+  float: right;
 }
 header[role=banner] .header-utility nav > ul {
   list-style-type: none;

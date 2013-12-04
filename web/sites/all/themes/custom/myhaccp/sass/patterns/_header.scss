@@ -56,25 +56,34 @@ header[role=banner] {
     a {
       color: $text-lighter;
     }
-    > input {
-      float: left;
+    div[role="search"] {
+      float: right;
       margin-right: 1em;
-      @media all and (max-width: $break_small_up) {
-        width: 100%;
+      .form-actions {
+        display: none;
       }
-      @media all and (min-width: $break_med_up) {
-        float: right;
-        margin-left: 1em;
-        margin-right: 0;
+      input {
+        @media all and (max-width: $break_small_up) {
+          width: 100%;
+        }
+        @media all and (min-width: $break_med_up) {
+          float: right;
+          margin-left: 1em;
+          margin-right: 0;
+          max-width: 12em;
+        }
       }
     }
-    nav > ul {
-      list-style-type: none;
-      margin: 0.25em 0 0.5em 0;
-      padding: 0;
+    nav {
       float: right;
-      li {
-        display: inline;
+    > ul {
+        list-style-type: none;
+        margin: 0.25em 0 0.5em 0;
+        padding: 0;
+        float: right;
+        li {
+          display: inline;
+        }
       }
     }
 
