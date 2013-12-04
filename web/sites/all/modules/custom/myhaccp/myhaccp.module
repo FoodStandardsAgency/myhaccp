@@ -18,29 +18,29 @@
 /**
  * Implements hook_menu().
  */
-function myhaccp_prototype_menu() {
+function myhaccp_menu() {
   $items['prototype'] = array(
     'title' => 'My forms',
-    'page callback' => 'myhaccp_prototype_list',
+    'page callback' => 'myhaccp_list',
     'page arguments' => array(),
-    'access callback' => 'myhaccp_prototype_access',
+    'access callback' => 'myhaccp_access',
     'access arguments' => array(1),
-    'file' => 'myhaccp_prototype.pages.inc',
+    'file' => 'myhaccp.pages.inc',
     'type' => MENU_CALLBACK,
   );
   $items['prototype/form'] = array(
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('myhaccp_prototype_form'),
-    'access callback' => 'myhaccp_prototype_access',
+    'page arguments' => array('myhaccp_start_form'),
+    'access callback' => 'myhaccp_access',
     'access arguments' => array(1),
-    'file' => 'myhaccp_prototype.pages.inc',
+    'file' => 'myhaccp.pages.inc',
     'type' => MENU_CALLBACK,
   );
   $items['prototype/form/create'] = array(
-    'page callback' => 'myhaccp_prototype_create',
-    'access callback' => 'myhaccp_prototype_access',
+    'page callback' => 'myhaccp_create',
+    'access callback' => 'myhaccp_access',
     'access arguments' => array('create'),
-    'file' => 'myhaccp_prototype.pages.inc',
+    'file' => 'myhaccp.pages.inc',
     'type' => MENU_CALLBACK,
   );
   return $items;
@@ -51,7 +51,7 @@ function myhaccp_prototype_menu() {
  *
  * Define our permissions for managing the forms.
  */
-function myhaccp_prototype_permission() {
+function myhaccp_permission() {
   return array(
     'create myhaccp forms' => array(
       'title' => t('Create myhaccp forms'),
@@ -77,7 +77,7 @@ function myhaccp_prototype_permission() {
  * @return bool
  *   Boolean determining access.
  */
-function myhaccp_prototype_access($op) {
+function myhaccp_access($op) {
   if ($op == 'create') {
     return user_access('create myhaccp forms');
   }
@@ -89,7 +89,7 @@ function myhaccp_prototype_access($op) {
 /**
  * Implements hook_STORE_KEY_mforms_init().
  */
-function myhaccp_prototype_myhaccp_mforms_init() {
+function myhaccp_myhaccp_mforms_init() {
   $store = MformsDatabaseStore::getInstance('myhaccp');
   $steps = MformsSteps::getInstance($store);
 
@@ -101,13 +101,13 @@ function myhaccp_prototype_myhaccp_mforms_init() {
   ));
 
   // Init the mforms.
-  mforms_init_module('myhaccp_prototype', 'myhaccp', $store, $controls);
+  mforms_init_module('myhaccp', 'myhaccp', $store, $controls);
 }
 
 /**
  * Menu callback which displays the form.
  */
-function myhaccp_prototype_form($form, &$form_state, $iid = FALSE) {
+function myhaccp_start_form($form, &$form_state, $iid = FALSE) {
   // If we've been passed an IID then set the session to that.
   if ($iid && is_numeric($iid)) {
     // Check that this user has permission to look at this form.

@@ -3,7 +3,7 @@
 /**
  * Menu callback which presents a table of forms to edit.
  */
-function myhaccp_prototype_list() {
+function myhaccp_list() {
   global $user;
   // Prepare the table header.
   $header = array(
@@ -67,7 +67,7 @@ function myhaccp_prototype_list() {
 /**
  * Menu callback for creating a form.
  */
-function myhaccp_prototype_create() {
+function myhaccp_create() {
   global $user;
   $record = array(
     'uid' => $user->uid,

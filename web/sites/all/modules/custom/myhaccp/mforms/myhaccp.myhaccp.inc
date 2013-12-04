@@ -27,7 +27,7 @@
  */
 function _get_step($function, $type, &$form_state, &$next_step) {
   // Use ctools include to include our step file.
-  ctools_include($function, 'myhaccp_prototype', 'mforms/' . $type);
+  ctools_include($function, 'myhaccp', 'mforms/' . $type);
   $function = '_' . $function;
   if (function_exists($function)) {
     return $function($form_state, $next_step);
