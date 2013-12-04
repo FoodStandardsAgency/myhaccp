@@ -932,6 +932,21 @@ h4.browser-title {
   width: 194px;
 }
 
+.node-homepage.view-mode-full .group-right ol {
+  font-size: 2em;
+  color: #89c265;
+  margin-top: 0;
+  padding-left: 50px;
+}
+.node-homepage.view-mode-full .group-right ol li {
+  margin-bottom: 0.25em;
+}
+.node-homepage.view-mode-full .group-right ol span {
+  font-size: 0.5em;
+  vertical-align: middle;
+  color: black;
+}
+
 /**
  * Navigation Styling
  */
@@ -2083,6 +2098,10 @@ footer[role=contentinfo] {
   color: #FFFFFF;
 }
 
+.node-homepage.view-mode-full {
+  /** General layout **/
+  /** Specific styling **/
+}
 .node-homepage.view-mode-full .group-header {
   border-bottom: 5px solid #eeeeee;
 }

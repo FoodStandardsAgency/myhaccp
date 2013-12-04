@@ -1,0 +1,14 @@
+%big-numbered-list {
+  font-size: 2em;
+  color: $accent-1-lighter;
+  margin-top: 0;
+  padding-left: 50px;
+  li {
+    margin-bottom: 0.25em;
+  }
+  span {
+    font-size: 0.5em;
+    vertical-align: middle;
+    color: $text;
+  }
+}

@@ -1,5 +1,6 @@
 .node-homepage.view-mode-full {
 
+  /** General layout **/
   .group-header {
     border-bottom: 5px solid $dark-background;
   }
@@ -27,6 +28,12 @@
   &.group-one-column > .group-right {
       float: none;
       width: 100%;
+  }
+
+  /** Specific styling **/
+
+  .group-right ol {
+    @extend %big-numbered-list;
   }
 
 
