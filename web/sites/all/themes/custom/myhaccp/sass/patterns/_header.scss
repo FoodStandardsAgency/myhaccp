@@ -1,7 +1,7 @@
 header[role=banner] {
   background-color: $dark-background;
   color: $text-over-dark-background;
-  border-bottom: 4px solid $accent-1;
+  border-bottom: 5px solid $accent-1;
   .header-inside {
     @include column();
     padding-top: 1em;
@@ -42,7 +42,7 @@ header[role=banner] {
     clear: both;
     position: relative;
     @media all and (min-width: $break_small_up) {
-      bottom: -4px;
+      bottom: -5px;
       margin-top: 1em;
     }
   }

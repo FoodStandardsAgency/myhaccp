@@ -104,7 +104,9 @@
     }
   }
   /** Links **/
-  li a:hover {
+  li a:hover,
+  li a.active,
+  li a.active-trail {
     background-color: $page_background;
   }
   //li a:hover,

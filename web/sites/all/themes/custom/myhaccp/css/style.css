@@ -1050,7 +1050,9 @@ header .header-region nav li a {
     line-height: 1.5em;
   }
 }
-header .header-region nav li a:hover {
+header .header-region nav li a:hover,
+header .header-region nav li a.active,
+header .header-region nav li a.active-trail {
   background-color: #fafafa;
 }
 header .header-region nav ul {
@@ -1147,7 +1149,7 @@ ul.primary li a {
   padding: 0 1em;
   text-decoration: none;
 }
-ul.primary li a:hover {
+ul.primary li a:hover, ul.primary li a.active, ul.primary li a.active-trail {
   background-color: #eee;
   border-color: #ccc;
   border-bottom-color: #eee;
@@ -1864,7 +1866,7 @@ table.striped tbody tr:nth-child(2n+1) th {
 header[role=banner] {
   background-color: #eeeeee;
   color: black;
-  border-bottom: 4px solid #6cb33f;
+  border-bottom: 5px solid #6cb33f;
   /** Styling **/
   /**
     @media all and (min-width: $break_med_up) {
@@ -1923,7 +1925,7 @@ header[role=banner] .header-region nav[role="navigation"] {
 }
 @media all and (min-width: 450px) {
   header[role=banner] .header-region nav[role="navigation"] {
-    bottom: -4px;
+    bottom: -5px;
     margin-top: 1em;
   }
 }
