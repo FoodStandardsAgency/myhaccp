@@ -8,106 +8,73 @@
  */
 
 /**
- * Prototype form.
+ * Helper function which loads the correct file for the step.
+ *
+ * Includes files which are named after the calling function with the following
+ * pattern: [function name].inc
+ *
+ * @param string $function
+ *   The function name as provided by __FUNCTION__
+ * @param string $type
+ *   The type dictates the name of the directory under mforms, e.g. principles.
+ * @param array $form_state
+ *   The form state array.
+ * @param string $next_step
+ *   The next step to be considered.
  *
  * @return array
+ *   The form array for the called function.
  */
-function myhaccp_prototype_form_step_1(&$form_state, &$next_step, $params) {
-  module_load_include('module', 'myhaccp_prototype', '/mforms/steps/' . $step_name);
-  // Define following step callback. If none set, that implies it is
-  // the last step.
-  $next_step = 'myhaccp_prototype_form_step_2';
-
-  // Retrieve submitted values. This comes in handy when back action
-  // occured and we need to display values that were originaly submitted.
-  $data = mforms_get_vals('myhaccp');
-
-  // If we have the data it means we arrived here from back action, so show
-  // them in form as default vals.
-  if (!empty($data)) {
-    $vals = $data;
+function _get_step($function, $type, &$form_state, &$next_step) {
+  // Use ctools include to include our step file.
+  ctools_include($function, 'myhaccp_prototype', 'mforms/' . $type);
+  $function = '_' . $function;
+  if (function_exists($function)) {
+    return $function($form_state, $next_step);
   }
-  elseif (isset($form_state['values'])) {
-    $vals = $form_state['values'];
-  }
-
-  $form = array();
-  $form['test1'] = array(
-    '#weight' => '0',
-    '#required' => '0',
-    '#multiple' => '0',
-    '#key_type_toggled' => '0',
-    '#type' => 'select',
-    '#options' => array(
-      '1' => t('Linear'),
-      '2' => t('Modular'),
-      '3' => t('Linear / Modular'),
-      '4' => t('Generic'),
-    ),
-    '#multiple_toggle' => '1',
-    '#title' => t('1. What type of HACCP plan are you producing?'),
-    '#default_value' => isset($vals['test1']) ? $vals['test1'] : NULL
-  );
-  $form['test2'] = array(
-    '#weight' => '1',
-    '#required' => '0',
-    '#type' => 'textarea',
-    '#title' => t('2. State the type of product you are producing and briefly how it is going to be packed:'),
-    '#default_value' => isset($vals['test2']) ? $vals['test2'] : NULL
-  );
-  $form['test3'] = array(
-    '#weight' => '2',
-    '#required' => '0',
-    '#type' => 'textfield',
-    '#title' => t('It will start at '),
-    '#default_value' => isset($vals['test3']) ? $vals['test3'] : NULL
-  );
-  $form['test4'] = array(
-    '#weight' => '3',
-    '#required' => '0',
-    '#type' => 'textfield',
-    '#title' => t('Through to '),
-    '#default_value' => isset($vals['test4']) ? $vals['test4'] : NULL
-  );
-  return $form;
 }
 
 /**
- * Prototype form.
- *
- * @return array
+ * Principle 1, question 1.
  */
-function myhaccp_prototype_form_step_2(&$form_state, &$next_step, $params) {
-  // Define following step callback. If none set, that implies it is
-  // the last step.
+function principle_1_question_1(&$form_state, &$next_step) {
+  $function = __FUNCTION__;
+  $type = 'principle';
+  return _get_step($function, $type, $form_state, $next_step);
+}
 
-  // Retrieve submitted values. This comes in handy when back action
-  // occured and we need to display values that were originaly submitted.
-  $data = mforms_get_vals('myhaccp');
+/**
+ * Principle 1, question 2.
+ */
+function principle_1_question_2(&$form_state, &$next_step) {
+  $function = __FUNCTION__;
+  $type = 'principle';
+  return _get_step($function, $type, $form_state, $next_step);
+}
 
-  // If we have the data it means we arrived here from back action, so show
-  // them in form as default vals.
-  if (!empty($data)) {
-    $vals = $data;
+/**
+ * Ajax callback which returns the form array element to be applied against.
+ */
+function instance_add_more_callback($form, $form_state) {
+  return $form['container'];
+}
+
+/**
+ * Ajax submit handler which positively adjusts the number of instances.
+ */
+function instance_add_more_add_one($form, &$form_state) {
+  $form_state['num_instances']++;
+  // Trigger a form rebuilt with an increased number of instances.
+  $form_state['rebuild'] = TRUE;
+}
+
+/**
+ * Ajax submit handler which negatively adjusts the number of instances.
+ */
+function instance_add_more_remove_one($form, &$form_state) {
+  if ($form_state['num_instances'] > 1) {
+    $form_state['num_instances']--;
   }
-  elseif (isset($form_state['values'])) {
-    $vals = $form_state['values'];
-  }
-
-  $form = array();
-  $form['test5'] = array(
-    '#weight' => '0',
-    '#required' => '0',
-    '#multiple' => '0',
-    '#key_type_toggled' => '0',
-    '#type' => 'select',
-    '#options' => array(
-      '1' => t('A test'),
-      '2' => t('Another test'),
-    ),
-    '#multiple_toggle' => '1',
-    '#title' => t('1. This is a test'),
-    '#default_value' => isset($vals['test5']) ? $vals['test5'] : NULL
-  );
-  return $form;
+  // Trigger a form rebuild.
+  $form_state['rebuild'] = TRUE;
 }

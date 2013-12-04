@@ -1,5 +1,20 @@
 <?php
 
+/*                ,
+                 / \,,_  .'|
+              ,{{| /}}}}/_.'
+             }}}}` '{{'  '.
+           {{{{{    _   ;, \
+        ,}}}}}}    /o`\  ` ;)
+       {{{{{{   /           (
+       }}}}}}   |            \
+      {{{{{{{{   \            \
+      }}}}}}}}}   '.__      _  |
+      {{{{{{{{       /`._  (_\ /
+       }}}}}}'      |    \\___/
+       `{{{{`       |     '--'
+        }}}`*/
+
 /**
  * Implements hook_menu().
  */
@@ -25,6 +40,7 @@ function myhaccp_prototype_menu() {
     'page callback' => 'myhaccp_prototype_create',
     'access callback' => 'myhaccp_prototype_access',
     'access arguments' => array('create'),
+    'file' => 'myhaccp_prototype.pages.inc',
     'type' => MENU_CALLBACK,
   );
   return $items;
@@ -80,8 +96,8 @@ function myhaccp_prototype_myhaccp_mforms_init() {
   // If using mustistep controls you need to explicitly define form steps and
   // its attributes.
   $controls = MformsMultiStepControls::getInstance($store, $steps, array(
-    'myhaccp_prototype_form_step_1' => array('value' => 'Step 1', 'weight' => -103),
-    'myhaccp_prototype_form_step_2' => array('value' => 'Step 2', 'weight' => -102),
+    'principle_1_question_1' => array('value' => 'Step 1', 'weight' => -103),
+    'principle_1_question_2' => array('value' => 'Step 2', 'weight' => -102),
   ));
 
   // Init the mforms.
@@ -113,5 +129,5 @@ function myhaccp_prototype_form($form, &$form_state, $iid = FALSE) {
     drupal_set_message('Please edit an existing form or create a new one.');
     drupal_goto('prototype');
   }
-  return mforms_build('myhaccp', 'myhaccp_prototype_form_step_1', $form_state);
+  return mforms_build('myhaccp', 'principle_1_question_1', $form_state);
 }
