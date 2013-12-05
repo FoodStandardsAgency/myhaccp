@@ -2001,6 +2001,7 @@ header[role=banner] .header-region nav[role="navigation"] {
 header[role=banner] .header-utility {
   margin-bottom: 1em;
   color: #676767;
+  font-size: 0.85em;
   *zoom: 1;
 }
 header[role=banner] .header-utility:after {
