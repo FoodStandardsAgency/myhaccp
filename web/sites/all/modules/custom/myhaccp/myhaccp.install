@@ -3,7 +3,7 @@
 /**
  * Implementation of hook_schema().
  */
-function myhaccp_prototype_schema() {
+function myhaccp_schema() {
   $schema = array();
 
   $schema['mforms_storage'] = array(
