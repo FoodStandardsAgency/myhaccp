@@ -78,3 +78,4 @@ function instance_add_more_remove_one($form, &$form_state) {
   // Trigger a form rebuild.
   $form_state['rebuild'] = TRUE;
 }
+

@@ -131,3 +131,18 @@ function myhaccp_start_form($form, &$form_state, $iid = FALSE) {
   }
   return mforms_build('myhaccp', 'principle_1_question_1', $form_state);
 }
+
+/**
+ * Implements hook_theme().
+ */
+function myhaccp_theme() {
+  $path = drupal_get_path('module', 'myhaccp') . '/theme';
+  return array(
+    'myhacpp_p1q2_table' => array(
+      'render element' => 'element',
+      'path' => $path,
+      'file' => 'myhaccp.theme.inc',
+      'function' => 'theme_myhacpp_p1q2_table',
+    )
+  );
+}
