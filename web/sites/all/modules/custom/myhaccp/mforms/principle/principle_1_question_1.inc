@@ -26,7 +26,6 @@ function _principle_1_question_1(&$form_state, &$next_step) {
 
   // The wrapper fieldset for the form.
   $form['container'] = array(
-    '#type' => 'markup',
     // Set up the wrapper so that AJAX will be able to replace the fieldset.
     '#prefix' => '<div id="instance-container">',
     '#suffix' => '</div>',
@@ -55,34 +54,33 @@ function _principle_1_question_1(&$form_state, &$next_step) {
     // Markup.
     $form['container']['instance-' . $i]['p1q1_message'] = array(
       '#weight' => '2',
-      '#type' => 'markup',
-      '#value' => t('List all potential hazards that may be reasonably expected to occur at this process step:'),
+      '#markup' => t('List all potential hazards that may be reasonably expected to occur at this process step:'),
     );
     // Biological.
     $form['container']['instance-' . $i]['p1q1_biological'] = array(
       '#weight' => '3',
-      '#type' => 'textfield',
+      '#type' => 'textarea',
       '#title' => t('Biological'),
       '#default_value' => isset($vals['container']['instance-' . $i]['p1q1_biological']) ? $vals['container']['instance-' . $i]['p1q1_biological'] : NULL
     );
     // Chemical.
     $form['container']['instance-' . $i]['p1q1_chemical'] = array(
       '#weight' => '4',
-      '#type' => 'textfield',
+      '#type' => 'textarea',
       '#title' => t('Chemical'),
       '#default_value' => isset($vals['container']['instance-' . $i]['p1q1_chemical']) ? $vals['container']['instance-' . $i]['p1q1_chemical'] : NULL
     );
     // Physical.
     $form['container']['instance-' . $i]['p1q1_physical'] = array(
       '#weight' => '5',
-      '#type' => 'textfield',
+      '#type' => 'textarea',
       '#title' => t('Physical'),
       '#default_value' => isset($vals['container']['instance-' . $i]['p1q1_physical']) ? $vals['container']['instance-' . $i]['p1q1_physical'] : NULL
     );
     // Allergens.
     $form['container']['instance-' . $i]['p1q1_allergens'] = array(
       '#weight' => '6',
-      '#type' => 'textfield',
+      '#type' => 'textarea',
       '#title' => t('Allergens'),
       '#default_value' => isset($vals['container']['instance-' . $i]['p1q1_allergens']) ? $vals['container']['instance-' . $i]['p1q1_allergens'] : NULL
     );
