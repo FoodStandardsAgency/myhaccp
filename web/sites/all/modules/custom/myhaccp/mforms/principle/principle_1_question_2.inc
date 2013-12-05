@@ -25,7 +25,6 @@ function _principle_1_question_2(&$form_state, &$next_step) {
   $form['#tree'] = TRUE;
 //  $form['#theme'] = 'myhacpp_p1q2_table';
 
-
   // The wrapper for each instance of the form.
   $form['container'] = array(
     '#type' => 'markup',
@@ -202,5 +201,6 @@ function _principle_1_question_2(&$form_state, &$next_step) {
 //    );
   }
 
+  $form['#submit'][] = '_principle_1_question_2_submit';
   return $form;
 }

@@ -79,3 +79,10 @@ function instance_add_more_remove_one($form, &$form_state) {
   $form_state['rebuild'] = TRUE;
 }
 
+/**
+ * The submit handler to store the form at the end of the process.
+ */
+function _principle_1_question_2_submit($form, &$form_state) {
+  $form_state['values'] += $_POST;
+  mforms_submit('myhaccp', $form, $form_state);
+}
