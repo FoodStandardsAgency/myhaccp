@@ -108,7 +108,8 @@ h3 {
   line-height: 2.25056em;
   margin-top: 1.12528em;
   margin-bottom: 0.56264em;
-  color: #676767;
+  color: #888888;
+  font-weight: normal;
 }
 
 h4 {
@@ -116,7 +117,8 @@ h4 {
   line-height: 1.33333em;
   margin-top: 0.66667em;
   margin-bottom: 0.66667em;
-  color: #676767;
+  color: #888888;
+  font-weight: normal;
 }
 
 h5 {
@@ -124,7 +126,8 @@ h5 {
   line-height: 1.5em;
   margin-top: 0.75em;
   margin-bottom: 0.75em;
-  color: #676767;
+  color: #888888;
+  font-weight: normal;
 }
 
 h6 {
@@ -132,7 +135,8 @@ h6 {
   line-height: 1.5em;
   margin-top: 0.75em;
   margin-bottom: 0.75em;
-  color: #676767;
+  color: #888888;
+  font-weight: normal;
 }
 
 /* normalize.css v2.0.1 | MIT License | git.io/normalize */
@@ -833,8 +837,8 @@ ul.menu li {
 .grid-blocks .grid-example.lots > div {
   width: 6.25%;
   float: left;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 25px;
+  padding-right: 25px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -842,8 +846,8 @@ ul.menu li {
 .grid-blocks .grid-example.some > div {
   width: 25%;
   float: left;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 25px;
+  padding-right: 25px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -851,8 +855,8 @@ ul.menu li {
 .grid-blocks .grid-example.few > div {
   width: 50%;
   float: left;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 25px;
+  padding-right: 25px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -861,8 +865,8 @@ ul.menu li {
 .grid-blocks .grid-example.responsive > div {
   width: 100%;
   float: left;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 25px;
+  padding-right: 25px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -875,8 +879,8 @@ ul.menu li {
   .grid-blocks .grid-example.responsive > div.main-area {
     width: 62.5%;
     float: left;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -884,8 +888,8 @@ ul.menu li {
   .grid-blocks .grid-example.responsive > div.side {
     width: 18.75%;
     float: left;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -1719,8 +1723,8 @@ input#edit-submit.form-add {
   .field-group-row.hazards .form-item {
     width: 50%;
     float: left;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -1909,8 +1913,8 @@ table.striped tbody tr:nth-child(2n+1) th {
   .agile-blocks-aside {
     width: 50%;
     float: left;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -1920,8 +1924,8 @@ table.striped tbody tr:nth-child(2n+1) th {
   .agile-blocks-aside {
     width: 31.25%;
     float: left;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -1948,8 +1952,8 @@ header[role=banner] {
 header[role=banner] .header-inside {
   width: 100%;
   float: left;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 25px;
+  padding-right: 25px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -2060,8 +2064,8 @@ footer[role=contentinfo] {
 .footer-inside {
   width: 100%;
   float: left;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 25px;
+  padding-right: 25px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -2113,7 +2117,7 @@ footer[role=contentinfo] {
   .node-homepage.view-mode-full .group-left {
     width: 50%;
     float: left;
-    padding-right: 15px;
+    padding-right: 25px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -2121,8 +2125,7 @@ footer[role=contentinfo] {
   .node-homepage.view-mode-full .group-right {
     width: 50%;
     float: left;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 25px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -2470,8 +2473,8 @@ footer .footer-wrapper:after {
 .region-sidebar-first {
   width: 25%;
   float: left;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 25px;
+  padding-right: 25px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -2482,8 +2485,8 @@ footer .footer-wrapper:after {
 .pre-content {
   width: 100%;
   float: left;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 25px;
+  padding-right: 25px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -2493,8 +2496,8 @@ footer .footer-wrapper:after {
   body.sidebar-second .region-sidebar-second {
     width: 25%;
     float: right;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -2502,8 +2505,8 @@ footer .footer-wrapper:after {
   body.sidebar-second #main-content {
     width: 75%;
     float: left;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -2513,8 +2516,8 @@ footer .footer-wrapper:after {
 .pattern-page-1 .sidebar-right {
   width: 100%;
   float: left;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 25px;
+  padding-right: 25px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -2523,8 +2526,8 @@ footer .footer-wrapper:after {
   .pattern-page-1 .main-content {
     width: 62.5%;
     float: left;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -2532,8 +2535,8 @@ footer .footer-wrapper:after {
   .pattern-page-1 .sidebar-right {
     width: 37.5%;
     float: left;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -2549,8 +2552,8 @@ footer .footer-wrapper:after {
 .homepage-1-1 section.main-content {
   width: 100%;
   float: left;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 25px;
+  padding-right: 25px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -2559,8 +2562,8 @@ footer .footer-wrapper:after {
 .homepage-1-1 .region-sidebar-second {
   width: 100%;
   float: left;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 25px;
+  padding-right: 25px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -2570,8 +2573,8 @@ footer .footer-wrapper:after {
   .homepage-1-1 section.main-content {
     width: 75%;
     float: left;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -2579,8 +2582,8 @@ footer .footer-wrapper:after {
   .homepage-1-1 .region-sidebar-second {
     width: 25%;
     float: left;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -2600,8 +2603,8 @@ footer .footer-wrapper:after {
 .homepage-1-1 section.highlighted .highlighted-inner > p {
   width: 100%;
   float: left;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 25px;
+  padding-right: 25px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -2610,8 +2613,8 @@ footer .footer-wrapper:after {
   .homepage-1-1 section.highlighted .highlighted-inner > p {
     width: 62.5%;
     float: left;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -2621,8 +2624,8 @@ footer .footer-wrapper:after {
   .homepage-1-1 section.highlighted .highlighted-inner > p {
     width: 75%;
     float: left;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -2631,8 +2634,8 @@ footer .footer-wrapper:after {
 .homepage-1-1 .register-button {
   width: 100%;
   float: left;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 25px;
+  padding-right: 25px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -2653,8 +2656,8 @@ footer .footer-wrapper:after {
   .homepage-1-1 .register-button {
     width: 37.5%;
     float: left;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -2664,8 +2667,8 @@ footer .footer-wrapper:after {
   .homepage-1-1 .register-button {
     width: 25%;
     float: left;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -2687,8 +2690,8 @@ footer .footer-wrapper:after {
 .speaker-box {
   width: 100%;
   float: left;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 25px;
+  padding-right: 25px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -2697,8 +2700,8 @@ footer .footer-wrapper:after {
   .speaker-box {
     width: 37.5%;
     float: left;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -2709,8 +2712,8 @@ footer .footer-wrapper:after {
   .speaker-box {
     width: 25%;
     float: left;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;

@@ -11,6 +11,8 @@ $text: #000000;
 // Lighter text color
 $text-lighter: #676767;
 
+$text-medium: #888;
+
 // Dark background, for things like sidebar blocks, headers & footers
 $dark-background: #EEEEEE;
 
@@ -53,6 +55,8 @@ $negative: #B73939;
 // Colours
 $heading-font-color-1: $base-color;
 $heading-font-color-2: $accent-2;
+$heading-font-color-3: $text-medium;
+
 
 // Sizes
 $base-font-size: 20px;
@@ -84,7 +88,7 @@ $break_massive_up: 1250px;
  * Grid
  */
 $_columns: 16;
-$_gutter: 15px;
+$_gutter: 25px;
 $_max-width: 1100px;
 
 

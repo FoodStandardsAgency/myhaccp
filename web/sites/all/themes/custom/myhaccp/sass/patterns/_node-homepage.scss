@@ -16,7 +16,7 @@
     }
 
     .group-right {
-      @include column-split(half, last);
+      @include column-split(half, false, last);
     }
   }
 

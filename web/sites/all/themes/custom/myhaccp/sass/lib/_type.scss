@@ -88,6 +88,7 @@ h3 {
   @include leader(1, $h3-font-size);
   @include trailer(0.5, $h3-font-size);
   color: $heading-font-color-3;
+  font-weight: normal;
 }
 
 h4 {
@@ -95,6 +96,7 @@ h4 {
   @include leader(0.5, $h4-font-size);
   @include trailer(0.5, $h4-font-size);
   color: $heading-font-color-3;
+  font-weight: normal;
 }
 
 h5 {
@@ -102,6 +104,7 @@ h5 {
   @include leader(0.5, $h5-font-size);
   @include trailer(0.5, $h5-font-size);
   color: $heading-font-color-3;
+  font-weight: normal;
 }
 
 h6 {
@@ -109,4 +112,5 @@ h6 {
   @include leader(0.5, $h6-font-size);
   @include trailer(0.5, $h6-font-size);
   color: $heading-font-color-3;
+  font-weight: normal;
 }
