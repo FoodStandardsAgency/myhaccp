@@ -62,6 +62,9 @@ function _principle_1_question_2(&$form_state, &$next_step) {
     return $form;
   }
 
+  // Set the page title.
+  drupal_set_title('Principle 1 Question 2');
+
   // Check whether the form_state has instances already filled out.
   // @todo: How do we deal with changing instance numbers in the previous screen if a user has started filling out this screen?
   if (empty($form_state['num_instances'])) {

@@ -21,6 +21,9 @@ function _principle_1_question_1(&$form_state, &$next_step) {
     $vals = $form_state['values'];
   }
 
+  // Set the page title.
+  drupal_set_title('Principle 1 Question 1');
+
   $form = array();
   $form['#tree'] = TRUE;
 
