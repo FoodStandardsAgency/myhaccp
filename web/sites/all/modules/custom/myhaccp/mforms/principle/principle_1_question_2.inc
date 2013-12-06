@@ -123,6 +123,7 @@ function _principle_1_question_2(&$form_state, &$next_step) {
       $form_position['description'] = array(
         '#type' => 'textarea',
         '#resizable' => FALSE,
+        '#cols' => 20,
         '#default_value' => isset($default_value['description']) ? $default_value['description'] : NULL
       );
       $form_position['severity'] = array(
