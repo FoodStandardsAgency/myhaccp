@@ -29,6 +29,7 @@ input[type="tel"],
 input[type="time"],
 input[type="url"],
 input[type="week"],
+input[type="password"],
 select,
 textarea {
   @include adjust-font-size-to(20px);
@@ -149,22 +150,17 @@ body div.form-type-checkbox div.description {
 /* Fieldsets */
 
 fieldset {
-  border: solid 1px #ddd;
-  border-top: 3px solid #0074BD;
-  padding: 12px;
-  margin: 18px 0;
+  border: none;
+  margin: 0;
+  border-bottom: 1px solid $accent_2;
+  overflow: hidden;
+  padding: 1.5em 0;
   legend {
-    background: white;
-    padding: 0 3px;
-    margin: 0;
-    margin-left: -3px;
-    font-family: Open Sans,Helvetica,sans-serif;
-    font-size: 24px;
-    font-weight: 300;
+    @include adjust-font-size-to($h3-font-size);
+    color: $accent-2;
   }
   .form-item {
-    padding: 0 1em 0 0;
-    margin: 0 0 10px;
+    //padding: 0 1em 0 0;
   }
 }
 
@@ -209,7 +205,8 @@ input#edit-delete,
 input#remove-button,
 input#edit-remove,
 input#edit-clear,
-.page-admin-modules-uninstall input#edit-submit {
+.page-admin-modules-uninstall input#edit-submit,
+input#edit-delete-all {
   @include agile-button($style: negative);
   color: #FFF;
 }
@@ -281,9 +278,6 @@ input#edit-submit.form-add {
 
 /** Table style **/
 
-.group-pr-c-hazards {
-  @extend %fieldgroup-table;
-}
 
 %fieldgroup-table {
   border-collapse: collapse;
@@ -367,20 +361,6 @@ input#edit-submit.form-add {
   }
 }
 
-.field-group-row.hazards .form-item {
-  @media all and (min-width: $break_sm_up) {
-    @include column-split(half);
-    &:first-child {
-      padding-left: 0;
-    }
-    &:last-child {
-      padding-right: 0;
-    }
-  }
-  textarea {
-    width: 95%;
-  }
-}
 
 .p2-q1 {
   label {
@@ -445,3 +425,67 @@ div.teaser-checkbox .form-item,
   border: 0;
 }
 
+
+#instance-container {
+  margin-bottom: 2em;
+  >fieldset {
+    margin-bottom: 1em;
+  }
+  .form-controls input[type="submit"] {
+    @include agile-button();
+    margin-left: 0;
+    margin-right: 1em;
+  }
+}
+
+/**
+ * Specific form styling
+ */
+
+/** Principle 1, Q1 **/
+.p1q1-step {
+  @include clearfix;
+  .form-item {
+    float: left;
+    &.p1q1-step-no {
+      margin-right: 2em;
+      input {
+        width: 3em;
+        min-width: 3em;
+      }
+    }
+  }
+}
+
+.p1q1-hazards {
+  clear: both;
+  @media all and (min-width: $break_sm_up) {
+    margin-left: -$_gutter;
+    .form-item {
+        @include column-split(half);
+      }
+    }
+  textarea {
+    width: 95%;
+  }
+}
+
+/** Principle 1, Q2 **/
+.p1q2 {
+  table {
+    width: 100%;
+    th.severity,
+    th.likelihood,
+    th.significance {
+      max-width: 3em;
+    }
+  }
+  .severity,
+  .likelihood,
+  .significance {
+    input[type="text"] {
+      min-width: 3em;
+      width: 3em;
+    }
+  }
+}
