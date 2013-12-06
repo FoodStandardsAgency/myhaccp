@@ -95,9 +95,17 @@ function myhaccp_myhaccp_mforms_init() {
 
   // If using mustistep controls you need to explicitly define form steps and
   // its attributes.
-  $controls = MformsMultiStepControls::getInstance($store, $steps, array(
-    'principle_1_question_1' => array('value' => 'Step 1', 'weight' => -103),
-    'principle_1_question_2' => array('value' => 'Step 2', 'weight' => -102),
+  $controls = MyHACCPMultiStepControls::getInstance($store, $steps, array(
+    'principle_1_question_1' => array(
+      'stage' => 'principles',
+      'value' => '1.1',
+      'weight' => -103,
+    ),
+    'principle_1_question_2' => array(
+      'stage' => 'principles',
+      'value' => '1.2',
+      'weight' => -102,
+    ),
   ));
 
   // Init the mforms.
