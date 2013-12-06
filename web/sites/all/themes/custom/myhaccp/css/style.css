@@ -1362,6 +1362,7 @@ ul.tips li {
 /** Checkboxes & Radios **/
 .form-checkboxes .form-item label {
   display: inline;
+  font-size: 1em;
 }
 
 .form-type-checkbox {
