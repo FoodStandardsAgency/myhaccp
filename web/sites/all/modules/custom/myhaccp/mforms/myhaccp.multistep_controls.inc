@@ -199,7 +199,7 @@ class MyHACCPMultiStepControls extends MformsControls {
     );
 
     if ($this->steps->getPrev() != NULL) {
-      $form_controls['test'] = array(
+      $form_controls['previous'] = array(
         '#type' => 'submit',
         '#value' => $this->label_back,
         '#weight' => $this->weight_back,
