@@ -66,6 +66,7 @@ function _principle_1_question_1(&$form_state, &$next_step) {
     $form['container']['instance-' . $i]['p1q1_biological'] = array(
       '#weight' => '3',
       '#type' => 'textarea',
+      '#resizable' => FALSE,
       '#title' => t('Biological !tip', array(
         '!tip' => _help_tip(),
       )),
@@ -75,6 +76,7 @@ function _principle_1_question_1(&$form_state, &$next_step) {
     $form['container']['instance-' . $i]['p1q1_chemical'] = array(
       '#weight' => '4',
       '#type' => 'textarea',
+      '#resizable' => FALSE,
       '#title' => t('Chemical !tip', array(
         '!tip' => _help_tip(),
       )),
@@ -84,6 +86,7 @@ function _principle_1_question_1(&$form_state, &$next_step) {
     $form['container']['instance-' . $i]['p1q1_physical'] = array(
       '#weight' => '5',
       '#type' => 'textarea',
+      '#resizable' => FALSE,
       '#title' => t('Physical !tip', array(
         '!tip' => _help_tip(),
       )),
@@ -93,6 +96,7 @@ function _principle_1_question_1(&$form_state, &$next_step) {
     $form['container']['instance-' . $i]['p1q1_allergens'] = array(
       '#weight' => '6',
       '#type' => 'textarea',
+      '#resizable' => FALSE,
       '#title' => t('Allergens !tip', array(
         '!tip' => _help_tip(),
       )),
