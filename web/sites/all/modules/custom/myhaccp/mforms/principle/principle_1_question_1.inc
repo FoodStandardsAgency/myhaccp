@@ -46,6 +46,7 @@ function _principle_1_question_1(&$form_state, &$next_step) {
     // Create a wrapper container for the step details.
     $form['container']['instance-' . $i]['p1q1_step_wrapper'] = array(
       '#type' => 'container',
+      '#weight' => '-1',
       '#attributes' => array(
         'class' => array('p1q1-step'),
       ),
@@ -69,7 +70,7 @@ function _principle_1_question_1(&$form_state, &$next_step) {
     );
     // Markup.
     $form['container']['instance-' . $i]['p1q1_message'] = array(
-      '#weight' => '2',
+      '#weight' => '0',
       '#markup' => t('List all potential hazards that may be reasonably expected to occur at this process step:  !tip', array(
         '!tip' => _help_tip(),
       )),
@@ -78,6 +79,7 @@ function _principle_1_question_1(&$form_state, &$next_step) {
     // Add a wrapper for the categories.
     $form['container']['instance-' . $i]['p1q1_hazards_wrapper'] = array(
       '#type' => 'container',
+      '#weight' => '1',
       '#attributes' => array(
         'class' => array('p1q1-hazards'),
       ),
