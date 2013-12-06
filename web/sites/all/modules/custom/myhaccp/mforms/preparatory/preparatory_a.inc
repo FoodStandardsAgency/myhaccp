@@ -1,6 +1,6 @@
 <?php
 
-function _preparatory_a(&$form_state, &$next_step) {
+function preparatory_a(&$form_state, &$next_step) {
 
   // Define following step callback. If none set, that implies it is
   // the last step.

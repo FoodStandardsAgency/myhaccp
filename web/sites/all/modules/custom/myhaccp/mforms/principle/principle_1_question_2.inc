@@ -3,7 +3,7 @@
 /**
  * Principle 1, Question 1.
  */
-function _principle_1_question_2(&$form_state, &$next_step) {
+function principle_1_question_2(&$form_state, &$next_step) {
   // Define following step callback. If none set, that implies it is
   // the last step.
 //  $next_step = '_principle_1_question_2';
@@ -61,7 +61,7 @@ function _principle_1_question_2(&$form_state, &$next_step) {
   // Bail out here with a message if there are no instances of the fieldsets
   // filled out correctly in the previous screen.
   if ($instance_count == 0) {
-    drupal_set_message('You must add some information in the previous question');
+    drupal_set_message('You must add at lease a step number and step name in the previous question', 'warning');
     return $form;
   }
 
@@ -95,7 +95,6 @@ function _principle_1_question_2(&$form_state, &$next_step) {
           $key = drupal_html_id($item);
           $hazards[$key] = $item;
         }
-//        $hazards = array_merge($hazards, $hazard_items);
       }
     }
 
@@ -149,6 +148,37 @@ function _principle_1_question_2(&$form_state, &$next_step) {
     }
   }
 
-  $form['#submit'][] = '_principle_1_question_2_submit';
+  $form['#validate'][] = 'principle_1_question_2_validate';
+
   return $form;
+}
+
+/**
+ * Validation handler for Principle 1 Question 1.
+ */
+function principle_1_question_2_validate($form, &$form_state) {
+  $validate = FALSE;
+
+  // Test to see whether there is any submitted data for the first instance.
+  if (isset($form_state['values']['container']['instance_0'])) {
+    $form_position = & $form_state['values']['container'];
+    // Iterate over the tables.
+    foreach ($form_position as &$instance) {
+      foreach ($instance['instance_table'] as &$item) {
+        foreach ($item as $element) {
+          if ($element != '') {
+            $validate = TRUE;
+          }
+        }
+      }
+    }
+  }
+
+  // Determine which message to show.
+  if ($validate == FALSE) {
+    drupal_set_message(t('Principle 1 Question 2 requires information to be present.'), 'warning');
+  }
+  else {
+    drupal_set_message(t('Information saved.'));
+  }
 }

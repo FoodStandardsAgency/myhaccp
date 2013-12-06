@@ -16,6 +16,20 @@
         }}}`*/
 
 /**
+ * Implements hook_init().
+ */
+function myhaccp_init() {
+  $store = MformsDatabaseStore::getInstance('myhaccp');
+  $steps = MformsSteps::getInstance($store);
+  $all = $steps->getSteps();
+  // Include all the step files.
+  foreach ($all as $step) {
+    $dir = strpos($step, 'preparatory') === 0 ? 'preparatory' : 'principle';
+    ctools_include($step, 'myhaccp', 'mforms/' . $dir);
+  }
+}
+
+/**
  * Implements hook_menu().
  */
 function myhaccp_menu() {

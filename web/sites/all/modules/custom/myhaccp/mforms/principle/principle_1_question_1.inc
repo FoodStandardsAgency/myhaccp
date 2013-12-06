@@ -3,7 +3,7 @@
 /**
  * Principle 1, Question 1.
  */
-function _principle_1_question_1(&$form_state, &$next_step) {
+function principle_1_question_1(&$form_state, &$next_step) {
   // Define following step callback. If none set, that implies it is
   // the last step.
   $next_step = 'principle_1_question_2';
@@ -139,7 +139,7 @@ function _principle_1_question_1(&$form_state, &$next_step) {
     '#limit_validation_errors' => TRUE,
     '#ajax' => array(
       'callback' => 'instance_add_more_callback',
-      'wrapper' => 'instance_container',
+      'wrapper' => 'instance-container',
     ),
   );
   if ($form_state['num_instances'] > 1) {
@@ -150,13 +150,44 @@ function _principle_1_question_1(&$form_state, &$next_step) {
       '#limit_validation_errors' => TRUE,
       '#ajax' => array(
         'callback' => 'instance_add_more_callback',
-        'wrapper' => 'instance_container',
+        'wrapper' => 'instance-container',
       ),
     );
   }
 
-  $form['#validate'][] = '_principle_1_question_1_validate';
+  $form['#validate'][] = 'principle_1_question_1_validate';
 
   return $form;
 }
 
+/**
+ * Validation handler for Principle 1 Question 1.
+ */
+function principle_1_question_1_validate($form, &$form_state) {
+  // Bail out if the ajax buttons were used.
+  if (isset($form_state['triggering_element']['#limit_validation_errors']) && $form_state['triggering_element']['#limit_validation_errors'] == TRUE) {
+    return TRUE;
+  }
+  $validate = FALSE;
+
+  // Test to see whether there is any submitted data in any instance.
+  foreach ($form_state['values']['container'] as &$instance) {
+    foreach ($instance as &$container) {
+      if (is_array($container)) {
+        foreach ($container as &$element) {
+          if ($element != '') {
+            $validate = TRUE;
+          }
+        }
+      }
+    }
+  }
+
+  // Determine which message to show.
+  if ($validate == FALSE) {
+    drupal_set_message(t('Principle 1 Question 1 requires information to be present.'), 'warning');
+  }
+  else {
+    drupal_set_message(t('Information saved.'));
+  }
+}
