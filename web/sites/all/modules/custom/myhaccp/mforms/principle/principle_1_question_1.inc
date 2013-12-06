@@ -31,7 +31,7 @@ function _principle_1_question_1(&$form_state, &$next_step) {
   // The wrapper fieldset for the form.
   $form['container'] = array(
     // Set up the wrapper so that AJAX will be able to replace the fieldset.
-    '#prefix' => '<div id="instance_container">',
+    '#prefix' => '<div id="instance-container">',
     '#suffix' => '</div>',
   );
 
@@ -136,6 +136,7 @@ function _principle_1_question_1(&$form_state, &$next_step) {
     '#type' => 'submit',
     '#value' => t('Add another'),
     '#submit' => array('instance_add_more_add_one'),
+    '#limit_validation_errors' => TRUE,
     '#ajax' => array(
       'callback' => 'instance_add_more_callback',
       'wrapper' => 'instance_container',
@@ -146,6 +147,7 @@ function _principle_1_question_1(&$form_state, &$next_step) {
       '#type' => 'submit',
       '#value' => t('Remove one'),
       '#submit' => array('instance_add_more_remove_one'),
+      '#limit_validation_errors' => TRUE,
       '#ajax' => array(
         'callback' => 'instance_add_more_callback',
         'wrapper' => 'instance_container',
