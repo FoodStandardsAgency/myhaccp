@@ -1360,6 +1360,10 @@ ul.tips li {
 }
 
 /** Checkboxes & Radios **/
+.form-checkboxes .form-item label {
+  display: inline;
+}
+
 .form-type-checkbox {
   padding: 0;
 }
@@ -1388,7 +1392,7 @@ body div.form-type-checkbox div.description {
 /* Fieldsets */
 fieldset {
   border: none;
-  margin: 0;
+  margin: 0 0 1em 0;
   border-bottom: 1px solid #007fb2;
   overflow: hidden;
   padding: 1.5em 0;
@@ -1742,6 +1746,23 @@ div.teaser-checkbox .form-item,
   border: 0;
 }
 
+#myhaccp-start-form .help {
+  color: #676767;
+  font-size: 0.8em;
+}
+#myhaccp-start-form input#edit-save {
+  margin-left: 0;
+  margin-bottom: 1em;
+}
+#myhaccp-start-form input#edit-continue {
+  float: right;
+  margin-bottom: 1em;
+}
+
+.group-title {
+  margin-bottom: 0.5em;
+}
+
 #instance-container {
   margin-bottom: 2em;
 }
@@ -1799,6 +1820,9 @@ div.teaser-checkbox .form-item,
 @media all and (min-width: 640px) {
   .p1q1-hazards {
     margin-left: -25px;
+  }
+  .p1q1-hazards .group-title {
+    margin-left: 25px;
   }
   .p1q1-hazards .form-item {
     width: 50%;
