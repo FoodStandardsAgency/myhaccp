@@ -21,16 +21,19 @@ class MyHACCPMultiStepControls extends MformsControls {
   protected $label_continue;
   protected $label_submit;
   protected $label_delete;
+  protected $label_save;
 
-  protected $weight_back = 11;
-  protected $weight_continue = 10;
-  protected $weight_submit = 10;
+  protected $weight_back = 0;
+  protected $weight_continue = 20;
+  protected $weight_submit = 11;
   protected $weight_delete = 12;
+  protected $weight_save = 10;
 
   protected $attributes_back = array();
   protected $attributes_continue = array();
   protected $attributes_submit = array();
   protected $attributes_delete = array();
+  protected $attributes_save = array();
 
   protected $steps_label;
 
@@ -160,30 +163,28 @@ class MyHACCPMultiStepControls extends MformsControls {
         );
       }
     }
-    else {
-      // If there is no next step then show the final submit button.
-      $form_controls['submit'] = array(
-        '#type' => 'submit',
-        '#value' => $this->label_submit,
-        '#weight' => $this->weight_submit,
-        '#attributes' => $this->attributes_submit,
-      );
-    }
+    // todo: Add the final submit back in.
+//    else {
+//      // If there is no next step then show the final submit button.
+//      $form_controls['submit'] = array(
+//        '#type' => 'submit',
+//        '#value' => $this->label_submit,
+//        '#weight' => $this->weight_submit,
+//        '#attributes' => $this->attributes_submit,
+//      );
+//    }
 
-    if (count($this->attributes_delete) == 0) {
-      $this->attributes_delete = array(
-        'onclick' => 'return confirm("' . t('This action will reset all values you have entered. Do you wish to continue?') . '");',
-      );
-    }
-//    $form_controls['delete-all'] = array(
-//      '#type' => 'submit',
-//      '#value' => $this->label_delete,
-//      '#weight' => $this->weight_delete,
-//      '#attributes' => $this->attributes_delete,
-//      '#limit_validation_errors' => array(),
-//      '#submit' => array('_mforms_cancel_submit'),
-//      '#store_key' => $this->store->getKey(),
-//    );
+    // Add a save button. This button simply saves the form state, much as the
+    // previous and next buttons do.
+    $form_controls['save'] = array(
+      '#type' => 'submit',
+      '#value' => $this->label_save,
+      '#weight' => $this->weight_save,
+      '#attributes' => $this->attributes_save,
+      '#store_key' => $this->store->getKey(),
+      '#mforms_step' => $this->steps->getCurr(),
+      '#submit' => array('_mforms_back_submit'),
+    );
 
     return $form_controls;
   }
