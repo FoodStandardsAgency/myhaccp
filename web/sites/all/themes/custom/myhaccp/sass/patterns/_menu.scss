@@ -43,8 +43,9 @@ header .header-region nav {
   ul {
     @include strip-list;
     li {
-      display: inline;
+      display: inline-block;
       margin-right: 1em;
+      margin-bottom: 0.5em;
       a {
         color: $accent-3;
         &.active,

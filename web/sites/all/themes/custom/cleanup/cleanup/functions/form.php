@@ -1,8 +1,10 @@
 <?php
-/*
-changes to the form elements
-original can be found in /includes/form.inc
-*/
+
+/**
+ * Override of theme_form().
+ *
+ * Changes to the form elements. Original can be found in /includes/form.inc
+ */
 
 /* removes the <div> wrapper inside the form */
 function cleanup_form($variables) {
@@ -16,16 +18,17 @@ function cleanup_form($variables) {
     $element['#attributes']['accept-charset'] = "UTF-8";
   }
 
-	return '<form' . drupal_attributes($element['#attributes']) . '>' . $element['#children'] . '</form>';
+  return '<form' . drupal_attributes($element['#attributes']) . '>' . $element['#children'] . '</form>';
 
 }
 
-/*
-
-changes the classes from the div wrapper around each field
-change the div class="description" to <small>
-adds form-required
-*/
+/**
+ * Override of theme_form_element().
+ *
+ * Changes the classes from the div wrapper around each field
+ * change the div class="description" to <small>
+ * adds form-required
+ */
 function cleanup_form_element($variables) {
 
   $element = &$variables['element'];
@@ -42,53 +45,66 @@ function cleanup_form_element($variables) {
   if (isset($element['#markup']) && !empty($element['#id'])) {
     $attributes['id'] = $element['#id'];
   }
-  // Add element's #type and #name as class to aid with JS/CSS selectors.
 
+  // Add element's #type and #name as class to aid with JS/CSS selectors.
   $attributes['class'] = array();
-  if(! theme_get_setting('cleanup_classes_form_wrapper_formitem')){
+  if (!theme_get_setting('cleanup_classes_form_wrapper_formitem')) {
     $attributes['class'] = array('form-item');
   }
 
-  //date selects need the form-item for the show/hide end date
-	if(isset($element['#type'])){
-	  if ($element['#type'] == 'date_select' OR $element['#type'] == 'date_text' OR $element['#type'] == 'date_popup' ){ //AND
-	    $attributes['class'] = array('form-item');
-	  }
-
-	}
+  // Date selects need the form-item for the show/hide end date.
+  if (isset($element['#type'])) {
+    if ($element['#type'] == 'date_select' OR $element['#type'] == 'date_text' OR $element['#type'] == 'date_popup') {
+      $attributes['class'] = array('form-item');
+    }
+  }
 
   if (!empty($element['#type'])) {
-    if(!theme_get_setting('cleanup_classes_form_wrapper_formtype')){
+    if (!theme_get_setting('cleanup_classes_form_wrapper_formtype')) {
       $attributes['class'][] = 'form-type-' . strtr($element['#type'], '_', '-');
     }
   }
-  if (!empty($element['#name'])) {
-    if(!theme_get_setting('cleanup_classes_form_wrapper_formname')){
-      $attributes['class'][] = 'form-item-' . strtr($element['#name'], array(' ' => '-', '_' => '-', '[' => '-', ']' => ''));
-    }
+  if (!empty($element['#parents'])) {
+    $last = end($element['#parents']);
+    $attributes['class'][] = drupal_html_class(strtr($last, array(
+        ' ' => '-',
+        '_' => '-',
+        '[' => '-',
+        ']' => ''
+      ))
+    );
   }
+  elseif (!empty($element['#name'])) {
+    $attributes['class'][] = strtr($element['#name'], array(
+        ' ' => '-',
+        '_' => '-',
+        '[' => '-',
+        ']' => ''
+      )
+    );
+  }
+
   // Add a class for disabled elements to facilitate cross-browser styling.
   if (!empty($element['#attributes']['disabled'])) {
     $attributes['class'][] = 'form-disabled';
   }
 
-  if(isset($element['#title']) && $element['#title'] != 'Language' && !empty($element['#required'])) {
+  if (isset($element['#title']) && $element['#title'] != 'Language' && !empty($element['#required'])) {
     $attributes['class'][] = 'form-required';
   }
 
-
-  //freeform css class killing \m/
-  if($attributes['class']){
+  // Freeform css class killing.
+  if ($attributes['class']) {
     $remove_class_form = explode(", ", theme_get_setting('cleanup_classes_form_freeform'));
-    $attributes['class'] = array_values(array_diff($attributes['class'],$remove_class_form));
+    $attributes['class'] = array_values(array_diff($attributes['class'], $remove_class_form));
   }
 
-  if($attributes['class']){
-    $output =  '<div' . drupal_attributes($attributes) . '>' . "\n";
-  }else{
-    $output =  "\n" . '<div>' . "\n";
+  if ($attributes['class']) {
+    $output = '<div' . drupal_attributes($attributes) . '>' . "\n";
   }
-
+  else {
+    $output = "\n" . '<div>' . "\n";
+  }
 
   // If #title is not set, we don't display any label or required marker.
   if (!isset($element['#title'])) {
@@ -117,17 +133,13 @@ function cleanup_form_element($variables) {
   }
 
   if (!empty($element['#description'])) {
-
-    /*
-    changes the description <div class="description"> to <small>
-    */
-    if(!theme_get_setting('cleanup_classes_form_description')){
+    // Changes the description <div class="description"> to <small>
+    if (!theme_get_setting('cleanup_classes_form_description')) {
       $output .= "\n" . '<div class="description">' . $element['#description'] . "</div>\n";
-    }else{
+    }
+    else {
       $output .= "\n" . '<small>' . $element['#description'] . "</small>\n";
     }
-
-
   }
 
   $output .= "</div>\n";
@@ -156,12 +168,13 @@ function cleanup_form_element_label($variables) {
 
   // If the element is required, a required marker is appended to the label.
   // We dont cause we belive in the power of css and less crap in the markup so we add it in a class instead.
-  if(!theme_get_setting('cleanup_form_required')){
+  if (!theme_get_setting('cleanup_form_required')) {
     $required = !empty($element['#required']) ? theme('form_required_marker', array('element' => $element)) : '';
-  }else{
-    if(!empty($element['#required'])){
+  }
+  else {
+    if (!empty($element['#required'])) {
 //       $attributes['class'] = 'form-field-required';
-       $attributes['class'] = 'required';
+      $attributes['class'] = 'required';
     }
   }
 
@@ -169,7 +182,7 @@ function cleanup_form_element_label($variables) {
 
   // Style the label as class option to display inline with the element.
   if ($element['#title_display'] == 'after') {
-    if(!theme_get_setting('cleanup_classes_form_label')){
+    if (!theme_get_setting('cleanup_classes_form_label')) {
       $attributes['class'] = 'option';
     }
   }
@@ -180,35 +193,45 @@ function cleanup_form_element_label($variables) {
 
   //FOR attribute
   // in html5 we need an element for the for id items & check TODO: clean this up
-  if (!empty($element['#id'])){
+  if (!empty($element['#id'])) {
     // not every element in drupal comes with an #id that we can use for the for="#id"
     // AND
-    if(
+    if (
       //if its html5 & is not an item, checkboxradios or manged file
       theme_get_setting('cleanup_html5') AND
       $element['#type'] != "item" &&
       $element['#type'] != "checkboxes" &&
       $element['#type'] != "radios" &&
-      $element['#type'] != "managed_file")
-    {
-        $attributes['for'] = $element['#id'];
-    }else{
+      $element['#type'] != "managed_file"
+    ) {
+      $attributes['for'] = $element['#id'];
+    }
+    else {
       $attributes['for'] = $element['#id'];
     }
   }
 
   // The leading whitespace helps visually separate fields from inline labels.
-  if($attributes){
-    if(!theme_get_setting('cleanup_form_required')){
-      return ' <label' . drupal_attributes($attributes) . '>' . $t('!title !required', array('!title' => $title, '!required' => $required)) . "</label>\n";
-    }else{
-      return ' <label' . drupal_attributes($attributes) . '>' . $t('!title', array('!title' => $title )) . "</label>\n";
+  if ($attributes) {
+    if (!theme_get_setting('cleanup_form_required')) {
+      return ' <label' . drupal_attributes($attributes) . '>' . $t('!title !required', array(
+        '!title' => $title,
+        '!required' => $required
+      )) . "</label>\n";
     }
-  }else{
-    if(!theme_get_setting('cleanup_form_required')){
-      return ' <label>' . $t('!title !required', array('!title' => $title, '!required' => $required)) . "</label>\n";
-    }else{
-      return ' <label>' . $t('!title', array('!title' => $title )) . "</label>\n";
+    else {
+      return ' <label' . drupal_attributes($attributes) . '>' . $t('!title', array('!title' => $title)) . "</label>\n";
+    }
+  }
+  else {
+    if (!theme_get_setting('cleanup_form_required')) {
+      return ' <label>' . $t('!title !required', array(
+        '!title' => $title,
+        '!required' => $required
+      )) . "</label>\n";
+    }
+    else {
+      return ' <label>' . $t('!title', array('!title' => $title)) . "</label>\n";
     }
   }
 
@@ -224,21 +247,27 @@ function cleanup_textfield($variables) {
   $element['#size'] = '30';
 
   //is this element requred then lest add the required element into the input
-   $required = !empty($element['#required']) ? ' required' : '';
+  $required = !empty($element['#required']) ? ' required' : '';
 
   //dont need to set type in html5 its default so lets remove it because we can
   $element['#attributes']['type'] = 'text';
 
-	//placeholder
-  if (!empty($element['#title']) AND theme_get_setting('cleanup_classes_form_placeholder_label') ) {
-    $element['#attributes']['placeholder'] =  $element['#title'];
+  //placeholder
+  if (!empty($element['#title']) AND theme_get_setting('cleanup_classes_form_placeholder_label')) {
+    $element['#attributes']['placeholder'] = $element['#title'];
   }
 
 
-  element_set_attributes($element, array('id', 'name', 'value', 'size', 'maxlength'));
+  element_set_attributes($element, array(
+    'id',
+    'name',
+    'value',
+    'size',
+    'maxlength'
+  ));
 
   //remove the form-text class
-  if(!theme_get_setting('cleanup_classes_form_input')){
+  if (!theme_get_setting('cleanup_classes_form_input')) {
     _form_set_class($element, array('form-text'));
   }
   $extra = '';
@@ -252,7 +281,7 @@ function cleanup_textfield($variables) {
     $attributes['value'] = url($element['#autocomplete_path'], array('absolute' => TRUE));
     $attributes['disabled'] = 'disabled';
     $attributes['class'][] = 'autocomplete';
-    $extra = '<input' . drupal_attributes($attributes) . $required .' />';
+    $extra = '<input' . drupal_attributes($attributes) . $required . ' />';
   }
 
   $output = '<input' . drupal_attributes($element['#attributes']) . $required . ' />';
@@ -262,7 +291,7 @@ function cleanup_textfield($variables) {
 
 /* Link module  link fields removes the clearfix */
 function cleanup_link_field($vars) {
-  drupal_add_css(drupal_get_path('module', 'link') .'/link.css');
+  drupal_add_css(drupal_get_path('module', 'link') . '/link.css');
 
   $element = $vars['element'];
   // Prefix single value link fields with the name of the field.
@@ -272,22 +301,22 @@ function cleanup_link_field($vars) {
     }
   }
 
-	//placeholder
-	if( theme_get_setting('cleanup_classes_form_placeholder_link') ){
+  //placeholder
+  if (theme_get_setting('cleanup_classes_form_placeholder_link')) {
     $element['#attributes']['placeholder'] = theme_get_setting('cleanup_classes_form_placeholder_link');
-	}
-	elseif (!empty($element['#title']) AND theme_get_setting('cleanup_classes_form_placeholder_label') ) {
-   $element['#attributes']['placeholder'] = $element['#title'];
+  }
+  elseif (!empty($element['#title']) AND theme_get_setting('cleanup_classes_form_placeholder_label')) {
+    $element['#attributes']['placeholder'] = $element['#title'];
   }
 
 
-	$output = '';
+  $output = '';
 //  $output .= '<div class="link-field-subrow">WTF';
   if (!empty($element['attributes']['target'])) {
-    $output .= '<div class="link-attributes">'. drupal_render($element['attributes']['target']) .'</div>';
+    $output .= '<div class="link-attributes">' . drupal_render($element['attributes']['target']) . '</div>';
   }
   if (!empty($element['attributes']['title'])) {
-    $output .= '<div class="link-attributes">'. drupal_render($element['attributes']['title']) .'</div>';
+    $output .= '<div class="link-attributes">' . drupal_render($element['attributes']['title']) . '</div>';
   }
 //	$output .= '</div>';
   return $output;
@@ -301,20 +330,27 @@ file: elements.theme.inc
 function cleanup_emailfield($variables) {
   $element = $variables['element'];
   $element['#attributes']['type'] = 'email';
-  element_set_attributes($element, array('id', 'name', 'value', 'size', 'maxlength', 'placeholder'));
+  element_set_attributes($element, array(
+    'id',
+    'name',
+    'value',
+    'size',
+    'maxlength',
+    'placeholder'
+  ));
   _form_set_class($element, array('form-text', 'form-email'));
 
 
-	//placeholder
-	if( theme_get_setting('cleanup_classes_form_placeholder_email') ){
+  //placeholder
+  if (theme_get_setting('cleanup_classes_form_placeholder_email')) {
     $element['#attributes']['placeholder'] = theme_get_setting('cleanup_classes_form_placeholder_email');
-	}
-	elseif (!empty($element['#title']) AND theme_get_setting('cleanup_classes_form_placeholder_label') ) {
-   $element['#attributes']['placeholder'] = $element['#title'];
+  }
+  elseif (!empty($element['#title']) AND theme_get_setting('cleanup_classes_form_placeholder_label')) {
+    $element['#attributes']['placeholder'] = $element['#title'];
   }
 
   //is this element requred then lest add the required element into the input
-   $required = !empty($element['#required']) ? ' required' : '';
+  $required = !empty($element['#required']) ? ' required' : '';
 
 
   $extra = elements_add_autocomplete($element);
@@ -326,20 +362,27 @@ function cleanup_emailfield($variables) {
 function cleanup_urlfield($variables) {
   $element = $variables['element'];
   $element['#attributes']['type'] = 'url';
-  element_set_attributes($element, array('id', 'name', 'value', 'size', 'maxlength', 'placeholder'));
+  element_set_attributes($element, array(
+    'id',
+    'name',
+    'value',
+    'size',
+    'maxlength',
+    'placeholder'
+  ));
   _form_set_class($element, array('form-text', 'form-url'));
 
 
-	//placeholder
-	if( theme_get_setting('cleanup_classes_form_placeholder_link') ){
+  //placeholder
+  if (theme_get_setting('cleanup_classes_form_placeholder_link')) {
     $element['#attributes']['placeholder'] = theme_get_setting('cleanup_classes_form_placeholder_link');
-	}
-	elseif (!empty($element['#title']) AND theme_get_setting('cleanup_classes_form_placeholder_label') ) {
-   $element['#attributes']['placeholder'] = $element['#title'];
+  }
+  elseif (!empty($element['#title']) AND theme_get_setting('cleanup_classes_form_placeholder_label')) {
+    $element['#attributes']['placeholder'] = $element['#title'];
   }
 
   //is this element requred then lest add the required element into the input
-   $required = !empty($element['#required']) ? ' required' : '';
+  $required = !empty($element['#required']) ? ' required' : '';
 
 
   $extra = elements_add_autocomplete($element);
@@ -349,12 +392,11 @@ function cleanup_urlfield($variables) {
 }
 
 
-
 /*remove form-textarea*/
 function cleanup_textarea($variables) {
   $element = $variables['element'];
   element_set_attributes($element, array('id', 'name', 'cols', 'rows'));
-  if(!theme_get_setting('cleanup_classes_form_input')){
+  if (!theme_get_setting('cleanup_classes_form_input')) {
     _form_set_class($element, array('form-textarea'));
   }
 
@@ -363,8 +405,7 @@ function cleanup_textarea($variables) {
   );
 
 
-
-  if (!empty($element['#title'])  AND theme_get_setting('cleanup_classes_form_placeholder_label') ) {
+  if (!empty($element['#title'])  AND theme_get_setting('cleanup_classes_form_placeholder_label')) {
     $element['#attributes']['placeholder'] = $element['#title'];
   }
 
@@ -374,12 +415,12 @@ function cleanup_textarea($variables) {
     $wrapper_attributes['class'][] = 'resizable';
   }
 
-	//is this element requred then lest add the required element into the input
-   $required = !empty($element['#required']) ? ' required' : '';
+  //is this element requred then lest add the required element into the input
+  $required = !empty($element['#required']) ? ' required' : '';
 
 
   $output = '<div' . drupal_attributes($wrapper_attributes) . '>';
-  $output .= '<textarea' . drupal_attributes($element['#attributes']) . $required .'>' . check_plain($element['#value']) . '</textarea>';
+  $output .= '<textarea' . drupal_attributes($element['#attributes']) . $required . '>' . check_plain($element['#value']) . '</textarea>';
   $output .= '</div>';
   return $output;
 }
@@ -389,13 +430,17 @@ function cleanup_checkbox($variables) {
   $element = $variables['element'];
   $t = get_t();
   $element['#attributes']['type'] = 'checkbox';
-  element_set_attributes($element, array('id', 'name', '#return_value' => 'value'));
+  element_set_attributes($element, array(
+    'id',
+    'name',
+    '#return_value' => 'value'
+  ));
 
   // Unchecked checkbox has #value of integer 0.
   if (!empty($element['#checked'])) {
     $element['#attributes']['checked'] = 'checked';
   }
-  if(!theme_get_setting('cleanup_classes_form_input')){
+  if (!theme_get_setting('cleanup_classes_form_input')) {
     _form_set_class($element, array('form-checkbox'));
   }
   return '<input' . drupal_attributes($element['#attributes']) . ' />';
@@ -405,16 +450,19 @@ function cleanup_checkbox($variables) {
 function cleanup_radio($variables) {
   $element = $variables['element'];
   $element['#attributes']['type'] = 'radio';
-  element_set_attributes($element, array('id', 'name', '#return_value' => 'value'));
-
+  element_set_attributes($element, array(
+    'id',
+    'name',
+    '#return_value' => 'value'
+  ));
 
 
   if (isset($element['#return_value']) && $element['#value'] !== FALSE && $element['#value'] == $element['#return_value']) {
     $element['#attributes']['checked'] = 'checked';
   }
 
-  if(!theme_get_setting('cleanup_classes_form_input')){
-  _form_set_class($element, array('form-radio'));
+  if (!theme_get_setting('cleanup_classes_form_input')) {
+    _form_set_class($element, array('form-radio'));
   }
   return '<input' . drupal_attributes($element['#attributes']) . ' />';
 }
@@ -425,11 +473,12 @@ function cleanup_file($variables) {
   $element['#attributes']['type'] = 'file';
 //  element_set_attributes($element, array('id', 'name', 'size'));
   element_set_attributes($element, array('id', 'name'));
-  if(!theme_get_setting('cleanup_classes_form_input')){
+  if (!theme_get_setting('cleanup_classes_form_input')) {
     _form_set_class($element, array('form-file'));
   }
   return '<input' . drupal_attributes($element['#attributes']) . ' />';
 }
+
 /*
   adds a comment field under the 2password
 
@@ -441,12 +490,12 @@ function cleanup_password($variables) {
 
   element_set_attributes($element, array('id', 'name', 'size', 'maxlength'));
 //  element_set_attributes($element, array('id', 'name',  'maxlength'));
-  if(!theme_get_setting('cleanup_classes_form_input')){
+  if (!theme_get_setting('cleanup_classes_form_input')) {
     _form_set_class($element, array('form-text'));
   }
 
   //html5 plceholder love ? //substr(,0, 20);
-  if (!empty($element['#description']) AND theme_get_setting('cleanup_classes_form_placeholder_description') ) {
+  if (!empty($element['#description']) AND theme_get_setting('cleanup_classes_form_placeholder_description')) {
     $element['#attributes']['placeholder'] = $element['#description'];
   }
 
@@ -455,14 +504,14 @@ function cleanup_password($variables) {
   }
 
 
-
-
-  if($variables['element']['#id'] == "edit-pass-pass1"){
-     return '<input' . drupal_attributes($element['#attributes']) . ' /><small>'. t('Enter a password').'</small>' ;
-  }elseif($variables['element']['#id'] == "edit-pass-pass2"){
-     return '<input' . drupal_attributes($element['#attributes']) . ' /><small>'. t('Repeat the password').'</small>' ;
-  }else{
-    return '<input' . drupal_attributes($element['#attributes']) . ' />' ;
+  if ($variables['element']['#id'] == "edit-pass-pass1") {
+    return '<input' . drupal_attributes($element['#attributes']) . ' /><small>' . t('Enter a password') . '</small>';
+  }
+  elseif ($variables['element']['#id'] == "edit-pass-pass2") {
+    return '<input' . drupal_attributes($element['#attributes']) . ' /><small>' . t('Repeat the password') . '</small>';
+  }
+  else {
+    return '<input' . drupal_attributes($element['#attributes']) . ' />';
   }
 
 }
@@ -472,7 +521,7 @@ function cleanup_select($variables) {
   $element = $variables['element'];
   element_set_attributes($element, array('id', 'name', 'size'));
 
-  if(!theme_get_setting('cleanup_classes_form_input')){
+  if (!theme_get_setting('cleanup_classes_form_input')) {
     _form_set_class($element, array('form-select'));
   }
 
@@ -503,7 +552,7 @@ function cleanup_button($variables) {
   $element['#attributes']['type'] = 'submit';
   element_set_attributes($element, array('id', 'name', 'value'));
 
-  if(!theme_get_setting('cleanup_classes_form_input')){
+  if (!theme_get_setting('cleanup_classes_form_input')) {
     $element['#attributes']['class'][] = 'form-' . $element['#button_type'];
     if (!empty($element['#attributes']['disabled'])) {
       $element['#attributes']['class'][] = 'form-button-disabled';
@@ -520,7 +569,7 @@ function cleanup_fieldset($variables) {
   $element = $variables['element'];
   element_set_attributes($element, array('id'));
 
-  if(!theme_get_setting('cleanup_classes_form_input')){
+  if (!theme_get_setting('cleanup_classes_form_input')) {
     _form_set_class($element, array('form-wrapper'));
   }
 
@@ -553,29 +602,29 @@ function cleanup_container($variables) {
     }
 
     // Add the 'form-wrapper' class.
-		if(!theme_get_setting('cleanup_classes_form_container_wrapper')){
-    	$element['#attributes']['class'][] = 'form-wrapper';
-		}
+    if (!theme_get_setting('cleanup_classes_form_container_wrapper')) {
+      $element['#attributes']['class'][] = 'form-wrapper';
+    }
 
-		//remove the field-type-...  yup this is but ugly
-		if(theme_get_setting('cleanup_classes_form_container_type')){
-			$element['#attributes']['class']['0'] = "";
-		}
+    //remove the field-type-...  yup this is but ugly
+    if (theme_get_setting('cleanup_classes_form_container_type')) {
+      $element['#attributes']['class']['0'] = "";
+    }
 
-		//remove the field-name-field...  yup this is but ugly
-		if(theme_get_setting('cleanup_classes_form_container_name')){
-			$element['#attributes']['class']['1'] = "";
-		}
+    //remove the field-name-field...  yup this is but ugly
+    if (theme_get_setting('cleanup_classes_form_container_name')) {
+      $element['#attributes']['class']['1'] = "";
+    }
 
-		//remove the field-widget-....
-		if(theme_get_setting('cleanup_classes_form_container_widget')){
-			$element['#attributes']['class']['2'] = "";
-		}
+    //remove the field-widget-....
+    if (theme_get_setting('cleanup_classes_form_container_widget')) {
+      $element['#attributes']['class']['2'] = "";
+    }
 
-		//remove the id
-		if(theme_get_setting('cleanup_classes_form_container_id')){
-			unset($element['#attributes']['id']);
-		}
+    //remove the id
+    if (theme_get_setting('cleanup_classes_form_container_id')) {
+      unset($element['#attributes']['id']);
+    }
 
   }
 
@@ -590,7 +639,7 @@ adds a nother class in besides the form-item as a wrapper so theres something to
 
 function cleanup_field_multiple_value_form($variables) {
   $element = $variables['element'];
-	$output = '';
+  $output = '';
 
   if ($element['#cardinality'] > 1 || $element['#cardinality'] == FIELD_CARDINALITY_UNLIMITED) {
     $table_id = drupal_html_id($element['#field_name'] . '_values');
@@ -599,7 +648,10 @@ function cleanup_field_multiple_value_form($variables) {
 
     $header = array(
       array(
-        'data' => '<label>' . t('!title: !required', array('!title' => $element['#title'], '!required' => $required)) . "</label>",
+        'data' => '<label>' . t('!title: !required', array(
+            '!title' => $element['#title'],
+            '!required' => $required
+          )) . "</label>",
         'colspan' => 2,
         'class' => array('field-label'),
       ),
@@ -612,10 +664,10 @@ function cleanup_field_multiple_value_form($variables) {
     $items = array();
     foreach (element_children($element) as $key) {
       if ($key === 'add_more') {
-        $add_more_button = &$element[$key];
+        $add_more_button = & $element[$key];
       }
       else {
-        $items[] = &$element[$key];
+        $items[] = & $element[$key];
       }
     }
     usort($items, '_field_sort_items_value_helper');
@@ -634,15 +686,22 @@ function cleanup_field_multiple_value_form($variables) {
         'class' => array('draggable'),
       );
     }
-	/*
-	adds form-item-multiple
-	*/
+    /*
+    adds form-item-multiple
+    */
     $output .= '<div class="form-item form-item-multiple">';
-    $output .= theme('table', array('header' => $header, 'rows' => $rows, 'attributes' => array('id' => $table_id, 'class' => array('field-multiple-table'))));
+    $output .= theme('table', array(
+      'header' => $header,
+      'rows' => $rows,
+      'attributes' => array(
+        'id' => $table_id,
+        'class' => array('field-multiple-table')
+      )
+    ));
     $output .= $element['#description'] ? '<div class="description">' . $element['#description'] . '</div>' : '';
-	/*removes the clearfix*/
-   // $output .= '<div class="clearfix">' . drupal_render($add_more_button) . '</div>';
-    $output .=  drupal_render($add_more_button);
+    /*removes the clearfix*/
+    // $output .= '<div class="clearfix">' . drupal_render($add_more_button) . '</div>';
+    $output .= drupal_render($add_more_button);
 
     $output .= '</div>';
 
@@ -658,51 +717,51 @@ function cleanup_field_multiple_value_form($variables) {
 }
 
 
-
 /*
 more Placeholder sweetness
 */
 function cleanup_form_alter(&$form, &$form_state, $form_id) {
-/*
-	print "<pre>";
-	print_r($form_id);
-	print_r($form);
-	print "</pre>";
-*/
+  /*
+    print "<pre>";
+    print_r($form_id);
+    print_r($form);
+    print "</pre>";
+  */
 
-	//seach
+  //seach
   if ($form_id == 'search_block_form') {
     $form['search_block_form']['#attributes']['placeholder'] = t('Search');
     $form['search_block_form']['#attributes']['type'] = 'search';
   }
-	//login block
+  //login block
   if ($form_id == 'user_login_block') {
-	  $form['name']['#attributes']['placeholder'] = $form['name']['#title'];
-	  $form['pass']['#attributes']['placeholder'] = $form['pass']['#title'];
-	}
+    $form['name']['#attributes']['placeholder'] = $form['name']['#title'];
+    $form['pass']['#attributes']['placeholder'] = $form['pass']['#title'];
+  }
 
-	//login Register
-	if($form_id == 'user_register_form'){
-		//placeholder
-		if(theme_get_setting('cleanup_classes_form_placeholder_email')){
-			$mail_placeholder = theme_get_setting('cleanup_classes_form_placeholder_email');
-		}else{
-			$mail_placeholder = $form['account']['mail']['#title'];
-		}
-		$form['account']['name']['#attributes']['placeholder'] = $form['account']['name']['#title'];
-		$form['account']['mail']['#attributes']['placeholder'] = $mail_placeholder;
-	}
+  //login Register
+  if ($form_id == 'user_register_form') {
+    //placeholder
+    if (theme_get_setting('cleanup_classes_form_placeholder_email')) {
+      $mail_placeholder = theme_get_setting('cleanup_classes_form_placeholder_email');
+    }
+    else {
+      $mail_placeholder = $form['account']['mail']['#title'];
+    }
+    $form['account']['name']['#attributes']['placeholder'] = $form['account']['name']['#title'];
+    $form['account']['mail']['#attributes']['placeholder'] = $mail_placeholder;
+  }
 
-	//login
-	if($form_id == 'user_login'){
-		$form['name']['#attributes']['placeholder'] = $form['name']['#title'];
-		$form['pass']['#attributes']['placeholder'] = $form['pass']['#title'];
-	}
+  //login
+  if ($form_id == 'user_login') {
+    $form['name']['#attributes']['placeholder'] = $form['name']['#title'];
+    $form['pass']['#attributes']['placeholder'] = $form['pass']['#title'];
+  }
 
-	//login forgotten password
-	if($form_id == 'user_pass'){
-		$form['name']['#attributes']['placeholder'] = $form['name']['#title'];
-	}
+  //login forgotten password
+  if ($form_id == 'user_pass') {
+    $form['name']['#attributes']['placeholder'] = $form['name']['#title'];
+  }
 
 
 }

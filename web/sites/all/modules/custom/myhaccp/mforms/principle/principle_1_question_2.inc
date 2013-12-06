@@ -21,9 +21,12 @@ function _principle_1_question_2(&$form_state, &$next_step) {
     $vals = $form_state['values'];
   }
 
+  // Set the page title.
+  drupal_set_title('Principle 1 Question 2');
+
   $form = array();
   $form['#tree'] = TRUE;
-//  $form['#theme'] = 'myhacpp_p1q2_table';
+  $form['#attributes']['class'][] = 'p1q2';
 
   // The wrapper for each instance of the form.
   $form['container'] = array(
@@ -49,7 +52,7 @@ function _principle_1_question_2(&$form_state, &$next_step) {
   // correct form fields filled out.
   foreach ($previous_data['container'] as $key => $instance) {
     if (strpos($key, 'instance') === 0) {
-      if ($instance['p1q1_step_no'] != '' && $instance['p1q1_step_name'] != '') {
+      if ($instance['p1q1_step_wrapper']['p1q1_step_no'] != '' && $instance['p1q1_step_wrapper']['p1q1_step_name'] != '') {
         $instance_count++;
       }
     }
@@ -73,14 +76,14 @@ function _principle_1_question_2(&$form_state, &$next_step) {
   // screen's instances (or filled out instances saved in the form_state).
   for ($i = 0; $i < $form_state['num_instances']; $i++) {
     // Get the necessary values from the previous step.
-    $step_no = $previous_data['container']['instance-' . $i]['p1q1_step_no'];
-    $step_name = $previous_data['container']['instance-' . $i]['p1q1_step_name'];
+    $step_no = $previous_data['container']['instance-' . $i]['p1q1_step_wrapper']['p1q1_step_no'];
+    $step_name = $previous_data['container']['instance-' . $i]['p1q1_step_wrapper']['p1q1_step_name'];
     // Prepare each of the four categories of hazard.
     $categories = array(
-      'bio' => $previous_data['container']['instance-' . $i]['p1q1_biological'],
-      'chem' => $previous_data['container']['instance-' . $i]['p1q1_chemical'],
-      'phys' => $previous_data['container']['instance-' . $i]['p1q1_physical'],
-      'allergens' => $previous_data['container']['instance-' . $i]['p1q1_allergens'],
+      'bio' => $previous_data['container']['instance-' . $i]['p1q1_hazards_wrapper']['p1q1_biological'],
+      'chem' => $previous_data['container']['instance-' . $i]['p1q1_hazards_wrapper']['p1q1_chemical'],
+      'phys' => $previous_data['container']['instance-' . $i]['p1q1_hazards_wrapper']['p1q1_physical'],
+      'allergens' => $previous_data['container']['instance-' . $i]['p1q1_hazards_wrapper']['p1q1_allergens'],
     );
     // Process the hazards within each category.
     $hazards = array();
@@ -91,17 +94,17 @@ function _principle_1_question_2(&$form_state, &$next_step) {
       }
     }
 
+    // Create a fieldset to wrap this instance and give it a legend.
     $form['container']['instance-' . $i] = array(
       '#type' => 'fieldset',
-    );
-    $form['container']['instance-' . $i]['instance_title'] = array(
-      '#weight' => -1,
-      '#markup' => t('Process Step !step_no: !step_name !tip', array(
+      '#title' => t('Process Step !step_no: !step_name !tip', array(
         '!step_no' => $step_no,
         '!step_name' => $step_name,
         '!tip' => _help_tip(),
       )),
     );
+
+    // Create the table.
     $form['container']['instance-' . $i]['instance_table'] = array(
       '#theme' => 'myhacpp_p1q2_table',
     );
@@ -120,6 +123,7 @@ function _principle_1_question_2(&$form_state, &$next_step) {
       $form_position['description'] = array(
         '#type' => 'textarea',
         '#resizable' => FALSE,
+        '#cols' => 20,
         '#default_value' => isset($default_value['description']) ? $default_value['description'] : NULL
       );
       $form_position['severity'] = array(

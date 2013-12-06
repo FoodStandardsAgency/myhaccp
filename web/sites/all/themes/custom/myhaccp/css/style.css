@@ -1123,8 +1123,9 @@ header .header-region nav ul li {
   list-style-image: none;
 }
 .block-menu-block-3 ul li {
-  display: inline;
+  display: inline-block;
   margin-right: 1em;
+  margin-bottom: 0.5em;
 }
 .block-menu-block-3 ul li a {
   color: #f15d22;
@@ -1393,11 +1394,9 @@ fieldset {
   padding: 1.5em 0;
 }
 fieldset legend {
-  background: white;
-  padding: 0 3px;
-  margin: 0;
-  margin-left: -3px;
-  font-weight: 300;
+  font-size: 1.333em;
+  line-height: 2.25056em;
+  color: #007fb2;
 }
 
 /** Buttons **/
@@ -1659,42 +1658,6 @@ input#edit-submit.form-add {
 }
 
 /** Table style **/
-.group-pr-c-hazards {
-  border-collapse: collapse;
-  margin-bottom: 2em;
-  display: table;
-  table-layout: fixed;
-  width: 100%;
-}
-.group-pr-c-hazards > div.label {
-  display: table-caption;
-  margin-bottom: 1em;
-  font-weight: 500;
-}
-.group-pr-c-hazards > div.label span {
-  display: table-cell;
-  padding-bottom: 1em;
-}
-.group-pr-c-hazards > .form-wrapper {
-  padding: 0.5em;
-  border: 1px solid #006f51;
-}
-@media all and (min-width: 640px) {
-  .group-pr-c-hazards > .form-wrapper {
-    display: table-cell;
-  }
-}
-.group-pr-c-hazards > .form-wrapper:first-child {
-  padding-left: 0;
-}
-.group-pr-c-hazards > .form-wrapper:last-child {
-  padding-right: 0;
-}
-.group-pr-c-hazards > .form-wrapper > .form-item > label {
-  font-weight: bold;
-  border-bottom: 1px solid #006f51;
-}
-
 .form-1-principle-1 .field-group-principle-1 table {
   width: 100%;
 }
@@ -1727,27 +1690,6 @@ input#edit-submit.form-add {
 }
 .field-group-row-wrapper > label {
   font-weight: 500;
-}
-
-@media all and (min-width: 640px) {
-  .field-group-row.hazards .form-item {
-    width: 50%;
-    float: left;
-    padding-left: 25px;
-    padding-right: 25px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-  .field-group-row.hazards .form-item:first-child {
-    padding-left: 0;
-  }
-  .field-group-row.hazards .form-item:last-child {
-    padding-right: 0;
-  }
-}
-.field-group-row.hazards .form-item textarea {
-  width: 95%;
 }
 
 .p2-q1 label {
@@ -1806,7 +1748,7 @@ div.teaser-checkbox .form-item,
 #instance-container > fieldset {
   margin-bottom: 1em;
 }
-#instance-container > input[type="submit"] {
+#instance-container .form-controls input[type="submit"] {
   background-color: #e6e6e6;
   color: rgba(0, 0, 0, 0.8);
   border: 0 none transparent;
@@ -1816,29 +1758,76 @@ div.teaser-checkbox .form-item,
   -moz-transition: all 0.25s ease;
   -o-transition: all 0.25s ease;
   transition: all 0.25s ease;
+  margin-left: 0;
+  margin-right: 1em;
 }
-#instance-container > input[type="submit"]:hover, #instance-container > input[type="submit"]:focus {
+#instance-container .form-controls input[type="submit"]:hover, #instance-container .form-controls input[type="submit"]:focus {
   background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
   cursor: pointer;
 }
-#instance-container > input[type="submit"].disabled {
+#instance-container .form-controls input[type="submit"].disabled {
   background-image: none;
   cursor: not-allowed;
   opacity: 0.5;
 }
-#instance-container > input[type="submit"].active, #instance-container > input[type="submit"]:active {
+#instance-container .form-controls input[type="submit"].active, #instance-container .form-controls input[type="submit"]:active {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
 }
 
-/** Specific form styling **/
-.form-item-container-instance-0-p1q1-step-no {
+/**
+ * Specific form styling
+ */
+/** Principle 1, Q1 **/
+.p1q1-step {
+  overflow: hidden;
+  *zoom: 1;
+}
+.p1q1-step .form-item {
   float: left;
+}
+.p1q1-step .form-item.p1q1-step-no {
   margin-right: 2em;
 }
+.p1q1-step .form-item.p1q1-step-no input {
+  width: 3em;
+  min-width: 3em;
+}
 
-#edit-container-instance-0-p1q1-step-no {
-  min-width: 2em;
-  width: 2em;
+.p1q1-hazards {
+  clear: both;
+}
+@media all and (min-width: 640px) {
+  .p1q1-hazards {
+    margin-left: -25px;
+  }
+  .p1q1-hazards .form-item {
+    width: 50%;
+    float: left;
+    padding-left: 25px;
+    padding-right: 25px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+}
+.p1q1-hazards textarea {
+  width: 95%;
+}
+
+/** Principle 1, Q2 **/
+.p1q2 table {
+  width: 100%;
+}
+.p1q2 table th.severity,
+.p1q2 table th.likelihood,
+.p1q2 table th.significance {
+  max-width: 3em;
+}
+.p1q2 .severity input[type="text"],
+.p1q2 .likelihood input[type="text"],
+.p1q2 .significance input[type="text"] {
+  min-width: 3em;
+  width: 3em;
 }
 
 /**

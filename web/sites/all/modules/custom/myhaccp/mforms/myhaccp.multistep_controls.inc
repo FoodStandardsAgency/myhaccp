@@ -21,16 +21,19 @@ class MyHACCPMultiStepControls extends MformsControls {
   protected $label_continue;
   protected $label_submit;
   protected $label_delete;
+  protected $label_save;
 
-  protected $weight_back = 11;
-  protected $weight_continue = 10;
-  protected $weight_submit = 10;
+  protected $weight_back = 0;
+  protected $weight_continue = 20;
+  protected $weight_submit = 11;
   protected $weight_delete = 12;
+  protected $weight_save = 10;
 
   protected $attributes_back = array();
   protected $attributes_continue = array();
   protected $attributes_submit = array();
   protected $attributes_delete = array();
+  protected $attributes_save = array();
 
   protected $steps_label;
 
@@ -50,8 +53,9 @@ class MyHACCPMultiStepControls extends MformsControls {
     $this->steps_definition = $steps_definition;
 
     // Init default labels.
-    $this->label_continue = t('Continue ››');
-    $this->label_back = t('Back');
+    $this->label_continue = t('Next');
+    $this->label_back = t('Previous');
+    $this->label_save = t('Save');
     $this->label_submit = t('Submit');
     $this->label_delete = t('Reset');
   }
@@ -65,13 +69,35 @@ class MyHACCPMultiStepControls extends MformsControls {
 
     $wrapper_id = $form['mforms_info']['#value']['wrapper_id'];
 
+    // The form steps are displayed above the form. Create a wrapper for them.
     $form_controls['steps_btns_wrapper'] = array(
-      '#type' => 'fieldset',
+      '#type' => 'container',
       '#weight' => -1000,
+      '#attributes' => array(
+        'class' => array('pager-wrapper'),
+      ),
+    );
+
+    $form_controls['steps_btns_wrapper']['preparatory'] = array(
+      '#type' => 'container',
+      '#prefix' => '<h3>' . t('Preparatory') . '</h3>',
       '#title' => $this->getStepsLabel(),
+      '#attributes' => array(
+        'class' => array('preparatory'),
+      ),
+    );
+    $form_controls['steps_btns_wrapper']['principles'] = array(
+      '#type' => 'container',
+      '#prefix' => '<h3>' . t('Principles') . '</h3>',
+      '#title' => $this->getStepsLabel(),
+      '#attributes' => array(
+        'class' => array('principles'),
+      ),
     );
 
     $is_highlightable = TRUE;
+
+    // Iterate through all the form steps and display them one after another.
     foreach ($this->steps_definition as $id => $definition) {
       $disabled = TRUE;
       if ($this->store->getStore($id) && !$this->isSingleStep()) {
@@ -94,7 +120,8 @@ class MyHACCPMultiStepControls extends MformsControls {
         $class .= ' active-step';
       }
 
-      $form_controls['steps_btns_wrapper']['callback_' . $id] = array(
+      // Show the step button.
+      $form_controls['steps_btns_wrapper'][$definition['stage']]['callback_' . $id] = array(
         '#type' => 'submit',
         '#value' => $definition['value'],
         '#weight' => $definition['weight'],
@@ -107,7 +134,7 @@ class MyHACCPMultiStepControls extends MformsControls {
       );
 
       if ($this->ajaxified) {
-        $form_controls['steps_btns_wrapper']['callback_' . $id]['#ajax'] = array(
+        $form_controls['steps_btns_wrapper'][$definition['stage']]['callback_' . $id]['#ajax'] = array(
           'callback' => '_mforms_ajax_get_form',
           'wrapper' => $wrapper_id,
           'method' => 'replace',
@@ -116,6 +143,7 @@ class MyHACCPMultiStepControls extends MformsControls {
       }
     }
 
+    // Check if there is a next step (screen).
     if ($this->steps->getNext() != NULL) {
       $form_controls['continue'] = array(
         '#type' => 'submit',
@@ -135,28 +163,32 @@ class MyHACCPMultiStepControls extends MformsControls {
         );
       }
     }
-    else {
-      $form_controls['submit'] = array(
-        '#type' => 'submit',
-        '#value' => $this->label_submit,
-        '#weight' => $this->weight_submit,
-        '#attributes' => $this->attributes_submit,
-      );
-    }
+    // todo: Add the final submit back in.
+//    else {
+//      // If there is no next step then show the final submit button.
+//      $form_controls['submit'] = array(
+//        '#type' => 'submit',
+//        '#value' => $this->label_submit,
+//        '#weight' => $this->weight_submit,
+//        '#attributes' => $this->attributes_submit,
+//      );
+//    }
 
-    if (count($this->attributes_delete) == 0) {
-      $this->attributes_delete = array(
-        'onclick' => 'return confirm("' . t('This action will reset all values you have entered. Do you wish to continue?') . '");',
-      );
-    }
-    $form_controls['delete-all'] = array(
+    // Add a save button. This button simply saves the form state, much as the
+    // previous and next buttons do.
+    $form_controls['save'] = array(
       '#type' => 'submit',
-      '#value' => $this->label_delete,
-      '#weight' => $this->weight_delete,
-      '#attributes' => $this->attributes_delete,
-      '#limit_validation_errors' => array(),
-      '#submit' => array('_mforms_cancel_submit'),
+      '#value' => $this->label_save,
+      '#weight' => $this->weight_save,
+      '#attributes' => $this->attributes_save,
       '#store_key' => $this->store->getKey(),
+      '#mforms_step' => $this->steps->getCurr(),
+      '#submit' => array('_mforms_back_submit'),
+    );
+
+    $form_controls['message'] = array(
+      '#markup' => '<div class="help">Clicking \'Next\' or \'Previous\' will also Save this page.</div>',
+      '#weight' => 100,
     );
 
     return $form_controls;
