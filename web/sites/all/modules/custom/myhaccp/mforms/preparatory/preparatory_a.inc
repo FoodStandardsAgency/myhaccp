@@ -43,7 +43,7 @@ function _preparatory_a(&$form_state, &$next_step) {
         t('Pest Control'),
         t('Glass and plastic management'),
         t('Calibration'),
-        t('Standard Operating Procedures SOP’s'),
+        t('Standard Operating Procedures SOP\'s'),
         t('Distribution'),
         t('Product recall'),
         t('Document control'),
@@ -53,7 +53,7 @@ function _preparatory_a(&$form_state, &$next_step) {
         t('Microbiological control'),
         t('Preventative maintenance'),
         t('Traceability'),
-        t('Utilities (air,water,energy)'),
+        t('Utilities (air, water, energy)'),
         t('Waste disposal'),
         t('Equipment suitability, cleaning and maintenance'),
         t('Measures to prevent cross-contamination'),
@@ -66,8 +66,15 @@ function _preparatory_a(&$form_state, &$next_step) {
         t('Contamination control'),
         t('Return to work'),
         t('Other'),
-      ), 'drupal_html_class'
+      )
     ),
+  );
+
+  $form['prep1_location'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Please specify the location of the above documents. !tip', array(
+      '!tip' => _help_tip(),
+    )),
   );
 
   return $form;
