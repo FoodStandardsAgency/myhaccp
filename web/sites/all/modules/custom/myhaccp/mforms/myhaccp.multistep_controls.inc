@@ -50,8 +50,9 @@ class MyHACCPMultiStepControls extends MformsControls {
     $this->steps_definition = $steps_definition;
 
     // Init default labels.
-    $this->label_continue = t('Continue ››');
-    $this->label_back = t('Back');
+    $this->label_continue = t('Next');
+    $this->label_back = t('Previous');
+    $this->label_save = t('Save');
     $this->label_submit = t('Submit');
     $this->label_delete = t('Reset');
   }
@@ -65,13 +66,35 @@ class MyHACCPMultiStepControls extends MformsControls {
 
     $wrapper_id = $form['mforms_info']['#value']['wrapper_id'];
 
+    // The form steps are displayed above the form. Create a wrapper for them.
     $form_controls['steps_btns_wrapper'] = array(
-      '#type' => 'fieldset',
+      '#type' => 'container',
       '#weight' => -1000,
+      '#attributes' => array(
+        'class' => array('pager-wrapper'),
+      ),
+    );
+
+    $form_controls['steps_btns_wrapper']['preparatory'] = array(
+      '#type' => 'container',
+      '#prefix' => '<h3>' . t('Preparatory') . '</h3>',
       '#title' => $this->getStepsLabel(),
+      '#attributes' => array(
+        'class' => array('preparatory'),
+      ),
+    );
+    $form_controls['steps_btns_wrapper']['principles'] = array(
+      '#type' => 'container',
+      '#prefix' => '<h3>' . t('Principles') . '</h3>',
+      '#title' => $this->getStepsLabel(),
+      '#attributes' => array(
+        'class' => array('principles'),
+      ),
     );
 
     $is_highlightable = TRUE;
+
+    // Iterate through all the form steps and display them one after another.
     foreach ($this->steps_definition as $id => $definition) {
       $disabled = TRUE;
       if ($this->store->getStore($id) && !$this->isSingleStep()) {
@@ -94,7 +117,8 @@ class MyHACCPMultiStepControls extends MformsControls {
         $class .= ' active-step';
       }
 
-      $form_controls['steps_btns_wrapper']['callback_' . $id] = array(
+      // Show the step button.
+      $form_controls['steps_btns_wrapper'][$definition['stage']]['callback_' . $id] = array(
         '#type' => 'submit',
         '#value' => $definition['value'],
         '#weight' => $definition['weight'],
@@ -107,7 +131,7 @@ class MyHACCPMultiStepControls extends MformsControls {
       );
 
       if ($this->ajaxified) {
-        $form_controls['steps_btns_wrapper']['callback_' . $id]['#ajax'] = array(
+        $form_controls['steps_btns_wrapper'][$definition['stage']]['callback_' . $id]['#ajax'] = array(
           'callback' => '_mforms_ajax_get_form',
           'wrapper' => $wrapper_id,
           'method' => 'replace',
@@ -116,6 +140,7 @@ class MyHACCPMultiStepControls extends MformsControls {
       }
     }
 
+    // Check if there is a next step (screen).
     if ($this->steps->getNext() != NULL) {
       $form_controls['continue'] = array(
         '#type' => 'submit',
@@ -136,6 +161,7 @@ class MyHACCPMultiStepControls extends MformsControls {
       }
     }
     else {
+      // If there is no next step then show the final submit button.
       $form_controls['submit'] = array(
         '#type' => 'submit',
         '#value' => $this->label_submit,
@@ -149,15 +175,15 @@ class MyHACCPMultiStepControls extends MformsControls {
         'onclick' => 'return confirm("' . t('This action will reset all values you have entered. Do you wish to continue?') . '");',
       );
     }
-    $form_controls['delete-all'] = array(
-      '#type' => 'submit',
-      '#value' => $this->label_delete,
-      '#weight' => $this->weight_delete,
-      '#attributes' => $this->attributes_delete,
-      '#limit_validation_errors' => array(),
-      '#submit' => array('_mforms_cancel_submit'),
-      '#store_key' => $this->store->getKey(),
-    );
+//    $form_controls['delete-all'] = array(
+//      '#type' => 'submit',
+//      '#value' => $this->label_delete,
+//      '#weight' => $this->weight_delete,
+//      '#attributes' => $this->attributes_delete,
+//      '#limit_validation_errors' => array(),
+//      '#submit' => array('_mforms_cancel_submit'),
+//      '#store_key' => $this->store->getKey(),
+//    );
 
     return $form_controls;
   }

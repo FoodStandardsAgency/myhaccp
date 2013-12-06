@@ -49,7 +49,7 @@ function _principle_1_question_2(&$form_state, &$next_step) {
   // correct form fields filled out.
   foreach ($previous_data['container'] as $key => $instance) {
     if (strpos($key, 'instance') === 0) {
-      if ($instance['p1q1_step_no'] != '' && $instance['p1q1_step_name'] != '') {
+      if ($instance['p1q1_step_wrapper']['p1q1_step_no'] != '' && $instance['p1q1_step_wrapper']['p1q1_step_name'] != '') {
         $instance_count++;
       }
     }
@@ -73,14 +73,14 @@ function _principle_1_question_2(&$form_state, &$next_step) {
   // screen's instances (or filled out instances saved in the form_state).
   for ($i = 0; $i < $form_state['num_instances']; $i++) {
     // Get the necessary values from the previous step.
-    $step_no = $previous_data['container']['instance-' . $i]['p1q1_step_no'];
-    $step_name = $previous_data['container']['instance-' . $i]['p1q1_step_name'];
+    $step_no = $previous_data['container']['instance-' . $i]['p1q1_step_wrapper']['p1q1_step_no'];
+    $step_name = $previous_data['container']['instance-' . $i]['p1q1_step_wrapper']['p1q1_step_name'];
     // Prepare each of the four categories of hazard.
     $categories = array(
-      'bio' => $previous_data['container']['instance-' . $i]['p1q1_biological'],
-      'chem' => $previous_data['container']['instance-' . $i]['p1q1_chemical'],
-      'phys' => $previous_data['container']['instance-' . $i]['p1q1_physical'],
-      'allergens' => $previous_data['container']['instance-' . $i]['p1q1_allergens'],
+      'bio' => $previous_data['container']['instance-' . $i]['p1q1_hazards_wrapper']['p1q1_biological'],
+      'chem' => $previous_data['container']['instance-' . $i]['p1q1_hazards_wrapper']['p1q1_chemical'],
+      'phys' => $previous_data['container']['instance-' . $i]['p1q1_hazards_wrapper']['p1q1_physical'],
+      'allergens' => $previous_data['container']['instance-' . $i]['p1q1_hazards_wrapper']['p1q1_allergens'],
     );
     // Process the hazards within each category.
     $hazards = array();

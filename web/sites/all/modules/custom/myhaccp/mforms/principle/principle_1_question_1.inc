@@ -35,25 +35,33 @@ function _principle_1_question_1(&$form_state, &$next_step) {
     $form_state['num_instances'] = 1;
   }
   for ($i = 0; $i < $form_state['num_instances']; $i++) {
+    // Contain everything for this instance inside a fieldset.
     $form['container']['instance-' . $i] = array(
       '#type' => 'fieldset',
     );
-    $form['container']['instance-' . $i]['p1q1_step_no'] = array(
+    // Create a wrapper container for the step details.
+    $form['container']['instance-' . $i]['p1q1_step_wrapper'] = array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array('p1q1-step'),
+      ),
+    );
+    $form['container']['instance-' . $i]['p1q1_step_wrapper']['p1q1_step_no'] = array(
       '#weight' => '0',
       '#type' => 'textfield',
       '#title' => t('Step no. !tip', array(
         '!tip' => _help_tip(),
       )),
-      '#default_value' => isset($vals['container']['instance-' . $i]['p1q1_step_no']) ? $vals['container']['instance-' . $i]['p1q1_step_no'] : NULL
+      '#default_value' => isset($vals['container']['instance-' . $i]['p1q1_step_wrapper']['p1q1_step_no']) ? $vals['container']['instance-' . $i]['p1q1_step_wrapper']['p1q1_step_no'] : NULL
     );
     // Step name.
-    $form['container']['instance-' . $i]['p1q1_step_name'] = array(
+    $form['container']['instance-' . $i]['p1q1_step_wrapper']['p1q1_step_name'] = array(
       '#weight' => '1',
       '#type' => 'textfield',
       '#title' => t('Step name !tip', array(
         '!tip' => _help_tip(),
       )),
-      '#default_value' => isset($vals['container']['instance-' . $i]['p1q1_step_name']) ? $vals['container']['instance-' . $i]['p1q1_step_name'] : NULL
+      '#default_value' => isset($vals['container']['instance-' . $i]['p1q1_step_wrapper']['p1q1_step_name']) ? $vals['container']['instance-' . $i]['p1q1_step_wrapper']['p1q1_step_name'] : NULL
     );
     // Markup.
     $form['container']['instance-' . $i]['p1q1_message'] = array(
@@ -62,49 +70,64 @@ function _principle_1_question_1(&$form_state, &$next_step) {
         '!tip' => _help_tip(),
       )),
     );
+
+    // Add a wrapper for the categories.
+    $form['container']['instance-' . $i]['p1q1_hazards_wrapper'] = array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array('p1q1-hazards'),
+      ),
+    );
     // Biological.
-    $form['container']['instance-' . $i]['p1q1_biological'] = array(
+    $form['container']['instance-' . $i]['p1q1_hazards_wrapper']['p1q1_biological'] = array(
       '#weight' => '3',
       '#type' => 'textarea',
       '#resizable' => FALSE,
       '#title' => t('Biological !tip', array(
         '!tip' => _help_tip(),
       )),
-      '#default_value' => isset($vals['container']['instance-' . $i]['p1q1_biological']) ? $vals['container']['instance-' . $i]['p1q1_biological'] : NULL
+      '#default_value' => isset($vals['container']['instance-' . $i]['p1q1_hazards_wrapper']['p1q1_biological']) ? $vals['container']['instance-' . $i]['p1q1_hazards_wrapper']['p1q1_biological'] : NULL
     );
     // Chemical.
-    $form['container']['instance-' . $i]['p1q1_chemical'] = array(
+    $form['container']['instance-' . $i]['p1q1_hazards_wrapper']['p1q1_chemical'] = array(
       '#weight' => '4',
       '#type' => 'textarea',
       '#resizable' => FALSE,
       '#title' => t('Chemical !tip', array(
         '!tip' => _help_tip(),
       )),
-      '#default_value' => isset($vals['container']['instance-' . $i]['p1q1_chemical']) ? $vals['container']['instance-' . $i]['p1q1_chemical'] : NULL
+      '#default_value' => isset($vals['container']['instance-' . $i]['p1q1_hazards_wrapper']['p1q1_chemical']) ? $vals['container']['instance-' . $i]['p1q1_hazards_wrapper']['p1q1_chemical'] : NULL
     );
     // Physical.
-    $form['container']['instance-' . $i]['p1q1_physical'] = array(
+    $form['container']['instance-' . $i]['p1q1_hazards_wrapper']['p1q1_physical'] = array(
       '#weight' => '5',
       '#type' => 'textarea',
       '#resizable' => FALSE,
       '#title' => t('Physical !tip', array(
         '!tip' => _help_tip(),
       )),
-      '#default_value' => isset($vals['container']['instance-' . $i]['p1q1_physical']) ? $vals['container']['instance-' . $i]['p1q1_physical'] : NULL
+      '#default_value' => isset($vals['container']['instance-' . $i]['p1q1_hazards_wrapper']['p1q1_physical']) ? $vals['container']['instance-' . $i]['p1q1_hazards_wrapper']['p1q1_physical'] : NULL
     );
     // Allergens.
-    $form['container']['instance-' . $i]['p1q1_allergens'] = array(
+    $form['container']['instance-' . $i]['p1q1_hazards_wrapper']['p1q1_allergens'] = array(
       '#weight' => '6',
       '#type' => 'textarea',
       '#resizable' => FALSE,
       '#title' => t('Allergens !tip', array(
         '!tip' => _help_tip(),
       )),
-      '#default_value' => isset($vals['container']['instance-' . $i]['p1q1_allergens']) ? $vals['container']['instance-' . $i]['p1q1_allergens'] : NULL
+      '#default_value' => isset($vals['container']['instance-' . $i]['p1q1_hazards_wrapper']['p1q1_allergens']) ? $vals['container']['instance-' . $i]['p1q1_hazards_wrapper']['p1q1_allergens'] : NULL
     );
   }
 
-  $form['container']['add_instance'] = array(
+  $form['container']['controls'] = array(
+    '#type' => 'container',
+    '#attributes' => array(
+      'class' => array(''),
+    ),
+  );
+
+  $form['container']['controls']['add_instance'] = array(
     '#type' => 'submit',
     '#value' => t('Add another'),
     '#submit' => array('instance_add_more_add_one'),
@@ -114,7 +137,7 @@ function _principle_1_question_1(&$form_state, &$next_step) {
     ),
   );
   if ($form_state['num_instances'] > 1) {
-    $form['container']['remove_instance'] = array(
+    $form['container']['controls']['remove_instance'] = array(
       '#type' => 'submit',
       '#value' => t('Remove one'),
       '#submit' => array('instance_add_more_remove_one'),
