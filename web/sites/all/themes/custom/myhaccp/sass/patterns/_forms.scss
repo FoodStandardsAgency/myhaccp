@@ -29,6 +29,7 @@ input[type="tel"],
 input[type="time"],
 input[type="url"],
 input[type="week"],
+input[type="password"],
 select,
 textarea {
   @include adjust-font-size-to(20px);
@@ -149,22 +150,20 @@ body div.form-type-checkbox div.description {
 /* Fieldsets */
 
 fieldset {
-  border: solid 1px #ddd;
-  border-top: 3px solid #0074BD;
-  padding: 12px;
-  margin: 18px 0;
+  border: none;
+  margin: 0;
+  border-bottom: 1px solid $accent_2;
+  overflow: hidden;
+  padding: 1.5em 0;
   legend {
     background: white;
     padding: 0 3px;
     margin: 0;
     margin-left: -3px;
-    font-family: Open Sans,Helvetica,sans-serif;
-    font-size: 24px;
     font-weight: 300;
   }
   .form-item {
-    padding: 0 1em 0 0;
-    margin: 0 0 10px;
+    //padding: 0 1em 0 0;
   }
 }
 
@@ -209,7 +208,8 @@ input#edit-delete,
 input#remove-button,
 input#edit-remove,
 input#edit-clear,
-.page-admin-modules-uninstall input#edit-submit {
+.page-admin-modules-uninstall input#edit-submit,
+input#edit-delete-all {
   @include agile-button($style: negative);
   color: #FFF;
 }
@@ -443,5 +443,28 @@ div.teaser-checkbox .form-item,
   padding: 5px 0;
   margin: 0;
   border: 0;
+}
+
+
+#instance-container {
+  margin-bottom: 2em;
+  >fieldset {
+    margin-bottom: 1em;
+  }
+  > input[type="submit"] {
+    @include agile-button();
+  }
+}
+
+/** Specific form styling **/
+
+.form-item-container-instance-0-p1q1-step-no {
+  float: left;
+  margin-right: 2em;
+}
+
+#edit-container-instance-0-p1q1-step-no {
+  min-width: 2em;
+  width: 2em;
 }
 

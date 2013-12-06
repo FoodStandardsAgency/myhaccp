@@ -58,6 +58,9 @@ header[role=banner] {
     a {
       color: $text-lighter;
     }
+    .form-item {
+      margin-bottom: 0;
+    }
     div[role="search"] {
       float: right;
       margin-right: 1em;

@@ -1280,6 +1280,7 @@ input[type="tel"],
 input[type="time"],
 input[type="url"],
 input[type="week"],
+input[type="password"],
 select,
 textarea {
   font-size: 1em;
@@ -1385,23 +1386,18 @@ body div.form-type-checkbox div.description {
 
 /* Fieldsets */
 fieldset {
-  border: solid 1px #ddd;
-  border-top: 3px solid #0074BD;
-  padding: 12px;
-  margin: 18px 0;
+  border: none;
+  margin: 0;
+  border-bottom: 1px solid #007fb2;
+  overflow: hidden;
+  padding: 1.5em 0;
 }
 fieldset legend {
   background: white;
   padding: 0 3px;
   margin: 0;
   margin-left: -3px;
-  font-family: Open Sans,Helvetica,sans-serif;
-  font-size: 24px;
   font-weight: 300;
-}
-fieldset .form-item {
-  padding: 0 1em 0 0;
-  margin: 0 0 10px;
 }
 
 /** Buttons **/
@@ -1553,7 +1549,8 @@ input#edit-delete,
 input#remove-button,
 input#edit-remove,
 input#edit-clear,
-.page-admin-modules-uninstall input#edit-submit {
+.page-admin-modules-uninstall input#edit-submit,
+input#edit-delete-all {
   background-color: #e6e6e6;
   color: rgba(0, 0, 0, 0.8);
   border: 0 none transparent;
@@ -1574,7 +1571,9 @@ input#edit-remove:focus,
 input#edit-clear:hover,
 input#edit-clear:focus,
 .page-admin-modules-uninstall input#edit-submit:hover,
-.page-admin-modules-uninstall input#edit-submit:focus {
+.page-admin-modules-uninstall input#edit-submit:focus,
+input#edit-delete-all:hover,
+input#edit-delete-all:focus {
   background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
   cursor: pointer;
 }
@@ -1582,7 +1581,8 @@ input#edit-delete.disabled,
 input#remove-button.disabled,
 input#edit-remove.disabled,
 input#edit-clear.disabled,
-.page-admin-modules-uninstall input#edit-submit.disabled {
+.page-admin-modules-uninstall input#edit-submit.disabled,
+input#edit-delete-all.disabled {
   background-image: none;
   cursor: not-allowed;
   opacity: 0.5;
@@ -1595,7 +1595,9 @@ input#edit-remove:active,
 input#edit-clear.active,
 input#edit-clear:active,
 .page-admin-modules-uninstall input#edit-submit.active,
-.page-admin-modules-uninstall input#edit-submit:active {
+.page-admin-modules-uninstall input#edit-submit:active,
+input#edit-delete-all.active,
+input#edit-delete-all:active {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
 }
 
@@ -1796,6 +1798,47 @@ div.teaser-checkbox .form-item,
   padding: 5px 0;
   margin: 0;
   border: 0;
+}
+
+#instance-container {
+  margin-bottom: 2em;
+}
+#instance-container > fieldset {
+  margin-bottom: 1em;
+}
+#instance-container > input[type="submit"] {
+  background-color: #e6e6e6;
+  color: rgba(0, 0, 0, 0.8);
+  border: 0 none transparent;
+  padding: 0.6em 1.5em 0.5em 1.5em;
+  text-decoration: none;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+#instance-container > input[type="submit"]:hover, #instance-container > input[type="submit"]:focus {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+}
+#instance-container > input[type="submit"].disabled {
+  background-image: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+#instance-container > input[type="submit"].active, #instance-container > input[type="submit"]:active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
+}
+
+/** Specific form styling **/
+.form-item-container-instance-0-p1q1-step-no {
+  float: left;
+  margin-right: 2em;
+}
+
+#edit-container-instance-0-p1q1-step-no {
+  min-width: 2em;
+  width: 2em;
 }
 
 /**
@@ -2024,6 +2067,9 @@ header[role=banner] .header-utility:after {
 }
 header[role=banner] .header-utility a {
   color: #676767;
+}
+header[role=banner] .header-utility .form-item {
+  margin-bottom: 0;
 }
 header[role=banner] .header-utility div[role="search"] {
   float: right;
