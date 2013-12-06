@@ -19,13 +19,14 @@
  * Implements hook_init().
  */
 function myhaccp_init() {
-  $store = MformsDatabaseStore::getInstance('myhaccp');
-  $steps = MformsSteps::getInstance($store);
-  $all = $steps->getSteps();
-  // Include all the step files.
-  foreach ($all as $step) {
-    $dir = strpos($step, 'preparatory') === 0 ? 'preparatory' : 'principle';
-    ctools_include($step, 'myhaccp', 'mforms/' . $dir);
+  // Declare all of the step forms.
+  $forms = array(
+    'preparatory_a' => 'preparatory',
+    'principle_1_question_1' => 'principle',
+    'principle_1_question_2' => 'principle',
+  );
+  foreach ($forms as $file => $dir) {
+    ctools_include($file, 'myhaccp', 'mforms/' . $dir);
   }
 }
 
