@@ -190,7 +190,8 @@ input[id^="save-continue"],
 input[id^="edit-save"],
 input#edit-save,
 input#edit-actions-save,
-input#edit-continue {
+input#edit-continue,
+input#edit-previous {
   @include agile-button($style: primary);
 }
 
@@ -438,7 +439,8 @@ div.teaser-checkbox .form-item,
     margin-left: 0;
     margin-bottom: 1em;
   }
-  input#edit-continue {
+  input#edit-continue,
+  input#edit-previous {
     float: right;
     margin-bottom: 1em;
   }
