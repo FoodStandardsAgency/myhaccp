@@ -50,14 +50,15 @@ function principle_1_question_2(&$form_state, &$next_step) {
 
   // Iterate through the previous data and look for instances which have the
   // correct form fields filled out.
-  foreach ($previous_data['container'] as $key => $instance) {
-    if (strpos($key, 'instance') === 0) {
-      if ($instance['p1q1_step_wrapper']['p1q1_step_no'] != '' && $instance['p1q1_step_wrapper']['p1q1_step_name'] != '') {
-        $instance_count++;
+  if (isset($previous_data)) {
+    foreach ($previous_data['container'] as $key => $instance) {
+      if (strpos($key, 'instance') === 0) {
+        if ($instance['p1q1_step_wrapper']['p1q1_step_no'] != '' && $instance['p1q1_step_wrapper']['p1q1_step_name'] != '') {
+          $instance_count++;
+        }
       }
     }
   }
-
   // Bail out here with a message if there are no instances of the fieldsets
   // filled out correctly in the previous screen.
   if ($instance_count == 0) {
@@ -67,11 +68,8 @@ function principle_1_question_2(&$form_state, &$next_step) {
 
   // Check whether the form_state has instances already filled out.
   // @todo: How do we deal with changing instance numbers in the previous screen if a user has started filling out this screen?
-  if (empty($form_state['num_instances'])) {
-    // Set the number of instances on this screen to the instance count from
-    // the last screen.
-    $form_state['num_instances'] = $instance_count;
-  }
+  $form_state['num_instances'] = $instance_count;
+
   // Iterate over all the instances and generate a fieldset per previous
   // screen's instances (or filled out instances saved in the form_state).
   for ($i = 0; $i < $form_state['num_instances']; $i++) {

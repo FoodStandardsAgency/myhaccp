@@ -20,12 +20,8 @@
  */
 function myhaccp_init() {
   // Declare all of the step forms.
-  $forms = array(
-    'preparatory_a' => 'preparatory',
-    'principle_1_question_1' => 'principle',
-    'principle_1_question_2' => 'principle',
-  );
-  foreach ($forms as $file => $dir) {
+  $files = _get_all_steps();
+  foreach ($files as $file => $dir) {
     ctools_include($file, 'myhaccp', 'mforms/' . $dir);
   }
 }
@@ -183,4 +179,17 @@ function myhaccp_theme() {
  */
 function _help_tip() {
   return '<a href="/node/2" class="help-tip" title="This link will afford popup help text when clicked." target="_blank">?</a>';
+}
+
+function _get_all_steps() {
+  $files = array(
+    'preparatory_a' => 'preparatory',
+    'principle_1_question_1' => 'principle',
+    'principle_1_question_2' => 'principle',
+  );
+  return $files;
+}
+
+function _get_all_step_names() {
+  return array_keys(_get_all_steps());
 }
