@@ -186,6 +186,11 @@ class MyHACCPMultiStepControls extends MformsControls {
       '#submit' => array('_mforms_back_submit'),
     );
 
+    $form_controls['message'] = array(
+      '#markup' => '<div class="help">Clicking \'Next\' or \'Previous\' will also Save this page.</div>',
+      '#weight' => 100,
+    );
+
     return $form_controls;
   }
 
