@@ -89,6 +89,26 @@ function instance_add_more_remove_one($form, &$form_state) {
 }
 
 /**
+ * Validation handler for Principle 1 Question 1.
+ */
+function _principle_1_question_1_validate($form, &$form_state) {
+  $validate = TRUE;
+  // Test to see whether there is any submitted data for the first instance.
+  if (isset($form_state['values']['container']['instance_0'])) {
+    $form_position = &$form_state['values']['container']['instance_0'];
+    if ($form_position['p1q1_step_wrapper']['p1q1_step_no'] == '' && $form_position['p1q1_step_wrapper']['p1q1_step_name'] == '') {
+      $validate = FALSE;
+    }
+  }
+  if ($validate == FALSE) {
+    drupal_set_message(t('Principle 1 Question 1 requires information to be present.'), 'warning');
+  }
+  else {
+    drupal_set_message(t('Information saved.'));
+  }
+}
+
+/**
  * The submit handler to store the form at the end of the process.
  */
 function _principle_1_question_2_submit($form, &$form_state) {
