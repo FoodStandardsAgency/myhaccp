@@ -61,7 +61,7 @@ function principle_1_question_2(&$form_state, &$next_step) {
   // Bail out here with a message if there are no instances of the fieldsets
   // filled out correctly in the previous screen.
   if ($instance_count == 0) {
-    drupal_set_message('You must add at lease a step number and step name in the previous question', 'warning');
+    drupal_set_message('You must add at least a step number and step name in the previous question', 'warning');
     return $form;
   }
 
