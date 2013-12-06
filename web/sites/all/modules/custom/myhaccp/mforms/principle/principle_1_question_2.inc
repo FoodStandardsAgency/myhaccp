@@ -91,17 +91,17 @@ function _principle_1_question_2(&$form_state, &$next_step) {
       }
     }
 
+    // Create a fieldset to wrap this instance and give it a legend.
     $form['container']['instance-' . $i] = array(
       '#type' => 'fieldset',
-    );
-    $form['container']['instance-' . $i]['instance_title'] = array(
-      '#weight' => -1,
-      '#markup' => t('Process Step !step_no: !step_name !tip', array(
+      '#title' => t('Process Step !step_no: !step_name !tip', array(
         '!step_no' => $step_no,
         '!step_name' => $step_name,
         '!tip' => _help_tip(),
       )),
     );
+
+    // Create the table.
     $form['container']['instance-' . $i]['instance_table'] = array(
       '#theme' => 'myhacpp_p1q2_table',
     );
