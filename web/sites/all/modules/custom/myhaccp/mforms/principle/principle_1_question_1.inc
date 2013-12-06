@@ -127,7 +127,7 @@ function _principle_1_question_1(&$form_state, &$next_step) {
   $form['container']['controls'] = array(
     '#type' => 'container',
     '#attributes' => array(
-      'class' => array(''),
+      'class' => array('form-controls'),
     ),
   );
 
