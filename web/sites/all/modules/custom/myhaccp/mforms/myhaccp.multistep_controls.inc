@@ -80,21 +80,21 @@ class MyHACCPMultiStepControls extends MformsControls {
 
     $form_controls['steps_btns_wrapper']['preparatory'] = array(
       '#type' => 'container',
-      '#prefix' => '<h3>' . t('Preparatory') . '</h3>',
       '#title' => $this->getStepsLabel(),
+      '#prefix' => '<h2 class="pager-title">' . t('Index') . '</h2>',
       '#attributes' => array(
         'class' => array('preparatory-wrapper'),
       ),
     );
     $form_controls['steps_btns_wrapper']['preparatory']['pager_controls'] = array(
       '#type' => 'container',
+      '#prefix' => '<h3>' . t('Preparatory stages') . '</h3>',
       '#attributes' => array(
         'class' => array('pager-controls'),
       ),
     );
     $form_controls['steps_btns_wrapper']['principles'] = array(
       '#type' => 'container',
-      '#prefix' => '<h3>' . t('Principles') . '</h3>',
       '#title' => $this->getStepsLabel(),
       '#attributes' => array(
         'class' => array('principles-wrapper'),
@@ -102,6 +102,7 @@ class MyHACCPMultiStepControls extends MformsControls {
     );
     $form_controls['steps_btns_wrapper']['principles']['pager_controls'] = array(
       '#type' => 'container',
+      '#prefix' => '<h3>' . t('Principles') . '</h3>',
       '#attributes' => array(
         'class' => array('pager-controls'),
       ),
@@ -111,25 +112,25 @@ class MyHACCPMultiStepControls extends MformsControls {
 
     // Iterate through all the form steps and display them one after another.
     foreach ($this->steps_definition as $id => $definition) {
-      $disabled = FALSE;
+      $unvisited = TRUE;
       if ($this->store->getStore($id) && !$this->isSingleStep()) {
-        // $disabled = FALSE;
+        $unvisited = FALSE;
       }
 
       $class = '';
       if ($this->steps->getCurr() == $id || $is_highlightable) {
-        $class = 'higlighted-step';
+        $class = 'visited-step';
       }
 
       if ($this->steps->getCurr() == $id) {
         $class .= ' current-step';
         $is_highlightable = FALSE;
       }
-      elseif ($disabled) {
-        $class .= ' disabled-step';
+      elseif ($unvisited) {
+        $class .= ' unvisited-step';
       }
       elseif (in_array($id, $this->steps->getSteps())) {
-        $class .= ' active-step';
+        $class .= ' visited-step';
       }
 
       // Show the step button.
@@ -137,7 +138,7 @@ class MyHACCPMultiStepControls extends MformsControls {
         '#type' => 'submit',
         '#value' => $definition['value'],
         '#weight' => $definition['weight'],
-        '#disabled' => $disabled,
+//        '#disabled' => $visited,
         '#attributes' => array('class' => array($class)),
         '#limit_validation_errors' => array(),
         '#submit' => array('_mforms_back_submit'),

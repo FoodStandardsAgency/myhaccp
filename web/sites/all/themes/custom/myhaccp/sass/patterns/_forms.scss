@@ -240,6 +240,52 @@ input#edit-submit.form-add {
   overflow: hidden;
 }
 
+/** The pager element **/
+
+.pager-wrapper {
+  @include clearfix();
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+  border-bottom: 4px solid $grey-1;
+  h2.pager-title {
+    text-transform: uppercase;
+    font-size: 1em;
+    float: left;
+    margin: 4.05em 2em 0 0;
+  }
+  h3 {
+    font-size: 1em;
+  }
+  .preparatory-wrapper {
+    float: left;
+    margin-right: 5em;
+  }
+  .principles-wrapper {
+    float: left;
+  }
+  .pager-controls {
+    input {
+      margin: 0;
+      border: 0;
+      background: none;
+      font-size: 1.3em;
+      &.current-step {
+        background: $accent-1;
+        color: $text;
+        &.visited-step {
+          color: $text;
+        }
+      }
+      &.active-step {
+        color: $accent-1;
+      }
+      &.visited-step {
+        color: $accent-2;
+      }
+    }
+  }
+}
+
 
 /** Field Groups **/
 
@@ -436,11 +482,15 @@ div.teaser-checkbox .form-item,
     font-size: 0.8em;
   }
   input#edit-save {
-    margin-left: 0;
+    margin-left: 30%;
     margin-bottom: 1em;
   }
-  input#edit-continue,
   input#edit-previous {
+    float: left;
+    margin-bottom: 1em;
+    margin-left: 0;
+  }
+  input#edit-continue {
     float: right;
     margin-bottom: 1em;
   }

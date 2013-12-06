@@ -1632,6 +1632,50 @@ input#edit-submit.form-add {
   overflow: hidden;
 }
 
+/** The pager element **/
+.pager-wrapper {
+  overflow: hidden;
+  *zoom: 1;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+  border-bottom: 4px solid #eeeeee;
+}
+.pager-wrapper h2.pager-title {
+  text-transform: uppercase;
+  font-size: 1em;
+  float: left;
+  margin: 4.05em 2em 0 0;
+}
+.pager-wrapper h3 {
+  font-size: 1em;
+}
+.pager-wrapper .preparatory-wrapper {
+  float: left;
+  margin-right: 5em;
+}
+.pager-wrapper .principles-wrapper {
+  float: left;
+}
+.pager-wrapper .pager-controls input {
+  margin: 0;
+  border: 0;
+  background: none;
+  font-size: 1.3em;
+}
+.pager-wrapper .pager-controls input.current-step {
+  background: #6cb33f;
+  color: black;
+}
+.pager-wrapper .pager-controls input.current-step.visited-step {
+  color: black;
+}
+.pager-wrapper .pager-controls input.active-step {
+  color: #6cb33f;
+}
+.pager-wrapper .pager-controls input.visited-step {
+  color: #007fb2;
+}
+
 /** Field Groups **/
 .field-group-wrapper {
   margin-bottom: 1em;
@@ -1757,11 +1801,15 @@ div.teaser-checkbox .form-item,
   font-size: 0.8em;
 }
 #myhaccp-start-form input#edit-save {
-  margin-left: 0;
+  margin-left: 30%;
   margin-bottom: 1em;
 }
-#myhaccp-start-form input#edit-continue,
 #myhaccp-start-form input#edit-previous {
+  float: left;
+  margin-bottom: 1em;
+  margin-left: 0;
+}
+#myhaccp-start-form input#edit-continue {
   float: right;
   margin-bottom: 1em;
 }
