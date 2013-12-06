@@ -96,15 +96,20 @@ function myhaccp_myhaccp_mforms_init() {
   // If using mustistep controls you need to explicitly define form steps and
   // its attributes.
   $controls = MyHACCPMultiStepControls::getInstance($store, $steps, array(
+    'preparatory_a' => array(
+      'stage' => 'preparatory',
+      'value' => 'A',
+      'weight' => 1,
+    ),
     'principle_1_question_1' => array(
       'stage' => 'principles',
       'value' => '1.1',
-      'weight' => -103,
+      'weight' => 11,
     ),
     'principle_1_question_2' => array(
       'stage' => 'principles',
       'value' => '1.2',
-      'weight' => -102,
+      'weight' => 12,
     ),
   ));
 
@@ -137,7 +142,7 @@ function myhaccp_start_form($form, &$form_state, $iid = FALSE) {
     drupal_set_message('Please edit an existing form or create a new one.');
     drupal_goto('prototype');
   }
-  return mforms_build('myhaccp', 'principle_1_question_1', $form_state);
+  return mforms_build('myhaccp', 'preparatory_a', $form_state);
 }
 
 /**
