@@ -23,11 +23,11 @@ class MyHACCPMultiStepControls extends MformsControls {
   protected $label_delete;
   protected $label_save;
 
-  protected $weight_back = 0;
+  protected $weight_back = 10;
   protected $weight_continue = 20;
-  protected $weight_submit = 11;
+  protected $weight_submit = 20;
   protected $weight_delete = 12;
-  protected $weight_save = 10;
+  protected $weight_save = 15;
 
   protected $attributes_back = array();
   protected $attributes_continue = array();
@@ -83,7 +83,13 @@ class MyHACCPMultiStepControls extends MformsControls {
       '#prefix' => '<h3>' . t('Preparatory') . '</h3>',
       '#title' => $this->getStepsLabel(),
       '#attributes' => array(
-        'class' => array('preparatory'),
+        'class' => array('preparatory-wrapper'),
+      ),
+    );
+    $form_controls['steps_btns_wrapper']['preparatory']['pager_controls'] = array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array('pager-controls'),
       ),
     );
     $form_controls['steps_btns_wrapper']['principles'] = array(
@@ -91,7 +97,13 @@ class MyHACCPMultiStepControls extends MformsControls {
       '#prefix' => '<h3>' . t('Principles') . '</h3>',
       '#title' => $this->getStepsLabel(),
       '#attributes' => array(
-        'class' => array('principles'),
+        'class' => array('principles-wrapper'),
+      ),
+    );
+    $form_controls['steps_btns_wrapper']['principles']['pager_controls'] = array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array('pager-controls'),
       ),
     );
 
@@ -121,7 +133,7 @@ class MyHACCPMultiStepControls extends MformsControls {
       }
 
       // Show the step button.
-      $form_controls['steps_btns_wrapper'][$definition['stage']]['callback_' . $id] = array(
+      $form_controls['steps_btns_wrapper'][$definition['stage']]['pager_controls']['callback_' . $id] = array(
         '#type' => 'submit',
         '#value' => $definition['value'],
         '#weight' => $definition['weight'],
@@ -134,7 +146,7 @@ class MyHACCPMultiStepControls extends MformsControls {
       );
 
       if ($this->ajaxified) {
-        $form_controls['steps_btns_wrapper'][$definition['stage']]['callback_' . $id]['#ajax'] = array(
+        $form_controls['steps_btns_wrapper'][$definition['stage']]['pager_controls']['callback_' . $id]['#ajax'] = array(
           'callback' => '_mforms_ajax_get_form',
           'wrapper' => $wrapper_id,
           'method' => 'replace',
@@ -185,6 +197,18 @@ class MyHACCPMultiStepControls extends MformsControls {
       '#mforms_step' => $this->steps->getCurr(),
       '#submit' => array('_mforms_back_submit'),
     );
+
+    if ($this->steps->getPrev() != NULL) {
+      $form_controls['test'] = array(
+        '#type' => 'submit',
+        '#value' => $this->label_back,
+        '#weight' => $this->weight_back,
+        '#attributes' => $this->attributes_back,
+        '#store_key' => $this->store->getKey(),
+        '#mforms_step' => $this->steps->getPrev(),
+        '#submit' => array('_mforms_back_submit'),
+      );
+    }
 
     $form_controls['message'] = array(
       '#markup' => '<div class="help">Clicking \'Next\' or \'Previous\' will also Save this page.</div>',
