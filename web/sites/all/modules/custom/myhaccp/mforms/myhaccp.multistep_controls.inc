@@ -99,9 +99,9 @@ class MyHACCPMultiStepControls extends MformsControls {
 
     // Iterate through all the form steps and display them one after another.
     foreach ($this->steps_definition as $id => $definition) {
-      $disabled = TRUE;
+      $disabled = FALSE;
       if ($this->store->getStore($id) && !$this->isSingleStep()) {
-        $disabled = FALSE;
+        // $disabled = FALSE;
       }
 
       $class = '';
