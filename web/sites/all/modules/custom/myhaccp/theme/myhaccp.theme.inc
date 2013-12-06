@@ -24,9 +24,15 @@ function theme_myhacpp_p1q2_table($variables) {
   $header = array(
     'hazard_name' => t('Hazard'),
     'hazard_desc' => t('Hazard Description'),
-    'severity' => t('Severity (1-3)'),
-    'likelihood' => t('Likelihood (1-3)'),
-    'significance' => t('Significance (S x L)'),
+    'severity' => t('Severity (1-3) !tip', array(
+        '!tip' => _help_tip(),
+    )),
+    'likelihood' => t('Likelihood (1-3) !tip', array(
+      '!tip' => _help_tip(),
+    )),
+    'significance' => t('Significance (S x L) !tip', array(
+      '!tip' => _help_tip(),
+    )),
   );
 
   return theme('table', array('header' => $header, 'rows' => $rows));
