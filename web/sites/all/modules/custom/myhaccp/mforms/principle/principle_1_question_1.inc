@@ -26,6 +26,7 @@ function _principle_1_question_1(&$form_state, &$next_step) {
 
   $form = array();
   $form['#tree'] = TRUE;
+  $form['#attributes']['class'][] = 'p1q1';
 
   // The wrapper fieldset for the form.
   $form['container'] = array(

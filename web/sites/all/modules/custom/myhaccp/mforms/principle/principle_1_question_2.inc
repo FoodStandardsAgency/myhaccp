@@ -21,9 +21,12 @@ function _principle_1_question_2(&$form_state, &$next_step) {
     $vals = $form_state['values'];
   }
 
+  // Set the page title.
+  drupal_set_title('Principle 1 Question 2');
+
   $form = array();
   $form['#tree'] = TRUE;
-//  $form['#theme'] = 'myhacpp_p1q2_table';
+  $form['#attributes']['class'][] = 'p1q2';
 
   // The wrapper for each instance of the form.
   $form['container'] = array(
@@ -61,9 +64,6 @@ function _principle_1_question_2(&$form_state, &$next_step) {
     drupal_set_message('You must add some information in the previous question');
     return $form;
   }
-
-  // Set the page title.
-  drupal_set_title('Principle 1 Question 2');
 
   // Check whether the form_state has instances already filled out.
   // @todo: How do we deal with changing instance numbers in the previous screen if a user has started filling out this screen?
