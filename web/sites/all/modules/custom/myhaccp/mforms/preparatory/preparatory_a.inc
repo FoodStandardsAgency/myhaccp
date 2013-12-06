@@ -70,8 +70,9 @@ function _preparatory_a(&$form_state, &$next_step) {
     ),
   );
 
-  $form['prep1_location'] = array(
+  $form['container']['prep1_location'] = array(
     '#type' => 'textarea',
+    '#resizable' => FALSE,
     '#title' => t('Please specify the location of the above documents. !tip', array(
       '!tip' => _help_tip(),
     )),
