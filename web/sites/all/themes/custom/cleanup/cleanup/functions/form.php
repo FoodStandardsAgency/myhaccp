@@ -66,12 +66,12 @@ function cleanup_form_element($variables) {
   }
   if (!empty($element['#parents'])) {
     $last = end($element['#parents']);
-    $attributes['class'][] = strtr($last, array(
+    $attributes['class'][] = drupal_html_class(strtr($last, array(
         ' ' => '-',
         '_' => '-',
         '[' => '-',
         ']' => ''
-      )
+      ))
     );
   }
   elseif (!empty($element['#name'])) {
