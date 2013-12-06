@@ -70,7 +70,8 @@ function cleanup_form_element($variables) {
         ' ' => '-',
         '_' => '-',
         '[' => '-',
-        ']' => ''
+        ']' => '',
+        "'" => '',
       ))
     );
   }
@@ -79,7 +80,8 @@ function cleanup_form_element($variables) {
         ' ' => '-',
         '_' => '-',
         '[' => '-',
-        ']' => ''
+        ']' => '',
+        "'" => '',
       )
     );
   }
