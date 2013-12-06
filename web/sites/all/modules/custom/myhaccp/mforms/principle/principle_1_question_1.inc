@@ -41,47 +41,61 @@ function _principle_1_question_1(&$form_state, &$next_step) {
     $form['container']['instance-' . $i]['p1q1_step_no'] = array(
       '#weight' => '0',
       '#type' => 'textfield',
-      '#title' => t('Step no.'),
+      '#title' => t('Step no. !tip', array(
+        '!tip' => _help_tip(),
+      )),
       '#default_value' => isset($vals['container']['instance-' . $i]['p1q1_step_no']) ? $vals['container']['instance-' . $i]['p1q1_step_no'] : NULL
     );
     // Step name.
     $form['container']['instance-' . $i]['p1q1_step_name'] = array(
       '#weight' => '1',
       '#type' => 'textfield',
-      '#title' => t('Step name'),
+      '#title' => t('Step name !tip', array(
+        '!tip' => _help_tip(),
+      )),
       '#default_value' => isset($vals['container']['instance-' . $i]['p1q1_step_name']) ? $vals['container']['instance-' . $i]['p1q1_step_name'] : NULL
     );
     // Markup.
     $form['container']['instance-' . $i]['p1q1_message'] = array(
       '#weight' => '2',
-      '#markup' => t('List all potential hazards that may be reasonably expected to occur at this process step:'),
+      '#markup' => t('List all potential hazards that may be reasonably expected to occur at this process step:  !tip', array(
+        '!tip' => _help_tip(),
+      )),
     );
     // Biological.
     $form['container']['instance-' . $i]['p1q1_biological'] = array(
       '#weight' => '3',
       '#type' => 'textarea',
-      '#title' => t('Biological'),
+      '#title' => t('Biological !tip', array(
+        '!tip' => _help_tip(),
+      )),
       '#default_value' => isset($vals['container']['instance-' . $i]['p1q1_biological']) ? $vals['container']['instance-' . $i]['p1q1_biological'] : NULL
     );
     // Chemical.
     $form['container']['instance-' . $i]['p1q1_chemical'] = array(
       '#weight' => '4',
       '#type' => 'textarea',
-      '#title' => t('Chemical'),
+      '#title' => t('Chemical !tip', array(
+        '!tip' => _help_tip(),
+      )),
       '#default_value' => isset($vals['container']['instance-' . $i]['p1q1_chemical']) ? $vals['container']['instance-' . $i]['p1q1_chemical'] : NULL
     );
     // Physical.
     $form['container']['instance-' . $i]['p1q1_physical'] = array(
       '#weight' => '5',
       '#type' => 'textarea',
-      '#title' => t('Physical'),
+      '#title' => t('Physical !tip', array(
+        '!tip' => _help_tip(),
+      )),
       '#default_value' => isset($vals['container']['instance-' . $i]['p1q1_physical']) ? $vals['container']['instance-' . $i]['p1q1_physical'] : NULL
     );
     // Allergens.
     $form['container']['instance-' . $i]['p1q1_allergens'] = array(
       '#weight' => '6',
       '#type' => 'textarea',
-      '#title' => t('Allergens'),
+      '#title' => t('Allergens !tip', array(
+        '!tip' => _help_tip(),
+      )),
       '#default_value' => isset($vals['container']['instance-' . $i]['p1q1_allergens']) ? $vals['container']['instance-' . $i]['p1q1_allergens'] : NULL
     );
   }

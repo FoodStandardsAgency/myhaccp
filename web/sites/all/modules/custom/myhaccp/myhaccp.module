@@ -146,3 +146,13 @@ function myhaccp_theme() {
     )
   );
 }
+
+/**
+ * Returns html to display a help tip icon.
+ *
+ * Currently just a simple bit of html, but this function may expand to
+ * to take parameters.
+ */
+function _help_tip() {
+  return '<a href="/node/2" class="help-tip" title="This link will afford popup help text when clicked." target="_blank">?</a>';
+}
