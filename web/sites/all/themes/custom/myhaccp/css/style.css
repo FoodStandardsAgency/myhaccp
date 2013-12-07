@@ -1903,6 +1903,11 @@ div.teaser-checkbox .form-item,
 .p1q2 table th.significance {
   max-width: 3em;
 }
+.p1q2 table th.severity span,
+.p1q2 table th.likelihood span,
+.p1q2 table th.significance span {
+  white-space: nowrap;
+}
 .p1q2 .severity input[type="text"],
 .p1q2 .likelihood input[type="text"],
 .p1q2 .significance input[type="text"] {

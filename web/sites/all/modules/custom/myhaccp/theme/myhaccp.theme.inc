@@ -37,7 +37,7 @@ function theme_myhacpp_p1q2_table($variables) {
       'class' => array('likelihood'),
     ),
     'significance' => array(
-      'data' => t('Significance (S x L) !tip', array(
+      'data' => t('Significance <span>(S x L)</span> !tip', array(
         '!tip' => _help_tip(),
         )),
       'class' => array('significance'),

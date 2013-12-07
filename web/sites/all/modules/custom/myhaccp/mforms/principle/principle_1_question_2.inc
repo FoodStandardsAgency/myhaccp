@@ -131,17 +131,22 @@ function principle_1_question_2(&$form_state, &$next_step) {
       $form_position['severity'] = array(
         '#type' => 'textfield',
         '#size' => 6,
-        '#default_value' => isset($default_value['severity']) ? $default_value['severity'] : NULL
+        '#default_value' => isset($default_value['severity']) ? $default_value['severity'] : NULL,
       );
       $form_position['likelihood'] = array(
         '#type' => 'textfield',
         '#size' => 6,
-        '#default_value' => isset($default_value['likelihood']) ? $default_value['likelihood'] : NULL
+        '#default_value' => isset($default_value['likelihood']) ? $default_value['likelihood'] : NULL,
       );
       $form_position['significance'] = array(
         '#type' => 'textfield',
         '#size' => 6,
-        '#default_value' => isset($default_value['significance']) ? $default_value['significance'] : NULL
+        '#default_value' => isset($default_value['significance']) ? $default_value['significance'] : NULL,
+        '#attached' => array(
+          'js' => array(
+            drupal_get_path('module', 'myhaccp') . '/mforms/js/principle_1_question_2.js',
+          ),
+        ),
       );
     }
   }
