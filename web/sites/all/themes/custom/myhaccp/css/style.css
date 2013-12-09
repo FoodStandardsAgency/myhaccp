@@ -2867,3 +2867,7 @@ a:link {
   text-decoration: none;
   color: #006f51;
 }
+
+html body.admin-menu.adminimal-menu {
+  margin-top: 0 !important;
+}

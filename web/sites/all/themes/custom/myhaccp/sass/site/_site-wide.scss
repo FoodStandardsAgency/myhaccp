@@ -12,3 +12,7 @@ a:link {
   color: $base_color;
 }
 
+// Fix for the admin menu margin top.
+html body.admin-menu.adminimal-menu {
+  margin-top: 0!important;
+}
