@@ -275,13 +275,22 @@ input#edit-submit.form-add {
         color: $text;
         &.visited-step {
           color: $text;
+          &:hover {
+            color: $text;
+          }
         }
       }
       &.active-step {
         color: $accent-1;
+        &:hover {
+          color: $text;
+        }
       }
       &.visited-step {
         color: $accent-2;
+        &:hover {
+          color: $text;
+        }
       }
     }
   }
