@@ -618,6 +618,10 @@ ul.menu li {
   background-color: #3298c1;
 }
 
+.colour-table {
+  clear: both;
+}
+
 .plain-button {
   background-color: #e6e6e6;
   color: rgba(0, 0, 0, 0.8);
