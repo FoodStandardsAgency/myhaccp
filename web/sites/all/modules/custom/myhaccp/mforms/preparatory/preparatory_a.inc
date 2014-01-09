@@ -69,7 +69,7 @@ function preparatory_a(&$form_state, &$next_step) {
         t('Other'),
       )
     ),
-    '#default_value' => isset($values['prep_a_prereq']) ? $values['prep_a_prereq'] : NULL
+    '#default_value' => isset($values['prep_a_prereq']) ? $values['prep_a_prereq'] : array(),
   );
 
   $form['container']['prep1_location'] = array(

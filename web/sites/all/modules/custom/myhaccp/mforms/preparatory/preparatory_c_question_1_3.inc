@@ -42,7 +42,7 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
         t('Generic'),
       )
     ),
-    '#default_value' => isset($values['prep_c_q1']) ? $values['prep_c_q1'] : NULL
+    '#default_value' => isset($values['prep_c_q1']) ? $values['prep_c_q1'] : FALSE,
   );
 
   $form['container']['prep_c_q2'] = array(
@@ -51,7 +51,7 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
     '#title' => t('2. State the type of product you are producing and briefly how it is going to be packed: !tip', array(
       '!tip' => _help_tip(),
     )),
-    '#default_value' => isset($values['prep_c_q2']) ? $values['prep_c_q2'] : NULL
+    '#default_value' => isset($values['prep_c_q2']) ? $values['prep_c_q2'] : FALSE
   );
 
   $form['container']['prep_c_q3'] = array(
@@ -68,13 +68,13 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
   $form['container']['prep_c_q3']['start'] = array(
     '#type' => 'textfield',
     '#title' => t('It will start at '),
-    '#default_value' => isset($values['start']) ? $values['start'] : NULL
+    '#default_value' => isset($values['start']) ? $values['start'] : FALSE
   );
 
   $form['container']['prep_c_q3']['end'] = array(
     '#type' => 'textfield',
     '#title' => t('Through to '),
-    '#default_value' => isset($values['end']) ? $values['end'] : NULL
+    '#default_value' => isset($values['end']) ? $values['end'] : FALSE
   );
 
   return $form;

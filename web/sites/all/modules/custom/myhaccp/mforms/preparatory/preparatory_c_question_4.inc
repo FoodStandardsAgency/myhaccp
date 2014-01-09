@@ -57,7 +57,7 @@ function preparatory_c_question_4(&$form_state, &$next_step) {
         t('Item'),
       )
     ),
-    '#default_value' => isset($values['physical']) ? $values['physical'] : NULL
+    '#default_value' => isset($values['physical']) ? $values['physical'] : array(),
   );
 
   $form['container']['prep_c_q4']['physical_container']['physical_other'] = array(
@@ -88,7 +88,7 @@ function preparatory_c_question_4(&$form_state, &$next_step) {
         t('Item'),
       )
     ),
-    '#default_value' => isset($values['chemical']) ? $values['chemical'] : NULL
+    '#default_value' => isset($values['chemical']) ? $values['chemical'] : array(),
   );
 
   $form['container']['prep_c_q4']['chemical_container']['chemical_other'] = array(
@@ -119,7 +119,7 @@ function preparatory_c_question_4(&$form_state, &$next_step) {
         t('Item'),
       )
     ),
-    '#default_value' => isset($values['biological']) ? $values['biological'] : NULL
+    '#default_value' => isset($values['biological']) ? $values['biological'] : array(),
   );
 
   $form['container']['prep_c_q4']['biological_container']['biological_other'] = array(
@@ -150,7 +150,7 @@ function preparatory_c_question_4(&$form_state, &$next_step) {
         t('Item'),
       )
     ),
-    '#default_value' => isset($values['allergens']) ? $values['allergens'] : NULL
+    '#default_value' => isset($values['allergens']) ? $values['allergens'] : array(),
   );
 
   $form['container']['prep_c_q4']['allergens_container']['allergens_other'] = array(

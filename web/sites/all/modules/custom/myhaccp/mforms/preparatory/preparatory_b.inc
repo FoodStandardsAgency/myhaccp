@@ -45,7 +45,7 @@ function preparatory_b(&$form_state, &$next_step) {
         t('N/A I am the management and can confirm that I am committed.'),
       )
     ),
-    '#default_value' => isset($values['prep_b_support']) ? $values['prep_b_support'] : NULL
+    '#default_value' => isset($values['prep_b_support']) ? $values['prep_b_support'] : array(),
   );
 
   $form['container']['prep_b_evidence'] = array(
@@ -54,7 +54,7 @@ function preparatory_b(&$form_state, &$next_step) {
     '#title' => t('Other evidence: !tip', array(
       '!tip' => _help_tip(),
     )),
-    '#default_value' => isset($values['prep_b_evidence']) ? $values['prep_b_evidence'] : NULL
+    '#default_value' => isset($values['prep_b_evidence']) ? $values['prep_b_evidence'] : FALSE
   );
 
   return $form;
