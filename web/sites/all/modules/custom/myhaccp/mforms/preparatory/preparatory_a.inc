@@ -13,10 +13,10 @@ function preparatory_a(&$form_state, &$next_step) {
   // If we have the data it means we arrived here from back action, so show
   // them in form as default values.
   if (!empty($data)) {
-    $vals = $data;
+    $values = $data;
   }
   elseif (isset($form_state['values'])) {
-    $vals = $form_state['values'];
+    $values = $form_state['values'];
   }
 
   drupal_set_title('Preparatory Stage A: Prerequisites');
@@ -68,6 +68,7 @@ function preparatory_a(&$form_state, &$next_step) {
         t('Other'),
       )
     ),
+    '#default_value' => isset($values['options']) ? $values['options'] : NULL
   );
 
   $form['container']['prep1_location'] = array(

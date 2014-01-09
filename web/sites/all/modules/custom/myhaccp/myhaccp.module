@@ -178,7 +178,7 @@ function myhaccp_theme() {
  * to take parameters.
  */
 function _help_tip() {
-  return '<a href="/node/2" class="help-tip" title="This link will afford popup help text when clicked." target="_blank">?</a>';
+  return '<a href="#" class="help-tip" title="This link will afford popup help text when clicked." target="_blank">?</a>';
 }
 
 /**
