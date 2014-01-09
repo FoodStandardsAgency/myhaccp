@@ -79,5 +79,14 @@ function preparatory_a(&$form_state, &$next_step) {
     )),
   );
 
+  $form['#validate'][] = 'preparatory_a_validate';
+
   return $form;
+}
+
+function preparatory_a_validate($form, &$form_state) {
+  $values = $form_state['values'];
+  if (empty($values['prep1_location'])) {
+    $form_state['storage']['validate']['prep1_location'] = t('The location field is required');
+  }
 }
