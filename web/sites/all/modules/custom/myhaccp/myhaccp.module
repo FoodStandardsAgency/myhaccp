@@ -112,6 +112,21 @@ function myhaccp_myhaccp_mforms_init() {
       'value' => 'A',
       'weight' => 1,
     ),
+    'preparatory_b' => array(
+      'stage' => 'preparatory',
+      'value' => 'B',
+      'weight' => 2,
+    ),
+    'preparatory_c_question_1_3' => array(
+      'stage' => 'preparatory',
+      'value' => 'C Q1-3',
+      'weight' => 3,
+    ),
+    'preparatory_c_question_4' => array(
+      'stage' => 'preparatory',
+      'value' => 'C Q4',
+      'weight' => 4,
+    ),
     'principle_1_question_1' => array(
       'stage' => 'principles',
       'value' => '1.1',
@@ -191,6 +206,9 @@ function _help_tip() {
 function _get_all_steps() {
   $files = array(
     'preparatory_a' => 'preparatory',
+    'preparatory_b' => 'preparatory',
+    'preparatory_c_question_1_3' => 'preparatory',
+    'preparatory_c_question_4' => 'preparatory',
     'principle_1_question_1' => 'principle',
     'principle_1_question_2' => 'principle',
   );
