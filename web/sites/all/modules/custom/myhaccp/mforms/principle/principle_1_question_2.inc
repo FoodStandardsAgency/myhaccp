@@ -6,23 +6,23 @@
 function principle_1_question_2(&$form_state, &$next_step) {
   // Define following step callback. If none set, that implies it is
   // the last step.
-//  $next_step = '_principle_1_question_2';
 
-  // Retrieve submitted values. This comes in handy when back action
-  // occured and we need to display values that were originaly submitted.
+  // $next_step = '_principle_1_question_2';
+
+  // Retrieve submitted values.
   $data = mforms_get_vals('myhaccp');
 
   // If we have the data it means we arrived here from back action, so show
   // them in form as default vals.
   if (!empty($data)) {
-    $vals = $data;
+    $values = $data;
   }
   elseif (isset($form_state['values'])) {
-    $vals = $form_state['values'];
+    $values = $form_state['values'];
   }
 
   // Set the page title.
-  drupal_set_title('Principle 1 Question 2');
+  drupal_set_title('Principle 1: Question 2');
 
   $form = array();
   $form['#tree'] = TRUE;
@@ -85,13 +85,20 @@ function principle_1_question_2(&$form_state, &$next_step) {
     );
     // Process the hazards within each category.
     $hazards = array();
+    // Iterate over the categories.
     foreach ($categories as $category) {
       if (!empty($category)) {
-        $hazard_items = explode("\r\n", $category);
+        // Split the hazard items listed in the category text area into an
+        // array, one item per line in the text area.
+        $hazard_items = explode("\r\n", trim($category));
+        // Iterate over each hazard item in this category.
         foreach ($hazard_items as $item) {
-          // Create a unique id for this item.
-          $key = drupal_html_id($item);
-          $hazards[$key] = $item;
+          // If the item isn't empty add the hazard.
+          if ($item != '') {
+            // Create a unique id for this item.
+            $key = drupal_html_id($item);
+            $hazards[$key] = $item;
+          }
         }
       }
     }
@@ -117,7 +124,7 @@ function principle_1_question_2(&$form_state, &$next_step) {
       // Simplify the depth of the form with a reference.
       $form_position = &$form['container']['instance_' . $i]['instance_table'][$hazard];
       // Reference the form's default values to make it easier.
-      $default_value = &$vals['container']['instance_' . $i]['instance_table'][$hazard];
+      $default_value = &$values['container']['instance_' . $i]['instance_table'][$hazard];
       // Create the elements of a row.
       $form_position['name'] = array(
         '#markup' => $name,
@@ -151,6 +158,7 @@ function principle_1_question_2(&$form_state, &$next_step) {
     }
   }
 
+  // Add the validation handler.
   $form['#validate'][] = 'principle_1_question_2_validate';
 
   return $form;

@@ -15,14 +15,14 @@ function principle_1_question_1(&$form_state, &$next_step) {
   // If we have the data it means we arrived here from back action, so show
   // them in form as default values.
   if (!empty($data)) {
-    $vals = $data;
+    $values = $data;
   }
   elseif (isset($form_state['values'])) {
-    $vals = $form_state['values'];
+    $values = $form_state['values'];
   }
 
   // Set the page title.
-  drupal_set_title('Principle 1 Question 1');
+  drupal_set_title('Principle 1: Question 1');
 
   $form = array();
   $form['#tree'] = TRUE;
@@ -35,8 +35,11 @@ function principle_1_question_1(&$form_state, &$next_step) {
     '#suffix' => '</div>',
   );
 
-  if (empty($form_state['num_instances'])) {
-    $form_state['num_instances'] = 1;
+  // Check whether the number of instances has been set and if so show them,
+  // otherwise show 2. If instances has been set but there is only 1 then show a
+  // second (blank) one.
+  if (empty($form_state['num_instances']) || $form_state['num_instances'] == 1) {
+    $form_state['num_instances'] = 2;
   }
   for ($i = 0; $i < $form_state['num_instances']; $i++) {
     // Contain everything for this instance inside a fieldset.
@@ -57,7 +60,7 @@ function principle_1_question_1(&$form_state, &$next_step) {
       '#title' => t('Step no. !tip', array(
         '!tip' => _help_tip(),
       )),
-      '#default_value' => isset($vals['container']['instance_' . $i]['p1q1_step_wrapper']['p1q1_step_no']) ? $vals['container']['instance_' . $i]['p1q1_step_wrapper']['p1q1_step_no'] : NULL
+      '#default_value' => isset($values['container']['instance_' . $i]['p1q1_step_wrapper']['p1q1_step_no']) ? $values['container']['instance_' . $i]['p1q1_step_wrapper']['p1q1_step_no'] : NULL
     );
     // Step name.
     $form['container']['instance_' . $i]['p1q1_step_wrapper']['p1q1_step_name'] = array(
@@ -66,7 +69,7 @@ function principle_1_question_1(&$form_state, &$next_step) {
       '#title' => t('Step name !tip', array(
         '!tip' => _help_tip(),
       )),
-      '#default_value' => isset($vals['container']['instance_' . $i]['p1q1_step_wrapper']['p1q1_step_name']) ? $vals['container']['instance_' . $i]['p1q1_step_wrapper']['p1q1_step_name'] : NULL
+      '#default_value' => isset($values['container']['instance_' . $i]['p1q1_step_wrapper']['p1q1_step_name']) ? $values['container']['instance_' . $i]['p1q1_step_wrapper']['p1q1_step_name'] : NULL
     );
     // Add a wrapper for the categories.
     $form['container']['instance_' . $i]['p1q1_hazards_wrapper'] = array(
@@ -91,7 +94,7 @@ function principle_1_question_1(&$form_state, &$next_step) {
       '#title' => t('Biological !tip', array(
         '!tip' => _help_tip(),
       )),
-      '#default_value' => isset($vals['container']['instance_' . $i]['p1q1_hazards_wrapper']['p1q1_biological']) ? $vals['container']['instance_' . $i]['p1q1_hazards_wrapper']['p1q1_biological'] : NULL
+      '#default_value' => isset($values['container']['instance_' . $i]['p1q1_hazards_wrapper']['p1q1_biological']) ? $values['container']['instance_' . $i]['p1q1_hazards_wrapper']['p1q1_biological'] : NULL
     );
     // Chemical.
     $form['container']['instance_' . $i]['p1q1_hazards_wrapper']['p1q1_chemical'] = array(
@@ -101,7 +104,7 @@ function principle_1_question_1(&$form_state, &$next_step) {
       '#title' => t('Chemical !tip', array(
         '!tip' => _help_tip(),
       )),
-      '#default_value' => isset($vals['container']['instance_' . $i]['p1q1_hazards_wrapper']['p1q1_chemical']) ? $vals['container']['instance_' . $i]['p1q1_hazards_wrapper']['p1q1_chemical'] : NULL
+      '#default_value' => isset($values['container']['instance_' . $i]['p1q1_hazards_wrapper']['p1q1_chemical']) ? $values['container']['instance_' . $i]['p1q1_hazards_wrapper']['p1q1_chemical'] : NULL
     );
     // Physical.
     $form['container']['instance_' . $i]['p1q1_hazards_wrapper']['p1q1_physical'] = array(
@@ -111,7 +114,7 @@ function principle_1_question_1(&$form_state, &$next_step) {
       '#title' => t('Physical !tip', array(
         '!tip' => _help_tip(),
       )),
-      '#default_value' => isset($vals['container']['instance_' . $i]['p1q1_hazards_wrapper']['p1q1_physical']) ? $vals['container']['instance_' . $i]['p1q1_hazards_wrapper']['p1q1_physical'] : NULL
+      '#default_value' => isset($values['container']['instance_' . $i]['p1q1_hazards_wrapper']['p1q1_physical']) ? $values['container']['instance_' . $i]['p1q1_hazards_wrapper']['p1q1_physical'] : NULL
     );
     // Allergens.
     $form['container']['instance_' . $i]['p1q1_hazards_wrapper']['p1q1_allergens'] = array(
@@ -121,10 +124,11 @@ function principle_1_question_1(&$form_state, &$next_step) {
       '#title' => t('Allergens !tip', array(
         '!tip' => _help_tip(),
       )),
-      '#default_value' => isset($vals['container']['instance_' . $i]['p1q1_hazards_wrapper']['p1q1_allergens']) ? $vals['container']['instance_' . $i]['p1q1_hazards_wrapper']['p1q1_allergens'] : NULL
+      '#default_value' => isset($values['container']['instance_' . $i]['p1q1_hazards_wrapper']['p1q1_allergens']) ? $values['container']['instance_' . $i]['p1q1_hazards_wrapper']['p1q1_allergens'] : NULL
     );
   }
 
+  // Add a container for the button controls.
   $form['container']['controls'] = array(
     '#type' => 'container',
     '#attributes' => array(
@@ -132,6 +136,7 @@ function principle_1_question_1(&$form_state, &$next_step) {
     ),
   );
 
+  // Provide an add more button.
   $form['container']['controls']['add_instance'] = array(
     '#type' => 'submit',
     '#value' => t('Add another'),
@@ -142,7 +147,10 @@ function principle_1_question_1(&$form_state, &$next_step) {
       'wrapper' => 'instance-container',
     ),
   );
-  if ($form_state['num_instances'] > 1) {
+
+  // If there are more than two instances in the form then provide a button
+  // to remove the last one.
+  if ($form_state['num_instances'] > 2) {
     $form['container']['controls']['remove_instance'] = array(
       '#type' => 'submit',
       '#value' => t('Remove one'),
@@ -155,6 +163,7 @@ function principle_1_question_1(&$form_state, &$next_step) {
     );
   }
 
+  // Add a validation handler.
   $form['#validate'][] = 'principle_1_question_1_validate';
 
   return $form;

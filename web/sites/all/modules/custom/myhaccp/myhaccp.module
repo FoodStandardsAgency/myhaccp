@@ -181,6 +181,13 @@ function _help_tip() {
   return '<a href="/node/2" class="help-tip" title="This link will afford popup help text when clicked." target="_blank">?</a>';
 }
 
+/**
+ * Defines all the function names of the stages.
+ *
+ * @return array
+ *   an array keyed by the function name with the value being the preparatory or
+ *   principle stage.
+ */
 function _get_all_steps() {
   $files = array(
     'preparatory_a' => 'preparatory',
@@ -190,6 +197,10 @@ function _get_all_steps() {
   return $files;
 }
 
+/**
+ * Gets all the stage functions
+ * @return array
+ */
 function _get_all_step_names() {
   return array_keys(_get_all_steps());
 }
