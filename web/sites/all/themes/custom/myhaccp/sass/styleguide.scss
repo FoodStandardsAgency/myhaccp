@@ -1,0 +1,25 @@
+/***
+ * This file contains styles which are only used in the style guide
+ * We can declare them here so as to not bloat the live style.css file
+ *
+ */
+
+@import 'site/variables';
+
+// Compass plugins
+@import "compass/typography/vertical_rhythm";
+@import "compass/support";
+@import "compass/css3";
+
+// Agile Patterns libraries
+@import 'lib/agilebuttons';
+@import 'lib/agilegrid';
+@import 'lib/classy';
+
+@import 'patterns/forms/forms-mixins';
+
+
+.group-pr-c-hazards {
+  @extend %fieldgroup-table;
+}
+
