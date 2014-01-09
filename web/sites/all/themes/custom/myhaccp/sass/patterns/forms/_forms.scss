@@ -2,10 +2,18 @@
  * Forms
  */
 
-@import 'forms-mixins';
+/** Variables **/
+
+$form_elements_background_color: #FCFCFC;
+$form_elements_outline_color: $accent-2;
 
 /** General form styling **/
 
+%input-focus {
+  &:focus {
+    outline: 3px solid $form_elements_outline_color;
+  }
+}
 
 // Base elements
 input[type="text"],
@@ -297,24 +305,113 @@ input#edit-submit.form-add {
 
 /**
  * Inline field group
+ *
+ * Displays elements of a field group side by side
+ *
+ * Example usage: PR, Step 1 Question 3 (form-pr-c.php)
+ * State start and end points of the HACCP plan
  */
 
 .group-pr-c-q-3 {
   @extend %group-inline;
 }
 
+%group-inline {
+  width: 100%;
+  @include clearfix;
+  @media all and (min-width: $break_med_up) {
+    > div {
+      margin: 1em 0 0 1em;
+    }
+    .form-wrapper {
+      float: left;
+      margin-right: 1em;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+    .form-item label {
+      display: inline;
+      margin-right: 0.5em;
+    }
+  }
+}
+
 /** Table style **/
+
+
+%fieldgroup-table {
+  border-collapse: collapse;
+  margin-bottom: 2em;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+    > div.label {
+      display: table-caption;
+      margin-bottom: 1em;
+      font-weight: 500;
+      span {
+        display: table-cell;
+        padding-bottom: 1em;
+      }
+    }
+  > .form-wrapper {
+    padding: 0.5em;
+    border: 1px solid $base_color;
+    @media all and (min-width: $break_sm_up) {
+      display: table-cell;
+    }
+    &:first-child {
+      padding-left: 0;
+    }
+    &:last-child {
+      padding-right: 0;
+    }
+    > .form-item {
+      > label {
+        font-weight: bold;
+        border-bottom: 1px solid $base_color;
+      }
+    }
+  }
+}
 
 .form-1-principle-1 .field-group-principle-1 {
   @extend %fieldgroup-table-2;
 }
 
+%fieldgroup-table-2 {
+  table {
+    width: 100%;
+  }
+  > .field-group-div {
+    border-bottom: 1px solid $accent_2;
+    overflow: hidden;
+    padding: 1.5em 0;
+  }
+  .form-item {
+    float: left;
+    margin-bottom: 1em;
+    padding-right: 2em;
+  }
+  .field-group-row {
+    clear: both;
+  }
+}
 
 .field-group-principle-1 .form-table {
   @extend %fieldgroup-responsive-table;
 }
 
+%fieldgroup-responsive-table {
+  border-bottom: 1px solid $accent_2;
+  padding-bottom: 0em;
+  margin-bottom: 2em;
+  input[type="text"] {
+    min-width: inherit;
+  }
 
+}
 
 /** Misc styling for specific forms **/
 
@@ -353,6 +450,22 @@ td.decision-tree-qs {
   @extend %standard-form-layouts;
 }
 
+%standard-form-layouts {
+  .field-group-wrapper {
+    margin-bottom: 1em;
+  }
+  .group-radios {
+    label {
+      display: inline;
+      padding: 0.25em;
+    }
+  }
+  .field-question-set {
+    border-bottom: 1px solid $accent_2;
+    margin-bottom: 2em;
+    padding-bottom: 1em;
+  }
+}
 
 .form-ps-c-2 {
   textarea {

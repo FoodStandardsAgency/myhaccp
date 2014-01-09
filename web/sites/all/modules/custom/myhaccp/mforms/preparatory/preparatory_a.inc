@@ -4,7 +4,7 @@ function preparatory_a(&$form_state, &$next_step) {
 
   // Define following step callback. If none set, that implies it is
   // the last step.
-  $next_step = 'principle_1_question_1';
+  $next_step = 'preparatory_b';
 
   // Retrieve submitted values. This comes in handy when back action
   // occurred and we need to display values that were originally submitted.
@@ -22,13 +22,14 @@ function preparatory_a(&$form_state, &$next_step) {
   drupal_set_title('Preparatory Stage A: Prerequisites');
 
   $form = array();
+  $form['#attributes']['class'][] = 'pa';
 
   // Wrap the form section in a fieldset.
   $form['container'] = array(
     '#type' => 'fieldset',
   );
 
-  $form['container']['options'] = array(
+  $form['container']['prep_a_prereq'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Mark all boxes where you can demonstrate that you have control of the prerequisites !tip', array(
       '!tip' => _help_tip(),
@@ -68,7 +69,7 @@ function preparatory_a(&$form_state, &$next_step) {
         t('Other'),
       )
     ),
-    '#default_value' => isset($values['options']) ? $values['options'] : NULL
+    '#default_value' => isset($values['prep_a_prereq']) ? $values['prep_a_prereq'] : array(),
   );
 
   $form['container']['prep1_location'] = array(
@@ -77,6 +78,7 @@ function preparatory_a(&$form_state, &$next_step) {
     '#title' => t('Please specify the location of the above documents. !tip', array(
       '!tip' => _help_tip(),
     )),
+    '#default_value' => isset($values['prep1_location']) ? $values['prep1_location'] : NULL
   );
 
   $form['#validate'][] = 'preparatory_a_validate';

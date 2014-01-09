@@ -1,0 +1,86 @@
+/***
+ * This file contains styles which are only used in the style guide
+ * We can declare them here so as to not bloat the live style.css file
+ *
+ */
+/**
+ * Colours
+ */
+/** Brand Colours **/
+/**
+ * Typography
+ */
+/*
+ * Breakpoints
+ */
+/**
+ * Grid
+ */
+/**
+ * Forms
+ */
+/**
+ * Agile Grid
+ * A very simple semantic fluid grid system written in SASS
+ * Uses the box-sizing: border box; method to allow for fluid width columns
+ * with fixed gutters.
+ */
+/**
+ * Classy.scss
+ * A set of useful mixins & classes for Drupal
+ */
+ul.menu {
+  margin: 0;
+  padding: 0;
+}
+ul.menu li {
+  list-style-type: none;
+  list-style-image: none;
+}
+
+/**
+ * Inline field group
+ *
+ * Displays elements of a field group side by side
+ *
+ * Example usage: PR, Step 1 Question 3 (form-pr-c.php)
+ * State start and end points of the HACCP plan
+ */
+/** Table style **/
+.group-pr-c-hazards {
+  border-collapse: collapse;
+  margin-bottom: 2em;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+.group-pr-c-hazards > div.label {
+  display: table-caption;
+  margin-bottom: 1em;
+  font-weight: 500;
+}
+.group-pr-c-hazards > div.label span {
+  display: table-cell;
+  padding-bottom: 1em;
+}
+.group-pr-c-hazards > .form-wrapper {
+  padding: 0.5em;
+  border: 1px solid #006f51;
+}
+@media all and (min-width: 640px) {
+  .group-pr-c-hazards > .form-wrapper {
+    display: table-cell;
+  }
+}
+.group-pr-c-hazards > .form-wrapper:first-child {
+  padding-left: 0;
+}
+.group-pr-c-hazards > .form-wrapper:last-child {
+  padding-right: 0;
+}
+.group-pr-c-hazards > .form-wrapper > .form-item > label {
+  font-weight: bold;
+  border-bottom: 1px solid #006f51;
+}
+
+/** Other styling **/
