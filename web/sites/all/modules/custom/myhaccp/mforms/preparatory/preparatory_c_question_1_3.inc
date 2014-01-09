@@ -1,10 +1,10 @@
 <?php
 
-function preparatory_c(&$form_state, &$next_step) {
+function preparatory_c_question_1_3(&$form_state, &$next_step) {
 
   // Define following step callback. If none set, that implies it is
   // the last step.
-  $next_step = 'preparatory_d';
+  $next_step = 'preparatory_c_question_4';
 
   // Retrieve submitted values. This comes in handy when back action
   // occurred and we need to display values that were originally submitted.
@@ -19,9 +19,10 @@ function preparatory_c(&$form_state, &$next_step) {
     $values = $form_state['values'];
   }
 
-  drupal_set_title('Preparatory Stage: Define scope of the study, Question 4');
+  drupal_set_title('Preparatory Stage C: Define scope of the study, Questions 1-3');
 
   $form = array();
+  $form['#attributes']['class'][] = 'pcq13';
 
   // Wrap the form section in a fieldset.
   $form['container'] = array(
@@ -30,7 +31,7 @@ function preparatory_c(&$form_state, &$next_step) {
 
   $form['container']['prep_c_q1'] = array(
     '#type' => 'select',
-    '#title' => t('1. What hazards will the HACCP plan cover? !tip', array(
+    '#title' => t('1. What type of HACCP plan are you producing? !tip', array(
       '!tip' => _help_tip(),
     )),
     '#options' => drupal_map_assoc(
@@ -53,24 +54,24 @@ function preparatory_c(&$form_state, &$next_step) {
     '#default_value' => isset($values['prep_c_q2']) ? $values['prep_c_q2'] : NULL
   );
 
-  $form['container']['start_end'] = array(
+  $form['container']['prep_c_q3'] = array(
     '#type' => 'container',
   );
 
-  $form['container']['start_end']['title'] = array(
+  $form['container']['prep_c_q3']['title'] = array(
     '#markup' => '<div class="label">' . t('3. State start and end points of the HACCP plan: !tip', array(
       '!tip' => _help_tip(),
       )
     ) . '</div>',
   );
 
-  $form['container']['start_end']['start'] = array(
+  $form['container']['prep_c_q3']['start'] = array(
     '#type' => 'textfield',
     '#title' => t('It will start at '),
     '#default_value' => isset($values['start']) ? $values['start'] : NULL
   );
 
-  $form['container']['start_end']['end'] = array(
+  $form['container']['prep_c_q3']['end'] = array(
     '#type' => 'textfield',
     '#title' => t('Through to '),
     '#default_value' => isset($values['end']) ? $values['end'] : NULL

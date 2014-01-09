@@ -4,7 +4,7 @@ function preparatory_b(&$form_state, &$next_step) {
 
   // Define following step callback. If none set, that implies it is
   // the last step.
-  $next_step = 'preparatory_c';
+  $next_step = 'preparatory_c_question_1_3';
 
   // Retrieve submitted values. This comes in handy when back action
   // occurred and we need to display values that were originally submitted.
@@ -22,6 +22,7 @@ function preparatory_b(&$form_state, &$next_step) {
   drupal_set_title('Preparatory Stage B: Management Commitment');
 
   $form = array();
+  $form['#attributes']['class'][] = 'pb';
 
   // Wrap the form section in a fieldset.
   $form['container'] = array(

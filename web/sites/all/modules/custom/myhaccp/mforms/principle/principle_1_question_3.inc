@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Principle 1, Question 2.
+ * Principle 1, Question 3.
  */
-function principle_1_question_2(&$form_state, &$next_step) {
+function principle_1_question_3(&$form_state, &$next_step) {
   // Define following step callback. If none set, that implies it is
   // the last step.
 
@@ -22,12 +22,12 @@ function principle_1_question_2(&$form_state, &$next_step) {
   }
 
   // Set the page title.
-  drupal_set_title('Principle 1, question 2:
-Conduct a hazard analysis.');
+  drupal_set_title('Principle 1, question 3:
+Specify control measures.');
 
   $form = array();
   $form['#tree'] = TRUE;
-  $form['#attributes']['class'][] = 'p1q2';
+  $form['#attributes']['class'][] = 'p1q3';
 
   // The wrapper for each instance of the form.
   $form['container'] = array(

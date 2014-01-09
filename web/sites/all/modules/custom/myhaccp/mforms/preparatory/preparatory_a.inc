@@ -22,6 +22,7 @@ function preparatory_a(&$form_state, &$next_step) {
   drupal_set_title('Preparatory Stage A: Prerequisites');
 
   $form = array();
+  $form['#attributes']['class'][] = 'pa';
 
   // Wrap the form section in a fieldset.
   $form['container'] = array(
