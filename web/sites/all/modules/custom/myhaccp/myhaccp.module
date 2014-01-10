@@ -139,6 +139,11 @@ function myhaccp_myhaccp_mforms_init() {
     ),
   ));
 
+  // Add the parsley.js library.
+  $path = libraries_get_path('parsleyjs');
+  drupal_add_js($path . '/parsley.js');
+  drupal_add_js(drupal_get_path('module', 'myhaccp') . '/mforms/js/parsley_custom.js');
+
   // Init the mforms.
   mforms_init_module('myhaccp', 'myhaccp', $store, $controls);
 }
@@ -221,4 +226,40 @@ function _get_all_steps() {
  */
 function _get_all_step_names() {
   return array_keys(_get_all_steps());
+}
+
+/**
+ * Implements hook_element_info_alter().
+ */
+function myhaccp_element_info_alter(&$types) {
+  foreach ($types as $type => $values) {
+    $types[$type]['#process'][] = 'myhaccp_process';
+  }
+  return;
+}
+
+/**
+ * Callback: Process form elements to add errors.
+ *
+ * Checks the form state's storage array element for a validate entry and then
+ * tries to match it's key to the current form element's #name attribute. If
+ * there is a match then it adds the error class to the form element and also
+ * prints a message if the form has been executed. This ensures the message
+ * only appears on the current stage.
+ *
+ * @see myhaccp_element_info_alter()
+ */
+function myhaccp_process($element, &$form_state) {
+  if (isset($form_state['storage']['validate'])) {
+    // Add the error class to each of the elements.
+    foreach ($form_state['storage']['validate'] as $name => $message) {
+      if (isset($element['#name']) && $element['#name'] == $name) {
+        $element['#attributes']['class']['error'] = 'error';
+        if (!empty($message) && $form_state['executed'] == TRUE) {
+          drupal_set_message($message, 'error', FALSE);
+        }
+      }
+    }
+  }
+  return $element;
 }

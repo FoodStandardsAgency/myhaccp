@@ -1269,7 +1269,7 @@ ul.secondary a.active {
 input:focus,
 textarea:focus,
 select:focus {
-  outline: 3px solid #007fb2;
+  outline: 2px solid #007fb2;
 }
 
 input[type="text"],
@@ -1295,6 +1295,44 @@ textarea {
   padding: 0.25em 0 0.1em 0.4em;
   min-width: 9em;
   max-width: 100%;
+}
+input[type="text"].error,
+input[type="email"].error,
+input[type="date"].error,
+input[type="datetime"].error,
+input[type="datetime-local"].error,
+input[type="email"].error,
+input[type="month"].error,
+input[type="number"].error,
+input[type="search"].error,
+input[type="tel"].error,
+input[type="time"].error,
+input[type="url"].error,
+input[type="week"].error,
+input[type="password"].error,
+select.error,
+textarea.error {
+  border-color: red;
+  color: black;
+}
+input[type="text"].error:focus,
+input[type="email"].error:focus,
+input[type="date"].error:focus,
+input[type="datetime"].error:focus,
+input[type="datetime-local"].error:focus,
+input[type="email"].error:focus,
+input[type="month"].error:focus,
+input[type="number"].error:focus,
+input[type="search"].error:focus,
+input[type="tel"].error:focus,
+input[type="time"].error:focus,
+input[type="url"].error:focus,
+input[type="week"].error:focus,
+input[type="password"].error:focus,
+select.error:focus,
+textarea.error:focus {
+  border-color: red;
+  outline-color: red;
 }
 
 input.text-mini {

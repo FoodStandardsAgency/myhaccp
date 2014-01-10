@@ -6,12 +6,13 @@
 
 $form_elements_background_color: #FCFCFC;
 $form_elements_outline_color: $accent-2;
+$form_elements_error_color: #f00;
 
 /** General form styling **/
 
 %input-focus {
   &:focus {
-    outline: 3px solid $form_elements_outline_color;
+    outline: 2px solid $form_elements_outline_color;
   }
 }
 
@@ -38,6 +39,14 @@ textarea {
   padding: 0.25em 0 0.1em 0.4em;
   min-width: 9em;
   max-width: 100%;
+  &.error {
+    border-color: $form_elements_error_color;
+    color: $text;
+    &:focus {
+      border-color: $form_elements_error_color;
+      outline-color: $form_elements_error_color;
+    }
+  }
 }
 
 input:focus,

@@ -61,6 +61,8 @@ function _get_step($function, $type, &$form_state, &$next_step) {
 //  return _get_step($function, $type, $form_state, $next_step);
 //}
 
+
+
 /**
  * Ajax callback which returns the form array element to be applied against.
  */
@@ -86,4 +88,11 @@ function instance_add_more_remove_one($form, &$form_state) {
   }
   // Trigger a form rebuild.
   $form_state['rebuild'] = TRUE;
+}
+
+/**
+ * Adds the parsley attributes to the form element.
+ */
+function myhaccp_form_myhaccp_start_form_alter(&$form, $form_state) {
+  $form['#attributes']['data-parsley-namespace'] = 'data-parsley-';
 }

@@ -27,6 +27,7 @@ function preparatory_a(&$form_state, &$next_step) {
   // Wrap the form section in a fieldset.
   $form['container'] = array(
     '#type' => 'fieldset',
+    '#tree' => TRUE,
   );
 
   $form['container']['prep_a_prereq'] = array(
@@ -69,7 +70,7 @@ function preparatory_a(&$form_state, &$next_step) {
         t('Other'),
       )
     ),
-    '#default_value' => isset($values['prep_a_prereq']) ? $values['prep_a_prereq'] : array(),
+    '#default_value' => isset($values['container']['prep_a_prereq']) ? $values['container']['prep_a_prereq'] : array(),
   );
 
   $form['container']['prep1_location'] = array(
@@ -78,26 +79,28 @@ function preparatory_a(&$form_state, &$next_step) {
     '#title' => t('Please specify the location of the above documents. !tip', array(
       '!tip' => _help_tip(),
     )),
-    '#default_value' => isset($values['prep1_location']) ? $values['prep1_location'] : NULL
+    '#default_value' => isset($values['container']['prep1_location']) ? $values['container']['prep1_location'] : NULL,
+    '#attributes' => array(
+      'data-parsley-required' => 'true',
+      'data-parsley-trigger' => 'change',
+    ),
   );
+
+  $form['#validate'][] = 'preparatory_a_validate';
 
   return $form;
 }
 
-/**
- * Validation handler for Preparatory Stage A.
- */
 function preparatory_a_validate($form, &$form_state) {
-  $validate = FALSE;
-
-
-
-  // Determine which message to show.
-  if ($validate == FALSE) {
-    drupal_set_message(t('Preparatory stage A requires information to be present.'), 'warning');
+  // Set a default of the form being valid.
+  $valid = TRUE;
+  $values = $form_state['values'];
+  if (empty($values['container']['prep1_location'])) {
+    $form_state['storage']['validate']['container[prep1_location]'] = t('The location field is required');
+    $valid = FALSE;
   }
-  else {
-    drupal_set_message(t('Information saved.'));
+  if ($valid == TRUE) {
+    // Remove any stored validation.
+    unset($form_state['storage']['validate']);
   }
 }
-
