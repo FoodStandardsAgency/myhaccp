@@ -89,3 +89,10 @@ function instance_add_more_remove_one($form, &$form_state) {
   // Trigger a form rebuild.
   $form_state['rebuild'] = TRUE;
 }
+
+/**
+ * Adds the parsley attributes to the form element.
+ */
+function myhaccp_form_myhaccp_start_form_alter(&$form, $form_state) {
+  $form['#attributes']['data-parsley-namespace'] = 'data-parsley-';
+}
