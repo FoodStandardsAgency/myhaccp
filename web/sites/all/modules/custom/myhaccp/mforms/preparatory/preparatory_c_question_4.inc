@@ -12,14 +12,9 @@ function preparatory_c_question_4(&$form_state, &$next_step) {
 
   // If we have the data it means we arrived here from back action, so show
   // them in form as default values.
-  if (!empty($data)) {
-    $values = $data;
-  }
-  elseif (isset($form_state['values'])) {
-    $values = $form_state['values'];
-  }
+  $values = myhaccp_prepare_values($data, $form_state);
 
-  drupal_set_title('Preparatory Stage: Define scope of the study, Question 4');
+  drupal_set_title('Preparatory Stage C: Define scope of the study, Question 4');
 
   $form = array();
   $form['#attributes']['class'][] = 'pcq4';
@@ -27,6 +22,7 @@ function preparatory_c_question_4(&$form_state, &$next_step) {
   // Wrap the form section in a fieldset.
   $form['container'] = array(
     '#type' => 'fieldset',
+    '#tree' => TRUE,
   );
 
   $form['container']['prep_c_q4_title'] = array(
@@ -57,13 +53,13 @@ function preparatory_c_question_4(&$form_state, &$next_step) {
         t('Item'),
       )
     ),
-    '#default_value' => isset($values['physical']) ? $values['physical'] : array(),
+    '#default_value' => array_get($values, 'container.prep_c_q4.physical_container.physical', array()),
   );
 
   $form['container']['prep_c_q4']['physical_container']['physical_other'] = array(
     '#type' => 'textarea',
     '#title' => t('Other'),
-    '#default_value' => isset($values['physical_other']) ? $values['physical_other'] : NULL
+    '#default_value' => array_get($values, 'container.prep_c_q4.physical_container.physical_other', array()),
   );
 
   // Chemical.
@@ -88,13 +84,13 @@ function preparatory_c_question_4(&$form_state, &$next_step) {
         t('Item'),
       )
     ),
-    '#default_value' => isset($values['chemical']) ? $values['chemical'] : array(),
+    '#default_value' => array_get($values, 'container.prep_c_q4.chemical_container.chemical', array()),
   );
 
   $form['container']['prep_c_q4']['chemical_container']['chemical_other'] = array(
     '#type' => 'textarea',
     '#title' => t('Other'),
-    '#default_value' => isset($values['chemical_other']) ? $values['chemical_other'] : NULL
+    '#default_value' => array_get($values, 'container.prep_c_q4.chemical_container.chemical_other', array()),
   );
 
   // Biological.
@@ -119,13 +115,13 @@ function preparatory_c_question_4(&$form_state, &$next_step) {
         t('Item'),
       )
     ),
-    '#default_value' => isset($values['biological']) ? $values['biological'] : array(),
+    '#default_value' => array_get($values, 'container.prep_c_q4.biological_container.biological', array()),
   );
 
   $form['container']['prep_c_q4']['biological_container']['biological_other'] = array(
     '#type' => 'textarea',
     '#title' => t('Other'),
-    '#default_value' => isset($values['biological_other']) ? $values['biological_other'] : NULL
+    '#default_value' => array_get($values, 'container.prep_c_q4.biological_container.biological_other', array()),
   );
 
   // Allergens.
@@ -150,14 +146,59 @@ function preparatory_c_question_4(&$form_state, &$next_step) {
         t('Item'),
       )
     ),
-    '#default_value' => isset($values['allergens']) ? $values['allergens'] : array(),
+    '#default_value' => array_get($values, 'container.prep_c_q4.allergens_container.allergens', array()),
   );
 
   $form['container']['prep_c_q4']['allergens_container']['allergens_other'] = array(
     '#type' => 'textarea',
     '#title' => t('Other'),
-    '#default_value' => isset($values['allergens_other']) ? $values['allergens_other'] : NULL
+    '#default_value' => array_get($values, 'container.prep_c_q4.allergens_container.allergens_other', array()),
   );
 
+  $form['#validate'][] = 'preparatory_c_question_4_validate';
+
   return $form;
+}
+
+/**
+ * Validation handler.
+ */
+function preparatory_c_question_4_validate($form, &$form_state) {
+  // Assume this form is invalid.
+  $invalid = TRUE;
+  $values = $form_state['values'];
+
+  // Validation: Some content.
+  $checks = array(
+    $physical = _checkboxes_field_is_empty($values, 'container.prep_c_q4.physical_container.physical'),
+    $chemical = _checkboxes_field_is_empty($values, 'container.prep_c_q4.chemical_container.chemical'),
+    $biological = _checkboxes_field_is_empty($values, 'container.prep_c_q4.biological_container.biological'),
+    $allergens = _checkboxes_field_is_empty($values, 'container.prep_c_q4.allergens_container.allergens'),
+    $physical_other = _text_field_is_empty($values, 'container.prep_c_q4.physical_container.physical_other'),
+    $chemical_other = _text_field_is_empty($values, 'container.prep_c_q4.chemical_container.chemical_other'),
+    $biological_other = _text_field_is_empty($values, 'container.prep_c_q4.biological_container.biological_other'),
+    $allergens_other = _text_field_is_empty($values, 'container.prep_c_q4.allergens_container.allergens_other'),
+  );
+
+  // Iterate through all the field checks and if we get any FALSE returns it
+  // means we have some content in a field. This will no longer invalidate the
+  // form.
+  foreach ($checks as $check) {
+    if ($check == FALSE) {
+      $invalid = FALSE;
+    }
+  }
+
+  if ($invalid == TRUE) {
+    $message = t('Q4: Add some content.');
+    myhacpp_prepare_validation('global', $message, $form_state);
+  }
+
+  // Check to see whether we have failed validation and therefore should store
+  // it in the database or whether we have passed and therefore clear validation
+  // errors.
+  if ($invalid == FALSE) {
+    // Remove any stored validation.
+    myhaccp_clear_validation($form_state);
+  }
 }

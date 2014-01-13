@@ -12,12 +12,7 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
 
   // If we have the data it means we arrived here from back action, so show
   // them in form as default values.
-  if (!empty($data)) {
-    $values = $data;
-  }
-  elseif (isset($form_state['values'])) {
-    $values = $form_state['values'];
-  }
+  $values = myhaccp_prepare_values($data, $form_state);
 
   drupal_set_title('Preparatory Stage C: Define scope of the study, Questions 1-3');
 
@@ -27,6 +22,7 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
   // Wrap the form section in a fieldset.
   $form['container'] = array(
     '#type' => 'fieldset',
+    '#tree' => TRUE,
   );
 
   $form['container']['prep_c_q1'] = array(
@@ -42,7 +38,7 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
         t('Generic'),
       )
     ),
-    '#default_value' => isset($values['prep_c_q1']) ? $values['prep_c_q1'] : FALSE,
+    '#default_value' => array_get($values, 'container.prep_c_q1', array()),
   );
 
   $form['container']['prep_c_q2'] = array(
@@ -51,7 +47,7 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
     '#title' => t('2. State the type of product you are producing and briefly how it is going to be packed: !tip', array(
       '!tip' => _help_tip(),
     )),
-    '#default_value' => isset($values['prep_c_q2']) ? $values['prep_c_q2'] : FALSE
+    '#default_value' => array_get($values, 'container.prep_c_q2', FALSE),
   );
 
   $form['container']['prep_c_q3'] = array(
@@ -68,14 +64,66 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
   $form['container']['prep_c_q3']['start'] = array(
     '#type' => 'textfield',
     '#title' => t('It will start at '),
-    '#default_value' => isset($values['start']) ? $values['start'] : FALSE
+    '#default_value' => array_get($values, 'container.prep_c_q3.start', FALSE),
   );
 
   $form['container']['prep_c_q3']['end'] = array(
     '#type' => 'textfield',
     '#title' => t('Through to '),
-    '#default_value' => isset($values['end']) ? $values['end'] : FALSE
+    '#default_value' => array_get($values, 'container.prep_c_q3.end', FALSE),
   );
 
+  $form['#validate'][] = 'preparatory_c_question_1_3_validate';
+
   return $form;
+}
+
+/**
+ * Validation handler.
+ */
+function preparatory_c_question_1_3_validate($form, &$form_state) {
+  // Set a default of the form being valid.
+  $invalid = FALSE;
+  $values = $form_state['values'];
+
+  // Validation: prep_c_q1 = At least one option should be selected.
+//  if (_select_validation_options($values['container']['prep_c_q1'])) {
+//    $message = t('Question 1: At least one option should be selected.');
+//    myhacpp_prepare_validation('container[prep_c_q1]', $message, $form_state);
+//    // Ensure validation errors aren't cleared.
+//    $valid = FALSE;
+//  }
+
+  // Validation: prep_c_q2 = Has content.
+  if ($invalid = _text_field_is_empty($values, 'container.prep_c_q2')) {
+    $message = t('Question 2: Please add some content.');
+    myhacpp_prepare_validation('container[prep_c_q2]', $message, $form_state);
+  }
+
+  // Validation: prep_c_q3 = Has a start and end date.
+  if (_text_field_is_empty($values, 'container.prep_c_q3.start') && _text_field_is_empty($values, 'container.prep_c_q3.end')) {
+    $message = t('Question 3: Add both a start and an end date.');
+    myhacpp_prepare_validation('container[prep_c_q3][start]', $message, $form_state);
+    myhacpp_prepare_validation('container[prep_c_q3][end]', NULL, $form_state);
+    // Ensure validation errors aren't cleared.
+    $invalid = TRUE;
+  }
+  else {
+    if ($invalid = _text_field_is_empty($values, 'container.prep_c_q3.start')) {
+      $message = t('Question 3: Add a start date.');
+      myhacpp_prepare_validation('container[prep_c_q3][start]', $message, $form_state);
+    }
+    if ($invalid = _text_field_is_empty($values, 'container.prep_c_q3.end')) {
+      $message = t('Question 3: Add an end date.');
+      myhacpp_prepare_validation('container[prep_c_q3][end]', $message, $form_state);
+    }
+  }
+
+  // Check to see whether we have failed validation and therefore should store
+  // it in the database or whether we have passed and therefore clear validation
+  // errors.
+  if ($invalid == FALSE) {
+    // Remove any stored validation.
+    myhaccp_clear_validation($form_state);
+  }
 }
