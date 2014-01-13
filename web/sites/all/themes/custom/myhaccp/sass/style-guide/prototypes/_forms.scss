@@ -1,0 +1,32 @@
+.group-pr-c-hazards {
+  @extend %fieldgroup-table;
+}
+
+.decision-tree-qs {
+  .decision-tree-q-row {
+    clear: both;
+    margin-bottom: 0.5em;
+    overflow: hidden;
+    text-align: center;
+  }
+  label, input {
+    display: inline;
+    margin-right: 0.25em;
+  }
+  input {
+    vertical-align: baseline;
+  }
+}
+
+
+td.decision-tree-qs {
+  width: 12em;
+  h4 {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  input[type="text"] {
+    width: 2em;
+    min-width: 2em;
+  }
+}

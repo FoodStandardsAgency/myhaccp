@@ -447,14 +447,6 @@ td.radios {
   }
 }
 
-td.decision-tree-qs {
-  width: 10em;
-  input[type="text"] {
-    width: 2em;
-    min-width: 2em;
-  }
-}
-
 .form-principle-3 {
   @extend %standard-form-layouts;
 }

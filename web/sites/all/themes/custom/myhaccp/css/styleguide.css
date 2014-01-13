@@ -38,6 +38,356 @@ ul.menu li {
   list-style-image: none;
 }
 
+.base-color {
+  background-color: #006f51;
+}
+
+.base-color-lighter {
+  background-color: #328b73;
+}
+
+.base-color-lightest {
+  background-color: #59a18d;
+}
+
+.accent-1 {
+  background-color: #6cb33f;
+}
+
+.accent-1-lighter {
+  background-color: #89c265;
+}
+
+.accent-2 {
+  background-color: #007fb2;
+}
+
+.accent-2-lighter {
+  background-color: #3298c1;
+}
+
+.colour-table {
+  clear: both;
+}
+
+.plain-button {
+  background-color: #e6e6e6;
+  color: rgba(0, 0, 0, 0.8);
+  border: 0 none transparent;
+  padding: 0.6em 1.5em 0.5em 1.5em;
+  text-decoration: none;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+.plain-button:hover, .plain-button:focus {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+}
+.plain-button.disabled {
+  background-image: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.plain-button.active, .plain-button:active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
+}
+
+.button-colors .some-link {
+  background-color: #e6e6e6;
+  color: rgba(0, 0, 0, 0.8);
+  border: 0 none transparent;
+  padding: 0.6em 1.5em 0.5em 1.5em;
+  text-decoration: none;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  background-color: #006f51;
+  color: #FFF;
+}
+.button-colors .some-link:hover, .button-colors .some-link:focus {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+}
+.button-colors .some-link.disabled {
+  background-image: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.button-colors .some-link.active, .button-colors .some-link:active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
+}
+.button-colors .custom-color-button {
+  background-color: #1abc9c;
+  color: #fefefe;
+  border: 0 none transparent;
+  padding: 0.6em 1.5em 0.5em 1.5em;
+  text-decoration: none;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+.button-colors .custom-color-button:hover, .button-colors .custom-color-button:focus {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+}
+.button-colors .custom-color-button.disabled {
+  background-image: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.button-colors .custom-color-button.active, .button-colors .custom-color-button:active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
+}
+.button-colors .custom-color-button-alt {
+  background-color: darkred;
+  color: #fefefe;
+  border: 0 none transparent;
+  padding: 0.6em 1.5em 0.5em 1.5em;
+  text-decoration: none;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+.button-colors .custom-color-button-alt:hover, .button-colors .custom-color-button-alt:focus {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+}
+.button-colors .custom-color-button-alt.disabled {
+  background-image: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.button-colors .custom-color-button-alt.active, .button-colors .custom-color-button-alt:active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
+}
+
+.button-sizes .important-link {
+  background-color: #e6e6e6;
+  color: rgba(0, 0, 0, 0.8);
+  border: 0 none transparent;
+  padding: 0.6em 1.5em 0.5em 1.5em;
+  text-decoration: none;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  font-size: 1.3em;
+}
+.button-sizes .important-link:hover, .button-sizes .important-link:focus {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+}
+.button-sizes .important-link.disabled {
+  background-image: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.button-sizes .important-link.active, .button-sizes .important-link:active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
+}
+.button-sizes .small-button {
+  background-color: #e6e6e6;
+  color: rgba(0, 0, 0, 0.8);
+  border: 0 none transparent;
+  padding: 0.6em 1.5em 0.5em 1.5em;
+  text-decoration: none;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  font-size: 0.8em;
+}
+.button-sizes .small-button:hover, .button-sizes .small-button:focus {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+}
+.button-sizes .small-button.disabled {
+  background-image: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.button-sizes .small-button.active, .button-sizes .small-button:active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
+}
+
+.form-buttons button {
+  background-color: #e6e6e6;
+  color: rgba(0, 0, 0, 0.8);
+  border: 0 none transparent;
+  padding: 0.6em 1.5em 0.5em 1.5em;
+  text-decoration: none;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  background-color: #006f51;
+  color: #FFF;
+}
+.form-buttons button:hover, .form-buttons button:focus {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+}
+.form-buttons button.disabled {
+  background-image: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.form-buttons button.active, .form-buttons button:active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
+}
+.form-buttons input[type="submit"] {
+  background-color: #e6e6e6;
+  color: rgba(0, 0, 0, 0.8);
+  border: 0 none transparent;
+  padding: 0.6em 1.5em 0.5em 1.5em;
+  text-decoration: none;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  background-color: #006f51;
+  color: #FFF;
+}
+.form-buttons input[type="submit"]:hover, .form-buttons input[type="submit"]:focus {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+}
+.form-buttons input[type="submit"].disabled {
+  background-image: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.form-buttons input[type="submit"].active, .form-buttons input[type="submit"]:active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
+}
+
+.grid-blocks {
+  clear: both;
+  margin-bottom: 2em;
+  overflow: hidden;
+}
+.grid-blocks .grid-example > div span {
+  display: block;
+  background-color: #EEE;
+  border: 1px solid #CDCDCD;
+  text-align: center;
+  line-height: 32px;
+  -webkit-transition: font-size, 0.25s, ease-out;
+  -moz-transition: font-size, 0.25s, ease-out;
+  -o-transition: font-size, 0.25s, ease-out;
+  transition: font-size, 0.25s, ease-out;
+}
+.grid-blocks .grid-example > div span:hover {
+  font-size: 22px;
+  cursor: pointer;
+}
+.grid-blocks .grid-example.lots > div {
+  width: 6.25%;
+  float: left;
+  padding-left: 25px;
+  padding-right: 25px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.grid-blocks .grid-example.some > div {
+  width: 25%;
+  float: left;
+  padding-left: 25px;
+  padding-right: 25px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.grid-blocks .grid-example.few > div {
+  width: 50%;
+  float: left;
+  padding-left: 25px;
+  padding-right: 25px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.grid-blocks .grid-example.responsive > div {
+  width: 100%;
+  float: left;
+  padding-left: 25px;
+  padding-right: 25px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-bottom: 2em;
+}
+.grid-blocks .grid-example.responsive > div span {
+  line-height: 100px;
+}
+@media all and (min-width: 1020px) {
+  .grid-blocks .grid-example.responsive > div.main-area {
+    width: 62.5%;
+    float: left;
+    padding-left: 25px;
+    padding-right: 25px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .grid-blocks .grid-example.responsive > div.side {
+    width: 18.75%;
+    float: left;
+    padding-left: 25px;
+    padding-right: 25px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+}
+
+.agile-blockquote blockquote {
+  border-left: 0.25em solid #E9E9E9;
+  color: #666666;
+  font-size: 1em;
+  line-height: 1.5;
+  padding: 0 1.5em 0 1em;
+  margin-left: 0;
+}
+
+.agile-blockquote-2 blockquote {
+  background-color: #eeeeee;
+  color: #FFFFFF;
+  float: right;
+  font-size: 1em;
+  line-height: 1.5;
+  margin: 0 -1em 0 1em;
+  padding: 0.5em;
+  width: 15em;
+}
+.agile-blockquote-2 blockquote p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#pb-logo-icon {
+  float: left;
+}
+
+h4.browser-title {
+  color: #FFFFFF;
+  float: left;
+  font-size: 1.4em;
+  font-weight: normal;
+  line-height: 1;
+  margin: 0;
+  padding-left: 10px;
+  padding-top: 5px;
+  width: 194px;
+}
+
 /**
  * Inline field group
  *
@@ -84,3 +434,28 @@ ul.menu li {
 }
 
 /** Other styling **/
+.decision-tree-qs .decision-tree-q-row {
+  clear: both;
+  margin-bottom: 0.5em;
+  overflow: hidden;
+  text-align: center;
+}
+.decision-tree-qs label, .decision-tree-qs input {
+  display: inline;
+  margin-right: 0.25em;
+}
+.decision-tree-qs input {
+  vertical-align: baseline;
+}
+
+td.decision-tree-qs {
+  width: 12em;
+}
+td.decision-tree-qs h4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+td.decision-tree-qs input[type="text"] {
+  width: 2em;
+  min-width: 2em;
+}

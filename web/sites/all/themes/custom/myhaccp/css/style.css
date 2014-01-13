@@ -1811,14 +1811,6 @@ td.radios label {
   padding: 0.25em;
 }
 
-td.decision-tree-qs {
-  width: 10em;
-}
-td.decision-tree-qs input[type="text"] {
-  width: 2em;
-  min-width: 2em;
-}
-
 .form-principle-3 .field-group-wrapper {
   margin-bottom: 1em;
 }

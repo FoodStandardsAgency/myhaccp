@@ -16,10 +16,18 @@
 @import 'lib/agilegrid';
 @import 'lib/classy';
 
+// Style guide section agile patterns
+@import 'style-guide/colours';
+@import 'style-guide/buttons';
+@import 'style-guide/grid';
+@import 'style-guide/blockquotes';
+@import 'style-guide/theme';
+
+// Import mixins from main styles
 @import 'patterns/forms/forms-mixins';
 
 
-.group-pr-c-hazards {
-  @extend %fieldgroup-table;
-}
+// Prototypes
+
+@import 'style-guide/prototypes/forms';
 
