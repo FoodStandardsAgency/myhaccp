@@ -12,15 +12,7 @@ function preparatory_a(&$form_state, &$next_step) {
 
   // If we have the data it means we arrived here from back action, so show
   // them in form as default values.
-  if (!empty($data)) {
-    $values = $data;
-    if (isset($data['validate'])) {
-      $form_state['values']['validate'] = $data['validate'];
-    }
-  }
-  elseif (isset($form_state['values'])) {
-    $values = $form_state['values'];
-  }
+  $values = myhaccp_prepare_values($data, $form_state);
 
   drupal_set_title('Preparatory Stage A: Prerequisites');
 
@@ -73,7 +65,7 @@ function preparatory_a(&$form_state, &$next_step) {
         t('Other'),
       )
     ),
-    '#default_value' => isset($values['container']['prep_a_prereq']) ? $values['container']['prep_a_prereq'] : array(),
+    '#default_value' => array_get($values, 'container.prep_a_prereq', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-trigger' => 'change',
@@ -86,7 +78,7 @@ function preparatory_a(&$form_state, &$next_step) {
     '#title' => t('Please specify the location of the above documents. !tip', array(
       '!tip' => _help_tip(),
     )),
-    '#default_value' => isset($values['container']['prep1_location']) ? $values['container']['prep1_location'] : NULL,
+    '#default_value' => array_get($values, 'container.prep1_location', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-trigger' => 'keyup change',
@@ -103,41 +95,25 @@ function preparatory_a(&$form_state, &$next_step) {
  */
 function preparatory_a_validate($form, &$form_state) {
   // Set a default of the form being valid.
-  $valid = TRUE;
+  $invalid = TRUE;
   $values = $form_state['values'];
 
   // Prerequisites.
-  if (empty($values['container']['prep_a_prereq'])) {
+  if ($invalid = _checkboxes_field_is_empty($values, 'container.prep_a_prereq')) {
     $message = t('Please choose at least one option from the prerequisites field.');
     myhacpp_prepare_validation('container[prep_a_prereq]', $message, $form_state);
-    // Ensure validation errors aren't cleared.
-    $valid = FALSE;
-  }
-  else {
-    foreach ($values['container']['prep_a_prereq'] as $key => $option) {
-      if ($option !== 0) {
-        $option_check = TRUE;
-      }
-    }
-    if (!isset($option_check)) {
-      $message = t('Please choose at least one option from the prerequisites field.');
-      myhacpp_prepare_validation('container[prep_a_prereq]', $message, $form_state);
-      // Ensure validation errors aren't cleared.
-      $valid = FALSE;
-    }
   }
 
   // The location of the documents.
-  if (empty($values['container']['prep1_location'])) {
+  if ($invalid = _text_field_is_empty($values, 'container.prep1_location')) {
     $message = t('Enter the location of your documents.');
     myhacpp_prepare_validation('container[prep1_location]', $message, $form_state);
-    // Ensure validation errors aren't cleared.
-    $valid = FALSE;
   }
+
   // Check to see whether we have failed validation and therefore should store
   // it in the database or whether we have passed and therefore clear validation
   // errors.
-  if ($valid == TRUE) {
+  if ($invalid == FALSE) {
     // Remove any stored validation.
     myhaccp_clear_validation($form_state);
   }

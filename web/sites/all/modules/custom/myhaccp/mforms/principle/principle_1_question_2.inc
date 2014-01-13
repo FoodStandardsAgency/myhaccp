@@ -14,12 +14,7 @@ function principle_1_question_2(&$form_state, &$next_step) {
 
   // If we have the data it means we arrived here from back action, so show
   // them in form as default vals.
-  if (!empty($data)) {
-    $values = $data;
-  }
-  elseif (isset($form_state['values'])) {
-    $values = $form_state['values'];
-  }
+  $values = myhaccp_prepare_values($data, $form_state);
 
   // Set the page title.
   drupal_set_title('Principle 1, question 2:

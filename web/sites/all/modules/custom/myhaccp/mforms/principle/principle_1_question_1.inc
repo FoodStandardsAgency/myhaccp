@@ -14,16 +14,10 @@ function principle_1_question_1(&$form_state, &$next_step) {
 
   // If we have the data it means we arrived here from back action, so show
   // them in form as default values.
-  if (!empty($data)) {
-    $values = $data;
-  }
-  elseif (isset($form_state['values'])) {
-    $values = $form_state['values'];
-  }
+  $values = myhaccp_prepare_values($data, $form_state);
 
   // Set the page title.
-  drupal_set_title('Principle 1, question 1:
-Identify and list potential hazards.');
+  drupal_set_title('Principle 1, question 1: Identify and list potential hazards.');
 
   $form = array();
   $form['#tree'] = TRUE;

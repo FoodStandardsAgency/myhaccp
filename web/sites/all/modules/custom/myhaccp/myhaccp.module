@@ -1,20 +1,5 @@
 <?php
 
-/*                ,
-                 / \,,_  .'|
-              ,{{| /}}}}/_.'
-             }}}}` '{{'  '.
-           {{{{{    _   ;, \
-        ,}}}}}}    /o`\  ` ;)
-       {{{{{{   /           (
-       }}}}}}   |            \
-      {{{{{{{{   \            \
-      }}}}}}}}}   '.__      _  |
-      {{{{{{{{       /`._  (_\ /
-       }}}}}}'      |    \\___/
-       `{{{{`       |     '--'
-        }}}`*/
-
 /**
  * Implements hook_init().
  */
@@ -127,6 +112,11 @@ function myhaccp_myhaccp_mforms_init() {
       'value' => 'C Q4',
       'weight' => 4,
     ),
+    'preparatory_d' => array(
+      'stage' => 'preparatory',
+      'value' => 'D',
+      'weight' => 5,
+    ),
     'principle_1_question_1' => array(
       'stage' => 'principles',
       'value' => '1.1',
@@ -214,6 +204,7 @@ function _get_all_steps() {
     'preparatory_b' => 'preparatory',
     'preparatory_c_question_1_3' => 'preparatory',
     'preparatory_c_question_4' => 'preparatory',
+    'preparatory_d' => 'preparatory',
     'principle_1_question_1' => 'principle',
     'principle_1_question_2' => 'principle',
   );
@@ -251,6 +242,13 @@ function myhaccp_element_info_alter(&$types) {
  */
 function myhaccp_process($element, &$form_state) {
   if (isset($form_state['values']['validate'])) {
+    // First check for the special 'global' array element.
+    if (isset($form_state['values']['validate']['global'])) {
+      // This means we need to show a message but not highlight any specific
+      // form fields.
+      $message = $form_state['values']['validate']['global'];
+      drupal_set_message($message, 'error', FALSE);
+    }
     // Add the error class to each of the elements.
     foreach ($form_state['values']['validate'] as $name => $message) {
       if (isset($element['#name']) && $element['#name'] == $name) {
@@ -303,20 +301,117 @@ function myhaccp_clear_validation(&$form_state) {
 /**
  * Helper to check whether any options have been chosen in checkboxes fields.
  *
- * @param array $options
- *   The array options as provided in form_state.
+ * @param array $values
+ *   The values of form_state to check.
+ * @param array $element
+ *   The $form element to check.
  *
  * @return bool
- *   TRUE if options are set.
+ *   TRUE if options are not set.
  */
-function _check_validation_options($options) {
-  foreach ($options as $key => $option) {
+function _checkboxes_field_is_empty($values, $element) {
+  $options = array_get($values, $element, array());
+  foreach ($options as $option) {
     if ($option !== 0) {
       $option_check = TRUE;
     }
   }
   if (!isset($option_check)) {
+    return TRUE;
+  }
+  return FALSE;
+}
+
+/**
+ * Checks whether the given element is empty of value.
+ *
+ * @param array $values
+ *   The values of form_state to check.
+ * @param array $element
+ *   The $form element to check.
+ *
+ * @return bool
+ *   TRUE if the field is empty.
+ */
+function _text_field_is_empty($values, $element) {
+  $value = array_get($values, $element, FALSE);
+  if ($value) {
     return FALSE;
   }
   return TRUE;
+}
+
+/**
+ * Get an item from an array using "dot" notation.
+ *
+ * @param array $array
+ *   The array to check.
+ * @param string $key
+ *   The name of the key. Uses dot notation to delimit the keys.
+ * @param mixed $default
+ *   The default value to return if not found.
+ *
+ * @return mixed
+ *   The value if found or the default if not. If no default then returns the
+ *   array.
+ */
+function array_get($array, $key, $default = NULL) {
+  if (is_null($key)) {
+    return $array;
+  }
+
+  if (isset($array[$key])) {
+    return $array[$key];
+  }
+
+  foreach (explode('.', $key) as $segment) {
+    if (!is_array($array) || !array_key_exists($segment, $array)) {
+      return value($default);
+    }
+
+    $array = $array[$segment];
+  }
+
+  return $array;
+}
+
+/**
+ * Return the default value of the given value.
+ *
+ * @param mixed $value
+ *   The default to return.
+ *
+ * @return mixed
+ *   The return value.
+ */
+function value($value) {
+  return $value instanceof Closure ? $value() : $value;
+}
+
+/**
+ * Returns the prepared data from the database or form_state.
+ *
+ * Also updates the validation values in the form_state from the database.
+ *
+ * @param array $data
+ *   The data as returned by mforms_get_vals().
+ * @param array $form_state
+ *   The current form_state array. Passed by reference so that the validate
+ *   values can be added.
+ *
+ * @return array
+ *   The saved or current values of the fields.
+ */
+function myhaccp_prepare_values($data, &$form_state) {
+  $values = array();
+  if (!empty($data)) {
+    $values = $data;
+    if (isset($data['validate'])) {
+      $form_state['values']['validate'] = $data['validate'];
+    }
+  }
+  elseif (isset($form_state['values'])) {
+    $values = $form_state['values'];
+  }
+  return $values;
 }
