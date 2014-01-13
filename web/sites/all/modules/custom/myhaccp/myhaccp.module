@@ -250,9 +250,9 @@ function myhaccp_element_info_alter(&$types) {
  * @see myhaccp_element_info_alter()
  */
 function myhaccp_process($element, &$form_state) {
-  if (isset($form_state['storage']['validate'])) {
+  if (isset($form_state['values']['validate'])) {
     // Add the error class to each of the elements.
-    foreach ($form_state['storage']['validate'] as $name => $message) {
+    foreach ($form_state['values']['validate'] as $name => $message) {
       if (isset($element['#name']) && $element['#name'] == $name) {
         $element['#attributes']['class']['error'] = 'error';
         if (!empty($message) && $form_state['executed'] == TRUE) {
@@ -262,4 +262,61 @@ function myhaccp_process($element, &$form_state) {
     }
   }
   return $element;
+}
+
+/**
+ * Helper to prepare the form_state and $_POST ready to save into the db.
+ *
+ * Used to prepare validation messages.
+ *
+ * @param string $name
+ *   The form #name parameter to target.
+ * @param string $message
+ *   The message to display.
+ * @param array $form_state
+ *   The current form_state array.
+ */
+function myhacpp_prepare_validation($name, $message, &$form_state) {
+  // Allow the message to be translated.
+  $message = t($message);
+  // Add it to the form_state.
+  $form_state['values']['validate'][$name] = $message;
+  // Add it to the $_POST to make sure in gets saved in the db.
+  $_POST['validate'][$name] = $message;
+}
+
+/**
+ * Helper to clear validation errors on successful pass.
+ *
+ * @param array $form_state
+ *   The form state array.
+ */
+function myhaccp_clear_validation(&$form_state) {
+  if (isset($form_state['values']['validate'])) {
+    unset($form_state['values']['validate']);
+  }
+  if (isset($_POST['validate'])) {
+    unset($_POST['validate']);
+  }
+}
+
+/**
+ * Helper to check whether any options have been chosen in checkboxes fields.
+ *
+ * @param array $options
+ *   The array options as provided in form_state.
+ *
+ * @return bool
+ *   TRUE if options are set.
+ */
+function _check_validation_options($options) {
+  foreach ($options as $key => $option) {
+    if ($option !== 0) {
+      $option_check = TRUE;
+    }
+  }
+  if (!isset($option_check)) {
+    return FALSE;
+  }
+  return TRUE;
 }

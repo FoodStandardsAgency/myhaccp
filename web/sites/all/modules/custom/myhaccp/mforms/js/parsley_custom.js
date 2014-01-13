@@ -5,10 +5,10 @@
       var form = $('#mforms-wrapper-myhaccp form');
       // Alter the default success and error classes.
       form.parsley(
-        { successClass: 'success',
+        {
+          successClass: 'success',
           errorClass: 'error',
-          focus: 'none',
-          validateIfUnchanged: true
+          focus: 'none'
         }
       );
       // Add a onFormValidate listener.

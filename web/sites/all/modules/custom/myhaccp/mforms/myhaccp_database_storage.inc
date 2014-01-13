@@ -41,14 +41,17 @@ class MformsDatabaseStore implements MformsIstore {
     $this->iid = $_SESSION['iid'];
   }
 
-  function getKey() {
+  /**
+   * Returns the store_key.
+   */
+  public function getKey() {
     return $this->store_key;
   }
 
   /**
    * Writes the store to the database.
    */
-  function setStore($key, $data) {
+  public function setStore($key, $data) {
     // Determine whether there is an existing record for this combination of
     // key and iid.
     $sid = db_select('mforms_storage_steps', 's')
@@ -78,7 +81,10 @@ class MformsDatabaseStore implements MformsIstore {
     drupal_write_record('mforms_storage', $record, 'iid');
   }
 
-  function getStore($key) {
+  /**
+   * Gets the stored record for the given key.
+   */
+  public function getStore($key) {
     // The step names (functions) are only stored in the db once submitted but
     // we want to be able to jump around between steps so need them declared
     // up front.

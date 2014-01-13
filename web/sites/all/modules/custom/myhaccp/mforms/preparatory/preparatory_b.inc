@@ -14,6 +14,9 @@ function preparatory_b(&$form_state, &$next_step) {
   // them in form as default values.
   if (!empty($data)) {
     $values = $data;
+    if (isset($data['validate'])) {
+      $form_state['values']['validate'] = $data['validate'];
+    }
   }
   elseif (isset($form_state['values'])) {
     $values = $form_state['values'];
@@ -27,6 +30,7 @@ function preparatory_b(&$form_state, &$next_step) {
   // Wrap the form section in a fieldset.
   $form['container'] = array(
     '#type' => 'fieldset',
+    '#tree' => TRUE,
   );
 
   $form['container']['prep_b_support'] = array(
@@ -45,7 +49,7 @@ function preparatory_b(&$form_state, &$next_step) {
         t('N/A I am the management and can confirm that I am committed.'),
       )
     ),
-    '#default_value' => isset($values['prep_b_support']) ? $values['prep_b_support'] : array(),
+    '#default_value' => isset($values['container']['prep_b_support']) ? $values['container']['prep_b_support'] : array(),
   );
 
   $form['container']['prep_b_evidence'] = array(
@@ -54,8 +58,36 @@ function preparatory_b(&$form_state, &$next_step) {
     '#title' => t('Other evidence: !tip', array(
       '!tip' => _help_tip(),
     )),
-    '#default_value' => isset($values['prep_b_evidence']) ? $values['prep_b_evidence'] : FALSE
+    '#default_value' => isset($values['container']['prep_b_evidence']) ? $values['container']['prep_b_evidence'] : FALSE
   );
 
+  $form['#validate'][] = 'preparatory_b_validate';
+
   return $form;
+}
+
+/**
+ * Validation handler.
+ */
+function preparatory_b_validate($form, &$form_state) {
+  // Set a default of the form being valid.
+  $valid = TRUE;
+  $values = $form_state['values'];
+
+  // Validation: At least one box checked from Q1, or some content in question 2.
+  if (empty($values['container']['prep_b_evidence']) && !_check_validation_options($values['container']['prep_b_support'])) {
+    $message = t('Please choose at least one option in question 1 or add some content in question 2.');
+    myhacpp_prepare_validation('container[prep_b_support]', $message, $form_state);
+    myhacpp_prepare_validation('container[prep_b_evidence]', NULL, $form_state);
+    // Ensure validation errors aren't cleared.
+    $valid = FALSE;
+  }
+
+  // Check to see whether we have failed validation and therefore should store
+  // it in the database or whether we have passed and therefore clear validation
+  // errors.
+  if ($valid == TRUE) {
+    // Remove any stored validation.
+    myhaccp_clear_validation($form_state);
+  }
 }
