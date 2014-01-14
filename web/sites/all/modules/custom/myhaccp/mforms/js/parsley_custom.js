@@ -3,6 +3,10 @@
   Drupal.behaviors.parsley_custom = {
     attach: function(context) {
       var form = $('#mforms-wrapper-myhaccp form');
+      // Destroy any parsley validation on the form so that we can we enable it
+      // on recreation (ajax) of the form. This is needed for the validation to
+      // work whenever new items are added or items are removed.
+      form.parsley('destroy');
       // Alter the default success and error classes.
       form.parsley(
         {
