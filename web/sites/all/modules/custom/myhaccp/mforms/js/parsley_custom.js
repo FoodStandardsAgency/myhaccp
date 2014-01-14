@@ -8,20 +8,83 @@
         {
           successClass: 'success',
           errorClass: 'error',
-          focus: 'none'
+          focus: 'none',
+          trigger: 'change keyup',
+          validators: {
+            either: function() {
+              return {
+                validate: function(val, elems, self) {
+                  self.options.validateIfUnchanged = true;
+                  self.validValue = self.$element.data("value");
+                  self.$element.parsley().inEitherProcessing = true;
+                  var pass = false;
+
+                  var val = self.$element.val();
+                  self.val = val !== "" ? val : self.validValue;
+
+                  elems = elems.split(',');
+                  $.each(elems, function(index, elem) {
+                    $elem = $(elem);
+                    if ($elem.is(':checkbox')) {
+                      if ($elem.is(':checked')) {
+                        pass = true;
+                      }
+                    }
+                    else {
+                      if ($elem.val() != '') {
+                        pass = true;
+                      }
+                    }
+                  });
+
+                  self.$element.parsley().inEitherProcessing = false;
+
+                  if (pass == true) {
+                    $.each(elems, function(index, elem) {
+                      $elem = $(elem);
+                      $elem.removeClass('error');
+                      $elem.parents('.form-item').removeClass('error');
+                      $elem.parents('.form-item').parents('.form-checkboxes').removeClass('error');
+                      $elem.parents('.form-item').children('div.validation, ul.parsley-error-list').remove();
+                    });
+                  }
+                  else {
+                    $.each(elems, function(index, elem) {
+                      $elem = $(elem);
+                      $elem.addClass('error');
+                      $elem.parents('.form-checkboxes').addClass('error');
+                      $elem.parents('.form-item').parents('.form-checkboxes').addClass('error');
+                    });
+                  }
+
+                  return (pass);
+                },
+                priority: 2
+              };
+            }
+          },
+          messages: {
+            multiple: "This value should be a multiple of %s"
+          }
         }
       );
-      // Add a onFormValidate listener.
+      // Add an onFormValidate listener.
       form.parsley('addListener', {
         onFormValidate: function(elem) {
           // Always validate, don't block form submission.
           return true;
         },
         onFieldSuccess: function(elem) {
-          // Once field is validated remove the error messages.
-          $(elem).parents('.form-item').children('div.validation').hide();
+          // Once field is validated remove the error messages and classes.
+          $(elem).parents('.form-item').removeClass('error');
+          $(elem).parents('.form-item').parents('.form-checkboxes').removeClass('error');
+          $(elem).parents('.form-item').children('div.validation').remove();
         }
       });
+
+
     }
   }
+
+
 })(jQuery);

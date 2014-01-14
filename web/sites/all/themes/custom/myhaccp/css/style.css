@@ -1335,6 +1335,18 @@ textarea.error:focus {
   outline-color: red;
 }
 
+ul.parsley-error-list {
+  background: #fef5f1;
+  margin: 0;
+  padding: 0;
+}
+ul.parsley-error-list li {
+  color: #8c2e0b;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 input.text-mini {
   width: 2em;
   min-width: inherit;

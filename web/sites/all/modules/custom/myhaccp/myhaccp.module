@@ -104,12 +104,12 @@ function myhaccp_myhaccp_mforms_init() {
     ),
     'preparatory_c_question_1_3' => array(
       'stage' => 'preparatory',
-      'value' => 'C Q1-3',
+      'value' => 'C.1',
       'weight' => 3,
     ),
     'preparatory_c_question_4' => array(
       'stage' => 'preparatory',
-      'value' => 'C Q4',
+      'value' => 'C.2',
       'weight' => 4,
     ),
     'preparatory_d' => array(
