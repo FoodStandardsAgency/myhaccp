@@ -49,6 +49,20 @@ textarea {
   }
 }
 
+// Parsley errors. They need to look like the server side errors for a seamless
+// experience.
+ul.parsley-error-list {
+  background: #fef5f1; // Same as drupal default (feel free to change).
+  margin: 0;
+  padding: 0;
+  li {
+    color: #8c2e0b;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
 input:focus,
 textarea:focus,
 select:focus, {

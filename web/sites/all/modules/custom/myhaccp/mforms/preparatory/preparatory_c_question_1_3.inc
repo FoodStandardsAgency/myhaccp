@@ -48,6 +48,10 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
       '!tip' => _help_tip(),
     )),
     '#default_value' => array_get($values, 'container.prep_c_q2', FALSE),
+    '#attributes' => array(
+      'data-parsley-required' => 'true',
+      'data-parsley-error-message' => t('Please add some content.'),
+    ),
   );
 
   $form['container']['prep_c_q3'] = array(
@@ -65,12 +69,20 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
     '#type' => 'textfield',
     '#title' => t('It will start at '),
     '#default_value' => array_get($values, 'container.prep_c_q3.start', FALSE),
+    '#attributes' => array(
+      'data-parsley-required' => 'true',
+      'data-parsley-error-message' => t('Please add a start date.'),
+    ),
   );
 
   $form['container']['prep_c_q3']['end'] = array(
     '#type' => 'textfield',
     '#title' => t('Through to '),
     '#default_value' => array_get($values, 'container.prep_c_q3.end', FALSE),
+    '#attributes' => array(
+      'data-parsley-required' => 'true',
+      'data-parsley-error-message' => t('Please add an end date.'),
+    ),
   );
 
   $form['#validate'][] = 'preparatory_c_question_1_3_validate';
@@ -96,27 +108,18 @@ function preparatory_c_question_1_3_validate($form, &$form_state) {
 
   // Validation: prep_c_q2 = Has content.
   if ($invalid = _text_field_is_empty($values, 'container.prep_c_q2')) {
-    $message = t('Question 2: Please add some content.');
+    $message = $form['container']['prep_c_q2']['#attributes']['data-parsley-error-message'];
     myhacpp_prepare_validation('container[prep_c_q2]', $message, $form_state);
   }
 
   // Validation: prep_c_q3 = Has a start and end date.
-  if (_text_field_is_empty($values, 'container.prep_c_q3.start') && _text_field_is_empty($values, 'container.prep_c_q3.end')) {
-    $message = t('Question 3: Add both a start and an end date.');
+  if ($invalid = _text_field_is_empty($values, 'container.prep_c_q3.start')) {
+    $message = $form['container']['prep_c_q3']['start']['#attributes']['data-parsley-error-message'];
     myhacpp_prepare_validation('container[prep_c_q3][start]', $message, $form_state);
-    myhacpp_prepare_validation('container[prep_c_q3][end]', NULL, $form_state);
-    // Ensure validation errors aren't cleared.
-    $invalid = TRUE;
   }
-  else {
-    if ($invalid = _text_field_is_empty($values, 'container.prep_c_q3.start')) {
-      $message = t('Question 3: Add a start date.');
-      myhacpp_prepare_validation('container[prep_c_q3][start]', $message, $form_state);
-    }
-    if ($invalid = _text_field_is_empty($values, 'container.prep_c_q3.end')) {
-      $message = t('Question 3: Add an end date.');
-      myhacpp_prepare_validation('container[prep_c_q3][end]', $message, $form_state);
-    }
+  if ($invalid = _text_field_is_empty($values, 'container.prep_c_q3.end')) {
+    $message = $form['container']['prep_c_q3']['end']['#attributes']['data-parsley-error-message'];
+    myhacpp_prepare_validation('container[prep_c_q3][end]', $message, $form_state);
   }
 
   // Check to see whether we have failed validation and therefore should store

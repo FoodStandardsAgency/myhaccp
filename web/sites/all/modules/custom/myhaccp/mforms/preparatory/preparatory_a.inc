@@ -17,7 +17,7 @@ function preparatory_a(&$form_state, &$next_step) {
   drupal_set_title('Preparatory Stage A: Prerequisites');
 
   $form = array();
-  $form['#attributes']['class'][] = 'pa';
+  $form['#attributes']['class'][] = 'prep-a';
 
   // Wrap the form section in a fieldset.
   $form['container'] = array(
@@ -68,7 +68,7 @@ function preparatory_a(&$form_state, &$next_step) {
     '#default_value' => array_get($values, 'container.prep_a_prereq', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
-      'data-parsley-trigger' => 'change',
+      'data-parsley-error-message' => t('Please choose at least one option from the prerequisites field.'),
     ),
   );
 
@@ -81,7 +81,7 @@ function preparatory_a(&$form_state, &$next_step) {
     '#default_value' => array_get($values, 'container.prep1_location', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
-      'data-parsley-trigger' => 'keyup change',
+      'data-parsley-error-message' => t('Enter the location of your documents.'),
     ),
   );
 

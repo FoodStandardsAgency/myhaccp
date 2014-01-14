@@ -35,53 +35,93 @@ function preparatory_d(&$form_state, &$next_step) {
   }
   for ($i = 0; $i < $form_state['num_instances']; $i++) {
     // Contain everything for this instance inside a fieldset.
-    $form['container']['instance_' . $i] = array(
+    $form['container']["instance_$i"] = array(
       '#type' => 'fieldset',
     );
     // Team member name.
-    $form['container']['instance_' . $i]['team_name'] = array(
+    $form['container']["instance_$i"]['team_name'] = array(
       '#weight' => '0',
       '#type' => 'textfield',
-      '#title' => t('Name of External HACCP Team Member !tip', array(
+      '#title' => t('Name of HACCP Team Member !tip', array(
         '!tip' => _help_tip(),
       )),
-      '#default_value' => array_get($values, 'container.instance_' . $i . '.team_name', FALSE),
+      '#default_value' => array_get($values, "container.instance_$i.team_name", FALSE),
+      '#attributes' => array(
+        'data-parsley-error-message' => t('Please add the name of the team member.'),
+        'data-parsley-required' => TRUE,
+      ),
+    );
+    // Team member external.
+    $form['container']["instance_$i"]['team_external'] = array(
+      '#weight' => '1',
+      '#type' => 'select',
+      '#title' => t('Location of team member !tip', array(
+        '!tip' => _help_tip(),
+      )),
+      '#options' => array(
+        'internal' => t('Internal'),
+        'external' => t('External'),
+      ),
+      '#default_value' => array_get($values, "container.instance_$i.team_external", FALSE),
+      '#attributes' => array(
+        'data-parsley-error-message' => t('Please add the name of the team member.'),
+        'data-parsley-required' => TRUE,
+      ),
     );
     // Team member role.
-    $form['container']['instance_' . $i]['team_role'] = array(
-      '#weight' => '1',
+    $form['container']["instance_$i"]['team_role'] = array(
+      '#weight' => '2',
       '#type' => 'textfield',
       '#title' => t('Role within the team !tip', array(
         '!tip' => _help_tip(),
       )),
-      '#default_value' => array_get($values, 'container.instance_' . $i . '.team_role', FALSE),
+      '#default_value' => array_get($values, "container.instance_$i.team_role", FALSE),
+      '#attributes' => array(
+        'data-parsley-error-message' => t('Please add the role of the team member.'),
+        'data-parsley-required' => TRUE,
+      ),
     );
     // Team member training.
-    $form['container']['instance_' . $i]['team_training'] = array(
-      '#weight' => '2',
+    $form['container']["instance_$i"]['team_training'] = array(
+      '#weight' => '3',
       '#type' => 'textarea',
+      '#resizable' => FALSE,
       '#title' => t('Relevant training !tip', array(
         '!tip' => _help_tip(),
       )),
-      '#default_value' => array_get($values, 'container.instance_' . $i . '.team_training', FALSE),
+      '#default_value' => array_get($values, "container.instance_$i.team_training", FALSE),
+      '#attributes' => array(
+        'data-parsley-error-message' => t('Please add the training of the team member.'),
+        'data-parsley-required' => TRUE,
+      ),
     );
     // Team member training.
-    $form['container']['instance_' . $i]['team_qualifications'] = array(
-      '#weight' => '3',
+    $form['container']["instance_$i"]['team_qualifications'] = array(
+      '#weight' => '4',
       '#type' => 'textarea',
+      '#resizable' => FALSE,
       '#title' => t('Qualifications !tip', array(
         '!tip' => _help_tip(),
       )),
-      '#default_value' => array_get($values, 'container.instance_' . $i . '.team_qualifications', FALSE),
+      '#default_value' => array_get($values, "container.instance_$i.team_qualifications", FALSE),
+      '#attributes' => array(
+        'data-parsley-error-message' => t('Please add the qualifications of the team member.'),
+        'data-parsley-required' => TRUE,
+      ),
     );
     // Team member experience.
-    $form['container']['instance_' . $i]['team_experience'] = array(
-      '#weight' => '4',
+    $form['container']["instance_$i"]['team_experience'] = array(
+      '#weight' => '5',
       '#type' => 'textarea',
+      '#resizable' => FALSE,
       '#title' => t('List relevant experience !tip', array(
         '!tip' => _help_tip(),
       )),
-      '#default_value' => array_get($values, 'container.instance_' . $i . '.team_experience', FALSE),
+      '#default_value' => array_get($values, "container.instance_$i.team_experience", FALSE),
+      '#attributes' => array(
+        'data-parsley-error-message' => t('Please add the experience of the team member.'),
+        'data-parsley-required' => TRUE,
+      ),
     );
   }
 
@@ -89,7 +129,7 @@ function preparatory_d(&$form_state, &$next_step) {
   // it to be un-editable (enforced).
   $form['container']['instance_0']['team_role']['#default_value'] = t('Team leader');
   $form['container']['instance_0']['team_role']['#disabled'] = TRUE;
-  $form['container']['instance_0']['team_name']['#title'] = t('Name of HACCP Team Member');
+  $form['container']['instance_0']['team_external']['#access'] = FALSE;
 
   $form['container']['team_skills'] = array(
     '#type' => 'radios',
@@ -157,31 +197,30 @@ function preparatory_d_validate($form, &$form_state) {
     // In each instance, check whether some of the fields have been filled in,
     // if they have then check they have all been filled in.
     $checks = array(
-      'container[instance_' . $i . '][team_name]' => _text_field_is_empty($values, 'container.instance_' . $i . '.team_name'),
-      'container[instance_' . $i . '][team_role]' => _text_field_is_empty($values, 'container.instance_' . $i . '.team_role'),
-      'container[instance_' . $i . '][team_training]' => _text_field_is_empty($values, 'container.instance_' . $i . '.team_training'),
-      'container[instance_' . $i . '][team_qualifications]' => _text_field_is_empty($values, 'container.instance_' . $i . '.team_qualifications'),
-      'container[instance_' . $i . '][team_experience]' => _text_field_is_empty($values, 'container.instance_' . $i . '.team_experience'),
+      "container[instance_$i][team_name]" => "container.instance_$i.team_name",
+      "container[instance_$i][team_role]" => "container.instance_$i.team_role",
+      "container[instance_$i][team_training]" => "container.instance_$i.team_training",
+      "container[instance_$i][team_qualifications]" => "container.instance_$i.team_qualifications",
+      "container[instance_$i][team_experience]" => "container.instance_$i.team_experience",
     );
     // Iterate through all the field checks and if we get any FALSE returns it
     // means we have some content in a field. This will no longer invalidate the
     // form.
     $field_count = 0;
-    foreach ($checks as $key => $check) {
-      if ($check == FALSE) {
+    foreach ($checks as $name => $path) {
+      if (_text_field_is_empty($values, $path) == FALSE) {
         $field_count++;
       }
       else {
-        $field_errors[$key] = $key;
+        $field_errors[$name] = $path;
       }
     }
     // Now check if there is some content but not all the content.
     if ($field_count > 0 && $field_count < 5) {
-      $message = t('Content is required in all five fields for a team member.');
-      myhacpp_prepare_validation('global', $message, $form_state);
       // Check each field and highlight the error fields.
-      foreach ($field_errors as $name => $field) {
-        myhacpp_prepare_validation($name, NULL, $form_state);
+      foreach ($field_errors as $name => $path) {
+        $element = array_get($form, $path);
+        myhacpp_prepare_validation($name, $element['#attributes']['data-parsley-error-message'], $form_state);
       }
       $invalid = TRUE;
     }
