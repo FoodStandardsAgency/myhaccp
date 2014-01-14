@@ -59,7 +59,7 @@ function preparatory_c_question_4(&$form_state, &$next_step) {
   $form['container']['prep_c_q4']['physical_container']['physical_other'] = array(
     '#type' => 'textarea',
     '#title' => t('Other'),
-    '#default_value' => array_get($values, 'container.prep_c_q4.physical_container.physical_other', array()),
+    '#default_value' => array_get($values, 'container.prep_c_q4.physical_container.physical_other', FALSE),
   );
 
   // Chemical.
@@ -90,7 +90,7 @@ function preparatory_c_question_4(&$form_state, &$next_step) {
   $form['container']['prep_c_q4']['chemical_container']['chemical_other'] = array(
     '#type' => 'textarea',
     '#title' => t('Other'),
-    '#default_value' => array_get($values, 'container.prep_c_q4.chemical_container.chemical_other', array()),
+    '#default_value' => array_get($values, 'container.prep_c_q4.chemical_container.chemical_other', FALSE),
   );
 
   // Biological.
@@ -121,7 +121,7 @@ function preparatory_c_question_4(&$form_state, &$next_step) {
   $form['container']['prep_c_q4']['biological_container']['biological_other'] = array(
     '#type' => 'textarea',
     '#title' => t('Other'),
-    '#default_value' => array_get($values, 'container.prep_c_q4.biological_container.biological_other', array()),
+    '#default_value' => array_get($values, 'container.prep_c_q4.biological_container.biological_other', FALSE),
   );
 
   // Allergens.
@@ -152,7 +152,7 @@ function preparatory_c_question_4(&$form_state, &$next_step) {
   $form['container']['prep_c_q4']['allergens_container']['allergens_other'] = array(
     '#type' => 'textarea',
     '#title' => t('Other'),
-    '#default_value' => array_get($values, 'container.prep_c_q4.allergens_container.allergens_other', array()),
+    '#default_value' => array_get($values, 'container.prep_c_q4.allergens_container.allergens_other', FALSE),
   );
 
   $form['#validate'][] = 'preparatory_c_question_4_validate';
