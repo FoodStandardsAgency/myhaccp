@@ -69,6 +69,7 @@ function preparatory_a(&$form_state, &$next_step) {
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-trigger' => 'change',
+      'data-parsley-error-message' => t('Please choose at least one option from the prerequisites field.'),
     ),
   );
 
@@ -82,6 +83,7 @@ function preparatory_a(&$form_state, &$next_step) {
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-trigger' => 'keyup change',
+      'data-parsley-error-message' => t('Enter the location of your documents.'),
     ),
   );
 

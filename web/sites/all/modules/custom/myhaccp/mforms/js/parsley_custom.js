@@ -16,6 +16,10 @@
         onFormValidate: function(elem) {
           // Always validate, don't block form submission.
           return true;
+        },
+        onFieldSuccess: function(elem) {
+          // Once field is validated remove the error messages.
+          $(elem).parents('.form-item').children('div.validation').hide();
         }
       });
     }

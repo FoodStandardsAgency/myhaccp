@@ -35,53 +35,53 @@ function preparatory_d(&$form_state, &$next_step) {
   }
   for ($i = 0; $i < $form_state['num_instances']; $i++) {
     // Contain everything for this instance inside a fieldset.
-    $form['container']['instance_' . $i] = array(
+    $form['container']["instance_$i"] = array(
       '#type' => 'fieldset',
     );
     // Team member name.
-    $form['container']['instance_' . $i]['team_name'] = array(
+    $form['container']["instance_$i"]['team_name'] = array(
       '#weight' => '0',
       '#type' => 'textfield',
       '#title' => t('Name of External HACCP Team Member !tip', array(
         '!tip' => _help_tip(),
       )),
-      '#default_value' => array_get($values, 'container.instance_' . $i . '.team_name', FALSE),
+      '#default_value' => array_get($values, "container.instance_$i.team_name", FALSE),
     );
     // Team member role.
-    $form['container']['instance_' . $i]['team_role'] = array(
+    $form['container']["instance_$i"]['team_role'] = array(
       '#weight' => '1',
       '#type' => 'textfield',
       '#title' => t('Role within the team !tip', array(
         '!tip' => _help_tip(),
       )),
-      '#default_value' => array_get($values, 'container.instance_' . $i . '.team_role', FALSE),
+      '#default_value' => array_get($values, "container.instance_$i.team_role", FALSE),
     );
     // Team member training.
-    $form['container']['instance_' . $i]['team_training'] = array(
+    $form['container']["instance_$i"]['team_training'] = array(
       '#weight' => '2',
       '#type' => 'textarea',
       '#title' => t('Relevant training !tip', array(
         '!tip' => _help_tip(),
       )),
-      '#default_value' => array_get($values, 'container.instance_' . $i . '.team_training', FALSE),
+      '#default_value' => array_get($values, "container.instance_$i.team_training", FALSE),
     );
     // Team member training.
-    $form['container']['instance_' . $i]['team_qualifications'] = array(
+    $form['container']["instance_$i"]['team_qualifications'] = array(
       '#weight' => '3',
       '#type' => 'textarea',
       '#title' => t('Qualifications !tip', array(
         '!tip' => _help_tip(),
       )),
-      '#default_value' => array_get($values, 'container.instance_' . $i . '.team_qualifications', FALSE),
+      '#default_value' => array_get($values, "container.instance_$i.team_qualifications", FALSE),
     );
     // Team member experience.
-    $form['container']['instance_' . $i]['team_experience'] = array(
+    $form['container']["instance_$i"]['team_experience'] = array(
       '#weight' => '4',
       '#type' => 'textarea',
       '#title' => t('List relevant experience !tip', array(
         '!tip' => _help_tip(),
       )),
-      '#default_value' => array_get($values, 'container.instance_' . $i . '.team_experience', FALSE),
+      '#default_value' => array_get($values, "container.instance_$i.team_experience", FALSE),
     );
   }
 
@@ -157,11 +157,21 @@ function preparatory_d_validate($form, &$form_state) {
     // In each instance, check whether some of the fields have been filled in,
     // if they have then check they have all been filled in.
     $checks = array(
-      'container[instance_' . $i . '][team_name]' => _text_field_is_empty($values, 'container.instance_' . $i . '.team_name'),
-      'container[instance_' . $i . '][team_role]' => _text_field_is_empty($values, 'container.instance_' . $i . '.team_role'),
-      'container[instance_' . $i . '][team_training]' => _text_field_is_empty($values, 'container.instance_' . $i . '.team_training'),
-      'container[instance_' . $i . '][team_qualifications]' => _text_field_is_empty($values, 'container.instance_' . $i . '.team_qualifications'),
-      'container[instance_' . $i . '][team_experience]' => _text_field_is_empty($values, 'container.instance_' . $i . '.team_experience'),
+      "container[instance_$i][team_name]" => _text_field_is_empty(
+        $values, "container.instance_$i.team_name"
+      ),
+      "container[instance_$i][team_role]" => _text_field_is_empty(
+        $values, "container.instance_$i.team_role"
+      ),
+      "container[instance_$i][team_training]" => _text_field_is_empty(
+        $values, "container.instance_$i.team_training"
+      ),
+      "container[instance_$i][team_qualifications]" => _text_field_is_empty(
+        $values, "container.instance_$i.team_qualifications"
+      ),
+      "container[instance_$i][team_experience]" => _text_field_is_empty(
+        $values, "container.instance_$i.team_experience"
+      ),
     );
     // Iterate through all the field checks and if we get any FALSE returns it
     // means we have some content in a field. This will no longer invalidate the

@@ -241,20 +241,32 @@ function myhaccp_element_info_alter(&$types) {
  * @see myhaccp_element_info_alter()
  */
 function myhaccp_process($element, &$form_state) {
+  $global_done = &drupal_static(__FUNCTION__);
   if (isset($form_state['values']['validate'])) {
-    // First check for the special 'global' array element.
-    if (isset($form_state['values']['validate']['global'])) {
+    // First check for the special 'global' array element and make sure it
+    // hasn't already been completed.
+    if (isset($form_state['values']['validate']['global']) && !isset($global_done)) {
       // This means we need to show a message but not highlight any specific
-      // form fields.
-      $message = $form_state['values']['validate']['global'];
-      drupal_set_message($message, 'error', FALSE);
+      // form fields. It is possible that there are multiple global message,
+      // in which case iterate and display them.
+      if (is_array($form_state['values']['validate']['global'])) {
+        foreach ($form_state['values']['validate']['global'] as $message) {
+          drupal_set_message($message, 'error', FALSE);
+        }
+      }
+      else {
+        $message = $form_state['values']['validate']['global'];
+        drupal_set_message($message, 'error', FALSE);
+      }
+      $global_done = TRUE;
     }
     // Add the error class to each of the elements.
     foreach ($form_state['values']['validate'] as $name => $message) {
       if (isset($element['#name']) && $element['#name'] == $name) {
         $element['#attributes']['class']['error'] = 'error';
         if (!empty($message) && $form_state['executed'] == TRUE) {
-          drupal_set_message($message, 'error', FALSE);
+          // Add the message inline.
+          $element['#validation_message'] = $message;
         }
       }
     }
