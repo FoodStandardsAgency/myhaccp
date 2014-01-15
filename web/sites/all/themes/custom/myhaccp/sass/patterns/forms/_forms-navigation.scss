@@ -1,0 +1,57 @@
+/**
+ * The pager element
+ * Displayed at the top of the tool
+ **/
+
+.pager-wrapper {
+  @include clearfix();
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+  border-bottom: 4px solid $grey-1;
+  h2.pager-title {
+    text-transform: uppercase;
+    font-size: 1em;
+    float: left;
+    margin: 4.05em 2em 0 0;
+  }
+  h3 {
+    font-size: 1em;
+  }
+  .preparatory-wrapper {
+    float: left;
+    margin-right: 5em;
+  }
+  .principles-wrapper {
+    float: left;
+  }
+  .pager-controls {
+    input {
+      margin: 0;
+      border: 0;
+      background: none;
+      font-size: 1.3em;
+      &.current-step {
+        background: $accent-1;
+        color: $text;
+        &.visited-step {
+          color: $text;
+          &:hover {
+            color: $text;
+          }
+        }
+      }
+      &.active-step {
+        color: $accent-1;
+        &:hover {
+          color: $text;
+        }
+      }
+      &.visited-step {
+        color: $accent-2;
+        &:hover {
+          color: $text;
+        }
+      }
+    }
+  }
+}

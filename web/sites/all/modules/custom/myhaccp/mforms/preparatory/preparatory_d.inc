@@ -37,6 +37,9 @@ function preparatory_d(&$form_state, &$next_step) {
     // Contain everything for this instance inside a fieldset.
     $form['container']["instance_$i"] = array(
       '#type' => 'fieldset',
+      '#attributes' => array(
+        'class' => array('instance'),
+      ),
     );
     // Team member name.
     $form['container']["instance_$i"]['team_name'] = array(

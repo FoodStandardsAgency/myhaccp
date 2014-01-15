@@ -2,6 +2,8 @@
  * Forms
  */
 
+@import 'forms-mixins';
+
 /** Variables **/
 
 $form_elements_background_color: #FCFCFC;
@@ -10,11 +12,6 @@ $form_elements_error_color: #f00;
 
 /** General form styling **/
 
-%input-focus {
-  &:focus {
-    outline: 2px solid $form_elements_outline_color;
-  }
-}
 
 // Base elements
 input[type="text"],
@@ -108,8 +105,6 @@ input.form-button-disabled:active {
   text-shadow: none;
   color: #999;
 }
-
-
 
 .form-disabled input.form-autocomplete,
 .form-disabled input.form-text,
@@ -272,61 +267,6 @@ input#edit-submit.form-add {
   overflow: hidden;
 }
 
-/** The pager element **/
-
-.pager-wrapper {
-  @include clearfix();
-  padding-bottom: 1em;
-  margin-bottom: 1em;
-  border-bottom: 4px solid $grey-1;
-  h2.pager-title {
-    text-transform: uppercase;
-    font-size: 1em;
-    float: left;
-    margin: 4.05em 2em 0 0;
-  }
-  h3 {
-    font-size: 1em;
-  }
-  .preparatory-wrapper {
-    float: left;
-    margin-right: 5em;
-  }
-  .principles-wrapper {
-    float: left;
-  }
-  .pager-controls {
-    input {
-      margin: 0;
-      border: 0;
-      background: none;
-      font-size: 1.3em;
-      &.current-step {
-        background: $accent-1;
-        color: $text;
-        &.visited-step {
-          color: $text;
-          &:hover {
-            color: $text;
-          }
-        }
-      }
-      &.active-step {
-        color: $accent-1;
-        &:hover {
-          color: $text;
-        }
-      }
-      &.visited-step {
-        color: $accent-2;
-        &:hover {
-          color: $text;
-        }
-      }
-    }
-  }
-}
-
 
 /** Field Groups **/
 
@@ -348,47 +288,6 @@ input#edit-submit.form-add {
     .form-item {
       margin-right: 1em;
       float: left;
-    }
-  }
-}
-
-
-
-/** Table style **/
-
-
-%fieldgroup-table {
-  border-collapse: collapse;
-  margin-bottom: 2em;
-  display: table;
-  table-layout: fixed;
-  width: 100%;
-    > div.label {
-      display: table-caption;
-      margin-bottom: 1em;
-      font-weight: 500;
-      span {
-        display: table-cell;
-        padding-bottom: 1em;
-      }
-    }
-  > .form-wrapper {
-    padding: 0.5em;
-    border: 1px solid $base_color;
-    @media all and (min-width: $break_sm_up) {
-      display: table-cell;
-    }
-    &:first-child {
-      padding-left: 0;
-    }
-    &:last-child {
-      padding-right: 0;
-    }
-    > .form-item {
-      > label {
-        font-weight: bold;
-        border-bottom: 1px solid $base_color;
-      }
     }
   }
 }
@@ -516,7 +415,19 @@ div.teaser-checkbox .form-item,
  * Specific form styling
  */
 
+/** Prep Stage D **/
 
+.prep-d {
+  fieldset.instance .form-wrapper {
+    @extend %half-textareas;
+  }
+  .team-skills {
+    margin-top: 2em;
+    .form-radios {
+      @extend %inline-radios;
+    }
+  }
+}
 
 
 
@@ -537,19 +448,7 @@ div.teaser-checkbox .form-item,
 }
 
 .p1q1-hazards {
-  clear: both;
-  @media all and (min-width: $break_sm_up) {
-    margin-left: -$_gutter;
-    .group-title {
-      margin-left: $_gutter;
-    }
-    .form-item {
-        @include column-split(half);
-      }
-    }
-  textarea {
-    width: 95%;
-  }
+  @extend %half-textareas;
 }
 
 /** Principle 1, Q2 **/

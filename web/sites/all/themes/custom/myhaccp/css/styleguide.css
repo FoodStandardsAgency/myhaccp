@@ -455,6 +455,43 @@ h4.browser-title {
   border-bottom: 1px solid #006f51;
 }
 
+/** Table style **/
+.group-pr-c-hazards {
+  border-collapse: collapse;
+  margin-bottom: 2em;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+.group-pr-c-hazards > div.label {
+  display: table-caption;
+  margin-bottom: 1em;
+  font-weight: 500;
+}
+.group-pr-c-hazards > div.label span {
+  display: table-cell;
+  padding-bottom: 1em;
+}
+.group-pr-c-hazards > .form-wrapper {
+  padding: 0.5em;
+  border: 1px solid #006f51;
+}
+@media all and (min-width: 640px) {
+  .group-pr-c-hazards > .form-wrapper {
+    display: table-cell;
+  }
+}
+.group-pr-c-hazards > .form-wrapper:first-child {
+  padding-left: 0;
+}
+.group-pr-c-hazards > .form-wrapper:last-child {
+  padding-right: 0;
+}
+.group-pr-c-hazards > .form-wrapper > .form-item > label {
+  font-weight: bold;
+  border-bottom: 1px solid #006f51;
+}
+
 /** Other styling **/
 .form-principle-3 .field-group-wrapper {
   margin-bottom: 1em;
@@ -469,6 +506,7 @@ h4.browser-title {
   padding-bottom: 1em;
 }
 
+/** Textareas: half-width floating **/
 .decision-tree-qs .decision-tree-q-row {
   clear: both;
   margin-bottom: 0.5em;

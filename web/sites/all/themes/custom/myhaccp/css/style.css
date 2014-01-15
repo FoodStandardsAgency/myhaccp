@@ -1264,14 +1264,172 @@ ul.secondary a.active {
 /**
  * Forms
  */
-/** Variables **/
-/** General form styling **/
 input:focus,
 textarea:focus,
 select:focus {
   outline: 2px solid #007fb2;
 }
 
+.prep-d .team-skills .form-radios .form-item {
+  display: inline;
+}
+.prep-d .team-skills .form-radios label, .prep-d .team-skills .form-radios input {
+  display: inline;
+  margin-right: 0.25em;
+}
+.prep-d .team-skills .form-radios input {
+  vertical-align: baseline;
+}
+
+/**
+ * Inline field group
+ *
+ * Displays elements of a field group side by side
+ *
+ * Example usage: PR, Step 1 Question 3 (form-pr-c.php)
+ * State start and end points of the HACCP plan
+ */
+/** Table style **/
+.prep-c-2 .fieldset-wrapper {
+  border-collapse: collapse;
+  margin-bottom: 2em;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+.prep-c-2 .fieldset-wrapper > div.label {
+  display: table-caption;
+  margin-bottom: 1em;
+  font-weight: 500;
+}
+.prep-c-2 .fieldset-wrapper > div.label span {
+  display: table-cell;
+  padding-bottom: 1em;
+}
+.prep-c-2 .fieldset-wrapper > .form-wrapper {
+  padding: 0.5em;
+  border: 1px solid #006f51;
+}
+@media all and (min-width: 640px) {
+  .prep-c-2 .fieldset-wrapper > .form-wrapper {
+    display: table-cell;
+  }
+}
+.prep-c-2 .fieldset-wrapper > .form-wrapper:first-child {
+  padding-left: 0;
+}
+.prep-c-2 .fieldset-wrapper > .form-wrapper:last-child {
+  padding-right: 0;
+}
+.prep-c-2 .fieldset-wrapper > .form-wrapper > .form-item > label {
+  font-weight: bold;
+  border-bottom: 1px solid #006f51;
+}
+
+.form-1-principle-1 .field-group-principle-1 table {
+  width: 100%;
+}
+.form-1-principle-1 .field-group-principle-1 > .field-group-div {
+  border-bottom: 1px solid #007fb2;
+  overflow: hidden;
+  padding: 1.5em 0;
+}
+.form-1-principle-1 .field-group-principle-1 .form-item {
+  float: left;
+  margin-bottom: 1em;
+  padding-right: 2em;
+}
+.form-1-principle-1 .field-group-principle-1 .field-group-row {
+  clear: both;
+}
+
+.field-group-principle-1 .form-table {
+  border-bottom: 1px solid #007fb2;
+  padding-bottom: 0em;
+  margin-bottom: 2em;
+}
+.field-group-principle-1 .form-table input[type="text"] {
+  min-width: inherit;
+}
+
+/** Table style **/
+.prep-c-2 .fieldset-wrapper {
+  border-collapse: collapse;
+  margin-bottom: 2em;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+.prep-c-2 .fieldset-wrapper > div.label {
+  display: table-caption;
+  margin-bottom: 1em;
+  font-weight: 500;
+}
+.prep-c-2 .fieldset-wrapper > div.label span {
+  display: table-cell;
+  padding-bottom: 1em;
+}
+.prep-c-2 .fieldset-wrapper > .form-wrapper {
+  padding: 0.5em;
+  border: 1px solid #006f51;
+}
+@media all and (min-width: 640px) {
+  .prep-c-2 .fieldset-wrapper > .form-wrapper {
+    display: table-cell;
+  }
+}
+.prep-c-2 .fieldset-wrapper > .form-wrapper:first-child {
+  padding-left: 0;
+}
+.prep-c-2 .fieldset-wrapper > .form-wrapper:last-child {
+  padding-right: 0;
+}
+.prep-c-2 .fieldset-wrapper > .form-wrapper > .form-item > label {
+  font-weight: bold;
+  border-bottom: 1px solid #006f51;
+}
+
+/** Other styling **/
+.form-principle-3 .field-group-wrapper {
+  margin-bottom: 1em;
+}
+.form-principle-3 .group-radios label {
+  display: inline;
+  padding: 0.25em;
+}
+.form-principle-3 .field-question-set {
+  border-bottom: 1px solid #007fb2;
+  margin-bottom: 2em;
+  padding-bottom: 1em;
+}
+
+/** Textareas: half-width floating **/
+.prep-d fieldset.instance .form-wrapper, .p1q1-hazards {
+  clear: both;
+}
+@media all and (min-width: 640px) {
+  .prep-d fieldset.instance .form-wrapper, .p1q1-hazards {
+    margin-left: -25px;
+  }
+  .prep-d fieldset.instance .form-wrapper .group-title, .p1q1-hazards .group-title {
+    margin-left: 25px;
+  }
+  .prep-d fieldset.instance .form-wrapper .form-item, .p1q1-hazards .form-item {
+    width: 50%;
+    float: left;
+    padding-left: 25px;
+    padding-right: 25px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+}
+.prep-d fieldset.instance .form-wrapper textarea, .p1q1-hazards textarea {
+  width: 95%;
+}
+
+/** Variables **/
+/** General form styling **/
 input[type="text"],
 input[type="email"],
 input[type="date"],
@@ -1694,59 +1852,6 @@ input#edit-submit.form-add {
   overflow: hidden;
 }
 
-/** The pager element **/
-.pager-wrapper {
-  overflow: hidden;
-  *zoom: 1;
-  padding-bottom: 1em;
-  margin-bottom: 1em;
-  border-bottom: 4px solid #eeeeee;
-}
-.pager-wrapper h2.pager-title {
-  text-transform: uppercase;
-  font-size: 1em;
-  float: left;
-  margin: 4.05em 2em 0 0;
-}
-.pager-wrapper h3 {
-  font-size: 1em;
-}
-.pager-wrapper .preparatory-wrapper {
-  float: left;
-  margin-right: 5em;
-}
-.pager-wrapper .principles-wrapper {
-  float: left;
-}
-.pager-wrapper .pager-controls input {
-  margin: 0;
-  border: 0;
-  background: none;
-  font-size: 1.3em;
-}
-.pager-wrapper .pager-controls input.current-step {
-  background: #6cb33f;
-  color: black;
-}
-.pager-wrapper .pager-controls input.current-step.visited-step {
-  color: black;
-}
-.pager-wrapper .pager-controls input.current-step.visited-step:hover {
-  color: black;
-}
-.pager-wrapper .pager-controls input.active-step {
-  color: #6cb33f;
-}
-.pager-wrapper .pager-controls input.active-step:hover {
-  color: black;
-}
-.pager-wrapper .pager-controls input.visited-step {
-  color: #007fb2;
-}
-.pager-wrapper .pager-controls input.visited-step:hover {
-  color: black;
-}
-
 /** Field Groups **/
 .field-group-wrapper {
   margin-bottom: 1em;
@@ -1765,43 +1870,6 @@ input#edit-submit.form-add {
     margin-right: 1em;
     float: left;
   }
-}
-
-/** Table style **/
-.prep-c-2 .fieldset-wrapper {
-  border-collapse: collapse;
-  margin-bottom: 2em;
-  display: table;
-  table-layout: fixed;
-  width: 100%;
-}
-.prep-c-2 .fieldset-wrapper > div.label {
-  display: table-caption;
-  margin-bottom: 1em;
-  font-weight: 500;
-}
-.prep-c-2 .fieldset-wrapper > div.label span {
-  display: table-cell;
-  padding-bottom: 1em;
-}
-.prep-c-2 .fieldset-wrapper > .form-wrapper {
-  padding: 0.5em;
-  border: 1px solid #006f51;
-}
-@media all and (min-width: 640px) {
-  .prep-c-2 .fieldset-wrapper > .form-wrapper {
-    display: table-cell;
-  }
-}
-.prep-c-2 .fieldset-wrapper > .form-wrapper:first-child {
-  padding-left: 0;
-}
-.prep-c-2 .fieldset-wrapper > .form-wrapper:last-child {
-  padding-right: 0;
-}
-.prep-c-2 .fieldset-wrapper > .form-wrapper > .form-item > label {
-  font-weight: bold;
-  border-bottom: 1px solid #006f51;
 }
 
 .form-1-principle-1 .field-group-principle-1 table {
@@ -1916,6 +1984,11 @@ div.teaser-checkbox .form-item,
 /**
  * Specific form styling
  */
+/** Prep Stage D **/
+.prep-d .team-skills {
+  margin-top: 2em;
+}
+
 /** Principle 1, Q1 **/
 .p1q1-step {
   overflow: hidden;
@@ -1930,30 +2003,6 @@ div.teaser-checkbox .form-item,
 .p1q1-step .form-item.p1q1-step-no input {
   width: 3em;
   min-width: 3em;
-}
-
-.p1q1-hazards {
-  clear: both;
-}
-@media all and (min-width: 640px) {
-  .p1q1-hazards {
-    margin-left: -25px;
-  }
-  .p1q1-hazards .group-title {
-    margin-left: 25px;
-  }
-  .p1q1-hazards .form-item {
-    width: 50%;
-    float: left;
-    padding-left: 25px;
-    padding-right: 25px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-}
-.p1q1-hazards textarea {
-  width: 95%;
 }
 
 /** Principle 1, Q2 **/
@@ -1981,6 +2030,62 @@ div.teaser-checkbox .form-item,
 .p2-q1 label {
   display: inline;
   padding: 0.25em;
+}
+
+/**
+ * The pager element
+ * Displayed at the top of the tool
+ **/
+.pager-wrapper {
+  overflow: hidden;
+  *zoom: 1;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+  border-bottom: 4px solid #eeeeee;
+}
+.pager-wrapper h2.pager-title {
+  text-transform: uppercase;
+  font-size: 1em;
+  float: left;
+  margin: 4.05em 2em 0 0;
+}
+.pager-wrapper h3 {
+  font-size: 1em;
+}
+.pager-wrapper .preparatory-wrapper {
+  float: left;
+  margin-right: 5em;
+}
+.pager-wrapper .principles-wrapper {
+  float: left;
+}
+.pager-wrapper .pager-controls input {
+  margin: 0;
+  border: 0;
+  background: none;
+  font-size: 1.3em;
+}
+.pager-wrapper .pager-controls input.current-step {
+  background: #6cb33f;
+  color: black;
+}
+.pager-wrapper .pager-controls input.current-step.visited-step {
+  color: black;
+}
+.pager-wrapper .pager-controls input.current-step.visited-step:hover {
+  color: black;
+}
+.pager-wrapper .pager-controls input.active-step {
+  color: #6cb33f;
+}
+.pager-wrapper .pager-controls input.active-step:hover {
+  color: black;
+}
+.pager-wrapper .pager-controls input.visited-step {
+  color: #007fb2;
+}
+.pager-wrapper .pager-controls input.visited-step:hover {
+  color: black;
 }
 
 /**

@@ -7,6 +7,19 @@ $form_elements_outline_color: $accent-2;
   }
 }
 
+%inline-radios {
+  .form-item {
+    display: inline;
+  }
+  label, input {
+    display: inline;
+    margin-right: 0.25em;
+  }
+  input {
+    vertical-align: baseline;
+  }
+}
+
 /**
  * Inline field group
  *
@@ -105,6 +118,43 @@ $form_elements_outline_color: $accent-2;
   }
 }
 
+/** Table style **/
+%fieldgroup-table {
+  border-collapse: collapse;
+  margin-bottom: 2em;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+    > div.label {
+      display: table-caption;
+      margin-bottom: 1em;
+      font-weight: 500;
+      span {
+        display: table-cell;
+        padding-bottom: 1em;
+      }
+    }
+  > .form-wrapper {
+    padding: 0.5em;
+    border: 1px solid $base_color;
+    @media all and (min-width: $break_sm_up) {
+      display: table-cell;
+    }
+    &:first-child {
+      padding-left: 0;
+    }
+    &:last-child {
+      padding-right: 0;
+    }
+    > .form-item {
+      > label {
+        font-weight: bold;
+        border-bottom: 1px solid $base_color;
+      }
+    }
+  }
+}
+
 /** Other styling **/
 
 %standard-form-layouts {
@@ -121,5 +171,23 @@ $form_elements_outline_color: $accent-2;
     border-bottom: 1px solid $accent_2;
     margin-bottom: 2em;
     padding-bottom: 1em;
+  }
+}
+
+/** Textareas: half-width floating **/
+
+%half-textareas {
+  clear: both;
+  @media all and (min-width: $break_sm_up) {
+    margin-left: -$_gutter;
+    .group-title {
+      margin-left: $_gutter;
+    }
+    .form-item {
+        @include column-split(half);
+      }
+    }
+  textarea {
+    width: 95%;
   }
 }
