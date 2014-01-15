@@ -138,7 +138,7 @@ function myhaccp_myhaccp_mforms_init() {
   $path = libraries_get_path('parsleyjs');
   drupal_add_js($path . '/parsley.js');
   drupal_add_js(drupal_get_path('module', 'myhaccp') . '/mforms/js/parsley_custom.js');
-  $path = libraries_get_path('qtip');
+  $path = libraries_get_path('qtip2');
   if ($path) {
     drupal_add_js($path . '/dist/jquery.qtip.js');
     drupal_add_css($path . '/dist/jquery.qtip.min.css');
