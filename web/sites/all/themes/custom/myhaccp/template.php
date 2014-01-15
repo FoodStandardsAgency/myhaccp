@@ -295,7 +295,7 @@ function myhaccp_form_element($variables) {
   }
 
   if (isset($element['#validation_message']) && !empty($element['#validation_message'])) {
-    $output .= '<div class="validation error">' . $element['#validation_message'] . "</div>\n";
+    $output .= '<ul class="parsley-error-list server-side"><li class="custom-error-message">' . $element['#validation_message'] . "</li></ul>\n";
   }
 
   if (!empty($element['#description'])) {
