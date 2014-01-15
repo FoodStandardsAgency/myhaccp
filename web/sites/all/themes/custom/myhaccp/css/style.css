@@ -1270,14 +1270,14 @@ select:focus {
   outline: 2px solid #007fb2;
 }
 
-.prep-d .team-skills .form-radios .form-item {
+.prep-d .form-item-container-team-skills .form-radios .form-item {
   display: inline;
 }
-.prep-d .team-skills .form-radios label, .prep-d .team-skills .form-radios input {
+.prep-d .form-item-container-team-skills .form-radios label, .prep-d .form-item-container-team-skills .form-radios input {
   display: inline;
   margin-right: 0.25em;
 }
-.prep-d .team-skills .form-radios input {
+.prep-d .form-item-container-team-skills .form-radios input {
   vertical-align: baseline;
 }
 
@@ -1985,7 +1985,7 @@ div.teaser-checkbox .form-item,
  * Specific form styling
  */
 /** Prep Stage D **/
-.prep-d .team-skills {
+.prep-d .form-item-container-team-skills {
   margin-top: 2em;
 }
 

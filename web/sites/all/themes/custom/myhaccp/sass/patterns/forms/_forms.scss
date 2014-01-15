@@ -421,7 +421,7 @@ div.teaser-checkbox .form-item,
   fieldset.instance .form-wrapper {
     @extend %half-textareas;
   }
-  .team-skills {
+  .form-item-container-team-skills {
     margin-top: 2em;
     .form-radios {
       @extend %inline-radios;
