@@ -14,7 +14,7 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
   // them in form as default values.
   $values = myhaccp_prepare_values($data, $form_state);
 
-  drupal_set_title('Preparatory Stage C: Define scope of the study, Questions 1-3');
+  drupal_set_title('Preparatory Stage C: Define scope of the study, <br/>Questions 1-3', PASS_THROUGH);
 
   $form = array();
   $form['#attributes']['class'][] = 'pcq13';
