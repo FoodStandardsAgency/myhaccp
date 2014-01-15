@@ -81,43 +81,47 @@ function preparatory_d(&$form_state, &$next_step) {
         'data-parsley-required' => TRUE,
       ),
     );
-    // Team member training.
-    $form['container']["instance_$i"]['team_training'] = array(
+    $form['container']["instance_$i"]['wrapper'] = array(
+      '#type' => 'container',
       '#weight' => '3',
+    );
+    // Team member training.
+    $form['container']["instance_$i"]['wrapper']['team_training'] = array(
+      '#weight' => '1',
       '#type' => 'textarea',
       '#resizable' => FALSE,
       '#title' => t('Relevant training !tip', array(
         '!tip' => _help_tip(),
       )),
-      '#default_value' => array_get($values, "container.instance_$i.team_training", FALSE),
+      '#default_value' => array_get($values, "container.instance_$i.wrapper.team_training", FALSE),
       '#attributes' => array(
         'data-parsley-error-message' => t('Please add the training of the team member.'),
         'data-parsley-required' => TRUE,
       ),
     );
     // Team member training.
-    $form['container']["instance_$i"]['team_qualifications'] = array(
-      '#weight' => '4',
+    $form['container']["instance_$i"]['wrapper']['team_qualifications'] = array(
+      '#weight' => '2',
       '#type' => 'textarea',
       '#resizable' => FALSE,
       '#title' => t('Qualifications !tip', array(
         '!tip' => _help_tip(),
       )),
-      '#default_value' => array_get($values, "container.instance_$i.team_qualifications", FALSE),
+      '#default_value' => array_get($values, "container.instance_$i.wrapper.team_qualifications", FALSE),
       '#attributes' => array(
         'data-parsley-error-message' => t('Please add the qualifications of the team member.'),
         'data-parsley-required' => TRUE,
       ),
     );
     // Team member experience.
-    $form['container']["instance_$i"]['team_experience'] = array(
-      '#weight' => '5',
+    $form['container']["instance_$i"]['wrapper']['team_experience'] = array(
+      '#weight' => '3',
       '#type' => 'textarea',
       '#resizable' => FALSE,
       '#title' => t('List relevant experience !tip', array(
         '!tip' => _help_tip(),
       )),
-      '#default_value' => array_get($values, "container.instance_$i.team_experience", FALSE),
+      '#default_value' => array_get($values, "container.instance_$i.wrapper.team_experience", FALSE),
       '#attributes' => array(
         'data-parsley-error-message' => t('Please add the experience of the team member.'),
         'data-parsley-required' => TRUE,
@@ -199,9 +203,9 @@ function preparatory_d_validate($form, &$form_state) {
     $checks = array(
       "container[instance_$i][team_name]" => "container.instance_$i.team_name",
       "container[instance_$i][team_role]" => "container.instance_$i.team_role",
-      "container[instance_$i][team_training]" => "container.instance_$i.team_training",
-      "container[instance_$i][team_qualifications]" => "container.instance_$i.team_qualifications",
-      "container[instance_$i][team_experience]" => "container.instance_$i.team_experience",
+      "container[instance_$i][team_training]" => "container.instance_$i.wrapper.team_training",
+      "container[instance_$i][team_qualifications]" => "container.instance_$i.wrapper.team_qualifications",
+      "container[instance_$i][team_experience]" => "container.instance_$i.wrapper.team_experience",
     );
     // Iterate through all the field checks and if we get any FALSE returns it
     // means we have some content in a field. This will no longer invalidate the
