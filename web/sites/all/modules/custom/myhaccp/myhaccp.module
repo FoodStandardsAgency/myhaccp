@@ -140,8 +140,8 @@ function myhaccp_myhaccp_mforms_init() {
   drupal_add_js(drupal_get_path('module', 'myhaccp') . '/mforms/js/parsley_custom.js');
   $path = libraries_get_path('qtip2');
   if ($path) {
-    drupal_add_js($path . '/dist/jquery.qtip.js');
-    drupal_add_css($path . '/dist/jquery.qtip.min.css');
+    drupal_add_js($path . '/jquery.qtip.js');
+    drupal_add_css($path . '/jquery.qtip.min.css');
     drupal_add_js(drupal_get_path('module', 'myhaccp') . '/mforms/js/qtip2_custom.js');
   }
 
