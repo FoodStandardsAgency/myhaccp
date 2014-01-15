@@ -17,7 +17,7 @@ function preparatory_c_question_4(&$form_state, &$next_step) {
   drupal_set_title('Preparatory Stage C: Define scope of the study, <br/>Question 4', PASS_THROUGH);
 
   $form = array();
-  $form['#attributes']['class'][] = 'pcq4';
+  $form['#attributes']['class'][] = 'prep-c-2';
 
   // Wrap the form section in a fieldset.
   $form['container'] = array(

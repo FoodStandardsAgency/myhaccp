@@ -18,7 +18,7 @@ function preparatory_d(&$form_state, &$next_step) {
 
   $form = array();
   $form['#tree'] = TRUE;
-  $form['#attributes']['class'][] = 'pd';
+  $form['#attributes']['class'][] = 'prep-d';
 
   // Wrap the form section in a fieldset.
   $form['container'] = array(

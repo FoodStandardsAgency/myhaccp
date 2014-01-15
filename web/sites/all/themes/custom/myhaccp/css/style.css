@@ -2286,6 +2286,34 @@ footer[role=contentinfo] {
   color: #FFFFFF;
 }
 
+.js .help-text {
+  display: none;
+}
+
+.qtip-haccp {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #fafafa;
+  background-color: lightgrey;
+  color: black;
+  font-size: 1em;
+  line-height: normal;
+  max-width: 500px;
+  padding: 0.5em;
+}
+.qtip-haccp .qtip-titlebar {
+  background-color: #FFEF93;
+}
+.qtip-haccp .qtip-titlebar .qtip-close {
+  border-color: #AAA;
+  color: #111;
+}
+.qtip-haccp .qtip-icon {
+  border-color: #CCC;
+  background: #F1F1F1;
+  color: #777;
+}
+
 .node-homepage.view-mode-full {
   /** General layout **/
   /** Specific styling **/
