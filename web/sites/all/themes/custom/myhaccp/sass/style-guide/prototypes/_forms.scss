@@ -30,3 +30,61 @@ td.decision-tree-qs {
     min-width: 2em;
   }
 }
+
+.group-pr-c-q-3 {
+  @extend %group-inline;
+}
+
+%group-inline {
+  width: 100%;
+  @include clearfix;
+  @media all and (min-width: $break_med_up) {
+    > div {
+      margin: 1em 0 0 1em;
+    }
+    .form-wrapper {
+      float: left;
+      margin-right: 1em;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+    .form-item label {
+      display: inline;
+      margin-right: 0.5em;
+    }
+  }
+}
+
+
+.form-ps-c-2 {
+  textarea {
+    min-width: inherit;
+    max-width: 100%;
+  }
+  .group-pr-c-hazards > .form-wrapper > div {
+    padding-right: 10px;
+  }
+}
+
+.form-principle-3 {
+  @extend %standard-form-layouts;
+}
+
+%standard-form-layouts {
+  .field-group-wrapper {
+    margin-bottom: 1em;
+  }
+  .group-radios {
+    label {
+      display: inline;
+      padding: 0.25em;
+    }
+  }
+  .field-question-set {
+    border-bottom: 1px solid $accent_2;
+    margin-bottom: 2em;
+    padding-bottom: 1em;
+  }
+}
+

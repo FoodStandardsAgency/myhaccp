@@ -1424,7 +1424,6 @@ ul.tips li {
 }
 
 .form-item label.option {
-  font-size: 16px;
   text-transform: none;
 }
 
@@ -1436,6 +1435,14 @@ body div.form-type-radio div.description,
 body div.form-type-checkbox div.description {
   margin-left: 1.5em;
   /* LTR */
+}
+
+td.radios {
+  min-width: 120px;
+}
+td.radios label {
+  display: inline;
+  padding: 0.25em;
 }
 
 /** File fields **/
@@ -1753,29 +1760,50 @@ input#edit-submit.form-add {
  * Example usage: PR, Step 1 Question 3 (form-pr-c.php)
  * State start and end points of the HACCP plan
  */
-.group-pr-c-q-3 {
-  width: 100%;
-  overflow: hidden;
-  *zoom: 1;
-}
 @media all and (min-width: 860px) {
-  .group-pr-c-q-3 > div {
-    margin: 1em 0 0 1em;
-  }
-  .group-pr-c-q-3 .form-wrapper {
-    float: left;
+  #edit-container-prep-c-q3 .form-item {
     margin-right: 1em;
-  }
-  .group-pr-c-q-3 .form-wrapper:last-child {
-    margin-right: 0;
-  }
-  .group-pr-c-q-3 .form-item label {
-    display: inline;
-    margin-right: 0.5em;
+    float: left;
   }
 }
 
 /** Table style **/
+.prep-c-2 .fieldset-wrapper {
+  border-collapse: collapse;
+  margin-bottom: 2em;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+.prep-c-2 .fieldset-wrapper > div.label {
+  display: table-caption;
+  margin-bottom: 1em;
+  font-weight: 500;
+}
+.prep-c-2 .fieldset-wrapper > div.label span {
+  display: table-cell;
+  padding-bottom: 1em;
+}
+.prep-c-2 .fieldset-wrapper > .form-wrapper {
+  padding: 0.5em;
+  border: 1px solid #006f51;
+}
+@media all and (min-width: 640px) {
+  .prep-c-2 .fieldset-wrapper > .form-wrapper {
+    display: table-cell;
+  }
+}
+.prep-c-2 .fieldset-wrapper > .form-wrapper:first-child {
+  padding-left: 0;
+}
+.prep-c-2 .fieldset-wrapper > .form-wrapper:last-child {
+  padding-right: 0;
+}
+.prep-c-2 .fieldset-wrapper > .form-wrapper > .form-item > label {
+  font-weight: bold;
+  border-bottom: 1px solid #006f51;
+}
+
 .form-1-principle-1 .field-group-principle-1 table {
   width: 100%;
 }
@@ -1810,19 +1838,6 @@ input#edit-submit.form-add {
   font-weight: 500;
 }
 
-.p2-q1 label {
-  display: inline;
-  padding: 0.25em;
-}
-
-td.radios {
-  min-width: 120px;
-}
-td.radios label {
-  display: inline;
-  padding: 0.25em;
-}
-
 .form-principle-3 .field-group-wrapper {
   margin-bottom: 1em;
 }
@@ -1834,14 +1849,6 @@ td.radios label {
   border-bottom: 1px solid #007fb2;
   margin-bottom: 2em;
   padding-bottom: 1em;
-}
-
-.form-ps-c-2 textarea {
-  min-width: inherit;
-  max-width: 100%;
-}
-.form-ps-c-2 .group-pr-c-hazards > .form-wrapper > div {
-  padding-right: 10px;
 }
 
 /** ?? **/
@@ -1968,6 +1975,12 @@ div.teaser-checkbox .form-item,
 .p1q2 .significance input[type="text"] {
   min-width: 3em;
   width: 3em;
+}
+
+/** Principle 2 **/
+.p2-q1 label {
+  display: inline;
+  padding: 0.25em;
 }
 
 /**

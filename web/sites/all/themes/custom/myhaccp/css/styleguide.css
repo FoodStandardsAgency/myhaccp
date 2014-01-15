@@ -396,6 +396,28 @@ h4.browser-title {
  * Example usage: PR, Step 1 Question 3 (form-pr-c.php)
  * State start and end points of the HACCP plan
  */
+.group-pr-c-q-3 {
+  width: 100%;
+  overflow: hidden;
+  *zoom: 1;
+}
+@media all and (min-width: 860px) {
+  .group-pr-c-q-3 > div {
+    margin: 1em 0 0 1em;
+  }
+  .group-pr-c-q-3 .form-wrapper {
+    float: left;
+    margin-right: 1em;
+  }
+  .group-pr-c-q-3 .form-wrapper:last-child {
+    margin-right: 0;
+  }
+  .group-pr-c-q-3 .form-item label {
+    display: inline;
+    margin-right: 0.5em;
+  }
+}
+
 /** Table style **/
 .group-pr-c-hazards {
   border-collapse: collapse;
@@ -434,6 +456,19 @@ h4.browser-title {
 }
 
 /** Other styling **/
+.form-principle-3 .field-group-wrapper {
+  margin-bottom: 1em;
+}
+.form-principle-3 .group-radios label {
+  display: inline;
+  padding: 0.25em;
+}
+.form-principle-3 .field-question-set {
+  border-bottom: 1px solid #007fb2;
+  margin-bottom: 2em;
+  padding-bottom: 1em;
+}
+
 .decision-tree-qs .decision-tree-q-row {
   clear: both;
   margin-bottom: 0.5em;
@@ -458,4 +493,47 @@ td.decision-tree-qs h4 {
 td.decision-tree-qs input[type="text"] {
   width: 2em;
   min-width: 2em;
+}
+
+.group-pr-c-q-3 {
+  width: 100%;
+  overflow: hidden;
+  *zoom: 1;
+}
+@media all and (min-width: 860px) {
+  .group-pr-c-q-3 > div {
+    margin: 1em 0 0 1em;
+  }
+  .group-pr-c-q-3 .form-wrapper {
+    float: left;
+    margin-right: 1em;
+  }
+  .group-pr-c-q-3 .form-wrapper:last-child {
+    margin-right: 0;
+  }
+  .group-pr-c-q-3 .form-item label {
+    display: inline;
+    margin-right: 0.5em;
+  }
+}
+
+.form-ps-c-2 textarea {
+  min-width: inherit;
+  max-width: 100%;
+}
+.form-ps-c-2 .group-pr-c-hazards > .form-wrapper > div {
+  padding-right: 10px;
+}
+
+.form-principle-3 .field-group-wrapper {
+  margin-bottom: 1em;
+}
+.form-principle-3 .group-radios label {
+  display: inline;
+  padding: 0.25em;
+}
+.form-principle-3 .field-question-set {
+  border-bottom: 1px solid #007fb2;
+  margin-bottom: 2em;
+  padding-bottom: 1em;
 }
