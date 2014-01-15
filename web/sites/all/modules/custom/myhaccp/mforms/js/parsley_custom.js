@@ -86,6 +86,12 @@
         }
       });
 
+      // Every time one of the submit button is clicked we want to destroy
+      // parsley. This is needed for Chrome which displays the parsley messages
+      // despite the onFormValidate handler returning TRUE.
+      $('[type="submit"]').click(function() {
+        form.parsley('destroy');
+      });
 
     }
   }
