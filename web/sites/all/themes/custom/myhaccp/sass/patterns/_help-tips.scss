@@ -17,3 +17,42 @@
     color: #FFFFFF;
   }
 }
+
+// Hide the help tip text if javascript is enabled. If javascript is disabled
+// the help text will display beneath the label.
+.js {
+  .help-text {
+    display: none;
+  }
+}
+.no-js {
+  .help-text {
+
+  }
+}
+
+// Custom qtip styles.
+.qtip-haccp {
+  border-width: 1px;
+  border-style: solid;
+  border-color: $page_background;
+  background-color: $help-tips;
+  color: $text;
+  font-size: 1em;
+  line-height: normal;
+  max-width: 500px;
+  padding: 0.5em;
+
+  .qtip-titlebar {
+    background-color: #FFEF93;
+    .qtip-close {
+      border-color: #AAA;
+      color: #111;
+    }
+  }
+  .qtip-icon {
+    border-color: #CCC;
+    background: #F1F1F1;
+    color: #777;
+  }
+}

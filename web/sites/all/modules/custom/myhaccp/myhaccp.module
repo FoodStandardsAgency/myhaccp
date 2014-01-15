@@ -117,6 +117,11 @@ function myhaccp_myhaccp_mforms_init() {
       'value' => 'D',
       'weight' => 5,
     ),
+    'preparatory_e' => array(
+      'stage' => 'preparatory',
+      'value' => 'E',
+      'weight' => 6,
+    ),
     'principle_1_question_1' => array(
       'stage' => 'principles',
       'value' => '1.1',
@@ -133,6 +138,12 @@ function myhaccp_myhaccp_mforms_init() {
   $path = libraries_get_path('parsleyjs');
   drupal_add_js($path . '/parsley.js');
   drupal_add_js(drupal_get_path('module', 'myhaccp') . '/mforms/js/parsley_custom.js');
+  $path = libraries_get_path('qtip');
+  if ($path) {
+    drupal_add_js($path . '/dist/jquery.qtip.js');
+    drupal_add_css($path . '/dist/jquery.qtip.min.css');
+    drupal_add_js(drupal_get_path('module', 'myhaccp') . '/mforms/js/qtip2_custom.js');
+  }
 
   // Init the mforms.
   mforms_init_module('myhaccp', 'myhaccp', $store, $controls);
@@ -205,6 +216,7 @@ function _get_all_steps() {
     'preparatory_c_question_1_3' => 'preparatory',
     'preparatory_c_question_4' => 'preparatory',
     'preparatory_d' => 'preparatory',
+    'preparatory_e' => 'preparatory',
     'principle_1_question_1' => 'principle',
     'principle_1_question_2' => 'principle',
   );
