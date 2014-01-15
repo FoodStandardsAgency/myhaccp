@@ -122,6 +122,11 @@ function myhaccp_myhaccp_mforms_init() {
       'value' => 'E',
       'weight' => 6,
     ),
+    'preparatory_f' => array(
+      'stage' => 'preparatory',
+      'value' => 'F',
+      'weight' => 7,
+    ),
     'principle_1_question_1' => array(
       'stage' => 'principles',
       'value' => '1.1',
@@ -217,6 +222,7 @@ function _get_all_steps() {
     'preparatory_c_question_4' => 'preparatory',
     'preparatory_d' => 'preparatory',
     'preparatory_e' => 'preparatory',
+    'preparatory_f' => 'preparatory',
     'principle_1_question_1' => 'principle',
     'principle_1_question_2' => 'principle',
   );
@@ -276,7 +282,7 @@ function myhaccp_process($element, &$form_state) {
     foreach ($form_state['values']['validate'] as $name => $message) {
       if (isset($element['#name']) && $element['#name'] == $name) {
         $element['#attributes']['class']['error'] = 'error';
-        if (!empty($message) && $form_state['executed'] == TRUE) {
+        if (!empty($message) && $form_state['executed'] == TRUE && $element['#type'] !== 'radio') {
           // Add the message inline.
           $element['#validation_message'] = $message;
         }
@@ -344,6 +350,22 @@ function _checkboxes_field_is_empty($values, $element) {
     return TRUE;
   }
   return FALSE;
+}
+
+/**
+ * Helper to check whether any options have been chosen in radios fields.
+ *
+ * @param array $values
+ *   The values of form_state to check.
+ * @param array $element
+ *   The $form element to check.
+ *
+ * @return bool
+ *   TRUE if options are not set.
+ */
+function _radios_field_is_empty($values, $element) {
+  // Just use the text field function as its the same.
+  return _text_field_is_empty($values, $element);
 }
 
 /**

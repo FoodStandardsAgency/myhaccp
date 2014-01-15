@@ -130,7 +130,7 @@ function preparatory_e(&$form_state, &$next_step) {
     ),
   );
 
-  $form['#validate'][] = 'preparatory_e';
+  $form['#validate'][] = 'preparatory_e_validate';
 
   return $form;
 }

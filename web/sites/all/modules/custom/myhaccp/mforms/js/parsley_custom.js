@@ -81,7 +81,7 @@
         onFieldSuccess: function(elem) {
           // Once field is validated remove the error messages and classes.
           $(elem).parents('.form-item').removeClass('error');
-          $(elem).parents('.form-item').parents('.form-checkboxes').removeClass('error');
+          $(elem).parents('.form-item').parents('.form-checkboxes, .form-radios').removeClass('error');
           $(elem).parents('.form-item').children('div.validation').remove();
         }
       });
