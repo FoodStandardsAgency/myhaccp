@@ -17,7 +17,7 @@ function preparatory_f(&$form_state, &$next_step) {
   drupal_set_title('Preparatory Stage F: Describe the product', PASS_THROUGH);
 
   $form = array();
-  $form['#attributes']['class'][] = 'prep-e';
+  $form['#attributes']['class'][] = 'prep-f';
 
   // Wrap the form section in a fieldset.
   $form['container'] = array(
@@ -184,53 +184,25 @@ function preparatory_f(&$form_state, &$next_step) {
  * Validation handler.
  */
 function preparatory_f_validate($form, &$form_state) {
-  // Assume this form is valid.
-  $invalid = FALSE;
-  $values = $form_state['values'];
+  $invalid = array();
 
-  if ($invalid = _text_field_is_empty($values, 'container.name')) {
-    $message = array_get($form, 'container.name.#attributes.data-parsley-error-message', NULL);
-    myhacpp_prepare_validation('container[name]', $message, $form_state);
-  }
+  // Checks is an array with the key being the element being targeted (in dot
+  // notation) and the value being the callback to use to check whether the
+  // field is empty.
+  $checks = array(
+    'container.name' => '_text_field_is_empty',
+    'container.young' => '_radios_field_is_empty',
+    'container.elderly' => '_radios_field_is_empty',
+    'container.pregnant' => '_radios_field_is_empty',
+    'container.immuno' => '_radios_field_is_empty',
+    'container.allergies' => '_radios_field_is_empty',
+    'container.special' => '_radios_field_is_empty',
+    'container.intended' => '_radios_field_is_empty',
+    'container.abuse' => '_text_field_is_empty',
+  );
 
-  if ($invalid = _radios_field_is_empty($values, 'container.young')) {
-    $message = array_get($form, 'container.young.#attributes.data-parsley-error-message', NULL);
-    myhacpp_prepare_validation('container[young]', $message, $form_state);
-  }
-
-  if ($invalid = _radios_field_is_empty($values, 'container.elderly')) {
-    $message = array_get($form, 'container.elderly.#attributes.data-parsley-error-message', NULL);
-    myhacpp_prepare_validation('container[elderly]', $message, $form_state);
-  }
-
-  if ($invalid = _radios_field_is_empty($values, 'container.pregnant')) {
-    $message = array_get($form, 'container.pregnant.#attributes.data-parsley-error-message', NULL);
-    myhacpp_prepare_validation('container[pregnant]', $message, $form_state);
-  }
-
-  if ($invalid = _radios_field_is_empty($values, 'container.immuno')) {
-    $message = array_get($form, 'container.immuno.#attributes.data-parsley-error-message', NULL);
-    myhacpp_prepare_validation('container[immuno]', $message, $form_state);
-  }
-
-  if ($invalid = _radios_field_is_empty($values, 'container.allergies')) {
-    $message = array_get($form, 'container.allergies.#attributes.data-parsley-error-message', NULL);
-    myhacpp_prepare_validation('container[allergies]', $message, $form_state);
-  }
-
-  if ($invalid = _radios_field_is_empty($values, 'container.special')) {
-    $message = array_get($form, 'container.special.#attributes.data-parsley-error-message', NULL);
-    myhacpp_prepare_validation('container[special]', $message, $form_state);
-  }
-
-  if ($invalid = _radios_field_is_empty($values, 'container.intended')) {
-    $message = array_get($form, 'container.intended.#attributes.data-parsley-error-message', NULL);
-    myhacpp_prepare_validation('container[intended]', $message, $form_state);
-  }
-
-  if ($invalid = _text_field_is_empty($values, 'container.abuse')) {
-    $message = array_get($form, 'container.abuse.#attributes.data-parsley-error-message', NULL);
-    myhacpp_prepare_validation('container[abuse]', $message, $form_state);
+  foreach ($checks as $target => $callback) {
+    $invalid[] = _check_validation($callback, $target, $form, $form_state);
   }
 
   // Check to see whether we have failed validation and therefore should store

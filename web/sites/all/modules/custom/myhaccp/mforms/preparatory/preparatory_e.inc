@@ -139,40 +139,29 @@ function preparatory_e(&$form_state, &$next_step) {
  * Validation handler.
  */
 function preparatory_e_validate($form, &$form_state) {
-  // Assume this form is invalid.
-  $invalid = TRUE;
-  $values = $form_state['values'];
+  $invalid = array();
 
-  // Validation: Some content.
+  // Checks is an array with the key being the element being targeted (in dot
+  // notation) and the value being the callback to use to check whether the
+  // field is empty.
   $checks = array(
-    $physical = _checkboxes_field_is_empty($values, 'container.prep_c_q4.physical_container.physical'),
-    $chemical = _checkboxes_field_is_empty($values, 'container.prep_c_q4.chemical_container.chemical'),
-    $biological = _checkboxes_field_is_empty($values, 'container.prep_c_q4.biological_container.biological'),
-    $allergens = _checkboxes_field_is_empty($values, 'container.prep_c_q4.allergens_container.allergens'),
-    $physical_other = _text_field_is_empty($values, 'container.prep_c_q4.physical_container.physical_other'),
-    $chemical_other = _text_field_is_empty($values, 'container.prep_c_q4.chemical_container.chemical_other'),
-    $biological_other = _text_field_is_empty($values, 'container.prep_c_q4.biological_container.biological_other'),
-    $allergens_other = _text_field_is_empty($values, 'container.prep_c_q4.allergens_container.allergens_other'),
+    'container.ingredients' => '_text_field_is_empty',
+    'container.properties' => '_text_field_is_empty',
+    'container.processed' => '_text_field_is_empty',
+    'container.packed' => '_text_field_is_empty',
+    'container.stored' => '_text_field_is_empty',
+    'container.shelf_life' => '_text_field_is_empty',
+    'container.handled' => '_text_field_is_empty',
   );
 
-  // Iterate through all the field checks and if we get any FALSE returns it
-  // means we have some content in a field. This will no longer invalidate the
-  // form.
-  foreach ($checks as $check) {
-    if ($check == FALSE) {
-      $invalid = FALSE;
-    }
-  }
-
-  if ($invalid == TRUE) {
-    $message = t('Q4: Add some content.');
-    myhacpp_prepare_validation('global', $message, $form_state);
+  foreach ($checks as $target => $callback) {
+    $invalid[] = _check_validation($callback, $target, $form, $form_state);
   }
 
   // Check to see whether we have failed validation and therefore should store
   // it in the database or whether we have passed and therefore clear validation
   // errors.
-  if ($invalid == FALSE) {
+  if (in_array(FALSE, $invalid)) {
     // Remove any stored validation.
     myhaccp_clear_validation($form_state);
   }

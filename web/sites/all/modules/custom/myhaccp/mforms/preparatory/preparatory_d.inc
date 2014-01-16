@@ -196,48 +196,35 @@ function preparatory_d(&$form_state, &$next_step) {
  * Validation handler.
  */
 function preparatory_d_validate($form, &$form_state) {
-  // Assume this form is valid.
-  $invalid = FALSE;
-  $values = $form_state['values'];
+  $invalid = array();
 
   for ($i = 0; $i < $form_state['num_instances']; $i++) {
     // In each instance, check whether some of the fields have been filled in,
     // if they have then check they have all been filled in.
+
+    // Checks is an array with the key being the element being targeted (in dot
+    // notation) and the value being the callback to use to check whether the
+    // field is empty.
     $checks = array(
-      "container[instance_$i][team_name]" => "container.instance_$i.team_name",
-      "container[instance_$i][team_role]" => "container.instance_$i.team_role",
-      "container[instance_$i][team_training]" => "container.instance_$i.wrapper.team_training",
-      "container[instance_$i][team_qualifications]" => "container.instance_$i.wrapper.team_qualifications",
-      "container[instance_$i][team_experience]" => "container.instance_$i.wrapper.team_experience",
+      "container.instance_$i.team_name" => '_text_field_is_empty',
+      "container.instance_$i.team_role" => '_text_field_is_empty',
+      "container.instance_$i.wrapper.team_training" => '_text_field_is_empty',
+      "container.instance_$i.wrapper.team_qualifications" => '_text_field_is_empty',
+      "container.instance_$i.wrapper.team_experience" => '_text_field_is_empty',
     );
-    // Iterate through all the field checks and if we get any FALSE returns it
-    // means we have some content in a field. This will no longer invalidate the
-    // form.
-    $field_count = 0;
-    foreach ($checks as $name => $path) {
-      if (_text_field_is_empty($values, $path) == FALSE) {
-        $field_count++;
-      }
-      else {
-        $field_errors[$name] = $path;
-      }
+
+    foreach ($checks as $target => $callback) {
+      $invalid[] = _check_validation($callback, $target, $form, $form_state);
     }
-    // Now check if there is some content but not all the content.
-    if ($field_count > 0 && $field_count < 5) {
-      // Check each field and highlight the error fields.
-      foreach ($field_errors as $name => $path) {
-        $element = array_get($form, $path);
-        myhacpp_prepare_validation($name, $element['#attributes']['data-parsley-error-message'], $form_state);
-      }
-      $invalid = TRUE;
-    }
+
   }
 
   // Check to see whether we have failed validation and therefore should store
   // it in the database or whether we have passed and therefore clear validation
   // errors.
-  if ($invalid == FALSE) {
+  if (!in_array(TRUE, $invalid)) {
     // Remove any stored validation.
     myhaccp_clear_validation($form_state);
   }
+
 }

@@ -94,38 +94,24 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
  * Validation handler.
  */
 function preparatory_c_question_1_3_validate($form, &$form_state) {
-  // Set a default of the form being valid.
-  $invalid = FALSE;
-  $values = $form_state['values'];
+  $invalid = array();
 
-  // Validation: prep_c_q1 = At least one option should be selected.
-//  if (_select_validation_options($values['container']['prep_c_q1'])) {
-//    $message = t('Question 1: At least one option should be selected.');
-//    myhacpp_prepare_validation('container[prep_c_q1]', $message, $form_state);
-//    // Ensure validation errors aren't cleared.
-//    $valid = FALSE;
-//  }
+  // Validation: Some content.
+  $checks = array(
+    'container.prep_c_q2' => '_text_field_is_empty',
+    'container.prep_c_q3.start' => '_text_field_is_empty',
+    'container.prep_c_q3.start' => '_text_field_is_empty',
+    'container.prep_c_q3.end' => '_text_field_is_empty',
+  );
 
-  // Validation: prep_c_q2 = Has content.
-  if ($invalid = _text_field_is_empty($values, 'container.prep_c_q2')) {
-    $message = $form['container']['prep_c_q2']['#attributes']['data-parsley-error-message'];
-    myhacpp_prepare_validation('container[prep_c_q2]', $message, $form_state);
-  }
-
-  // Validation: prep_c_q3 = Has a start and end date.
-  if ($invalid = _text_field_is_empty($values, 'container.prep_c_q3.start')) {
-    $message = $form['container']['prep_c_q3']['start']['#attributes']['data-parsley-error-message'];
-    myhacpp_prepare_validation('container[prep_c_q3][start]', $message, $form_state);
-  }
-  if ($invalid = _text_field_is_empty($values, 'container.prep_c_q3.end')) {
-    $message = $form['container']['prep_c_q3']['end']['#attributes']['data-parsley-error-message'];
-    myhacpp_prepare_validation('container[prep_c_q3][end]', $message, $form_state);
+  foreach ($checks as $target => $callback) {
+    $invalid[] = _check_validation($callback, $target, $form, $form_state);
   }
 
   // Check to see whether we have failed validation and therefore should store
   // it in the database or whether we have passed and therefore clear validation
   // errors.
-  if ($invalid == FALSE) {
+  if (!in_array(TRUE, $invalid)) {
     // Remove any stored validation.
     myhaccp_clear_validation($form_state);
   }

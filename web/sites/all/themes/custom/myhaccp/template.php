@@ -306,3 +306,58 @@ function myhaccp_form_element($variables) {
 
   return $output;
 }
+
+/**
+ * Override of cleanup_container().
+ */
+function myhaccp_container($variables) {
+  $element = $variables['element'];
+
+  // Special handling for form elements.
+  if (isset($element['#array_parents'])) {
+    // Assign an html ID.
+    if (!isset($element['#attributes']['id'])) {
+      $element['#attributes']['id'] = $element['#id'];
+    }
+
+    // Add the 'form-wrapper' class.
+    if (!theme_get_setting('cleanup_classes_form_container_wrapper')) {
+      $element['#attributes']['class'][] = 'form-wrapper';
+    }
+
+    // Remove the field-type-[]
+    if (theme_get_setting('cleanup_classes_form_container_type')) {
+      $element['#attributes']['class']['0'] = "";
+    }
+
+    // Remove the field-name-field-[]
+    if (theme_get_setting('cleanup_classes_form_container_name')) {
+      $element['#attributes']['class']['1'] = "";
+    }
+
+    // Remove the field-widget-[]
+    if (theme_get_setting('cleanup_classes_form_container_widget')) {
+      $element['#attributes']['class']['2'] = "";
+    }
+
+    // Remove the id.
+    if (theme_get_setting('cleanup_classes_form_container_id')) {
+      unset($element['#attributes']['id']);
+    }
+
+  }
+
+  // This allows for a #validation_message to be passed to the container to be
+  // displayed.
+  $messages = '';
+
+  if (isset($element['#validation_message'])) {
+    $messages .= '<ul class="parsley-error-list server-side">';
+    foreach ($element['#validation_message'] as $message) {
+      $messages .= '<li class="custom-error-message">' . $message . '</li>';
+    }
+    $messages .= '</ul>';
+  }
+
+  return '<div' . drupal_attributes($element['#attributes']) . '>' . $messages . $element['#children'] . '</div>';
+}

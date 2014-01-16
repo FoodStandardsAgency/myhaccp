@@ -127,6 +127,11 @@ function myhaccp_myhaccp_mforms_init() {
       'value' => 'F',
       'weight' => 7,
     ),
+    'preparatory_g' => array(
+      'stage' => 'preparatory',
+      'value' => 'G',
+      'weight' => 8,
+    ),
     'principle_1_question_1' => array(
       'stage' => 'principles',
       'value' => '1.1',
@@ -142,6 +147,7 @@ function myhaccp_myhaccp_mforms_init() {
   // Add the parsley.js library.
   $path = libraries_get_path('parsleyjs');
   drupal_add_js($path . '/parsley.js');
+  drupal_add_js($path . '/parsley.extend.js');
   drupal_add_js(drupal_get_path('module', 'myhaccp') . '/mforms/js/parsley_custom.js');
   $path = libraries_get_path('qtip2');
   if ($path) {
@@ -223,6 +229,7 @@ function _get_all_steps() {
     'preparatory_d' => 'preparatory',
     'preparatory_e' => 'preparatory',
     'preparatory_f' => 'preparatory',
+    'preparatory_g' => 'preparatory',
     'principle_1_question_1' => 'principle',
     'principle_1_question_2' => 'principle',
   );
@@ -260,24 +267,29 @@ function myhaccp_element_info_alter(&$types) {
  */
 function myhaccp_process($element, &$form_state) {
   $global_done = &drupal_static(__FUNCTION__);
+
+  // Handle any 'global' validation messages.
   if (isset($form_state['values']['validate'])) {
-    // First check for the special 'global' array element and make sure it
-    // hasn't already been completed.
-    if (isset($form_state['values']['validate']['global']) && !isset($global_done)) {
-      // This means we need to show a message but not highlight any specific
-      // form fields. It is possible that there are multiple global message,
-      // in which case iterate and display them.
-      if (is_array($form_state['values']['validate']['global'])) {
-        foreach ($form_state['values']['validate']['global'] as $message) {
-          drupal_set_message($message, 'error', FALSE);
+    if (isset($element['#id']) && $element['#id'] == 'global-messages') {
+      // First check for the special 'global' array element and make sure it
+      // hasn't already been completed.
+      if (isset($form_state['values']['validate']['global']) && !isset($global_done)) {
+        // This means we need to show a message but not highlight any specific
+        // form fields. It is possible that there are multiple global message,
+        // in which case iterate and display them.
+        if (is_array($form_state['values']['validate']['global'])) {
+          foreach ($form_state['values']['validate']['global'] as $message) {
+            $element['#validation_message'][] = $message;
+          }
         }
+        else {
+          $message = $form_state['values']['validate']['global'];
+          $element['#validation_message'][] = $message;
+        }
+        $global_done = TRUE;
       }
-      else {
-        $message = $form_state['values']['validate']['global'];
-        drupal_set_message($message, 'error', FALSE);
-      }
-      $global_done = TRUE;
     }
+
     // Add the error class to each of the elements.
     foreach ($form_state['values']['validate'] as $name => $message) {
       if (isset($element['#name']) && $element['#name'] == $name) {
@@ -288,6 +300,7 @@ function myhaccp_process($element, &$form_state) {
         }
       }
     }
+
   }
   return $element;
 }
@@ -297,16 +310,20 @@ function myhaccp_process($element, &$form_state) {
  *
  * Used to prepare validation messages.
  *
- * @param string $name
+ * @param string $target
  *   The form #name parameter to target.
  * @param string $message
  *   The message to display.
  * @param array $form_state
  *   The current form_state array.
  */
-function myhacpp_prepare_validation($name, $message, &$form_state) {
-  // Allow the message to be translated.
-  $message = t($message);
+function myhacpp_prepare_validation($target, $message, &$form_state) {
+  // Convert the dot notation target to name style elements.
+  $exploded = explode('.', $target);
+  $name = '';
+  foreach ($exploded as $key => $element) {
+    $name .= $key == 0 ? $element : '[' . $element . ']';
+  }
   // Add it to the form_state.
   $form_state['values']['validate'][$name] = $message;
   // Add it to the $_POST to make sure in gets saved in the db.
@@ -460,4 +477,32 @@ function myhaccp_prepare_values($data, &$form_state) {
     $values = $form_state['values'];
   }
   return $values;
+}
+
+/**
+ * Callback to check validation for a field.
+ *
+ * @param string $callback
+ *   Validation callback function name.
+ * @param string $target
+ *   Dot notation string relating to the depth of the array element to target.
+ * @param array $form
+ *   The form.
+ * @param array $form_state
+ *   The form state containing the values.
+ * @param bool $check_only
+ *   Whether to only perform a check and not prepare validation of the form.
+ *
+ * @return bool
+ *   Boolean determining whether the form has failed validation.
+ */
+function _check_validation($callback, $target, $form, $form_state, $check_only = FALSE) {
+  $invalid = $callback($form_state['values'], $target);
+  // Its possible we only want to check a field and return the invalid boolean,
+  // in which case ignore the next part.
+  if ($check_only == FALSE) {
+    $message = array_get($form, $target . '.#attributes.data-parsley-error-message', NULL);
+    myhacpp_prepare_validation($target, $message, $form_state);
+  }
+  return $invalid;
 }

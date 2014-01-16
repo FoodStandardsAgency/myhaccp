@@ -77,6 +77,8 @@ function preparatory_b_validate($form, &$form_state) {
   $values = $form_state['values'];
 
   // Validation: At least one box checked from Q1, or some content in question 2.
+  // This is slightly more complex validation so not using the iterative field
+  // check process as seen in other stages.
   if (_text_field_is_empty($values, 'container.prep_b_evidence') && _checkboxes_field_is_empty($values, 'container.prep_b_support')) {
     $message = t('Please choose at least one option in question 1 or add some content in question 2.');
     myhacpp_prepare_validation('container[prep_b_support]', $message, $form_state);
