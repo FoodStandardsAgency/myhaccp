@@ -59,7 +59,6 @@ function preparatory_b(&$form_state, &$next_step) {
       'data-parsley-either' => '#edit-container-prep-b-support .form-item input,#edit-container-prep-b-evidence',
       'data-parsley-message' => t('Please choose at least one option in question 1 or add some content in question 2.'),
       'data-parsley-required' => TRUE,
-//      'data-parsley-value' => "-",
     ),
   );
 

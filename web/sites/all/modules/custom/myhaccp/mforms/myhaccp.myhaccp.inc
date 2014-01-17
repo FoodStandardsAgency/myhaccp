@@ -93,10 +93,11 @@ function instance_add_more_remove_one($form, &$form_state) {
 /**
  * Modify the form for each stage.
  *
- * Adds the parsley attributes to the form element. Also adds a 'global' message
- * area for printing validation messages into. This is usually used when
+ * Adds the parsley attributes to the form element. Also adds a save message
+ * handler.
  */
 function myhaccp_form_myhaccp_start_form_alter(&$form, $form_state) {
   $form['#attributes']['data-parsley-namespace'] = 'data-parsley-';
   $form['#attributes']['data-parsley-validate'] = '';
+  $form['#validate'][] = 'myhaccp_saved_message';
 }

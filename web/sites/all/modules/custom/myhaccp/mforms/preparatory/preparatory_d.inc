@@ -57,19 +57,20 @@ function preparatory_d(&$form_state, &$next_step) {
     // Team member external.
     $form['prep_d']["instance_$i"]['team_external'] = array(
       '#weight' => '1',
-      '#type' => 'select',
-      '#title' => t('Location of team member !tip', array(
-        '!tip' => _help_tip(),
-      )),
+      '#type' => 'radios',
       '#options' => array(
         'internal' => t('Internal'),
         'external' => t('External'),
       ),
-      '#default_value' => array_get($values, "prep_d.instance_$i.team_external", FALSE),
       '#attributes' => array(
-        'data-parsley-error-message' => t('Please add the name of the team member.'),
-        'data-parsley-required' => TRUE,
+        'data-parsley-required' => 'true',
+        'data-parsley-error-message' => t('Please state whether the team member is internal or external.'),
       ),
+      '#title' => t('Location of team member !tip', array(
+        '!tip' => _help_tip(),
+      )),
+
+      '#default_value' => array_get($values, "prep_d.instance_$i.team_external", FALSE),
     );
     // Team member role.
     $form['prep_d']["instance_$i"]['team_role'] = array(
@@ -210,6 +211,7 @@ function preparatory_d_validate($form, &$form_state) {
     // notation) and the value being the callback to use to check whether the
     // field is empty.
     $checks = array(
+      "prep_d.instance_$i.team_external" => '_radios_field_is_empty',
       "prep_d.instance_$i.team_name" => '_text_field_is_empty',
       "prep_d.instance_$i.team_role" => '_text_field_is_empty',
       "prep_d.instance_$i.wrapper.team_training" => '_text_field_is_empty',

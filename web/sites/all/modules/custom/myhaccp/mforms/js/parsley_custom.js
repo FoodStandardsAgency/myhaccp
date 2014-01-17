@@ -15,6 +15,15 @@
           focus: 'none',
           trigger: 'change keyup',
           validators: {
+            notequal: function(val, elem) {
+              return {
+                validate: function(val, elems, self) {
+                  console.log(val);
+                  console.log(elems);
+                  val !== $(elems).val()
+                }
+              };
+            },
             either: function() {
               return {
                 validate: function(val, elems, self) {
@@ -68,7 +77,7 @@
             }
           },
           messages: {
-            multiple: "This value should be a multiple of %s"
+            notEqual: "This value should not be the same."
           },
           errors: {
             classHandler: function(elem, isRadioOrCheckbox) {
