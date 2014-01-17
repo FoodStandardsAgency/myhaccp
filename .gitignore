@@ -3,6 +3,7 @@ web/.htaccess
 
 # files directory
 web/sites/default/files
+private
 
 # settings.php
 web/sites/default/settings.php
