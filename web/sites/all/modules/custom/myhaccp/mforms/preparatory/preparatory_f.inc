@@ -167,7 +167,7 @@ function preparatory_f(&$form_state, &$next_step) {
     '#title' => t('9. Detail below how you have considered the likely abuse / unintended use of the product by the consumer. !tip', array(
       '!tip' => _help_tip(),
     )),
-    '#default_value' => array_get($values, 'prep_f.abuse', array()),
+    '#default_value' => array_get($values, 'prep_f.abuse', FALSE),
     '#resizable' => FALSE,
     '#attributes' => array(
       'data-parsley-required' => 'true',
