@@ -75,10 +75,19 @@
               // If this is a radio button or a checkbox then step up a couple
               // of parents in the DOM to reach the wrapper.
               if (isRadioOrCheckbox) {
+                // Handle checkbox elements.
                 if ($(elem).parent().hasClass('form-type-checkbox')) {
-                  return $(elem).parent();
+                  if ($(elem).parents('.form-checkboxes').length > 0) {
+                    // Handle multiple checkboxes.
+                    return $(elem).parent().parent();
+                  }
+                  else {
+                    // Handle a single checkbox.
+                    return $(elem).parent();
+                  }
                 }
                 else {
+                  // Radios.
                   return $(elem).parent().parent();
                 }
               }
@@ -98,12 +107,13 @@
         onFieldSuccess: function(elem) {
           // Once field is validated remove the error messages and classes.
           $(elem).parents('.form-item').removeClass('error');
-          $(elem).parents('.form-item').parents('.form-checkboxes, .form-radios').removeClass('error');
+          $(elem).parents('.form-item').parents('.form-checkboxes, .form-radios').removeClass('error').children('.form-checkbox, .form-radio').removeClass('error');
           $(elem).parents('.form-item').children('ul.parsley-error-list').remove();
         },
         onFieldError: function(elem) {
           // Remove and server side error messages.
           $(elem).parents('.form-item').children('ul.parsley-error-list.server-side').remove();
+//          $(elem).parents('.form-item').parents('.form-checkboxes, .form-radios').addClass('error');
         }
       });
 

@@ -69,7 +69,7 @@ function preparatory_a(&$form_state, &$next_step) {
       'data-parsley-group' => 'checkgroup',
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please choose at least one option from the prerequisites field.'),
-      'data-parsley-error-container' => '.form-item-container-prep-a-prereq .form-checkboxes',
+      'data-parsley-error-container' => '#edit-prep-a-prereq',
     ),
   );
 
