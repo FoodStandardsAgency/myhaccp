@@ -134,16 +134,43 @@ function principle_1_question_2(&$form_state, &$next_step) {
         '#type' => 'textfield',
         '#size' => 6,
         '#default_value' => isset($default_value['severity']) ? $default_value['severity'] : NULL,
+        '#attributes' => array(
+          'data-parsley-required' => 'true',
+          'data-parsley-min' => 1,
+          'data-parsley-max' => 3,
+          'data-parsley-type' => 'digits',
+          'data-parsley-validation-minlength' => 1,
+          'data-parsley-error-message' => t('Please add a severity between 1 and 3.'),
+          'class' => 'severity',
+        ),
       );
       $form_position['likelihood'] = array(
         '#type' => 'textfield',
         '#size' => 6,
         '#default_value' => isset($default_value['likelihood']) ? $default_value['likelihood'] : NULL,
+        '#attributes' => array(
+          'data-parsley-required' => 'true',
+          'data-parsley-min' => 1,
+          'data-parsley-max' => 3,
+          'data-parsley-type' => 'digits',
+          'data-parsley-validation-minlength' => 1,
+          'data-parsley-error-message' => t('Please add a likelihood between 1 and 3.'),
+          'class' => 'likelihood',
+        ),
       );
       $form_position['significance'] = array(
         '#type' => 'textfield',
         '#size' => 6,
         '#default_value' => isset($default_value['significance']) ? $default_value['significance'] : NULL,
+        '#attributes' => array(
+          'data-parsley-required' => 'true',
+          'data-parsley-min' => 1,
+          'data-parsley-max' => 9,
+          'data-parsley-type' => 'digits',
+          'data-parsley-validation-minlength' => 1,
+          'data-parsley-error-message' => t('Please add a significance between 1 and 9.'),
+          'class' => 'significance',
+        ),
         '#attached' => array(
           'js' => array(
             drupal_get_path('module', 'myhaccp') . '/mforms/js/principle_1_question_2.js',
@@ -166,8 +193,8 @@ function principle_1_question_2_validate($form, &$form_state) {
   $validate = FALSE;
 
   // Test to see whether there is any submitted data for the first instance.
-  if (isset($form_state['values']['container']['instance_0'])) {
-    $form_position = & $form_state['values']['container'];
+  if (isset($form_state['values']['principle_1_2']['instance_0'])) {
+    $form_position = &$form_state['values']['principle_1_2'];
     // Iterate over the tables.
     foreach ($form_position as &$instance) {
       foreach ($instance['instance_table'] as &$item) {
