@@ -7,7 +7,7 @@ function principle_1_question_2(&$form_state, &$next_step) {
   // Define following step callback. If none set, that implies it is
   // the last step.
 
-  // $next_step = '_principle_1_question_2';
+   $next_step = '_principle_1_question_3';
 
   // Retrieve submitted values.
   $data = mforms_get_vals('myhaccp');
@@ -17,12 +17,11 @@ function principle_1_question_2(&$form_state, &$next_step) {
   $values = myhaccp_prepare_values($data, $form_state);
 
   // Set the page title.
-  drupal_set_title('Principle 1, question 2:
-Conduct a hazard analysis.');
+  drupal_set_title('Principle 1, question 2: Conduct a hazard analysis.');
 
   $form = array();
   $form['#tree'] = TRUE;
-  $form['#attributes']['class'][] = 'p1q2';
+  $form['#attributes']['class'][] = 'principle-1-question-2';
 
   // The wrapper for each instance of the form.
   $form['container'] = array(
@@ -47,9 +46,9 @@ Conduct a hazard analysis.');
   // Iterate through the previous data and look for instances which have the
   // correct form fields filled out.
   if (isset($previous_data)) {
-    foreach ($previous_data['container'] as $key => $instance) {
+    foreach ($previous_data['principle_1_1'] as $key => $instance) {
       if (strpos($key, 'instance') === 0) {
-        if ($instance['p1q1_step_wrapper']['p1q1_step_no'] != '' && $instance['p1q1_step_wrapper']['p1q1_step_name'] != '') {
+        if ($instance['wrapper']['step_no'] != '' && $instance['wrapper']['step_name'] != '') {
           $instance_count++;
         }
       }
@@ -70,14 +69,14 @@ Conduct a hazard analysis.');
   // screen's instances (or filled out instances saved in the form_state).
   for ($i = 0; $i < $form_state['num_instances']; $i++) {
     // Get the necessary values from the previous step.
-    $step_no = $previous_data['container']['instance_' . $i]['p1q1_step_wrapper']['p1q1_step_no'];
-    $step_name = $previous_data['container']['instance_' . $i]['p1q1_step_wrapper']['p1q1_step_name'];
+    $step_no = $previous_data['principle_1_1']['instance_' . $i]['wrapper']['step_no'];
+    $step_name = $previous_data['principle_1_1']['instance_' . $i]['wrapper']['step_name'];
     // Prepare each of the four categories of hazard.
     $categories = array(
-      'bio' => $previous_data['container']['instance_' . $i]['p1q1_hazards_wrapper']['p1q1_biological'],
-      'chem' => $previous_data['container']['instance_' . $i]['p1q1_hazards_wrapper']['p1q1_chemical'],
-      'phys' => $previous_data['container']['instance_' . $i]['p1q1_hazards_wrapper']['p1q1_physical'],
-      'allergens' => $previous_data['container']['instance_' . $i]['p1q1_hazards_wrapper']['p1q1_allergens'],
+      'bio' => $previous_data['principle_1_1']['instance_' . $i]['hazards_wrapper']['biological'],
+      'chem' => $previous_data['principle_1_1']['instance_' . $i]['hazards_wrapper']['chemical'],
+      'phys' => $previous_data['principle_1_1']['instance_' . $i]['hazards_wrapper']['physical'],
+      'allergens' => $previous_data['principle_1_1']['instance_' . $i]['hazards_wrapper']['allergens'],
     );
     // Process the hazards within each category.
     $hazards = array();
@@ -100,7 +99,7 @@ Conduct a hazard analysis.');
     }
 
     // Create a fieldset to wrap this instance and give it a legend.
-    $form['container']['instance_' . $i] = array(
+    $form['principle_1_2']['instance_' . $i] = array(
       '#type' => 'fieldset',
       '#title' => t('Process Step !step_no: !step_name !tip', array(
         '!step_no' => $step_no,
@@ -110,7 +109,7 @@ Conduct a hazard analysis.');
     );
 
     // Create the table.
-    $form['container']['instance_' . $i]['instance_table'] = array(
+    $form['principle_1_2']['instance_' . $i]['instance_table'] = array(
       '#theme' => 'myhacpp_p1q2_table',
     );
 
@@ -118,9 +117,9 @@ Conduct a hazard analysis.');
     // @todo: What do we do with existing data? Do we only care about previous step.
     foreach ($hazards as $hazard => $name) {
       // Simplify the depth of the form with a reference.
-      $form_position = &$form['container']['instance_' . $i]['instance_table'][$hazard];
+      $form_position = &$form['principle_1_2']['instance_' . $i]['instance_table'][$hazard];
       // Reference the form's default values to make it easier.
-      $default_value = &$values['container']['instance_' . $i]['instance_table'][$hazard];
+      $default_value = &$values['principle_1_2']['instance_' . $i]['instance_table'][$hazard];
       // Create the elements of a row.
       $form_position['name'] = array(
         '#markup' => $name,
