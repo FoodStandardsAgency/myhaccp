@@ -208,7 +208,7 @@ function preparatory_f_validate($form, &$form_state) {
   // Check to see whether we have failed validation and therefore should store
   // it in the database or whether we have passed and therefore clear validation
   // errors.
-  if ($invalid == FALSE) {
+  if (!in_array(TRUE, $invalid)) {
     // Remove any stored validation.
     myhaccp_clear_validation($form_state);
   }

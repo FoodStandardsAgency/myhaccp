@@ -114,23 +114,8 @@ function preparatory_g_validate($form, &$form_state) {
   // Check to see whether we have failed validation and therefore should store
   // it in the database or whether we have passed and therefore clear validation
   // errors.
-  if ($invalid == FALSE) {
+  if (!in_array(TRUE, $invalid)) {
     // Remove any stored validation.
     myhaccp_clear_validation($form_state);
   }
-}
-
-/**
- * Submit handler to ensure files are saved.
- */
-function preparatory_g_submit($form, &$form_state) {
-  // Load the file via file.fid.
-  $file = file_load($form_state['values']['prep_g']['upload']);
-  // Change status to permanent.
-  $file->status = FILE_STATUS_PERMANENT;
-  // Save.
-  file_save($file);
-  // Get the current form's IID.
-  $iid = $_SESSION['iid'];
-  file_usage_add($file, 'myhaccp', 'form', $iid);
 }
