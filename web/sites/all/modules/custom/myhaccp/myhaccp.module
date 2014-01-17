@@ -132,6 +132,11 @@ function myhaccp_myhaccp_mforms_init() {
       'value' => 'G',
       'weight' => 8,
     ),
+    'preparatory_h' => array(
+      'stage' => 'preparatory',
+      'value' => 'H',
+      'weight' => 9,
+    ),
     'principle_1_question_1' => array(
       'stage' => 'principles',
       'value' => '1.1',
@@ -230,6 +235,7 @@ function _get_all_steps() {
     'preparatory_e' => 'preparatory',
     'preparatory_f' => 'preparatory',
     'preparatory_g' => 'preparatory',
+    'preparatory_h' => 'preparatory',
     'principle_1_question_1' => 'principle',
     'principle_1_question_2' => 'principle',
   );
@@ -270,21 +276,21 @@ function myhaccp_process($element, &$form_state) {
 
   // Handle any 'global' validation messages.
   if (isset($form_state['values']['validate'])) {
-    if (isset($element['#id']) && $element['#id'] == 'global-messages') {
+    if (isset($element['#id']) && $element['#id'] == 'validation-messages') {
       // First check for the special 'global' array element and make sure it
       // hasn't already been completed.
       if (isset($form_state['values']['validate']['global']) && !isset($global_done)) {
         // This means we need to show a message but not highlight any specific
-        // form fields. It is possible that there are multiple global message,
-        // in which case iterate and display them.
+        // form fields. For a message to appear in the validation message div
+        // it needs to have both the div in the form and for the div to have
+        // the 'data-validation-stage' attribute with a value the same as the
+        // key of the message.
         if (is_array($form_state['values']['validate']['global'])) {
-          foreach ($form_state['values']['validate']['global'] as $message) {
-            $element['#validation_message'][] = $message;
+          foreach ($form_state['values']['validate']['global'] as $key => $message) {
+            if (array_get($element, '#attributes.data-validation-stage', FALSE) == $key) {
+              $element['#validation_message'][] = $message;
+            }
           }
-        }
-        else {
-          $message = $form_state['values']['validate']['global'];
-          $element['#validation_message'][] = $message;
         }
         $global_done = TRUE;
       }
@@ -367,6 +373,11 @@ function _checkboxes_field_is_empty($values, $element) {
     return TRUE;
   }
   return FALSE;
+}
+
+function _checkbox_field_is_empty($values, $element) {
+  // Just use the text field function as its the same.
+  return _text_field_is_empty($values, $element);
 }
 
 /**
@@ -500,7 +511,7 @@ function _check_validation($callback, $target, $form, $form_state, $check_only =
   $invalid = $callback($form_state['values'], $target);
   // Its possible we only want to check a field and return the invalid boolean,
   // in which case ignore the next part.
-  if ($check_only == FALSE) {
+  if ($check_only == FALSE && $invalid) {
     $message = array_get($form, $target . '.#attributes.data-parsley-error-message', NULL);
     myhacpp_prepare_validation($target, $message, $form_state);
   }

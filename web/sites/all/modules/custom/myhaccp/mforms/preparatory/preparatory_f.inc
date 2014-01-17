@@ -20,18 +20,18 @@ function preparatory_f(&$form_state, &$next_step) {
   $form['#attributes']['class'][] = 'prep-f';
 
   // Wrap the form section in a fieldset.
-  $form['container'] = array(
+  $form['prep_f'] = array(
     '#type' => 'fieldset',
     '#tree' => TRUE,
   );
 
   // 1. Name of the product?
-  $form['container']['name'] = array(
+  $form['prep_f']['name'] = array(
     '#type' => 'textfield',
     '#title' => t('1. Name of the product: !tip', array(
       '!tip' => _help_tip(),
     )),
-    '#default_value' => array_get($values, 'container.name', FALSE),
+    '#default_value' => array_get($values, 'prep_f.name', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please specify the name of the product.'),
@@ -39,7 +39,7 @@ function preparatory_f(&$form_state, &$next_step) {
   );
 
   // 2. Physical properties.
-  $form['container']['young'] = array(
+  $form['prep_f']['young'] = array(
     '#type' => 'radios',
     '#options' => array(
       'yes' => t('Yes'),
@@ -48,7 +48,7 @@ function preparatory_f(&$form_state, &$next_step) {
     '#title' => t('2. Is the product designed for the young? !tip', array(
       '!tip' => _help_tip(),
     )),
-    '#default_value' => array_get($values, 'container.young', array()),
+    '#default_value' => array_get($values, 'prep_f.young', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please specify if the product is designed for the young.'),
@@ -56,7 +56,7 @@ function preparatory_f(&$form_state, &$next_step) {
   );
 
   // 3. Product processed description.
-  $form['container']['elderly'] = array(
+  $form['prep_f']['elderly'] = array(
     '#type' => 'radios',
     '#options' => array(
       'yes' => t('Yes'),
@@ -65,7 +65,7 @@ function preparatory_f(&$form_state, &$next_step) {
     '#title' => t('3. Is the product designed for the elderly? !tip', array(
       '!tip' => _help_tip(),
     )),
-    '#default_value' => array_get($values, 'container.elderly', array()),
+    '#default_value' => array_get($values, 'prep_f.elderly', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please specify if the product is designed for the elderly.'),
@@ -73,7 +73,7 @@ function preparatory_f(&$form_state, &$next_step) {
   );
 
   // 4. Product processed description.
-  $form['container']['pregnant'] = array(
+  $form['prep_f']['pregnant'] = array(
     '#type' => 'radios',
     '#options' => array(
       'yes' => t('Yes'),
@@ -82,7 +82,7 @@ function preparatory_f(&$form_state, &$next_step) {
     '#title' => t('4. Is the product designed for pregnant ladies? !tip', array(
       '!tip' => _help_tip(),
     )),
-    '#default_value' => array_get($values, 'container.pregnant', array()),
+    '#default_value' => array_get($values, 'prep_f.pregnant', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please specify if the product is designed for pregnant ladies.'),
@@ -90,7 +90,7 @@ function preparatory_f(&$form_state, &$next_step) {
   );
 
   // 5. Product stored and distributed.
-  $form['container']['immuno'] = array(
+  $form['prep_f']['immuno'] = array(
     '#type' => 'radios',
     '#options' => array(
       'yes' => t('Yes'),
@@ -99,7 +99,7 @@ function preparatory_f(&$form_state, &$next_step) {
     '#title' => t('5. Is the product designed for the immunosuppressed / immunocompromised? !tip', array(
       '!tip' => _help_tip(),
     )),
-    '#default_value' => array_get($values, 'container.immuno', array()),
+    '#default_value' => array_get($values, 'prep_f.immuno', array()),
     '#help_text' => t('State how the product should be kept  (during storage and distribution of the product) e.g. product to be kept chilled, frozen or heated.'),
     '#attributes' => array(
       'data-parsley-required' => 'true',
@@ -108,7 +108,7 @@ function preparatory_f(&$form_state, &$next_step) {
   );
 
   // 6. State the shelf-life of the product?
-  $form['container']['allergies'] = array(
+  $form['prep_f']['allergies'] = array(
     '#type' => 'radios',
     '#options' => array(
       'yes' => t('Yes'),
@@ -117,7 +117,7 @@ function preparatory_f(&$form_state, &$next_step) {
     '#title' => t('6. Is the product suitable for people with allergies or intolerances? !tip', array(
       '!tip' => _help_tip(),
     )),
-    '#default_value' => array_get($values, 'container.allergies', array()),
+    '#default_value' => array_get($values, 'prep_f.allergies', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please specify if the product is suitable for people with allergies or intolerances.'),
@@ -126,7 +126,7 @@ function preparatory_f(&$form_state, &$next_step) {
 
   // 7. Are there any other groups of people that may consume your product that
   // require special consideration?
-  $form['container']['special'] = array(
+  $form['prep_f']['special'] = array(
     '#type' => 'radios',
     '#options' => array(
       'yes' => t('Yes'),
@@ -135,7 +135,7 @@ function preparatory_f(&$form_state, &$next_step) {
     '#title' => t('7. Are there any other groups of people that may consume your product that require special consideration? !tip', array(
       '!tip' => _help_tip(),
     )),
-    '#default_value' => array_get($values, 'container.special', array()),
+    '#default_value' => array_get($values, 'prep_f.special', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please specify if there are any other groups of people that may consume your product that require special consideration.'),
@@ -144,7 +144,7 @@ function preparatory_f(&$form_state, &$next_step) {
 
   // 8. Is it possible that your product could be consumed by someone other
   // than those for whom it is intended?
-  $form['container']['intended'] = array(
+  $form['prep_f']['intended'] = array(
     '#type' => 'radios',
     '#options' => array(
       'yes' => t('Yes'),
@@ -153,7 +153,7 @@ function preparatory_f(&$form_state, &$next_step) {
     '#title' => t('8. Is it possible that your product could be consumed by someone other than those for whom it is intended? !tip', array(
       '!tip' => _help_tip(),
     )),
-    '#default_value' => array_get($values, 'container.intended', array()),
+    '#default_value' => array_get($values, 'prep_f.intended', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please specify whether it is possible that your product could be consumed by someone other than those for whom it is intended'),
@@ -162,12 +162,12 @@ function preparatory_f(&$form_state, &$next_step) {
 
   // 9. Detail below how you have considered the likely abuse / unintended use
   // of the product by the consumer.
-  $form['container']['abuse'] = array(
+  $form['prep_f']['abuse'] = array(
     '#type' => 'textarea',
     '#title' => t('9. Detail below how you have considered the likely abuse / unintended use of the product by the consumer. !tip', array(
       '!tip' => _help_tip(),
     )),
-    '#default_value' => array_get($values, 'container.abuse', array()),
+    '#default_value' => array_get($values, 'prep_f.abuse', array()),
     '#resizable' => FALSE,
     '#attributes' => array(
       'data-parsley-required' => 'true',
@@ -190,15 +190,15 @@ function preparatory_f_validate($form, &$form_state) {
   // notation) and the value being the callback to use to check whether the
   // field is empty.
   $checks = array(
-    'container.name' => '_text_field_is_empty',
-    'container.young' => '_radios_field_is_empty',
-    'container.elderly' => '_radios_field_is_empty',
-    'container.pregnant' => '_radios_field_is_empty',
-    'container.immuno' => '_radios_field_is_empty',
-    'container.allergies' => '_radios_field_is_empty',
-    'container.special' => '_radios_field_is_empty',
-    'container.intended' => '_radios_field_is_empty',
-    'container.abuse' => '_text_field_is_empty',
+    'prep_f.name' => '_text_field_is_empty',
+    'prep_f.young' => '_radios_field_is_empty',
+    'prep_f.elderly' => '_radios_field_is_empty',
+    'prep_f.pregnant' => '_radios_field_is_empty',
+    'prep_f.immuno' => '_radios_field_is_empty',
+    'prep_f.allergies' => '_radios_field_is_empty',
+    'prep_f.special' => '_radios_field_is_empty',
+    'prep_f.intended' => '_radios_field_is_empty',
+    'prep_f.abuse' => '_text_field_is_empty',
   );
 
   foreach ($checks as $target => $callback) {

@@ -20,12 +20,12 @@ function preparatory_a(&$form_state, &$next_step) {
   $form['#attributes']['class'][] = 'prep-a';
 
   // Wrap the form section in a fieldset.
-  $form['container'] = array(
+  $form['prep_a'] = array(
     '#type' => 'fieldset',
     '#tree' => TRUE,
   );
 
-  $form['container']['prep_a_prereq'] = array(
+  $form['prep_a']['prereq'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Mark all boxes where you can demonstrate that you have control of the prerequisites !tip', array(
       '!tip' => _help_tip(),
@@ -64,7 +64,7 @@ function preparatory_a(&$form_state, &$next_step) {
       30 => t('Return to work'),
       31 => t('Other'),
     ),
-    '#default_value' => array_get($values, 'container.prep_a_prereq', array()),
+    '#default_value' => array_get($values, 'prep_a.prereq', array()),
     '#attributes' => array(
       'data-parsley-group' => 'checkgroup',
       'data-parsley-required' => 'true',
@@ -73,13 +73,13 @@ function preparatory_a(&$form_state, &$next_step) {
     ),
   );
 
-  $form['container']['prep_a_location'] = array(
+  $form['prep_a']['location'] = array(
     '#type' => 'textarea',
     '#resizable' => FALSE,
     '#title' => t('Please specify the location of the above documents. !tip', array(
       '!tip' => _help_tip(),
     )),
-    '#default_value' => array_get($values, 'container.prep_a_location', FALSE),
+    '#default_value' => array_get($values, 'prep_a.location', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Enter the location of your documents.'),
@@ -99,8 +99,8 @@ function preparatory_a_validate($form, &$form_state) {
 
   // Validation: Some content.
   $checks = array(
-    'container.prep_a_prereq' => '_checkboxes_field_is_empty',
-    'container.prep_a_location' => '_text_field_is_empty',
+    'prep_a.prereq' => '_checkboxes_field_is_empty',
+    'prep_a.location' => '_text_field_is_empty',
   );
 
   foreach ($checks as $target => $callback) {

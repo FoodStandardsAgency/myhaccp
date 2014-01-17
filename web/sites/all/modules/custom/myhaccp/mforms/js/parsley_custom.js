@@ -75,7 +75,12 @@
               // If this is a radio button or a checkbox then step up a couple
               // of parents in the DOM to reach the wrapper.
               if (isRadioOrCheckbox) {
-                return $(elem).parent().parent();
+                if ($(elem).parent().hasClass('form-type-checkbox')) {
+                  return $(elem).parent();
+                }
+                else {
+                  return $(elem).parent().parent();
+                }
               }
               else {
                 return $(elem);

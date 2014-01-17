@@ -320,30 +320,13 @@ function myhaccp_container($variables) {
       $element['#attributes']['id'] = $element['#id'];
     }
 
-    // Add the 'form-wrapper' class.
-    if (!theme_get_setting('cleanup_classes_form_container_wrapper')) {
-      $element['#attributes']['class'][] = 'form-wrapper';
-    }
-
-    // Remove the field-type-[]
-    if (theme_get_setting('cleanup_classes_form_container_type')) {
-      $element['#attributes']['class']['0'] = "";
-    }
+    $element['#attributes']['class'][] = 'form-wrapper';
 
     // Remove the field-name-field-[]
-    if (theme_get_setting('cleanup_classes_form_container_name')) {
-      $element['#attributes']['class']['1'] = "";
-    }
+    unset($element['#attributes']['class'][1]);
 
     // Remove the field-widget-[]
-    if (theme_get_setting('cleanup_classes_form_container_widget')) {
-      $element['#attributes']['class']['2'] = "";
-    }
-
-    // Remove the id.
-    if (theme_get_setting('cleanup_classes_form_container_id')) {
-      unset($element['#attributes']['id']);
-    }
+    unset($element['#attributes']['class'][2]);
 
   }
 

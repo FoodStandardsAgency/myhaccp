@@ -20,12 +20,12 @@ function preparatory_b(&$form_state, &$next_step) {
   $form['#attributes']['class'][] = 'prep-b';
 
   // Wrap the form section in a fieldset.
-  $form['container'] = array(
+  $form['prep_b'] = array(
     '#type' => 'fieldset',
     '#tree' => TRUE,
   );
 
-  $form['container']['prep_b_support'] = array(
+  $form['prep_b']['prep_b_support'] = array(
     '#type' => 'checkboxes',
     '#title' => t('1. What documented evidence do you have to show the support of senior management to the food safety management based on HACCP? !tip', array(
       '!tip' => _help_tip(),
@@ -39,7 +39,7 @@ function preparatory_b(&$form_state, &$next_step) {
       5 => t('Training takes place for HACCP studies'),
       6 => t('N/A I am the management and can confirm that I am committed.'),
     ),
-    '#default_value' => array_get($values, 'container.prep_b_support', array()),
+    '#default_value' => array_get($values, 'prep_b.prep_b_support', array()),
     '#attributes' => array(
       'data-parsley-group' => 'checkgroup',
       'data-parsley-either' => '#edit-container-prep-b-support .form-item input,#edit-container-prep-b-evidence',
@@ -48,13 +48,13 @@ function preparatory_b(&$form_state, &$next_step) {
     ),
   );
 
-  $form['container']['prep_b_evidence'] = array(
+  $form['prep_b']['prep_b_evidence'] = array(
     '#type' => 'textarea',
     '#resizable' => FALSE,
     '#title' => t('2. Other evidence: !tip', array(
       '!tip' => _help_tip(),
     )),
-    '#default_value' => array_get($values, 'container.prep_b_evidence', FALSE),
+    '#default_value' => array_get($values, 'prep_b.prep_b_evidence', FALSE),
     '#attributes' => array(
       'data-parsley-either' => '#edit-container-prep-b-support .form-item input,#edit-container-prep-b-evidence',
       'data-parsley-message' => t('Please choose at least one option in question 1 or add some content in question 2.'),
@@ -79,10 +79,10 @@ function preparatory_b_validate($form, &$form_state) {
   // Validation: At least one box checked from Q1, or some content in question 2.
   // This is slightly more complex validation so not using the iterative field
   // check process as seen in other stages.
-  if (_text_field_is_empty($values, 'container.prep_b_evidence') && _checkboxes_field_is_empty($values, 'container.prep_b_support')) {
+  if (_text_field_is_empty($values, 'prep_b.prep_b_evidence') && _checkboxes_field_is_empty($values, 'prep_b.prep_b_support')) {
     $message = t('Please choose at least one option in question 1 or add some content in question 2.');
-    myhacpp_prepare_validation('container[prep_b_support]', $message, $form_state);
-    myhacpp_prepare_validation('container[prep_b_evidence]', $message, $form_state);
+    myhacpp_prepare_validation('prep_b.prep_b_support', $message, $form_state);
+    myhacpp_prepare_validation('prep_b.prep_b_evidence', $message, $form_state);
     // Ensure validation errors aren't cleared.
     $invalid = TRUE;
   }

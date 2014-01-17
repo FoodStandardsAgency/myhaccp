@@ -19,13 +19,23 @@ function preparatory_c_question_4(&$form_state, &$next_step) {
   $form = array();
   $form['#attributes']['class'][] = 'prep-c-2';
 
+  // Show global message on this form.
+  $form['validation_messages'] = array(
+    '#type' => 'container',
+    '#id' => 'validation-messages',
+    '#weight' => -10,
+    '#attributes' => array(
+      'data-validation-stage' => 'preparatory_c_question_4',
+    ),
+  );
+
   // Wrap the form section in a fieldset.
-  $form['container'] = array(
+  $form['prep_c_q4'] = array(
     '#type' => 'fieldset',
     '#tree' => TRUE,
   );
 
-  $form['container']['prep_c_q4_title'] = array(
+  $form['prep_c_q4']['wrapper_title'] = array(
     '#markup' => '<div class="label">' . t('1. What hazards will the HACCP plan cover? !tip', array(
       '!tip' => _help_tip(),
     )) . '</div>',
@@ -33,14 +43,14 @@ function preparatory_c_question_4(&$form_state, &$next_step) {
 
   // Physical hazards.
 
-  $form['container']['prep_c_q4']['physical_container'] = array(
+  $form['prep_c_q4']['wrapper']['physical_prep_c_q4'] = array(
     '#type' => 'container',
     '#attributes' => array(
       'id' => 'physical',
     ),
   );
 
-  $form['container']['prep_c_q4']['physical_container']['physical'] = array(
+  $form['prep_c_q4']['wrapper']['physical_prep_c_q4']['physical'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Physical'),
     '#options' => drupal_map_assoc(
@@ -53,25 +63,25 @@ function preparatory_c_question_4(&$form_state, &$next_step) {
         t('Item'),
       )
     ),
-    '#default_value' => array_get($values, 'container.prep_c_q4.physical_container.physical', array()),
+    '#default_value' => array_get($values, 'prep_c_q4.wrapper.physical_prep_c_q4.physical', array()),
   );
 
-  $form['container']['prep_c_q4']['physical_container']['physical_other'] = array(
+  $form['prep_c_q4']['wrapper']['physical_prep_c_q4']['physical_other'] = array(
     '#type' => 'textarea',
     '#title' => t('Other'),
-    '#default_value' => array_get($values, 'container.prep_c_q4.physical_container.physical_other', FALSE),
+    '#default_value' => array_get($values, 'prep_c_q4.wrapper.physical_prep_c_q4.physical_other', FALSE),
   );
 
   // Chemical.
 
-  $form['container']['prep_c_q4']['chemical_container'] = array(
+  $form['prep_c_q4']['wrapper']['chemical_prep_c_q4'] = array(
     '#type' => 'container',
     '#attributes' => array(
-      'id' => 'physical',
+      'id' => 'chemical',
     ),
   );
 
-  $form['container']['prep_c_q4']['chemical_container']['chemical'] = array(
+  $form['prep_c_q4']['wrapper']['chemical_prep_c_q4']['chemical'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Chemical'),
     '#options' => drupal_map_assoc(
@@ -84,25 +94,25 @@ function preparatory_c_question_4(&$form_state, &$next_step) {
         t('Item'),
       )
     ),
-    '#default_value' => array_get($values, 'container.prep_c_q4.chemical_container.chemical', array()),
+    '#default_value' => array_get($values, 'prep_c_q4.wrapper.chemical_prep_c_q4.chemical', array()),
   );
 
-  $form['container']['prep_c_q4']['chemical_container']['chemical_other'] = array(
+  $form['prep_c_q4']['wrapper']['chemical_prep_c_q4']['chemical_other'] = array(
     '#type' => 'textarea',
     '#title' => t('Other'),
-    '#default_value' => array_get($values, 'container.prep_c_q4.chemical_container.chemical_other', FALSE),
+    '#default_value' => array_get($values, 'prep_c_q4.wrapper.chemical_prep_c_q4.chemical_other', FALSE),
   );
 
   // Biological.
 
-  $form['container']['prep_c_q4']['biological_container'] = array(
+  $form['prep_c_q4']['wrapper']['biological_prep_c_q4'] = array(
     '#type' => 'container',
     '#attributes' => array(
-      'id' => 'physical',
+      'id' => 'biological',
     ),
   );
 
-  $form['container']['prep_c_q4']['biological_container']['biological'] = array(
+  $form['prep_c_q4']['wrapper']['biological_prep_c_q4']['biological'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Biological'),
     '#options' => drupal_map_assoc(
@@ -115,25 +125,25 @@ function preparatory_c_question_4(&$form_state, &$next_step) {
         t('Item'),
       )
     ),
-    '#default_value' => array_get($values, 'container.prep_c_q4.biological_container.biological', array()),
+    '#default_value' => array_get($values, 'prep_c_q4.wrapper.biological_prep_c_q4.biological', array()),
   );
 
-  $form['container']['prep_c_q4']['biological_container']['biological_other'] = array(
+  $form['prep_c_q4']['wrapper']['biological_prep_c_q4']['biological_other'] = array(
     '#type' => 'textarea',
     '#title' => t('Other'),
-    '#default_value' => array_get($values, 'container.prep_c_q4.biological_container.biological_other', FALSE),
+    '#default_value' => array_get($values, 'prep_c_q4.wrapper.biological_prep_c_q4.biological_other', FALSE),
   );
 
   // Allergens.
 
-  $form['container']['prep_c_q4']['allergens_container'] = array(
+  $form['prep_c_q4']['wrapper']['allergens_prep_c_q4'] = array(
     '#type' => 'container',
     '#attributes' => array(
-      'id' => 'physical',
+      'id' => 'allergens',
     ),
   );
 
-  $form['container']['prep_c_q4']['allergens_container']['allergens'] = array(
+  $form['prep_c_q4']['wrapper']['allergens_prep_c_q4']['allergens'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Allergens'),
     '#options' => drupal_map_assoc(
@@ -146,13 +156,13 @@ function preparatory_c_question_4(&$form_state, &$next_step) {
         t('Item'),
       )
     ),
-    '#default_value' => array_get($values, 'container.prep_c_q4.allergens_container.allergens', array()),
+    '#default_value' => array_get($values, 'prep_c_q4.wrapper.allergens_prep_c_q4.allergens', array()),
   );
 
-  $form['container']['prep_c_q4']['allergens_container']['allergens_other'] = array(
+  $form['prep_c_q4']['wrapper']['allergens_prep_c_q4']['allergens_other'] = array(
     '#type' => 'textarea',
     '#title' => t('Other'),
-    '#default_value' => array_get($values, 'container.prep_c_q4.allergens_container.allergens_other', FALSE),
+    '#default_value' => array_get($values, 'prep_c_q4.wrapper.allergens_prep_c_q4.allergens_other', FALSE),
   );
 
   $form['#validate'][] = 'preparatory_c_question_4_validate';
@@ -168,14 +178,14 @@ function preparatory_c_question_4_validate($form, &$form_state) {
 
   // Validation: Some content.
   $checks = array(
-    'container.prep_c_q4.physical_container.physical' => '_checkboxes_field_is_empty',
-    'container.prep_c_q4.chemical_container.chemical' => '_checkboxes_field_is_empty',
-    'container.prep_c_q4.biological_container.biological' => '_checkboxes_field_is_empty',
-    'container.prep_c_q4.allergens_container.allergens' => '_checkboxes_field_is_empty',
-    'container.prep_c_q4.physical_container.physical_other' => '_text_field_is_empty',
-    'container.prep_c_q4.chemical_container.chemical_other' => '_text_field_is_empty',
-    'container.prep_c_q4.biological_container.biological_other' => '_text_field_is_empty',
-    'container.prep_c_q4.allergens_container.allergens_other' => '_text_field_is_empty',
+    'prep_c_q4.wrapper.physical_prep_c_q4.physical' => '_checkboxes_field_is_empty',
+    'prep_c_q4.wrapper.chemical_prep_c_q4.chemical' => '_checkboxes_field_is_empty',
+    'prep_c_q4.wrapper.biological_prep_c_q4.biological' => '_checkboxes_field_is_empty',
+    'prep_c_q4.wrapper.allergens_prep_c_q4.allergens' => '_checkboxes_field_is_empty',
+    'prep_c_q4.wrapper.physical_prep_c_q4.physical_other' => '_text_field_is_empty',
+    'prep_c_q4.wrapper.chemical_prep_c_q4.chemical_other' => '_text_field_is_empty',
+    'prep_c_q4.wrapper.biological_prep_c_q4.biological_other' => '_text_field_is_empty',
+    'prep_c_q4.wrapper.allergens_prep_c_q4.allergens_other' => '_text_field_is_empty',
   );
 
   foreach ($checks as $target => $callback) {
@@ -184,7 +194,7 @@ function preparatory_c_question_4_validate($form, &$form_state) {
 
   if (!in_array(FALSE, $invalid)) {
     $message = t('Please add some content.');
-    myhacpp_prepare_validation('global', $message, $form_state);
+    myhacpp_prepare_validation('global', array('preparatory_c_question_4' => $message), $form_state);
   }
 
   // Check to see whether we have failed validation and therefore should store

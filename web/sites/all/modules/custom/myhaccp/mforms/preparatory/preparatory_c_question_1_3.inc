@@ -20,12 +20,12 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
   $form['#attributes']['class'][] = 'prep-c-1';
 
   // Wrap the form section in a fieldset.
-  $form['container'] = array(
+  $form['prep_c_q1_3'] = array(
     '#type' => 'fieldset',
     '#tree' => TRUE,
   );
 
-  $form['container']['prep_c_q1'] = array(
+  $form['prep_c_q1_3']['prep_c_q1'] = array(
     '#type' => 'select',
     '#title' => t('1. What type of HACCP plan are you producing? !tip', array(
       '!tip' => _help_tip(),
@@ -38,47 +38,47 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
         t('Generic'),
       )
     ),
-    '#default_value' => array_get($values, 'container.prep_c_q1', array()),
+    '#default_value' => array_get($values, 'prep_c_q1_3.prep_c_q1', array()),
   );
 
-  $form['container']['prep_c_q2'] = array(
+  $form['prep_c_q1_3']['prep_c_q2'] = array(
     '#type' => 'textarea',
     '#resizable' => FALSE,
     '#title' => t('2. State the type of product you are producing and briefly how it is going to be packed: !tip', array(
       '!tip' => _help_tip(),
     )),
-    '#default_value' => array_get($values, 'container.prep_c_q2', FALSE),
+    '#default_value' => array_get($values, 'prep_c_q1_3.prep_c_q2', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please add some content.'),
     ),
   );
 
-  $form['container']['prep_c_q3'] = array(
+  $form['prep_c_q1_3']['prep_c_q3'] = array(
     '#type' => 'container',
   );
 
-  $form['container']['prep_c_q3']['title'] = array(
+  $form['prep_c_q1_3']['prep_c_q3']['title'] = array(
     '#markup' => '<div class="label">' . t('3. State start and end points of the HACCP plan: !tip', array(
       '!tip' => _help_tip(),
       )
     ) . '</div>',
   );
 
-  $form['container']['prep_c_q3']['start'] = array(
+  $form['prep_c_q1_3']['prep_c_q3']['start'] = array(
     '#type' => 'textfield',
     '#title' => t('It will start at '),
-    '#default_value' => array_get($values, 'container.prep_c_q3.start', FALSE),
+    '#default_value' => array_get($values, 'prep_c_q1_3.prep_c_q3.start', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please add a start date.'),
     ),
   );
 
-  $form['container']['prep_c_q3']['end'] = array(
+  $form['prep_c_q1_3']['prep_c_q3']['end'] = array(
     '#type' => 'textfield',
     '#title' => t('Through to '),
-    '#default_value' => array_get($values, 'container.prep_c_q3.end', FALSE),
+    '#default_value' => array_get($values, 'prep_c_q1_3.prep_c_q3.end', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please add an end date.'),
@@ -98,10 +98,10 @@ function preparatory_c_question_1_3_validate($form, &$form_state) {
 
   // Validation: Some content.
   $checks = array(
-    'container.prep_c_q2' => '_text_field_is_empty',
-    'container.prep_c_q3.start' => '_text_field_is_empty',
-    'container.prep_c_q3.start' => '_text_field_is_empty',
-    'container.prep_c_q3.end' => '_text_field_is_empty',
+    'prep_c_q1_3.prep_c_q2' => '_text_field_is_empty',
+    'prep_c_q1_3.prep_c_q3.start' => '_text_field_is_empty',
+    'prep_c_q1_3.prep_c_q3.start' => '_text_field_is_empty',
+    'prep_c_q1_3.prep_c_q3.end' => '_text_field_is_empty',
   );
 
   foreach ($checks as $target => $callback) {
