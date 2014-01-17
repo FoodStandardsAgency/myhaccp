@@ -40,11 +40,9 @@ function principle_1_question_1(&$form_state, &$next_step) {
     '#suffix' => '</div>',
   );
 
-  // Check whether the number of instances has been set and if so show them,
-  // otherwise show 2. If instances has been set but there is only 1 then show a
-  // second (blank) one.
-  if (empty($form_state['num_instances']) || $form_state['num_instances'] == 1) {
-    $form_state['num_instances'] = 2;
+  // Set the number of instances to 1 if not already set.
+  if (empty($form_state['num_instances'])) {
+    $form_state['num_instances'] = 1;
   }
   for ($i = 0; $i < $form_state['num_instances']; $i++) {
     // Contain everything for this instance inside a fieldset.
@@ -156,21 +154,21 @@ function principle_1_question_1(&$form_state, &$next_step) {
     '#submit' => array('instance_add_more_add_one'),
     '#limit_validation_errors' => TRUE,
     '#ajax' => array(
-      'callback' => 'instance_add_more_callback',
+      'callback' => 'instance_add_more_callback_principle_1_1',
       'wrapper' => 'instance-container',
     ),
   );
 
   // If there are more than two instances in the form then provide a button
   // to remove the last one.
-  if ($form_state['num_instances'] > 2) {
+  if ($form_state['num_instances'] > 1) {
     $form['principle_1_1']['controls']['remove_instance'] = array(
       '#type' => 'submit',
       '#value' => t('Remove one'),
       '#submit' => array('instance_add_more_remove_one'),
       '#limit_validation_errors' => TRUE,
       '#ajax' => array(
-        'callback' => 'instance_add_more_callback',
+        'callback' => 'instance_add_more_callback_principle_1_1',
         'wrapper' => 'instance-container',
       ),
     );
@@ -237,4 +235,11 @@ function principle_1_question_1_validate($form, &$form_state) {
     // Remove any stored validation.
     myhaccp_clear_validation($form_state);
   }
+}
+
+/**
+ * Ajax callback which returns the form array element to be applied against.
+ */
+function instance_add_more_callback_principle_1_1($form, $form_state) {
+  return $form['principle_1_1'];
 }

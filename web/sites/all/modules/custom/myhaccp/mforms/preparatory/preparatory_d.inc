@@ -23,7 +23,7 @@ function preparatory_d(&$form_state, &$next_step) {
   // Wrap the form section in a fieldset.
   $form['prep_d'] = array(
     '#type' => 'fieldset',
-    '#prefix' => '<div id="instance-prep_d">',
+    '#prefix' => '<div id="container">',
     '#suffix' => '</div>',
   );
 
@@ -149,6 +149,10 @@ function preparatory_d(&$form_state, &$next_step) {
       '!tip' => _help_tip(),
     )),
     '#default_value' => array_get($values, 'prep_d.team_skills', FALSE),
+    '#attributes' => array(
+      'data-parsley-error-message' => t('Please indicate whether you consider the team to have sufficient skills.'),
+      'data-parsley-required' => TRUE,
+    ),
   );
 
   // Add a prep_d for the button controls.
@@ -166,8 +170,8 @@ function preparatory_d(&$form_state, &$next_step) {
     '#submit' => array('instance_add_more_add_one'),
     '#limit_validation_errors' => TRUE,
     '#ajax' => array(
-      'callback' => 'instance_add_more_callback',
-      'wrapper' => 'instance-prep_d',
+      'callback' => 'instance_add_more_callback_prep_d',
+      'wrapper' => 'container',
     ),
   );
 
@@ -180,8 +184,8 @@ function preparatory_d(&$form_state, &$next_step) {
       '#submit' => array('instance_add_more_remove_one'),
       '#limit_validation_errors' => TRUE,
       '#ajax' => array(
-        'callback' => 'instance_add_more_callback',
-        'wrapper' => 'instance-prep_d',
+        'callback' => 'instance_add_more_callback_prep_d',
+        'wrapper' => 'container',
       ),
     );
   }
@@ -219,6 +223,8 @@ function preparatory_d_validate($form, &$form_state) {
 
   }
 
+  $invalid[] = _check_validation('_radios_field_is_empty', 'prep_d.team_skills', $form, $form_state);
+
   // Check to see whether we have failed validation and therefore should store
   // it in the database or whether we have passed and therefore clear validation
   // errors.
@@ -227,4 +233,11 @@ function preparatory_d_validate($form, &$form_state) {
     myhaccp_clear_validation($form_state);
   }
 
+}
+
+/**
+ * Ajax callback which returns the form array element to be applied against.
+ */
+function instance_add_more_callback_prep_d($form, $form_state) {
+  return $form['prep_d'];
 }
