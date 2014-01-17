@@ -16,7 +16,6 @@
         var severity = $row.find('input.severity').val();
         // Check if severity is greater than three or less than one and if so
         // reset the field to empty.
-        // @todo: Put in some kind of message.
         if (severity > 3 || severity < 1) {
           $row.find('input.severity').val('');
           severity = 0;
@@ -34,7 +33,9 @@
         total = parseFloat(severity * likelihood);
         // If the total isn't zero then update the significance field value.
         if (total != 0) {
-          $row.find('input.significance').val(total);
+          var sig = $row.find('input.significance');
+          sig.val(total);
+          $('#mforms-wrapper-myhaccp form').parsley('validate');
         }
       });
     }

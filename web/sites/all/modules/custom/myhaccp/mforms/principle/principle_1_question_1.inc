@@ -193,26 +193,6 @@ function principle_1_question_1_validate($form, &$form_state) {
 
   $invalid = array();
 
-  // Test to see whether there is any submitted data in any instance.
-//  foreach ($form_state['values']['principle_1_1'] as &$instance) {
-//    foreach ($instance as &$container) {
-//      if (is_array($container)) {
-//        foreach ($container as &$element) {
-//          if ($element != '') {
-//            $validate = TRUE;
-//          }
-//        }
-//      }
-//    }
-//  }
-
-  // Determine which message to show.
-//  if ($validate == FALSE) {
-//    drupal_set_message(t('Principle 1 Question 1 requires information to be present.'), 'warning');
-//  }
-
-  $invalid = array();
-
   for ($i = 0; $i < $form_state['num_instances']; $i++) {
     // In each instance, check whether some of the fields have been filled in,
     // if they have then check they have all been filled in.

@@ -31,6 +31,16 @@ function principle_1_question_2(&$form_state, &$next_step) {
     '#suffix' => '</div>',
   );
 
+  // Show global message on this form.
+  $form['validation_messages'] = array(
+    '#type' => 'container',
+    '#id' => 'validation-messages',
+    '#weight' => -10,
+    '#attributes' => array(
+      'data-validation-stage' => 'principle_1_question_2',
+    ),
+  );
+
   // Determine how many instances we need to display. This is based on the data
   // from Principle 1 Question 1.
   $store = mforms_store_get('myhaccp');
@@ -141,7 +151,7 @@ function principle_1_question_2(&$form_state, &$next_step) {
           'data-parsley-type' => 'digits',
           'data-parsley-validation-minlength' => 1,
           'data-parsley-error-message' => t('Please add a severity between 1 and 3.'),
-          'class' => 'severity',
+          'class' => array('severity'),
         ),
       );
       $form_position['likelihood'] = array(
@@ -155,7 +165,7 @@ function principle_1_question_2(&$form_state, &$next_step) {
           'data-parsley-type' => 'digits',
           'data-parsley-validation-minlength' => 1,
           'data-parsley-error-message' => t('Please add a likelihood between 1 and 3.'),
-          'class' => 'likelihood',
+          'class' => array('likelihood'),
         ),
       );
       $form_position['significance'] = array(
@@ -169,7 +179,7 @@ function principle_1_question_2(&$form_state, &$next_step) {
           'data-parsley-type' => 'digits',
           'data-parsley-validation-minlength' => 1,
           'data-parsley-error-message' => t('Please add a significance between 1 and 9.'),
-          'class' => 'significance',
+          'class' => array('significance'),
         ),
         '#attached' => array(
           'js' => array(
@@ -193,26 +203,41 @@ function principle_1_question_2_validate($form, &$form_state) {
   $validate = FALSE;
 
   // Test to see whether there is any submitted data for the first instance.
-  if (isset($form_state['values']['principle_1_2']['instance_0'])) {
-    $form_position = &$form_state['values']['principle_1_2'];
-    // Iterate over the tables.
-    foreach ($form_position as &$instance) {
-      foreach ($instance['instance_table'] as &$item) {
-        foreach ($item as $element) {
-          if ($element != '') {
-            $validate = TRUE;
-          }
-        }
-      }
-    }
-  }
+//  if (isset($form_state['values']['principle_1_2']['instance_0'])) {
+//    $form_position = &$form_state['values']['principle_1_2'];
+//    // Iterate over the tables.
+//    foreach ($form_position as &$instance) {
+//      foreach ($instance['instance_table'] as &$item) {
+//        foreach ($item as $element) {
+//          if ($element != '') {
+//            $validate = TRUE;
+//          }
+//        }
+//      }
+//    }
+//  }
+//
+//  // Determine which message to show.
+//  if ($validate == FALSE) {
+//    drupal_set_message(t('Principle 1 Question 2 requires information to be present.'), 'warning');
+//  }
+//  else {
+//    drupal_set_message(t('Information saved.'));
+//  }
 
-  // Determine which message to show.
-  if ($validate == FALSE) {
-    drupal_set_message(t('Principle 1 Question 2 requires information to be present.'), 'warning');
-  }
-  else {
-    drupal_set_message(t('Information saved.'));
+  $invalid = array();
+
+  for ($i = 0; $i < $form_state['num_instances']; $i++) {
+    // Find the name of the hazards.
+    foreach ($form_state['values']['principle_1_2']['instance_' . $i]['instance_table'] as $hazard_key => $value) {
+      $checks["principle_1_2.instance_$i.instance_table.$hazard_key.severity"] = '_text_field_is_empty';
+      $checks["principle_1_2.instance_$i.instance_table.$hazard_key.likelihood"] = '_text_field_is_empty';
+      $checks["principle_1_2.instance_$i.instance_table.$hazard_key.significance"] = '_text_field_is_empty';
+    }
+
+    foreach ($checks as $target => $callback) {
+      $invalid[] = _check_validation($callback, $target, $form, $form_state);
+    }
   }
 }
 

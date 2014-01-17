@@ -100,6 +100,10 @@
           $(elem).parents('.form-item').removeClass('error');
           $(elem).parents('.form-item').parents('.form-checkboxes, .form-radios').removeClass('error');
           $(elem).parents('.form-item').children('ul.parsley-error-list').remove();
+        },
+        onFieldError: function(elem) {
+          // Remove and server side error messages.
+          $(elem).parents('.form-item').children('ul.parsley-error-list.server-side').remove();
         }
       });
 
