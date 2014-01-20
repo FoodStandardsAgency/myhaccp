@@ -57,6 +57,7 @@ function principle_1_question_1(&$form_state, &$next_step) {
         'class' => array('p1q1-step'),
       ),
     );
+    // Step no.
     $form['principle_1_1']['instance_' . $i]['wrapper']['step_no'] = array(
       '#weight' => '0',
       '#type' => 'textfield',
@@ -67,6 +68,7 @@ function principle_1_question_1(&$form_state, &$next_step) {
       '#attributes' => array(
         'data-parsley-required' => 'true',
         'data-parsley-error-message' => t('Please add a step number.'),
+        'class' => array('step-no'),
       ),
     );
     // Step name.
@@ -80,6 +82,7 @@ function principle_1_question_1(&$form_state, &$next_step) {
       '#attributes' => array(
         'data-parsley-required' => 'true',
         'data-parsley-error-message' => t('Please add a step name.'),
+        'class' => array('step-name'),
       ),
     );
     // Add a wrapper for the categories.

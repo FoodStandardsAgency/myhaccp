@@ -6,7 +6,6 @@
 .pager-wrapper {
   @include clearfix();
   padding-bottom: 1em;
-  margin-bottom: 1em;
   border-bottom: 4px solid $grey-1;
   h2.pager-title {
     text-transform: uppercase;

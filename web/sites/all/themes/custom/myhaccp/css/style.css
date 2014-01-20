@@ -1270,14 +1270,18 @@ select:focus {
   outline: 2px solid #007fb2;
 }
 
-.prep-d .form-item-container-team-skills .form-radios .form-item {
+.prep-d .instance .form-radios .form-item, .prep-d .form-item-prep-d-team-skills .form-radios .form-item, .prep-f .form-radios .form-item,
+.prep-h .form-radios .form-item {
   display: inline;
 }
-.prep-d .form-item-container-team-skills .form-radios label, .prep-d .form-item-container-team-skills .form-radios input {
+.prep-d .instance .form-radios label, .prep-d .form-item-prep-d-team-skills .form-radios label, .prep-f .form-radios label,
+.prep-h .form-radios label, .prep-d .instance .form-radios input, .prep-d .form-item-prep-d-team-skills .form-radios input, .prep-f .form-radios input,
+.prep-h .form-radios input {
   display: inline;
   margin-right: 0.25em;
 }
-.prep-d .form-item-container-team-skills .form-radios input {
+.prep-d .instance .form-radios input, .prep-d .form-item-prep-d-team-skills .form-radios input, .prep-f .form-radios input,
+.prep-h .form-radios input {
   vertical-align: baseline;
 }
 
@@ -1404,17 +1408,17 @@ select:focus {
 }
 
 /** Textareas: half-width floating **/
-.prep-d fieldset.instance .form-wrapper, .p1q1-hazards {
+.prep-d fieldset.instance .form-wrapper, .principle-1-q1 .hazards {
   clear: both;
 }
 @media all and (min-width: 640px) {
-  .prep-d fieldset.instance .form-wrapper, .p1q1-hazards {
+  .prep-d fieldset.instance .form-wrapper, .principle-1-q1 .hazards {
     margin-left: -25px;
   }
-  .prep-d fieldset.instance .form-wrapper .group-title, .p1q1-hazards .group-title {
+  .prep-d fieldset.instance .form-wrapper .group-title, .principle-1-q1 .hazards .group-title {
     margin-left: 25px;
   }
-  .prep-d fieldset.instance .form-wrapper .form-item, .p1q1-hazards .form-item {
+  .prep-d fieldset.instance .form-wrapper > .form-item, .principle-1-q1 .hazards > .form-item {
     width: 50%;
     float: left;
     padding-left: 25px;
@@ -1424,7 +1428,7 @@ select:focus {
     box-sizing: border-box;
   }
 }
-.prep-d fieldset.instance .form-wrapper textarea, .p1q1-hazards textarea {
+.prep-d fieldset.instance .form-wrapper textarea, .principle-1-q1 .hazards textarea {
   width: 95%;
 }
 
@@ -1614,7 +1618,6 @@ fieldset {
   border: none;
   margin: 0 0 1em 0;
   border-bottom: 1px solid #007fb2;
-  overflow: hidden;
   padding: 1.5em 0;
 }
 fieldset legend {
@@ -1949,6 +1952,39 @@ div.teaser-checkbox .form-item,
   margin-bottom: 0.5em;
 }
 
+#container {
+  margin-bottom: 2em;
+}
+#container > fieldset {
+  margin-bottom: 1em;
+  padding-top: 0;
+}
+#container .form-controls input[type="submit"] {
+  background-color: #e6e6e6;
+  color: rgba(0, 0, 0, 0.8);
+  border: 0 none transparent;
+  padding: 0.6em 1.5em 0.5em 1.5em;
+  text-decoration: none;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  margin-left: 0;
+  margin-right: 1em;
+}
+#container .form-controls input[type="submit"]:hover, #container .form-controls input[type="submit"]:focus {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+}
+#container .form-controls input[type="submit"].disabled {
+  background-image: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+#container .form-controls input[type="submit"].active, #container .form-controls input[type="submit"]:active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
+}
+
 #instance-container {
   margin-bottom: 2em;
 }
@@ -1985,10 +2021,11 @@ div.teaser-checkbox .form-item,
  * Specific form styling
  */
 /** Prep Stage D **/
-.prep-d .form-item-container-team-skills {
+.prep-d .form-item-prep-d-team-skills {
   margin-top: 2em;
 }
 
+/** Prep Stage F **/
 /** Principle 1, Q1 **/
 .p1q1-step {
   overflow: hidden;
@@ -1996,42 +2033,37 @@ div.teaser-checkbox .form-item,
 }
 .p1q1-step .form-item {
   float: left;
-}
-.p1q1-step .form-item.p1q1-step-no {
   margin-right: 2em;
 }
-.p1q1-step .form-item.p1q1-step-no input {
+.p1q1-step .form-item input.step-no {
   width: 3em;
   min-width: 3em;
 }
+.p1q1-step .form-item input.step-name {
+  width: 10em;
+  min-width: 10em;
+}
 
 /** Principle 1, Q2 **/
-.p1q2 table {
+.principle-1-question-2 table {
   width: 100%;
 }
-.p1q2 table th.severity,
-.p1q2 table th.likelihood,
-.p1q2 table th.significance {
+.principle-1-question-2 table th.severity,
+.principle-1-question-2 table th.likelihood,
+.principle-1-question-2 table th.significance {
   max-width: 3em;
 }
-.p1q2 table th.severity span,
-.p1q2 table th.likelihood span,
-.p1q2 table th.significance span {
+.principle-1-question-2 table th.severity span,
+.principle-1-question-2 table th.likelihood span,
+.principle-1-question-2 table th.significance span {
   white-space: nowrap;
 }
-.p1q2 .severity input[type="text"],
-.p1q2 .likelihood input[type="text"],
-.p1q2 .significance input[type="text"] {
+.principle-1-question-2 input[type="text"].severity, .principle-1-question-2 input[type="text"].likelihood, .principle-1-question-2 input[type="text"].significance {
   min-width: 3em;
   width: 3em;
 }
 
 /** Principle 2 **/
-.p2-q1 label {
-  display: inline;
-  padding: 0.25em;
-}
-
 /**
  * The pager element
  * Displayed at the top of the tool
@@ -2040,7 +2072,6 @@ div.teaser-checkbox .form-item,
   overflow: hidden;
   *zoom: 1;
   padding-bottom: 1em;
-  margin-bottom: 1em;
   border-bottom: 4px solid #eeeeee;
 }
 .pager-wrapper h2.pager-title {
