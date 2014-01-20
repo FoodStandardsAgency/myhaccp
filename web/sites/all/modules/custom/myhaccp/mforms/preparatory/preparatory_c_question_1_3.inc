@@ -42,7 +42,7 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
       'data-parsley-notequal' => 'none',
       'data-parsley-error-message' => t('Please select the type of HACCP plan you are producing.'),
     ),
-    '#default_value' => array_get($values, 'prep_c_1_3.prep_c_q1', array()),
+    '#default_value' => array_get($values, 'prep_c_1_3.type', array()),
   );
 
   $form['prep_c_1_3']['product'] = array(
@@ -51,7 +51,7 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
     '#title' => t('2. State the type of product you are producing and briefly how it is going to be packed: !tip', array(
       '!tip' => _help_tip(),
     )),
-    '#default_value' => array_get($values, 'prep_c_1_3.prep_c_q2', FALSE),
+    '#default_value' => array_get($values, 'prep_c_1_3.product', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please state the type of product you are producing and how it will be packed.'),
@@ -72,7 +72,7 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
   $form['prep_c_1_3']['q3']['start'] = array(
     '#type' => 'textfield',
     '#title' => t('It will start at '),
-    '#default_value' => array_get($values, 'prep_c_1_3.prep_c_q3.start', FALSE),
+    '#default_value' => array_get($values, 'prep_c_1_3.q3.start', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please add a start date.'),
@@ -82,7 +82,7 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
   $form['prep_c_1_3']['q3']['end'] = array(
     '#type' => 'textfield',
     '#title' => t('Through to '),
-    '#default_value' => array_get($values, 'prep_c_1_3.prep_c_q3.end', FALSE),
+    '#default_value' => array_get($values, 'prep_c_1_3.q3.end', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please add an end date.'),
