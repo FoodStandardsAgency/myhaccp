@@ -36,7 +36,7 @@ function preparatory_c_question_4(&$form_state, &$next_step) {
   );
 
   $form['prep_c_q4']['wrapper_title'] = array(
-    '#markup' => '<div class="label">' . t('1. What hazards will the HACCP plan cover? !tip', array(
+    '#markup' => '<div class="label">' . t('4. What hazards will the HACCP plan cover? !tip', array(
       '!tip' => _help_tip(),
     )) . '</div>',
   );
