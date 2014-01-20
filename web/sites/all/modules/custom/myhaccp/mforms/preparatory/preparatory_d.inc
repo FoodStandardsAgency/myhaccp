@@ -30,8 +30,8 @@ function preparatory_d(&$form_state, &$next_step) {
   // Check whether the number of instances has been set and if so show them,
   // otherwise show 2. If instances has been set but there is only 1 then show a
   // second (blank) one.
-  if (empty($form_state['num_instances']) || $form_state['num_instances'] == 1) {
-    $form_state['num_instances'] = 2;
+  if (empty($form_state['num_instances'])) {
+    $form_state['num_instances'] = 1;
   }
   for ($i = 0; $i < $form_state['num_instances']; $i++) {
     // Contain everything for this instance inside a fieldset.
@@ -45,12 +45,13 @@ function preparatory_d(&$form_state, &$next_step) {
     $form['prep_d']["instance_$i"]['team_name'] = array(
       '#weight' => '0',
       '#type' => 'textfield',
-      '#title' => t('Name of HACCP Team Member !tip', array(
+      '#title' => t('Name of HACCP team member: !tip', array(
         '!tip' => _help_tip(),
       )),
       '#default_value' => array_get($values, "prep_d.instance_$i.team_name", FALSE),
+      '#help_text' => t('State how the product should be kept  (during storage and distribution of the product) e.g. product to be kept chilled, frozen or heated.'),
       '#attributes' => array(
-        'data-parsley-error-message' => t('Please add the name of the team member.'),
+        'data-parsley-error-message' => t('Please add the name of the HACCP team member.'),
         'data-parsley-required' => TRUE,
       ),
     );
@@ -76,12 +77,12 @@ function preparatory_d(&$form_state, &$next_step) {
     $form['prep_d']["instance_$i"]['team_role'] = array(
       '#weight' => '2',
       '#type' => 'textfield',
-      '#title' => t('Role within the team !tip', array(
+      '#title' => t('Role of individual !tip', array(
         '!tip' => _help_tip(),
       )),
       '#default_value' => array_get($values, "prep_d.instance_$i.team_role", FALSE),
       '#attributes' => array(
-        'data-parsley-error-message' => t('Please add the role of the team member.'),
+        'data-parsley-error-message' => t('Please add the role of the individual.'),
         'data-parsley-required' => TRUE,
       ),
     );
@@ -99,7 +100,7 @@ function preparatory_d(&$form_state, &$next_step) {
       )),
       '#default_value' => array_get($values, "prep_d.instance_$i.wrapper.team_training", FALSE),
       '#attributes' => array(
-        'data-parsley-error-message' => t('Please add the training of the team member.'),
+        'data-parsley-error-message' => t('Please add any relevant training or enter "none".'),
         'data-parsley-required' => TRUE,
       ),
     );
@@ -113,7 +114,7 @@ function preparatory_d(&$form_state, &$next_step) {
       )),
       '#default_value' => array_get($values, "prep_d.instance_$i.wrapper.team_qualifications", FALSE),
       '#attributes' => array(
-        'data-parsley-error-message' => t('Please add the qualifications of the team member.'),
+        'data-parsley-error-message' => t('Please add any relevant qualifications or enter "none".'),
         'data-parsley-required' => TRUE,
       ),
     );
@@ -127,7 +128,7 @@ function preparatory_d(&$form_state, &$next_step) {
       )),
       '#default_value' => array_get($values, "prep_d.instance_$i.wrapper.team_experience", FALSE),
       '#attributes' => array(
-        'data-parsley-error-message' => t('Please add the experience of the team member.'),
+        'data-parsley-error-message' => t('Please add any relevant experience or enter "none".'),
         'data-parsley-required' => TRUE,
       ),
     );
@@ -137,7 +138,9 @@ function preparatory_d(&$form_state, &$next_step) {
   // it to be un-editable (enforced).
   $form['prep_d']['instance_0']['team_role']['#default_value'] = t('Team leader');
   $form['prep_d']['instance_0']['team_role']['#disabled'] = TRUE;
-  $form['prep_d']['instance_0']['team_external']['#access'] = FALSE;
+  $form['prep_d']['instance_0']['team_external']['#disabled'] = TRUE;
+  $form['prep_d']['instance_0']['team_external']['#default_value'] = 'internal';
+  $form['prep_d']['instance_0']['team_name']['#title'] = t('Name of HACCP lead for business');
 
   $form['prep_d']['team_skills'] = array(
     '#type' => 'radios',
@@ -167,7 +170,7 @@ function preparatory_d(&$form_state, &$next_step) {
   // Provide an add more button.
   $form['prep_d']['controls']['add_instance'] = array(
     '#type' => 'submit',
-    '#value' => t('Add another'),
+    '#value' => t('Add another team member'),
     '#submit' => array('instance_add_more_add_one'),
     '#limit_validation_errors' => TRUE,
     '#ajax' => array(
@@ -178,7 +181,7 @@ function preparatory_d(&$form_state, &$next_step) {
 
   // If there are more than two instances in the form then provide a button
   // to remove the last one.
-  if ($form_state['num_instances'] > 2) {
+  if ($form_state['num_instances'] > 1) {
     $form['prep_d']['controls']['remove_instance'] = array(
       '#type' => 'submit',
       '#value' => t('Remove one'),
