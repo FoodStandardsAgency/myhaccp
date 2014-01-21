@@ -213,9 +213,37 @@ function myhaccp_theme() {
  *
  * Currently just a simple bit of html, but this function may expand to
  * to take parameters.
+ *
+ * @param string $link
+ *   The node ID or a string like node/23.
+ *
+ * @return string
+ *   Prepared HTML for the link tip.
  */
-function _help_tip() {
-  return '<a href="#" class="help-tip" title="This link will afford popup help text when clicked." target="_blank">?</a>';
+function _help_tip($link = '#') {
+  $parts = array();
+  if (is_numeric($link)) {
+    $parts[0] = 'node/' . $link;
+  }
+  else {
+    $parts = explode('#', $link);
+  }
+
+  $options = array(
+    'attributes' => array(
+      'class' => array(
+        'help-tip',
+      ),
+      'title' => 'Link through to further guidance on this subject.',
+      'target' => '_blank',
+    ),
+  );
+
+  if (isset($parts[1])) {
+    $options['fragment'] = $parts[1];
+  }
+
+  return l(t('?'), $parts[0], $options);
 }
 
 /**

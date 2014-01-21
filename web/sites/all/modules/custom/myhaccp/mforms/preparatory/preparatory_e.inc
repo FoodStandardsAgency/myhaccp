@@ -29,7 +29,7 @@ function preparatory_e(&$form_state, &$next_step) {
   $form['prep_e']['ingredients'] = array(
     '#type' => 'textarea',
     '#title' => t('1. List all the ingredients with their origin in brackets. !tip', array(
-      '!tip' => _help_tip(),
+      '!tip' => _help_tip(12),
     )),
     '#default_value' => array_get($values, 'prep_e.ingredients', FALSE),
     '#resizable' => FALSE,
@@ -44,11 +44,11 @@ function preparatory_e(&$form_state, &$next_step) {
   $form['prep_e']['properties'] = array(
     '#type' => 'textarea',
     '#title' => t('2. State the physical properties (A<sub>w</sub>,pH,emulsion). !tip', array(
-      '!tip' => _help_tip(),
+      '!tip' => _help_tip(12),
     )),
     '#default_value' => array_get($values, 'prep_e.properties', FALSE),
     '#resizable' => FALSE,
-    '#help_text' => t('Provide physical details of the product e.g. NaCL 10%, pH  less than or equal to 4.3, Aw 0.912'),
+    '#help_text' => t('Provide physical details of the product e.g. NaCL 10%, pH  less than or equal to 4.3, A<sub>w</sub> 0.912'),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please state the physical properties.'),
@@ -59,7 +59,7 @@ function preparatory_e(&$form_state, &$next_step) {
   $form['prep_e']['processed'] = array(
     '#type' => 'textarea',
     '#title' => t('3. Describe how the product has been processed and/or other preservation methods. !tip', array(
-      '!tip' => _help_tip(),
+      '!tip' => _help_tip(12),
     )),
     '#default_value' => array_get($values, 'prep_e.properties', FALSE),
     '#resizable' => FALSE,
@@ -74,7 +74,7 @@ function preparatory_e(&$form_state, &$next_step) {
   $form['prep_e']['packed'] = array(
     '#type' => 'textarea',
     '#title' => t('4. How was the product packed and what are the packaging materials? !tip', array(
-      '!tip' => _help_tip(),
+      '!tip' => _help_tip(12),
     )),
     '#default_value' => array_get($values, 'prep_e.properties', FALSE),
     '#resizable' => FALSE,
@@ -89,7 +89,7 @@ function preparatory_e(&$form_state, &$next_step) {
   $form['prep_e']['stored'] = array(
     '#type' => 'textarea',
     '#title' => t('5. How is the product going to be stored and distributed? !tip', array(
-      '!tip' => _help_tip(),
+      '!tip' => _help_tip(12),
     )),
     '#default_value' => array_get($values, 'prep_e.properties', FALSE),
     '#resizable' => FALSE,
@@ -104,7 +104,7 @@ function preparatory_e(&$form_state, &$next_step) {
   $form['prep_e']['shelf_life'] = array(
     '#type' => 'textarea',
     '#title' => t('6. State the shelf-life of the product. !tip', array(
-      '!tip' => _help_tip(),
+      '!tip' => _help_tip(12),
     )),
     '#default_value' => array_get($values, 'prep_e.properties', FALSE),
     '#resizable' => FALSE,
@@ -119,7 +119,7 @@ function preparatory_e(&$form_state, &$next_step) {
   $form['prep_e']['handled'] = array(
     '#type' => 'textarea',
     '#title' => t('7. State how the product is to be stored and handled. !tip', array(
-      '!tip' => _help_tip(),
+      '!tip' => _help_tip(12),
     )),
     '#default_value' => array_get($values, 'prep_e.properties', FALSE),
     '#resizable' => FALSE,
