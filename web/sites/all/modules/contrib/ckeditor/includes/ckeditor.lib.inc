@@ -792,6 +792,12 @@ function ckeditor_profile_settings_compile($global_profile, $profile) {
   }
   $settings['format_tags'] = $conf['font_format'];
   $settings['show_toggle'] = $conf['show_toggle'];
+  if (!empty($conf['allowed_content']) && $conf['allowed_content'] === 'f') {
+    $settings['allowedContent'] = true;
+  }
+  elseif (!empty($conf['extraAllowedContent'])) {
+    $settings['extraAllowedContent'] = $conf['extraAllowedContent'];
+  }
   $settings['ss'] = $conf['ss'];
 
   if (isset($conf['language_direction'])) {
@@ -1265,6 +1271,9 @@ function ckeditor_profile_settings_compile($global_profile, $profile) {
       }
     }
   }
+
+  // Allow modules to modify the settings.
+  drupal_alter('ckeditor_settings', $settings);
 
   return $settings;
 }

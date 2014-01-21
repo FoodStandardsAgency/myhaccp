@@ -70,4 +70,19 @@ function hook_ckeditor_security_filter() {
   );
 }
 
+/**
+ * Hook to extend/change the ckeditor settings.
+ *
+ * This hook is invoked from ckeditor_profile_settings_compile(). The settings
+ * may be customized or enhanced; typically with options that cannot be
+ * controlled though the administrative UI from the ckeditor module.
+ *
+ * @param $settings
+ *   An associative array of settings.
+ */
+function hook_ckeditor_settings_alter(&$settings) {
+  // Change the ckeditor config path.
+  $settings['customConfig'] = drupal_get_path('module', 'ckeditor') . '/ckeditor.config.js';
+}
+
 ?>
