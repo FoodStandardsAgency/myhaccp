@@ -507,6 +507,30 @@ h4.browser-title {
 }
 
 /** Textareas: half-width floating **/
+.form-1-principle-1 .p1q1-hazards {
+  clear: both;
+}
+@media all and (min-width: 640px) {
+  .form-1-principle-1 .p1q1-hazards {
+    margin-left: -25px;
+  }
+  .form-1-principle-1 .p1q1-hazards .group-title {
+    margin-left: 25px;
+  }
+  .form-1-principle-1 .p1q1-hazards > .form-item {
+    width: 50%;
+    float: left;
+    padding-left: 25px;
+    padding-right: 25px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+}
+.form-1-principle-1 .p1q1-hazards textarea {
+  width: 95%;
+}
+
 .decision-tree-qs .decision-tree-q-row {
   clear: both;
   margin-bottom: 0.5em;
@@ -574,4 +598,32 @@ td.decision-tree-qs input[type="text"] {
   border-bottom: 1px solid #007fb2;
   margin-bottom: 2em;
   padding-bottom: 1em;
+}
+
+/** Stages **/
+/** Principle 1 **/
+.p1q2 table {
+  width: 100%;
+}
+.p1q2 table th.severity,
+.p1q2 table th.likelihood,
+.p1q2 table th.significance {
+  max-width: 3em;
+}
+.p1q2 table th.severity span,
+.p1q2 table th.likelihood span,
+.p1q2 table th.significance span {
+  white-space: nowrap;
+}
+.p1q2 .severity input[type="text"],
+.p1q2 .likelihood input[type="text"],
+.p1q2 .significance input[type="text"] {
+  min-width: 3em;
+  width: 3em;
+}
+
+/** Principle 2 **/
+.p2-q1 label {
+  display: inline;
+  padding: 0.25em;
 }

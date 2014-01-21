@@ -183,7 +183,7 @@ $form_elements_outline_color: $accent-2;
     .group-title {
       margin-left: $_gutter;
     }
-    .form-item {
+    > .form-item {
         @include column-split(half);
       }
     }

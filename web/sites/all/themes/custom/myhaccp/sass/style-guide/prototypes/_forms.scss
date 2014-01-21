@@ -88,3 +88,41 @@ td.decision-tree-qs {
   }
 }
 
+
+/** Stages **/
+
+.form-1-principle-1 .p1q1-hazards {
+  @extend %half-textareas;
+}
+
+/** Principle 1 **/
+
+.p1q2 {
+  table {
+    width: 100%;
+    th.severity,
+    th.likelihood,
+    th.significance {
+      max-width: 3em;
+      span {
+        white-space: nowrap;
+      }
+    }
+  }
+  .severity,
+  .likelihood,
+  .significance {
+    input[type="text"] {
+      min-width: 3em;
+      width: 3em;
+    }
+  }
+}
+
+/** Principle 2 **/
+.p2-q1 {
+  label {
+    display: inline;
+    padding: 0.25em;
+  }
+}
