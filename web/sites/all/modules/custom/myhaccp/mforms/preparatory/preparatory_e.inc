@@ -28,15 +28,15 @@ function preparatory_e(&$form_state, &$next_step) {
   // 1. Ingredients.
   $form['prep_e']['ingredients'] = array(
     '#type' => 'textarea',
-    '#title' => t('1. List all the ingredients with their origin in brackets. !tip', array(
+    '#title' => t('1. List all the ingredients with the supplier for each in brackets. !tip', array(
       '!tip' => _help_tip(12),
     )),
     '#default_value' => array_get($values, 'prep_e.ingredients', FALSE),
     '#resizable' => FALSE,
-    '#help_text' => t('List all ingredients e.g. Potatoes (UK), milk (UK),  green pepper (Spain).'),
+    '#help_text' => t('List all ingredients e.g. Potatoes (Rangeman), Milk (Dairy Cream),  Green pepper (Lewis’s Wholesale Vegetables).'),
     '#attributes' => array(
       'data-parsley-required' => 'true',
-      'data-parsley-error-message' => t('Please list all the ingredients.'),
+      'data-parsley-error-message' => t('Please list all the ingredients and the supplier for each.'),
     ),
   );
 
@@ -51,7 +51,7 @@ function preparatory_e(&$form_state, &$next_step) {
     '#help_text' => t('Provide physical details of the product e.g. NaCL 10%, pH  less than or equal to 4.3, A<sub>w</sub> 0.912'),
     '#attributes' => array(
       'data-parsley-required' => 'true',
-      'data-parsley-error-message' => t('Please state the physical properties.'),
+      'data-parsley-error-message' => t('Please state the physical properties of the product.'),
     ),
   );
 
@@ -93,7 +93,7 @@ function preparatory_e(&$form_state, &$next_step) {
     )),
     '#default_value' => array_get($values, 'prep_e.properties', FALSE),
     '#resizable' => FALSE,
-    '#help_text' => t('State how the product should be kept  (during storage and distribution of the product) e.g. product to be kept chilled, frozen or heated.'),
+    '#help_text' => t('State how the product should be kept (during storage and distribution of the product) e.g. product to be kept chilled, frozen or heated.'),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please describe how the product is going to be stored and distributed.'),
@@ -123,7 +123,7 @@ function preparatory_e(&$form_state, &$next_step) {
     )),
     '#default_value' => array_get($values, 'prep_e.properties', FALSE),
     '#resizable' => FALSE,
-    '#help_text' => t('State how the product is to be stored e.g. in the fridge, at room temperature, kept frozen.  State what should be done with it prior to consumption e.g. if product is to be defrosted prior to cooking.  Instructions for how the product should be cooked.'),
+    '#help_text' => t('State how the product is to be stored e.g. in the fridge, at room temperature, kept frozen. State what should be done with it prior to consumption e.g. if product is to be defrosted prior to cooking. Instructions for how the product should be cooked.'),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please state how the product is to be stored and handling and storage instructions.'),
