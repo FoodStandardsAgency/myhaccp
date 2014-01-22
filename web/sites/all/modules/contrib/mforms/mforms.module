@@ -278,8 +278,6 @@ function _mforms_back_submit($form, &$form_state) {
 
   // Only deal with back submit if we have store key.
   if (isset($form_state['clicked_button']['#store_key'])) {
-
-    dpm($_POST);
     // Add $_POST into values as they got unset in the validation process due to
     // limit_validation_errors property of the back/step button.
     $form_state['values'] += $_POST;
