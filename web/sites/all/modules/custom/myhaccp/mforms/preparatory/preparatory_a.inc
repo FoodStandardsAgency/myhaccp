@@ -8,7 +8,7 @@ function preparatory_a(&$form_state, &$next_step) {
 
   // Retrieve submitted values. This comes in handy when back action
   // occurred and we need to display values that were originally submitted.
-  $data = mforms_get_vals('myhaccp');
+  $data = mforms_get_vals('myhaccp', 'preparatory_a');
 
   // If we have the data it means we arrived here from back action, so show
   // them in form as default values.

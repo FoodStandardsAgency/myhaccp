@@ -8,7 +8,7 @@ function preparatory_d(&$form_state, &$next_step) {
 
   // Retrieve submitted values. This comes in handy when back action
   // occurred and we need to display values that were originally submitted.
-  $data = mforms_get_vals('myhaccp');
+  $data = mforms_get_vals('myhaccp', 'preparatory_d');
 
   // If we have the data it means we arrived here from back action, so show
   // them in form as default values.
@@ -58,21 +58,23 @@ function preparatory_d(&$form_state, &$next_step) {
     // Team member external.
     $form['prep_d']["instance_$i"]['team_external'] = array(
       '#weight' => '1',
-      '#type' => 'radios',
+      '#type' => 'select',
       '#options' => array(
+        'none' => t('-- Please select --'),
         'internal' => t('Internal'),
         'external' => t('External'),
       ),
       '#attributes' => array(
+        'data-parsley-notequal' => 'none',
         'data-parsley-required' => 'true',
-        'data-parsley-error-message' => t('Please state whether the team member is internal or external.'),
+        'data-parsley-error-message' => t('Please indicate if this person is internal (works at the company) or external (eg an external consultant).'),
       ),
-      '#title' => t('Location of team member !tip', array(
+      '#title' => t('Is this person Internal or External to the company? !tip', array(
         '!tip' => _help_tip(),
       )),
-
       '#default_value' => array_get($values, "prep_d.instance_$i.team_external", FALSE),
     );
+
     // Team member role.
     $form['prep_d']["instance_$i"]['team_role'] = array(
       '#weight' => '2',
@@ -90,6 +92,7 @@ function preparatory_d(&$form_state, &$next_step) {
       '#type' => 'container',
       '#weight' => '3',
     );
+
     // Team member training.
     $form['prep_d']["instance_$i"]['wrapper']['team_training'] = array(
       '#weight' => '1',
@@ -123,7 +126,7 @@ function preparatory_d(&$form_state, &$next_step) {
       '#weight' => '3',
       '#type' => 'textarea',
       '#resizable' => FALSE,
-      '#title' => t('List relevant experience !tip', array(
+      '#title' => t('Relevant experience !tip', array(
         '!tip' => _help_tip(),
       )),
       '#default_value' => array_get($values, "prep_d.instance_$i.wrapper.team_experience", FALSE),
@@ -136,12 +139,15 @@ function preparatory_d(&$form_state, &$next_step) {
 
   // First instance of the team role field should have a default value and for
   // it to be un-editable (enforced).
-  $form['prep_d']['instance_0']['team_role']['#default_value'] = t('Team leader');
+  $form['prep_d']['instance_0']['team_role']['#default_value'] = t('HACCP Lead');
   $form['prep_d']['instance_0']['team_role']['#disabled'] = TRUE;
   $form['prep_d']['instance_0']['team_external']['#disabled'] = TRUE;
   $form['prep_d']['instance_0']['team_external']['#default_value'] = 'internal';
-  $form['prep_d']['instance_0']['team_name']['#title'] = t('Name of HACCP lead for business');
+  $form['prep_d']['instance_0']['team_name']['#title'] = t('Name of HACCP lead for business:');
+  $form['prep_d']['instance_0']['team_name']['#attributes']['data-parsley-error-message'] = t('Please add the name of the HACCP lead for the business.');
 
+
+  // Do you consider the team to have sufficient skills?
   $form['prep_d']['team_skills'] = array(
     '#type' => 'radios',
     '#weight' => 10,

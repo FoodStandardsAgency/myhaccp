@@ -8,7 +8,7 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
 
   // Retrieve submitted values. This comes in handy when back action
   // occurred and we need to display values that were originally submitted.
-  $data = mforms_get_vals('myhaccp');
+  $data = mforms_get_vals('myhaccp', 'preparatory_c_question_1_3');
 
   // If we have the data it means we arrived here from back action, so show
   // them in form as default values.
@@ -31,7 +31,7 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
       '!tip' => _help_tip(),
     )),
     '#options' => array(
-      'none' => t('-- Select --'),
+      'none' => t('-- Please select --'),
       'linear' => t('Linear'),
       'modular' => t('Modular'),
       'linear_modular' => t('Linear / Modular'),
