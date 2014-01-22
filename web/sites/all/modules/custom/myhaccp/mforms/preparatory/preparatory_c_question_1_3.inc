@@ -63,7 +63,7 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
   );
 
   $form['prep_c_1_3']['q3']['title'] = array(
-    '#markup' => '<div class="label">' . t('3. State start and end points of the HACCP plan: !tip', array(
+    '#markup' => '<div class="label">' . t('3. State the process start and end points of the HACCP plan. !tip', array(
       '!tip' => _help_tip(),
       )
     ) . '</div>',
@@ -75,7 +75,7 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
     '#default_value' => array_get($values, 'prep_c_1_3.q3.start', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
-      'data-parsley-error-message' => t('Please add a start date.'),
+      'data-parsley-error-message' => t('Please state the process start.'),
     ),
   );
 
@@ -85,7 +85,7 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
     '#default_value' => array_get($values, 'prep_c_1_3.q3.end', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
-      'data-parsley-error-message' => t('Please add an end date.'),
+      'data-parsley-error-message' => t('Please state the process end.'),
     ),
   );
 
