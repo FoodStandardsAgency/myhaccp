@@ -79,7 +79,7 @@ function preparatory_d(&$form_state, &$next_step) {
     $form['prep_d']["instance_$i"]['team_role'] = array(
       '#weight' => '2',
       '#type' => 'textfield',
-      '#title' => t('Role of individual !tip', array(
+      '#title' => t('What is the role of this individual in the HACCP team? !tip', array(
         '!tip' => _help_tip(),
       )),
       '#default_value' => array_get($values, "prep_d.instance_$i.team_role", FALSE),
