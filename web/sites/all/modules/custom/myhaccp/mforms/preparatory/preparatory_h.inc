@@ -180,7 +180,27 @@ function preparatory_h_validate($form, &$form_state) {
   );
 
   foreach ($checks as $target => $callback) {
-    $invalid[] = _check_validation($callback, $target, $form, $form_state);
+    if ($callback == '_radios_field_is_empty') {
+      $value = array_get($form_state['values'], $target, FALSE);
+      if (!$value || $value == 'no') {
+        $invalid[] = TRUE;
+        $message = array_get($form, $target . '.#attributes.data-parsley-error-message', NULL);
+        myhacpp_prepare_validation($target, $message, $form_state);
+      }
+      else {
+        $invalid[] = FALSE;
+      }
+    }
+    else {
+      if ($callback($form_state['values'], $target)) {
+        $invalid[] = TRUE;
+        $message = array_get($form, $target . '.#attributes.data-parsley-error-message', NULL);
+        myhacpp_prepare_validation($target, $message, $form_state);
+      }
+      else {
+        $invalid[] = FALSE;
+      }
+    }
   }
 
   // Check to see whether we have failed validation and therefore should store

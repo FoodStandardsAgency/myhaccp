@@ -444,6 +444,25 @@ function _select_field_is_empty($values, $element) {
 }
 
 /**
+ * Checks whether a file field has nothing selected.
+ *
+ * @param array $values
+ *   The values of form_state to check.
+ * @param array $element
+ *   The $form element to check.
+ *
+ * @return bool
+ *   TRUE if the field is empty.
+ */
+function _file_field_is_empty($values, $element) {
+  $value = array_get($values, $element, FALSE);
+  if ($value == 0 || empty($value)) {
+    return TRUE;
+  }
+  return FALSE;
+}
+
+/**
  * Checks whether the given element is empty of value.
  *
  * @param array $values
