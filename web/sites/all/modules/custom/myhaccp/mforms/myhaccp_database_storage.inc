@@ -52,6 +52,15 @@ class MformsDatabaseStore implements MformsIstore {
    * Writes the store to the database.
    */
   public function setStore($key, $data) {
+    // As a safety measure we only allow storage of data which has the key in
+    // it. That means that the form element needs to be named the same as the
+    // key (function name). For instance: $form['preparatory_a'][...]
+    if (strpos($key, 'preparatory') !== FALSE || strpos($key, 'principle') !== FALSE) {
+      if (!isset($data[$key])) {
+        return;
+      }
+    }
+
     // Determine whether there is an existing record for this combination of
     // key and iid.
     $sid = db_select('mforms_storage_steps', 's')

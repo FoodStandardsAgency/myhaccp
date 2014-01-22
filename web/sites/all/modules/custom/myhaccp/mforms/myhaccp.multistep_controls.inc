@@ -140,7 +140,7 @@ class MyHACCPMultiStepControls extends MformsControls {
         '#weight' => $definition['weight'],
 //        '#disabled' => $visited,
         '#attributes' => array('class' => array($class)),
-//        '#limit_validation_errors' => array(),
+        '#limit_validation_errors' => array(),
         '#submit' => array('_mforms_back_submit'),
         '#store_key' => $this->store->getKey(),
         '#mforms_step' => $id,

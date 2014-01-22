@@ -21,7 +21,7 @@ function preparatory_d(&$form_state, &$next_step) {
   $form['#attributes']['class'][] = 'prep-d';
 
   // Wrap the form section in a fieldset.
-  $form['prep_d'] = array(
+  $form['preparatory_d'] = array(
     '#type' => 'fieldset',
     '#prefix' => '<div id="container">',
     '#suffix' => '</div>',
@@ -35,20 +35,20 @@ function preparatory_d(&$form_state, &$next_step) {
   }
   for ($i = 0; $i < $form_state['num_instances']; $i++) {
     // Contain everything for this instance inside a fieldset.
-    $form['prep_d']["instance_$i"] = array(
+    $form['preparatory_d']["instance_$i"] = array(
       '#type' => 'fieldset',
       '#attributes' => array(
         'class' => array('instance'),
       ),
     );
     // Team member name.
-    $form['prep_d']["instance_$i"]['team_name'] = array(
+    $form['preparatory_d']["instance_$i"]['team_name'] = array(
       '#weight' => '0',
       '#type' => 'textfield',
       '#title' => t('Name of HACCP team member: !tip', array(
         '!tip' => _help_tip(),
       )),
-      '#default_value' => array_get($values, "prep_d.instance_$i.team_name", FALSE),
+      '#default_value' => array_get($values, "preparatory_d.instance_$i.team_name", FALSE),
       '#help_text' => t('State how the product should be kept  (during storage and distribution of the product) e.g. product to be kept chilled, frozen or heated.'),
       '#attributes' => array(
         'data-parsley-error-message' => t('Please add the name of the HACCP team member.'),
@@ -56,7 +56,7 @@ function preparatory_d(&$form_state, &$next_step) {
       ),
     );
     // Team member external.
-    $form['prep_d']["instance_$i"]['team_external'] = array(
+    $form['preparatory_d']["instance_$i"]['team_external'] = array(
       '#weight' => '1',
       '#type' => 'select',
       '#options' => array(
@@ -72,64 +72,64 @@ function preparatory_d(&$form_state, &$next_step) {
       '#title' => t('Is this person Internal or External to the company? !tip', array(
         '!tip' => _help_tip(),
       )),
-      '#default_value' => array_get($values, "prep_d.instance_$i.team_external", FALSE),
+      '#default_value' => array_get($values, "preparatory_d.instance_$i.team_external", FALSE),
     );
 
     // Team member role.
-    $form['prep_d']["instance_$i"]['team_role'] = array(
+    $form['preparatory_d']["instance_$i"]['team_role'] = array(
       '#weight' => '2',
       '#type' => 'textfield',
       '#title' => t('What is the role of this individual in the HACCP team? !tip', array(
         '!tip' => _help_tip(),
       )),
-      '#default_value' => array_get($values, "prep_d.instance_$i.team_role", FALSE),
+      '#default_value' => array_get($values, "preparatory_d.instance_$i.team_role", FALSE),
       '#attributes' => array(
         'data-parsley-error-message' => t('Please add the role of the individual.'),
         'data-parsley-required' => TRUE,
       ),
     );
-    $form['prep_d']["instance_$i"]['wrapper'] = array(
+    $form['preparatory_d']["instance_$i"]['wrapper'] = array(
       '#type' => 'container',
       '#weight' => '3',
     );
 
     // Team member training.
-    $form['prep_d']["instance_$i"]['wrapper']['team_training'] = array(
+    $form['preparatory_d']["instance_$i"]['wrapper']['team_training'] = array(
       '#weight' => '1',
       '#type' => 'textarea',
       '#resizable' => FALSE,
       '#title' => t('Relevant training !tip', array(
         '!tip' => _help_tip(),
       )),
-      '#default_value' => array_get($values, "prep_d.instance_$i.wrapper.team_training", FALSE),
+      '#default_value' => array_get($values, "preparatory_d.instance_$i.wrapper.team_training", FALSE),
       '#attributes' => array(
         'data-parsley-error-message' => t('Please add any relevant training or enter "none".'),
         'data-parsley-required' => TRUE,
       ),
     );
     // Team member training.
-    $form['prep_d']["instance_$i"]['wrapper']['team_qualifications'] = array(
+    $form['preparatory_d']["instance_$i"]['wrapper']['team_qualifications'] = array(
       '#weight' => '2',
       '#type' => 'textarea',
       '#resizable' => FALSE,
       '#title' => t('Qualifications !tip', array(
         '!tip' => _help_tip(),
       )),
-      '#default_value' => array_get($values, "prep_d.instance_$i.wrapper.team_qualifications", FALSE),
+      '#default_value' => array_get($values, "preparatory_d.instance_$i.wrapper.team_qualifications", FALSE),
       '#attributes' => array(
         'data-parsley-error-message' => t('Please add any relevant qualifications or enter "none".'),
         'data-parsley-required' => TRUE,
       ),
     );
     // Team member experience.
-    $form['prep_d']["instance_$i"]['wrapper']['team_experience'] = array(
+    $form['preparatory_d']["instance_$i"]['wrapper']['team_experience'] = array(
       '#weight' => '3',
       '#type' => 'textarea',
       '#resizable' => FALSE,
       '#title' => t('Relevant experience !tip', array(
         '!tip' => _help_tip(),
       )),
-      '#default_value' => array_get($values, "prep_d.instance_$i.wrapper.team_experience", FALSE),
+      '#default_value' => array_get($values, "preparatory_d.instance_$i.wrapper.team_experience", FALSE),
       '#attributes' => array(
         'data-parsley-error-message' => t('Please add any relevant experience or enter "none".'),
         'data-parsley-required' => TRUE,
@@ -139,16 +139,16 @@ function preparatory_d(&$form_state, &$next_step) {
 
   // First instance of the team role field should have a default value and for
   // it to be un-editable (enforced).
-  $form['prep_d']['instance_0']['team_role']['#default_value'] = t('HACCP Lead');
-  $form['prep_d']['instance_0']['team_role']['#disabled'] = TRUE;
-  $form['prep_d']['instance_0']['team_external']['#disabled'] = TRUE;
-  $form['prep_d']['instance_0']['team_external']['#default_value'] = 'internal';
-  $form['prep_d']['instance_0']['team_name']['#title'] = t('Name of HACCP lead for business:');
-  $form['prep_d']['instance_0']['team_name']['#attributes']['data-parsley-error-message'] = t('Please add the name of the HACCP lead for the business.');
+  $form['preparatory_d']['instance_0']['team_role']['#default_value'] = t('HACCP Lead');
+  $form['preparatory_d']['instance_0']['team_role']['#disabled'] = TRUE;
+  $form['preparatory_d']['instance_0']['team_external']['#disabled'] = TRUE;
+  $form['preparatory_d']['instance_0']['team_external']['#default_value'] = 'internal';
+  $form['preparatory_d']['instance_0']['team_name']['#title'] = t('Name of HACCP lead for business:');
+  $form['preparatory_d']['instance_0']['team_name']['#attributes']['data-parsley-error-message'] = t('Please add the name of the HACCP lead for the business.');
 
 
   // Do you consider the team to have sufficient skills?
-  $form['prep_d']['team_skills'] = array(
+  $form['preparatory_d']['team_skills'] = array(
     '#type' => 'radios',
     '#weight' => 10,
     '#options' => array(
@@ -158,15 +158,15 @@ function preparatory_d(&$form_state, &$next_step) {
     '#title' => t('Do you consider the team to have sufficient skills (scientific/technical knowledge and HACCP expertise) to ensure the HACCP study will be effective? !tip', array(
       '!tip' => _help_tip(),
     )),
-    '#default_value' => array_get($values, 'prep_d.team_skills', FALSE),
+    '#default_value' => array_get($values, 'preparatory_d.team_skills', FALSE),
     '#attributes' => array(
       'data-parsley-error-message' => t('Please indicate whether you consider the team to have sufficient skills.'),
       'data-parsley-required' => TRUE,
     ),
   );
 
-  // Add a prep_d for the button controls.
-  $form['prep_d']['controls'] = array(
+  // Add a preparatory_d for the button controls.
+  $form['preparatory_d']['controls'] = array(
     '#type' => 'container',
     '#attributes' => array(
       'class' => array('form-controls'),
@@ -174,13 +174,13 @@ function preparatory_d(&$form_state, &$next_step) {
   );
 
   // Provide an add more button.
-  $form['prep_d']['controls']['add_instance'] = array(
+  $form['preparatory_d']['controls']['add_instance'] = array(
     '#type' => 'submit',
     '#value' => t('Add another team member'),
     '#submit' => array('instance_add_more_add_one'),
     '#limit_validation_errors' => TRUE,
     '#ajax' => array(
-      'callback' => 'instance_add_more_callback_prep_d',
+      'callback' => 'instance_add_more_callback_preparatory_d',
       'wrapper' => 'container',
     ),
   );
@@ -188,13 +188,13 @@ function preparatory_d(&$form_state, &$next_step) {
   // If there are more than two instances in the form then provide a button
   // to remove the last one.
   if ($form_state['num_instances'] > 1) {
-    $form['prep_d']['controls']['remove_instance'] = array(
+    $form['preparatory_d']['controls']['remove_instance'] = array(
       '#type' => 'submit',
       '#value' => t('Remove one'),
       '#submit' => array('instance_add_more_remove_one'),
       '#limit_validation_errors' => TRUE,
       '#ajax' => array(
-        'callback' => 'instance_add_more_callback_prep_d',
+        'callback' => 'instance_add_more_callback_preparatory_d',
         'wrapper' => 'container',
       ),
     );
@@ -220,12 +220,12 @@ function preparatory_d_validate($form, &$form_state) {
     // notation) and the value being the callback to use to check whether the
     // field is empty.
     $checks = array(
-      "prep_d.instance_$i.team_external" => '_radios_field_is_empty',
-      "prep_d.instance_$i.team_name" => '_text_field_is_empty',
-      "prep_d.instance_$i.team_role" => '_text_field_is_empty',
-      "prep_d.instance_$i.wrapper.team_training" => '_text_field_is_empty',
-      "prep_d.instance_$i.wrapper.team_qualifications" => '_text_field_is_empty',
-      "prep_d.instance_$i.wrapper.team_experience" => '_text_field_is_empty',
+      "preparatory_d.instance_$i.team_external" => '_radios_field_is_empty',
+      "preparatory_d.instance_$i.team_name" => '_text_field_is_empty',
+      "preparatory_d.instance_$i.team_role" => '_text_field_is_empty',
+      "preparatory_d.instance_$i.wrapper.team_training" => '_text_field_is_empty',
+      "preparatory_d.instance_$i.wrapper.team_qualifications" => '_text_field_is_empty',
+      "preparatory_d.instance_$i.wrapper.team_experience" => '_text_field_is_empty',
     );
 
     foreach ($checks as $target => $callback) {
@@ -234,7 +234,7 @@ function preparatory_d_validate($form, &$form_state) {
 
   }
 
-  $invalid[] = _check_validation('_radios_field_is_empty', 'prep_d.team_skills', $form, $form_state);
+  $invalid[] = _check_validation('_radios_field_is_empty', 'preparatory_d.team_skills', $form, $form_state);
 
   // Check to see whether we have failed validation and therefore should store
   // it in the database or whether we have passed and therefore clear validation
@@ -249,6 +249,6 @@ function preparatory_d_validate($form, &$form_state) {
 /**
  * Ajax callback which returns the form array element to be applied against.
  */
-function instance_add_more_callback_prep_d($form, $form_state) {
-  return $form['prep_d'];
+function instance_add_more_callback_preparatory_d($form, $form_state) {
+  return $form['preparatory_d'];
 }

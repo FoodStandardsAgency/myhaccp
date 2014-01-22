@@ -16,20 +16,20 @@ function preparatory_g(&$form_state, &$next_step) {
 
   drupal_set_title('Preparatory Stage G: Describe the product', PASS_THROUGH);
 
-  $default_file = array_get($values, 'prep_g.upload', FALSE);
+  $default_file = array_get($values, 'preparatory_g.upload', FALSE);
   $default_file = $default_file ? $default_file['fid'] : FALSE;
 
   $form = array();
   $form['#attributes']['class'][] = 'prep-g';
 
   // Wrap the form section in a fieldset.
-  $form['prep_g'] = array(
+  $form['preparatory_g'] = array(
     '#type' => 'fieldset',
     '#tree' => TRUE,
   );
 
   // 1. Have you completed a flow diagram?
-  $form['prep_g']['flow_completed'] = array(
+  $form['preparatory_g']['flow_completed'] = array(
     '#type' => 'checkbox',
     '#prefix' => '<div class="label">' . t('1. Have you completed a flow diagram? !tip', array(
         '!tip' => _help_tip(),
@@ -37,7 +37,7 @@ function preparatory_g(&$form_state, &$next_step) {
     '#title' => t('I have created a flow diagram !tip', array(
       '!tip' => _help_tip(),
     )),
-    '#default_value' => array_get($values, 'prep_g.flow_completed', FALSE),
+    '#default_value' => array_get($values, 'preparatory_g.flow_completed', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please confirm you have created a flow diagram.'),
@@ -47,7 +47,7 @@ function preparatory_g(&$form_state, &$next_step) {
   global $user;
 
   // 2. If digital please upload.
-  $form['prep_g']['upload'] = array(
+  $form['preparatory_g']['upload'] = array(
     '#type' => 'managed_file',
     '#title' => t('2. If digital please upload (or go to 3). !tip', array(
       '!tip' => _help_tip(),
@@ -64,12 +64,12 @@ function preparatory_g(&$form_state, &$next_step) {
   );
 
   // 3. If digital please upload.
-  $form['prep_g']['hard_copy'] = array(
+  $form['preparatory_g']['hard_copy'] = array(
     '#type' => 'textarea',
     '#title' => t('3. If hard copy specify location where retained as well as any document referenced. !tip', array(
       '!tip' => _help_tip(),
     )),
-    '#default_value' => array_get($values, 'prep_g.hard_copy', FALSE),
+    '#default_value' => array_get($values, 'preparatory_g.hard_copy', FALSE),
     '#attributes' => array(
       'data-parsley-error-message' => t('Please either upload a file (2) or provide a location for your hard copies.'),
     ),
@@ -90,16 +90,16 @@ function preparatory_g_validate($form, &$form_state) {
   // notation) and the value being the callback to use to check whether the
   // field is empty.
   $checks = array(
-    'prep_g.flow_completed' => '_checkbox_field_is_empty',
+    'preparatory_g.flow_completed' => '_checkbox_field_is_empty',
   );
 
   foreach ($checks as $target => $callback) {
     $invalid[] = _check_validation($callback, $target, $form, $form_state);
   }
 
-  if (array_get($form_state, 'values.prep_g.upload', FALSE)) {
+  if (array_get($form_state, 'values.preparatory_g.upload', FALSE)) {
     // Load the file via file.fid.
-    $file = file_load($form_state['values']['prep_g']['upload']);
+    $file = file_load($form_state['values']['preparatory_g']['upload']);
     if ($file->status != FILE_STATUS_PERMANENT) {
       // Change status to permanent.
       $file->status = FILE_STATUS_PERMANENT;

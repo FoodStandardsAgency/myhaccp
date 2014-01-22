@@ -20,18 +20,18 @@ function preparatory_h(&$form_state, &$next_step) {
   $form['#attributes']['class'][] = 'prep-f';
 
   // Wrap the form section in a fieldset.
-  $form['prep_h'] = array(
+  $form['preparatory_h'] = array(
     '#type' => 'fieldset',
     '#tree' => TRUE,
   );
 
   // 1. Name of person(s) confirming flow diagram is correct:
-  $form['prep_h']['name'] = array(
+  $form['preparatory_h']['name'] = array(
     '#type' => 'textfield',
     '#title' => t('1. Name of person(s) confirming flow diagram is correct: !tip', array(
       '!tip' => _help_tip(),
     )),
-    '#default_value' => array_get($values, 'prep_h.name', FALSE),
+    '#default_value' => array_get($values, 'preparatory_h.name', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please confirm the name of person(s) confirming flow diagram is correct.'),
@@ -39,7 +39,7 @@ function preparatory_h(&$form_state, &$next_step) {
   );
 
   // 2. Is every process step identified on the flow diagram? .
-  $form['prep_h']['identified'] = array(
+  $form['preparatory_h']['identified'] = array(
     '#type' => 'radios',
     '#options' => array(
       'yes' => t('Yes'),
@@ -48,7 +48,7 @@ function preparatory_h(&$form_state, &$next_step) {
     '#title' => t('2. Is every process step identified on the flow diagram? !tip', array(
       '!tip' => _help_tip(),
     )),
-    '#default_value' => array_get($values, 'prep_h.identified', array()),
+    '#default_value' => array_get($values, 'preparatory_h.identified', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please confirm if every process step identified on the flow diagram.'),
@@ -57,7 +57,7 @@ function preparatory_h(&$form_state, &$next_step) {
 
   // 3. Is the flow diagram an accurate representation of the process from
   // start to finish?
-  $form['prep_h']['accurate'] = array(
+  $form['preparatory_h']['accurate'] = array(
     '#type' => 'radios',
     '#options' => array(
       'yes' => t('Yes'),
@@ -66,7 +66,7 @@ function preparatory_h(&$form_state, &$next_step) {
     '#title' => t('3. Is the flow diagram an accurate representation of the process from start to finish? !tip', array(
       '!tip' => _help_tip(),
     )),
-    '#default_value' => array_get($values, 'prep_h.accurate', array()),
+    '#default_value' => array_get($values, 'preparatory_h.accurate', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please confirm if the flow diagram is an accurate representation of the process from start to finish.'),
@@ -75,7 +75,7 @@ function preparatory_h(&$form_state, &$next_step) {
 
   // 4. Is the process flow diagram correct for all shifts (e.g. days, nights
   // and weekend)?
-  $form['prep_h']['shifts'] = array(
+  $form['preparatory_h']['shifts'] = array(
     '#type' => 'radios',
     '#options' => array(
       'yes' => t('Yes'),
@@ -84,7 +84,7 @@ function preparatory_h(&$form_state, &$next_step) {
     '#title' => t('4. Is the process flow diagram correct for all shifts (e.g. days, nights and weekend)? !tip', array(
       '!tip' => _help_tip(),
     )),
-    '#default_value' => array_get($values, 'prep_h.shifts', array()),
+    '#default_value' => array_get($values, 'preparatory_h.shifts', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please confirm if the process flow diagram correct for all shifts (e.g. days, nights and weekend).'),
@@ -92,7 +92,7 @@ function preparatory_h(&$form_state, &$next_step) {
   );
 
   // 5. Is the flow diagram correct during all seasonal variations?
-  $form['prep_h']['seasonal'] = array(
+  $form['preparatory_h']['seasonal'] = array(
     '#type' => 'radios',
     '#options' => array(
       'yes' => t('Yes'),
@@ -101,7 +101,7 @@ function preparatory_h(&$form_state, &$next_step) {
     '#title' => t('5. Is the flow diagram correct during all seasonal variations? !tip', array(
       '!tip' => _help_tip(),
     )),
-    '#default_value' => array_get($values, 'prep_h.seasonal', array()),
+    '#default_value' => array_get($values, 'preparatory_h.seasonal', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please confirm if the flow diagram correct during all seasonal variations.'),
@@ -110,7 +110,7 @@ function preparatory_h(&$form_state, &$next_step) {
 
   // 6. Has the team leader signed off and dated the flow diagram as being
   // correct?
-  $form['prep_h']['leader'] = array(
+  $form['preparatory_h']['leader'] = array(
     '#type' => 'radios',
     '#options' => array(
       'yes' => t('Yes'),
@@ -119,7 +119,7 @@ function preparatory_h(&$form_state, &$next_step) {
     '#title' => t('6. Has the team leader signed off and dated the flow diagram as being correct? !tip', array(
       '!tip' => _help_tip(),
     )),
-    '#default_value' => array_get($values, 'prep_h.leader', array()),
+    '#default_value' => array_get($values, 'preparatory_h.leader', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please confirm if the team leader has signed off and dated the flow diagram as being correct.'),
@@ -127,13 +127,13 @@ function preparatory_h(&$form_state, &$next_step) {
   );
 
   // 7. Who in your organisation is aware that any changes to the process will require changes to the flow diagram?
-  $form['prep_h']['changes'] = array(
+  $form['preparatory_h']['changes'] = array(
     '#type' => 'textarea',
     '#resizable' => FALSE,
     '#title' => t('7. Who in your organisation is aware that any changes to the process will require changes to the flow diagram? !tip', array(
       '!tip' => _help_tip(),
     )),
-    '#default_value' => array_get($values, 'prep_h.changes', FALSE),
+    '#default_value' => array_get($values, 'preparatory_h.changes', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please confirm the name of at least one person in your organisation who is aware that any changes to the process will require changes to the flow diagram.'),
@@ -141,13 +141,13 @@ function preparatory_h(&$form_state, &$next_step) {
   );
 
   // 8. Who in your organisation is responsible for storing all out-of-date versions of the flow diagram?
-  $form['prep_h']['storing'] = array(
+  $form['preparatory_h']['storing'] = array(
     '#type' => 'textarea',
     '#resizable' => FALSE,
     '#title' => t('8. Who in your organisation is responsible for storing all out-of-date versions of the flow diagram? !tip', array(
       '!tip' => _help_tip(),
     )),
-    '#default_value' => array_get($values, 'prep_h.storing', FALSE),
+    '#default_value' => array_get($values, 'preparatory_h.storing', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please confirm the name of at least one person in your organisation who is responsible for storing all out-of-date versions of the flow diagram.'),
@@ -169,14 +169,14 @@ function preparatory_h_validate($form, &$form_state) {
   // notation) and the value being the callback to use to check whether the
   // field is empty.
   $checks = array(
-    'prep_h.name' => '_text_field_is_empty',
-    'prep_h.identified' => '_radios_field_is_empty',
-    'prep_h.accurate' => '_radios_field_is_empty',
-    'prep_h.shifts' => '_radios_field_is_empty',
-    'prep_h.seasonal' => '_radios_field_is_empty',
-    'prep_h.leader' => '_radios_field_is_empty',
-    'prep_h.changes' => '_text_field_is_empty',
-    'prep_h.storing' => '_text_field_is_empty',
+    'preparatory_h.name' => '_text_field_is_empty',
+    'preparatory_h.identified' => '_radios_field_is_empty',
+    'preparatory_h.accurate' => '_radios_field_is_empty',
+    'preparatory_h.shifts' => '_radios_field_is_empty',
+    'preparatory_h.seasonal' => '_radios_field_is_empty',
+    'preparatory_h.leader' => '_radios_field_is_empty',
+    'preparatory_h.changes' => '_text_field_is_empty',
+    'preparatory_h.storing' => '_text_field_is_empty',
   );
 
   foreach ($checks as $target => $callback) {

@@ -1,7 +1,6 @@
 <?php
 
 function preparatory_a(&$form_state, &$next_step) {
-
   // Define following step callback. If none set, that implies it is
   // the last step.
   $next_step = 'preparatory_b';
@@ -20,17 +19,17 @@ function preparatory_a(&$form_state, &$next_step) {
   $form['#attributes']['class'][] = 'prep-a';
 
   // Wrap the form section in a fieldset.
-  $form['prep_a'] = array(
+  $form['preparatory_a'] = array(
     '#type' => 'fieldset',
     '#tree' => TRUE,
   );
 
-  $form['prep_a']['prereq'] = array(
+  $form['preparatory_a']['prereq'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Mark all boxes where you can demonstrate that you have control of the prerequisites !tip', array(
       '!tip' => _help_tip(7),
     )),
-    '#options' => array(
+    '#options' => array_flip(drupal_map_assoc(array(
       t('Supplier approval'),
       t('Packaging'),
       t('Incoming material specifications'),
@@ -63,8 +62,9 @@ function preparatory_a(&$form_state, &$next_step) {
       t('Contamination control'),
       t('Return to work'),
       t('Other'),
-    ),
-    '#default_value' => array_get($values, 'prep_a.prereq', array()),
+      ), 'drupal_html_id'
+    )),
+    '#default_value' => array_get($values, 'preparatory_a.prereq', array()),
     '#attributes' => array(
       'data-parsley-group' => 'checkgroup',
       'data-parsley-required' => 'true',
@@ -73,13 +73,13 @@ function preparatory_a(&$form_state, &$next_step) {
     ),
   );
 
-  $form['prep_a']['location'] = array(
+  $form['preparatory_a']['location'] = array(
     '#type' => 'textarea',
     '#resizable' => FALSE,
     '#title' => t('Please specify the location of the above documents. !tip', array(
       '!tip' => _help_tip(7),
     )),
-    '#default_value' => array_get($values, 'prep_a.location', FALSE),
+    '#default_value' => array_get($values, 'preparatory_a.location', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Enter the location of your documents.'),
@@ -99,8 +99,8 @@ function preparatory_a_validate($form, &$form_state) {
 
   // Validation: Some content.
   $checks = array(
-    'prep_a.prereq' => '_checkboxes_field_is_empty',
-    'prep_a.location' => '_text_field_is_empty',
+    'preparatory_a.prereq' => '_checkboxes_field_is_empty',
+    'preparatory_a.location' => '_text_field_is_empty',
   );
 
   foreach ($checks as $target => $callback) {
