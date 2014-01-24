@@ -28,8 +28,9 @@ function preparatory_b(&$form_state, &$next_step) {
   $form['preparatory_b']['preparatory_b_support'] = array(
     '#type' => 'checkboxes',
     '#title' => t('1. What documented evidence do you have to show the support of senior management to the food safety management based on HACCP? !tip', array(
-      '!tip' => _help_tip(),
+      '!tip' => _help_tip(14),
     )),
+    '#help_text' => t("Where in your company could you look for evidence to demonstrate that senior management are engaged and dedicated to the development of an ongoing HACCP study."),
     '#options' => array_flip(drupal_map_assoc(array(
       t('A Food Safety Policy has been drawn up and signed by managementv'),
       t('Senior management document, support and communicate their policies'),
@@ -53,8 +54,9 @@ function preparatory_b(&$form_state, &$next_step) {
     '#type' => 'textarea',
     '#resizable' => FALSE,
     '#title' => t('2. Other evidence: !tip', array(
-      '!tip' => _help_tip(),
+      '!tip' => _help_tip(14),
     )),
+    '#help_text' => t("State anything else that would demonstrate you have management commitment."),
     '#default_value' => array_get($values, 'preparatory_b.preparatory_b_evidence', FALSE),
     '#attributes' => array(
       'data-parsley-either' => '#edit-container-prep-b-support .form-item input,#edit-container-prep-b-evidence',

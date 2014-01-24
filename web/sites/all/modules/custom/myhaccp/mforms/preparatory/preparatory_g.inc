@@ -32,11 +32,12 @@ function preparatory_g(&$form_state, &$next_step) {
   $form['preparatory_g']['flow_completed'] = array(
     '#type' => 'checkbox',
     '#prefix' => '<div class="label">' . t('1. Have you completed a flow diagram? !tip', array(
-        '!tip' => _help_tip(),
+        '!tip' => _help_tip(20),
       )) . '</div>',
     '#title' => t('I confirm that I have completed a flow diagram covering all steps in my manufacturing process. !tip', array(
-      '!tip' => _help_tip(),
+      '!tip' => _help_tip(20),
     )),
+    '#help_text' => t('This is a diagram showing <strong>all process steps</strong> in the manufacture of a product or the processing of a product.'),
     '#default_value' => array_get($values, 'preparatory_g.flow_completed', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
@@ -50,8 +51,9 @@ function preparatory_g(&$form_state, &$next_step) {
   $form['preparatory_g']['upload'] = array(
     '#type' => 'managed_file',
     '#title' => t('2. Please upload a digital copy of your flow diagram (or go to 3). !tip', array(
-      '!tip' => _help_tip(),
+      '!tip' => _help_tip(20),
     )),
+    '#help_text' => t('This allows you to save your diagram on-line.'),
     '#default_value' => $default_file,
     '#progress_indicator' => 'bar',
     '#upload_location' => 'private://' . $user->uid,
@@ -67,8 +69,9 @@ function preparatory_g(&$form_state, &$next_step) {
   $form['preparatory_g']['hard_copy'] = array(
     '#type' => 'textarea',
     '#title' => t('3. If you only have a hard copy, please  specify the location where it is retained and any document reference. !tip', array(
-      '!tip' => _help_tip(),
+      '!tip' => _help_tip(20),
     )),
+    '#help_text' => t('State where you can find the copy, e.g. HACCP file or filing cabinet under HACCP.'),
     '#default_value' => array_get($values, 'preparatory_g.hard_copy', FALSE),
     '#attributes' => array(
       'data-parsley-error-message' => t('If you only have a hard copy, please specify the location where it is retained and any document reference.'),

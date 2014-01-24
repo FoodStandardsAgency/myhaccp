@@ -41,21 +41,21 @@ function preparatory_d(&$form_state, &$next_step) {
         'class' => array('instance'),
       ),
     );
-    // Team member name.
+    // 1. Team member name.
     $form['preparatory_d']["instance_$i"]['team_name'] = array(
       '#weight' => '0',
       '#type' => 'textfield',
       '#title' => t('Name of HACCP team member: !tip', array(
-        '!tip' => _help_tip(),
+        '!tip' => _help_tip(21),
       )),
       '#default_value' => array_get($values, "preparatory_d.instance_$i.team_name", FALSE),
-      '#help_text' => t('State how the product should be kept  (during storage and distribution of the product) e.g. product to be kept chilled, frozen or heated.'),
+      '#help_text' => t("State the person's name."),
       '#attributes' => array(
         'data-parsley-error-message' => t('Please add the name of the HACCP team member.'),
         'data-parsley-required' => TRUE,
       ),
     );
-    // Team member external.
+    // 2. Team member external.
     $form['preparatory_d']["instance_$i"]['team_external'] = array(
       '#weight' => '1',
       '#type' => 'select',
@@ -70,18 +70,20 @@ function preparatory_d(&$form_state, &$next_step) {
         'data-parsley-error-message' => t('Please indicate if this person is internal (works at the company) or external (eg an external consultant).'),
       ),
       '#title' => t('Is this person Internal or External to the company? !tip', array(
-        '!tip' => _help_tip(),
+        '!tip' => _help_tip(21),
       )),
+      '#help_text' => t("State if the person is an employee of the company (internal) or not (external)."),
       '#default_value' => array_get($values, "preparatory_d.instance_$i.team_external", FALSE),
     );
 
-    // Team member role.
+    // 3. Team member role.
     $form['preparatory_d']["instance_$i"]['team_role'] = array(
       '#weight' => '2',
       '#type' => 'textfield',
       '#title' => t('What is the role of this individual in the HACCP team? !tip', array(
-        '!tip' => _help_tip(),
+        '!tip' => _help_tip(21),
       )),
+      '#help_text' => t("For example, QA Manager to provide technical expertise, Consultant to provide knowledge of HACCP and expertise from a chemical and biological hazard perspective."),
       '#default_value' => array_get($values, "preparatory_d.instance_$i.team_role", FALSE),
       '#attributes' => array(
         'data-parsley-error-message' => t('Please add the role of the individual.'),
@@ -93,42 +95,45 @@ function preparatory_d(&$form_state, &$next_step) {
       '#weight' => '3',
     );
 
-    // Team member training.
+    // 4. Team member training.
     $form['preparatory_d']["instance_$i"]['wrapper']['team_training'] = array(
       '#weight' => '1',
       '#type' => 'textarea',
       '#resizable' => FALSE,
       '#title' => t('Relevant training !tip', array(
-        '!tip' => _help_tip(),
+        '!tip' => _help_tip(21),
       )),
+      '#help_text' => t("What training has this person undertaken that is specific to the support they can provide e.g HACCP (state level), Food safety (state level), Internal auditing."),
       '#default_value' => array_get($values, "preparatory_d.instance_$i.wrapper.team_training", FALSE),
       '#attributes' => array(
         'data-parsley-error-message' => t('Please add any relevant training or enter "none".'),
         'data-parsley-required' => TRUE,
       ),
     );
-    // Team member training.
+    // 5. Team member qualifications.
     $form['preparatory_d']["instance_$i"]['wrapper']['team_qualifications'] = array(
       '#weight' => '2',
       '#type' => 'textarea',
       '#resizable' => FALSE,
       '#title' => t('Qualifications !tip', array(
-        '!tip' => _help_tip(),
+        '!tip' => _help_tip(21),
       )),
+      '#help_text' => t("Provide details of their qualifications e.g. BSc Biochemistry, CIEH Intermediate food safety, MSc  Food Science, Management and Hygiene."),
       '#default_value' => array_get($values, "preparatory_d.instance_$i.wrapper.team_qualifications", FALSE),
       '#attributes' => array(
         'data-parsley-error-message' => t('Please add any relevant qualifications or enter "none".'),
         'data-parsley-required' => TRUE,
       ),
     );
-    // Team member experience.
+    // 6. Team member experience.
     $form['preparatory_d']["instance_$i"]['wrapper']['team_experience'] = array(
       '#weight' => '3',
       '#type' => 'textarea',
       '#resizable' => FALSE,
       '#title' => t('Relevant experience !tip', array(
-        '!tip' => _help_tip(),
+        '!tip' => _help_tip(21),
       )),
+      '#help_text' => t("Detail only that experience that is applicable to their involvement with the HACCP study e.g. 1 year as a chemical hazard scientist, 2 years working with the customer complaints team."),
       '#default_value' => array_get($values, "preparatory_d.instance_$i.wrapper.team_experience", FALSE),
       '#attributes' => array(
         'data-parsley-error-message' => t('Please add any relevant experience or enter "none".'),
@@ -143,8 +148,9 @@ function preparatory_d(&$form_state, &$next_step) {
   $form['preparatory_d']['instance_0']['team_role']['#disabled'] = TRUE;
   $form['preparatory_d']['instance_0']['team_external']['#disabled'] = TRUE;
   $form['preparatory_d']['instance_0']['team_external']['#default_value'] = 'internal';
-  $form['preparatory_d']['instance_0']['team_name']['#title'] = t('Name of HACCP lead for business:');
+  $form['preparatory_d']['instance_0']['team_name']['#title'] = t('Name of HACCP lead for business: !tip', array('!tip' => _help_tip(21)));
   $form['preparatory_d']['instance_0']['team_name']['#attributes']['data-parsley-error-message'] = t('Please add the name of the HACCP lead for the business.');
+  $form['preparatory_d']['instance_0']['team_name']['#help_text'] = t("State the person's name.");
 
 
   // Do you consider the team to have sufficient skills?
@@ -156,8 +162,9 @@ function preparatory_d(&$form_state, &$next_step) {
       'No' => t('No'),
     ),
     '#title' => t('Do you consider the team to have sufficient skills (scientific/technical knowledge and HACCP expertise) to ensure the HACCP study will be effective? !tip', array(
-      '!tip' => _help_tip(),
+      '!tip' => _help_tip(21),
     )),
+    '#help_text' => t("State the person's name."),
     '#default_value' => array_get($values, 'preparatory_d.team_skills', FALSE),
     '#attributes' => array(
       'data-parsley-error-message' => t('Please indicate whether you consider the team to have sufficient skills.'),

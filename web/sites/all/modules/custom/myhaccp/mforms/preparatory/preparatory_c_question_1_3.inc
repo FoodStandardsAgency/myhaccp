@@ -25,11 +25,13 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
     '#tree' => TRUE,
   );
 
+  # 1. What type of HACCP plan are you producing?
   $form['preparatory_c_question_1_3']['type'] = array(
     '#type' => 'select',
     '#title' => t('1. What type of HACCP plan are you producing? !tip', array(
-      '!tip' => _help_tip(),
+      '!tip' => _help_tip(15),
     )),
+    '#help_text' => t("Linear HACCP Plan - Typically one study that covers raw materials right  through to despatch (usually for simple systems).<br/>Modular HACCP Plan - Typically several separate HACCP studies e.g. one on raw materials, one  for each production line or product produced and one for despatch of the product (usually for complex systems/large variety of products).<br/>Generic HACCP Plan typically a plan applied across several sites."),
     '#options' => array(
       'none' => t('-- Please select --'),
       'linear' => t('Linear'),
@@ -45,12 +47,14 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
     '#default_value' => array_get($values, 'preparatory_c_question_1_3.type', array()),
   );
 
+  # 2. State the type of product you are producing and briefly how it is going to be packed.
   $form['preparatory_c_question_1_3']['product'] = array(
     '#type' => 'textarea',
     '#resizable' => FALSE,
     '#title' => t('2. State the type of product you are producing and briefly how it is going to be packed: !tip', array(
-      '!tip' => _help_tip(),
+      '!tip' => _help_tip(15),
     )),
+    '#help_text' => t("State the products you are making (those covered in the HACCP plan) and how they are packaged e.g. vacuum packed, gas flushed, flexible pouches."),
     '#default_value' => array_get($values, 'preparatory_c_question_1_3.product', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
@@ -58,15 +62,20 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
     ),
   );
 
+  # 3.State the process start and end points of the HACCP plan.
   $form['preparatory_c_question_1_3']['q3'] = array(
     '#type' => 'container',
   );
 
   $form['preparatory_c_question_1_3']['q3']['title'] = array(
     '#markup' => '<div class="label">' . t('3. State the process start and end points of the HACCP plan. !tip', array(
-      '!tip' => _help_tip(),
+      '!tip' => _help_tip(15),
       )
     ) . '</div>',
+      '#title' => t('2. State the type of product you are producing and briefly how it is going to be packed: !tip', array(
+      '!tip' => _help_tip(15),
+    )),
+    '#help_text' => t("State where your HACCP plan begin e.g. at raw materials or goods in.  State where it will end e.g. at delivery to the wholesaler, at despatch, when purchased by the  the consumer."),
   );
 
   $form['preparatory_c_question_1_3']['q3']['start'] = array(

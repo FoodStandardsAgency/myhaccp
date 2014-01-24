@@ -29,8 +29,9 @@ function preparatory_h(&$form_state, &$next_step) {
   $form['preparatory_h']['name'] = array(
     '#type' => 'textfield',
     '#title' => t('1. Name of person(s) confirming flow diagram is correct: !tip', array(
-      '!tip' => _help_tip(),
+      '!tip' => _help_tip(22),
     )),
+    '#help_text' => t('Name of person with overall responsibility for confirming it is correct and up-to-date.'),
     '#default_value' => array_get($values, 'preparatory_h.name', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
@@ -46,8 +47,9 @@ function preparatory_h(&$form_state, &$next_step) {
       'no' => t('No'),
     ),
     '#title' => t('2. Is every process step identified on the flow diagram? !tip', array(
-      '!tip' => _help_tip(),
+      '!tip' => _help_tip(22),
     )),
+    '#help_text' => t('It is <strong>vital</strong> that every step is identified. This is a key stage.  Steps are often overlooked. If this occurs the potential to compromise food safety significantly increases. It is strongly recommended that you read the guidance notes on this.'),
     '#default_value' => array_get($values, 'preparatory_h.identified', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
@@ -64,8 +66,9 @@ function preparatory_h(&$form_state, &$next_step) {
       'no' => t('No'),
     ),
     '#title' => t('3. Is the flow diagram an accurate representation of the process from start to finish? !tip', array(
-      '!tip' => _help_tip(),
+      '!tip' => _help_tip(22),
     )),
+    '#help_text' => t('Is the flow (shown by use of arrows) correct? Does the diagram go right from the start to the end of the process?'),
     '#default_value' => array_get($values, 'preparatory_h.accurate', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
@@ -82,8 +85,9 @@ function preparatory_h(&$form_state, &$next_step) {
       'no' => t('No'),
     ),
     '#title' => t('4. Is the process flow diagram correct for all shifts (e.g. days, nights and weekend)? !tip', array(
-      '!tip' => _help_tip(),
+      '!tip' => _help_tip(22),
     )),
+    '#help_text' => t('Does the process flow change at all depending on which shift is working?  Someone (preferably not on the shift) should check that this is the case for all shifts.'),
     '#default_value' => array_get($values, 'preparatory_h.shifts', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
@@ -99,8 +103,9 @@ function preparatory_h(&$form_state, &$next_step) {
       'no' => t('No'),
     ),
     '#title' => t('5. Is the flow diagram correct during all seasonal variations? !tip', array(
-      '!tip' => _help_tip(),
+      '!tip' => _help_tip(22),
     )),
+    '#help_text' => t('Consider high, standard and low  production times?'),
     '#default_value' => array_get($values, 'preparatory_h.seasonal', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
@@ -117,8 +122,9 @@ function preparatory_h(&$form_state, &$next_step) {
       'no' => t('No'),
     ),
     '#title' => t('6. Has the team leader signed off and dated the flow diagram as being correct? !tip', array(
-      '!tip' => _help_tip(),
+      '!tip' => _help_tip(22),
     )),
+    '#help_text' => t('The leader for HACCP should do this as they have ultimate responsibility to ensure it is correct.'),
     '#default_value' => array_get($values, 'preparatory_h.leader', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
@@ -131,8 +137,9 @@ function preparatory_h(&$form_state, &$next_step) {
     '#type' => 'textarea',
     '#resizable' => FALSE,
     '#title' => t('7. Who in your organisation is aware that any changes to the process will require changes to the flow diagram? !tip', array(
-      '!tip' => _help_tip(),
+      '!tip' => _help_tip(22),
     )),
+    '#help_text' => t('The flow diagram must be up-to-date at all times.  This should be all those involved in the HACCP study as a minimum.  For larger companies systems should be in place to ensure that a future planned or unplanned change to the process (equipment, product etc) will  trigger a change to the flow diagram.'),
     '#default_value' => array_get($values, 'preparatory_h.changes', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
@@ -145,8 +152,9 @@ function preparatory_h(&$form_state, &$next_step) {
     '#type' => 'textarea',
     '#resizable' => FALSE,
     '#title' => t('8. Who in your organisation is responsible for storing all out-of-date versions of the flow diagram? !tip', array(
-      '!tip' => _help_tip(),
+      '!tip' => _help_tip(22),
     )),
+    '#help_text' => t('Name of person responsible for this.'),
     '#default_value' => array_get($values, 'preparatory_h.storing', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
