@@ -209,6 +209,15 @@ class MyHACCPMultiStepControls extends MformsControls {
         '#mforms_step' => $this->steps->getPrev(),
         '#submit' => array('_mforms_back_submit'),
       );
+
+      if ($this->ajaxified) {
+        $form_controls['previous']['#ajax'] = array(
+          'callback' => '_mforms_ajax_get_form',
+          'wrapper' => $wrapper_id,
+          'method' => 'replace',
+          'effect' => 'fade',
+        );
+      }
     }
 
     $form_controls['message'] = array(
