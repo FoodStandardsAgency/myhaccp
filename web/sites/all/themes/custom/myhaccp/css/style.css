@@ -2276,7 +2276,6 @@ header[role="banner"] .header-inside {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding-top: 1em;
-  overflow: hidden;
 }
 @media all and (min-width: 860px) {
   header[role="banner"] .header-inside {
