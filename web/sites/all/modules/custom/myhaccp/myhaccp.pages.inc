@@ -16,17 +16,13 @@ function myhaccp_list() {
       'data' => 'Last updated',
       'field' => 'changed',
     ),
-    'notes' => array(
-      'data' => 'Notes',
-      'field' => 'notes',
-    ),
     'edit' => array(
-      'data' => 'Edit',
+      'data' => 'Resume a study',
     ),
   );
   $rows = array();
   // Prepare the empty text in case there aren't any rows.
-  $empty = t('You haven\'t yet started a form. Would you like to !start', array(
+  $empty = t('You haven\'t yet started a study. Would you like to !start', array(
     '!start' => l(t('start one now?'), 'prototype/form/create'),
   ));
   // Only display this user's form instances.
@@ -36,12 +32,11 @@ function myhaccp_list() {
   $results = $query->execute()->fetchAll();
   foreach ($results as $delta => $result) {
     // Build out the rows.
-    $edit = user_access('edit own myhaccp forms') || user_access('edit any myhaccp forms') ? l(t('Edit'), 'prototype/form/' . $result->iid) : '';
+    $edit = user_access('edit own myhaccp forms') || user_access('edit any myhaccp forms') ? l(t('Resume'), 'prototype/form/' . $result->iid) : '';
     $rows[] = array(
       'data' => array(
-        'created' => format_date($result->created, 'medium'),
-        'changed' => $result->changed ? format_date($result->changed, 'medium') : '',
-        'notes' => isset($result->notes) ? $result->notes : '',
+        'created' => format_date($result->created, 'short'),
+        'changed' => $result->changed ? format_date($result->changed, 'short') : 'Not updated',
         'edit' => $edit,
       ),
     );
@@ -57,7 +52,7 @@ function myhaccp_list() {
     ),
     'new' => array(
       '#type' => 'link',
-      '#title' => 'Start a new form',
+      '#title' => 'Start a new study',
       '#href' => 'prototype/form/create',
     )
   );
