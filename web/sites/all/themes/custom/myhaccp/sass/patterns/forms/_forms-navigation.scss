@@ -31,11 +31,11 @@
       font-size: 1.3em;
       &.current-step {
         background: $accent-1;
-        color: $text;
+        color: #FFF;
         &.visited-step {
-          color: $text;
+          color: #FFF;
           &:hover {
-            color: $text;
+            color: #FFF;
           }
         }
       }

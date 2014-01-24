@@ -110,10 +110,9 @@ function principle_1_question_2(&$form_state, &$next_step) {
     // Create a fieldset to wrap this instance and give it a legend.
     $form['principle_1_question_2']['instance_' . $i] = array(
       '#type' => 'fieldset',
-      '#title' => t('Process Step !step_no: !step_name !tip', array(
+      '#title' => t('Process Step !step_no: !step_name', array(
         '!step_no' => $step_no,
         '!step_name' => $step_name,
-        '!tip' => _help_tip(),
       )),
     );
 
