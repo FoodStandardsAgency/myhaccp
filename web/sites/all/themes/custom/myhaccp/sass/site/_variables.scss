@@ -31,6 +31,7 @@ $text-over-base-color: #FFF;
 // Accent 1 (FSA Light Green)
 $accent-1: #6CB33F;
 $accent-1-lighter: mix($accent-1, #FFF, 80%);
+$accent-1-lightest: mix($accent-1, #FFF, 20%);
 
 // Accent 2 (FSA Light Blue)
 $accent-2: #007FB2;
@@ -44,9 +45,11 @@ $help-tips: #d3d3d3;
 
 // For positive actions, such as submit buttons
 $positive: #4D8F46;
+$positive-lighter: $accent-1-lightest;
 
 // For negative actions, such as delete buttons
 $negative: #B73939;
+$negative-lighter: mix($negative, #FFF, 10%);
 
 // Grey, used for borders
 $grey-1: #eeeeee;

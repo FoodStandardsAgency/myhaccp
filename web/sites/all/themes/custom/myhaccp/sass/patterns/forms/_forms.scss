@@ -8,7 +8,7 @@
 
 $form_elements_background_color: #FCFCFC;
 $form_elements_outline_color: $accent-2;
-$form_elements_error_color: #f00;
+$form_elements_error_color: $negative;
 
 /** General form styling **/
 
@@ -39,6 +39,7 @@ textarea {
   &.error {
     border-color: $form_elements_error_color;
     color: $text;
+    border-width: 2px;
     &:focus {
       border-color: $form_elements_error_color;
       outline-color: $form_elements_error_color;
@@ -49,15 +50,19 @@ textarea {
 // Parsley errors. They need to look like the server side errors for a seamless
 // experience.
 ul.parsley-error-list {
-  background: #fef5f1; // Same as drupal default (feel free to change).
+  background: $negative-lighter; // Same as drupal default (feel free to change).
   margin: 0;
   padding: 0;
   li {
-    color: #8c2e0b;
+    //color: #FFF;
     list-style: none;
     margin: 0;
-    padding: 0;
+    padding: 2px 5px;
   }
+}
+
+form div.error {
+  outline: 2px solid $negative;
 }
 
 input:focus,
@@ -440,10 +445,8 @@ div.teaser-checkbox .form-item,
   fieldset.instance .form-wrapper {
     @extend %half-textareas;
   }
-  .instance {
-    .form-radios {
-      @extend %inline-radios;
-    }
+  .form-radios {
+    @extend %inline-radios;
   }
   .form-item-prep-d-team-skills {
     margin-top: 2em;

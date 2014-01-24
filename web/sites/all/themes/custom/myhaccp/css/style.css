@@ -1270,17 +1270,17 @@ select:focus {
   outline: 2px solid #007fb2;
 }
 
-.prep-d .instance .form-radios .form-item, .prep-d .form-item-prep-d-team-skills .form-radios .form-item, .prep-f .form-radios .form-item,
+.prep-d .form-radios .form-item, .prep-f .form-radios .form-item,
 .prep-h .form-radios .form-item {
   display: inline;
 }
-.prep-d .instance .form-radios label, .prep-d .form-item-prep-d-team-skills .form-radios label, .prep-f .form-radios label,
-.prep-h .form-radios label, .prep-d .instance .form-radios input, .prep-d .form-item-prep-d-team-skills .form-radios input, .prep-f .form-radios input,
+.prep-d .form-radios label, .prep-d .form-item-prep-d-team-skills .form-radios label, .prep-f .form-radios label,
+.prep-h .form-radios label, .prep-d .form-radios input, .prep-d .form-item-prep-d-team-skills .form-radios input, .prep-f .form-radios input,
 .prep-h .form-radios input {
   display: inline;
   margin-right: 0.25em;
 }
-.prep-d .instance .form-radios input, .prep-d .form-item-prep-d-team-skills .form-radios input, .prep-f .form-radios input,
+.prep-d .form-radios input, .prep-d .form-item-prep-d-team-skills .form-radios input, .prep-f .form-radios input,
 .prep-h .form-radios input {
   vertical-align: baseline;
 }
@@ -1420,8 +1420,9 @@ input[type="week"].error,
 input[type="password"].error,
 select.error,
 textarea.error {
-  border-color: red;
+  border-color: #b73939;
   color: black;
+  border-width: 2px;
 }
 input[type="text"].error:focus,
 input[type="email"].error:focus,
@@ -1439,20 +1440,23 @@ input[type="week"].error:focus,
 input[type="password"].error:focus,
 select.error:focus,
 textarea.error:focus {
-  border-color: red;
-  outline-color: red;
+  border-color: #b73939;
+  outline-color: #b73939;
 }
 
 ul.parsley-error-list {
-  background: #fef5f1;
+  background: #f7ebeb;
   margin: 0;
   padding: 0;
 }
 ul.parsley-error-list li {
-  color: #8c2e0b;
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 2px 5px;
+}
+
+form div.error {
+  outline: 2px solid #b73939;
 }
 
 input.text-mini {
@@ -2033,13 +2037,13 @@ div.teaser-checkbox .form-item,
 }
 .pager-wrapper .pager-controls input.current-step {
   background: #6cb33f;
-  color: black;
+  color: #FFF;
 }
 .pager-wrapper .pager-controls input.current-step.visited-step {
-  color: black;
+  color: #FFF;
 }
 .pager-wrapper .pager-controls input.current-step.visited-step:hover {
-  color: black;
+  color: #FFF;
 }
 .pager-wrapper .pager-controls input.active-step {
   color: #6cb33f;
@@ -2062,9 +2066,15 @@ div.messages {
   background-position: 8px 8px;
   /* LTR */
   background-repeat: no-repeat;
-  border: 1px solid;
+  border-width: 1px 1px 1px 10px;
+  border-style: solid;
   margin: 6px 0;
-  padding: 10px 10px 10px 50px;
+  padding: 10px 10px 10px 20px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
   /* LTR */
 }
 div.messages ul {
@@ -2076,11 +2086,6 @@ div.messages li {
   list-style-image: none;
 }
 
-div.status {
-  background-image: url(../../misc/message-24-ok.png);
-  border-color: #be7;
-}
-
 div.status,
 .ok {
   color: #234600;
@@ -2088,11 +2093,14 @@ div.status,
 
 div.status,
 table tr.ok {
-  background-color: #f8fff0;
+  background-color: #e1efd8;
+}
+
+div.status {
+  border-color: #6cb33f;
 }
 
 div.warning {
-  background-image: url(../../misc/message-24-warning.png);
   border-color: #ed5;
 }
 
@@ -2106,19 +2114,10 @@ table tr.warning {
   background-color: #fffce5;
 }
 
-div.error {
-  background-image: url(../../misc/message-24-error.png);
-  border-color: #ed541d;
-}
-
-div.error,
-.error {
-  color: #8c2e0b;
-}
-
 div.error,
 table tr.error {
-  background-color: #fef5f1;
+  border-color: #b73939;
+  background-color: #f7ebeb;
 }
 
 div.error p.error {
