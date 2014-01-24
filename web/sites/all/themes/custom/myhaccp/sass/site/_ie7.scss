@@ -1,0 +1,35 @@
+/**
+ * IE7 Compatibility
+ */
+
+/** Main menu not floating **/
+html.ie7 header .header-region nav ul li {
+  float: left;
+}
+
+
+/** Homepage grid not recognising box-sizing: border-box **/
+html.ie7 .node-homepage.view-mode-full .group-left {
+  width: 48%;
+  padding-right: 2%;
+}
+
+html.ie7 .node-homepage.view-mode-full .group-right {
+  width: 48%;
+  padding-left: 2%;
+}
+
+
+/** Inside page grid not recognising box-sizing: border-box **/
+
+html.ie7 body.sidebar-second #main-content {
+  padding-left: 3%;
+  padding-right: 3%;
+  width: 60%;
+}
+
+body.sidebar-second .region-sidebar-second {
+  padding-left: 3%;
+  padding-right: 3%;
+  width: 19%;
+}

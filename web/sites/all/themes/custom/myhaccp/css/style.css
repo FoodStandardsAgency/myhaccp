@@ -2261,24 +2261,13 @@ table.striped tbody tr:nth-child(2n+1) th {
   }
 }
 
-header[role=banner] {
+header[role="banner"] {
   background-color: #eeeeee;
   color: black;
   border-bottom: 5px solid #6cb33f;
   /** Styling **/
-  /**
-    @media all and (min-width: $break_med_up) {
-      .site-details {
-        float: left;
-      }
-      .main-menu {
-        float: right;
-        margin-top: 2em;
-      }
-    }
-  **/
 }
-header[role=banner] .header-inside {
+header[role="banner"] .header-inside {
   width: 100%;
   float: left;
   padding-left: 25px;
@@ -2287,104 +2276,100 @@ header[role=banner] .header-inside {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding-top: 1em;
+  overflow: hidden;
 }
 @media all and (min-width: 860px) {
-  header[role=banner] .header-inside {
+  header[role="banner"] .header-inside {
     padding-top: 1.5em;
   }
 }
-header[role=banner] .site-details {
+header[role="banner"] .site-details {
   overflow: hidden;
 }
-header[role=banner] .site-details .logo {
+header[role="banner"] .site-details .logo {
   margin-right: 2em;
   display: inline-block;
   float: left;
 }
-header[role=banner] .site-details h1 {
+header[role="banner"] .site-details h1 {
   font-size: 1.75em;
   line-height: 1.71429em;
   margin-top: 4px;
   margin-bottom: 0;
   color: #676767;
 }
-header[role=banner] .site-details h1 a {
+header[role="banner"] .site-details h1 a {
   color: #676767;
   text-decoration: none;
 }
 @media all and (max-width: 860px) {
-  header[role=banner] .site-details h1 {
+  header[role="banner"] .site-details h1 {
     font-size: 1.2em;
   }
 }
-header[role=banner] .header-region nav[role="navigation"] {
+header[role="banner"] .header-region nav[role="navigation"] {
   clear: both;
   position: relative;
 }
 @media all and (min-width: 450px) {
-  header[role=banner] .header-region nav[role="navigation"] {
+  header[role="banner"] .header-region nav[role="navigation"] {
     bottom: -5px;
     margin-top: 1em;
   }
 }
-header[role=banner] .header-utility {
+header[role="banner"] .header-utility {
   margin-bottom: 1em;
   color: #676767;
   font-size: 0.85em;
-  *zoom: 1;
-}
-header[role=banner] .header-utility:after {
-  content: "";
-  display: table;
-  clear: both;
 }
 @media all and (min-width: 860px) {
-  header[role=banner] .header-utility {
+  header[role="banner"] .header-utility {
     margin-top: 0.5em;
   }
 }
-header[role=banner] .header-utility a {
+header[role="banner"] .header-utility a {
   color: #676767;
 }
-header[role=banner] .header-utility .form-item {
+header[role="banner"] .header-utility .form-item {
   margin-bottom: 0;
 }
-header[role=banner] .header-utility div[role="search"] {
+header[role="banner"] .header-utility div[role="search"] {
   float: right;
   margin-right: 1em;
 }
-header[role=banner] .header-utility div[role="search"] .form-actions {
+header[role="banner"] .header-utility div[role="search"] .form-actions {
   display: none;
 }
 @media all and (max-width: 450px) {
-  header[role=banner] .header-utility div[role="search"] input {
+  header[role="banner"] .header-utility div[role="search"] input {
     width: 100%;
   }
 }
 @media all and (min-width: 860px) {
-  header[role=banner] .header-utility div[role="search"] input {
+  header[role="banner"] .header-utility div[role="search"] input {
     float: right;
     margin-left: 1em;
     margin-right: 0;
     max-width: 12em;
   }
 }
-header[role=banner] .header-utility nav {
+header[role="banner"] .header-utility nav {
   float: right;
 }
-header[role=banner] .header-utility nav > ul {
+header[role="banner"] .header-utility nav > ul {
   list-style-type: none;
   margin: 0.25em 0 0.5em 0;
   padding: 0;
   float: right;
 }
-header[role=banner] .header-utility nav > ul li {
+header[role="banner"] .header-utility nav > ul li {
   display: inline;
   margin-right: 0.5em;
 }
 @media all and (min-width: 860px) {
-  header[role=banner] .header-utility {
+  header[role="banner"] .header-utility {
     float: right;
+    max-width: 35em;
   }
 }
 
@@ -3085,6 +3070,12 @@ footer .footer-wrapper:after {
   font-size: 1em;
 }
 
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
 body {
   background-color: #fafafa;
 }
@@ -3102,4 +3093,36 @@ a:link {
 
 html body.admin-menu.adminimal-menu {
   margin-top: 0 !important;
+}
+
+/**
+ * IE7 Compatibility
+ */
+/** Main menu not floating **/
+html.ie7 header .header-region nav ul li {
+  float: left;
+}
+
+/** Homepage grid not recognising box-sizing: border-box **/
+html.ie7 .node-homepage.view-mode-full .group-left {
+  width: 48%;
+  padding-right: 2%;
+}
+
+html.ie7 .node-homepage.view-mode-full .group-right {
+  width: 48%;
+  padding-left: 2%;
+}
+
+/** Inside page grid not recognising box-sizing: border-box **/
+html.ie7 body.sidebar-second #main-content {
+  padding-left: 3%;
+  padding-right: 3%;
+  width: 60%;
+}
+
+body.sidebar-second .region-sidebar-second {
+  padding-left: 3%;
+  padding-right: 3%;
+  width: 19%;
 }
