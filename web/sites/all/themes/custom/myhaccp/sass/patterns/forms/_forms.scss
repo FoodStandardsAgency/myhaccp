@@ -422,13 +422,19 @@ div.teaser-checkbox .form-item,
  * Specific form styling
  */
 
+/** Preparatory Stage A **/
+
+#myhaccp-start-form.prep-a input#edit-save {
+  margin-left: 0;
+}
+
 /** Preparatory Stage C **/
 .prep-c-2 .fieldset-wrapper {
  @extend %fieldgroup-table-style;
 }
 
 
-/** Prep Stage D **/
+/** Preparatory Stage D **/
 
 .prep-d {
   fieldset.instance .form-wrapper {

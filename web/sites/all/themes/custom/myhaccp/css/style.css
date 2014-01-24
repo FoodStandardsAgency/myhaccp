@@ -1949,8 +1949,13 @@ div.teaser-checkbox .form-item,
 /**
  * Specific form styling
  */
+/** Preparatory Stage A **/
+#myhaccp-start-form.prep-a input#edit-save {
+  margin-left: 0;
+}
+
 /** Preparatory Stage C **/
-/** Prep Stage D **/
+/** Preparatory Stage D **/
 .prep-d .form-item-prep-d-team-skills {
   margin-top: 2em;
 }
