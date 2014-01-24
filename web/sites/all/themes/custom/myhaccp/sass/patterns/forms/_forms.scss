@@ -292,13 +292,7 @@ input#edit-submit.form-add {
   }
 }
 
-.prep-c-2 .fieldset-wrapper {
- @extend %fieldgroup-table;
-}
 
-.form-1-principle-1 .field-group-principle-1 {
-  @extend %fieldgroup-table-2;
-}
 
 %fieldgroup-table-2 {
   table {
@@ -428,6 +422,12 @@ div.teaser-checkbox .form-item,
  * Specific form styling
  */
 
+/** Preparatory Stage C **/
+.prep-c-2 .fieldset-wrapper {
+ @extend %fieldgroup-table-style;
+}
+
+
 /** Prep Stage D **/
 
 .prep-d {
@@ -458,6 +458,11 @@ div.teaser-checkbox .form-item,
 
 
 /** Principle 1, Q1 **/
+
+.form-1-principle-1 .field-group-principle-1 {
+  @extend %fieldgroup-table-2;
+}
+
 .p1q1-step {
   @include clearfix;
   .form-item {

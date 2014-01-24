@@ -53,39 +53,42 @@ $form_elements_outline_color: $accent-2;
 /** Table style **/
 
 
-%fieldgroup-table {
+%fieldgroup-table-style {
   border-collapse: collapse;
   margin-bottom: 2em;
-  display: table;
-  table-layout: fixed;
   width: 100%;
     > div.label {
-      display: table-caption;
       margin-bottom: 1em;
       font-weight: 500;
       span {
-        display: table-cell;
         padding-bottom: 1em;
       }
     }
   > .form-wrapper {
     padding: 0.5em;
+    border-collapse: collapse;
     border: 1px solid $base_color;
-    @media all and (min-width: $break_sm_up) {
-      display: table-cell;
-    }
     &:first-child {
       padding-left: 0;
     }
     &:last-child {
       padding-right: 0;
     }
-    > .form-item {
+    > .form-item.form-type-checkboxes {
       > label {
         font-weight: bold;
+        border-collapse: collapse;
         border-bottom: 1px solid $base_color;
       }
     }
+  }
+  .form-type-textarea {
+    label {
+      border-bottom: none;
+    }
+  }
+  textarea {
+    max-width: 45%;
   }
 }
 

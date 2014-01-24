@@ -1297,27 +1297,19 @@ select:focus {
 .prep-c-2 .fieldset-wrapper {
   border-collapse: collapse;
   margin-bottom: 2em;
-  display: table;
-  table-layout: fixed;
   width: 100%;
 }
 .prep-c-2 .fieldset-wrapper > div.label {
-  display: table-caption;
   margin-bottom: 1em;
   font-weight: 500;
 }
 .prep-c-2 .fieldset-wrapper > div.label span {
-  display: table-cell;
   padding-bottom: 1em;
 }
 .prep-c-2 .fieldset-wrapper > .form-wrapper {
   padding: 0.5em;
+  border-collapse: collapse;
   border: 1px solid #006f51;
-}
-@media all and (min-width: 640px) {
-  .prep-c-2 .fieldset-wrapper > .form-wrapper {
-    display: table-cell;
-  }
 }
 .prep-c-2 .fieldset-wrapper > .form-wrapper:first-child {
   padding-left: 0;
@@ -1325,9 +1317,16 @@ select:focus {
 .prep-c-2 .fieldset-wrapper > .form-wrapper:last-child {
   padding-right: 0;
 }
-.prep-c-2 .fieldset-wrapper > .form-wrapper > .form-item > label {
+.prep-c-2 .fieldset-wrapper > .form-wrapper > .form-item.form-type-checkboxes > label {
   font-weight: bold;
+  border-collapse: collapse;
   border-bottom: 1px solid #006f51;
+}
+.prep-c-2 .fieldset-wrapper .form-type-textarea label {
+  border-bottom: none;
+}
+.prep-c-2 .fieldset-wrapper textarea {
+  max-width: 45%;
 }
 
 .form-1-principle-1 .field-group-principle-1 table {
@@ -1357,42 +1356,6 @@ select:focus {
 }
 
 /** Table style **/
-.prep-c-2 .fieldset-wrapper {
-  border-collapse: collapse;
-  margin-bottom: 2em;
-  display: table;
-  table-layout: fixed;
-  width: 100%;
-}
-.prep-c-2 .fieldset-wrapper > div.label {
-  display: table-caption;
-  margin-bottom: 1em;
-  font-weight: 500;
-}
-.prep-c-2 .fieldset-wrapper > div.label span {
-  display: table-cell;
-  padding-bottom: 1em;
-}
-.prep-c-2 .fieldset-wrapper > .form-wrapper {
-  padding: 0.5em;
-  border: 1px solid #006f51;
-}
-@media all and (min-width: 640px) {
-  .prep-c-2 .fieldset-wrapper > .form-wrapper {
-    display: table-cell;
-  }
-}
-.prep-c-2 .fieldset-wrapper > .form-wrapper:first-child {
-  padding-left: 0;
-}
-.prep-c-2 .fieldset-wrapper > .form-wrapper:last-child {
-  padding-right: 0;
-}
-.prep-c-2 .fieldset-wrapper > .form-wrapper > .form-item > label {
-  font-weight: bold;
-  border-bottom: 1px solid #006f51;
-}
-
 /** Other styling **/
 .form-principle-3 .field-group-wrapper {
   margin-bottom: 1em;
@@ -2020,6 +1983,7 @@ div.teaser-checkbox .form-item,
 /**
  * Specific form styling
  */
+/** Preparatory Stage C **/
 /** Prep Stage D **/
 .prep-d .form-item-prep-d-team-skills {
   margin-top: 2em;
@@ -2091,7 +2055,7 @@ div.teaser-checkbox .form-item,
   float: left;
 }
 .pager-wrapper .pager-controls input {
-  margin: 0;
+  margin: 0 0.25em 0 0;
   border: 0;
   background: none;
   font-size: 1.3em;
@@ -3120,8 +3084,22 @@ html.ie7 body.sidebar-second #main-content {
   width: 60%;
 }
 
-body.sidebar-second .region-sidebar-second {
+html.ie7 body.sidebar-second .region-sidebar-second {
   padding-left: 3%;
   padding-right: 3%;
   width: 19%;
+}
+
+/** Web Tool Pager **/
+html.ie7 .pager-wrapper .pager-controls input {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+/** Principle 1.1 **/
+html.ie7 .prep-d fieldset.instance .form-wrapper > .form-item,
+html.ie7 .principle-1-q1 .hazards > .form-item {
+  width: 40%;
+  padding-left: 0;
+  padding-right: 3%;
 }
