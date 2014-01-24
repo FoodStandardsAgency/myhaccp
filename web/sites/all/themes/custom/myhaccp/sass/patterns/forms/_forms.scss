@@ -459,10 +459,6 @@ div.teaser-checkbox .form-item,
 
 /** Principle 1, Q1 **/
 
-.form-1-principle-1 .field-group-principle-1 {
-  @extend %fieldgroup-table-2;
-}
-
 .p1q1-step {
   @include clearfix;
   .form-item {
@@ -479,7 +475,7 @@ div.teaser-checkbox .form-item,
   }
 }
 
-.principle-1-q1 .hazards {
+.principle-1-question-1 .hazards {
   @extend %half-textareas;
 }
 

@@ -419,6 +419,23 @@ h4.browser-title {
 }
 
 /** Table style **/
+.form-1-principle-1 .field-group-principle-1 table {
+  width: 100%;
+}
+.form-1-principle-1 .field-group-principle-1 > .field-group-div {
+  border-bottom: 1px solid #007fb2;
+  overflow: hidden;
+  padding: 1.5em 0;
+}
+.form-1-principle-1 .field-group-principle-1 .form-item {
+  float: left;
+  margin-bottom: 1em;
+  padding-right: 2em;
+}
+.form-1-principle-1 .field-group-principle-1 .field-group-row {
+  clear: both;
+}
+
 /** Table style **/
 .group-pr-c-hazards {
   border-collapse: collapse;
