@@ -50,7 +50,7 @@ function theme_myhacpp_p1q2_table($variables) {
 /**
  * Theme function to render the fields in a table.
  *
- * Principle 1 Question 1.
+ * Principle 1 Question 3.
  */
 function theme_myhacpp_p1q3_table($variables) {
   $element = $variables['element'];
@@ -80,6 +80,59 @@ function theme_myhacpp_p1q3_table($variables) {
         '!tip' => _help_tip(),
       )),
       'class' => array('control-measure'),
+    ),
+  );
+
+  return theme('table', array('header' => $header, 'rows' => $rows));
+}
+
+/**
+ * Theme function to render the fields in a table.
+ *
+ * Principle 2 Question 4.
+ */
+function theme_myhacpp_p2q4_table($variables) {
+  $element = $variables['element'];
+
+  $rows = array();
+  foreach (element_children($element) as $key) {
+    $rows[] = array(
+      array('data' => $element[$key]['process_step']),
+      array('data' => $element[$key]['hazard']),
+      array('data' => $element[$key]['control_measure']),
+      array('data' => $element[$key]['decision_tree']),
+      array('data' => $element[$key]['ccp']),
+    );
+  }
+
+  // Build the table, with a row per hazard.
+  // The table has 3 columns.
+  $header = array(
+    'process_step' => array(
+      'data' => t('Process Step'),
+      'class' => array('process-step'),
+    ),
+    'hazard' => array(
+      'data' => t('Hazard'),
+      'class' => array('hazard'),
+    ),
+    'control_measure' => array(
+      'data' => t('Control Measure !tip', array(
+        '!tip' => _help_tip(),
+      )),
+      'class' => array('control-measure'),
+    ),
+    'decision_tree' => array(
+      'data' => t('Decision Tree Q\'s !tip', array(
+        '!tip' => _help_tip(),
+      )),
+      'class' => array('decision-tree'),
+    ),
+    'ccp' => array(
+      'data' => t('CCP? !tip', array(
+        '!tip' => _help_tip(),
+      )),
+      'class' => array('ccp'),
     ),
   );
 

@@ -92,12 +92,19 @@ function principle_1_question_3(&$form_state, &$next_step) {
       '#markup' => $process_step_text,
     );
 
+    $hazard_details = $details;
+    $hazard_details['description'] = $item['description'];
+    $hazard_details['control_measure'] = array_get($values, "principle_1_question_3.instance_table.row_$key.control_measure", FALSE);
+
     $form['principle_1_question_3']['instance_table']['row_' . $key]['hazard'] = array(
-      '#markup' => $hazard_text,
+      '#prefix' => $hazard_text,
+      '#type' => 'hidden',
+      '#value' => serialize($hazard_details),
     );
 
     $form['principle_1_question_3']['instance_table']['row_' . $key]['control_measure'] = array(
       '#type' => 'textarea',
+      '#help_text' => t('For each signifiant hazard, please specify the control measure.'),
       '#resizable' => FALSE,
       '#default_value' => array_get($values, "principle_1_question_3.instance_table.row_$key.control_measure", FALSE),
       '#attributes' => array(

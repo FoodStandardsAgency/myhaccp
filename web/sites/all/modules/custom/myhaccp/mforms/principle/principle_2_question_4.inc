@@ -35,25 +35,17 @@ function principle_2_question_4(&$form_state, &$next_step) {
   $prev_step = $steps->getPrev();
   $previous_data = $store->getStore($prev_step);
 
-  // Get the previously set threshold value.
-  $threshold = array_get($previous_data, 'principle_1_question_2.threshold', FALSE);
-  // Set a instance count so we know how many rows we
-  // need to show. One instance per previous stage instance with a number over
-  // the threshold amount.
-  $instance_count = 0;
+  // Fetch the data from principle 1 question 3.
+  $hazard_data = mforms_get_vals('myhaccp', 'principle_1_question_3');
+
   $items = array();
 
-  // Iterate through the previous data and look for instances which have the
-  // correct form fields filled out.
-  if (isset($previous_data) && $threshold) {
-    foreach ($previous_data['principle_1_question_2'] as $key => $instance) {
-      if (strpos($key, 'instance') === 0) {
-        foreach ($instance['instance_table'] as $key => $item) {
-          if (isset($item['significance']) && $item['significance'] > $threshold) {
-            $items[] = $item;
-          }
-        }
-      }
+  // Iterate through the previous data.
+  if (isset($hazard_data)) {
+    foreach ($hazard_data['principle_1_question_3']['instance_table'] as $key => $item) {
+      $hazard = unserialize($item['hazard']);
+      $hazard['control_measure'] = $item['control_measure'];
+      $items[] = $hazard;
     }
   }
 
@@ -61,7 +53,7 @@ function principle_2_question_4(&$form_state, &$next_step) {
   // Bail out here with a message if there are no instances of the fieldsets
   // filled out correctly in the previous screen.
   if ($instance_count == 0) {
-    drupal_set_message('You have no hazards over the threshold set in the previous question.', 'error');
+    drupal_set_message('You have no hazards or no hazards over the threshold set in principle 1.3.', 'error');
     return $form;
   }
 
@@ -73,20 +65,19 @@ function principle_2_question_4(&$form_state, &$next_step) {
 
   // Create the table.
   $form['principle_2_question_4']['instance_table'] = array(
-    '#theme' => 'myhacpp_p1q3_table',
+    '#theme' => 'myhacpp_p2q4_table',
   );
+
+  // Based on the information in the previous stage, build out the decision tree
+  // radios.
+  $tree_type = array_get($previous_data, 'principle_2_question_1_3.which_tree', 'none');
 
   // Build out the rows (three columns).
   foreach ($items as $key => $item) {
-
-    // Get the details of this step and item, serialized into a hidden form
-    // element in the previous question (seemed like the easiest way).
-    $details = unserialize($item['details']);
-
     // Prepare the text.
-    $process_step_text = '(' . $details['step_number'] . ') ' . $details['step_name'];
+    $process_step_text = '(' . $item['step_number'] . ') ' . $item['step_name'];
     // The hazard column text.
-    $hazard_text = '<div class="label hazard">' . $details['name'] . '</div><div class="hazard-description">' . $item['description'] . '</div>';
+    $hazard_text = '<div class="label hazard">' . $item['name'] . '</div><div class="hazard-description">' . $item['description'] . '</div>';
 
     $form['principle_2_question_4']['instance_table']['row_' . $key]['process_step'] = array(
       '#markup' => $process_step_text,
@@ -97,16 +88,63 @@ function principle_2_question_4(&$form_state, &$next_step) {
     );
 
     $form['principle_2_question_4']['instance_table']['row_' . $key]['control_measure'] = array(
-      '#type' => 'textarea',
-      '#resizable' => FALSE,
-      '#default_value' => array_get($values, "principle_2_question_4.instance_table.row_$key.control_measure", FALSE),
+      '#markup' => '<div class="hazard-control-measure">' . $item['control_measure'] . '</div>',
+    );
+
+    if ($tree_type !== 'none') {
+      $num = 1;
+      for ($q = 1; $q <= 6; $q++) {
+        $id = 'Q' . $num;
+        if ($tree_type == 'campden') {
+          if ($q == 2) {
+            $id = 'Q1a';
+            $num = 2;
+          }
+          else {
+            $num++;
+          }
+        }
+        else {
+          if ($q == 3) {
+            $id = 'Q2a';
+            $num = 3;
+          }
+          else {
+            $num++;
+          }
+        }
+
+        $form['principle_2_question_4']['instance_table']['row_' . $key]['decision_tree'][$id] = array(
+          '#type' => 'radios',
+          '#options' => array(
+            'yes' => t('Yes'),
+            'no' => t('No'),
+            'n/a' => t('N/A'),
+          ),
+          '#title' => $id,
+          '#default_value' => array_get($values, "principle_2_question_4.instance_table.row_$key.decision_tree.$id", array()),
+          '#attributes' => array(
+            'data-parsley-required' => 'true',
+            'data-parsley-error-message' => t('Please indicate \'Yes\', \'No\' or \'N/A\' for this question in the decision tree.'),
+          ),
+        );
+      }
+
+    }
+
+    $form['principle_2_question_4']['instance_table']['row_' . $key]['ccp'] = array(
+      '#type' => 'radios',
+      '#options' => array(
+        'yes' => t('Yes'),
+        'no' => t('No'),
+      ),
+      '#default_value' => array_get($values, "principle_2_question_4.instance_table.row_$key.ccp", array()),
       '#attributes' => array(
-        'data-parsley-error-message' => t('Please add a control measure.'),
-        'data-parsley-required' => TRUE,
+        'data-parsley-required' => 'true',
+        'data-parsley-error-message' => t('Please indicate whether this process step is a critical control point.'),
       ),
     );
   }
-
 
   // Add the validation handler.
   $form['#validate'][] = 'principle_2_question_4_validate';
