@@ -4,6 +4,14 @@
  * Menu callback which presents a table of forms to edit.
  */
 function myhaccp_list() {
+
+  drupal_set_title('MyHACCP Web Tool');
+
+  $output['intro'] = array(
+    '#type' => 'markup',
+    '#markup' => t('Welcome to the MyHACCP Web Tool, from here you can start new studies and resume studies you have previously started. While using the Web Tool to undertake a Study you will find help available through help icons, which can be clicked on to reveal specific help for that question.')
+  );
+
   global $user;
   // Prepare the table header.
   $header = array(
@@ -17,7 +25,7 @@ function myhaccp_list() {
       'field' => 'changed',
     ),
     'edit' => array(
-      'data' => 'Resume a study',
+      'data' => '',
     ),
   );
   $rows = array();
@@ -41,20 +49,18 @@ function myhaccp_list() {
       ),
     );
   }
-  $output = array(
-    'table' => array(
-      '#type' => 'markup',
-      '#markup' => theme('table', array(
-        'header' => $header,
-        'rows' => $rows,
-        'empty' => $empty,
-      )),
-    ),
-    'new' => array(
-      '#type' => 'link',
-      '#title' => 'Start a new study',
-      '#href' => 'prototype/form/create',
-    )
+  $output['table'] = array(
+    '#type' => 'markup',
+    '#markup' => theme('table', array(
+      'header' => $header,
+      'rows' => $rows,
+      'empty' => $empty,
+    )),
+  );
+  $output['new'] = array(
+    '#type' => 'link',
+    '#title' => 'Start a new study',
+    '#href' => 'prototype/form/create',
   );
   return $output;
 }

@@ -16,7 +16,7 @@ function myhaccp_init() {
  */
 function myhaccp_menu() {
   $items['prototype'] = array(
-    'title' => 'My forms',
+    'title' => 'MyHACCP Web Tool',
     'page callback' => 'myhaccp_list',
     'page arguments' => array(),
     'access callback' => 'myhaccp_access',
