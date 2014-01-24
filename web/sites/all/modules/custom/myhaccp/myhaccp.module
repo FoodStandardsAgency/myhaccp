@@ -157,6 +157,11 @@ function myhaccp_myhaccp_mforms_init() {
       'value' => '2.1',
       'weight' => 14,
     ),
+    'principle_2_question_4' => array(
+      'stage' => 'principles',
+      'value' => '2.2',
+      'weight' => 15,
+    ),
   ));
 
 //  $controls->ajaxify();
@@ -223,6 +228,12 @@ function myhaccp_theme() {
       'file' => 'myhaccp.theme.inc',
       'function' => 'theme_myhacpp_p1q3_table',
     ),
+    'myhacpp_p2q4_table' => array(
+      'render element' => 'element',
+      'path' => $path,
+      'file' => 'myhaccp.theme.inc',
+      'function' => 'theme_myhacpp_p2q4_table',
+    ),
   );
 }
 
@@ -286,6 +297,7 @@ function _get_all_steps() {
     'principle_1_question_2' => 'principle',
     'principle_1_question_3' => 'principle',
     'principle_2_question_1_3' => 'principle',
+    'principle_2_question_4' => 'principle',
   );
   return $files;
 }
