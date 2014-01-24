@@ -1329,23 +1329,6 @@ select:focus {
   max-width: 45%;
 }
 
-.form-1-principle-1 .field-group-principle-1 table {
-  width: 100%;
-}
-.form-1-principle-1 .field-group-principle-1 > .field-group-div {
-  border-bottom: 1px solid #007fb2;
-  overflow: hidden;
-  padding: 1.5em 0;
-}
-.form-1-principle-1 .field-group-principle-1 .form-item {
-  float: left;
-  margin-bottom: 1em;
-  padding-right: 2em;
-}
-.form-1-principle-1 .field-group-principle-1 .field-group-row {
-  clear: both;
-}
-
 .field-group-principle-1 .form-table {
   border-bottom: 1px solid #007fb2;
   padding-bottom: 0em;
@@ -1371,17 +1354,17 @@ select:focus {
 }
 
 /** Textareas: half-width floating **/
-.prep-d fieldset.instance .form-wrapper, .principle-1-q1 .hazards {
+.prep-d fieldset.instance .form-wrapper, .principle-1-question-1 .hazards {
   clear: both;
 }
 @media all and (min-width: 640px) {
-  .prep-d fieldset.instance .form-wrapper, .principle-1-q1 .hazards {
+  .prep-d fieldset.instance .form-wrapper, .principle-1-question-1 .hazards {
     margin-left: -25px;
   }
-  .prep-d fieldset.instance .form-wrapper .group-title, .principle-1-q1 .hazards .group-title {
+  .prep-d fieldset.instance .form-wrapper .group-title, .principle-1-question-1 .hazards .group-title {
     margin-left: 25px;
   }
-  .prep-d fieldset.instance .form-wrapper > .form-item, .principle-1-q1 .hazards > .form-item {
+  .prep-d fieldset.instance .form-wrapper > .form-item, .principle-1-question-1 .hazards > .form-item {
     width: 50%;
     float: left;
     padding-left: 25px;
@@ -1391,7 +1374,7 @@ select:focus {
     box-sizing: border-box;
   }
 }
-.prep-d fieldset.instance .form-wrapper textarea, .principle-1-q1 .hazards textarea {
+.prep-d fieldset.instance .form-wrapper textarea, .principle-1-question-1 .hazards textarea {
   width: 95%;
 }
 
@@ -1838,23 +1821,6 @@ input#edit-submit.form-add {
   }
 }
 
-.form-1-principle-1 .field-group-principle-1 table {
-  width: 100%;
-}
-.form-1-principle-1 .field-group-principle-1 > .field-group-div {
-  border-bottom: 1px solid #007fb2;
-  overflow: hidden;
-  padding: 1.5em 0;
-}
-.form-1-principle-1 .field-group-principle-1 .form-item {
-  float: left;
-  margin-bottom: 1em;
-  padding-right: 2em;
-}
-.form-1-principle-1 .field-group-principle-1 .field-group-row {
-  clear: both;
-}
-
 .field-group-principle-1 .form-table {
   border-bottom: 1px solid #007fb2;
   padding-bottom: 0em;
@@ -1983,8 +1949,13 @@ div.teaser-checkbox .form-item,
 /**
  * Specific form styling
  */
+/** Preparatory Stage A **/
+#myhaccp-start-form.prep-a input#edit-save {
+  margin-left: 0;
+}
+
 /** Preparatory Stage C **/
-/** Prep Stage D **/
+/** Preparatory Stage D **/
 .prep-d .form-item-prep-d-team-skills {
   margin-top: 2em;
 }

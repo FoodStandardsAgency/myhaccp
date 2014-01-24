@@ -97,6 +97,10 @@ td.decision-tree-qs {
 
 /** Principle 1 **/
 
+.form-1-principle-1 .field-group-principle-1 {
+  @extend %fieldgroup-table-2;
+}
+
 .p1q2 {
   table {
     width: 100%;
