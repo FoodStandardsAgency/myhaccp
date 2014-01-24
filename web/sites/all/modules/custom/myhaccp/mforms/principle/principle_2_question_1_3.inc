@@ -63,16 +63,17 @@ function principle_2_question_1_3(&$form_state, &$next_step) {
     ),
   );
 
-  // 3. If using your own, how many questions are in your decision tree?
-  $form['principle_2_question_1_3']['own'] = array(
-    '#type' => 'textfield',
-    '#title' => t('3. If using your own, how many questions are in your decision tree? !tip', array(
-      '!tip' => _help_tip(27),
+  // 3. If you are not using  either of the decision trees, please explain how you are deciding on your CCPs.
+  $form['principle_2_question_1_3']['ccp_decision'] = array(
+    '#type' => 'textarea',
+    '#resizable' => FALSE,
+    '#title' => t('3. If you are not using either of the decision trees, please explain how you are deciding on your CCPs. !tip', array(
+      '!tip' => _help_tip(),
     )),
-    '#default_value' => array_get($values, 'principle_2_question_1_3.own', array()),
+    '#default_value' => array_get($values, 'principle_2_question_1_3.ccp_decision', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
-      'data-parsley-error-message' => t('Please state how many questions are in your decision tree.'),
+      'data-parsley-error-message' => t('Please state how you are deciding your on your Critical Control Points.'),
     ),
   );
 
