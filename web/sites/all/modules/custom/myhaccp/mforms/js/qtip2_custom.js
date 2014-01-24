@@ -6,7 +6,8 @@
       // checking for some help text.
       $('.help-tip').each(function() {
         // Check if there is a help-text element to render.
-        var help_text = $(this).parent().parent().children('.help-text');
+        var help_text = $(this).parents('.form-item, th, div.label').children('.help-text');
+        console.log(help_text);
         if (help_text.length > 0) {
           // Disable the usual click event on the button.
           $(this).click(false);
