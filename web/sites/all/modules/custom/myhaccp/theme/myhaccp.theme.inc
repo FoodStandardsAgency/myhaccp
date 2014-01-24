@@ -100,16 +100,26 @@ function theme_myhacpp_p1q3_table($variables) {
 function theme_myhacpp_p2q4_table($variables) {
   $element = $variables['element'];
 
+  $decision_tree_value = array_get($element, 'decision_tree.#value', FALSE);
+  $decision_tree = $decision_tree_value == 'yes' ? TRUE : FALSE;
+  unset($element['decision_tree']);
+
   $rows = array();
+
   foreach (element_children($element) as $key) {
-    $rows[] = array(
+    $row = array(
       array('data' => $element[$key]['process_step']),
       array('data' => $element[$key]['hazard']),
       array('data' => $element[$key]['control_measure']),
-      array('data' => $element[$key]['decision_tree']),
-      array('data' => $element[$key]['ccp']),
     );
+    if ($decision_tree) {
+      $row[] = array('data' => $element[$key]['decision_tree']);
+    }
+    $row[] = array('data' => $element[$key]['ccp']);
+    $rows[] = $row;
   }
+
+
 
   // Build the table, with a row per hazard.
   // The table has 3 columns.
@@ -141,6 +151,11 @@ function theme_myhacpp_p2q4_table($variables) {
       'class' => array('ccp'),
     ),
   );
+
+  // If not using a decision tree then don't show anything for that column.
+  if (!$decision_tree) {
+    unset($header['decision_tree']);
+  }
 
   return theme('table', array('header' => $header, 'rows' => $rows));
 }

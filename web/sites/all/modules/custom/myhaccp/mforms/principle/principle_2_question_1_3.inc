@@ -28,7 +28,7 @@ function principle_2_question_1_3(&$form_state, &$next_step) {
   // 1. Are you using a decision tree?
   $form['principle_2_question_1_3']['decision_tree'] = array(
     '#type' => 'radios',
-    '#title' => t('1. Are you using a decision tree? !tip', array(
+    '#title' => t('Are you using a decision tree? !tip', array(
       '!tip' => _help_tip(27),
     )),
     '#help_text' => t('We recomend using either the Campden or Codex decision trees.'),
@@ -48,13 +48,17 @@ function principle_2_question_1_3(&$form_state, &$next_step) {
     '#type' => 'select',
     '#options' => array(
       'none' => t('-- Please select --'),
-      'no_tree' => t('None'),
       'codex' => t('Codex'),
       'campden' => t('Campden'),
     ),
-    '#title' => t('2. Which decision tree are you using? !tip', array(
+    '#title' => t('Which decision tree are you using? !tip', array(
       '!tip' => _help_tip(27),
     )),
+    '#states' => array(
+      'visible' => array(
+        ':input[name="principle_2_question_1_3[decision_tree]"]' => array('value' => 'yes'),
+      ),
+    ),
     '#default_value' => array_get($values, 'principle_2_question_1_3.which_tree', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
@@ -67,10 +71,15 @@ function principle_2_question_1_3(&$form_state, &$next_step) {
   $form['principle_2_question_1_3']['ccp_decision'] = array(
     '#type' => 'textarea',
     '#resizable' => FALSE,
-    '#title' => t('3. If you are not using either of the decision trees, please explain how you are deciding on your CCPs. !tip', array(
+    '#title' => t('Please explain how you are deciding on your CCPs. !tip', array(
       '!tip' => _help_tip(),
     )),
-    '#default_value' => array_get($values, 'principle_2_question_1_3.ccp_decision', array()),
+    '#states' => array(
+      'visible' => array(
+        ':input[name="principle_2_question_1_3[decision_tree]"]' => array('value' => 'no'),
+      ),
+    ),
+    '#default_value' => array_get($values, 'principle_2_question_1_3.ccp_decision', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please state how you are deciding your on your Critical Control Points.'),

@@ -70,7 +70,13 @@ function principle_2_question_4(&$form_state, &$next_step) {
 
   // Based on the information in the previous stage, build out the decision tree
   // radios.
+  $decision_tree = array_get($previous_data, 'principle_2_question_1_3.decision_tree', 'none');
   $tree_type = array_get($previous_data, 'principle_2_question_1_3.which_tree', 'none');
+
+  $form['principle_2_question_4']['instance_table']['decision_tree'] = array(
+    '#type' => 'hidden',
+    '#value' => $decision_tree,
+  );
 
   // Build out the rows (three columns).
   foreach ($items as $key => $item) {
@@ -91,7 +97,7 @@ function principle_2_question_4(&$form_state, &$next_step) {
       '#markup' => '<div class="hazard-control-measure">' . $item['control_measure'] . '</div>',
     );
 
-    if ($tree_type !== 'none') {
+    if ($decision_tree !== 'no') {
       $num = 1;
       for ($q = 1; $q <= 6; $q++) {
         $id = 'Q' . $num;
@@ -130,6 +136,12 @@ function principle_2_question_4(&$form_state, &$next_step) {
         );
       }
 
+    }
+    else {
+      $form['principle_2_question_4']['instance_table']['row_' . $key]['decision_tree'] = array(
+        '#type' => 'hidden',
+        '#value' => $decision_tree,
+      );
     }
 
     $form['principle_2_question_4']['instance_table']['row_' . $key]['ccp'] = array(
