@@ -100,6 +100,7 @@ class MformsDatabaseStore implements MformsIstore {
     if ($key == 'steps') {
       return _get_all_step_names();
     }
+
     // Load the results from the db.
     $data = db_select('mforms_storage', 'm');
     $data->join('mforms_storage_steps', 's', 's.iid = m.iid');

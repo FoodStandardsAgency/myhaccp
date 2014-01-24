@@ -6,11 +6,10 @@
 function principle_1_question_2(&$form_state, &$next_step) {
   // Define following step callback. If none set, that implies it is
   // the last step.
-
-   $next_step = '_principle_1_question_3';
+  $next_step = 'principle_1_question_3';
 
   // Retrieve submitted values.
-  $data = mforms_get_vals('myhaccp');
+  $data = mforms_get_vals('myhaccp', 'principle_1_question_2');
 
   // If we have the data it means we arrived here from back action, so show
   // them in form as default vals.
@@ -56,7 +55,7 @@ function principle_1_question_2(&$form_state, &$next_step) {
   // Iterate through the previous data and look for instances which have the
   // correct form fields filled out.
   if (isset($previous_data)) {
-    foreach ($previous_data['principle_1_1'] as $key => $instance) {
+    foreach ($previous_data['principle_1_question_1'] as $key => $instance) {
       if (strpos($key, 'instance') === 0) {
         if ($instance['wrapper']['step_no'] != '' && $instance['wrapper']['step_name'] != '') {
           $instance_count++;
@@ -79,14 +78,14 @@ function principle_1_question_2(&$form_state, &$next_step) {
   // screen's instances (or filled out instances saved in the form_state).
   for ($i = 0; $i < $form_state['num_instances']; $i++) {
     // Get the necessary values from the previous step.
-    $step_no = $previous_data['principle_1_1']['instance_' . $i]['wrapper']['step_no'];
-    $step_name = $previous_data['principle_1_1']['instance_' . $i]['wrapper']['step_name'];
+    $step_no = $previous_data['principle_1_question_1']['instance_' . $i]['wrapper']['step_no'];
+    $step_name = $previous_data['principle_1_question_1']['instance_' . $i]['wrapper']['step_name'];
     // Prepare each of the four categories of hazard.
     $categories = array(
-      'bio' => $previous_data['principle_1_1']['instance_' . $i]['hazards_wrapper']['biological'],
-      'chem' => $previous_data['principle_1_1']['instance_' . $i]['hazards_wrapper']['chemical'],
-      'phys' => $previous_data['principle_1_1']['instance_' . $i]['hazards_wrapper']['physical'],
-      'allergens' => $previous_data['principle_1_1']['instance_' . $i]['hazards_wrapper']['allergens'],
+      'bio' => $previous_data['principle_1_question_1']['instance_' . $i]['hazards_wrapper']['biological'],
+      'chem' => $previous_data['principle_1_question_1']['instance_' . $i]['hazards_wrapper']['chemical'],
+      'phys' => $previous_data['principle_1_question_1']['instance_' . $i]['hazards_wrapper']['physical'],
+      'allergens' => $previous_data['principle_1_question_1']['instance_' . $i]['hazards_wrapper']['allergens'],
     );
     // Process the hazards within each category.
     $hazards = array();
@@ -109,7 +108,7 @@ function principle_1_question_2(&$form_state, &$next_step) {
     }
 
     // Create a fieldset to wrap this instance and give it a legend.
-    $form['principle_1_2']['instance_' . $i] = array(
+    $form['principle_1_question_2']['instance_' . $i] = array(
       '#type' => 'fieldset',
       '#title' => t('Process Step !step_no: !step_name !tip', array(
         '!step_no' => $step_no,
@@ -119,7 +118,7 @@ function principle_1_question_2(&$form_state, &$next_step) {
     );
 
     // Create the table.
-    $form['principle_1_2']['instance_' . $i]['instance_table'] = array(
+    $form['principle_1_question_2']['instance_' . $i]['instance_table'] = array(
       '#theme' => 'myhacpp_p1q2_table',
     );
 
@@ -127,12 +126,19 @@ function principle_1_question_2(&$form_state, &$next_step) {
     // @todo: What do we do with existing data? Do we only care about previous step.
     foreach ($hazards as $hazard => $name) {
       // Simplify the depth of the form with a reference.
-      $form_position = &$form['principle_1_2']['instance_' . $i]['instance_table'][$hazard];
+      $form_position = &$form['principle_1_question_2']['instance_' . $i]['instance_table'][$hazard];
       // Reference the form's default values to make it easier.
-      $default_value = &$values['principle_1_2']['instance_' . $i]['instance_table'][$hazard];
+      $default_value = &$values['principle_1_question_2']['instance_' . $i]['instance_table'][$hazard];
       // Create the elements of a row.
-      $form_position['name'] = array(
-        '#markup' => $name,
+      $details = array(
+        'step_name' => $step_name,
+        'step_number' => $step_no,
+        'name' => $name,
+      );
+      $form_position['details'] = array(
+        '#type' => 'hidden',
+        '#prefix' => $name,
+        '#value' => serialize($details),
       );
       $form_position['description'] = array(
         '#type' => 'textarea',
@@ -190,6 +196,22 @@ function principle_1_question_2(&$form_state, &$next_step) {
     }
   }
 
+  $form['principle_1_question_2']['threshold'] = array(
+    '#title' => t('Determine the threshold, above which you consider the hazard to be \'significant\': !tip', array(
+      '!tip' => _help_tip(),
+      )),
+    '#type' => 'textfield',
+    '#default_value' => array_get($values, 'principle_1_question_2.threshold', FALSE),
+    '#attributes' => array(
+      'data-parsley-required' => 'true',
+      'data-parsley-min' => 1,
+      'data-parsley-max' => 9,
+      'data-parsley-type' => 'digits',
+      'data-parsley-validation-minlength' => 1,
+      'data-parsley-error-message' => t('Please add a threshold value between 1 and 9.'),
+    ),
+  );
+
   // Add the validation handler.
   $form['#validate'][] = 'principle_1_question_2_validate';
 
@@ -203,8 +225,8 @@ function principle_1_question_2_validate($form, &$form_state) {
   $validate = FALSE;
 
   // Test to see whether there is any submitted data for the first instance.
-//  if (isset($form_state['values']['principle_1_2']['instance_0'])) {
-//    $form_position = &$form_state['values']['principle_1_2'];
+//  if (isset($form_state['values']['principle_1_question_2']['instance_0'])) {
+//    $form_position = &$form_state['values']['principle_1_question_2'];
 //    // Iterate over the tables.
 //    foreach ($form_position as &$instance) {
 //      foreach ($instance['instance_table'] as &$item) {
@@ -227,17 +249,17 @@ function principle_1_question_2_validate($form, &$form_state) {
 
   $invalid = array();
 
-  for ($i = 0; $i < $form_state['num_instances']; $i++) {
-    // Find the name of the hazards.
-    foreach ($form_state['values']['principle_1_2']['instance_' . $i]['instance_table'] as $hazard_key => $value) {
-      $checks["principle_1_2.instance_$i.instance_table.$hazard_key.severity"] = '_text_field_is_empty';
-      $checks["principle_1_2.instance_$i.instance_table.$hazard_key.likelihood"] = '_text_field_is_empty';
-      $checks["principle_1_2.instance_$i.instance_table.$hazard_key.significance"] = '_text_field_is_empty';
-    }
-
-    foreach ($checks as $target => $callback) {
-      $invalid[] = _check_validation($callback, $target, $form, $form_state);
-    }
-  }
+//  for ($i = 0; $i < $form_state['num_instances']; $i++) {
+//    // Find the name of the hazards.
+//    foreach ($form_state['values']['principle_1_question_2']['instance_' . $i]['instance_table'] as $hazard_key => $value) {
+//      $checks["principle_1_question_2.instance_$i.instance_table.$hazard_key.severity"] = '_text_field_is_empty';
+//      $checks["principle_1_question_2.instance_$i.instance_table.$hazard_key.likelihood"] = '_text_field_is_empty';
+//      $checks["principle_1_question_2.instance_$i.instance_table.$hazard_key.significance"] = '_text_field_is_empty';
+//    }
+//
+//    foreach ($checks as $target => $callback) {
+//      $invalid[] = _check_validation($callback, $target, $form, $form_state);
+//    }
+//  }
 }
 

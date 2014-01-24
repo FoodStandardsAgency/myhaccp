@@ -147,7 +147,19 @@ function myhaccp_myhaccp_mforms_init() {
       'value' => '1.2',
       'weight' => 12,
     ),
+    'principle_1_question_3' => array(
+      'stage' => 'principles',
+      'value' => '1.3',
+      'weight' => 13,
+    ),
+    'principle_2_question_1_3' => array(
+      'stage' => 'principles',
+      'value' => '2.1',
+      'weight' => 14,
+    ),
   ));
+
+//  $controls->ajaxify();
 
   // Add the parsley.js library.
   $path = libraries_get_path('parsleyjs');
@@ -204,7 +216,13 @@ function myhaccp_theme() {
       'path' => $path,
       'file' => 'myhaccp.theme.inc',
       'function' => 'theme_myhacpp_p1q2_table',
-    )
+    ),
+    'myhacpp_p1q3_table' => array(
+      'render element' => 'element',
+      'path' => $path,
+      'file' => 'myhaccp.theme.inc',
+      'function' => 'theme_myhacpp_p1q3_table',
+    ),
   );
 }
 
@@ -266,6 +284,8 @@ function _get_all_steps() {
     'preparatory_h' => 'preparatory',
     'principle_1_question_1' => 'principle',
     'principle_1_question_2' => 'principle',
+    'principle_1_question_3' => 'principle',
+    'principle_2_question_1_3' => 'principle',
   );
   return $files;
 }
@@ -302,6 +322,20 @@ function myhaccp_element_info_alter(&$types) {
 function myhaccp_process($element, &$form_state) {
   $global_done = &drupal_static(__FUNCTION__);
 
+  // If the input doesn't match the form we're on we're in trouble (browser refresh).
+  // Compare [input'] with ['complete form'].
+//  if ($global_done == FALSE) {
+//    $intersect = array_intersect($form_state['input'], $form_state['complete form']);
+//    if (isset($intersect['form_id'])) {
+//      unset($intersect['form_id']);
+//    }
+//    if (empty($intersect)) {
+//      // Things are cocked up.
+//      $form_state['process_input'] = FALSE;
+//    }
+//    $global_done = TRUE;
+//  }
+
   // Handle any 'global' validation messages.
   if (isset($form_state['values']['validate'])) {
     if (isset($element['#id']) && $element['#id'] == 'validation-messages') {
@@ -336,6 +370,7 @@ function myhaccp_process($element, &$form_state) {
     }
 
   }
+
   return $element;
 }
 
