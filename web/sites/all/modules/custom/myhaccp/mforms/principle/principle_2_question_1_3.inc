@@ -29,8 +29,9 @@ function principle_2_question_1_3(&$form_state, &$next_step) {
   $form['principle_2_question_1_3']['decision_tree'] = array(
     '#type' => 'radios',
     '#title' => t('1. Are you using a decision tree? !tip', array(
-      '!tip' => _help_tip(),
+      '!tip' => _help_tip(27),
     )),
+    '#help_text' => t('We recomend using either the Campden or Codex decision trees.'),
     '#options' => array(
       'yes' => t('Yes'),
       'no' => t('No'),
@@ -52,7 +53,7 @@ function principle_2_question_1_3(&$form_state, &$next_step) {
       'campden' => t('Campden'),
     ),
     '#title' => t('2. Which decision tree are you using? !tip', array(
-      '!tip' => _help_tip(),
+      '!tip' => _help_tip(27),
     )),
     '#default_value' => array_get($values, 'principle_2_question_1_3.which_tree', array()),
     '#attributes' => array(
@@ -66,7 +67,7 @@ function principle_2_question_1_3(&$form_state, &$next_step) {
   $form['principle_2_question_1_3']['own'] = array(
     '#type' => 'textfield',
     '#title' => t('3. If using your own, how many questions are in your decision tree? !tip', array(
-      '!tip' => _help_tip(),
+      '!tip' => _help_tip(27),
     )),
     '#default_value' => array_get($values, 'principle_2_question_1_3.own', array()),
     '#attributes' => array(

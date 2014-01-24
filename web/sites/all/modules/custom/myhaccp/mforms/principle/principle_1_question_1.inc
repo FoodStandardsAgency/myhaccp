@@ -62,8 +62,9 @@ function principle_1_question_1(&$form_state, &$next_step) {
       '#weight' => '0',
       '#type' => 'textfield',
       '#title' => t('Step no. !tip', array(
-        '!tip' => _help_tip(),
+        '!tip' => _help_tip(16),
       )),
+      '#help_text' => t('Number of process step.'),
       '#default_value' => array_get($values, "principle_1_question_1.instance_$i.wrapper.step_no", FALSE),
       '#attributes' => array(
         'data-parsley-required' => 'true',
@@ -76,8 +77,9 @@ function principle_1_question_1(&$form_state, &$next_step) {
       '#weight' => '1',
       '#type' => 'textfield',
       '#title' => t('Step name !tip', array(
-        '!tip' => _help_tip(),
+        '!tip' => _help_tip(16),
       )),
+      '#help_text' => t('Name of process step.'),
       '#default_value' => array_get($values, "principle_1_question_1.instance_$i.wrapper.step_name", FALSE),
       '#attributes' => array(
         'data-parsley-required' => 'true',
@@ -96,9 +98,11 @@ function principle_1_question_1(&$form_state, &$next_step) {
     // Markup used as a title for the group.
     $form['principle_1_question_1']['instance_' . $i]['hazards_wrapper']['hazards_title'] = array(
       '#weight' => -10,
-      '#markup' => '<div class="group-title">' . t('List all potential hazards that may be reasonably expected to occur at this process step:  !tip', array(
-          '!tip' => _help_tip(),
-        )) . '</div>',
+     //'#markup' => '<div class="group-title">' . t('List all potential hazards that may be reasonably expected to occur at this process step:  !tip', array(
+     //     '!tip' => _help_tip(16),
+     //   )) . '</div>',
+      '#markup' => '<div class="group-title">' . t('List all potential hazards that may be reasonably expected to occur at this process step:') . '</div>',
+
     );
     // Biological.
     $form['principle_1_question_1']['instance_' . $i]['hazards_wrapper']['biological'] = array(
@@ -106,8 +110,9 @@ function principle_1_question_1(&$form_state, &$next_step) {
       '#type' => 'textarea',
       '#resizable' => FALSE,
       '#title' => t('Biological !tip', array(
-        '!tip' => _help_tip(),
+        '!tip' => _help_tip(16),
       )),
+      '#help_text' => t('List all biological hazards e.g. Salmonella spp., Listeria spp., Norovirus.'),
       '#default_value' => array_get($values, "principle_1_question_1.instance_$i.hazards_wrapper.biological", FALSE),
     );
     // Chemical.
@@ -116,8 +121,9 @@ function principle_1_question_1(&$form_state, &$next_step) {
       '#type' => 'textarea',
       '#resizable' => FALSE,
       '#title' => t('Chemical !tip', array(
-        '!tip' => _help_tip(),
+        '!tip' => _help_tip(16),
       )),
+      '#help_text' => t('List all chemical hazards e.g nitrate, patulin, cadmium.'),
       '#default_value' => array_get($values, "principle_1_question_1.instance_$i.hazards_wrapper.chemical", FALSE),
     );
     // Physical.
@@ -126,8 +132,9 @@ function principle_1_question_1(&$form_state, &$next_step) {
       '#type' => 'textarea',
       '#resizable' => FALSE,
       '#title' => t('Physical !tip', array(
-        '!tip' => _help_tip(),
+        '!tip' => _help_tip(16),
       )),
+      '#help_text' => t('List all physical hazards e.g. stones, metal, wood.'),
       '#default_value' => array_get($values, "principle_1_question_1.instance_$i.hazards_wrapper.physical", FALSE),
     );
     // Allergens.
@@ -136,8 +143,9 @@ function principle_1_question_1(&$form_state, &$next_step) {
       '#type' => 'textarea',
       '#resizable' => FALSE,
       '#title' => t('Allergens !tip', array(
-        '!tip' => _help_tip(),
+        '!tip' => _help_tip(16),
       )),
+      '#help_text' => t('List all substances or products that cause allergies or intolerances e.g.  celery, sesame seeds, egg.'),
       '#default_value' => array_get($values, "principle_1_question_1.instance_$i.hazards_wrapper.allergens", FALSE),
     );
   }

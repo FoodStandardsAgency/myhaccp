@@ -200,6 +200,7 @@ function principle_1_question_2(&$form_state, &$next_step) {
     '#title' => t('Determine the threshold, above which you consider the hazard to be \'significant\': !tip', array(
       '!tip' => _help_tip(),
       )),
+    '#help_text' => t('Please enter a number above which we will consider the hazard to be significant.'),
     '#type' => 'textfield',
     '#default_value' => array_get($values, 'principle_1_question_2.threshold', FALSE),
     '#attributes' => array(
