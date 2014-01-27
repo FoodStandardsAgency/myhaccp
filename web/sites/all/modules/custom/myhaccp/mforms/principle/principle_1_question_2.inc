@@ -52,13 +52,30 @@ function principle_1_question_2(&$form_state, &$next_step) {
   // need to show. One instance per previous step instance.
   $instance_count = 0;
 
-  // Iterate through the previous data and look for instances which have the
-  // correct form fields filled out.
+  // Iterate through the previous data and look for instances which have a step
+  // number and step name and then dig deeper for a hazard. We need this semi
+  // validation up front so we know what to show.
   if (isset($previous_data)) {
     foreach ($previous_data['principle_1_question_1'] as $key => $instance) {
       if (strpos($key, 'instance') === 0) {
-        if ($instance['wrapper']['step_no'] != '' && $instance['wrapper']['step_name'] != '') {
-          $instance_count++;
+        if (array_get($instance, 'wrapper.step_no', FALSE) && array_get($instance, 'wrapper.step_no', FALSE)) {
+          $checks = array(
+            "hazards_wrapper.biological" => '_text_field_is_empty',
+            "hazards_wrapper.physical" => '_text_field_is_empty',
+            "hazards_wrapper.allergens" => '_text_field_is_empty',
+            "hazards_wrapper.chemical" => '_text_field_is_empty',
+          );
+
+          foreach ($checks as $target => $callback) {
+            $invalid[] = $callback($instance, $target);
+          }
+
+          // If all four hazard fields from the previous stage are 'invalid'
+          // (empty) then this instance doesn't pass.
+          if (in_array(FALSE, $invalid)) {
+            $instance_count++;
+          }
+
         }
       }
     }
@@ -66,7 +83,7 @@ function principle_1_question_2(&$form_state, &$next_step) {
   // Bail out here with a message if there are no instances of the fieldsets
   // filled out correctly in the previous screen.
   if ($instance_count == 0) {
-    drupal_set_message('You must add at least a step number and step name in the previous question', 'warning');
+    drupal_set_message('You must add at least a step number and step name in the previous question as well as at least a hazard for the step.', 'error');
     return $form;
   }
 
@@ -143,7 +160,11 @@ function principle_1_question_2(&$form_state, &$next_step) {
         '#type' => 'textarea',
         '#resizable' => FALSE,
         '#cols' => 20,
-        '#default_value' => isset($default_value['description']) ? $default_value['description'] : NULL
+        '#default_value' => isset($default_value['description']) ? $default_value['description'] : NULL,
+        '#attributes' => array(
+          'data-parsley-required' => 'true',
+          'data-parsley-error-message' => t('Please add a description.'),
+        ),
       );
       $form_position['severity'] = array(
         '#type' => 'textfield',
@@ -224,42 +245,27 @@ function principle_1_question_2(&$form_state, &$next_step) {
 function principle_1_question_2_validate($form, &$form_state) {
   $validate = FALSE;
 
-  // Test to see whether there is any submitted data for the first instance.
-//  if (isset($form_state['values']['principle_1_question_2']['instance_0'])) {
-//    $form_position = &$form_state['values']['principle_1_question_2'];
-//    // Iterate over the tables.
-//    foreach ($form_position as &$instance) {
-//      foreach ($instance['instance_table'] as &$item) {
-//        foreach ($item as $element) {
-//          if ($element != '') {
-//            $validate = TRUE;
-//          }
-//        }
-//      }
-//    }
-//  }
-//
-//  // Determine which message to show.
-//  if ($validate == FALSE) {
-//    drupal_set_message(t('Principle 1 Question 2 requires information to be present.'), 'warning');
-//  }
-//  else {
-//    drupal_set_message(t('Information saved.'));
-//  }
+  $num_instances = $form_state['num_instances'];
 
-  $invalid = array();
+  // Iterate over each instance.
+  for ($i = 0; $i < $num_instances; $i++) {
+    $rows = array_get($form_state['values'], "principle_1_question_2.instance_$i.instance_table", array());
+    foreach ($rows as $key => $hazard) {
+      $checks = array(
+        "principle_1_question_2.instance_$i.instance_table.$key.description" => '_text_field_is_empty',
+      );
+      foreach ($checks as $target => $callback) {
+        $invalid[] = _check_validation($callback, $target, $form, $form_state);
+      }
+    }
+  }
 
-//  for ($i = 0; $i < $form_state['num_instances']; $i++) {
-//    // Find the name of the hazards.
-//    foreach ($form_state['values']['principle_1_question_2']['instance_' . $i]['instance_table'] as $hazard_key => $value) {
-//      $checks["principle_1_question_2.instance_$i.instance_table.$hazard_key.severity"] = '_text_field_is_empty';
-//      $checks["principle_1_question_2.instance_$i.instance_table.$hazard_key.likelihood"] = '_text_field_is_empty';
-//      $checks["principle_1_question_2.instance_$i.instance_table.$hazard_key.significance"] = '_text_field_is_empty';
-//    }
-//
-//    foreach ($checks as $target => $callback) {
-//      $invalid[] = _check_validation($callback, $target, $form, $form_state);
-//    }
-//  }
+  // Check to see whether we have failed validation and therefore should store
+  // it in the database or whether we have passed and therefore clear validation
+  // errors.
+  if (!in_array(TRUE, $invalid)) {
+    // Remove any stored validation.
+    myhaccp_clear_validation($form_state);
+  }
 }
 
