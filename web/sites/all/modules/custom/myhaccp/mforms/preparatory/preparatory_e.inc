@@ -43,7 +43,7 @@ function preparatory_e(&$form_state, &$next_step) {
   // 2. Physical properties.
   $form['preparatory_e']['properties'] = array(
     '#type' => 'textarea',
-    '#title' => t('2. State the physical properties (A<sub>w</sub>,pH,emulsion). !tip', array(
+    '#title' => t('2. State the physical properties (a<sub>w</sub>,pH,emulsion). !tip', array(
       '!tip' => _help_tip(18),
     )),
     '#help_text' => t('E.g. a<sub>w</sub> 0.93, pH 4.5.'),

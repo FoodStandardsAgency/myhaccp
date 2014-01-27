@@ -146,8 +146,10 @@ function preparatory_d(&$form_state, &$next_step) {
   // it to be un-editable (enforced).
   $form['preparatory_d']['instance_0']['team_role']['#default_value'] = t('HACCP Lead');
   $form['preparatory_d']['instance_0']['team_role']['#disabled'] = TRUE;
+  $form['preparatory_d']['instance_0']['team_role']['#help_text'] = t("The first person identified here should be the HACCP Lead, so this field is pre-completed to read 'HACCP Lead'.");
   $form['preparatory_d']['instance_0']['team_external']['#disabled'] = TRUE;
   $form['preparatory_d']['instance_0']['team_external']['#default_value'] = 'internal';
+  $form['preparatory_d']['instance_0']['team_external']['#help_text'] = t("The HACCP Lead should be an employee of the company, so this option is pre-selected to be 'Internal'.");
   $form['preparatory_d']['instance_0']['team_name']['#title'] = t('Name of HACCP lead for business: !tip', array('!tip' => _help_tip(21)));
   $form['preparatory_d']['instance_0']['team_name']['#attributes']['data-parsley-error-message'] = t('Please add the name of the HACCP lead for the business.');
   $form['preparatory_d']['instance_0']['team_name']['#help_text'] = t("State the person's name.");
