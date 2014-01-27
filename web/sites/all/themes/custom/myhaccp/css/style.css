@@ -1993,6 +1993,12 @@ div.teaser-checkbox .form-item,
 .principle-1-question-2 table {
   width: 100%;
 }
+.principle-1-question-2 table .form-type-textarea {
+  width: 409px;
+}
+.principle-1-question-2 table .form-type-textarea textarea {
+  width: 400px;
+}
 .principle-1-question-2 table th.severity,
 .principle-1-question-2 table th.likelihood,
 .principle-1-question-2 table th.significance {
