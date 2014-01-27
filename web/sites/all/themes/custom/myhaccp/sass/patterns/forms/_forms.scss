@@ -516,15 +516,19 @@ div.teaser-checkbox .form-item,
 /** Principle 2.2 **/
 
 .principle-2-question-4 {
+  table td {
+    vertical-align: top;
+  }
   td > .form-type-radios {
       font-size: 0.9em;
-      width: 12em;
+      width: 15em;
       clear: both;
       margin-bottom: 0.5em;
       overflow: hidden;
       text-align: center;
       > label {
         color: #888888;
+        float: left;
       }
     .form-radios {
       .form-item {
@@ -538,5 +542,8 @@ div.teaser-checkbox .form-item,
     input {
       vertical-align: baseline;
     }
+  }
+  td > .form-radios {
+    @extend %inline-radios;
   }
 }
