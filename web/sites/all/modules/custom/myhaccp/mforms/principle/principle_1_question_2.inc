@@ -52,13 +52,30 @@ function principle_1_question_2(&$form_state, &$next_step) {
   // need to show. One instance per previous step instance.
   $instance_count = 0;
 
-  // Iterate through the previous data and look for instances which have the
-  // correct form fields filled out.
+  // Iterate through the previous data and look for instances which have a step
+  // number and step name and then dig deeper for a hazard. We need this semi
+  // validation up front so we know what to show.
   if (isset($previous_data)) {
     foreach ($previous_data['principle_1_question_1'] as $key => $instance) {
       if (strpos($key, 'instance') === 0) {
-        if ($instance['wrapper']['step_no'] != '' && $instance['wrapper']['step_name'] != '') {
-          $instance_count++;
+        if (array_get($instance, 'wrapper.step_no', FALSE) && array_get($instance, 'wrapper.step_no', FALSE)) {
+          $checks = array(
+            "hazards_wrapper.biological" => '_text_field_is_empty',
+            "hazards_wrapper.physical" => '_text_field_is_empty',
+            "hazards_wrapper.allergens" => '_text_field_is_empty',
+            "hazards_wrapper.chemical" => '_text_field_is_empty',
+          );
+
+          foreach ($checks as $target => $callback) {
+            $invalid[] = $callback($instance, $target);
+          }
+
+          // If all four hazard fields from the previous stage are 'invalid'
+          // (empty) then this instance doesn't pass.
+          if (in_array(FALSE, $invalid)) {
+            $instance_count++;
+          }
+
         }
       }
     }
@@ -66,7 +83,7 @@ function principle_1_question_2(&$form_state, &$next_step) {
   // Bail out here with a message if there are no instances of the fieldsets
   // filled out correctly in the previous screen.
   if ($instance_count == 0) {
-    drupal_set_message('You must add at least a step number and step name in the previous question', 'warning');
+    drupal_set_message('You must add at least a step number and step name in the previous question as well as at least a hazard for the step.', 'error');
     return $form;
   }
 
