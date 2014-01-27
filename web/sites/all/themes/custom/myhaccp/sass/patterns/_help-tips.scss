@@ -18,6 +18,18 @@
   }
 }
 
+// Reset the help tips in table headers to normal static positioning. Note that
+// we may want to just remove the position:relative from the help-tip class.
+table {
+  thead {
+    th {
+      .help-tip {
+        position: static;
+      }
+    }
+  }
+}
+
 // Hide the help tip text if javascript is enabled. If javascript is disabled
 // the help text will display beneath the label.
 .js {

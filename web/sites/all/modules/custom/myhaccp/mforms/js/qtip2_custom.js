@@ -16,7 +16,7 @@
           // guidance in which case don't add the more info link.
           var href = $(this).attr('href');
           if (href !== '#') {
-            var help_link = ' <a class="more-information" href="' + href + '">More information</a>';
+            var help_link = ' <a class="more-information" target="_blank" href="' + href + '">More information</a>';
             help_text.append(help_link);
           }
           // Enable the qtip on the button.
@@ -27,7 +27,11 @@
             position: {
               my: 'top center',
               at: 'bottom center',
-              target: $(this)
+              target: $(this),
+              viewport: $('#main-content'),
+              adjust: {
+                screen: true
+              }
             },
             style: {
               classes: 'qtip-haccp'

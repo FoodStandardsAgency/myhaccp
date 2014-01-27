@@ -2381,6 +2381,10 @@ footer[role=contentinfo] {
   color: #FFFFFF;
 }
 
+table thead th .help-tip {
+  position: static;
+}
+
 .js .help-text {
   display: none;
 }
