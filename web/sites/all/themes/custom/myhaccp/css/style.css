@@ -1271,17 +1271,17 @@ select:focus {
 }
 
 .prep-d .form-radios .form-item, .prep-f .form-radios .form-item,
-.prep-h .form-radios .form-item {
+.prep-h .form-radios .form-item, .principle-2-question-4 td > .form-radios .form-item {
   display: inline;
 }
 .prep-d .form-radios label, .prep-d .form-item-prep-d-team-skills .form-radios label, .prep-f .form-radios label,
-.prep-h .form-radios label, .prep-d .form-radios input, .prep-d .form-item-prep-d-team-skills .form-radios input, .prep-f .form-radios input,
-.prep-h .form-radios input {
+.prep-h .form-radios label, .principle-2-question-4 td > .form-radios label, .prep-d .form-radios input, .prep-d .form-item-prep-d-team-skills .form-radios input, .prep-f .form-radios input,
+.prep-h .form-radios input, .principle-2-question-4 td > .form-radios input {
   display: inline;
   margin-right: 0.25em;
 }
 .prep-d .form-radios input, .prep-d .form-item-prep-d-team-skills .form-radios input, .prep-f .form-radios input,
-.prep-h .form-radios input {
+.prep-h .form-radios input, .principle-2-question-4 td > .form-radios input {
   vertical-align: baseline;
 }
 
@@ -2009,9 +2009,12 @@ div.teaser-checkbox .form-item,
 }
 
 /** Principle 2.2 **/
+.principle-2-question-4 table td {
+  vertical-align: top;
+}
 .principle-2-question-4 td > .form-type-radios {
   font-size: 0.9em;
-  width: 12em;
+  width: 15em;
   clear: both;
   margin-bottom: 0.5em;
   overflow: hidden;
@@ -2019,6 +2022,7 @@ div.teaser-checkbox .form-item,
 }
 .principle-2-question-4 td > .form-type-radios > label {
   color: #888888;
+  float: left;
 }
 .principle-2-question-4 td > .form-type-radios .form-radios .form-item {
   display: inline;
