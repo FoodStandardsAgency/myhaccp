@@ -165,21 +165,31 @@ function principle_2_question_4(&$form_state, &$next_step) {
 }
 
 /**
- * Validation handler for Principle 1 Question 1.
+ * Validation handler for Principle 2 Question 4.
  */
 function principle_2_question_4_validate($form, &$form_state) {
   $invalid = array();
+  $checks = array();
 
   // Checks is an array with the key being the element being targeted (in dot
   // notation) and the value being the callback to use to check whether the
   // field is empty.
   $rows = array_get($form_state, 'values.principle_2_question_4.instance_table', array());
+  // Get rid of the hidden decision_tree row as that is needed only for the
+  // table theme function.
+  unset($rows['decision_tree']);
+  // Iterate over each row of the table.
   foreach ($rows as $key => $row) {
-    $checks = array(
-      "principle_2_question_4.instance_table.$key.control_measure" => '_text_field_is_empty',
-    );
+    // Within each row there may be multiple elements of a decision tree.
+    $tree = array_get($row, "decision_tree", array());
+    foreach ($tree as $id => $element) {
+      $checks["principle_2_question_4.instance_table.$key.decision_tree.$id"] = '_radios_field_is_empty';
+    }
+    // Ensure there is a CCP value.
+    $checks["principle_2_question_4.instance_table.$key.ccp"] = '_radios_field_is_empty';
   }
 
+  // Check all the errors.
   foreach ($checks as $target => $callback) {
     $invalid[] = _check_validation($callback, $target, $form, $form_state);
   }

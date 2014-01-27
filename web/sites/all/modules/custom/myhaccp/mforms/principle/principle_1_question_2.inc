@@ -240,10 +240,10 @@ function principle_1_question_2(&$form_state, &$next_step) {
 }
 
 /**
- * Validation handler for Principle 1 Question 1.
+ * Validation handler for Principle 1 Question 2.
  */
 function principle_1_question_2_validate($form, &$form_state) {
-  $validate = FALSE;
+  $invalid = array();
 
   $num_instances = $form_state['num_instances'];
 

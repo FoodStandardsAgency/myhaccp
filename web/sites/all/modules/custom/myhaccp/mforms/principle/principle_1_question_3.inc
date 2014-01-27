@@ -122,7 +122,7 @@ function principle_1_question_3(&$form_state, &$next_step) {
 }
 
 /**
- * Validation handler for Principle 1 Question 1.
+ * Validation handler for Principle 1 Question 3.
  */
 function principle_1_question_3_validate($form, &$form_state) {
   $invalid = array();

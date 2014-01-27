@@ -620,7 +620,7 @@ function myhaccp_prepare_values($data, &$form_state) {
  * @return bool
  *   Boolean determining whether the form has failed validation.
  */
-function _check_validation($callback, $target, $form, $form_state, $check_only = FALSE) {
+function _check_validation($callback, $target, $form, &$form_state, $check_only = FALSE) {
   $invalid = $callback($form_state['values'], $target);
   // Its possible we only want to check a field and return the invalid boolean,
   // in which case ignore the next part.
