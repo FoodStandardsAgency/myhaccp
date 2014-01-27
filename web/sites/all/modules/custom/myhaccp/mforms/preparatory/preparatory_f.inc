@@ -14,7 +14,7 @@ function preparatory_f(&$form_state, &$next_step) {
   // them in form as default values.
   $values = myhaccp_prepare_values($data, $form_state);
 
-  drupal_set_title('Preparatory Stage F: Describe the product', PASS_THROUGH);
+  drupal_set_title('Preparatory Stage F: Identify intended use of the product', PASS_THROUGH);
 
   $form = array();
   $form['#attributes']['class'][] = 'prep-f';
