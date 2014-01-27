@@ -223,7 +223,8 @@ input[id^="edit-save"],
 input#edit-save,
 input#edit-actions-save,
 input#edit-continue,
-input#edit-previous {
+input#edit-previous,
+.button-positive {
   @include agile-button($style: primary);
 }
 
@@ -478,8 +479,8 @@ div.teaser-checkbox .form-item,
       min-width: 3em;
     }
     input.step-name {
-      width: 10em;
-      min-width: 10em;
+      width: 20em;
+      min-width: 20em;
     }
   }
 }
@@ -512,6 +513,30 @@ div.teaser-checkbox .form-item,
   }
 }
 
-/** Principle 2 **/
+/** Principle 2.2 **/
 
-
+.principle-2-question-4 {
+  td > .form-type-radios {
+      font-size: 0.9em;
+      width: 12em;
+      clear: both;
+      margin-bottom: 0.5em;
+      overflow: hidden;
+      text-align: center;
+      > label {
+        color: #888888;
+      }
+    .form-radios {
+      .form-item {
+        display: inline;
+      }
+    }
+    label, input {
+      display: inline;
+      margin-right: 0.25em;
+    }
+    input {
+      vertical-align: baseline;
+    }
+  }
+}

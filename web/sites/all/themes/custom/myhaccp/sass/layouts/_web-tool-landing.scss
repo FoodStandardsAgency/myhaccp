@@ -1,0 +1,12 @@
+.page-prototype {
+  @media (min-width: $break_med_up) {
+    table.studies-table {
+      min-width: 40em;
+    }
+  }
+  a.new-study {
+    @include agile-button($style: primary);
+    display: inline-block;
+    margin-top: 1em;
+  }
+}

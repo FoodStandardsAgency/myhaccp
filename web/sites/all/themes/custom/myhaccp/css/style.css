@@ -1624,7 +1624,8 @@ input[id^="edit-save"],
 input#edit-save,
 input#edit-actions-save,
 input#edit-continue,
-input#edit-previous {
+input#edit-previous,
+.button-positive {
   background-color: #e6e6e6;
   color: rgba(0, 0, 0, 0.8);
   border: 0 none transparent;
@@ -1651,7 +1652,9 @@ input#edit-actions-save:focus,
 input#edit-continue:hover,
 input#edit-continue:focus,
 input#edit-previous:hover,
-input#edit-previous:focus {
+input#edit-previous:focus,
+.button-positive:hover,
+.button-positive:focus {
   background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
   cursor: pointer;
 }
@@ -1662,7 +1665,8 @@ input[id^="edit-save"].disabled,
 input#edit-save.disabled,
 input#edit-actions-save.disabled,
 input#edit-continue.disabled,
-input#edit-previous.disabled {
+input#edit-previous.disabled,
+.button-positive.disabled {
   background-image: none;
   cursor: not-allowed;
   opacity: 0.5;
@@ -1681,7 +1685,9 @@ input#edit-actions-save:active,
 input#edit-continue.active,
 input#edit-continue:active,
 input#edit-previous.active,
-input#edit-previous:active {
+input#edit-previous:active,
+.button-positive.active,
+.button-positive:active {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
 }
 
@@ -1979,8 +1985,8 @@ div.teaser-checkbox .form-item,
   min-width: 3em;
 }
 .p1q1-step .form-item input.step-name {
-  width: 10em;
-  min-width: 10em;
+  width: 20em;
+  min-width: 20em;
 }
 
 /** Principle 1, Q2 **/
@@ -2002,7 +2008,29 @@ div.teaser-checkbox .form-item,
   width: 3em;
 }
 
-/** Principle 2 **/
+/** Principle 2.2 **/
+.principle-2-question-4 td > .form-type-radios {
+  font-size: 0.9em;
+  width: 12em;
+  clear: both;
+  margin-bottom: 0.5em;
+  overflow: hidden;
+  text-align: center;
+}
+.principle-2-question-4 td > .form-type-radios > label {
+  color: #888888;
+}
+.principle-2-question-4 td > .form-type-radios .form-radios .form-item {
+  display: inline;
+}
+.principle-2-question-4 td > .form-type-radios label, .principle-2-question-4 td > .form-type-radios input {
+  display: inline;
+  margin-right: 0.25em;
+}
+.principle-2-question-4 td > .form-type-radios input {
+  vertical-align: baseline;
+}
+
 /**
  * The pager element
  * Displayed at the top of the tool
@@ -3001,6 +3029,39 @@ footer .footer-wrapper:after {
 }
 .speaker-box h3 {
   font-size: 1em;
+}
+
+@media (min-width: 860px) {
+  .page-prototype table.studies-table {
+    min-width: 40em;
+  }
+}
+.page-prototype a.new-study {
+  background-color: #e6e6e6;
+  color: rgba(0, 0, 0, 0.8);
+  border: 0 none transparent;
+  padding: 0.6em 1.5em 0.5em 1.5em;
+  text-decoration: none;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  background-color: #006f51;
+  color: #FFF;
+  display: inline-block;
+  margin-top: 1em;
+}
+.page-prototype a.new-study:hover, .page-prototype a.new-study:focus {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+}
+.page-prototype a.new-study.disabled {
+  background-image: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.page-prototype a.new-study.active, .page-prototype a.new-study:active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
 }
 
 html,

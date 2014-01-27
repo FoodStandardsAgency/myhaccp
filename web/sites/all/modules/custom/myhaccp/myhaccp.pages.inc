@@ -55,12 +55,19 @@ function myhaccp_list() {
       'header' => $header,
       'rows' => $rows,
       'empty' => $empty,
+      'attributes' => array(
+        'class' => array('studies-table'),
+      ),
     )),
+
   );
   $output['new'] = array(
     '#type' => 'link',
     '#title' => 'Start a new study',
     '#href' => 'prototype/form/create',
+    '#attributes' => array(
+      'class' => array('new-study'),
+    ),
   );
   return $output;
 }
