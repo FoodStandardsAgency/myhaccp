@@ -68,6 +68,7 @@ function principle_1_question_1(&$form_state, &$next_step) {
       '#default_value' => array_get($values, "principle_1_question_1.instance_$i.wrapper.step_no", FALSE),
       '#attributes' => array(
         'data-parsley-required' => 'true',
+        'data-parsley-validation-minlength' => 1,
         'data-parsley-error-message' => t('Please add a step number.'),
         'class' => array('step-no'),
       ),
@@ -200,6 +201,8 @@ function principle_1_question_1_validate($form, &$form_state) {
     return TRUE;
   }
 
+  $global = array();
+
   $invalid = array();
 
   for ($i = 0; $i < $form_state['num_instances']; $i++) {
@@ -210,22 +213,49 @@ function principle_1_question_1_validate($form, &$form_state) {
     // notation) and the value being the callback to use to check whether the
     // field is empty.
     $checks = array(
+      "principle_1_question_1.instance_$i.hazards_wrapper.biological" => '_text_field_is_empty',
+      "principle_1_question_1.instance_$i.hazards_wrapper.physical" => '_text_field_is_empty',
+      "principle_1_question_1.instance_$i.hazards_wrapper.allergens" => '_text_field_is_empty',
+      "principle_1_question_1.instance_$i.hazards_wrapper.chemical" => '_text_field_is_empty',
+    );
+
+    $invalid_hazards = array();
+    $invalid_steps = array();
+
+    foreach ($checks as $target => $callback) {
+      $invalid_hazards[] = _check_validation($callback, $target, $form, $form_state, TRUE);
+    }
+
+    // Check the step no and name fields.
+    $checks = array(
       "principle_1_question_1.instance_$i.wrapper.step_no" => '_text_field_is_empty',
       "principle_1_question_1.instance_$i.wrapper.step_name" => '_text_field_is_empty',
-      "principle_1_question_1.instance_$i.wrapper.hazards_wrapper.biological" => '_text_field_is_empty',
-      "principle_1_question_1.instance_$i.wrapper.hazards_wrapper.physical" => '_text_field_is_empty',
-      "principle_1_question_1.instance_$i.wrapper.hazards_wrapper.allergens" => '_text_field_is_empty',
-      "principle_1_question_1.instance_$i.wrapper.hazards_wrapper.chemical" => '_text_field_is_empty',
     );
 
     foreach ($checks as $target => $callback) {
-      $invalid[] = _check_validation($callback, $target, $form, $form_state, TRUE);
+      $invalid_steps[] = _check_validation($callback, $target, $form, $form_state, TRUE);
+    }
+
+    // Display the normal validation messages for the step number and name.
+    foreach ($checks as $target => $callback) {
+      $invalid[] = _check_validation($callback, $target, $form, $form_state);
+    }
+
+    if (!in_array(FALSE, $invalid_hazards)) {
+      $message = t('Please add at least one hazard.');
+      $global[] = $message;
+      $invalid[] = TRUE;
+    }
+
+    if (!in_array(FALSE, $invalid_steps)) {
+      $message = t('Steps must have a step number and a step name.');
+      $global[] = $message;
+      $invalid[] = TRUE;
     }
   }
 
-  if (!in_array(FALSE, $invalid)) {
-    $message = t('Please add some content.');
-    myhacpp_prepare_validation('global', array('principle_1_question_1' => $message), $form_state);
+  if (!empty($global)) {
+    myhacpp_prepare_validation('global', array('principle_1_question_1' => $global), $form_state);
   }
 
   // Do some normal checks with error messages on the step no and step name

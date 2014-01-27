@@ -58,7 +58,7 @@ function principle_1_question_2(&$form_state, &$next_step) {
   if (isset($previous_data)) {
     foreach ($previous_data['principle_1_question_1'] as $key => $instance) {
       if (strpos($key, 'instance') === 0) {
-        if (array_get($instance, 'wrapper.step_no', FALSE) && array_get($instance, 'wrapper.step_no', FALSE)) {
+        if (array_get($instance, 'wrapper.step_no', FALSE) && array_get($instance, 'wrapper.step_name', FALSE)) {
           $checks = array(
             "hazards_wrapper.biological" => '_text_field_is_empty',
             "hazards_wrapper.physical" => '_text_field_is_empty',
@@ -240,10 +240,10 @@ function principle_1_question_2(&$form_state, &$next_step) {
 }
 
 /**
- * Validation handler for Principle 1 Question 1.
+ * Validation handler for Principle 1 Question 2.
  */
 function principle_1_question_2_validate($form, &$form_state) {
-  $validate = FALSE;
+  $invalid = array();
 
   $num_instances = $form_state['num_instances'];
 

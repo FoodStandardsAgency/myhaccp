@@ -58,7 +58,7 @@ function preparatory_g(&$form_state, &$next_step) {
     '#progress_indicator' => 'bar',
     '#upload_location' => 'private://' . $user->uid,
     '#upload_validators' => array(
-      'file_validate_extensions' => array('jpg', 'jpeg', 'png', 'pdf', 'gif'),
+      'file_validate_extensions' => array('jpg jpeg png pdf gif'),
     ),
     '#attributes' => array(
       'data-parsley-error-message' => t('If a file is uploaded, it must be of type pdf, jpg, jpeg, png.'),

@@ -4,7 +4,7 @@
     attach: function(context) {
       // Prepare the tooltips by iterating over each help-tip element and
       // checking for some help text.
-      $('.help-tip').each(function() {
+      $('.help-tip').once().each(function() {
         // Check if there is a help-text element to render.
         var help_text = $(this).parents('.form-item, th, div.label').children('.help-text');
         // If we have some help text then move on and add the tooltip.

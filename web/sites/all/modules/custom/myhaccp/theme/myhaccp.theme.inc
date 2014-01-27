@@ -83,7 +83,8 @@ function theme_myhacpp_p1q3_table($variables) {
     ),
     'control_measure' => array(
       'data' => t('Control Measure !tip', array(
-        '!tip' => _help_tip(),
+        '!tip' => _help_tip(27),
+        '!help' => '<div class="help-text">Please record what control measures have been put in place for each significant hazard.</div>'
       )),
       'class' => array('control-measure'),
     ),
@@ -133,20 +134,22 @@ function theme_myhacpp_p2q4_table($variables) {
       'class' => array('hazard'),
     ),
     'control_measure' => array(
-      'data' => t('Control Measure !tip', array(
-        '!tip' => _help_tip(),
+      'data' => t('Control Measure', array(
+        '!tip' => _help_tip(28),
       )),
       'class' => array('control-measure'),
     ),
     'decision_tree' => array(
-      'data' => t('Decision Tree Q\'s !tip', array(
-        '!tip' => _help_tip(),
+      'data' => t('Decision Tree Q\'s !tip !help', array(
+        '!tip' => _help_tip(28),
+         '!help' => '<div class="help-text">Please record your answers to each decision tree question below, selecting n/a if a question is not relevant.</div>'
       )),
       'class' => array('decision-tree'),
     ),
     'ccp' => array(
-      'data' => t('CCP? !tip', array(
-        '!tip' => _help_tip(),
+      'data' => t('CCP? !tip !help', array(
+        '!tip' => _help_tip(28),
+        '!help' => '<div class="help-text">Please record whether each .</div>'
       )),
       'class' => array('ccp'),
     ),

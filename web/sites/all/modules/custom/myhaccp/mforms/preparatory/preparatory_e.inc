@@ -62,7 +62,7 @@ function preparatory_e(&$form_state, &$next_step) {
       '!tip' => _help_tip(18),
     )),
     '#help_text' => t('Has the product been sterilised, pasteurised, smoked?'),
-    '#default_value' => array_get($values, 'preparatory_e.properties', FALSE),
+    '#default_value' => array_get($values, 'preparatory_e.processed', FALSE),
     '#resizable' => FALSE,
     '#attributes' => array(
       'data-parsley-required' => 'true',
@@ -77,7 +77,7 @@ function preparatory_e(&$form_state, &$next_step) {
       '!tip' => _help_tip(18),
     )),
     '#help_text' => t('e.g. Is it packed into glass bottles, flexible pouches, aseptically packed?'),
-    '#default_value' => array_get($values, 'preparatory_e.properties', FALSE),
+    '#default_value' => array_get($values, 'preparatory_e.packed', FALSE),
     '#resizable' => FALSE,
     '#attributes' => array(
       'data-parsley-required' => 'true',
@@ -91,7 +91,7 @@ function preparatory_e(&$form_state, &$next_step) {
     '#title' => t('5. How is the product going to be stored and distributed? !tip', array(
       '!tip' => _help_tip(18),
     )),
-    '#default_value' => array_get($values, 'preparatory_e.properties', FALSE),
+    '#default_value' => array_get($values, 'preparatory_e.stored', FALSE),
     '#resizable' => FALSE,
     '#help_text' => t('e.g. Is it to be stored frozen , ambient or chilled? Is it to be distributed frozen, ambient or chilled.'),
     '#attributes' => array(
@@ -107,7 +107,7 @@ function preparatory_e(&$form_state, &$next_step) {
       '!tip' => _help_tip(18),
     )),
     '#help_text' => t('Under the  prescribed conditions what is the use by date or best before date e.g. Use By 3 months from date of purchase or best before  4 months from date of manufacture.'),
-    '#default_value' => array_get($values, 'preparatory_e.properties', FALSE),
+    '#default_value' => array_get($values, 'preparatory_e.shelf_life', FALSE),
     '#resizable' => FALSE,
     '#attributes' => array(
       'data-parsley-required' => 'true',
@@ -122,7 +122,7 @@ function preparatory_e(&$form_state, &$next_step) {
       '!tip' => _help_tip(18),
     )),
     '#help_text' => t('e.g. store in a cool place away from direct light, defrost thoroughly before cooking, cook for 15 minutes at 220°C.'),
-    '#default_value' => array_get($values, 'preparatory_e.properties', FALSE),
+    '#default_value' => array_get($values, 'preparatory_e.handled', FALSE),
     '#resizable' => FALSE,
     '#attributes' => array(
       'data-parsley-required' => 'true',
