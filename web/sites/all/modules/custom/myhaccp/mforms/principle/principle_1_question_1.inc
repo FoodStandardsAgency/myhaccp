@@ -161,7 +161,7 @@ function principle_1_question_1(&$form_state, &$next_step) {
   // Provide an add more button.
   $form['principle_1_question_1']['controls']['add_instance'] = array(
     '#type' => 'submit',
-    '#value' => t('Add another'),
+    '#value' => t('Add another step'),
     '#submit' => array('instance_add_more_add_one'),
     '#limit_validation_errors' => TRUE,
     '#ajax' => array(
@@ -175,7 +175,7 @@ function principle_1_question_1(&$form_state, &$next_step) {
   if ($form_state['num_instances'] > 1) {
     $form['principle_1_question_1']['controls']['remove_instance'] = array(
       '#type' => 'submit',
-      '#value' => t('Remove one'),
+      '#value' => t('Remove a step'),
       '#submit' => array('instance_add_more_remove_one'),
       '#limit_validation_errors' => TRUE,
       '#ajax' => array(

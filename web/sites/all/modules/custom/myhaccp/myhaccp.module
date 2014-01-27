@@ -638,6 +638,6 @@ function _check_validation($callback, $target, $form, $form_state, $check_only =
  */
 function myhaccp_saved_message($form, &$form_state) {
   if (isset($form_state['clicked_button']) && $form_state['clicked_button']['#value'] == 'Save') {
-    drupal_set_message('Form saved', 'status', FALSE);
+    drupal_set_message('Study saved', 'status', FALSE);
   }
 }

@@ -14,7 +14,7 @@ function preparatory_g(&$form_state, &$next_step) {
   // them in form as default values.
   $values = myhaccp_prepare_values($data, $form_state);
 
-  drupal_set_title('Preparatory Stage G: Describe the product', PASS_THROUGH);
+  drupal_set_title('Preparatory Stage G: Construct a flow diagram', PASS_THROUGH);
 
   $default_file = array_get($values, 'preparatory_g.upload', FALSE);
   $default_file = $default_file ? $default_file['fid'] : FALSE;
@@ -31,13 +31,13 @@ function preparatory_g(&$form_state, &$next_step) {
   // 1. Have you completed a flow diagram?
   $form['preparatory_g']['flow_completed'] = array(
     '#type' => 'checkbox',
-    '#prefix' => '<div class="label">' . t('1. Have you completed a flow diagram? !tip', array(
+    '#prefix' => '<div class="label">' . t('1. Have you completed a flow diagram? !tip !help', array(
         '!tip' => _help_tip(20),
-      )) . '</div>',
-    '#title' => t('I confirm that I have completed a flow diagram covering all steps in my manufacturing process. !tip', array(
-      '!tip' => _help_tip(20),
+        '!help' => '<div class="help-text">This is a diagram showing <strong>all process steps</strong> in the manufacture of a product or the processing of a product.</div>',)) . '</div>',
+    '#title' => t('I confirm that I have completed a flow diagram covering all steps in my manufacturing process.', array(
+      //'!tip' => _help_tip(20),
     )),
-    '#help_text' => t('This is a diagram showing <strong>all process steps</strong> in the manufacture of a product or the processing of a product.'),
+    //'#help_text' => t('This is a diagram showing <strong>all process steps</strong> in the manufacture of a product or the processing of a product.'),
     '#default_value' => array_get($values, 'preparatory_g.flow_completed', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
