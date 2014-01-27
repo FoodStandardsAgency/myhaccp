@@ -229,7 +229,7 @@ function preparatory_c_question_4_validate($form, &$form_state) {
 
   if (!in_array(FALSE, $invalid)) {
     $message = t('Please add some content.');
-    myhacpp_prepare_validation('global', array('preparatory_c_question_4' => $message), $form_state);
+    myhacpp_prepare_validation('global', array('preparatory_c_question_4' => array($message)), $form_state);
   }
 
   // Check to see whether we have failed validation and therefore should store

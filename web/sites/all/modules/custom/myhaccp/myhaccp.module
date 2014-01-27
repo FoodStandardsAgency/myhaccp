@@ -360,9 +360,11 @@ function myhaccp_process($element, &$form_state) {
         // the 'data-validation-stage' attribute with a value the same as the
         // key of the message.
         if (is_array($form_state['values']['validate']['global'])) {
-          foreach ($form_state['values']['validate']['global'] as $key => $message) {
+          foreach ($form_state['values']['validate']['global'] as $key => $messages) {
             if (array_get($element, '#attributes.data-validation-stage', FALSE) == $key) {
-              $element['#validation_message'][] = $message;
+              foreach ($messages as $message) {
+                $element['#validation_message'][] = $message;
+              }
             }
           }
         }
