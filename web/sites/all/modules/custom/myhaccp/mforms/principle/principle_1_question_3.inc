@@ -49,7 +49,7 @@ function principle_1_question_3(&$form_state, &$next_step) {
     foreach ($previous_data['principle_1_question_2'] as $key => $instance) {
       if (strpos($key, 'instance') === 0) {
         foreach ($instance['instance_table'] as $key => $item) {
-          if (isset($item['significance']) && $item['significance'] > $threshold) {
+          if (isset($item['significance']) && $item['significance'] >= $threshold) {
             $items[] = $item;
           }
         }
