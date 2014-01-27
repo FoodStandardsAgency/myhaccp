@@ -28,9 +28,9 @@
               my: 'top center',
               at: 'bottom center',
               target: $(this),
-              viewport: $('#main-content'),
+              viewport: $('.main-wrapper'),
               adjust: {
-                screen: true
+                method: 'shift'
               }
             },
             style: {
