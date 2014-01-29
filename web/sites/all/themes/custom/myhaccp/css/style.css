@@ -1984,9 +1984,17 @@ div.teaser-checkbox .form-item,
   width: 3em;
   min-width: 3em;
 }
-.p1q1-step .form-item input.step-name {
-  width: 20em;
-  min-width: 20em;
+@media all and (min-width: 860px) {
+  .p1q1-step .form-item input.step-name {
+    width: 20em;
+    min-width: 20em;
+  }
+}
+@media all and (min-width: 1250px) {
+  .p1q1-step .form-item input.step-name {
+    width: 35em;
+    min-width: 35em;
+  }
 }
 
 /** Principle 1, Q2 **/

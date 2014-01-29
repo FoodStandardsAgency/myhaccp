@@ -478,9 +478,17 @@ div.teaser-checkbox .form-item,
       width: 3em;
       min-width: 3em;
     }
-    input.step-name {
-      width: 20em;
-      min-width: 20em;
+    @media all and (min-width: $break_med_up) {
+      input.step-name {
+        width: 20em;
+        min-width: 20em;
+      }
+    }
+    @media all and (min-width: $break_massive_up) {
+      input.step-name {
+        width: 35em;
+        min-width: 35em;
+      }
     }
   }
 }
@@ -495,6 +503,8 @@ div.teaser-checkbox .form-item,
   table {
     width: 100%;
 
+    // @todo refactor to be more sensible
+    // add classes
     .form-type-textarea {
       width: 409px;
       textarea {
