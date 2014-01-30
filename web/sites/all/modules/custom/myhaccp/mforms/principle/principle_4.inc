@@ -153,7 +153,7 @@ function principle_4(&$form_state, &$next_step) {
 
     $form['principle_4']['instance_' . $key]['deputy_name'] = array(
       '#type' => 'textfield',
-      '#title' => t('5b. What is the deputy\'s name?'),
+      '#title' => t("5b. What is the deputy's name?"),
       '#default_value' => array_get($values, "principle_4.instance_$key.deputy_name", FALSE),
       '#states' => array(
         'visible' => array(
@@ -161,7 +161,7 @@ function principle_4(&$form_state, &$next_step) {
         ),
       ),
       '#attributes' => array(
-        'data-parsley-error-message' => t('Please state the deputy\'s name.'),
+        'data-parsley-error-message' => t("Please state the deputy's name."),
       ),
     );
 
