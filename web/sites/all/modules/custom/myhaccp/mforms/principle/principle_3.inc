@@ -39,7 +39,7 @@ function principle_3(&$form_state, &$next_step) {
   $rows = array_get($previous_data, 'principle_2_question_4.instance_table', array());
   // Iterate through the previous data.
   foreach ($rows as $key => $item) {
-    if (isset($item['hazard'])) {
+    if (is_array($item)) {
       $hazard = unserialize($item['hazard']);
       // Determine the critical control point.
       if (!empty($item['ccp']) && $item['ccp'] == 'yes') {
@@ -67,13 +67,21 @@ function principle_3(&$form_state, &$next_step) {
     $ccp_number_text = '<div class="ccp-number"><span class="label">Critical Control Point (CCP) Number:</span> ' . ($key + 1) . '</div>';
     // Prepare the text.
     $process_step_text = '<div class="process-step"><span class="label">Process Step:</span> ' . '(' . $item['step_number'] . ') ' . $item['step_name'] . '</div>';
-    // The hazard column text.
-    $hazard_text = '<div class="hazard"><span class="label">Hazard:</span> ' . $item['name'] . '<div class="hazard-description">' . $item['description'] . '</div>';
+    // The hazard text.
+    $hazard_text = '<div class="hazard"><span class="label">Hazard:</span> ' . $item['name'] . '<div class="hazard-description">' . $item['description'] . '</div></div>';
     $control_text = '<div class="control-measure"><span class="label">Control Measure:</span> ' . $item['control_measure'] . '</div>';
 
+    $item['ccp_no'] = $key + 1;
+
+    // Create the instance container.
+    $form['principle_3']['instance_' . $key] = array(
+      '#type' => 'container',
+    );
+
+    // Each hazard with a ccp is an instance. Show the text first.
     $form['principle_3']['instance_' . $key]['ccp_no'] = array(
       '#type' => 'hidden',
-      '#value' => $key + 1,
+      '#value' => serialize($item),
       '#prefix' => $ccp_number_text,
     );
 
@@ -89,15 +97,98 @@ function principle_3(&$form_state, &$next_step) {
       '#markup' => $control_text,
     );
 
+    // Now the form fields.
     $form['principle_3']['instance_' . $key]['limit'] = array(
       '#type' => 'textfield',
-      '#title' => t('What is the critical limit for this critical control point (what separates safe from potentially unsafe product)?'),
-      '#default_value' => array_get($values, "principle_3.instance_$key.limit", array()),
+      '#title' => t('1. What is the critical limit for this critical control point (what separates safe from potentially unsafe product)?'),
+      '#default_value' => array_get($values, "principle_3.instance_$key.limit", FALSE),
       '#attributes' => array(
         'data-parsley-required' => 'true',
-        'data-parsley-error-message' => t('To be added'),
+        'data-parsley-error-message' => t('Validation message to be added'),
       ),
     );
+
+    $form['principle_3']['instance_' . $key]['details'] = array(
+      '#type' => 'textarea',
+      '#resizable' => FALSE,
+      '#title' => t('2. Provide details of how the critical limit was determined.'),
+      '#default_value' => array_get($values, "principle_3.instance_$key.details", FALSE),
+      '#attributes' => array(
+        'data-parsley-required' => 'true',
+        'data-parsley-error-message' => t('Validation message to be added'),
+      ),
+    );
+
+    $form['principle_3']['instance_' . $key]['appropriate'] = array(
+      '#type' => 'radios',
+      '#options' => array(
+        'yes' => t('Yes'),
+        'no' => t('No'),
+      ),
+      '#title' => t('3. Is the critical limit appropriate to control the specific hazard?'),
+      '#default_value' => array_get($values, "principle_3.instance_$key.appropriate", array()),
+      '#attributes' => array(
+        'data-parsley-required' => 'true',
+        'data-parsley-error-message' => t('Validation message to be added'),
+      ),
+    );
+
+    $form['principle_3']['instance_' . $key]['measurable'] = array(
+      '#type' => 'radios',
+      '#options' => array(
+        'yes' => t('Yes'),
+        'no' => t('No'),
+      ),
+      '#title' => t('4. Is the critical limit measurable or observable in real time?'),
+      '#default_value' => array_get($values, "principle_3.instance_$key.measurable", array()),
+      '#attributes' => array(
+        'data-parsley-required' => 'true',
+        'data-parsley-error-message' => t('Validation message to be added'),
+      ),
+    );
+
+    $form['principle_3']['instance_' . $key]['target'] = array(
+      '#type' => 'radios',
+      '#options' => array(
+        'yes' => t('Yes'),
+        'no' => t('No'),
+      ),
+      '#title' => t('5. Is there a target value?'),
+      '#default_value' => array_get($values, "principle_3.instance_$key.target", array()),
+      '#attributes' => array(
+        'data-parsley-required' => 'true',
+        'data-parsley-error-message' => t('Validation message to be added'),
+      ),
+    );
+
+    $form['principle_3']['instance_' . $key]['target_value'] = array(
+      '#type' => 'textfield',
+      '#title' => t('5a. If yes, what is the target value?'),
+      '#default_value' => array_get($values, "principle_3.instance_$key.target_value", FALSE),
+      '#states' => array(
+        'visible' => array(
+          ':input[name="principle_3[instance_' . $key . '][target]"]' => array('value' => 'yes'),
+        ),
+      ),
+      '#attributes' => array(
+        'data-parsley-error-message' => t('Validation message to be added'),
+      ),
+    );
+
+    $form['principle_3']['instance_' . $key]['target_tolerances'] = array(
+      '#type' => 'textfield',
+      '#title' => t('5b. What are the tolerances?'),
+      '#default_value' => array_get($values, "principle_3.instance_$key.target_tolerances", FALSE),
+      '#states' => array(
+        'visible' => array(
+          ':input[name="principle_3[instance_' . $key . '][target]"]' => array('value' => 'yes'),
+        ),
+      ),
+      '#attributes' => array(
+        'data-parsley-error-message' => t('Validation message to be added'),
+      ),
+    );
+
   }
 
   // Add the validation handler.
@@ -111,7 +202,6 @@ function principle_3(&$form_state, &$next_step) {
  */
 function principle_3_validate($form, &$form_state) {
   $invalid = array();
-  $checks = array();
 
   // Checks is an array with the key being the element being targeted (in dot
   // notation) and the value being the callback to use to check whether the
@@ -119,18 +209,50 @@ function principle_3_validate($form, &$form_state) {
   $rows = array_get($form_state, 'values.principle_3', array());
   // Iterate over each row of the table.
   foreach ($rows as $key => $row) {
-    // Within each row there may be multiple elements of a decision tree.
-    $tree = array_get($row, "decision_tree", array());
-    foreach ($tree as $id => $element) {
-      $checks["principle_3.instance_table.$key.decision_tree.$id"] = '_radios_field_is_empty';
+    // Make sure 3 & 4 are yes values.
+    $targets = array(
+      "principle_3.$key.appropriate",
+      "principle_3.$key.measurable",
+    );
+    // Iterate over the two fields and check them.
+    foreach ($targets as $target) {
+      // First check if the field is empty.
+      if (!$invalid_item = _radios_field_is_empty($form_state['values'], $target)) {
+        // The field is not empty so now check that the wrong value has been
+        // entered.
+        $invalid_item = _radios_field_is_not_value('yes', $form_state['values'], $target);
+      }
+      // If its invalid show the message.
+      if ($invalid_item) {
+        $message = array_get($form, $target . '.#attributes.data-parsley-error-message', NULL);
+        myhacpp_prepare_validation($target, $message, $form_state);
+      }
+      // Add the invalid boolean to the array.
+      $invalid[] = $invalid_item;
     }
-    // Ensure there is a CCP value.
-    $checks["principle_3.instance_table.$key.ccp"] = '_radios_field_is_empty';
-  }
 
-  // Check all the errors.
-  foreach ($checks as $target => $callback) {
-    $invalid[] = _check_validation($callback, $target, $form, $form_state);
+    // Check for content in questions 1 & 2.
+    $checks = array(
+      "principle_3.$key.limit" => '_text_field_is_empty',
+      "principle_3.$key.details" => '_text_field_is_empty',
+    );
+
+    foreach ($checks as $target => $callback) {
+      $invalid[] = _check_validation($callback, $target, $form, $form_state);
+    }
+
+    // Now check if the radio button in 5 is set to yes.
+    if (array_get($form_state['values'], "principle_3.$key.target", FALSE) == 'yes') {
+      // Now check that both dependent fields 5a and 5b have something in them.
+      $checks = array(
+        "principle_3.$key.target_value" => '_text_field_is_empty',
+        "principle_3.$key.target_tolerances" => '_text_field_is_empty',
+      );
+
+      foreach ($checks as $target => $callback) {
+        $invalid[] = _check_validation($callback, $target, $form, $form_state);
+      }
+    }
   }
 
   // Check to see whether we have failed validation and therefore should store
