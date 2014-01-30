@@ -167,6 +167,11 @@ function myhaccp_myhaccp_mforms_init() {
       'value' => '3',
       'weight' => 16,
     ),
+    'principle_4' => array(
+      'stage' => 'principles',
+      'value' => '4',
+      'weight' => 17,
+    ),
   ));
 
   // Add the parsley.js library.
@@ -302,6 +307,7 @@ function _get_all_steps() {
     'principle_2_question_1_3' => 'principle',
     'principle_2_question_4' => 'principle',
     'principle_3' => 'principle',
+    'principle_4' => 'principle',
   );
   return $files;
 }

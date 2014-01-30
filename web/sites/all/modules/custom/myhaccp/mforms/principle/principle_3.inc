@@ -79,7 +79,7 @@ function principle_3(&$form_state, &$next_step) {
     );
 
     // Each hazard with a ccp is an instance. Show the text first.
-    $form['principle_3']['instance_' . $key]['ccp_no'] = array(
+    $form['principle_3']['instance_' . $key]['ccp'] = array(
       '#type' => 'hidden',
       '#value' => serialize($item),
       '#prefix' => $ccp_number_text,
@@ -207,7 +207,7 @@ function principle_3_validate($form, &$form_state) {
   // notation) and the value being the callback to use to check whether the
   // field is empty.
   $rows = array_get($form_state, 'values.principle_3', array());
-  // Iterate over each row of the table.
+  // Iterate over each row.
   foreach ($rows as $key => $row) {
     // Make sure 3 & 4 are yes values.
     $targets = array(
