@@ -6,7 +6,7 @@
 function principle_4(&$form_state, &$next_step) {
   // Define following step callback. If none set, that implies it is
   // the last step.
-  $next_step = 'principle_4';
+  $next_step = 'principle_5';
 
   // Retrieve submitted values.
   $data = mforms_get_vals('myhaccp', 'principle_4');
@@ -75,7 +75,7 @@ function principle_4(&$form_state, &$next_step) {
     );
 
     // Each hazard with a ccp is an instance. Show the text first.
-    $form['principle_4']['instance_' . $key]['ccp_no'] = array(
+    $form['principle_4']['instance_' . $key]['ccp'] = array(
       '#type' => 'hidden',
       '#value' => serialize($item),
       '#prefix' => $ccp_number_text,

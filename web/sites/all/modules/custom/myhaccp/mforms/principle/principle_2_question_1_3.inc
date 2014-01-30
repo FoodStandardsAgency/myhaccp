@@ -4,7 +4,7 @@ function principle_2_question_1_3(&$form_state, &$next_step) {
 
   // Define following step callback. If none set, that implies it is
   // the last step.
-  $next_step = 'principle_3';
+  $next_step = 'principle_2_question_4';
 
   // Retrieve submitted values. This comes in handy when back action
   // occurred and we need to display values that were originally submitted.

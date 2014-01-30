@@ -6,7 +6,7 @@
 function principle_3(&$form_state, &$next_step) {
   // Define following step callback. If none set, that implies it is
   // the last step.
-  $next_step = 'principle_3';
+  $next_step = 'principle_4';
 
   // Retrieve submitted values.
   $data = mforms_get_vals('myhaccp', 'principle_3');
