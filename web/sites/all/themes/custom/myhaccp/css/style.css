@@ -2448,10 +2448,10 @@ table thead th .help-tip {
 }
 
 .qtip-haccp {
-  border-width: 1px;
+  border-width: 3px;
   border-style: solid;
-  border-color: #fafafa;
-  background-color: lightgrey;
+  border-color: #6cb33f;
+  background-color: #FFF;
   color: black;
   font-size: 1em;
   line-height: normal;
@@ -2469,6 +2469,10 @@ table thead th .help-tip {
   border-color: #CCC;
   background: #F1F1F1;
   color: #777;
+}
+.qtip-haccp a:link,
+.qtip-haccp a:visited {
+  font-weight: bold;
 }
 
 .node-homepage.view-mode-full {
@@ -3142,7 +3146,8 @@ p.intro {
   color: #676767;
 }
 
-a:link {
+a:link,
+a:visited {
   text-decoration: none;
   color: #006f51;
 }
