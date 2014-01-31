@@ -596,3 +596,11 @@ div.teaser-checkbox .form-item,
     @extend %inline-radios;
   }
 }
+
+/** Principle 6 **/
+
+.principle-6 {
+  .form-radios {
+    @extend %inline-radios;
+  }
+}

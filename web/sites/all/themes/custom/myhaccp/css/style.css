@@ -1273,23 +1273,23 @@ select:focus {
 .prep-d .form-radios .form-item, .prep-f .form-radios .form-item,
 .prep-h .form-radios .form-item, .principle-2-question-1-3 .form-radios .form-item, .principle-2-question-4 td > .form-radios .form-item, .principle-3 .form-radios .form-item,
 .principle-4 .form-radios .form-item,
-.principle-5 .form-radios .form-item {
+.principle-5 .form-radios .form-item, .principle-6 .form-radios .form-item {
   display: inline;
 }
 .prep-d .form-radios label, .prep-d .form-item-prep-d-team-skills .form-radios label, .prep-f .form-radios label,
 .prep-h .form-radios label, .principle-2-question-1-3 .form-radios label, .principle-2-question-4 td > .form-radios label, .principle-3 .form-radios label,
 .principle-4 .form-radios label,
-.principle-5 .form-radios label, .prep-d .form-radios input, .prep-d .form-item-prep-d-team-skills .form-radios input, .prep-f .form-radios input,
+.principle-5 .form-radios label, .principle-6 .form-radios label, .prep-d .form-radios input, .prep-d .form-item-prep-d-team-skills .form-radios input, .prep-f .form-radios input,
 .prep-h .form-radios input, .principle-2-question-1-3 .form-radios input, .principle-2-question-4 td > .form-radios input, .principle-3 .form-radios input,
 .principle-4 .form-radios input,
-.principle-5 .form-radios input {
+.principle-5 .form-radios input, .principle-6 .form-radios input {
   display: inline;
   margin-right: 0.25em;
 }
 .prep-d .form-radios input, .prep-d .form-item-prep-d-team-skills .form-radios input, .prep-f .form-radios input,
 .prep-h .form-radios input, .principle-2-question-1-3 .form-radios input, .principle-2-question-4 td > .form-radios input, .principle-3 .form-radios input,
 .principle-4 .form-radios input,
-.principle-5 .form-radios input {
+.principle-5 .form-radios input, .principle-6 .form-radios input {
   vertical-align: baseline;
 }
 
@@ -2089,6 +2089,7 @@ div.teaser-checkbox .form-item,
   border-bottom: none;
 }
 
+/** Principle 6 **/
 /**
  * The pager element
  * Displayed at the top of the tool
