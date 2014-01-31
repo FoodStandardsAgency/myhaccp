@@ -16,7 +16,7 @@ function principle_6(&$form_state, &$next_step) {
   $values = myhaccp_prepare_values($data, $form_state);
 
   // Set the page title.
-  drupal_set_title('Principle 5: Establish a corrective action plan');
+  drupal_set_title('Principle 6: Verification');
 
   $form = array();
   $form['#attributes']['class'][] = 'principle-6';
