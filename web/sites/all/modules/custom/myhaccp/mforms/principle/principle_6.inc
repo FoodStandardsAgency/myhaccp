@@ -196,10 +196,10 @@ function principle_6(&$form_state, &$next_step) {
     ),
   );
 
-  $form['principle_6']['responsible'] = array(
+  $form['principle_6']['responsible_review'] = array(
     '#type' => 'textfield',
     '#title' => t('Who is responsible for carrying out a formal annual review?'),
-    '#default_value' => array_get($values, "principle_6.responsible", FALSE),
+    '#default_value' => array_get($values, "principle_6.responsible_review", FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please state who is responsible for carrying out a formal annual review.'),
@@ -270,43 +270,24 @@ function principle_6_validate($form, &$form_state) {
   // Checks is an array with the key being the element being targeted (in dot
   // notation) and the value being the callback to use to check whether the
   // field is empty.
-  $rows = array_get($form_state, 'values.principle_6', array());
-  // Iterate over each row.
-  foreach ($rows as $key => $row) {
+  $checks = array(
+    'principle_6.document' => '_text_field_is_empty',
+    'principle_6.responsible' => '_text_field_is_empty',
+    'principle_6.trained' => '_radios_field_is_empty',
+    'principle_6.maintained' => '_radios_field_is_empty',
+    'principle_6.reviewed' => '_text_field_is_empty',
+    'principle_6.responsible_review' => '_text_field_is_empty',
+    'principle_6.records_reviews' => '_radios_field_is_empty',
+  );
 
-    // Check for content in visible questions.
-    $checks = array(
-      "principle_6.$key.activities" => '_text_field_is_empty',
-      "principle_6.$key.frequency" => '_text_field_is_empty',
-      "principle_6.$key.carried_out" => '_text_field_is_empty',
-      "principle_6.$key.responsible" => '_text_field_is_empty',
-      "principle_6.$key.deputy" => '_radios_field_is_empty',
-      "principle_6.$key.location" => '_text_field_is_empty',
-      "principle_6.$key.checked" => '_radios_field_is_empty',
-    );
+  foreach ($checks as $target => $callback) {
+    $invalid[] = _check_validation($callback, $target, $form, $form_state);
+  }
 
-    foreach ($checks as $target => $callback) {
-      $invalid[] = _check_validation($callback, $target, $form, $form_state);
-    }
-
-    // Now check if the radio button in 5 is set to yes.
-    if (array_get($form_state['values'], "principle_6.$key.deputy", FALSE) == 'yes') {
-      // Now check that the dependent fields 5a has something in it.
-      $invalid[] = _check_validation('_text_field_is_empty', "principle_6.$key.deputy_name", $form, $form_state);
-    }
-
-    // Now check if the radio button in 7 is set to yes.
-    if (array_get($form_state['values'], "principle_6.$key.checked", FALSE) == 'yes') {
-      // Now check that both dependent fields 7a and 7b have something in them.
-      $checks = array(
-        "principle_6.$key.record_name" => '_text_field_is_empty',
-        "principle_6.$key.record_frequency" => '_text_field_is_empty',
-      );
-
-      foreach ($checks as $target => $callback) {
-        $invalid[] = _check_validation($callback, $target, $form, $form_state);
-      }
-    }
+  // Now check if the radio button in 3 is set to yes.
+  if (array_get($form_state['values'], "principle_6.trained", FALSE) == 'yes') {
+    // Now check that the dependent fields 5a has something in it.
+    $invalid[] = _check_validation('_text_field_is_empty', "principle_6.sign_off", $form, $form_state);
   }
 
   // Check to see whether we have failed validation and therefore should store
