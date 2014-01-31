@@ -97,8 +97,11 @@ function principle_4(&$form_state, &$next_step) {
     $form['principle_4']['instance_' . $key]['activities'] = array(
       '#type' => 'textarea',
       '#resizable' => FALSE,
-      '#title' => t('1. What monitoring activities are going to take place at this CCP?'),
+      '#title' => t('1. What monitoring activities are going to take place at this CCP? !tip', array(
+        '!tip' => _help_tip(),
+      )),
       '#default_value' => array_get($values, "principle_4.instance_$key.monitoring", FALSE),
+      '#help_text' => t("Help text TBC."),
       '#attributes' => array(
         'data-parsley-required' => 'true',
         'data-parsley-error-message' => t('Please state what monitoring activities are going to take place at this CCP.'),
@@ -107,8 +110,11 @@ function principle_4(&$form_state, &$next_step) {
 
     $form['principle_4']['instance_' . $key]['frequency'] = array(
       '#type' => 'textfield',
-      '#title' => t('2. Specify how frequently the monitoring activities are to be carried out.'),
+      '#title' => t('2. Specify how frequently the monitoring activities are to be carried out. !tip', array(
+        '!tip' => _help_tip(),
+      )),
       '#default_value' => array_get($values, "principle_4.instance_$key.frequency", FALSE),
+      '#help_text' => t("Help text TBC."),
       '#attributes' => array(
         'data-parsley-required' => 'true',
         'data-parsley-error-message' => t('Please specify  how frequently the monitoring activities are to be carried out.'),
@@ -118,8 +124,11 @@ function principle_4(&$form_state, &$next_step) {
     $form['principle_4']['instance_' . $key]['carried_out'] = array(
       '#type' => 'textarea',
       '#resizable' => FALSE,
-      '#title' => t('3. Define how the monitoring activities are carried out.'),
+      '#title' => t('3. Define how the monitoring activities are carried out. !tip', array(
+        '!tip' => _help_tip(),
+      )),
       '#default_value' => array_get($values, "principle_4.instance_$key.carried_out", FALSE),
+      '#help_text' => t("Help text TBC."),
       '#attributes' => array(
         'data-parsley-required' => 'true',
         'data-parsley-error-message' => t('Please define how the monitoring activities are carried out.'),
@@ -129,8 +138,11 @@ function principle_4(&$form_state, &$next_step) {
     $form['principle_4']['instance_' . $key]['responsible'] = array(
       '#type' => 'textarea',
       '#resizable' => FALSE,
-      '#title' => t('4. Who is responsible for monitoring actions at this CCP?'),
+      '#title' => t('4. Who is responsible for monitoring actions at this CCP? !tip', array(
+        '!tip' => _help_tip(),
+      )),
       '#default_value' => array_get($values, "principle_4.instance_$key.responsible", FALSE),
+      '#help_text' => t("Help text TBC."),
       '#attributes' => array(
         'data-parsley-required' => 'true',
         'data-parsley-error-message' => t('Please state who is responsible for monitoring actions at this CCP.'),
@@ -143,8 +155,11 @@ function principle_4(&$form_state, &$next_step) {
         'yes' => t('Yes'),
         'no' => t('No'),
       ),
-      '#title' => t('5. Is there a deputy?'),
+      '#title' => t('5. Is there a deputy? !tip', array(
+        '!tip' => _help_tip(),
+      )),
       '#default_value' => array_get($values, "principle_4.instance_$key.deputy", FALSE),
+      '#help_text' => t("Help text TBC."),
       '#attributes' => array(
         'data-parsley-required' => 'true',
         'data-parsley-error-message' => t('Please state if there is a deputy.'),
@@ -153,8 +168,11 @@ function principle_4(&$form_state, &$next_step) {
 
     $form['principle_4']['instance_' . $key]['deputy_name'] = array(
       '#type' => 'textfield',
-      '#title' => t("5b. What is the deputy's name?"),
+      '#title' => t('5b. What is the deputy\'s name? !tip', array(
+        '!tip' => _help_tip(),
+      )),
       '#default_value' => array_get($values, "principle_4.instance_$key.deputy_name", FALSE),
+      '#help_text' => t("Help text TBC."),
       '#states' => array(
         'visible' => array(
           ':input[name="principle_4[instance_' . $key . '][deputy]"]' => array('value' => 'yes'),
@@ -167,8 +185,11 @@ function principle_4(&$form_state, &$next_step) {
 
     $form['principle_4']['instance_' . $key]['location'] = array(
       '#type' => 'textfield',
-      '#title' => t('6. Where are the results of monitoring recorded?'),
+      '#title' => t('6. Where are the results of monitoring recorded? !tip', array(
+        '!tip' => _help_tip(),
+      )),
       '#default_value' => array_get($values, "principle_4.instance_$key.location", FALSE),
+      '#help_text' => t("Help text TBC."),
       '#attributes' => array(
         'data-parsley-required' => 'true',
         'data-parsley-error-message' => t('Please state where the results of monitoring are recorded.'),
@@ -181,8 +202,11 @@ function principle_4(&$form_state, &$next_step) {
         'yes' => t('Yes'),
         'no' => t('No'),
       ),
-      '#title' => t('7. Will the monitoring records be checked and signed off by anyone?'),
+      '#title' => t('7. Will the monitoring records be checked and signed off by anyone? !tip', array(
+        '!tip' => _help_tip(),
+      )),
       '#default_value' => array_get($values, "principle_4.instance_$key.checked", FALSE),
+      '#help_text' => t("Help text TBC."),
       '#attributes' => array(
         'data-parsley-required' => 'true',
         'data-parsley-error-message' => t('Please state if the monitoring records are to be checked and signed off by anyone.'),
@@ -191,8 +215,11 @@ function principle_4(&$form_state, &$next_step) {
 
     $form['principle_4']['instance_' . $key]['record_name'] = array(
       '#type' => 'textfield',
-      '#title' => t('7a. Who will check the records?'),
+      '#title' => t('7a. Who will check the records? !tip', array(
+        '!tip' => _help_tip(),
+      )),
       '#default_value' => array_get($values, "principle_4.instance_$key.record_name", FALSE),
+      '#help_text' => t("Help text TBC."),
       '#states' => array(
         'visible' => array(
           ':input[name="principle_4[instance_' . $key . '][checked]"]' => array('value' => 'yes'),
@@ -205,8 +232,11 @@ function principle_4(&$form_state, &$next_step) {
 
     $form['principle_4']['instance_' . $key]['record_frequency'] = array(
       '#type' => 'textfield',
-      '#title' => t('7b. How frequently will they check the records?'),
+      '#title' => t('7b. How frequently will they check the records? !tip', array(
+        '!tip' => _help_tip(),
+      )),
       '#default_value' => array_get($values, "principle_4.instance_$key.record_frequency", FALSE),
+      '#help_text' => t("Help text TBC."),
       '#states' => array(
         'visible' => array(
           ':input[name="principle_4[instance_' . $key . '][checked]"]' => array('value' => 'yes'),
