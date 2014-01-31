@@ -19,7 +19,7 @@ function principle_6(&$form_state, &$next_step) {
   drupal_set_title('Principle 5: Establish a corrective action plan');
 
   $form = array();
-  $form['#attributes']['class'][] = 'principle-5';
+  $form['#attributes']['class'][] = 'principle-6';
 
   // Wrap the form section in a fieldset.
   $form['principle_6'] = array(
