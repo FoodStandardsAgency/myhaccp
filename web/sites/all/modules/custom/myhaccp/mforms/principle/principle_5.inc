@@ -97,8 +97,11 @@ function principle_5(&$form_state, &$next_step) {
     $form['principle_5']['instance_' . $key]['action'] = array(
       '#type' => 'textarea',
       '#resizable' => FALSE,
-      '#title' => t('1. Action to be taken'),
+      '#title' => t('1. Action to be taken !tip', array(
+        '!tip' => _help_tip(),
+      )),
       '#default_value' => array_get($values, "principle_5.instance_$key.action", FALSE),
+      '#help_text' => t("State the person's name."),
       '#attributes' => array(
         'data-parsley-required' => 'true',
         'data-parsley-error-message' => t('Please state the action to be taken at this CCP.'),
@@ -108,8 +111,11 @@ function principle_5(&$form_state, &$next_step) {
     $form['principle_5']['instance_' . $key]['authority'] = array(
       '#type' => 'textarea',
       '#resizable' => FALSE,
-      '#title' => t('2. Detail personnel who have the authority to take the stated corrective action.'),
+      '#title' => t('2. Detail personnel who have the authority to take the stated corrective action. !tip', array(
+        '!tip' => _help_tip(),
+      )),
       '#default_value' => array_get($values, "principle_5.instance_$key.authority", FALSE),
+      '#help_text' => t("State the person's name."),
       '#attributes' => array(
         'data-parsley-required' => 'true',
         'data-parsley-error-message' => t('Please detail the personnel who have the authority to take the stated corrective action.'),
@@ -119,8 +125,11 @@ function principle_5(&$form_state, &$next_step) {
     $form['principle_5']['instance_' . $key]['product'] = array(
       '#type' => 'textarea',
       '#resizable' => FALSE,
-      '#title' => t('3. What happens to the product created during the period that a CCP was out of control? Detail any variation in handling this product that relates to, a parameter, eg degree of control lost.'),
+      '#title' => t('3. What happens to the product created during the period that a CCP was out of control? Detail any variation in handling this product that relates to, a parameter, eg degree of control lost. !tip', array(
+        '!tip' => _help_tip(),
+      )),
       '#default_value' => array_get($values, "principle_5.instance_$key.product", FALSE),
+      '#help_text' => t("State the person's name."),
       '#attributes' => array(
         'data-parsley-required' => 'true',
         'data-parsley-error-message' => t('Please detail what happens to the product created during the period that a CCP was out of control.'),
@@ -130,8 +139,11 @@ function principle_5(&$form_state, &$next_step) {
     $form['principle_5']['instance_' . $key]['document_location'] = array(
       '#type' => 'textarea',
       '#resizable' => FALSE,
-      '#title' => t("4. Where are you going to document what you have done with the product produced during the time period that a CCP was 'out of control' (for example since the last good check)?"),
+      '#title' => t('4. Where are you going to document what you have done with the product produced during the time period that a CCP was \'out of control\' (for example since the last good check)? !tip', array(
+        '!tip' => _help_tip(),
+      )),
       '#default_value' => array_get($values, "principle_5.instance_$key.document_location", FALSE),
+      '#help_text' => t("State the person's name."),
       '#attributes' => array(
         'data-parsley-required' => 'true',
         'data-parsley-error-message' => t("Please detail where you will document what you have done with the product produced during the time period that a CCP was 'out of control'."),
@@ -144,8 +156,11 @@ function principle_5(&$form_state, &$next_step) {
         'yes' => t('Yes'),
         'no' => t('No'),
       ),
-      '#title' => t('5. Are all personnel (identified in any of the steps from 1-6 for all CCP’s) trained and competent for performing the activities stated?'),
+      '#title' => t('5. Are all personnel (identified in any of the steps from 1-6 for all CCP’s) trained and competent for performing the activities stated? !tip', array(
+        '!tip' => _help_tip(),
+      )),
       '#default_value' => array_get($values, "principle_5.instance_$key.trained", FALSE),
+      '#help_text' => t("State the person's name."),
       '#attributes' => array(
         'data-parsley-required' => 'true',
         'data-parsley-error-message' => t('All personnel engaged in any of the activities mentioned should have received appropriate training for the task undertaken. Records of training should be available.'),
@@ -163,6 +178,7 @@ function principle_5(&$form_state, &$next_step) {
       )),
       '#help_text' => t("The competencies of staff should be reviewed. It may be necessary to train staff, refresh their training, provide on-the-job experience, records of which should be kept to reflect that staff are capable of performing the task they are undertaking"),
       '#default_value' => array_get($values, "principle_5.instance_$key.competencies", FALSE),
+      '#help_text' => t("State the person's name."),
       '#attributes' => array(
         'data-parsley-required' => 'true',
         'data-parsley-error-message' => t('Please indicate if records of competency are maintained.'),
