@@ -105,7 +105,7 @@ function principle_2_question_4(&$form_state, &$next_step) {
       $num = 1;
       for ($q = 1; $q <= 6; $q++) {
         $id = 'Q' . $num;
-        if ($tree_type == 'campden') {
+        if ($tree_type == 'codex') {
           if ($q == 2) {
             $id = 'Q1a';
             $num = 2;
@@ -184,10 +184,13 @@ function principle_2_question_4_validate($form, &$form_state) {
   unset($rows['decision_tree']);
   // Iterate over each row of the table.
   foreach ($rows as $key => $row) {
-    // Within each row there may be multiple elements of a decision tree.
+    // Within each row there may be multiple elements of a decision tree. There
+    // may also be no decision tree.
     $tree = array_get($row, "decision_tree", array());
-    foreach ($tree as $id => $element) {
-      $checks["principle_2_question_4.instance_table.$key.decision_tree.$id"] = '_radios_field_is_empty';
+    if (is_array($tree)) {
+      foreach ($tree as $id => $element) {
+        $checks["principle_2_question_4.instance_table.$key.decision_tree.$id"] = '_radios_field_is_empty';
+      }
     }
     // Ensure there is a CCP value.
     $checks["principle_2_question_4.instance_table.$key.ccp"] = '_radios_field_is_empty';

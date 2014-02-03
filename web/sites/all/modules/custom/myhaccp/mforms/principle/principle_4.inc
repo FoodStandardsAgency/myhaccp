@@ -100,7 +100,7 @@ function principle_4(&$form_state, &$next_step) {
       '#title' => t('1. What monitoring activities are going to take place at this CCP? !tip', array(
         '!tip' => _help_tip(),
       )),
-      '#default_value' => array_get($values, "principle_4.instance_$key.monitoring", FALSE),
+      '#default_value' => array_get($values, "principle_4.instance_$key.activities", FALSE),
       '#help_text' => t("Help text TBC."),
       '#attributes' => array(
         'data-parsley-required' => 'true',
@@ -109,7 +109,8 @@ function principle_4(&$form_state, &$next_step) {
     );
 
     $form['principle_4']['instance_' . $key]['frequency'] = array(
-      '#type' => 'textfield',
+      '#type' => 'textarea',
+      '#resizable' => FALSE,
       '#title' => t('2. Specify how frequently the monitoring activities are to be carried out. !tip', array(
         '!tip' => _help_tip(),
       )),
@@ -150,36 +151,13 @@ function principle_4(&$form_state, &$next_step) {
     );
 
     $form['principle_4']['instance_' . $key]['deputy'] = array(
-      '#type' => 'radios',
-      '#options' => array(
-        'yes' => t('Yes'),
-        'no' => t('No'),
-      ),
-      '#title' => t('5. Is there a deputy? !tip', array(
+      '#type' => 'textfield',
+      '#title' => t('5. Please state the name and job title of the deputy if applicable: !tip', array(
         '!tip' => _help_tip(),
       )),
       '#default_value' => array_get($values, "principle_4.instance_$key.deputy", FALSE),
       '#help_text' => t("Help text TBC."),
       '#attributes' => array(
-        'data-parsley-required' => 'true',
-        'data-parsley-error-message' => t('Please state if there is a deputy.'),
-      ),
-    );
-
-    $form['principle_4']['instance_' . $key]['deputy_name'] = array(
-      '#type' => 'textfield',
-      '#title' => t('5b. What is the deputy\'s name? !tip', array(
-        '!tip' => _help_tip(),
-      )),
-      '#default_value' => array_get($values, "principle_4.instance_$key.deputy_name", FALSE),
-      '#help_text' => t("Help text TBC."),
-      '#states' => array(
-        'visible' => array(
-          ':input[name="principle_4[instance_' . $key . '][deputy]"]' => array('value' => 'yes'),
-        ),
-      ),
-      '#attributes' => array(
-        'data-parsley-error-message' => t("Please state the deputy's name."),
       ),
     );
 

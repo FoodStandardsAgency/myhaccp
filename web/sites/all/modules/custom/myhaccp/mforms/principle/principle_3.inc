@@ -171,6 +171,7 @@ function principle_3(&$form_state, &$next_step) {
         ),
       ),
       '#attributes' => array(
+        'data-parsley-required' => 'true',
         'data-parsley-error-message' => t('Validation message to be added'),
       ),
     );
@@ -185,6 +186,7 @@ function principle_3(&$form_state, &$next_step) {
         ),
       ),
       '#attributes' => array(
+        'data-parsley-required' => 'true',
         'data-parsley-error-message' => t('Validation message to be added'),
       ),
     );
@@ -252,6 +254,10 @@ function principle_3_validate($form, &$form_state) {
       foreach ($checks as $target => $callback) {
         $invalid[] = _check_validation($callback, $target, $form, $form_state);
       }
+    }
+    else {
+      // Confirm this field is not empty.
+      $invalid[] = _check_validation('_radios_field_is_empty', "principle_3.$key.target", $form, $form_state);
     }
   }
 

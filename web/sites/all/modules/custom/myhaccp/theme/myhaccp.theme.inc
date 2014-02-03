@@ -142,7 +142,7 @@ function theme_myhacpp_p2q4_table($variables) {
     'decision_tree' => array(
       'data' => t('Decision Tree Q\'s !tip !help', array(
         '!tip' => _help_tip(28),
-         '!help' => '<div class="help-text">Please record your answers to each decision tree question below, selecting n/a if a question is not relevant.</div>'
+         '!help' => '<div class="help-text">Please record your answers to each decision tree question below, selecting N/A if a question is not relevant.</div>'
       )),
       'class' => array('decision-tree'),
     ),

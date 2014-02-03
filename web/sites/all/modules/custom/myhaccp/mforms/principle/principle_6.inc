@@ -53,7 +53,8 @@ function principle_6(&$form_state, &$next_step) {
   );
 
   $form['principle_6']['responsible'] = array(
-    '#type' => 'textfield',
+    '#type' => 'textarea',
+    '#resizable' => FALSE,
     '#title' => t('2. Who is responsible for ensuring the contents of the HACCP plan are validated?'),
     '#default_value' => array_get($values, "principle_6.responsible", FALSE),
     '#attributes' => array(

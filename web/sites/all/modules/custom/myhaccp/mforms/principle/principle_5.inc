@@ -208,37 +208,18 @@ function principle_5_validate($form, &$form_state) {
 
     // Check for content in visible questions.
     $checks = array(
-      "principle_5.$key.activities" => '_text_field_is_empty',
-      "principle_5.$key.frequency" => '_text_field_is_empty',
-      "principle_5.$key.carried_out" => '_text_field_is_empty',
-      "principle_5.$key.responsible" => '_text_field_is_empty',
-      "principle_5.$key.deputy" => '_radios_field_is_empty',
-      "principle_5.$key.location" => '_text_field_is_empty',
-      "principle_5.$key.checked" => '_radios_field_is_empty',
+      "principle_5.$key.action" => '_text_field_is_empty',
+      "principle_5.$key.authority" => '_text_field_is_empty',
+      "principle_5.$key.product" => '_text_field_is_empty',
+      "principle_5.$key.document_location" => '_text_field_is_empty',
+      "principle_5.$key.trained" => '_radios_field_is_empty',
+      "principle_5.$key.competencies" => '_radios_field_is_empty',
     );
 
     foreach ($checks as $target => $callback) {
       $invalid[] = _check_validation($callback, $target, $form, $form_state);
     }
 
-    // Now check if the radio button in 5 is set to yes.
-    if (array_get($form_state['values'], "principle_5.$key.deputy", FALSE) == 'yes') {
-      // Now check that the dependent fields 5a has something in it.
-      $invalid[] = _check_validation('_text_field_is_empty', "principle_5.$key.deputy_name", $form, $form_state);
-    }
-
-    // Now check if the radio button in 7 is set to yes.
-    if (array_get($form_state['values'], "principle_5.$key.checked", FALSE) == 'yes') {
-      // Now check that both dependent fields 7a and 7b have something in them.
-      $checks = array(
-        "principle_5.$key.record_name" => '_text_field_is_empty',
-        "principle_5.$key.record_frequency" => '_text_field_is_empty',
-      );
-
-      foreach ($checks as $target => $callback) {
-        $invalid[] = _check_validation($callback, $target, $form, $form_state);
-      }
-    }
   }
 
   // Check to see whether we have failed validation and therefore should store
