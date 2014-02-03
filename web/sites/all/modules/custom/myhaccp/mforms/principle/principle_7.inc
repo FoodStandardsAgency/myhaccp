@@ -42,14 +42,9 @@ function principle_7(&$form_state, &$next_step) {
 
   // Now the form fields.
 
-  $form['principle_7']['documentation'] = array(
-    '#type' => 'container',
-    '#prefix' => '<div class="label">Mark all forms of documentation relating to the HACCP study that your organisation retain.</div>',
-  );
-
-  $form['principle_7']['documentation']['study'] = array(
+  $form['principle_7']['study'] = array(
     '#type' => 'checkboxes',
-    '#title' => t(''),
+    '#title' => t('Mark all forms of documentation relating to the HACCP study that your organisation retain.'),
     '#options' => array(
       'scope' => 'Scope of the study',
       'reference' => 'Reference to prerequisite programmes',
@@ -57,15 +52,7 @@ function principle_7(&$form_state, &$next_step) {
       'product' => 'Product description',
       'use' => 'Intended use of the product',
       'flow' => 'Flow diagram, and the confirmation that it is correct',
-      'hazards' => 'Relevant hazards (as determined from the hazard analysis) and control',
-    ),
-    '#default_value' => array_get($values, "principle_7.documentation.study", array()),
-  );
-
-  $form['principle_7']['documentation']['measures'] = array(
-    '#type' => 'checkboxes',
-    '#title' => t('Measures'),
-    '#options' => array(
+      'hazards' => 'Relevant hazards (as determined from the hazard analysis) and control measures',
       'details' => 'Details of all CCP’s that have been determined',
       'evidence' => 'Evidence of how CCP’s were determined',
       'ccps' => 'The critical limits at the CCP’s, with targets and tolerances where relevant',
@@ -75,7 +62,11 @@ function principle_7(&$form_state, &$next_step) {
       'verification' => 'Details of verification activities, including the programme for scheduled review and a list of factors that should initiate a review',
       'procedures' => 'Reference to relevant procedures/work instructions and record forms',
     ),
-    '#default_value' => array_get($values, "principle_7.documentation.measures", array()),
+    '#default_value' => array_get($values, "principle_7.study", array()),
+    '#attributes' => array(
+      'data-parsley-required' => TRUE,
+      'data-parsley-error-message' => t('Please specify the maximum length of time that you retain this information for.'),
+    ),
   );
 
   $form['principle_7']['supporting'] = array(
@@ -129,22 +120,14 @@ function principle_7(&$form_state, &$next_step) {
 function principle_7_validate($form, &$form_state) {
   $invalid = array();
 
-  $q11 = _checkboxes_field_is_empty($form_state['values'], 'principle_7.documentation.study');
-  $q12 = _checkboxes_field_is_empty($form_state['values'], 'principle_7.documentation.measures');
-  $q2 = _text_field_is_empty($form_state['values'], 'principle_7.supporting');
+  $checks = array(
+    'principle_7.controlled' => '_text_field_is_empty',
+    'principle_7.time' => '_text_field_is_empty',
+    'principle_7.maintained' => '_text_field_is_empty',
+  );
 
-  // Check if there has been a response to question 1 or 2.
-  if ((!$q11 || !$q12) || !$q2) {
-    // In which case we need to check these three fields for values.
-    $checks = array(
-      'principle_7.controlled' => '_text_field_is_empty',
-      'principle_7.time' => '_text_field_is_empty',
-      'principle_7.maintained' => '_text_field_is_empty',
-    );
-
-    foreach ($checks as $target => $callback) {
-      $invalid[] = _check_validation($callback, $target, $form, $form_state);
-    }
+  foreach ($checks as $target => $callback) {
+    $invalid[] = _check_validation($callback, $target, $form, $form_state);
   }
 
   // Check to see whether we have failed validation and therefore should store

@@ -79,14 +79,14 @@ function principle_6(&$form_state, &$next_step) {
 
   $form['principle_6']['sign_off'] = array(
     '#type' => 'textfield',
-    '#title' => t('3a. Who is responsible for ensuring the contents of the HACCP plan are validated?'),
+    '#title' => t('3a. Who will formally sign off the HACCP plan?'),
     '#default_value' => array_get($values, "principle_6.sign_off", FALSE),
     '#attributes' => array(
       'data-parsley-error-message' => t('Please state who is responsible for ensuring the contents of the HACCP plan are validated.'),
     ),
     '#states' => array(
       'visible' => array(
-        ':input[name="principle_6[trained]"]' => array('value' => 'yes'),
+        ':input[name="principle_6[trained]"]' => array('value' => 'no'),
       ),
     ),
   );
@@ -209,7 +209,7 @@ function principle_6(&$form_state, &$next_step) {
 
   $form['principle_6']['triggers'] = array(
     '#type' => 'checkboxes',
-    '#title' => t('Mark any of the following ‘triggers’ that will initiate a review in your organisation:'),
+    '#title' => t("Mark any of the following 'triggers' that will initiate a review in your organisation:"),
     '#options' => array(
       'advances' => 'Technological advances in production',
       'controls' => 'New controls that become available',
@@ -230,7 +230,7 @@ function principle_6(&$form_state, &$next_step) {
       'unexpected' => 'Unexpected use of product by the consumer',
       'changes_environmental' => 'Environmental changes/issues (i.e. local changes external to the food operation; climate changes)',
     ),
-    '#default_value' => array_get($values, "principle_6.verification.triggers", array()),
+    '#default_value' => array_get($values, "principle_6.triggers", array()),
   );
 
   $form['principle_6']['mechanisms'] = array(
