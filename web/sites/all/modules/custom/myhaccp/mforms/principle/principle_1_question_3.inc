@@ -104,7 +104,7 @@ function principle_1_question_3(&$form_state, &$next_step) {
 
     $form['principle_1_question_3']['instance_table']['row_' . $key]['control_measure'] = array(
       '#type' => 'textarea',
-      '#help_text' => t('For each signifiant hazard, please specify the control measure.'),
+      '#help_text' => t('For each significant hazard, please specify the control measure.'),
       '#resizable' => FALSE,
       '#default_value' => array_get($values, "principle_1_question_3.instance_table.row_$key.control_measure", FALSE),
       '#attributes' => array(

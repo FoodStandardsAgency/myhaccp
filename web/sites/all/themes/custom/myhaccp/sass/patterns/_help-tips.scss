@@ -18,6 +18,18 @@
   }
 }
 
+// Reset the help tips in table headers to normal static positioning. Note that
+// we may want to just remove the position:relative from the help-tip class.
+table {
+  thead {
+    th {
+      .help-tip {
+        position: static;
+      }
+    }
+  }
+}
+
 // Hide the help tip text if javascript is enabled. If javascript is disabled
 // the help text will display beneath the label.
 .js {
@@ -33,10 +45,10 @@
 
 // Custom qtip styles.
 .qtip-haccp {
-  border-width: 1px;
+  border-width: 4px;
   border-style: solid;
-  border-color: $page_background;
-  background-color: $help-tips;
+  border-color: $accent-1;
+  background-color: #FFF;
   color: $text;
   font-size: 1em;
   line-height: normal;
@@ -54,5 +66,9 @@
     border-color: #CCC;
     background: #F1F1F1;
     color: #777;
+  }
+  a:link,
+  a:visited {
+    font-weight: bold;
   }
 }

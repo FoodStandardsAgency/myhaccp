@@ -162,9 +162,32 @@ function myhaccp_myhaccp_mforms_init() {
       'value' => '2.2',
       'weight' => 15,
     ),
+    'principle_3' => array(
+      'stage' => 'principles',
+      'value' => '3',
+      'weight' => 16,
+    ),
+    'principle_4' => array(
+      'stage' => 'principles',
+      'value' => '4',
+      'weight' => 17,
+    ),
+    'principle_5' => array(
+      'stage' => 'principles',
+      'value' => '5',
+      'weight' => 18,
+    ),
+    'principle_6' => array(
+      'stage' => 'principles',
+      'value' => '6',
+      'weight' => 19,
+    ),
+    'principle_7' => array(
+      'stage' => 'principles',
+      'value' => '7',
+      'weight' => 20,
+    ),
   ));
-
-//  $controls->ajaxify();
 
   // Add the parsley.js library.
   $path = libraries_get_path('parsleyjs');
@@ -298,6 +321,11 @@ function _get_all_steps() {
     'principle_1_question_3' => 'principle',
     'principle_2_question_1_3' => 'principle',
     'principle_2_question_4' => 'principle',
+    'principle_3' => 'principle',
+    'principle_4' => 'principle',
+    'principle_5' => 'principle',
+    'principle_6' => 'principle',
+    'principle_7' => 'principle',
   );
   return $files;
 }
@@ -471,6 +499,27 @@ function _checkbox_field_is_empty($values, $element) {
 function _radios_field_is_empty($values, $element) {
   // Just use the text field function as its the same.
   return _text_field_is_empty($values, $element);
+}
+
+/**
+ * Checks whether a specific option has not been chosen in radio fields.
+ *
+ * @param string $check_value
+ *   The value to check for.
+ * @param array $values
+ *   The values of form_state to check.
+ * @param array $element
+ *   The $form element to check.
+ *
+ * @return bool
+ *   FALSE if the radio option selected is equal to the check_value.
+ */
+function _radios_field_is_not_value($check_value, $values, $element) {
+  $value = array_get($values, $element, FALSE);
+  if ($value && $value == $check_value) {
+    return FALSE;
+  }
+  return TRUE;
 }
 
 /**

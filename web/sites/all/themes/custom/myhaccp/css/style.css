@@ -1271,17 +1271,25 @@ select:focus {
 }
 
 .prep-d .form-radios .form-item, .prep-f .form-radios .form-item,
-.prep-h .form-radios .form-item, .principle-2-question-4 td > .form-radios .form-item {
+.prep-h .form-radios .form-item, .principle-2-question-1-3 .form-radios .form-item, .principle-2-question-4 td > .form-radios .form-item, .principle-3 .form-radios .form-item,
+.principle-4 .form-radios .form-item,
+.principle-5 .form-radios .form-item, .principle-6 .form-radios .form-item {
   display: inline;
 }
 .prep-d .form-radios label, .prep-d .form-item-prep-d-team-skills .form-radios label, .prep-f .form-radios label,
-.prep-h .form-radios label, .principle-2-question-4 td > .form-radios label, .prep-d .form-radios input, .prep-d .form-item-prep-d-team-skills .form-radios input, .prep-f .form-radios input,
-.prep-h .form-radios input, .principle-2-question-4 td > .form-radios input {
+.prep-h .form-radios label, .principle-2-question-1-3 .form-radios label, .principle-2-question-4 td > .form-radios label, .principle-3 .form-radios label,
+.principle-4 .form-radios label,
+.principle-5 .form-radios label, .principle-6 .form-radios label, .prep-d .form-radios input, .prep-d .form-item-prep-d-team-skills .form-radios input, .prep-f .form-radios input,
+.prep-h .form-radios input, .principle-2-question-1-3 .form-radios input, .principle-2-question-4 td > .form-radios input, .principle-3 .form-radios input,
+.principle-4 .form-radios input,
+.principle-5 .form-radios input, .principle-6 .form-radios input {
   display: inline;
   margin-right: 0.25em;
 }
 .prep-d .form-radios input, .prep-d .form-item-prep-d-team-skills .form-radios input, .prep-f .form-radios input,
-.prep-h .form-radios input, .principle-2-question-4 td > .form-radios input {
+.prep-h .form-radios input, .principle-2-question-1-3 .form-radios input, .principle-2-question-4 td > .form-radios input, .principle-3 .form-radios input,
+.principle-4 .form-radios input,
+.principle-5 .form-radios input, .principle-6 .form-radios input {
   vertical-align: baseline;
 }
 
@@ -1984,14 +1992,28 @@ div.teaser-checkbox .form-item,
   width: 3em;
   min-width: 3em;
 }
-.p1q1-step .form-item input.step-name {
-  width: 20em;
-  min-width: 20em;
+@media all and (min-width: 860px) {
+  .p1q1-step .form-item input.step-name {
+    width: 20em;
+    min-width: 20em;
+  }
+}
+@media all and (min-width: 1250px) {
+  .p1q1-step .form-item input.step-name {
+    width: 35em;
+    min-width: 35em;
+  }
 }
 
 /** Principle 1, Q2 **/
 .principle-1-question-2 table {
   width: 100%;
+}
+.principle-1-question-2 table .form-type-textarea {
+  width: 409px;
+}
+.principle-1-question-2 table .form-type-textarea textarea {
+  width: 400px;
 }
 .principle-1-question-2 table th.severity,
 .principle-1-question-2 table th.likelihood,
@@ -2008,7 +2030,7 @@ div.teaser-checkbox .form-item,
   width: 3em;
 }
 
-/** Principle 2.2 **/
+/** Principle 2 **/
 .principle-2-question-4 table td {
   vertical-align: top;
 }
@@ -2035,6 +2057,39 @@ div.teaser-checkbox .form-item,
   vertical-align: baseline;
 }
 
+/** Principle 3, 4 & 5 **/
+.principle-3 .ccp-number .label,
+.principle-3 .process-step .label,
+.principle-3 .hazard .label,
+.principle-3 .control-measure .label,
+.principle-4 .ccp-number .label,
+.principle-4 .process-step .label,
+.principle-4 .hazard .label,
+.principle-4 .control-measure .label,
+.principle-5 .ccp-number .label,
+.principle-5 .process-step .label,
+.principle-5 .hazard .label,
+.principle-5 .control-measure .label {
+  font-weight: bold;
+}
+.principle-3 .control-measure,
+.principle-4 .control-measure,
+.principle-5 .control-measure {
+  margin-bottom: 1em;
+}
+.principle-3 .form-wrapper,
+.principle-4 .form-wrapper,
+.principle-5 .form-wrapper {
+  margin-bottom: 1em;
+  border-bottom: 1px solid black;
+}
+.principle-3 .form-wrapper:last-child,
+.principle-4 .form-wrapper:last-child,
+.principle-5 .form-wrapper:last-child {
+  border-bottom: none;
+}
+
+/** Principle 6 **/
 /**
  * The pager element
  * Displayed at the top of the tool
@@ -2385,15 +2440,19 @@ footer[role=contentinfo] {
   color: #FFFFFF;
 }
 
+table thead th .help-tip {
+  position: static;
+}
+
 .js .help-text {
   display: none;
 }
 
 .qtip-haccp {
-  border-width: 1px;
+  border-width: 4px;
   border-style: solid;
-  border-color: #fafafa;
-  background-color: lightgrey;
+  border-color: #6cb33f;
+  background-color: #FFF;
   color: black;
   font-size: 1em;
   line-height: normal;
@@ -2411,6 +2470,10 @@ footer[role=contentinfo] {
   border-color: #CCC;
   background: #F1F1F1;
   color: #777;
+}
+.qtip-haccp a:link,
+.qtip-haccp a:visited {
+  font-weight: bold;
 }
 
 .node-homepage.view-mode-full {
@@ -3084,7 +3147,8 @@ p.intro {
   color: #676767;
 }
 
-a:link {
+a:link,
+a:visited {
   text-decoration: none;
   color: #006f51;
 }

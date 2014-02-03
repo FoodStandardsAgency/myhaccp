@@ -6,7 +6,7 @@
 function principle_2_question_4(&$form_state, &$next_step) {
   // Define following step callback. If none set, that implies it is
   // the last step.
-  $next_step = 'principle_2_question_4';
+  $next_step = 'principle_3';
 
   // Retrieve submitted values.
   $data = mforms_get_vals('myhaccp', 'principle_2_question_4');
@@ -80,6 +80,8 @@ function principle_2_question_4(&$form_state, &$next_step) {
 
   // Build out the rows (three columns).
   foreach ($items as $key => $item) {
+    // Prepare the hazard.
+    $hazard = $item;
     // Prepare the text.
     $process_step_text = '(' . $item['step_number'] . ') ' . $item['step_name'];
     // The hazard column text.
@@ -90,7 +92,9 @@ function principle_2_question_4(&$form_state, &$next_step) {
     );
 
     $form['principle_2_question_4']['instance_table']['row_' . $key]['hazard'] = array(
-      '#markup' => $hazard_text,
+      '#type' => 'hidden',
+      '#value' => serialize($hazard),
+      '#prefix' => $hazard_text,
     );
 
     $form['principle_2_question_4']['instance_table']['row_' . $key]['control_measure'] = array(

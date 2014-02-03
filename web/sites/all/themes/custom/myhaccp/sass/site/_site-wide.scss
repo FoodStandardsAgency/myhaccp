@@ -13,7 +13,8 @@ p.intro {
   color: $text-lighter;
 }
 
-a:link {
+a:link,
+a:visited {
   text-decoration: none;
   color: $base_color;
 }
