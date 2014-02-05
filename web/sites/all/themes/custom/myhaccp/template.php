@@ -179,9 +179,38 @@ function myhaccp_form_element_label($variables) {
 
   $output = $label;
 
+  // Add the help text for non-javascript users. This will get moved into a
+  // tooltip for javascript browsers.
   if (isset($element['#help_text'])) {
     $message = $element['#help_text'];
-    $output .= ' <div class="help-text">' . $message . '</div>';
+    $link = ' ';
+    // Prepare the more link if needed.
+    if (isset($element['#help_link'])) {
+      // Add the ajax library.
+      drupal_add_library('system', 'drupal.ajax');
+      // Prepare the options.
+      $options = array(
+        'html' => TRUE,
+        'attributes' => array(
+          'class' => array(
+            'use-ajax',
+            'ctools-modal-myhaccp-style',
+            'more-link',
+          ),
+          'title' => 'Link through to further guidance on this subject.',
+          'target' => '_blank',
+        ),
+      );
+      $destination = 'help/nojs/' . $element['#help_link'];
+
+//      ctools_modal_text_button($name, $href, t('View node content for @name', array('@name' => $name)), 'ctools-modal-happy-modal-style');
+
+      // Prepare the link.
+      $link .= l(t('More information &raquo;'), $destination, $options);
+    }
+
+    // Output the message and the link.
+    $output .= ' <div class="help-text">' . $message . $link . '</div>';
   }
 
   return $output;

@@ -12,13 +12,13 @@
           // Disable the usual click event on the button.
           $(this).click(false);
 
-          // Fetch the anchor destination from the element. There may not be any
-          // guidance in which case don't add the more info link.
-          var href = $(this).attr('href');
-          if (href !== '#') {
-            var help_link = ' <a class="more-information" target="_blank" href="' + href + '">More information</a>';
-            help_text.append(help_link);
-          }
+//          // Fetch the anchor destination from the element. There may not be any
+//          // guidance in which case don't add the more info link.
+//          var href = $(this).attr('href');
+//          if (href !== '#') {
+//            var help_link = ' <a class="more-information" target="_blank" href="' + href + '">More information</a>';
+//            help_text.append(help_link);
+//          }
           // Enable the qtip on the button.
           $(this).qtip({
             content: {
@@ -45,6 +45,11 @@
           });
         }
       });
+
+      $('.more-link').click(function() {
+        $('div.qtip:visible').qtip('hide');
+      });
+
     }
   }
 

@@ -31,6 +31,7 @@ function preparatory_e(&$form_state, &$next_step) {
     '#title' => t('1. List all the ingredients with the supplier for each in brackets. !tip', array(
       '!tip' => _help_tip(18),
     )),
+    '#help_link' => 18,
     '#help_text' => t('A full description of the finished product  or intermediate product (depending what your HACCP study covers should be provided.  This should include every ingredient that is used in the product and the supplier.'),
     '#default_value' => array_get($values, 'preparatory_e.ingredients', FALSE),
     '#resizable' => FALSE,
@@ -46,6 +47,7 @@ function preparatory_e(&$form_state, &$next_step) {
     '#title' => t('2. State the physical properties (a<sub>w</sub>,pH,emulsion). !tip', array(
       '!tip' => _help_tip(18),
     )),
+    '#help_link' => 18,
     '#help_text' => t('E.g. a<sub>w</sub> 0.93, pH 4.5.'),
     '#default_value' => array_get($values, 'preparatory_e.properties', FALSE),
     '#resizable' => FALSE,
@@ -61,6 +63,8 @@ function preparatory_e(&$form_state, &$next_step) {
     '#title' => t('3. Describe how the product has been processed and/or other preservation methods. !tip', array(
       '!tip' => _help_tip(18),
     )),
+    '#help_link' => 18,
+'#help_link' => 18,
     '#help_text' => t('Has the product been sterilised, pasteurised, smoked?'),
     '#default_value' => array_get($values, 'preparatory_e.processed', FALSE),
     '#resizable' => FALSE,
@@ -76,6 +80,8 @@ function preparatory_e(&$form_state, &$next_step) {
     '#title' => t('4. How was the product packed and what are the packaging materials? !tip', array(
       '!tip' => _help_tip(18),
     )),
+    '#help_link' => 18,
+    '#help_link' => 18,
     '#help_text' => t('e.g. Is it packed into glass bottles, flexible pouches, aseptically packed?'),
     '#default_value' => array_get($values, 'preparatory_e.packed', FALSE),
     '#resizable' => FALSE,
@@ -91,6 +97,7 @@ function preparatory_e(&$form_state, &$next_step) {
     '#title' => t('5. How is the product going to be stored and distributed? !tip', array(
       '!tip' => _help_tip(18),
     )),
+    '#help_link' => 18,
     '#default_value' => array_get($values, 'preparatory_e.stored', FALSE),
     '#resizable' => FALSE,
     '#help_text' => t('e.g. Is it to be stored frozen , ambient or chilled? Is it to be distributed frozen, ambient or chilled.'),
@@ -106,6 +113,7 @@ function preparatory_e(&$form_state, &$next_step) {
     '#title' => t('6. State the shelf-life of the product. !tip', array(
       '!tip' => _help_tip(18),
     )),
+    '#help_link' => 18,
     '#help_text' => t('Under the  prescribed conditions what is the use by date or best before date e.g. Use By 3 months from date of purchase or best before  4 months from date of manufacture.'),
     '#default_value' => array_get($values, 'preparatory_e.shelf_life', FALSE),
     '#resizable' => FALSE,
@@ -121,6 +129,7 @@ function preparatory_e(&$form_state, &$next_step) {
     '#title' => t('7. State how the product is to be stored and handled. !tip', array(
       '!tip' => _help_tip(18),
     )),
+    '#help_link' => 18,
     '#help_text' => t('e.g. store in a cool place away from direct light, defrost thoroughly before cooking, cook for 15 minutes at 220°C.'),
     '#default_value' => array_get($values, 'preparatory_e.handled', FALSE),
     '#resizable' => FALSE,
