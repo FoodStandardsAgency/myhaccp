@@ -29,6 +29,7 @@ function preparatory_a(&$form_state, &$next_step) {
     '#title' => t('Mark all boxes where you can demonstrate that you have control of the prerequisites !tip', array(
       '!tip' => _help_tip(13),
     )),
+    '#help_link' => 13,
     '#help_text' => t("These are 'pre-requirements' to the application and implementation of a HACCP system, to demonstrate you have control they should be well established, fully operational (including records) and verified."),
     '#options' => array_flip(drupal_map_assoc(array(
       t('Supplier approval'),
@@ -80,6 +81,7 @@ function preparatory_a(&$form_state, &$next_step) {
     '#title' => t('Please specify the location of the above documents. !tip', array(
       '!tip' => _help_tip(13),
     )),
+    '#help_link' => 13,
     '#help_text' => t("State where you have stored the information.  You may wish to specify a manual e.g. manual of prerequisites,  where information on these is filed e.g. all documents filed under prerequisites, cabinet 1 or reference a particular document e.g.  PRP 01."),
     '#default_value' => array_get($values, 'preparatory_a.location', FALSE),
     '#attributes' => array(

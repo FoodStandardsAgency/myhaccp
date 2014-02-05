@@ -64,6 +64,7 @@ function principle_1_question_1(&$form_state, &$next_step) {
       '#title' => t('Step no. !tip', array(
         '!tip' => _help_tip(16),
       )),
+      '#help_link' => 16,
       '#help_text' => t('Number of process step.'),
       '#default_value' => array_get($values, "principle_1_question_1.instance_$i.wrapper.step_no", FALSE),
       '#attributes' => array(
@@ -80,6 +81,7 @@ function principle_1_question_1(&$form_state, &$next_step) {
       '#title' => t('Step name !tip', array(
         '!tip' => _help_tip(16),
       )),
+      '#help_link' => 16,
       '#help_text' => t('Name of process step.'),
       '#default_value' => array_get($values, "principle_1_question_1.instance_$i.wrapper.step_name", FALSE),
       '#attributes' => array(
@@ -113,6 +115,7 @@ function principle_1_question_1(&$form_state, &$next_step) {
       '#title' => t('Biological !tip', array(
         '!tip' => _help_tip(16),
       )),
+      '#help_link' => 16,
       '#help_text' => t('List all biological hazards e.g. Salmonella spp., Listeria spp., Norovirus.'),
       '#default_value' => array_get($values, "principle_1_question_1.instance_$i.hazards_wrapper.biological", FALSE),
     );
@@ -124,6 +127,7 @@ function principle_1_question_1(&$form_state, &$next_step) {
       '#title' => t('Chemical !tip', array(
         '!tip' => _help_tip(16),
       )),
+      '#help_link' => 16,
       '#help_text' => t('List all chemical hazards e.g nitrate, patulin, cadmium.'),
       '#default_value' => array_get($values, "principle_1_question_1.instance_$i.hazards_wrapper.chemical", FALSE),
     );
@@ -135,6 +139,7 @@ function principle_1_question_1(&$form_state, &$next_step) {
       '#title' => t('Physical !tip', array(
         '!tip' => _help_tip(16),
       )),
+      '#help_link' => 16,
       '#help_text' => t('List all physical hazards e.g. stones, metal, wood.'),
       '#default_value' => array_get($values, "principle_1_question_1.instance_$i.hazards_wrapper.physical", FALSE),
     );
@@ -146,6 +151,7 @@ function principle_1_question_1(&$form_state, &$next_step) {
       '#title' => t('Allergens !tip', array(
         '!tip' => _help_tip(16),
       )),
+      '#help_link' => 16,
       '#help_text' => t('List all substances or products that cause allergies or intolerances e.g.  celery, sesame seeds, egg.'),
       '#default_value' => array_get($values, "principle_1_question_1.instance_$i.hazards_wrapper.allergens", FALSE),
     );

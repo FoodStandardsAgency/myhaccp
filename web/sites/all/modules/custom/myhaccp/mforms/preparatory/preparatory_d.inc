@@ -48,6 +48,7 @@ function preparatory_d(&$form_state, &$next_step) {
       '#title' => t('Name of HACCP team member: !tip', array(
         '!tip' => _help_tip(21),
       )),
+      '#help_link' => 21,
       '#default_value' => array_get($values, "preparatory_d.instance_$i.team_name", FALSE),
       '#help_text' => t("State the person's name."),
       '#attributes' => array(
@@ -72,6 +73,7 @@ function preparatory_d(&$form_state, &$next_step) {
       '#title' => t('Is this person Internal or External to the company? !tip', array(
         '!tip' => _help_tip(21),
       )),
+      '#help_link' => 21,
       '#help_text' => t("State if the person is an employee of the company (internal) or not (external)."),
       '#default_value' => array_get($values, "preparatory_d.instance_$i.team_external", FALSE),
     );
@@ -83,6 +85,7 @@ function preparatory_d(&$form_state, &$next_step) {
       '#title' => t('What is the role of this individual in the HACCP team? !tip', array(
         '!tip' => _help_tip(21),
       )),
+      '#help_link' => 21,
       '#help_text' => t("For example, QA Manager to provide technical expertise, Consultant to provide knowledge of HACCP and expertise from a chemical and biological hazard perspective."),
       '#default_value' => array_get($values, "preparatory_d.instance_$i.team_role", FALSE),
       '#attributes' => array(
@@ -103,6 +106,7 @@ function preparatory_d(&$form_state, &$next_step) {
       '#title' => t('Relevant training !tip', array(
         '!tip' => _help_tip(21),
       )),
+      '#help_link' => 21,
       '#help_text' => t("What training has this person undertaken that is specific to the support they can provide e.g HACCP (state level), Food safety (state level), Internal auditing."),
       '#default_value' => array_get($values, "preparatory_d.instance_$i.wrapper.team_training", FALSE),
       '#attributes' => array(
@@ -118,6 +122,7 @@ function preparatory_d(&$form_state, &$next_step) {
       '#title' => t('Qualifications !tip', array(
         '!tip' => _help_tip(21),
       )),
+      '#help_link' => 21,
       '#help_text' => t("Provide details of their qualifications e.g. BSc Biochemistry, CIEH Intermediate food safety, MSc  Food Science, Management and Hygiene."),
       '#default_value' => array_get($values, "preparatory_d.instance_$i.wrapper.team_qualifications", FALSE),
       '#attributes' => array(
@@ -133,6 +138,7 @@ function preparatory_d(&$form_state, &$next_step) {
       '#title' => t('Relevant experience !tip', array(
         '!tip' => _help_tip(21),
       )),
+      '#help_link' => 21,
       '#help_text' => t("Detail only that experience that is applicable to their involvement with the HACCP study e.g. 1 year as a chemical hazard scientist, 2 years working with the customer complaints team."),
       '#default_value' => array_get($values, "preparatory_d.instance_$i.wrapper.team_experience", FALSE),
       '#attributes' => array(
@@ -166,6 +172,7 @@ function preparatory_d(&$form_state, &$next_step) {
     '#title' => t('Do you consider the team to have sufficient skills (scientific/technical knowledge and HACCP expertise) to ensure the HACCP study will be effective? !tip', array(
       '!tip' => _help_tip(21),
     )),
+    '#help_link' => 21,
     '#help_text' => t("State the person's name."),
     '#default_value' => array_get($values, 'preparatory_d.team_skills', FALSE),
     '#attributes' => array(

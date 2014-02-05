@@ -737,3 +737,34 @@ function myhaccp_help_modal($js = FALSE, $nid = FALSE) {
   // We don't have js so forward on to the help node.
   drupal_goto('node/' . $nid);
 }
+
+/**
+ * Prepares an ajax enabled modal link for help text.
+ *
+ * @param int $nid
+ *   The node ID to link to.
+ *
+ * @return string
+ *   The rendered link.
+ */
+function myhaccp_prepare_more_link($nid) {
+  // Add the ajax library.
+  drupal_add_library('system', 'drupal.ajax');
+  // Prepare the options.
+  $options = array(
+    'html' => TRUE,
+    'attributes' => array(
+      'class' => array(
+        'use-ajax',
+        'ctools-modal-myhaccp-style',
+        'more-link',
+      ),
+      'title' => 'Link through to further guidance on this subject.',
+      'target' => '_blank',
+    ),
+  );
+  $destination = 'help/nojs/' . $nid;
+
+  // Return the link.
+  return l(t('More information &raquo;'), $destination, $options);
+}

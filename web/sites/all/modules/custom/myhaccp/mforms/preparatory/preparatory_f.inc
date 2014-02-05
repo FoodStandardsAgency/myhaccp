@@ -31,6 +31,7 @@ function preparatory_f(&$form_state, &$next_step) {
     '#title' => t('1. Name of the product: !tip', array(
       '!tip' => _help_tip(19),
     )),
+    '#help_link' => 19,
     '#help_text' => t('Specify the name.'),
     '#default_value' => array_get($values, 'preparatory_f.name', FALSE),
     '#attributes' => array(
@@ -49,6 +50,7 @@ function preparatory_f(&$form_state, &$next_step) {
     '#title' => t('2. Is the product designed for the young? !tip', array(
       '!tip' => _help_tip(19),
     )),
+    '#help_link' => 19,
     '#help_text' => t('Babies are more vulnerable to choking hazards certain products are not recommended to be consumed by babies e.g. honey.'),
     '#default_value' => array_get($values, 'preparatory_f.young', array()),
     '#attributes' => array(
@@ -67,6 +69,7 @@ function preparatory_f(&$form_state, &$next_step) {
     '#title' => t('3. Is the product designed for the elderly? !tip', array(
       '!tip' => _help_tip(19),
     )),
+    '#help_link' => 19,
     '#help_text' => t('Elderly people may require that food is of a smaller size than that to be consumed by non-vulnerable groups.'),
     '#default_value' => array_get($values, 'preparatory_f.elderly', array()),
     '#attributes' => array(
@@ -85,6 +88,7 @@ function preparatory_f(&$form_state, &$next_step) {
     '#title' => t('4. Is the product designed for pregnant ladies? !tip', array(
       '!tip' => _help_tip(19),
     )),
+    '#help_link' => 19,
     '#help_text' => t('Certain foods should not be consumed by pregnant ladies because they contain certain microorganisms that may cause a still birth, miscarriage or severe illness.'),
     '#default_value' => array_get($values, 'preparatory_f.pregnant', array()),
     '#attributes' => array(
@@ -103,6 +107,7 @@ function preparatory_f(&$form_state, &$next_step) {
     '#title' => t('5. Is the product designed for the immunosuppressed / immunocompromised? !tip', array(
       '!tip' => _help_tip(19),
     )),
+    '#help_link' => 19,
     '#help_text' => t('Consider the use of low microbial diets to reduce the risk of foodborne disease.'),
     '#default_value' => array_get($values, 'preparatory_f.immuno', array()),
     '#help_text' => t('State how the product should be kept  (during storage and distribution of the product) e.g. product to be kept chilled, frozen or heated.'),
@@ -122,6 +127,7 @@ function preparatory_f(&$form_state, &$next_step) {
     '#title' => t('6. Is the product suitable for people with allergies or intolerances? !tip', array(
       '!tip' => _help_tip(19),
     )),
+    '#help_link' => 19,
     '#help_text' => t('Does the product contain any ingredients from the list on substances or products causing allergies or intolerances.'),
     '#default_value' => array_get($values, 'preparatory_f.allergies', array()),
     '#attributes' => array(
@@ -141,6 +147,7 @@ function preparatory_f(&$form_state, &$next_step) {
     '#title' => t('7. Are there any other groups of people that may consume your product that require special consideration? !tip', array(
       '!tip' => _help_tip(19),
     )),
+    '#help_link' => 19,
     '#help_text' => t('List any others if not considered in steps 2-6.'),
     '#default_value' => array_get($values, 'preparatory_f.special', array()),
     '#attributes' => array(
@@ -160,6 +167,7 @@ function preparatory_f(&$form_state, &$next_step) {
     '#title' => t('8. Is it possible that your product could be consumed by someone other than those for whom it is intended? !tip', array(
       '!tip' => _help_tip(19),
     )),
+    '#help_link' => 19,
     '#help_text' => t('Consider this for all vulnerable groups e.g. could a pregnant person consume your product? Could a baby be fed your product?'),
     '#default_value' => array_get($values, 'preparatory_f.intended', array()),
     '#attributes' => array(
@@ -175,6 +183,7 @@ function preparatory_f(&$form_state, &$next_step) {
     '#title' => t('9. Detail below how you have considered the likely abuse / unintended use of the product by the consumer. !tip', array(
       '!tip' => _help_tip(19),
     )),
+    '#help_link' => 19,
     '#help_text' => t('e.g. It could be possible that a very young child may be fed this product despite it being aimed at those over 36 months.'),
     '#default_value' => array_get($values, 'preparatory_f.abuse', FALSE),
     '#resizable' => FALSE,

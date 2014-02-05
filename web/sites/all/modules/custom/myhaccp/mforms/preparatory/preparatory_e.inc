@@ -64,7 +64,6 @@ function preparatory_e(&$form_state, &$next_step) {
       '!tip' => _help_tip(18),
     )),
     '#help_link' => 18,
-'#help_link' => 18,
     '#help_text' => t('Has the product been sterilised, pasteurised, smoked?'),
     '#default_value' => array_get($values, 'preparatory_e.processed', FALSE),
     '#resizable' => FALSE,
@@ -80,7 +79,6 @@ function preparatory_e(&$form_state, &$next_step) {
     '#title' => t('4. How was the product packed and what are the packaging materials? !tip', array(
       '!tip' => _help_tip(18),
     )),
-    '#help_link' => 18,
     '#help_link' => 18,
     '#help_text' => t('e.g. Is it packed into glass bottles, flexible pouches, aseptically packed?'),
     '#default_value' => array_get($values, 'preparatory_e.packed', FALSE),

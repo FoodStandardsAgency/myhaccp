@@ -31,6 +31,7 @@ function principle_2_question_1_3(&$form_state, &$next_step) {
     '#title' => t('Are you using a decision tree? !tip', array(
       '!tip' => _help_tip(27),
     )),
+    '#help_link' => 27,
     '#help_text' => t('We recomend using either the Campden or Codex decision trees.'),
     '#options' => array(
       'yes' => t('Yes'),
@@ -54,6 +55,7 @@ function principle_2_question_1_3(&$form_state, &$next_step) {
     '#title' => t('Which decision tree are you using? !tip', array(
       '!tip' => _help_tip(27),
     )),
+    '#help_link' => 27,
     '#help_text' => t('We recomend using either the Campden or Codex decision trees.'),
     '#states' => array(
       'visible' => array(
