@@ -27,32 +27,21 @@ function principle_3(&$form_state, &$next_step) {
     '#tree' => TRUE,
   );
 
+  // Ensure there are hazards over the threshold.
+  if (myhaccp_ensure_over_threshold() == 0) {
+    drupal_set_message('You have no significant hazards so you cannot continue', 'error');
+    return $form;
+  }
+
   // Determine how many instances we need to display. This is based on the data
   // from Principle 1 Question 3.
-  $store = mforms_store_get('myhaccp');
-  // Fetch the previous step data.
-  $steps = MformsSteps::getInstance($store);
-  $prev_step = $steps->getPrev();
-  $previous_data = $store->getStore($prev_step);
-
-  $items = array();
-  $rows = array_get($previous_data, 'principle_2_question_4.instance_table', array());
-  // Iterate through the previous data.
-  foreach ($rows as $key => $item) {
-    if (is_array($item)) {
-      $hazard = unserialize($item['hazard']);
-      // Determine the critical control point.
-      if (!empty($item['ccp']) && $item['ccp'] == 'yes') {
-        $items[] = $hazard;
-      }
-    }
-  }
+  $items = myhaccp_get_ccps();
 
   $instance_count = count($items);
   // Bail out here with a message if there are no instances of the fieldsets
   // filled out correctly in the previous screen.
   if ($instance_count == 0) {
-    drupal_set_message('You have no critical control points');
+    drupal_set_message('You have no critical control points so you cannot continue');
     return $form;
   }
 
@@ -178,7 +167,7 @@ function principle_3(&$form_state, &$next_step) {
 
     $form['principle_3']['instance_' . $key]['target_tolerances'] = array(
       '#type' => 'textfield',
-      '#title' => t('5b. What are the tolerances?'),
+      '#title' => t('5b. Please specify any tolerances'),
       '#default_value' => array_get($values, "principle_3.instance_$key.target_tolerances", FALSE),
       '#states' => array(
         'visible' => array(
@@ -248,7 +237,6 @@ function principle_3_validate($form, &$form_state) {
       // Now check that both dependent fields 5a and 5b have something in them.
       $checks = array(
         "principle_3.$key.target_value" => '_text_field_is_empty',
-        "principle_3.$key.target_tolerances" => '_text_field_is_empty',
       );
 
       foreach ($checks as $target => $callback) {

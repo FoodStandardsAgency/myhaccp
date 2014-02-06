@@ -25,6 +25,20 @@ function principle_2_question_1_3(&$form_state, &$next_step) {
     '#tree' => TRUE,
   );
 
+  // Ensure data has been entered on principle_1_question_1.
+  $principle_1_question_1 = mforms_get_vals('myhaccp', 'principle_1_question_1');
+  if (myhaccp_ensure_hazards_exist($principle_1_question_1) == 0) {
+    // There were no hazards.
+    drupal_set_message('You must add at least a step number and step name in step 1.1 as well as at least a hazard for the step. Please return to 1.1', 'error');
+    return $form;
+  }
+
+  // Ensure there are hazards over the threshold.
+  if (myhaccp_ensure_over_threshold() == 0) {
+    drupal_set_message('You have no significant hazards so you cannot continue', 'error');
+    return $form;
+  }
+
   // 1. Are you using a decision tree?
   $form['principle_2_question_1_3']['decision_tree'] = array(
     '#type' => 'radios',
@@ -109,6 +123,11 @@ function principle_2_question_1_3_validate($form, &$form_state) {
 
   foreach ($checks as $target => $callback) {
     $invalid[] = _check_validation($callback, $target, $form, $form_state);
+  }
+
+  if (array_get($form_state, 'values.principle_2_question_1_3.decision_tree', FALSE) == 'no') {
+    $target = 'principle_2_question_1_3.ccp_decision';
+    $invalid[] = _check_validation('_text_field_is_empty', $target, $form, $form_state);
   }
 
   // Check to see whether we have failed validation and therefore should store

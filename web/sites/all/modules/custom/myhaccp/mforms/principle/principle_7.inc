@@ -44,7 +44,7 @@ function principle_7(&$form_state, &$next_step) {
 
   $form['principle_7']['study'] = array(
     '#type' => 'checkboxes',
-    '#title' => t('Mark all forms of documentation relating to the HACCP study that your organisation retain.'),
+    '#title' => t('1. Mark all forms of documentation relating to the HACCP study that your organisation retain.'),
     '#options' => array(
       'scope' => 'Scope of the study',
       'reference' => 'Reference to prerequisite programmes',
@@ -65,20 +65,22 @@ function principle_7(&$form_state, &$next_step) {
     '#default_value' => array_get($values, "principle_7.study", array()),
     '#attributes' => array(
       'data-parsley-required' => TRUE,
-      'data-parsley-error-message' => t('Please specify the maximum length of time that you retain this information for.'),
+      'data-parsley-error-message' => t('Please choose at least one option.'),
+      'data-parsley-group' => 'study',
+      'data-parsley-error-container' => '#edit-principle-7-study',
     ),
   );
 
   $form['principle_7']['supporting'] = array(
     '#type' => 'textarea',
     '#resizable' => FALSE,
-    '#title' => t('Detail any other supporting information (i.e. anything that covers the HACCP system operation) that is retained.'),
+    '#title' => t('2. Detail any other supporting information (i.e. anything that covers the HACCP system operation) that is retained.'),
     '#default_value' => array_get($values, "principle_7.supporting", FALSE),
   );
 
   $form['principle_7']['controlled'] = array(
     '#type' => 'textfield',
-    '#title' => t('How is documentation controlled (up-dates / issue number)?'),
+    '#title' => t('3. How is documentation controlled (up-dates / issue number)?'),
     '#default_value' => array_get($values, "principle_7.controlled", FALSE),
     '#attributes' => array(
       'data-parsley-error-message' => t('Please detail how your documentation is controlled.'),
@@ -87,7 +89,7 @@ function principle_7(&$form_state, &$next_step) {
 
   $form['principle_7']['time'] = array(
     '#type' => 'textfield',
-    '#title' => t('What is the maximum length of time that you retain this information for?'),
+    '#title' => t('4. What is the maximum length of time that you retain this information for?'),
     '#default_value' => array_get($values, "principle_7.time", FALSE),
     '#attributes' => array(
       'data-parsley-error-message' => t('Please specify the maximum length of time that you retain this information for.'),
@@ -96,7 +98,7 @@ function principle_7(&$form_state, &$next_step) {
 
   $form['principle_7']['maintained'] = array(
     '#type' => 'radios',
-    '#title' => t('Are the records accessible, accurate and up to date?'),
+    '#title' => t('5. Are the records accessible, accurate and up to date?'),
     '#options' => array(
       'yes' => t('Yes'),
       'no' => t('No'),
@@ -121,6 +123,7 @@ function principle_7_validate($form, &$form_state) {
   $invalid = array();
 
   $checks = array(
+    'principle_7.study' => '_checkboxes_field_is_empty',
     'principle_7.controlled' => '_text_field_is_empty',
     'principle_7.time' => '_text_field_is_empty',
     'principle_7.maintained' => '_text_field_is_empty',
