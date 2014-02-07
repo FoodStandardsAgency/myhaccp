@@ -27,36 +27,26 @@ function principle_4(&$form_state, &$next_step) {
     '#tree' => TRUE,
   );
 
-  // Determine how many instances we need to display. This is based on the data
-  // from Principle 1 Question 3.
-  $store = mforms_store_get('myhaccp');
-  // Fetch the previous step data.
-  $steps = MformsSteps::getInstance($store);
-  $prev_step = $steps->getPrev();
-  $previous_data = $store->getStore($prev_step);
-
-  $items = array();
-  $rows = array_get($previous_data, 'principle_3', array());
-  // Iterate through the previous data.
-  foreach ($rows as $key => $item) {
-    if (is_array($item)) {
-      $items[] = unserialize($item['ccp']);
-    }
-  }
-
-  $instance_count = count($items);
-  // Bail out here with a message if there are no instances of the fieldsets
-  // filled out correctly in the previous screen.
-  if ($instance_count == 0) {
-    drupal_set_message('You have no critical control points');
-    return $form;
-  }
-
   // Create the fieldset container.
   $form['principle_4'] = array(
     '#type' => 'fieldset',
     '#tree' => TRUE,
   );
+
+  // Ensure there are hazards over the threshold.
+  if (myhaccp_ensure_over_threshold() == 0) {
+    drupal_set_message('You have no significant hazards so you cannot continue', 'error');
+    return $form;
+  }
+
+  $items = myhaccp_get_ccps();
+
+  $instance_count = count($items);
+  // Bail out here with a message if there are no critical control points.
+  if ($instance_count == 0) {
+    drupal_set_message('You have no critical control points so you cannot continue');
+    return $form;
+  }
 
   // Build out the instances.
   foreach ($items as $key => $item) {

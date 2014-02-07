@@ -25,7 +25,7 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
     '#tree' => TRUE,
   );
 
-  # 1. What type of HACCP plan are you producing?
+  // 1. What type of HACCP plan are you producing?
   $form['preparatory_c_question_1_3']['type'] = array(
     '#type' => 'select',
     '#title' => t('1. What type of HACCP plan are you producing? !tip', array(
@@ -48,7 +48,7 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
     '#default_value' => array_get($values, 'preparatory_c_question_1_3.type', array()),
   );
 
-  # 2. State the type of product you are producing and briefly how it is going to be packed.
+  // 2. State the type of product you are producing and briefly how it is going to be packed.
   $form['preparatory_c_question_1_3']['product'] = array(
     '#type' => 'textarea',
     '#resizable' => FALSE,
@@ -64,7 +64,7 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
     ),
   );
 
-  # 3.State the process start and end points of the HACCP plan.
+  // 3.State the process start and end points of the HACCP plan.
   $form['preparatory_c_question_1_3']['q3'] = array(
     '#type' => 'container',
   );

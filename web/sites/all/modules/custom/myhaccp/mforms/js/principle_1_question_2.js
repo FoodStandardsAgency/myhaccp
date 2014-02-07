@@ -35,7 +35,6 @@
         if (total != 0) {
           var sig = $row.find('input.significance');
           sig.val(total);
-          $('#mforms-wrapper-myhaccp form').parsley('validate');
         }
       });
     }

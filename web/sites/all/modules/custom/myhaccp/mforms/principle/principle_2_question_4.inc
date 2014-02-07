@@ -49,11 +49,24 @@ function principle_2_question_4(&$form_state, &$next_step) {
     }
   }
 
+  // Ensure data has been entered on principle_1_question_1.
+  if (myhaccp_ensure_hazards_exist() == 0) {
+    // There were no hazards.
+    drupal_set_message('You must add at least a step number and step name in step 1.1 as well as at least a hazard for the step. Please return to 1.1', 'error');
+    return $form;
+  }
+
+  // Ensure there are hazards over the threshold.
+  if (myhaccp_ensure_over_threshold() == 0) {
+    drupal_set_message('You have no significant hazards so you cannot continue', 'error');
+    return $form;
+  }
+
   $instance_count = count($items);
   // Bail out here with a message if there are no instances of the fieldsets
   // filled out correctly in the previous screen.
   if ($instance_count == 0) {
-    drupal_set_message('You have no hazards or no hazards over the threshold set in principle 1.3.', 'error');
+    drupal_set_message('You have no significant hazards so you cannot continue', 'error');
     return $form;
   }
 

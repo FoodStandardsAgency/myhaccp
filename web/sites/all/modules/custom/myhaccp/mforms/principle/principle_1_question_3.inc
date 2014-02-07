@@ -32,38 +32,26 @@ function principle_1_question_3(&$form_state, &$next_step) {
   $store = mforms_store_get('myhaccp');
   // Fetch the previous step data.
   $steps = MformsSteps::getInstance($store);
-  $prev_step = $steps->getPrev();
-  $previous_data = $store->getStore($prev_step);
 
-  // Get the previously set threshold value.
-  $threshold = array_get($previous_data, 'principle_1_question_2.threshold', FALSE);
-  // Set a instance count so we know how many rows we
-  // need to show. One instance per previous stage instance with a number over
-  // the threshold amount.
-  $instance_count = 0;
-  $items = array();
-
-  // Iterate through the previous data and look for instances which have the
-  // correct form fields filled out.
-  if (isset($previous_data) && $threshold) {
-    foreach ($previous_data['principle_1_question_2'] as $key => $instance) {
-      if (strpos($key, 'instance') === 0) {
-        foreach ($instance['instance_table'] as $key => $item) {
-          if (isset($item['significance']) && $item['significance'] >= $threshold) {
-            $items[] = $item;
-          }
-        }
-      }
-    }
+  // Ensure data has been entered on principle_1_question_1.
+  $principle_1_question_1 = mforms_get_vals('myhaccp', 'principle_1_question_1');
+  if (myhaccp_ensure_hazards_exist($principle_1_question_1) == 0) {
+    // There were no hazards.
+    drupal_set_message('You must add at least a step number and step name in step 1.1 as well as at least a hazard for the step. Please return to 1.1', 'error');
+    return $form;
   }
 
-  $instance_count = count($items);
+  // Check if we have anything over the threshold set in principle 1 question 2.
+  $instance_count = myhaccp_ensure_over_threshold();
   // Bail out here with a message if there are no instances of the fieldsets
   // filled out correctly in the previous screen.
   if ($instance_count == 0) {
-    drupal_set_message('You have no hazards over the threshold set in the previous question.', 'error');
+    // There were no hazards over the threshold.
+    drupal_set_message('You have no significant hazards so you cannot continue', 'error');
     return $form;
   }
+
+  $items = myhaccp_get_items_over_threshold();
 
   // Create the fieldset container.
   $form['principle_1_question_3'] = array(
