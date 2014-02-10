@@ -60,12 +60,12 @@ function preparatory_d(&$form_state, &$next_step) {
       '#weight' => '1',
       '#type' => 'select',
       '#options' => array(
-        'none' => t('-- Please select --'),
+        '0' => t('-- Please select --'),
         'internal' => t('Internal'),
         'external' => t('External'),
       ),
       '#attributes' => array(
-        'data-parsley-notequal' => 'none',
+        'data-parsley-notequal' => '0',
         'data-parsley-required' => 'true',
         'data-parsley-error-message' => t('Please indicate if this person is internal (works at the company) or external (eg an external consultant).'),
       ),

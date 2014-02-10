@@ -83,8 +83,8 @@ function principle_2_question_4(&$form_state, &$next_step) {
 
   // Based on the information in the previous stage, build out the decision tree
   // radios.
-  $decision_tree = array_get($previous_data, 'principle_2_question_1_3.decision_tree', 'none');
-  $tree_type = array_get($previous_data, 'principle_2_question_1_3.which_tree', 'none');
+  $decision_tree = array_get($previous_data, 'principle_2_question_1_3.decision_tree', '0');
+  $tree_type = array_get($previous_data, 'principle_2_question_1_3.which_tree', '0');
 
   $form['principle_2_question_4']['instance_table']['decision_tree'] = array(
     '#type' => 'hidden',

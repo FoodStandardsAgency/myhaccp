@@ -61,7 +61,7 @@ function principle_2_question_1_3(&$form_state, &$next_step) {
   $form['principle_2_question_1_3']['which_tree'] = array(
     '#type' => 'select',
     '#options' => array(
-      'none' => t('-- Please select --'),
+      '0' => t('-- Please select --'),
       'codex' => t('Codex'),
       'campden' => t('Campden'),
     ),
@@ -77,7 +77,7 @@ function principle_2_question_1_3(&$form_state, &$next_step) {
     '#default_value' => array_get($values, 'principle_2_question_1_3.which_tree', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
-      'data-parsley-notequal' => 'none',
+      'data-parsley-notequal' => '0',
       'data-parsley-error-message' => t('Please select a decision tree, or none if you are not using one.'),
     ),
   );
