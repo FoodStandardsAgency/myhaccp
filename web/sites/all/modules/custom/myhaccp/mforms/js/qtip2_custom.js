@@ -34,13 +34,24 @@
               }
             },
             style: {
-              classes: 'qtip-haccp'
+              classes: 'qtip-haccp',
+              tip: {
+                corner: true,
+                width: 12
+              }
             },
             show: {
-              event: 'click'
+              event: 'hover',
+              effect: function(offset) {
+                $(this).fadeIn(400);
+              }
             },
             hide: {
-              event: 'unfocus, click'
+              delay: 500,
+              fixed: true,
+              effect: function(offset) {
+                $(this).fadeOut(400);
+              }
             }
           });
         }
