@@ -266,6 +266,11 @@ function principle_6(&$form_state, &$next_step) {
  * Validation handler for Principle 2 Question 4.
  */
 function principle_6_validate($form, &$form_state) {
+  // Only continue if there is some data in one or more fields.
+  if (myhacpp_all_fields_are_empty($form_state, __FUNCTION__)) {
+    return;
+  }
+
   $invalid = array();
 
   // Checks is an array with the key being the element being targeted (in dot

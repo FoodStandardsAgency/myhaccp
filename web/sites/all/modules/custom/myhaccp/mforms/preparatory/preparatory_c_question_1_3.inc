@@ -33,7 +33,7 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
     )),
     '#help_text' => t("Linear HACCP Plan - Typically one study that covers raw materials right  through to despatch (usually for simple systems).<br/>Modular HACCP Plan - Typically several separate HACCP studies e.g. one on raw materials, one  for each production line or product produced and one for despatch of the product (usually for complex systems/large variety of products).<br/>Generic HACCP Plan typically a plan applied across several sites."),
     '#options' => array(
-      'none' => t('-- Please select --'),
+      '0' => t('-- Please select --'),
       'linear' => t('Linear'),
       'modular' => t('Modular'),
       'linear_modular' => t('Linear / Modular'),
@@ -41,7 +41,7 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
     ),
     '#attributes' => array(
       'data-parsley-required' => 'true',
-      'data-parsley-notequal' => 'none',
+      'data-parsley-notequal' => '0',
       'data-parsley-error-message' => t('Please select the type of HACCP plan you are producing.'),
     ),
     '#default_value' => array_get($values, 'preparatory_c_question_1_3.type', array()),
@@ -107,6 +107,11 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
  * Validation handler.
  */
 function preparatory_c_question_1_3_validate($form, &$form_state) {
+  // Only continue if there is some data in one or more fields.
+  if (myhacpp_all_fields_are_empty($form_state, __FUNCTION__)) {
+    return;
+  }
+
   $invalid = array();
 
   // Validation: Some content.

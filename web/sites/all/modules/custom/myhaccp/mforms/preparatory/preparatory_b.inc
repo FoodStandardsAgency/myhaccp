@@ -74,6 +74,11 @@ function preparatory_b(&$form_state, &$next_step) {
  * Validation handler.
  */
 function preparatory_b_validate($form, &$form_state) {
+  // Only continue if there is some data in one or more fields.
+  if (myhacpp_all_fields_are_empty($form_state, __FUNCTION__)) {
+    return;
+  }
+
   // Set a default of the form being valid.
   $invalid = FALSE;
   $values = $form_state['values'];

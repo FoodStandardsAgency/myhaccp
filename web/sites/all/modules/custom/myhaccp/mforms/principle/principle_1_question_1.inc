@@ -196,6 +196,11 @@ function principle_1_question_1(&$form_state, &$next_step) {
  * Validation handler for Principle 1 Question 1.
  */
 function principle_1_question_1_validate($form, &$form_state) {
+  // Only continue if there is some data in one or more fields.
+  if (myhacpp_all_fields_are_empty($form_state, __FUNCTION__)) {
+    return;
+  }
+
   // Bail out if the ajax buttons were used.
   if (isset($form_state['triggering_element']['#limit_validation_errors']) && $form_state['triggering_element']['#limit_validation_errors'] == TRUE) {
     return TRUE;

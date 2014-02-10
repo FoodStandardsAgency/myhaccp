@@ -219,6 +219,11 @@ function preparatory_d(&$form_state, &$next_step) {
  * Validation handler.
  */
 function preparatory_d_validate($form, &$form_state) {
+  // Only continue if there is some data in one or more fields.
+  if (myhacpp_all_fields_are_empty($form_state, __FUNCTION__)) {
+    return;
+  }
+
   $invalid = array();
 
   for ($i = 0; $i < $form_state['num_instances']; $i++) {
