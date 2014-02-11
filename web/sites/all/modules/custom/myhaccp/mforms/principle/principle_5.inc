@@ -89,7 +89,7 @@ function principle_5(&$form_state, &$next_step) {
       '#resizable' => FALSE,
       '#title' => t('1. Action to be taken'),
       '#default_value' => array_get($values, "principle_5.instance_$key.action", FALSE),
-      '#help_text' => t("State the person's name."),
+      '#help_text' => t("Provide details of what should be done in the event of failure to meet a critical limit."),
       '#attributes' => array(
         'data-parsley-required' => 'true',
         'data-parsley-error-message' => t('Please state the action to be taken at this CCP.'),
@@ -101,7 +101,7 @@ function principle_5(&$form_state, &$next_step) {
       '#resizable' => FALSE,
       '#title' => t('2. Detail personnel who have the authority to take the stated corrective action.'),
       '#default_value' => array_get($values, "principle_5.instance_$key.authority", FALSE),
-      '#help_text' => t("State the person's name."),
+      '#help_text' => t("Provide names.  These people should be trained and competent in the activities that they are to perform when something has failed to meet a critical limit."),
       '#attributes' => array(
         'data-parsley-required' => 'true',
         'data-parsley-error-message' => t('Please detail the personnel who have the authority to take the stated corrective action.'),
@@ -113,7 +113,7 @@ function principle_5(&$form_state, &$next_step) {
       '#resizable' => FALSE,
       '#title' => t('3. What happens to the product created during the period that a CCP was out of control? Detail any variation in handling this product that relates to, a parameter, eg degree of control lost.'),
       '#default_value' => array_get($values, "principle_5.instance_$key.product", FALSE),
-      '#help_text' => t("State the person's name."),
+      '#help_text' => t("Describe what will happen to the affected product?  E.g. will the product be disposed of ?  If so, how? Please provide all details. "),
       '#attributes' => array(
         'data-parsley-required' => 'true',
         'data-parsley-error-message' => t('Please detail what happens to the product created during the period that a CCP was out of control.'),
@@ -125,7 +125,7 @@ function principle_5(&$form_state, &$next_step) {
       '#resizable' => FALSE,
       '#title' => t('4. Where are you going to document what you have done with the product produced during the time period that a CCP was \'out of control\' (for example since the last good check)?'),
       '#default_value' => array_get($values, "principle_5.instance_$key.document_location", FALSE),
-      '#help_text' => t("State the person's name."),
+      '#help_text' => t("Where will this information be recorded?  E.g. on a monitoring sheet, on a corrective action note, do you hold a specific file where this information is recorded?"),
       '#attributes' => array(
         'data-parsley-required' => 'true',
         'data-parsley-error-message' => t("Please detail where you will document what you have done with the product produced during the time period that a CCP was 'out of control'."),
@@ -140,7 +140,7 @@ function principle_5(&$form_state, &$next_step) {
       ),
       '#title' => t('5. Are all personnel (identified in any of the steps from 1-6 for all CCP’s) trained and competent for performing the activities stated?'),
       '#default_value' => array_get($values, "principle_5.instance_$key.trained", FALSE),
-      '#help_text' => t("State the person's name."),
+      '#help_text' => t("Is their training specific to the tasks they are expected to carry out?  Is it up-to-date."),
       '#attributes' => array(
         'data-parsley-required' => 'true',
         'data-parsley-error-message' => t('All personnel engaged in any of the activities mentioned should have received appropriate training for the task undertaken. Records of training should be available.'),

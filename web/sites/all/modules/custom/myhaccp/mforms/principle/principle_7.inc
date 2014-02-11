@@ -62,6 +62,7 @@ function principle_7(&$form_state, &$next_step) {
       'verification' => 'Details of verification activities, including the programme for scheduled review and a list of factors that should initiate a review',
       'procedures' => 'Reference to relevant procedures/work instructions and record forms',
     ),
+    '#help_text' => t('Do you keep hold of any of the following documents?'),
     '#default_value' => array_get($values, "principle_7.study", array()),
     '#attributes' => array(
       'data-parsley-required' => TRUE,
@@ -75,12 +76,14 @@ function principle_7(&$form_state, &$next_step) {
     '#type' => 'textarea',
     '#resizable' => FALSE,
     '#title' => t('2. Detail any other supporting information (i.e. anything that covers the HACCP system operation) that is retained.'),
+    '#help_text' => t('Is there anything else (other documents) covering HACCP  that you keep hold of?'),
     '#default_value' => array_get($values, "principle_7.supporting", FALSE),
   );
 
   $form['principle_7']['controlled'] = array(
     '#type' => 'textfield',
     '#title' => t('3. How is documentation controlled (up-dates / issue number)?'),
+    '#help_text' => t('For any forms, records, procedures, whether on paper or the computer do you have a system to ensure the latest issue is being used?  Provide details on how you achieve this.'),
     '#default_value' => array_get($values, "principle_7.controlled", FALSE),
     '#attributes' => array(
       'data-parsley-error-message' => t('Please detail how your documentation is controlled.'),
@@ -90,6 +93,7 @@ function principle_7(&$form_state, &$next_step) {
   $form['principle_7']['time'] = array(
     '#type' => 'textfield',
     '#title' => t('4. What is the maximum length of time that you retain this information for?'),
+    '#help_text' => t('State the time period typically this is a minimum of the shelf-life plus an ‘additional period’.  The additional period  must take into consideration abuse of your product and you  may wish to keep records for a much longer period of time.'),
     '#default_value' => array_get($values, "principle_7.time", FALSE),
     '#attributes' => array(
       'data-parsley-error-message' => t('Please specify the maximum length of time that you retain this information for.'),

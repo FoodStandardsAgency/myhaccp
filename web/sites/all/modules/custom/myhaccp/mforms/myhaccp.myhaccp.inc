@@ -107,4 +107,32 @@ function myhaccp_form_myhaccp_start_form_alter(&$form, &$form_state) {
     '#weight' => -10,
   );
   $form['#process']['myhaccp'] = 'myhaccp_form_process';
+  // Include the CTools tools that we need.
+  ctools_include('ajax');
+  ctools_include('modal');
+  // Add CTools' javascript to the page.
+  ctools_modal_add_js();
+  // Create our own javascript that will be used to theme a modal.
+  $haccp_modal_style = array(
+    'myhaccp-style' => array(
+      'modalSize' => array(
+        'type' => 'scale',
+        'width' => 0.9,
+        'height' => 0.9,
+        'addWidth' => 10,
+        'addHeight' => 0,
+        'contentRight' => 35,
+        'contentBottom' => 50,
+      ),
+      'modalOptions' => array(
+        'opacity' => .6,
+        'background-color' => '#333333',
+      ),
+      'animation' => 'fadeIn',
+      'modalTheme' => 'myhaccp_modal',
+    ),
+  );
+  // Add the settings array defined above to Drupal 7's JS settings:
+  drupal_add_js($haccp_modal_style, 'setting');
+  ctools_add_js('myhaccp_modal', 'myhaccp', 'mforms/js');
 }

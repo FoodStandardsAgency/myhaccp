@@ -2476,6 +2476,13 @@ table thead th .help-tip {
   font-weight: bold;
 }
 
+#modalContent #modal-content {
+  padding-top: 0;
+}
+#modalContent #modal-content article > h2 {
+  margin-top: 0;
+}
+
 .node-homepage.view-mode-full {
   /** General layout **/
   /** Specific styling **/
