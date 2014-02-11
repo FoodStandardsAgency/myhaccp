@@ -90,6 +90,7 @@ function principle_3(&$form_state, &$next_step) {
     $form['principle_3']['instance_' . $key]['limit'] = array(
       '#type' => 'textfield',
       '#title' => t('1. What is the critical limit for this critical control point (what separates safe from potentially unsafe product)?'),
+      '#help_text' => t('The critical limit  is a value that separates acceptable from unacceptable e.g. 72 degrees Celsius (can we put this in units please) below this temperature the product is unacceptable above this limit it is considered acceptable.'),
       '#default_value' => array_get($values, "principle_3.instance_$key.limit", FALSE),
       '#attributes' => array(
         'data-parsley-required' => 'true',
@@ -101,6 +102,7 @@ function principle_3(&$form_state, &$next_step) {
       '#type' => 'textarea',
       '#resizable' => FALSE,
       '#title' => t('2. Provide details of how the critical limit was determined.'),
+      '#help_text' => t('Have you used legislation, industry guides, historical data?  List details of all resources used to arrive at the critical limit.'),
       '#default_value' => array_get($values, "principle_3.instance_$key.details", FALSE),
       '#attributes' => array(
         'data-parsley-required' => 'true',
@@ -115,6 +117,7 @@ function principle_3(&$form_state, &$next_step) {
         'no' => t('No'),
       ),
       '#title' => t('3. Is the critical limit appropriate to control the specific hazard?'),
+      '#help_text' => t('Will the critical limit you have set prevent, reduce or eliminate the hazard identified?'),
       '#default_value' => array_get($values, "principle_3.instance_$key.appropriate", array()),
       '#attributes' => array(
         'data-parsley-required' => 'true',
@@ -129,6 +132,7 @@ function principle_3(&$form_state, &$next_step) {
         'no' => t('No'),
       ),
       '#title' => t('4. Is the critical limit measurable or observable in real time?'),
+      '#help_text' => t('Measurable examples include things like pH, aw, brix, psi and observable examples include boiling, colour change, steaming, size reduction.'),
       '#default_value' => array_get($values, "principle_3.instance_$key.measurable", array()),
       '#attributes' => array(
         'data-parsley-required' => 'true',
@@ -143,6 +147,7 @@ function principle_3(&$form_state, &$next_step) {
         'no' => t('No'),
       ),
       '#title' => t('5. Is there a target value?'),
+      '#help_text' => t('This is more stringent than a critical limit but allows a business to gain control before a critical limit is breached.'),
       '#default_value' => array_get($values, "principle_3.instance_$key.target", array()),
       '#attributes' => array(
         'data-parsley-required' => 'true',
@@ -153,6 +158,7 @@ function principle_3(&$form_state, &$next_step) {
     $form['principle_3']['instance_' . $key]['target_value'] = array(
       '#type' => 'textfield',
       '#title' => t('5a. If yes, what is the target value?'),
+      '#help_text' => t('State the target value e.g.  74 degrees Celsius where the critical limit  is  72 degrees Celsius.'),
       '#default_value' => array_get($values, "principle_3.instance_$key.target_value", FALSE),
       '#states' => array(
         'visible' => array(
@@ -168,6 +174,7 @@ function principle_3(&$form_state, &$next_step) {
     $form['principle_3']['instance_' . $key]['target_tolerances'] = array(
       '#type' => 'textfield',
       '#title' => t('5b. Please specify any tolerances'),
+      '#help_text' => t('This is the value between the critical limit and the target value.'),
       '#default_value' => array_get($values, "principle_3.instance_$key.target_tolerances", FALSE),
       '#states' => array(
         'visible' => array(
