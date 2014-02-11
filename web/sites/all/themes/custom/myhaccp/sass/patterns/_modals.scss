@@ -1,0 +1,16 @@
+// Styles for ctools modal dialogs.
+
+#modalContent {
+  // Override the absolute positioning of the usual ctools dialog so its fixed
+  // within the viewport.
+//  position: fixed!important;
+  #modal-content {
+    // Remove some of the space at the top of the embedded page.
+    padding-top: 0;
+    article {
+      > h2 {
+        margin-top: 0;
+      }
+    }
+  }
+}

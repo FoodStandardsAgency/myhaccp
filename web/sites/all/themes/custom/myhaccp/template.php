@@ -179,9 +179,18 @@ function myhaccp_form_element_label($variables) {
 
   $output = $label;
 
+  // Add the help text for non-javascript users. This will get moved into a
+  // tooltip for javascript browsers.
   if (isset($element['#help_text'])) {
     $message = $element['#help_text'];
-    $output .= ' <div class="help-text">' . $message . '</div>';
+    $link = ' ';
+    // Prepare the more link if needed.
+    if (isset($element['#help_link'])) {
+      $link .= myhaccp_prepare_more_link($element['#help_link']);
+    }
+
+    // Output the message and the link.
+    $output .= ' <div class="help-text">' . $message . $link . '</div>';
   }
 
   return $output;
