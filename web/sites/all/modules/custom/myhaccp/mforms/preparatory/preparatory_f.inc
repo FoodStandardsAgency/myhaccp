@@ -100,7 +100,6 @@ function preparatory_f(&$form_state, &$next_step) {
     '#help_link' => 19,
     '#help_text' => t('Consider the use of low microbial diets to reduce the risk of foodborne disease.'),
     '#default_value' => array_get($values, 'preparatory_f.immuno', array()),
-    '#help_text' => t('State how the product should be kept  (during storage and distribution of the product) e.g. product to be kept chilled, frozen or heated.'),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please specify if the product is designed for the immunosuppressed / immunocompromised.'),

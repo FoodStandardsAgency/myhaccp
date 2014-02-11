@@ -159,7 +159,7 @@ function preparatory_d(&$form_state, &$next_step) {
     ),
     '#title' => t('Do you consider the team to have sufficient skills (scientific/technical knowledge and HACCP expertise) to ensure the HACCP study will be effective?'),
     '#help_link' => 21,
-    '#help_text' => t("State the person's name."),
+    '#help_text' => t("In your opinion as leader of the HACCP team, state whether you consider that you have the necessary skills to enable an effective HACCP study to be carried out and maintained on an ongoing basis?"),
     '#default_value' => array_get($values, 'preparatory_d.team_skills', FALSE),
     '#attributes' => array(
       'data-parsley-error-message' => t('Please indicate whether you consider the team to have sufficient skills.'),

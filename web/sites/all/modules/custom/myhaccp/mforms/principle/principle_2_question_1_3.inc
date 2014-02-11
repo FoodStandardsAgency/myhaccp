@@ -44,7 +44,7 @@ function principle_2_question_1_3(&$form_state, &$next_step) {
     '#type' => 'radios',
     '#title' => t('Are you using a decision tree?'),
     '#help_link' => 27,
-    '#help_text' => t('We recomend using either the Campden or Codex decision trees.'),
+    '#help_text' => t('A ‘decision tree’ is a tool that  can be used to  help identify a critical control point.  You do not have to use a decision tree.'),
     '#options' => array(
       'yes' => t('Yes'),
       'no' => t('No'),
@@ -66,7 +66,7 @@ function principle_2_question_1_3(&$form_state, &$next_step) {
     ),
     '#title' => t('Which decision tree are you using?'),
     '#help_link' => 27,
-    '#help_text' => t('We recomend using either the Campden or Codex decision trees.'),
+    '#help_text' => t('You can select which decision tree you wish to use to help you, but you can use one  of your own or none at all.  More information on the  decision trees can be found.'),
     '#states' => array(
       'visible' => array(
         ':input[name="principle_2_question_1_3[decision_tree]"]' => array('value' => 'yes'),

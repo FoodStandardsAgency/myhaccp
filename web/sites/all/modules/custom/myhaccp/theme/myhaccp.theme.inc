@@ -142,14 +142,14 @@ function theme_myhacpp_p2q4_table($variables) {
     'decision_tree' => array(
       'data' => t('Decision Tree Q\'s !tip !help', array(
         '!tip' => _help_tip(28),
-         '!help' => '<div class="help-text">Please record your answers to each decision tree question below, selecting N/A if a question is not relevant. ' . myhaccp_prepare_more_link(28) . '</div>'
+         '!help' => '<div class="help-text">Be very careful to answer the questions correctly.' . myhaccp_prepare_more_link(28) . '</div>'
       )),
       'class' => array('decision-tree'),
     ),
     'ccp' => array(
       'data' => t('CCP? !tip !help', array(
         '!tip' => _help_tip(28),
-        '!help' => '<div class="help-text">Please record whether each .</div>'
+        '!help' => '<div class="help-text">Providing you have answered  the  questions to the decision tree correctly , and entered the answers  into the system  correctly this will show whether the control of the hazard is regarded as a critical control point or not according to Campden or Codex.</div>'
       )),
       'class' => array('ccp'),
     ),
