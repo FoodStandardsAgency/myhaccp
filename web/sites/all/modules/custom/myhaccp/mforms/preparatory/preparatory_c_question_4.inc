@@ -20,14 +20,7 @@ function preparatory_c_question_4(&$form_state, &$next_step) {
   $form['#attributes']['class'][] = 'prep-c-2';
 
   // Show global message on this form.
-  $form['validation_messages'] = array(
-    '#type' => 'container',
-    '#id' => 'validation-messages',
-    '#weight' => -10,
-    '#attributes' => array(
-      'data-validation-stage' => 'preparatory_c_question_4',
-    ),
-  );
+  $form['validation_messages']['#attributes']['data-validation-stage'] = 'preparatory_c_question_4';
 
   // Wrap the form section in a fieldset.
   $form['preparatory_c_question_4'] = array(
@@ -210,39 +203,29 @@ function preparatory_c_question_4(&$form_state, &$next_step) {
  * Validation handler.
  */
 function preparatory_c_question_4_validate($form, &$form_state) {
-  // Only continue if there is some data in one or more fields.
-  if (myhacpp_all_fields_are_empty($form_state, __FUNCTION__)) {
+  $validator = new validator($form, $form_state, 'preparatory_c_question_4');
+
+  if ($validator->allFieldsAreEmpty()) {
     return;
   }
 
-  $invalid = array();
-
   // Validation: Some content.
   $checks = array(
-    'preparatory_c_question_4.wrapper.physical_preparatory_c_question_4.physical' => '_checkboxes_field_is_empty',
-    'preparatory_c_question_4.wrapper.chemical_preparatory_c_question_4.chemical' => '_checkboxes_field_is_empty',
-    'preparatory_c_question_4.wrapper.biological_preparatory_c_question_4.biological' => '_checkboxes_field_is_empty',
-    'preparatory_c_question_4.wrapper.allergens_preparatory_c_question_4.allergens' => '_checkboxes_field_is_empty',
-    'preparatory_c_question_4.wrapper.physical_preparatory_c_question_4.physical_other' => '_text_field_is_empty',
-    'preparatory_c_question_4.wrapper.chemical_preparatory_c_question_4.chemical_other' => '_text_field_is_empty',
-    'preparatory_c_question_4.wrapper.biological_preparatory_c_question_4.biological_other' => '_text_field_is_empty',
-    'preparatory_c_question_4.wrapper.allergens_preparatory_c_question_4.allergens_other' => '_text_field_is_empty',
+    'preparatory_c_question_4.wrapper.physical_preparatory_c_question_4.physical' => 'fieldIsNotEmpty',
+    'preparatory_c_question_4.wrapper.chemical_preparatory_c_question_4.chemical' => 'fieldIsNotEmpty',
+    'preparatory_c_question_4.wrapper.biological_preparatory_c_question_4.biological' => 'fieldIsNotEmpty',
+    'preparatory_c_question_4.wrapper.allergens_preparatory_c_question_4.allergens' => 'fieldIsNotEmpty',
+    'preparatory_c_question_4.wrapper.physical_preparatory_c_question_4.physical_other' => 'fieldIsNotEmpty',
+    'preparatory_c_question_4.wrapper.chemical_preparatory_c_question_4.chemical_other' => 'fieldIsNotEmpty',
+    'preparatory_c_question_4.wrapper.biological_preparatory_c_question_4.biological_other' => 'fieldIsNotEmpty',
+    'preparatory_c_question_4.wrapper.allergens_preparatory_c_question_4.allergens_other' => 'fieldIsNotEmpty',
   );
 
-  foreach ($checks as $target => $callback) {
-    $invalid[] = _check_validation($callback, $target, $form, $form_state, TRUE);
+  foreach ($checks as $target => $method) {
+    $validation = new validation($form, $form_state, $target);
+    $results[] = $validation->$method();
   }
 
-  if (!in_array(FALSE, $invalid)) {
-    $message = t('Please add some content.');
-    myhacpp_prepare_validation('global', array('preparatory_c_question_4' => array($message)), $form_state);
-  }
-
-  // Check to see whether we have failed validation and therefore should store
-  // it in the database or whether we have passed and therefore clear validation
-  // errors.
-  if (!in_array(TRUE, $invalid)) {
-    // Remove any stored validation.
-    myhaccp_clear_validation($form_state);
-  }
+  // The new method of checking if all fields are empty renders any checks
+  // useless so we're not doing anything else here.
 }

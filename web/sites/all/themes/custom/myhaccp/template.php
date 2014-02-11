@@ -8,20 +8,15 @@ function NEWTHEME_preprocess_html(&$vars) {
   //  kpr($vars['content']);
 }
 */
-/*
-function NEWTHEME_preprocess_page(&$vars,$hook) {
-  //typekit
-  //drupal_add_js('http://use.typekit.com/XXX.js', 'external');
-  //drupal_add_js('try{Typekit.load();}catch(e){}', array('type' => 'inline'));
 
-  //webfont
-  //drupal_add_css('http://cloud.webtype.com/css/CXXXX.css','external');
-
-  //googlefont
-  //  drupal_add_css('http://fonts.googleapis.com/css?family=Bree+Serif','external');
-
+function myhaccp_preprocess_page(&$variables, $hook) {
+  // Get rid of the page title on form pages.
+  $menu_item = menu_get_item();
+  if ($menu_item['path'] == 'prototype/form') {
+    $variables['title'] = FALSE;
+  }
 }
-*/
+
 /*
 function NEWTHEME_preprocess_region(&$vars,$hook) {
   //  kpr($vars['content']);
@@ -171,10 +166,15 @@ function myhaccp_form_element_label($variables) {
     $attributes['for'] = $element['#id'];
   }
 
+  // Modify the label to include the help tip.
+  $help_link = isset($element['#help_link']) ? $element['#help_link'] : '';
+  $tip = isset($element['#help_text']) ? _help_tip($help_link) : '';
+
   // The leading whitespace helps visually separate fields from inline labels.
-  $label = ' <label' . drupal_attributes($attributes) . '>' . $t('!title !required', array(
+  $label = ' <label' . drupal_attributes($attributes) . '>' . $t('!title !required !tip', array(
     '!title' => $title,
-    '!required' => $required
+    '!required' => $required,
+    '!tip' => $tip,
   )) . "</label>\n";
 
   $output = $label;

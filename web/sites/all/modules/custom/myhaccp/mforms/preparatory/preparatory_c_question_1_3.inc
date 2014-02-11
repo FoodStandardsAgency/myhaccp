@@ -28,9 +28,8 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
   // 1. What type of HACCP plan are you producing?
   $form['preparatory_c_question_1_3']['type'] = array(
     '#type' => 'select',
-    '#title' => t('1. What type of HACCP plan are you producing? !tip', array(
-      '!tip' => _help_tip(15),
-    )),
+    '#title' => t('1. What type of HACCP plan are you producing?'),
+    '#help_link' => 15,
     '#help_text' => t("Linear HACCP Plan - Typically one study that covers raw materials right  through to despatch (usually for simple systems).<br/>Modular HACCP Plan - Typically several separate HACCP studies e.g. one on raw materials, one  for each production line or product produced and one for despatch of the product (usually for complex systems/large variety of products).<br/>Generic HACCP Plan typically a plan applied across several sites."),
     '#options' => array(
       '0' => t('-- Please select --'),
@@ -51,9 +50,8 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
   $form['preparatory_c_question_1_3']['product'] = array(
     '#type' => 'textarea',
     '#resizable' => FALSE,
-    '#title' => t('2. State the type of product you are producing and briefly how it is going to be packed: !tip', array(
-      '!tip' => _help_tip(15),
-    )),
+    '#title' => t('2. State the type of product you are producing and briefly how it is going to be packed:'),
+    '#help_link' => 15,
     '#help_text' => t("State the products you are making (those covered in the HACCP plan) and how they are packaged e.g. vacuum packed, gas flushed, flexible pouches."),
     '#default_value' => array_get($values, 'preparatory_c_question_1_3.product', FALSE),
     '#attributes' => array(
@@ -72,9 +70,8 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
     '#markup' => '<div class="label">' . t('3. State the process start and end points of the HACCP plan. !tip !help', array(
         '!tip' => _help_tip(15),
         '!help' => '<div class="help-text">State where your HACCP plan begin e.g. at raw materials or goods in.  State where it will end e.g. at delivery to the wholesaler, at despatch, when purchased by the  the consumer.</div>')) . '</div>',
-      '#title' => t('2. State the type of product you are producing and briefly how it is going to be packed: !tip', array(
-      '!tip' => _help_tip(15),
-    )),
+      '#title' => t('2. State the type of product you are producing and briefly how it is going to be packed:'),
+    '#help_link' => 15,
     );
 
 
@@ -107,30 +104,23 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
  * Validation handler.
  */
 function preparatory_c_question_1_3_validate($form, &$form_state) {
-  // Only continue if there is some data in one or more fields.
-  if (myhacpp_all_fields_are_empty($form_state, __FUNCTION__)) {
+  $validator = new validator($form, $form_state, 'preparatory_c_question_1_3');
+
+  if ($validator->allFieldsAreEmpty()) {
     return;
   }
 
-  $invalid = array();
-
   // Validation: Some content.
   $checks = array(
-    'preparatory_c_question_1_3.type' => '_select_field_is_empty',
-    'preparatory_c_question_1_3.product' => '_text_field_is_empty',
-    'preparatory_c_question_1_3.q3.start' => '_text_field_is_empty',
-    'preparatory_c_question_1_3.q3.end' => '_text_field_is_empty',
+    'preparatory_c_question_1_3.type' => 'fieldIsNotEmpty',
+    'preparatory_c_question_1_3.product' => 'fieldIsNotEmpty',
+    'preparatory_c_question_1_3.q3.start' => 'fieldIsNotEmpty',
+    'preparatory_c_question_1_3.q3.end' => 'fieldIsNotEmpty',
   );
 
-  foreach ($checks as $target => $callback) {
-    $invalid[] = _check_validation($callback, $target, $form, $form_state);
+  foreach ($checks as $target => $method) {
+    $validator->validate($method, $target);
   }
 
-  // Check to see whether we have failed validation and therefore should store
-  // it in the database or whether we have passed and therefore clear validation
-  // errors.
-  if (!in_array(TRUE, $invalid)) {
-    // Remove any stored validation.
-    myhaccp_clear_validation($form_state);
-  }
+  $validator->setErrorMessages();
 }

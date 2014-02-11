@@ -120,30 +120,23 @@ function principle_7(&$form_state, &$next_step) {
  * Validation handler for Principle 2 Question 4.
  */
 function principle_7_validate($form, &$form_state) {
-  // Only continue if there is some data in one or more fields.
-  if (myhacpp_all_fields_are_empty($form_state, __FUNCTION__)) {
+  $validator = new validator($form, $form_state, 'principle_7');
+
+  if ($validator->allFieldsAreEmpty()) {
     return;
   }
 
-  $invalid = array();
-
   $checks = array(
-    'principle_7.study' => '_checkboxes_field_is_empty',
-    'principle_7.controlled' => '_text_field_is_empty',
-    'principle_7.time' => '_text_field_is_empty',
-    'principle_7.maintained' => '_text_field_is_empty',
+    'principle_7.study' => 'fieldIsNotEmpty',
+    'principle_7.controlled' => 'fieldIsNotEmpty',
+    'principle_7.time' => 'fieldIsNotEmpty',
+    'principle_7.maintained' => 'fieldIsNotEmpty',
   );
 
-  foreach ($checks as $target => $callback) {
-    $invalid[] = _check_validation($callback, $target, $form, $form_state);
+  foreach ($checks as $target => $method) {
+    $validator->validate($method, $target);
   }
 
-  // Check to see whether we have failed validation and therefore should store
-  // it in the database or whether we have passed and therefore clear validation
-  // errors.
-  if (!in_array(TRUE, $invalid)) {
-    // Remove any stored validation.
-    myhaccp_clear_validation($form_state);
-  }
+  $validator->setErrorMessages();
 }
 

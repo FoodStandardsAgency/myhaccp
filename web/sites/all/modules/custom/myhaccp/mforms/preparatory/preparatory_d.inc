@@ -45,9 +45,8 @@ function preparatory_d(&$form_state, &$next_step) {
     $form['preparatory_d']["instance_$i"]['team_name'] = array(
       '#weight' => '0',
       '#type' => 'textfield',
-      '#title' => t('Name of HACCP team member: !tip', array(
-        '!tip' => _help_tip(21),
-      )),
+      '#title' => t('Name of HACCP team member:'),
+    '#help_link' => 21,
       '#default_value' => array_get($values, "preparatory_d.instance_$i.team_name", FALSE),
       '#help_text' => t("State the person's name."),
       '#attributes' => array(
@@ -69,9 +68,8 @@ function preparatory_d(&$form_state, &$next_step) {
         'data-parsley-required' => 'true',
         'data-parsley-error-message' => t('Please indicate if this person is internal (works at the company) or external (eg an external consultant).'),
       ),
-      '#title' => t('Is this person Internal or External to the company? !tip', array(
-        '!tip' => _help_tip(21),
-      )),
+      '#title' => t('Is this person Internal or External to the company?'),
+    '#help_link' => 21,
       '#help_text' => t("State if the person is an employee of the company (internal) or not (external)."),
       '#default_value' => array_get($values, "preparatory_d.instance_$i.team_external", FALSE),
     );
@@ -80,9 +78,8 @@ function preparatory_d(&$form_state, &$next_step) {
     $form['preparatory_d']["instance_$i"]['team_role'] = array(
       '#weight' => '2',
       '#type' => 'textfield',
-      '#title' => t('What is the role of this individual in the HACCP team? !tip', array(
-        '!tip' => _help_tip(21),
-      )),
+      '#title' => t('What is the role of this individual in the HACCP team?'),
+    '#help_link' => 21,
       '#help_text' => t("For example, QA Manager to provide technical expertise, Consultant to provide knowledge of HACCP and expertise from a chemical and biological hazard perspective."),
       '#default_value' => array_get($values, "preparatory_d.instance_$i.team_role", FALSE),
       '#attributes' => array(
@@ -100,9 +97,8 @@ function preparatory_d(&$form_state, &$next_step) {
       '#weight' => '1',
       '#type' => 'textarea',
       '#resizable' => FALSE,
-      '#title' => t('Relevant training !tip', array(
-        '!tip' => _help_tip(21),
-      )),
+      '#title' => t('Relevant training'),
+    '#help_link' => 21,
       '#help_text' => t("What training has this person undertaken that is specific to the support they can provide e.g HACCP (state level), Food safety (state level), Internal auditing."),
       '#default_value' => array_get($values, "preparatory_d.instance_$i.wrapper.team_training", FALSE),
       '#attributes' => array(
@@ -115,9 +111,8 @@ function preparatory_d(&$form_state, &$next_step) {
       '#weight' => '2',
       '#type' => 'textarea',
       '#resizable' => FALSE,
-      '#title' => t('Qualifications !tip', array(
-        '!tip' => _help_tip(21),
-      )),
+      '#title' => t('Qualifications'),
+    '#help_link' => 21,
       '#help_text' => t("Provide details of their qualifications e.g. BSc Biochemistry, CIEH Intermediate food safety, MSc  Food Science, Management and Hygiene."),
       '#default_value' => array_get($values, "preparatory_d.instance_$i.wrapper.team_qualifications", FALSE),
       '#attributes' => array(
@@ -130,9 +125,8 @@ function preparatory_d(&$form_state, &$next_step) {
       '#weight' => '3',
       '#type' => 'textarea',
       '#resizable' => FALSE,
-      '#title' => t('Relevant experience !tip', array(
-        '!tip' => _help_tip(21),
-      )),
+      '#title' => t('Relevant experience'),
+    '#help_link' => 21,
       '#help_text' => t("Detail only that experience that is applicable to their involvement with the HACCP study e.g. 1 year as a chemical hazard scientist, 2 years working with the customer complaints team."),
       '#default_value' => array_get($values, "preparatory_d.instance_$i.wrapper.team_experience", FALSE),
       '#attributes' => array(
@@ -163,9 +157,8 @@ function preparatory_d(&$form_state, &$next_step) {
       'Yes' => t('Yes'),
       'No' => t('No'),
     ),
-    '#title' => t('Do you consider the team to have sufficient skills (scientific/technical knowledge and HACCP expertise) to ensure the HACCP study will be effective? !tip', array(
-      '!tip' => _help_tip(21),
-    )),
+    '#title' => t('Do you consider the team to have sufficient skills (scientific/technical knowledge and HACCP expertise) to ensure the HACCP study will be effective?'),
+    '#help_link' => 21,
     '#help_text' => t("State the person's name."),
     '#default_value' => array_get($values, 'preparatory_d.team_skills', FALSE),
     '#attributes' => array(
@@ -219,12 +212,11 @@ function preparatory_d(&$form_state, &$next_step) {
  * Validation handler.
  */
 function preparatory_d_validate($form, &$form_state) {
-  // Only continue if there is some data in one or more fields.
-  if (myhacpp_all_fields_are_empty($form_state, __FUNCTION__)) {
+  $validator = new validator($form, $form_state, 'preparatory_d');
+
+  if ($validator->allFieldsAreEmpty()) {
     return;
   }
-
-  $invalid = array();
 
   for ($i = 0; $i < $form_state['num_instances']; $i++) {
     // In each instance, check whether some of the fields have been filled in,
@@ -234,30 +226,24 @@ function preparatory_d_validate($form, &$form_state) {
     // notation) and the value being the callback to use to check whether the
     // field is empty.
     $checks = array(
-      "preparatory_d.instance_$i.team_external" => '_radios_field_is_empty',
-      "preparatory_d.instance_$i.team_name" => '_text_field_is_empty',
-      "preparatory_d.instance_$i.team_role" => '_text_field_is_empty',
-      "preparatory_d.instance_$i.wrapper.team_training" => '_text_field_is_empty',
-      "preparatory_d.instance_$i.wrapper.team_qualifications" => '_text_field_is_empty',
-      "preparatory_d.instance_$i.wrapper.team_experience" => '_text_field_is_empty',
+      "preparatory_d.instance_$i.team_external" => 'fieldIsNotEmpty',
+      "preparatory_d.instance_$i.team_name" => 'fieldIsNotEmpty',
+      "preparatory_d.instance_$i.team_role" => 'fieldIsNotEmpty',
+      "preparatory_d.instance_$i.wrapper.team_training" => 'fieldIsNotEmpty',
+      "preparatory_d.instance_$i.wrapper.team_qualifications" => 'fieldIsNotEmpty',
+      "preparatory_d.instance_$i.wrapper.team_experience" => 'fieldIsNotEmpty',
     );
 
-    foreach ($checks as $target => $callback) {
-      $invalid[] = _check_validation($callback, $target, $form, $form_state);
+    foreach ($checks as $target => $method) {
+      $validator->validate($method, $target);
     }
 
   }
 
-  $invalid[] = _check_validation('_radios_field_is_empty', 'preparatory_d.team_skills', $form, $form_state);
+  // Check the team skills field has been filled in.
+  $validator->validate('fieldIsNotEmpty', 'preparatory_d.team_skills');
 
-  // Check to see whether we have failed validation and therefore should store
-  // it in the database or whether we have passed and therefore clear validation
-  // errors.
-  if (!in_array(TRUE, $invalid)) {
-    // Remove any stored validation.
-    myhaccp_clear_validation($form_state);
-  }
-
+  $validator->setErrorMessages();
 }
 
 /**

@@ -100,4 +100,11 @@ function myhaccp_form_myhaccp_start_form_alter(&$form, &$form_state) {
   $form['#attributes']['data-parsley-namespace'] = 'data-parsley-';
   $form['#attributes']['data-parsley-validate'] = '';
   $form['#validate'][] = 'myhaccp_saved_message';
+  // Add the validation messages container.
+  $form['validation_messages'] = array(
+    '#type' => 'container',
+    '#id' => 'validation-messages',
+    '#weight' => -10,
+  );
+  $form['#process']['myhaccp'] = 'myhaccp_form_process';
 }

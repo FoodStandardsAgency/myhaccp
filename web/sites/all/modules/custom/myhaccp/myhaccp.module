@@ -360,60 +360,105 @@ function myhaccp_element_info_alter(&$types) {
  * @see myhaccp_element_info_alter()
  */
 function myhaccp_process($element, &$form_state) {
-  $global_done = &drupal_static(__FUNCTION__);
-
-  // If the input doesn't match the form we're on we're in trouble (browser refresh).
-  // Compare [input'] with ['complete form'].
-//  if ($global_done == FALSE) {
-//    $intersect = array_intersect($form_state['input'], $form_state['complete form']);
-//    if (isset($intersect['form_id'])) {
-//      unset($intersect['form_id']);
-//    }
-//    if (empty($intersect)) {
-//      // Things are cocked up.
-//      $form_state['process_input'] = FALSE;
-//    }
-//    $global_done = TRUE;
-//  }
-
-  // Handle any 'global' validation messages.
   if (isset($form_state['values']['validate'])) {
-    if (isset($element['#id']) && $element['#id'] == 'validation-messages') {
-      // First check for the special 'global' array element and make sure it
-      // hasn't already been completed.
-      if (isset($form_state['values']['validate']['global']) && !isset($global_done)) {
-        // This means we need to show a message but not highlight any specific
-        // form fields. For a message to appear in the validation message div
-        // it needs to have both the div in the form and for the div to have
-        // the 'data-validation-stage' attribute with a value the same as the
-        // key of the message.
-        if (is_array($form_state['values']['validate']['global'])) {
-          foreach ($form_state['values']['validate']['global'] as $key => $messages) {
-            if (array_get($element, '#attributes.data-validation-stage', FALSE) == $key) {
-              foreach ($messages as $message) {
-                $element['#validation_message'][] = $message;
-              }
-            }
+    $validation = reset($form_state['values']['validate']);
+    // Add the error class to each of the elements.
+    foreach ($validation as $target => $message) {
+      $target_parts = explode('.', $target);
+      if (!empty($element['#parents'])) {
+        // Check that the intersection of the target and the current element's
+        // parents array are the same. If they are then this is the element we
+        // want to operate on.
+        if (count(array_intersect($target_parts, $element['#parents'])) == count($target_parts)) {
+          // Set the error attribute.
+          $element['#attributes']['class']['error'] = 'error';
+          if (!empty($message) && $form_state['executed'] == TRUE && $element['#type'] !== 'radio') {
+            // Add the message inline.
+            $element['#validation_message'] = $message;
           }
         }
-        $global_done = TRUE;
       }
     }
+  }
+  return $element;
+}
 
-    // Add the error class to each of the elements.
-    foreach ($form_state['values']['validate'] as $name => $message) {
-      if (isset($element['#name']) && $element['#name'] == $name) {
-        $element['#attributes']['class']['error'] = 'error';
-        if (!empty($message) && $form_state['executed'] == TRUE && $element['#type'] !== 'radio') {
-          // Add the message inline.
-          $element['#validation_message'] = $message;
-        }
-      }
+/**
+ * Process function which handles validation messages and the page title.
+ *
+ * @param array $form
+ *   The form array to modify.
+ * @param array $form_state
+ *   The form_state array to get the validation from.
+ *
+ * @return array
+ *   The modified form array.
+ */
+function myhaccp_form_process($form, $form_state) {
+  // First check for validation messages.
+  if (isset($form_state['values']['validate'])) {
+    // Ensure that these validations apply to this form. We ensure this
+    // by making sure the key of the element below validate is used in the
+    // current form array.
+    $stage = key($form_state['values']['validate']);
+    if (!isset($form[$stage])) {
+      // The key wasn't found so return the form.
+      return $form;
     }
+    // The validation will be the only element under validate.
+    $validation = reset($form_state['values']['validate']);
+    // Provide an intro.
+    $messages = array(
+      'intro' => 'The following items have errors you will need to correct:',
+    );
 
+    // Add any messages that aren't associated with fields, so called 'global'
+    // validation messages.
+    foreach ($validation as $target => $message) {
+      $element = array_get($form, $target, FALSE);
+      if ($element && isset($element['#title'])) {
+        $message = $element['#title'];
+      }
+      $messages[$target] = $message;
+    }
+    // If we already have validation messages then merge ours.
+    if (isset($form['validation_messages']['#validation_message'])) {
+      array_merge($form['validation_messages']['#validation_message'], $messages);
+    }
+    else {
+      // Otherwise set the messages.
+      $form['validation_messages']['#validation_message'] = $messages;
+    }
   }
 
-  return $element;
+  // Get the title of the page.
+  $title = drupal_get_title();
+  // Add the title in as a new markup element.
+  $form['title'] = array(
+    '#markup' => '<h1>' . $title . '</h1>',
+    '#weight' => -20,
+  );
+  return $form;
+}
+
+/**
+ * Converts a #name to a dot notation suitable for an array_get to parse.
+ *
+ * @param string $name
+ *   The name to convert.
+ *
+ * @return string
+ *   The string as dot notation.
+ */
+function myhacpp_element_name_to_dot($name) {
+  foreach (explode('[', $name) as $element_name) {
+    // Chop off the ] that may exist.
+    if (substr($element_name, -1) == ']') {
+      $element_name = substr($element_name, 0, -1);
+    }
+    $parts[] = $element_name;
+  }
+  return implode('.', $parts);
 }
 
 /**
@@ -427,8 +472,12 @@ function myhaccp_process($element, &$form_state) {
  *   The message to display.
  * @param array $form_state
  *   The current form_state array.
+ * @param array $options.
+ *   Options array elements:
+ *   'stage' => The element key of the stage. e.g. 'preparatory_a'. Used to
+ *     make sure that the validation messages don't appear on the wrong stage.
  */
-function myhacpp_prepare_validation($target, $message, &$form_state) {
+function myhacpp_prepare_validation($target, $message, &$form_state, $options) {
   // Convert the dot notation target to name style elements.
   $exploded = explode('.', $target);
   $name = '';
@@ -436,7 +485,13 @@ function myhacpp_prepare_validation($target, $message, &$form_state) {
     $name .= $key == 0 ? $element : '[' . $element . ']';
   }
   // Add it to the form_state.
-  $form_state['values']['validate'][$name] = $message;
+  if (isset($options['stage'])) {
+    $stage = $options['stage'];
+    $form_state['values']['validate'][$stage][$name] = $message;
+  }
+  else {
+    $form_state['values']['validate'][$name] = $message;
+  }
   // Add it to the $_POST to make sure in gets saved in the db.
   $_POST['validate'][$name] = $message;
 }
@@ -665,19 +720,25 @@ function myhaccp_prepare_values($data, &$form_state) {
  *   The form.
  * @param array $form_state
  *   The form state containing the values.
- * @param bool $check_only
- *   Whether to only perform a check and not prepare validation of the form.
+ * @param array $options
+ *   An array of possible options:
+ *   'check_only' boolean - determines whether to just use this function to
+ *     check validation but not add any error messages to the form.
+ *
  *
  * @return bool
  *   Boolean determining whether the form has failed validation.
  */
-function _check_validation($callback, $target, $form, &$form_state, $check_only = FALSE) {
+function _check_validation($callback, $target, $form, &$form_state, $options = array()) {
   $invalid = $callback($form_state['values'], $target);
   // Its possible we only want to check a field and return the invalid boolean,
   // in which case ignore the next part.
-  if ($check_only == FALSE && $invalid) {
+  $check_only = isset($options['check_only']) ? $options['check_only'] : FALSE;
+  if (!$check_only && $invalid) {
+    // Get the message from the attributes of the element.
     $message = array_get($form, $target . '.#attributes.data-parsley-error-message', NULL);
-    myhacpp_prepare_validation($target, $message, $form_state);
+    // Prepare the validation message.
+    myhacpp_prepare_validation($target, $message, $form_state, $options);
   }
   return $invalid;
 }

@@ -42,9 +42,8 @@ function principle_2_question_1_3(&$form_state, &$next_step) {
   // 1. Are you using a decision tree?
   $form['principle_2_question_1_3']['decision_tree'] = array(
     '#type' => 'radios',
-    '#title' => t('Are you using a decision tree? !tip', array(
-      '!tip' => _help_tip(27),
-    )),
+    '#title' => t('Are you using a decision tree?'),
+    '#help_link' => 27,
     '#help_text' => t('We recomend using either the Campden or Codex decision trees.'),
     '#options' => array(
       'yes' => t('Yes'),
@@ -65,9 +64,8 @@ function principle_2_question_1_3(&$form_state, &$next_step) {
       'codex' => t('Codex'),
       'campden' => t('Campden'),
     ),
-    '#title' => t('Which decision tree are you using? !tip', array(
-      '!tip' => _help_tip(27),
-    )),
+    '#title' => t('Which decision tree are you using?'),
+    '#help_link' => 27,
     '#help_text' => t('We recomend using either the Campden or Codex decision trees.'),
     '#states' => array(
       'visible' => array(
@@ -110,36 +108,32 @@ function principle_2_question_1_3(&$form_state, &$next_step) {
  * Validation handler.
  */
 function principle_2_question_1_3_validate($form, &$form_state) {
-  // Only continue if there is some data in one or more fields.
-  if (myhacpp_all_fields_are_empty($form_state, __FUNCTION__)) {
+  $validator = new validator($form, $form_state, 'principle_2_question_1_3');
+
+  if ($validator->allFieldsAreEmpty()) {
     return;
   }
 
-  $invalid = array();
-
-  // Checks is an array with the key being the element being targeted (in dot
-  // notation) and the value being the callback to use to check whether the
-  // field is empty.
   $checks = array(
-    'principle_2_question_1_3.decision_tree' => '_radios_field_is_empty',
-    'principle_2_question_1_3.which_tree' => '_select_field_is_empty',
-    'principle_2_question_1_3.own' => '_text_field_is_empty',
+    'principle_2_question_1_3.decision_tree' => 'fieldIsNotEmpty',
   );
 
-  foreach ($checks as $target => $callback) {
-    $invalid[] = _check_validation($callback, $target, $form, $form_state);
+  foreach ($checks as $target => $method) {
+    $validator->validate($method, $target);
   }
 
-  if (array_get($form_state, 'values.principle_2_question_1_3.decision_tree', FALSE) == 'no') {
+  $tree = array_get($form_state, 'values.principle_2_question_1_3.decision_tree', FALSE);
+
+  // If not using a decision tree.
+  if ($tree == 'no') {
     $target = 'principle_2_question_1_3.ccp_decision';
-    $invalid[] = _check_validation('_text_field_is_empty', $target, $form, $form_state);
+    $validator->validate($method, $target);
+  }
+  elseif ($tree == 'yes') {
+    // Using a decision tree so check which tree.
+    $target = 'principle_2_question_1_3.which_tree';
+    $validator->validate($method, $target);
   }
 
-  // Check to see whether we have failed validation and therefore should store
-  // it in the database or whether we have passed and therefore clear validation
-  // errors.
-  if (!in_array(TRUE, $invalid)) {
-    // Remove any stored validation.
-    myhaccp_clear_validation($form_state);
-  }
+  $validator->setErrorMessages();
 }

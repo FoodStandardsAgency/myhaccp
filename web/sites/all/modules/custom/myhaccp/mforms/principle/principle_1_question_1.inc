@@ -61,9 +61,8 @@ function principle_1_question_1(&$form_state, &$next_step) {
     $form['principle_1_question_1']['instance_' . $i]['wrapper']['step_no'] = array(
       '#weight' => '0',
       '#type' => 'textfield',
-      '#title' => t('Step no. !tip', array(
-        '!tip' => _help_tip(16),
-      )),
+      '#title' => t('Step no.'),
+      '#help_link' => 16,
       '#help_text' => t('Number of process step.'),
       '#default_value' => array_get($values, "principle_1_question_1.instance_$i.wrapper.step_no", FALSE),
       '#attributes' => array(
@@ -77,9 +76,8 @@ function principle_1_question_1(&$form_state, &$next_step) {
     $form['principle_1_question_1']['instance_' . $i]['wrapper']['step_name'] = array(
       '#weight' => '1',
       '#type' => 'textfield',
-      '#title' => t('Step name !tip', array(
-        '!tip' => _help_tip(16),
-      )),
+      '#title' => t('Step name'),
+      '#help_link' => 16,
       '#help_text' => t('Name of process step.'),
       '#default_value' => array_get($values, "principle_1_question_1.instance_$i.wrapper.step_name", FALSE),
       '#attributes' => array(
@@ -110,9 +108,8 @@ function principle_1_question_1(&$form_state, &$next_step) {
       '#weight' => '3',
       '#type' => 'textarea',
       '#resizable' => FALSE,
-      '#title' => t('Biological !tip', array(
-        '!tip' => _help_tip(16),
-      )),
+      '#title' => t('Biological'),
+    '#help_link' => 16,
       '#help_text' => t('List all biological hazards e.g. Salmonella spp., Listeria spp., Norovirus.'),
       '#default_value' => array_get($values, "principle_1_question_1.instance_$i.hazards_wrapper.biological", FALSE),
     );
@@ -121,9 +118,8 @@ function principle_1_question_1(&$form_state, &$next_step) {
       '#weight' => '4',
       '#type' => 'textarea',
       '#resizable' => FALSE,
-      '#title' => t('Chemical !tip', array(
-        '!tip' => _help_tip(16),
-      )),
+      '#title' => t('Chemical'),
+      '#help_link' => 16,
       '#help_text' => t('List all chemical hazards e.g nitrate, patulin, cadmium.'),
       '#default_value' => array_get($values, "principle_1_question_1.instance_$i.hazards_wrapper.chemical", FALSE),
     );
@@ -132,9 +128,8 @@ function principle_1_question_1(&$form_state, &$next_step) {
       '#weight' => '5',
       '#type' => 'textarea',
       '#resizable' => FALSE,
-      '#title' => t('Physical !tip', array(
-        '!tip' => _help_tip(16),
-      )),
+      '#title' => t('Physical'),
+      '#help_link' => 16,
       '#help_text' => t('List all physical hazards e.g. stones, metal, wood.'),
       '#default_value' => array_get($values, "principle_1_question_1.instance_$i.hazards_wrapper.physical", FALSE),
     );
@@ -143,9 +138,8 @@ function principle_1_question_1(&$form_state, &$next_step) {
       '#weight' => '6',
       '#type' => 'textarea',
       '#resizable' => FALSE,
-      '#title' => t('Allergens !tip', array(
-        '!tip' => _help_tip(16),
-      )),
+      '#title' => t('Allergens'),
+      '#help_link' => 16,
       '#help_text' => t('List all substances or products that cause allergies or intolerances e.g.  celery, sesame seeds, egg.'),
       '#default_value' => array_get($values, "principle_1_question_1.instance_$i.hazards_wrapper.allergens", FALSE),
     );
@@ -196,8 +190,9 @@ function principle_1_question_1(&$form_state, &$next_step) {
  * Validation handler for Principle 1 Question 1.
  */
 function principle_1_question_1_validate($form, &$form_state) {
-  // Only continue if there is some data in one or more fields.
-  if (myhacpp_all_fields_are_empty($form_state, __FUNCTION__)) {
+  $validator = new validator($form, $form_state, 'principle_1_question_1');
+
+  if ($validator->allFieldsAreEmpty()) {
     return;
   }
 
@@ -206,81 +201,76 @@ function principle_1_question_1_validate($form, &$form_state) {
     return TRUE;
   }
 
-  $global = array();
+  // Do some normal checks with error messages on the step no and step name
+  // fields.
+  $checks = array(
+    "principle_1_question_1.instance_0.wrapper.step_no" => 'fieldIsNotEmpty',
+    "principle_1_question_1.instance_0.wrapper.step_name" => 'fieldIsNotEmpty',
+  );
 
-  $invalid = array();
+  foreach ($checks as $target => $method) {
+    $validator->validate($method, $target);
+  }
+
+  $messages = array();
 
   for ($i = 0; $i < $form_state['num_instances']; $i++) {
     // In each instance, check whether some of the fields have been filled in,
     // if they have then check they have all been filled in.
+    $invalid_hazards = array();
+    $invalid_steps = array();
 
     // Checks is an array with the key being the element being targeted (in dot
     // notation) and the value being the callback to use to check whether the
     // field is empty.
     $checks = array(
-      "principle_1_question_1.instance_$i.hazards_wrapper.biological" => '_text_field_is_empty',
-      "principle_1_question_1.instance_$i.hazards_wrapper.physical" => '_text_field_is_empty',
-      "principle_1_question_1.instance_$i.hazards_wrapper.allergens" => '_text_field_is_empty',
-      "principle_1_question_1.instance_$i.hazards_wrapper.chemical" => '_text_field_is_empty',
+      "principle_1_question_1.instance_$i.hazards_wrapper.biological" => 'fieldIsNotEmpty',
+      "principle_1_question_1.instance_$i.hazards_wrapper.physical" => 'fieldIsNotEmpty',
+      "principle_1_question_1.instance_$i.hazards_wrapper.allergens" => 'fieldIsNotEmpty',
+      "principle_1_question_1.instance_$i.hazards_wrapper.chemical" => 'fieldIsNotEmpty',
     );
 
-    $invalid_hazards = array();
-    $invalid_steps = array();
+    foreach ($checks as $target => $method) {
+      $validation = new validation($form, $form_state, $target);
+      $invalid_hazards[] = $validation->$method();
+    }
 
-    foreach ($checks as $target => $callback) {
-      $invalid_hazards[] = _check_validation($callback, $target, $form, $form_state, TRUE);
+    if (!in_array(TRUE, $invalid_hazards)) {
+      $message = t('Please add at least one hazard.');
+      $messages['hazards'] = $message;
+      $validator->passed = FALSE;
     }
 
     // Check the step no and name fields.
     $checks = array(
-      "principle_1_question_1.instance_$i.wrapper.step_no" => '_text_field_is_empty',
-      "principle_1_question_1.instance_$i.wrapper.step_name" => '_text_field_is_empty',
+      "principle_1_question_1.instance_$i.wrapper.step_no" => 'fieldIsNotEmpty',
+      "principle_1_question_1.instance_$i.wrapper.step_name" => 'fieldIsNotEmpty',
     );
 
-    foreach ($checks as $target => $callback) {
-      $invalid_steps[] = _check_validation($callback, $target, $form, $form_state, TRUE);
+    foreach ($checks as $target => $method) {
+      $validation = new validation($form, $form_state, $target);
+      $invalid_steps[] = $validation->$method();
     }
 
-    // Display the normal validation messages for the step number and name.
-    foreach ($checks as $target => $callback) {
-      $invalid[] = _check_validation($callback, $target, $form, $form_state);
-    }
-
-    if (!in_array(FALSE, $invalid_hazards)) {
-      $message = t('Please add at least one hazard.');
-      $global[] = $message;
-      $invalid[] = TRUE;
-    }
-
-    if (!in_array(FALSE, $invalid_steps)) {
+    if (!in_array(TRUE, $invalid_steps)) {
       $message = t('Steps must have a step number and a step name.');
-      $global[] = $message;
-      $invalid[] = TRUE;
+      $messages['steps'] = $message;
+      $validator->passed = FALSE;
     }
   }
 
-  if (!empty($global)) {
-    myhacpp_prepare_validation('global', array('principle_1_question_1' => $global), $form_state);
-  }
+//
+//    if (!$evidence->fieldIsNotEmpty() && !$support->fieldIsNotEmpty()) {
+//      $messages = array(
+//        'validation_messages' => array(t('Please choose at least one option in question 1 or add some content in question 2.')),
+//      );
+//      $validator->passed = FALSE;
+//      $validator->setErrorMessages($messages);
+//    }
 
-  // Do some normal checks with error messages on the step no and step name
-  // fields.
-  $checks = array(
-    "principle_1_question_1.instance_0.wrapper.step_no" => '_text_field_is_empty',
-    "principle_1_question_1.instance_0.wrapper.step_name" => '_text_field_is_empty',
-  );
 
-  foreach ($checks as $target => $callback) {
-    $invalid[] = _check_validation($callback, $target, $form, $form_state);
-  }
+  $validator->setErrorMessages(array('validation_messages' => $messages));
 
-  // Check to see whether we have failed validation and therefore should store
-  // it in the database or whether we have passed and therefore clear validation
-  // errors.
-  if (!in_array(TRUE, $invalid)) {
-    // Remove any stored validation.
-    myhaccp_clear_validation($form_state);
-  }
 }
 
 /**

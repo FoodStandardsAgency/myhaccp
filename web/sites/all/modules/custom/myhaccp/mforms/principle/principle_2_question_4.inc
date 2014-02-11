@@ -185,12 +185,12 @@ function principle_2_question_4(&$form_state, &$next_step) {
  * Validation handler for Principle 2 Question 4.
  */
 function principle_2_question_4_validate($form, &$form_state) {
-  // Only continue if there is some data in one or more fields.
-  if (myhacpp_all_fields_are_empty($form_state, __FUNCTION__)) {
+  $validator = new validator($form, $form_state, 'principle_2_question_4');
+
+  if ($validator->allFieldsAreEmpty()) {
     return;
   }
 
-  $invalid = array();
   $checks = array();
 
   // Checks is an array with the key being the element being targeted (in dot
@@ -207,24 +207,19 @@ function principle_2_question_4_validate($form, &$form_state) {
     $tree = array_get($row, "decision_tree", array());
     if (is_array($tree)) {
       foreach ($tree as $id => $element) {
-        $checks["principle_2_question_4.instance_table.$key.decision_tree.$id"] = '_radios_field_is_empty';
+        $checks["principle_2_question_4.instance_table.$key.decision_tree.$id"] = 'fieldIsNotEmpty';
       }
     }
     // Ensure there is a CCP value.
-    $checks["principle_2_question_4.instance_table.$key.ccp"] = '_radios_field_is_empty';
+    $checks["principle_2_question_4.instance_table.$key.ccp"] = 'fieldIsNotEmpty';
   }
 
   // Check all the errors.
-  foreach ($checks as $target => $callback) {
-    $invalid[] = _check_validation($callback, $target, $form, $form_state);
+  foreach ($checks as $target => $method) {
+    $validator->validate($method, $target);
   }
 
-  // Check to see whether we have failed validation and therefore should store
-  // it in the database or whether we have passed and therefore clear validation
-  // errors.
-  if (!in_array(TRUE, $invalid)) {
-    // Remove any stored validation.
-    myhaccp_clear_validation($form_state);
-  }
+  $validator->setErrorMessages();
+
 }
 

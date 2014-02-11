@@ -192,74 +192,53 @@ function principle_3(&$form_state, &$next_step) {
  * Validation handler for Principle 2 Question 4.
  */
 function principle_3_validate($form, &$form_state) {
-  // Only continue if there is some data in one or more fields.
-  if (myhacpp_all_fields_are_empty($form_state, __FUNCTION__)) {
+  $validator = new validator($form, $form_state, 'principle_3');
+
+  if ($validator->allFieldsAreEmpty()) {
     return;
   }
 
-  $invalid = array();
-
-  // Checks is an array with the key being the element being targeted (in dot
-  // notation) and the value being the callback to use to check whether the
-  // field is empty.
   $rows = array_get($form_state, 'values.principle_3', array());
   // Iterate over each row.
   foreach ($rows as $key => $row) {
-    // Make sure 3 & 4 are yes values.
-    $targets = array(
-      "principle_3.$key.appropriate",
-      "principle_3.$key.measurable",
-    );
-    // Iterate over the two fields and check them.
-    foreach ($targets as $target) {
-      // First check if the field is empty.
-      if (!$invalid_item = _radios_field_is_empty($form_state['values'], $target)) {
-        // The field is not empty so now check that the wrong value has been
-        // entered.
-        $invalid_item = _radios_field_is_not_value('yes', $form_state['values'], $target);
-      }
-      // If its invalid show the message.
-      if ($invalid_item) {
-        $message = array_get($form, $target . '.#attributes.data-parsley-error-message', NULL);
-        myhacpp_prepare_validation($target, $message, $form_state);
-      }
-      // Add the invalid boolean to the array.
-      $invalid[] = $invalid_item;
-    }
 
     // Check for content in questions 1 & 2.
     $checks = array(
-      "principle_3.$key.limit" => '_text_field_is_empty',
-      "principle_3.$key.details" => '_text_field_is_empty',
+      "principle_3.$key.limit" => 'fieldIsNotEmpty',
+      "principle_3.$key.details" => 'fieldIsNotEmpty',
     );
 
-    foreach ($checks as $target => $callback) {
-      $invalid[] = _check_validation($callback, $target, $form, $form_state);
+    foreach ($checks as $target => $method) {
+      $validator->validate($method, $target);
+    }
+
+    // Make sure 3 & 4 are yes values.
+    $checks = array(
+      "principle_3.$key.appropriate" => array('fieldIsNotEmpty', 'radioIsNotNo'),
+      "principle_3.$key.measurable" => array('fieldIsNotEmpty', 'radioIsNotNo'),
+    );
+    // Iterate over the two fields and check them.
+    foreach ($checks as $target => $method) {
+      $validator->validate($method, $target);
     }
 
     // Now check if the radio button in 5 is set to yes.
     if (array_get($form_state['values'], "principle_3.$key.target", FALSE) == 'yes') {
       // Now check that both dependent fields 5a and 5b have something in them.
       $checks = array(
-        "principle_3.$key.target_value" => '_text_field_is_empty',
+        "principle_3.$key.target_value" => 'fieldIsNotEmpty',
       );
 
-      foreach ($checks as $target => $callback) {
-        $invalid[] = _check_validation($callback, $target, $form, $form_state);
+      foreach ($checks as $target => $method) {
+        $validator->validate($method, $target);
       }
     }
     else {
       // Confirm this field is not empty.
-      $invalid[] = _check_validation('_radios_field_is_empty', "principle_3.$key.target", $form, $form_state);
+      $validator->validate('fieldIsNotEmpty', "principle_3.$key.target");
     }
   }
 
-  // Check to see whether we have failed validation and therefore should store
-  // it in the database or whether we have passed and therefore clear validation
-  // errors.
-  if (!in_array(TRUE, $invalid)) {
-    // Remove any stored validation.
-    myhaccp_clear_validation($form_state);
-  }
+  $validator->setErrorMessages();
 }
 

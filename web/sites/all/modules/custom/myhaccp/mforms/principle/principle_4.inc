@@ -87,9 +87,7 @@ function principle_4(&$form_state, &$next_step) {
     $form['principle_4']['instance_' . $key]['activities'] = array(
       '#type' => 'textarea',
       '#resizable' => FALSE,
-      '#title' => t('1. What monitoring activities are going to take place at this CCP? !tip', array(
-        '!tip' => _help_tip(),
-      )),
+      '#title' => t('1. What monitoring activities are going to take place at this CCP?'),
       '#default_value' => array_get($values, "principle_4.instance_$key.activities", FALSE),
       '#help_text' => t("Help text TBC."),
       '#attributes' => array(
@@ -101,9 +99,7 @@ function principle_4(&$form_state, &$next_step) {
     $form['principle_4']['instance_' . $key]['frequency'] = array(
       '#type' => 'textarea',
       '#resizable' => FALSE,
-      '#title' => t('2. Specify how frequently the monitoring activities are to be carried out. !tip', array(
-        '!tip' => _help_tip(),
-      )),
+      '#title' => t('2. Specify how frequently the monitoring activities are to be carried out.'),
       '#default_value' => array_get($values, "principle_4.instance_$key.frequency", FALSE),
       '#help_text' => t("Help text TBC."),
       '#attributes' => array(
@@ -115,9 +111,7 @@ function principle_4(&$form_state, &$next_step) {
     $form['principle_4']['instance_' . $key]['carried_out'] = array(
       '#type' => 'textarea',
       '#resizable' => FALSE,
-      '#title' => t('3. Define how the monitoring activities are carried out. !tip', array(
-        '!tip' => _help_tip(),
-      )),
+      '#title' => t('3. Define how the monitoring activities are carried out.'),
       '#default_value' => array_get($values, "principle_4.instance_$key.carried_out", FALSE),
       '#help_text' => t("Help text TBC."),
       '#attributes' => array(
@@ -129,9 +123,7 @@ function principle_4(&$form_state, &$next_step) {
     $form['principle_4']['instance_' . $key]['responsible'] = array(
       '#type' => 'textarea',
       '#resizable' => FALSE,
-      '#title' => t('4. Who is responsible for monitoring actions at this CCP? !tip', array(
-        '!tip' => _help_tip(),
-      )),
+      '#title' => t('4. Who is responsible for monitoring actions at this CCP?'),
       '#default_value' => array_get($values, "principle_4.instance_$key.responsible", FALSE),
       '#help_text' => t("Help text TBC."),
       '#attributes' => array(
@@ -142,9 +134,7 @@ function principle_4(&$form_state, &$next_step) {
 
     $form['principle_4']['instance_' . $key]['deputy'] = array(
       '#type' => 'textfield',
-      '#title' => t('5. Please state the name and job title of the deputy if applicable: !tip', array(
-        '!tip' => _help_tip(),
-      )),
+      '#title' => t('5. Please state the name and job title of the deputy if applicable:'),
       '#default_value' => array_get($values, "principle_4.instance_$key.deputy", FALSE),
       '#help_text' => t("Help text TBC."),
       '#attributes' => array(
@@ -153,9 +143,7 @@ function principle_4(&$form_state, &$next_step) {
 
     $form['principle_4']['instance_' . $key]['location'] = array(
       '#type' => 'textfield',
-      '#title' => t('6. Where are the results of monitoring recorded? !tip', array(
-        '!tip' => _help_tip(),
-      )),
+      '#title' => t('6. Where are the results of monitoring recorded?'),
       '#default_value' => array_get($values, "principle_4.instance_$key.location", FALSE),
       '#help_text' => t("Help text TBC."),
       '#attributes' => array(
@@ -170,9 +158,7 @@ function principle_4(&$form_state, &$next_step) {
         'yes' => t('Yes'),
         'no' => t('No'),
       ),
-      '#title' => t('7. Will the monitoring records be checked and signed off by anyone? !tip', array(
-        '!tip' => _help_tip(),
-      )),
+      '#title' => t('7. Will the monitoring records be checked and signed off by anyone?'),
       '#default_value' => array_get($values, "principle_4.instance_$key.checked", FALSE),
       '#help_text' => t("Help text TBC."),
       '#attributes' => array(
@@ -183,9 +169,7 @@ function principle_4(&$form_state, &$next_step) {
 
     $form['principle_4']['instance_' . $key]['record_name'] = array(
       '#type' => 'textfield',
-      '#title' => t('7a. Who will check the records? !tip', array(
-        '!tip' => _help_tip(),
-      )),
+      '#title' => t('7a. Who will check the records?'),
       '#default_value' => array_get($values, "principle_4.instance_$key.record_name", FALSE),
       '#help_text' => t("Help text TBC."),
       '#states' => array(
@@ -200,9 +184,7 @@ function principle_4(&$form_state, &$next_step) {
 
     $form['principle_4']['instance_' . $key]['record_frequency'] = array(
       '#type' => 'textfield',
-      '#title' => t('7b. How frequently will they check the records? !tip', array(
-        '!tip' => _help_tip(),
-      )),
+      '#title' => t('7b. How frequently will they check the records?'),
       '#default_value' => array_get($values, "principle_4.instance_$key.record_frequency", FALSE),
       '#help_text' => t("Help text TBC."),
       '#states' => array(
@@ -227,12 +209,11 @@ function principle_4(&$form_state, &$next_step) {
  * Validation handler for Principle 2 Question 4.
  */
 function principle_4_validate($form, &$form_state) {
-  // Only continue if there is some data in one or more fields.
-  if (myhacpp_all_fields_are_empty($form_state, __FUNCTION__)) {
+  $validator = new validator($form, $form_state, 'principle_4');
+
+  if ($validator->allFieldsAreEmpty()) {
     return;
   }
-
-  $invalid = array();
 
   // Checks is an array with the key being the element being targeted (in dot
   // notation) and the value being the callback to use to check whether the
@@ -243,45 +224,40 @@ function principle_4_validate($form, &$form_state) {
 
     // Check for content in visible questions.
     $checks = array(
-      "principle_4.$key.activities" => '_text_field_is_empty',
-      "principle_4.$key.frequency" => '_text_field_is_empty',
-      "principle_4.$key.carried_out" => '_text_field_is_empty',
-      "principle_4.$key.responsible" => '_text_field_is_empty',
-      "principle_4.$key.deputy" => '_radios_field_is_empty',
-      "principle_4.$key.location" => '_text_field_is_empty',
-      "principle_4.$key.checked" => '_radios_field_is_empty',
+      "principle_4.$key.activities" => 'fieldIsNotEmpty',
+      "principle_4.$key.frequency" => 'fieldIsNotEmpty',
+      "principle_4.$key.carried_out" => 'fieldIsNotEmpty',
+      "principle_4.$key.responsible" => 'fieldIsNotEmpty',
+      "principle_4.$key.deputy" => 'fieldIsNotEmpty',
+      "principle_4.$key.location" => 'fieldIsNotEmpty',
+      "principle_4.$key.checked" => 'fieldIsNotEmpty',
     );
 
-    foreach ($checks as $target => $callback) {
-      $invalid[] = _check_validation($callback, $target, $form, $form_state);
+    foreach ($checks as $target => $method) {
+      $validator->validate($method, $target);
     }
 
     // Now check if the radio button in 5 is set to yes.
     if (array_get($form_state['values'], "principle_4.$key.deputy", FALSE) == 'yes') {
       // Now check that the dependent fields 5a has something in it.
-      $invalid[] = _check_validation('_text_field_is_empty', "principle_4.$key.deputy_name", $form, $form_state);
+      $validator->validate('fieldIsNotEmpty', "principle_4.$key.deputy_name");
     }
 
     // Now check if the radio button in 7 is set to yes.
     if (array_get($form_state['values'], "principle_4.$key.checked", FALSE) == 'yes') {
       // Now check that both dependent fields 7a and 7b have something in them.
       $checks = array(
-        "principle_4.$key.record_name" => '_text_field_is_empty',
-        "principle_4.$key.record_frequency" => '_text_field_is_empty',
+        "principle_4.$key.record_name" => 'fieldIsNotEmpty',
+        "principle_4.$key.record_frequency" => 'fieldIsNotEmpty',
       );
 
-      foreach ($checks as $target => $callback) {
-        $invalid[] = _check_validation($callback, $target, $form, $form_state);
+      foreach ($checks as $target => $method) {
+        $validator->validate($method, $target);
       }
     }
   }
 
-  // Check to see whether we have failed validation and therefore should store
-  // it in the database or whether we have passed and therefore clear validation
-  // errors.
-  if (!in_array(TRUE, $invalid)) {
-    // Remove any stored validation.
-    myhaccp_clear_validation($form_state);
-  }
+  $validator->setErrorMessages();
+
 }
 

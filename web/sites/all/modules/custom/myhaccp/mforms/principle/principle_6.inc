@@ -266,42 +266,36 @@ function principle_6(&$form_state, &$next_step) {
  * Validation handler for Principle 2 Question 4.
  */
 function principle_6_validate($form, &$form_state) {
-  // Only continue if there is some data in one or more fields.
-  if (myhacpp_all_fields_are_empty($form_state, __FUNCTION__)) {
+  $validator = new validator($form, $form_state, 'principle_6');
+
+  if ($validator->allFieldsAreEmpty()) {
     return;
   }
-
-  $invalid = array();
 
   // Checks is an array with the key being the element being targeted (in dot
   // notation) and the value being the callback to use to check whether the
   // field is empty.
   $checks = array(
-    'principle_6.document' => '_text_field_is_empty',
-    'principle_6.responsible' => '_text_field_is_empty',
-    'principle_6.trained' => '_radios_field_is_empty',
-    'principle_6.maintained' => '_radios_field_is_empty',
-    'principle_6.reviewed' => '_text_field_is_empty',
-    'principle_6.responsible_review' => '_text_field_is_empty',
-    'principle_6.records_reviews' => '_radios_field_is_empty',
+    'principle_6.document' => 'fieldIsNotEmpty',
+    'principle_6.responsible' => 'fieldIsNotEmpty',
+    'principle_6.trained' => 'fieldIsNotEmpty',
+    'principle_6.maintained' => 'fieldIsNotEmpty',
+    'principle_6.reviewed' => 'fieldIsNotEmpty',
+    'principle_6.responsible_review' => 'fieldIsNotEmpty',
+    'principle_6.records_reviews' => 'fieldIsNotEmpty',
   );
 
-  foreach ($checks as $target => $callback) {
-    $invalid[] = _check_validation($callback, $target, $form, $form_state);
+  foreach ($checks as $target => $method) {
+    $validator->validate($method, $target);
   }
 
   // Now check if the radio button in 3 is set to yes.
   if (array_get($form_state['values'], "principle_6.trained", FALSE) == 'yes') {
     // Now check that the dependent fields 5a has something in it.
-    $invalid[] = _check_validation('_text_field_is_empty', "principle_6.sign_off", $form, $form_state);
+    $validator->validate('fieldIsNotEmpty', 'principle_6.sign_off');
   }
 
-  // Check to see whether we have failed validation and therefore should store
-  // it in the database or whether we have passed and therefore clear validation
-  // errors.
-  if (!in_array(TRUE, $invalid)) {
-    // Remove any stored validation.
-    myhaccp_clear_validation($form_state);
-  }
+  $validator->setErrorMessages();
+
 }
 

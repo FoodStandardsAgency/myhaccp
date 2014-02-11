@@ -50,9 +50,8 @@ function preparatory_g(&$form_state, &$next_step) {
   // 2. If digital please upload.
   $form['preparatory_g']['upload'] = array(
     '#type' => 'managed_file',
-    '#title' => t('2. Please upload a digital copy of your flow diagram (or go to 3). !tip', array(
-      '!tip' => _help_tip(20),
-    )),
+    '#title' => t('2. Please upload a digital copy of your flow diagram (or go to 3).'),
+    '#help_link' => 20,
     '#help_text' => t('This allows you to save your diagram on-line.'),
     '#default_value' => $default_file,
     '#progress_indicator' => 'bar',
@@ -68,9 +67,8 @@ function preparatory_g(&$form_state, &$next_step) {
   // 3. If digital please upload.
   $form['preparatory_g']['hard_copy'] = array(
     '#type' => 'textarea',
-    '#title' => t('3. If you only have a hard copy, please  specify the location where it is retained and any document reference. !tip', array(
-      '!tip' => _help_tip(20),
-    )),
+    '#title' => t('3. If you only have a hard copy, please  specify the location where it is retained and any document reference.'),
+    '#help_link' => 20,
     '#help_text' => t('State where you can find the copy, e.g. HACCP file or filing cabinet under HACCP.'),
     '#default_value' => array_get($values, 'preparatory_g.hard_copy', FALSE),
     '#attributes' => array(
@@ -87,32 +85,33 @@ function preparatory_g(&$form_state, &$next_step) {
  * Validation handler.
  */
 function preparatory_g_validate($form, &$form_state) {
-  // Only continue if there is some data in one or more fields.
-  if (myhacpp_all_fields_are_empty($form_state, __FUNCTION__)) {
+  $validator = new validator($form, $form_state, 'preparatory_g');
+
+  if ($validator->allFieldsAreEmpty()) {
     return;
   }
 
-  $invalid = array();
-
-  // Checks is an array with the key being the element being targeted (in dot
-  // notation) and the value being the callback to use to check whether the
-  // field is empty.
   $checks = array(
-    'preparatory_g.flow_completed' => '_checkbox_field_is_empty',
+    'preparatory_g.flow_completed' => 'fieldIsNotEmpty',
   );
 
-  foreach ($checks as $target => $callback) {
-    $invalid[] = _check_validation($callback, $target, $form, $form_state);
+  foreach ($checks as $target => $method) {
+    $validator->validate($method, $target);
   }
 
-  if (_file_field_is_empty($form_state['values'], 'preparatory_g.upload') && _text_field_is_empty($form_state['values'], 'preparatory_g.hard_copy')) {
-    $message = t('Please either upload a digital copy of your flow diagram, or if you only have a hard copy please specify the location where it is retained and any document reference.');
-    myhacpp_prepare_validation('preparatory_g.upload', $message, $form_state);
-    myhacpp_prepare_validation('preparatory_g.hard_copy', $message, $form_state);
-    // Ensure validation errors aren't cleared.
-    $invalid[] = TRUE;
+  $upload = new validation($form, $form_state, 'preparatory_g.upload');
+  $hard_copy = new validation($form, $form_state, 'preparatory_g.hard_copy');
+  if (!$upload->fieldIsNotEmpty() && !$hard_copy->fieldIsNotEmpty()) {
+    $messages = array(
+      'validation_messages' => array(t('Please either upload a digital copy of your flow diagram, or if you only have a hard copy please specify the location where it is retained and any document reference.')),
+    );
+    $validator->passed = FALSE;
+    $validator->setErrorMessages($messages);
   }
 
+  $validator->setErrorMessages();
+
+  // Make sure uploaded files are permanently stored.
   if (array_get($form_state, 'values.preparatory_g.upload', FALSE)) {
     // Load the file via file.fid.
     $file = file_load($form_state['values']['preparatory_g']['upload']);
@@ -125,13 +124,5 @@ function preparatory_g_validate($form, &$form_state) {
       $iid = $_SESSION['iid'];
       file_usage_add($file, 'myhaccp', 'form', $iid);
     }
-  }
-
-  // Check to see whether we have failed validation and therefore should store
-  // it in the database or whether we have passed and therefore clear validation
-  // errors.
-  if (!in_array(TRUE, $invalid)) {
-    // Remove any stored validation.
-    myhaccp_clear_validation($form_state);
   }
 }

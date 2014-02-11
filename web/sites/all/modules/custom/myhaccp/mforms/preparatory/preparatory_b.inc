@@ -27,9 +27,8 @@ function preparatory_b(&$form_state, &$next_step) {
 
   $form['preparatory_b']['preparatory_b_support'] = array(
     '#type' => 'checkboxes',
-    '#title' => t('1. What documented evidence do you have to show the support of senior management to the food safety management based on HACCP? !tip', array(
-      '!tip' => _help_tip(14),
-    )),
+    '#title' => t('1. What documented evidence do you have to show the support of senior management to the food safety management based on HACCP?'),
+    '#help_link' => 14,
     '#help_text' => t("Where in your company could you look for evidence to demonstrate that senior management are engaged and dedicated to the development of an ongoing HACCP study."),
     '#options' => array_flip(drupal_map_assoc(array(
       t('A Food Safety Policy has been drawn up and signed by management.'),
@@ -53,9 +52,8 @@ function preparatory_b(&$form_state, &$next_step) {
   $form['preparatory_b']['preparatory_b_evidence'] = array(
     '#type' => 'textarea',
     '#resizable' => FALSE,
-    '#title' => t('2. Other evidence: !tip', array(
-      '!tip' => _help_tip(14),
-    )),
+    '#title' => t('2. Other evidence:'),
+    '#help_link' => 14,
     '#help_text' => t("State anything else that would demonstrate you have management commitment."),
     '#default_value' => array_get($values, 'preparatory_b.preparatory_b_evidence', FALSE),
     '#attributes' => array(
@@ -74,31 +72,20 @@ function preparatory_b(&$form_state, &$next_step) {
  * Validation handler.
  */
 function preparatory_b_validate($form, &$form_state) {
-  // Only continue if there is some data in one or more fields.
-  if (myhacpp_all_fields_are_empty($form_state, __FUNCTION__)) {
+  $validator = new validator($form, $form_state, 'preparatory_b');
+
+  if ($validator->allFieldsAreEmpty()) {
     return;
   }
 
-  // Set a default of the form being valid.
-  $invalid = FALSE;
-  $values = $form_state['values'];
-
-  // Validation: At least one box checked from Q1, or some content in question 2.
-  // This is slightly more complex validation so not using the iterative field
-  // check process as seen in other stages.
-  if (_text_field_is_empty($values, 'preparatory_b.preparatory_b_evidence') && _checkboxes_field_is_empty($values, 'preparatory_b.preparatory_b_support')) {
-    $message = t('Please choose at least one option in question 1 or add some content in question 2.');
-    myhacpp_prepare_validation('preparatory_b.preparatory_b_support', $message, $form_state);
-    myhacpp_prepare_validation('preparatory_b.preparatory_b_evidence', $message, $form_state);
-    // Ensure validation errors aren't cleared.
-    $invalid = TRUE;
+  $evidence = new validation($form, $form_state, 'preparatory_b.preparatory_b_evidence');
+  $support = new validation($form, $form_state, 'preparatory_b.preparatory_b_support');
+  if (!$evidence->fieldIsNotEmpty() && !$support->fieldIsNotEmpty()) {
+    $messages = array(
+      'validation_messages' => array(t('Please choose at least one option in question 1 or add some content in question 2.')),
+    );
+    $validator->passed = FALSE;
+    $validator->setErrorMessages($messages);
   }
 
-  // Check to see whether we have failed validation and therefore should store
-  // it in the database or whether we have passed and therefore clear validation
-  // errors.
-  if ($invalid == FALSE) {
-    // Remove any stored validation.
-    myhaccp_clear_validation($form_state);
-  }
 }

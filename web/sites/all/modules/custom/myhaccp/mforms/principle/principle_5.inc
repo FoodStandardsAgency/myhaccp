@@ -87,9 +87,7 @@ function principle_5(&$form_state, &$next_step) {
     $form['principle_5']['instance_' . $key]['action'] = array(
       '#type' => 'textarea',
       '#resizable' => FALSE,
-      '#title' => t('1. Action to be taken !tip', array(
-        '!tip' => _help_tip(),
-      )),
+      '#title' => t('1. Action to be taken'),
       '#default_value' => array_get($values, "principle_5.instance_$key.action", FALSE),
       '#help_text' => t("State the person's name."),
       '#attributes' => array(
@@ -101,9 +99,7 @@ function principle_5(&$form_state, &$next_step) {
     $form['principle_5']['instance_' . $key]['authority'] = array(
       '#type' => 'textarea',
       '#resizable' => FALSE,
-      '#title' => t('2. Detail personnel who have the authority to take the stated corrective action. !tip', array(
-        '!tip' => _help_tip(),
-      )),
+      '#title' => t('2. Detail personnel who have the authority to take the stated corrective action.'),
       '#default_value' => array_get($values, "principle_5.instance_$key.authority", FALSE),
       '#help_text' => t("State the person's name."),
       '#attributes' => array(
@@ -115,9 +111,7 @@ function principle_5(&$form_state, &$next_step) {
     $form['principle_5']['instance_' . $key]['product'] = array(
       '#type' => 'textarea',
       '#resizable' => FALSE,
-      '#title' => t('3. What happens to the product created during the period that a CCP was out of control? Detail any variation in handling this product that relates to, a parameter, eg degree of control lost. !tip', array(
-        '!tip' => _help_tip(),
-      )),
+      '#title' => t('3. What happens to the product created during the period that a CCP was out of control? Detail any variation in handling this product that relates to, a parameter, eg degree of control lost.'),
       '#default_value' => array_get($values, "principle_5.instance_$key.product", FALSE),
       '#help_text' => t("State the person's name."),
       '#attributes' => array(
@@ -129,9 +123,7 @@ function principle_5(&$form_state, &$next_step) {
     $form['principle_5']['instance_' . $key]['document_location'] = array(
       '#type' => 'textarea',
       '#resizable' => FALSE,
-      '#title' => t('4. Where are you going to document what you have done with the product produced during the time period that a CCP was \'out of control\' (for example since the last good check)? !tip', array(
-        '!tip' => _help_tip(),
-      )),
+      '#title' => t('4. Where are you going to document what you have done with the product produced during the time period that a CCP was \'out of control\' (for example since the last good check)?'),
       '#default_value' => array_get($values, "principle_5.instance_$key.document_location", FALSE),
       '#help_text' => t("State the person's name."),
       '#attributes' => array(
@@ -146,9 +138,7 @@ function principle_5(&$form_state, &$next_step) {
         'yes' => t('Yes'),
         'no' => t('No'),
       ),
-      '#title' => t('5. Are all personnel (identified in any of the steps from 1-6 for all CCP’s) trained and competent for performing the activities stated? !tip', array(
-        '!tip' => _help_tip(),
-      )),
+      '#title' => t('5. Are all personnel (identified in any of the steps from 1-6 for all CCP’s) trained and competent for performing the activities stated?'),
       '#default_value' => array_get($values, "principle_5.instance_$key.trained", FALSE),
       '#help_text' => t("State the person's name."),
       '#attributes' => array(
@@ -163,9 +153,7 @@ function principle_5(&$form_state, &$next_step) {
         'yes' => t('Yes'),
         'no' => t('No'),
       ),
-      '#title' => t('Are records of competency maintained? !tip', array(
-        '!tip' => _help_tip(),
-      )),
+      '#title' => t('Are records of competency maintained?'),
       '#help_text' => t("The competencies of staff should be reviewed. It may be necessary to train staff, refresh their training, provide on-the-job experience, records of which should be kept to reflect that staff are capable of performing the task they are undertaking"),
       '#default_value' => array_get($values, "principle_5.instance_$key.competencies", FALSE),
       '#help_text' => t("State the person's name."),
@@ -187,42 +175,31 @@ function principle_5(&$form_state, &$next_step) {
  * Validation handler for Principle 2 Question 4.
  */
 function principle_5_validate($form, &$form_state) {
-  // Only continue if there is some data in one or more fields.
-  if (myhacpp_all_fields_are_empty($form_state, __FUNCTION__)) {
+  $validator = new validator($form, $form_state, 'principle_5');
+
+  if ($validator->allFieldsAreEmpty()) {
     return;
   }
 
-  $invalid = array();
-
-  // Checks is an array with the key being the element being targeted (in dot
-  // notation) and the value being the callback to use to check whether the
-  // field is empty.
   $rows = array_get($form_state, 'values.principle_5', array());
   // Iterate over each row.
   foreach ($rows as $key => $row) {
-
-    // Check for content in visible questions.
     $checks = array(
-      "principle_5.$key.action" => '_text_field_is_empty',
-      "principle_5.$key.authority" => '_text_field_is_empty',
-      "principle_5.$key.product" => '_text_field_is_empty',
-      "principle_5.$key.document_location" => '_text_field_is_empty',
-      "principle_5.$key.trained" => '_radios_field_is_empty',
-      "principle_5.$key.competencies" => '_radios_field_is_empty',
+      "principle_5.$key.action" => 'fieldIsNotEmpty',
+      "principle_5.$key.authority" => 'fieldIsNotEmpty',
+      "principle_5.$key.product" => 'fieldIsNotEmpty',
+      "principle_5.$key.document_location" => 'fieldIsNotEmpty',
+      "principle_5.$key.trained" => 'fieldIsNotEmpty',
+      "principle_5.$key.competencies" => 'fieldIsNotEmpty',
     );
 
-    foreach ($checks as $target => $callback) {
-      $invalid[] = _check_validation($callback, $target, $form, $form_state);
+    foreach ($checks as $target => $method) {
+      $validator->validate($method, $target);
     }
 
   }
 
-  // Check to see whether we have failed validation and therefore should store
-  // it in the database or whether we have passed and therefore clear validation
-  // errors.
-  if (!in_array(TRUE, $invalid)) {
-    // Remove any stored validation.
-    myhaccp_clear_validation($form_state);
-  }
+  $validator->setErrorMessages();
+
 }
 
