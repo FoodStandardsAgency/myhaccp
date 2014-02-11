@@ -84,7 +84,7 @@ function theme_myhacpp_p1q3_table($variables) {
     'control_measure' => array(
       'data' => t('Control Measure !tip', array(
         '!tip' => _help_tip(27),
-        '!help' => '<div class="help-text">Please record what control measures have been put in place for each significant hazard.</div>'
+        '!help' => '<div class="help-text">Please record what control measures have been put in place for each significant hazard. ' . myhaccp_prepare_more_link(27) . '</div>'
       )),
       'class' => array('control-measure'),
     ),
@@ -142,7 +142,7 @@ function theme_myhacpp_p2q4_table($variables) {
     'decision_tree' => array(
       'data' => t('Decision Tree Q\'s !tip !help', array(
         '!tip' => _help_tip(28),
-         '!help' => '<div class="help-text">Please record your answers to each decision tree question below, selecting N/A if a question is not relevant.</div>'
+         '!help' => '<div class="help-text">Please record your answers to each decision tree question below, selecting N/A if a question is not relevant. ' . myhaccp_prepare_more_link(28) . '</div>'
       )),
       'class' => array('decision-tree'),
     ),

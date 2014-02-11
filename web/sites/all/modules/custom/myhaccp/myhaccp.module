@@ -39,6 +39,13 @@ function myhaccp_menu() {
     'file' => 'myhaccp.pages.inc',
     'type' => MENU_CALLBACK,
   );
+  $items['help/%ctools_js/%'] = array(
+    'title' => 'Help',
+    'page arguments' => array(1, 2),
+    'page callback' => 'myhaccp_help_modal',
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+  );
   return $items;
 }
 
@@ -331,8 +338,10 @@ function _get_all_steps() {
 }
 
 /**
- * Gets all the stage functions
+ * Gets all the stage functions.
+ *
  * @return array
+ *   Returns the array keys relating to the step names.
  */
 function _get_all_step_names() {
   return array_keys(_get_all_steps());
@@ -752,6 +761,73 @@ function myhaccp_saved_message($form, &$form_state) {
   if (isset($form_state['clicked_button']) && $form_state['clicked_button']['#value'] == 'Save') {
     drupal_set_message('Study saved', 'status', FALSE);
   }
+}
+
+/**
+ * The modal dialog for the help pages menu callback.
+ *
+ * Renders the node and passes it back in a ctools modal.
+ *
+ * @param bool|string $js
+ *   CTools indication of js enabled.
+ * @param bool|int $nid
+ *   The node ID of the help node to show in the modal.
+ *
+ * @return string
+ *   The contents of the node, that will fill the modal window.
+ */
+function myhaccp_help_modal($js = FALSE, $nid = FALSE) {
+  if (!$nid) {
+    // If no nid was provided then just forward to the help/guidance page.
+    drupal_goto('help/guidance');
+  }
+  if ($js) {
+    // Required includes for ctools to work:
+    ctools_include('modal');
+    ctools_include('ajax');
+    // Load the node object.
+    $node = node_load($nid);
+    if ($node) {
+      // Render the contents.
+      $contents = render(node_view($node, 'full'));
+      // Return the modal with node title and rendered contents.
+      return ctools_modal_render($node->title, $contents);
+    }
+  }
+
+  // We don't have js so forward on to the help node.
+  drupal_goto('node/' . $nid);
+}
+
+/**
+ * Prepares an ajax enabled modal link for help text.
+ *
+ * @param int $nid
+ *   The node ID to link to.
+ *
+ * @return string
+ *   The rendered link.
+ */
+function myhaccp_prepare_more_link($nid) {
+  // Add the ajax library.
+  drupal_add_library('system', 'drupal.ajax');
+  // Prepare the options.
+  $options = array(
+    'html' => TRUE,
+    'attributes' => array(
+      'class' => array(
+        'use-ajax',
+        'ctools-modal-myhaccp-style',
+        'more-link',
+      ),
+      'title' => 'Link through to further guidance on this subject.',
+      'target' => '_blank',
+    ),
+  );
+  $destination = 'help/nojs/' . $nid;
+
+  // Return the link.
+  return l(t('More information &raquo;'), $destination, $options);
 }
 
 /**
