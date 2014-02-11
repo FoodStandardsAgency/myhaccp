@@ -8,3 +8,9 @@ default:
       base_url: http://l.myhaccp
     Drupal\DrupalExtension\Extension:
       blackbox: ~
+gitlab:
+  formatter:
+    name: pretty
+  extensions:
+    Behat\MinkExtension\Extension:
+      base_url: http://l.myhaccp
