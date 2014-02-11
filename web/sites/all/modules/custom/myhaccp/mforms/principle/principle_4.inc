@@ -89,7 +89,7 @@ function principle_4(&$form_state, &$next_step) {
       '#resizable' => FALSE,
       '#title' => t('1. What monitoring activities are going to take place at this CCP?'),
       '#default_value' => array_get($values, "principle_4.instance_$key.activities", FALSE),
-      '#help_text' => t("Help text TBC."),
+      '#help_text' => t("Monitoring activities are  observations or measurements that must be able to detect loss of control at a CCP."),
       '#attributes' => array(
         'data-parsley-required' => 'true',
         'data-parsley-error-message' => t('Please state what monitoring activities are going to take place at this CCP.'),
@@ -101,7 +101,7 @@ function principle_4(&$form_state, &$next_step) {
       '#resizable' => FALSE,
       '#title' => t('2. Specify how frequently the monitoring activities are to be carried out.'),
       '#default_value' => array_get($values, "principle_4.instance_$key.frequency", FALSE),
-      '#help_text' => t("Help text TBC."),
+      '#help_text' => t("e.g. every 20 minutes, ½ hourly, continually."),
       '#attributes' => array(
         'data-parsley-required' => 'true',
         'data-parsley-error-message' => t('Please specify  how frequently the monitoring activities are to be carried out.'),
@@ -113,7 +113,7 @@ function principle_4(&$form_state, &$next_step) {
       '#resizable' => FALSE,
       '#title' => t('3. Define how the monitoring activities are carried out.'),
       '#default_value' => array_get($values, "principle_4.instance_$key.carried_out", FALSE),
-      '#help_text' => t("Help text TBC."),
+      '#help_text' => t("Specify how the monitoring activity is going to be performed."),
       '#attributes' => array(
         'data-parsley-required' => 'true',
         'data-parsley-error-message' => t('Please define how the monitoring activities are carried out.'),
@@ -125,7 +125,7 @@ function principle_4(&$form_state, &$next_step) {
       '#resizable' => FALSE,
       '#title' => t('4. Who is responsible for monitoring actions at this CCP?'),
       '#default_value' => array_get($values, "principle_4.instance_$key.responsible", FALSE),
-      '#help_text' => t("Help text TBC."),
+      '#help_text' => t("Name or individual/s authorised to carry out this task.  They must be trained and competent in being able to carry out this task."),
       '#attributes' => array(
         'data-parsley-required' => 'true',
         'data-parsley-error-message' => t('Please state who is responsible for monitoring actions at this CCP.'),
@@ -136,7 +136,7 @@ function principle_4(&$form_state, &$next_step) {
       '#type' => 'textfield',
       '#title' => t('5. Please state the name and job title of the deputy if applicable:'),
       '#default_value' => array_get($values, "principle_4.instance_$key.deputy", FALSE),
-      '#help_text' => t("Help text TBC."),
+      '#help_text' => t("Will anyone else carry out this monitoring activity in the absence of the main person responsible.  The deputy must be trained and competent to be able to perform the task."),
       '#attributes' => array(
       ),
     );
@@ -145,7 +145,7 @@ function principle_4(&$form_state, &$next_step) {
       '#type' => 'textfield',
       '#title' => t('6. Where are the results of monitoring recorded?'),
       '#default_value' => array_get($values, "principle_4.instance_$key.location", FALSE),
-      '#help_text' => t("Help text TBC."),
+      '#help_text' => t("E.g. Is this in a specific log book, if so does it have a reference number or name?"),
       '#attributes' => array(
         'data-parsley-required' => 'true',
         'data-parsley-error-message' => t('Please state where the results of monitoring are recorded.'),
@@ -160,7 +160,7 @@ function principle_4(&$form_state, &$next_step) {
       ),
       '#title' => t('7. Will the monitoring records be checked and signed off by anyone?'),
       '#default_value' => array_get($values, "principle_4.instance_$key.checked", FALSE),
-      '#help_text' => t("Help text TBC."),
+      '#help_text' => t("It is good practice to get someone who is trained and competent to check monitoring records and sign them off.  This is typically someone different to the person carrying out  the monitoring activity.  Signing them off would indicate that all records are within tolerance or if not, appropriate action has been taken."),
       '#attributes' => array(
         'data-parsley-required' => 'true',
         'data-parsley-error-message' => t('Please state if the monitoring records are to be checked and signed off by anyone.'),
@@ -171,7 +171,7 @@ function principle_4(&$form_state, &$next_step) {
       '#type' => 'textfield',
       '#title' => t('7a. Who will check the records?'),
       '#default_value' => array_get($values, "principle_4.instance_$key.record_name", FALSE),
-      '#help_text' => t("Help text TBC."),
+      '#help_text' => t("Name of person who is competent and trained t check records are completed as expected."),
       '#states' => array(
         'visible' => array(
           ':input[name="principle_4[instance_' . $key . '][checked]"]' => array('value' => 'yes'),
@@ -186,7 +186,7 @@ function principle_4(&$form_state, &$next_step) {
       '#type' => 'textfield',
       '#title' => t('7b. How frequently will they check the records?'),
       '#default_value' => array_get($values, "principle_4.instance_$key.record_frequency", FALSE),
-      '#help_text' => t("Help text TBC."),
+      '#help_text' => t("E.g. daily."),
       '#states' => array(
         'visible' => array(
           ':input[name="principle_4[instance_' . $key . '][checked]"]' => array('value' => 'yes'),
