@@ -116,12 +116,12 @@ function myhaccp_myhaccp_mforms_init() {
       'value' => 'B',
       'weight' => 2,
     ),
-    'preparatory_c_question_1_3' => array(
+    'preparatory_c_1' => array(
       'stage' => 'preparatory',
       'value' => 'C.1',
       'weight' => 3,
     ),
-    'preparatory_c_question_4' => array(
+    'preparatory_c_2' => array(
       'stage' => 'preparatory',
       'value' => 'C.2',
       'weight' => 4,
@@ -151,27 +151,27 @@ function myhaccp_myhaccp_mforms_init() {
       'value' => 'H',
       'weight' => 9,
     ),
-    'principle_1_question_1' => array(
+    'principle_1_1' => array(
       'stage' => 'principles',
       'value' => '1.1',
       'weight' => 11,
     ),
-    'principle_1_question_2' => array(
+    'principle_1_2' => array(
       'stage' => 'principles',
       'value' => '1.2',
       'weight' => 12,
     ),
-    'principle_1_question_3' => array(
+    'principle_1_3' => array(
       'stage' => 'principles',
       'value' => '1.3',
       'weight' => 13,
     ),
-    'principle_2_question_1_3' => array(
+    'principle_2_1' => array(
       'stage' => 'principles',
       'value' => '2.1',
       'weight' => 14,
     ),
-    'principle_2_question_4' => array(
+    'principle_2_2' => array(
       'stage' => 'principles',
       'value' => '2.2',
       'weight' => 15,

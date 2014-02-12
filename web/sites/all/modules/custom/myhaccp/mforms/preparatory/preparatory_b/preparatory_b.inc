@@ -30,7 +30,7 @@ function preparatory_b(&$form_state, &$next_step) {
     '#title' => t('1. What documented evidence do you have to show the support of senior management to the food safety management based on HACCP?'),
     '#help_link' => 14,
     '#help_text' => t("Where in your company could you look for evidence to demonstrate that senior management are engaged and dedicated to the development of an ongoing HACCP study."),
-    '#options' => array_flip(drupal_map_assoc(array(
+    '#options' => drupal_map_assoc(array(
       t('A Food Safety Policy has been drawn up and signed by management.'),
       t('Senior management document, support and communicate their policies.'),
       t('Minutes of team meetings are taken and reviewed.'),
@@ -38,8 +38,7 @@ function preparatory_b(&$form_state, &$next_step) {
       t('Resources identified by the HACCP team are made available as required to develop, implement and maintain the HACCP system.'),
       t('Training takes place for HACCP studies.'),
       t('N/A - I am the management and can confirm that I am committed.'),
-    ), 'drupal_html_id')
-    ),
+    )),
     '#default_value' => array_get($values, 'preparatory_b.b_1', array()),
     '#attributes' => array(
       'data-parsley-group' => 'checkgroup',

@@ -100,8 +100,8 @@ function myhaccp_preview() {
       // it with the suitable function.
       foreach ($study as $stage => $data) {
         $output .= theme($stage, array('data' => $data));
-        return $output;
       }
+      return $output;
     }
     else {
       drupal_set_message('The requested study does not exist.', 'error');

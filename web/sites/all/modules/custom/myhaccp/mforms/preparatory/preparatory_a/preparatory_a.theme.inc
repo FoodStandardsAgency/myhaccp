@@ -26,7 +26,10 @@ function myhaccp_preprocess_preparatory_a(&$variables) {
       $names[] = $value;
     }
   }
-
-  $variables['a_1'] = !empty($names) ? '<ul><li>' . implode('</li><li>', $names) . '</li></ul>' : FALSE;
-  $variables['a_2'] = $values['a_2'];
+  // a_1
+   $variables['a_1_title'] = t('The company has in place a number of effective prerequisite programmes, including:');
+   $variables['a_1'] = !empty($names) ? '<ul><li>' . implode('</li><li>', $names) . '</li></ul>' : '';
+  // a_2
+  $variables['a_2_title'] = t('The location of the above documents is:');
+  $variables['a_2'] = $values['a_2'] ? $values['a_2'] : '';
 }
