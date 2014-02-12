@@ -27,11 +27,17 @@ function myhaccp_list() {
     'edit' => array(
       'data' => '',
     ),
+    'preview' => array(
+      'data' => '',
+    ),
+    'delete' => array(
+      'data' => '',
+    ),
   );
   $rows = array();
   // Prepare the empty text in case there aren't any rows.
   $empty = t('You haven\'t yet started a study. Would you like to !start', array(
-    '!start' => l(t('start one now?'), 'prototype/form/create'),
+    '!start' => l(t('start one now?'), 'tool/study/create'),
   ));
   // Only display this user's form instances.
   $query = db_select('mforms_storage', 'm')
@@ -40,12 +46,17 @@ function myhaccp_list() {
   $results = $query->execute()->fetchAll();
   foreach ($results as $delta => $result) {
     // Build out the rows.
-    $edit = user_access('edit own myhaccp forms') || user_access('edit any myhaccp forms') ? l(t('Resume'), 'prototype/form/' . $result->iid) : '';
+    $edit = user_access('edit own myhaccp forms') || user_access('edit any myhaccp forms') ? l(t('Resume'), 'tool/study/' . $result->iid) : '';
+    $preview = user_access('view own myhaccp forms') || user_access('view any myhaccp forms') ? l(t('Preview'), 'tool/study/' . $result->iid . '/preview') : '';
+    $delete = user_access('delete own myhaccp forms') || user_access('delete any myhaccp forms') ? l(t('Delete'), 'tool/study/' . $result->iid . '/delete') : '';
+
     $rows[] = array(
       'data' => array(
         'created' => format_date($result->created, 'short'),
         'changed' => $result->changed ? format_date($result->changed, 'short') : 'Not updated',
         'edit' => $edit,
+        'preview' => $preview,
+        'delete' => $delete,
       ),
     );
   }
@@ -61,39 +72,27 @@ function myhaccp_list() {
     )),
 
   );
-  $output['new'] = array(
-    '#type' => 'link',
-    '#title' => 'Start a new study',
-    '#href' => 'prototype/form/create',
-    '#attributes' => array(
-      'class' => array('new-study'),
-    ),
-  );
-  return $output;
-}
 
-/**
- * Menu callback for creating a form.
- */
-function myhaccp_create() {
-  global $user;
-  $record = array(
-    'uid' => $user->uid,
-    'created' => time(),
-  );
-  // Write the new record.
-  drupal_write_record('mforms_storage', $record);
-  // Forward to the beginning of the form.
-  drupal_goto('prototype/form/' . $record['iid']);
+  if (!empty($rows)) {
+    $output['new'] = array(
+      '#type' => 'link',
+      '#title' => 'Start a new study',
+      '#href' => 'tool/study/create',
+      '#attributes' => array(
+        'class' => array('new-study'),
+      ),
+    );
+  }
+  return $output;
 }
 
 /**
  * Previews a study and allows for exporting as PDF.
  */
-function myhaccp_preview() {
-  if ($iid = arg(2)) {
+function myhaccp_study_preview($iid) {
+  if (is_numeric($iid)) {
     // Check this study is valid.
-    $study = myhaccp_get_study($iid);
+    $study = myhaccp_study_get_all_stage_data($iid);
     if (!empty($study)) {
       $output = '';
       // We have a fully loaded study. Iterate over each stage (key) and process
@@ -122,7 +121,7 @@ function myhaccp_preview() {
  *   An empty array if the IID wasn't found, otherwise an array keyed with the
  *   stage name and the values being the unserialized form state values.
  */
-function myhaccp_get_study($iid) {
+function myhaccp_study_get_all_stage_data($iid) {
   // Fetch all the keys.
   $keys = _get_all_step_names();
   // Get all the stages from the db.
@@ -142,4 +141,69 @@ function myhaccp_get_study($iid) {
   }
   // Return an empty array if the study has not been found.
   return array();
+}
+
+/**
+ * Create a new study.
+ */
+function myhaccp_study_create() {
+  global $user;
+  $record = array(
+    'uid' => $user->uid,
+    'created' => time(),
+  );
+  // Write the new record.
+  drupal_write_record('mforms_storage', $record);
+  // Forward to the beginning of the form.
+  drupal_goto('tool/study/' . $record['iid']);
+}
+
+/**
+ * Menu callback for deleting a study.
+ */
+function myhaccp_study_delete($form, &$form_state, $iid) {
+  $form['iid'] = array(
+    '#type' => 'value',
+    '#value' => $iid,
+  );
+  return confirm_form($form, t('Are you sure you want to delete this study?'), 'tool', t('This action cannot be undone.'), t('Delete'), t('Cancel'));
+}
+
+/**
+ * Submit function for deleting a study.
+ */
+function myhaccp_study_delete_submit($form, &$form_state) {
+  global $user;
+
+  $iid = $form_state['values']['iid'];
+
+  // Check this user own this study.
+  $query = db_select('mforms_storage', 'ms')
+    ->fields('ms', array('uid'))
+    ->condition('ms.iid', $iid);
+  $result = $query->execute()->fetchCol(0);
+
+  if ($result) {
+    if (($result[0] !== $user->uid && !user_access('delete any myhaccp study')) || !user_access('delete own myhaccp study')) {
+      drupal_set_message('You don\'t have access to edit this study', 'error');
+      drupal_goto('tool');
+    }
+  }
+  else {
+    drupal_set_message('This study cannot be found.');
+  }
+
+  // Delete all the associated form stages in mforms_storage_steps.
+  db_delete('mforms_storage_steps')
+    ->condition('iid', $iid)
+    ->execute();
+
+  // Delete the study from mforms_storage.
+  db_delete('mforms_storage')
+    ->condition('iid', $iid)
+    ->execute();
+
+  drupal_set_message(t('The study has been deleted.'));
+  // Forward to the beginning of the form.
+  drupal_goto('tool');
 }

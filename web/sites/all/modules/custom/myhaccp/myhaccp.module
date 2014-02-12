@@ -15,36 +15,44 @@ function myhaccp_init() {
  * Implements hook_menu().
  */
 function myhaccp_menu() {
-  $items['prototype'] = array(
+  $items['tool'] = array(
     'title' => 'MyHACCP Web Tool',
     'page callback' => 'myhaccp_list',
     'page arguments' => array(),
     'access callback' => 'myhaccp_access',
     'access arguments' => array(1),
     'file' => 'myhaccp.pages.inc',
-    'type' => MENU_CALLBACK,
+    'type' => MENU_NORMAL_ITEM,
   );
-  $items['prototype/form'] = array(
+  $items['tool/study/%'] = array(
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('myhaccp_start_form'),
+    'page arguments' => array('myhaccp_study_resume', 2),
     'access callback' => 'myhaccp_access',
-    'access arguments' => array(1),
-    'file' => 'myhaccp.pages.inc',
-    'type' => MENU_CALLBACK,
+    'access arguments' => array(2),
+    'type' => MENU_NORMAL_ITEM,
   );
-  $items['prototype/form/create'] = array(
-    'page callback' => 'myhaccp_create',
+  $items['tool/study/create'] = array(
+    'page callback' => 'myhaccp_study_create',
     'access callback' => 'myhaccp_access',
     'access arguments' => array('create'),
     'file' => 'myhaccp.pages.inc',
-    'type' => MENU_CALLBACK,
+    'type' => MENU_NORMAL_ITEM,
   );
-  $items['prototype/form/%/preview'] = array(
-    'page callback' => 'myhaccp_preview',
+  $items['tool/study/%/delete'] = array(
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('myhaccp_study_delete', 2),
+    'access callback' => 'myhaccp_access',
+    'access arguments' => array('delete'),
+    'file' => 'myhaccp.pages.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
+  $items['tool/study/%/preview'] = array(
+    'page callback' => 'myhaccp_study_preview',
+    'page arguments' => array(2),
     'access callback' => 'myhaccp_access',
     'access arguments' => array('view'),
     'file' => 'myhaccp.pages.inc',
-    'type' => MENU_CALLBACK,
+    'type' => MENU_NORMAL_ITEM,
   );
   $items['help/%ctools_js/%'] = array(
     'title' => 'Help',
@@ -63,17 +71,25 @@ function myhaccp_menu() {
  */
 function myhaccp_permission() {
   return array(
-    'create myhaccp forms' => array(
-      'title' => t('Create myhaccp forms'),
-      'description' => t('Allow this role to create new myhaccp forms.'),
+    'create myhaccp study' => array(
+      'title' => t('Create myhaccp studies'),
+      'description' => t('Allow this role to create new myhaccp studies.'),
     ),
-    'edit own myhaccp forms' => array(
-      'title' => t('Edit own myhaccp forms'),
-      'description' => t('Edit a user\'s own myhaccp forms.'),
+    'edit own myhaccp study' => array(
+      'title' => t('Edit own myhaccp studies'),
+      'description' => t('Edit a user\'s own myhaccp studies.'),
     ),
-    'edit any myhaccp forms' => array(
-      'title' => t('Edit any myhaccp forms'),
-      'description' => t('Edit any user\'s myhaccp forms.'),
+    'edit any myhaccp study' => array(
+      'title' => t('Edit any myhaccp studies'),
+      'description' => t('Edit any user\'s myhaccp studies.'),
+    ),
+    'delete own myhaccp study' => array(
+      'title' => t('Edit any myhaccp studies'),
+      'description' => t('Delete a user\'s own myhaccp studies.'),
+    ),
+    'delete any myhaccp study' => array(
+      'title' => t('Delete any myhaccp studies'),
+      'description' => t('Delete any user\'s myhaccp studies.'),
     ),
   );
 }
@@ -89,10 +105,13 @@ function myhaccp_permission() {
  */
 function myhaccp_access($op) {
   if ($op == 'create') {
-    return user_access('create myhaccp forms');
+    return user_access('create myhaccp study');
+  }
+  elseif ($op == 'delete') {
+    return user_access('delete any myhaccp study') && user_access('delete own myhaccp study');
   }
   else {
-    return user_access('edit any myhaccp forms') && user_access('edit own myhaccp forms');
+    return user_access('edit any myhaccp study') && user_access('edit own myhaccp study');
   }
 }
 
@@ -222,7 +241,7 @@ function myhaccp_myhaccp_mforms_init() {
 /**
  * Menu callback which displays the form.
  */
-function myhaccp_start_form($form, &$form_state, $iid = FALSE) {
+function myhaccp_study_resume($form, &$form_state, $iid = FALSE) {
   // If we've been passed an IID then set the session to that.
   if ($iid && is_numeric($iid)) {
     // Check that this user has permission to look at this form.
@@ -242,7 +261,7 @@ function myhaccp_start_form($form, &$form_state, $iid = FALSE) {
   else {
     // If there is no current session open then create a new db row.
     drupal_set_message('Please edit an existing form or create a new one.');
-    drupal_goto('prototype');
+    drupal_goto('tool');
   }
   return mforms_build('myhaccp', 'preparatory_a', $form_state);
 }
@@ -501,7 +520,7 @@ function myhacpp_element_name_to_dot($name) {
  *   The message to display.
  * @param array $form_state
  *   The current form_state array.
- * @param array $options.
+ * @param array $options
  *   Options array elements:
  *   'stage' => The element key of the stage. e.g. 'preparatory_a'. Used to
  *     make sure that the validation messages don't appear on the wrong stage.
