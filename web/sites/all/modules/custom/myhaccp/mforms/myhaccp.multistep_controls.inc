@@ -141,7 +141,7 @@ class MyHACCPMultiStepControls extends MformsControls {
 //        '#disabled' => $visited,
         '#attributes' => array('class' => array($class)),
         '#limit_validation_errors' => array(),
-        '#submit' => array('_mforms_back_submit'),
+        '#submit' => array('myhaccp_set_pager_url'),
         '#store_key' => $this->store->getKey(),
         '#mforms_step' => $id,
       );

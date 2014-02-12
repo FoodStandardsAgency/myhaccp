@@ -27,6 +27,9 @@ function myhaccp_list() {
     'edit' => array(
       'data' => '',
     ),
+    'delete' => array(
+      'data' => '',
+    ),
   );
   $rows = array();
   // Prepare the empty text in case there aren't any rows.
@@ -40,12 +43,14 @@ function myhaccp_list() {
   $results = $query->execute()->fetchAll();
   foreach ($results as $delta => $result) {
     // Build out the rows.
-    $edit = user_access('edit own myhaccp forms') || user_access('edit any myhaccp forms') ? l(t('Resume'), 'prototype/form/' . $result->iid) : '';
+    $edit = user_access('edit own myhaccp forms') || user_access('edit any myhaccp forms') ? l(t('Resume'), 'tool/study/' . $result->iid) : '';
+    $delete = user_access('delete own myhaccp forms') || user_access('delete any myhaccp forms') ? l(t('Delete'), 'tool/study/delete/' . $result->iid) : '';
     $rows[] = array(
       'data' => array(
         'created' => format_date($result->created, 'short'),
         'changed' => $result->changed ? format_date($result->changed, 'short') : 'Not updated',
         'edit' => $edit,
+        'delete' => $delete,
       ),
     );
   }
@@ -75,7 +80,7 @@ function myhaccp_list() {
 /**
  * Menu callback for creating a form.
  */
-function myhaccp_create() {
+function myhaccp_study_create() {
   global $user;
   $record = array(
     'uid' => $user->uid,
@@ -85,4 +90,25 @@ function myhaccp_create() {
   drupal_write_record('mforms_storage', $record);
   // Forward to the beginning of the form.
   drupal_goto('prototype/form/' . $record['iid']);
+}
+
+/**
+ * Menu callback for deleting a form.
+ */
+function myhaccp_study_delete($iid) {
+  global $user;
+
+  // Delete all the associated form stages in mforms_storage_steps.
+  db_delete('mforms_storage_steps')
+    ->condition('iid', $iid)
+    ->execute();
+
+  // Delete the study from mforms_storage.
+  db_delete('mforms_storage')
+    ->condition('iid', $iid)
+    ->execute();
+
+  drupal_set_message(t('The study has been deleted.'));
+  // Forward to the beginning of the form.
+  drupal_goto('tool');
 }

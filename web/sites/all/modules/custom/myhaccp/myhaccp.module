@@ -15,29 +15,36 @@ function myhaccp_init() {
  * Implements hook_menu().
  */
 function myhaccp_menu() {
-  $items['prototype'] = array(
+  $items['tool'] = array(
     'title' => 'MyHACCP Web Tool',
     'page callback' => 'myhaccp_list',
     'page arguments' => array(),
     'access callback' => 'myhaccp_access',
     'access arguments' => array(1),
     'file' => 'myhaccp.pages.inc',
-    'type' => MENU_CALLBACK,
+    'type' => MENU_NORMAL_ITEM,
   );
-  $items['prototype/form'] = array(
+  $items['tool/study/%'] = array(
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('myhaccp_start_form'),
+    'page arguments' => array('myhaccp_start_form', 2, 3),
     'access callback' => 'myhaccp_access',
     'access arguments' => array(1),
-    'file' => 'myhaccp.pages.inc',
-    'type' => MENU_CALLBACK,
+    'type' => MENU_NORMAL_ITEM,
   );
-  $items['prototype/form/create'] = array(
-    'page callback' => 'myhaccp_create',
+  $items['tool/study/create'] = array(
+    'page callback' => 'myhaccp_study_create',
     'access callback' => 'myhaccp_access',
     'access arguments' => array('create'),
     'file' => 'myhaccp.pages.inc',
-    'type' => MENU_CALLBACK,
+    'type' => MENU_NORMAL_ITEM,
+  );
+  $items['tool/study/%/delete'] = array(
+    'page callback' => 'myhaccp_study_delete',
+    'page arguments' => array(3),
+    'access callback' => 'myhaccp_access',
+    'access arguments' => array('delete'),
+    'file' => 'myhaccp.pages.inc',
+    'type' => MENU_NORMAL_ITEM,
   );
   $items['help/%ctools_js/%'] = array(
     'title' => 'Help',
@@ -56,17 +63,25 @@ function myhaccp_menu() {
  */
 function myhaccp_permission() {
   return array(
-    'create myhaccp forms' => array(
-      'title' => t('Create myhaccp forms'),
-      'description' => t('Allow this role to create new myhaccp forms.'),
+    'create myhaccp study' => array(
+      'title' => t('Create myhaccp studies'),
+      'description' => t('Allow this role to create new myhaccp studies.'),
     ),
-    'edit own myhaccp forms' => array(
-      'title' => t('Edit own myhaccp forms'),
-      'description' => t('Edit a user\'s own myhaccp forms.'),
+    'edit own myhaccp study' => array(
+      'title' => t('Edit own myhaccp studies'),
+      'description' => t('Edit a user\'s own myhaccp studies.'),
     ),
-    'edit any myhaccp forms' => array(
-      'title' => t('Edit any myhaccp forms'),
-      'description' => t('Edit any user\'s myhaccp forms.'),
+    'edit any myhaccp study' => array(
+      'title' => t('Edit any myhaccp studies'),
+      'description' => t('Edit any user\'s myhaccp studies.'),
+    ),
+    'delete own myhaccp study' => array(
+      'title' => t('Edit any myhaccp studies'),
+      'description' => t('Delete a user\'s own myhaccp studies.'),
+    ),
+    'delete any myhaccp study' => array(
+      'title' => t('Delete any myhaccp studies'),
+      'description' => t('Delete any user\'s myhaccp studies.'),
     ),
   );
 }
@@ -82,10 +97,13 @@ function myhaccp_permission() {
  */
 function myhaccp_access($op) {
   if ($op == 'create') {
-    return user_access('create myhaccp forms');
+    return user_access('create myhaccp study');
+  }
+  elseif ($op == 'delete') {
+    return user_access('delete any myhaccp study') && user_access('delete own myhaccp study');
   }
   else {
-    return user_access('edit any myhaccp forms') && user_access('edit own myhaccp forms');
+    return user_access('edit any myhaccp study') && user_access('edit own myhaccp study');
   }
 }
 
@@ -212,10 +230,7 @@ function myhaccp_myhaccp_mforms_init() {
   mforms_init_module('myhaccp', 'myhaccp', $store, $controls);
 }
 
-/**
- * Menu callback which displays the form.
- */
-function myhaccp_start_form($form, &$form_state, $iid = FALSE) {
+function myhaccp_prepare_form($iid, $stage) {
   // If we've been passed an IID then set the session to that.
   if ($iid && is_numeric($iid)) {
     // Check that this user has permission to look at this form.
@@ -235,7 +250,39 @@ function myhaccp_start_form($form, &$form_state, $iid = FALSE) {
   else {
     // If there is no current session open then create a new db row.
     drupal_set_message('Please edit an existing form or create a new one.');
-    drupal_goto('prototype');
+    drupal_goto('tool');
+  }
+  // Otherwise lets build the form.
+  return forms_build('myhaccp', 'preparatory_a', $form_state);
+}
+
+/**
+ * Menu callback which displays the form.
+ */
+function myhaccp_start_form($form, &$form_state, $iid = FALSE, $stage = FALSE) {
+  // If we've been passed an IID then set the session to that.
+  if ($iid && is_numeric($iid)) {
+    // Check that this user has permission to look at this form.
+    global $user;
+    $select = db_select('mforms_storage', 's')
+      ->fields('s', array('uid'))
+      ->condition('s.iid', $iid);
+    $uid = $select->execute()->fetchField();
+    if (user_access('edit any myhaccp form') || $user->uid == $uid) {
+      $_SESSION['iid'] = $iid;
+    }
+    else {
+      drupal_set_message('You do not have permission to edit this user\'s form', 'error');
+      drupal_access_denied();
+    }
+  }
+  else {
+    // If there is no current session open then create a new db row.
+    drupal_set_message('Please edit an existing form or create a new one.');
+    drupal_goto('tool');
+  }
+  if ($stage) {
+
   }
   return mforms_build('myhaccp', 'preparatory_a', $form_state);
 }
@@ -335,6 +382,36 @@ function _get_all_steps() {
     'principle_7' => 'principle',
   );
   return $files;
+}
+
+function _match_url_to_stage($url_to_match) {
+  $stages = array(
+    'preparatory_a' => 'a',
+    'preparatory_b' => 'b',
+    'preparatory_c_question_1_3' => 'c-1',
+    'preparatory_c_question_4' => 'c-2',
+    'preparatory_d' => 'd',
+    'preparatory_e' => 'e',
+    'preparatory_f' => 'f',
+    'preparatory_g' => 'g',
+    'preparatory_h' => 'h',
+    'principle_1_question_1' => 'principle',
+    'principle_1_question_2' => 'principle',
+    'principle_1_question_3' => 'principle',
+    'principle_2_question_1_3' => 'principle',
+    'principle_2_question_4' => 'principle',
+    'principle_3' => 'principle',
+    'principle_4' => 'principle',
+    'principle_5' => 'principle',
+    'principle_6' => 'principle',
+    'principle_7' => 'principle',
+  );
+  foreach ($stages as $stage => $url) {
+    if ($url == $url_to_match) {
+      return $stage;
+    }
+  }
+  return FALSE;
 }
 
 /**
@@ -1004,5 +1081,15 @@ function myhaccp_find_values($iterator, $found) {
     }
     // Move on to the next element.
     $iterator->next();
+  }
+}
+
+function myhaccp_set_pager_url($form, &$form_state) {
+  // Only deal with back submit if we have store key.
+  if (isset($form_state['clicked_button']['#store_key'])) {
+    // Add $_POST into values as they got unset in the validation process due to
+    // limit_validation_errors property of the back/step button.
+    $form_state['values'] += $_POST;
+    mforms_submit($form_state['clicked_button']['#store_key'], $form, $form_state);
   }
 }
