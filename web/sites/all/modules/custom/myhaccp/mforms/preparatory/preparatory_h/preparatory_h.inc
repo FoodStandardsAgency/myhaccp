@@ -154,7 +154,7 @@ function preparatory_h(&$form_state, &$next_step) {
     ),
   );
 
-  $form['#validate'][] = 'preparatory_h_validate';
+  $form['#validate'][] = __FUNCTION__ . '_validate';
 
   return $form;
 }

@@ -3,14 +3,14 @@
 /**
  * Principle 1, Question 1.
  */
-function principle_1_question_1(&$form_state, &$next_step) {
+function principle_1_1(&$form_state, &$next_step) {
   // Define following step callback. If none set, that implies it is
   // the last step.
-  $next_step = 'principle_1_question_2';
+  $next_step = 'principle_1_2';
 
   // Retrieve submitted values. This comes in handy when back action
   // occurred and we need to display values that were originally submitted.
-  $data = mforms_get_vals('myhaccp', 'principle_1_question_1');
+  $data = mforms_get_vals('myhaccp', 'principle_1_1');
 
   // If we have the data it means we arrived here from back action, so show
   // them in form as default values.
@@ -29,12 +29,12 @@ function principle_1_question_1(&$form_state, &$next_step) {
     '#id' => 'validation-messages',
     '#weight' => -10,
     '#attributes' => array(
-      'data-validation-stage' => 'principle_1_question_1',
+      'data-validation-stage' => 'principle_1_1',
     ),
   );
 
   // The wrapper fieldset for the form.
-  $form['principle_1_question_1'] = array(
+  $form['principle_1_1'] = array(
     // Set up the wrapper so that AJAX will be able to replace the fieldset.
     '#prefix' => '<div id="instance-container">',
     '#suffix' => '</div>',
@@ -46,11 +46,11 @@ function principle_1_question_1(&$form_state, &$next_step) {
   }
   for ($i = 0; $i < $form_state['num_instances']; $i++) {
     // Contain everything for this instance inside a fieldset.
-    $form['principle_1_question_1']['instance_' . $i] = array(
+    $form['principle_1_1']['instance_' . $i] = array(
       '#type' => 'fieldset',
     );
     // Create a wrapper container for the step details.
-    $form['principle_1_question_1']['instance_' . $i]['wrapper'] = array(
+    $form['principle_1_1']['instance_' . $i]['wrapper'] = array(
       '#type' => 'container',
       '#weight' => '-1',
       '#attributes' => array(
@@ -58,13 +58,13 @@ function principle_1_question_1(&$form_state, &$next_step) {
       ),
     );
     // Step no.
-    $form['principle_1_question_1']['instance_' . $i]['wrapper']['step_no'] = array(
+    $form['principle_1_1']['instance_' . $i]['wrapper']['step_no'] = array(
       '#weight' => '0',
       '#type' => 'textfield',
       '#title' => t('Step no.'),
       '#help_link' => 16,
       '#help_text' => t('Number of process step.'),
-      '#default_value' => array_get($values, "principle_1_question_1.instance_$i.wrapper.step_no", FALSE),
+      '#default_value' => array_get($values, "principle_1_1.instance_$i.wrapper.step_no", FALSE),
       '#attributes' => array(
         'data-parsley-required' => 'true',
         'data-parsley-validation-minlength' => 1,
@@ -73,13 +73,13 @@ function principle_1_question_1(&$form_state, &$next_step) {
       ),
     );
     // Step name.
-    $form['principle_1_question_1']['instance_' . $i]['wrapper']['step_name'] = array(
+    $form['principle_1_1']['instance_' . $i]['wrapper']['step_name'] = array(
       '#weight' => '1',
       '#type' => 'textfield',
       '#title' => t('Step name'),
       '#help_link' => 16,
       '#help_text' => t('Name of process step.'),
-      '#default_value' => array_get($values, "principle_1_question_1.instance_$i.wrapper.step_name", FALSE),
+      '#default_value' => array_get($values, "principle_1_1.instance_$i.wrapper.step_name", FALSE),
       '#attributes' => array(
         'data-parsley-required' => 'true',
         'data-parsley-error-message' => t('Please add a step name.'),
@@ -87,7 +87,7 @@ function principle_1_question_1(&$form_state, &$next_step) {
       ),
     );
     // Add a wrapper for the categories.
-    $form['principle_1_question_1']['instance_' . $i]['hazards_wrapper'] = array(
+    $form['principle_1_1']['instance_' . $i]['hazards_wrapper'] = array(
       '#type' => 'container',
       '#weight' => '1',
       '#attributes' => array(
@@ -95,7 +95,7 @@ function principle_1_question_1(&$form_state, &$next_step) {
       ),
     );
     // Markup used as a title for the group.
-    $form['principle_1_question_1']['instance_' . $i]['hazards_wrapper']['hazards_title'] = array(
+    $form['principle_1_1']['instance_' . $i]['hazards_wrapper']['hazards_title'] = array(
       '#weight' => -10,
      //'#markup' => '<div class="group-title">' . t('List all potential hazards that may be reasonably expected to occur at this process step:  !tip', array(
      //     '!tip' => _help_tip(16),
@@ -104,49 +104,49 @@ function principle_1_question_1(&$form_state, &$next_step) {
 
     );
     // Biological.
-    $form['principle_1_question_1']['instance_' . $i]['hazards_wrapper']['biological'] = array(
+    $form['principle_1_1']['instance_' . $i]['hazards_wrapper']['biological'] = array(
       '#weight' => '3',
       '#type' => 'textarea',
       '#resizable' => FALSE,
       '#title' => t('Biological'),
     '#help_link' => 16,
       '#help_text' => t('List all biological hazards e.g. Salmonella spp., Listeria spp., Norovirus.'),
-      '#default_value' => array_get($values, "principle_1_question_1.instance_$i.hazards_wrapper.biological", FALSE),
+      '#default_value' => array_get($values, "principle_1_1.instance_$i.hazards_wrapper.biological", FALSE),
     );
     // Chemical.
-    $form['principle_1_question_1']['instance_' . $i]['hazards_wrapper']['chemical'] = array(
+    $form['principle_1_1']['instance_' . $i]['hazards_wrapper']['chemical'] = array(
       '#weight' => '4',
       '#type' => 'textarea',
       '#resizable' => FALSE,
       '#title' => t('Chemical'),
       '#help_link' => 16,
       '#help_text' => t('List all chemical hazards e.g nitrate, patulin, cadmium.'),
-      '#default_value' => array_get($values, "principle_1_question_1.instance_$i.hazards_wrapper.chemical", FALSE),
+      '#default_value' => array_get($values, "principle_1_1.instance_$i.hazards_wrapper.chemical", FALSE),
     );
     // Physical.
-    $form['principle_1_question_1']['instance_' . $i]['hazards_wrapper']['physical'] = array(
+    $form['principle_1_1']['instance_' . $i]['hazards_wrapper']['physical'] = array(
       '#weight' => '5',
       '#type' => 'textarea',
       '#resizable' => FALSE,
       '#title' => t('Physical'),
       '#help_link' => 16,
       '#help_text' => t('List all physical hazards e.g. stones, metal, wood.'),
-      '#default_value' => array_get($values, "principle_1_question_1.instance_$i.hazards_wrapper.physical", FALSE),
+      '#default_value' => array_get($values, "principle_1_1.instance_$i.hazards_wrapper.physical", FALSE),
     );
     // Allergens.
-    $form['principle_1_question_1']['instance_' . $i]['hazards_wrapper']['allergens'] = array(
+    $form['principle_1_1']['instance_' . $i]['hazards_wrapper']['allergens'] = array(
       '#weight' => '6',
       '#type' => 'textarea',
       '#resizable' => FALSE,
       '#title' => t('Allergens'),
       '#help_link' => 16,
       '#help_text' => t('List all substances or products that cause allergies or intolerances e.g.  celery, sesame seeds, egg.'),
-      '#default_value' => array_get($values, "principle_1_question_1.instance_$i.hazards_wrapper.allergens", FALSE),
+      '#default_value' => array_get($values, "principle_1_1.instance_$i.hazards_wrapper.allergens", FALSE),
     );
   }
 
   // Add a container for the button controls.
-  $form['principle_1_question_1']['controls'] = array(
+  $form['principle_1_1']['controls'] = array(
     '#type' => 'container',
     '#attributes' => array(
       'class' => array('form-controls'),
@@ -154,13 +154,13 @@ function principle_1_question_1(&$form_state, &$next_step) {
   );
 
   // Provide an add more button.
-  $form['principle_1_question_1']['controls']['add_instance'] = array(
+  $form['principle_1_1']['controls']['add_instance'] = array(
     '#type' => 'submit',
     '#value' => t('Add another step'),
     '#submit' => array('instance_add_more_add_one'),
     '#limit_validation_errors' => TRUE,
     '#ajax' => array(
-      'callback' => 'instance_add_more_callback_principle_1_question_1',
+      'callback' => 'instance_add_more_callback_principle_1_1',
       'wrapper' => 'instance-container',
     ),
   );
@@ -168,20 +168,20 @@ function principle_1_question_1(&$form_state, &$next_step) {
   // If there are more than two instances in the form then provide a button
   // to remove the last one.
   if ($form_state['num_instances'] > 1) {
-    $form['principle_1_question_1']['controls']['remove_instance'] = array(
+    $form['principle_1_1']['controls']['remove_instance'] = array(
       '#type' => 'submit',
       '#value' => t('Remove a step'),
       '#submit' => array('instance_add_more_remove_one'),
       '#limit_validation_errors' => TRUE,
       '#ajax' => array(
-        'callback' => 'instance_add_more_callback_principle_1_question_1',
+        'callback' => 'instance_add_more_callback_principle_1_1',
         'wrapper' => 'instance-container',
       ),
     );
   }
 
   // Add a validation handler.
-  $form['#validate'][] = 'principle_1_question_1_validate';
+  $form['#validate'][] = 'principle_1_1_validate';
 
   return $form;
 }
@@ -189,8 +189,8 @@ function principle_1_question_1(&$form_state, &$next_step) {
 /**
  * Validation handler for Principle 1 Question 1.
  */
-function principle_1_question_1_validate($form, &$form_state) {
-  $validator = new validator($form, $form_state, 'principle_1_question_1');
+function principle_1_1_validate($form, &$form_state) {
+  $validator = new validator($form, $form_state, 'principle_1_1');
 
   if ($validator->allFieldsAreEmpty()) {
     return;
@@ -204,8 +204,8 @@ function principle_1_question_1_validate($form, &$form_state) {
   // Do some normal checks with error messages on the step no and step name
   // fields.
   $checks = array(
-    "principle_1_question_1.instance_0.wrapper.step_no" => 'fieldIsNotEmpty',
-    "principle_1_question_1.instance_0.wrapper.step_name" => 'fieldIsNotEmpty',
+    "principle_1_1.instance_0.wrapper.step_no" => 'fieldIsNotEmpty',
+    "principle_1_1.instance_0.wrapper.step_name" => 'fieldIsNotEmpty',
   );
 
   foreach ($checks as $target => $method) {
@@ -224,10 +224,10 @@ function principle_1_question_1_validate($form, &$form_state) {
     // notation) and the value being the callback to use to check whether the
     // field is empty.
     $checks = array(
-      "principle_1_question_1.instance_$i.hazards_wrapper.biological" => 'fieldIsNotEmpty',
-      "principle_1_question_1.instance_$i.hazards_wrapper.physical" => 'fieldIsNotEmpty',
-      "principle_1_question_1.instance_$i.hazards_wrapper.allergens" => 'fieldIsNotEmpty',
-      "principle_1_question_1.instance_$i.hazards_wrapper.chemical" => 'fieldIsNotEmpty',
+      "principle_1_1.instance_$i.hazards_wrapper.biological" => 'fieldIsNotEmpty',
+      "principle_1_1.instance_$i.hazards_wrapper.physical" => 'fieldIsNotEmpty',
+      "principle_1_1.instance_$i.hazards_wrapper.allergens" => 'fieldIsNotEmpty',
+      "principle_1_1.instance_$i.hazards_wrapper.chemical" => 'fieldIsNotEmpty',
     );
 
     foreach ($checks as $target => $method) {
@@ -243,8 +243,8 @@ function principle_1_question_1_validate($form, &$form_state) {
 
     // Check the step no and name fields.
     $checks = array(
-      "principle_1_question_1.instance_$i.wrapper.step_no" => 'fieldIsNotEmpty',
-      "principle_1_question_1.instance_$i.wrapper.step_name" => 'fieldIsNotEmpty',
+      "principle_1_1.instance_$i.wrapper.step_no" => 'fieldIsNotEmpty',
+      "principle_1_1.instance_$i.wrapper.step_name" => 'fieldIsNotEmpty',
     );
 
     foreach ($checks as $target => $method) {
@@ -276,6 +276,6 @@ function principle_1_question_1_validate($form, &$form_state) {
 /**
  * Ajax callback which returns the form array element to be applied against.
  */
-function instance_add_more_callback_principle_1_question_1($form, $form_state) {
-  return $form['principle_1_question_1'];
+function instance_add_more_callback_principle_1_1($form, $form_state) {
+  return $form['principle_1_1'];
 }

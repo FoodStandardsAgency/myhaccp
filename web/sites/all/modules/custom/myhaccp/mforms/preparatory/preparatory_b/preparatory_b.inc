@@ -4,7 +4,7 @@ function preparatory_b(&$form_state, &$next_step) {
 
   // Define following step callback. If none set, that implies it is
   // the last step.
-  $next_step = 'preparatory_c_question_1_3';
+  $next_step = 'preparatory_c_1';
 
   // Retrieve submitted values. This comes in handy when back action
   // occurred and we need to display values that were originally submitted.
@@ -25,7 +25,7 @@ function preparatory_b(&$form_state, &$next_step) {
     '#tree' => TRUE,
   );
 
-  $form['preparatory_b']['preparatory_b_support'] = array(
+  $form['preparatory_b']['b_1'] = array(
     '#type' => 'checkboxes',
     '#title' => t('1. What documented evidence do you have to show the support of senior management to the food safety management based on HACCP?'),
     '#help_link' => 14,
@@ -40,7 +40,7 @@ function preparatory_b(&$form_state, &$next_step) {
       t('N/A - I am the management and can confirm that I am committed.'),
     ), 'drupal_html_id')
     ),
-    '#default_value' => array_get($values, 'preparatory_b.preparatory_b_support', array()),
+    '#default_value' => array_get($values, 'preparatory_b.b_1', array()),
     '#attributes' => array(
       'data-parsley-group' => 'checkgroup',
       'data-parsley-either' => '#edit-container-prep-b-support .form-item input,#edit-container-prep-b-evidence',
@@ -49,13 +49,13 @@ function preparatory_b(&$form_state, &$next_step) {
     ),
   );
 
-  $form['preparatory_b']['preparatory_b_evidence'] = array(
+  $form['preparatory_b']['b_2'] = array(
     '#type' => 'textarea',
     '#resizable' => FALSE,
     '#title' => t('2. Other evidence:'),
     '#help_link' => 14,
     '#help_text' => t("State anything else that would demonstrate you have management commitment."),
-    '#default_value' => array_get($values, 'preparatory_b.preparatory_b_evidence', FALSE),
+    '#default_value' => array_get($values, 'preparatory_b.b_2', FALSE),
     '#attributes' => array(
       'data-parsley-either' => '#edit-container-prep-b-support .form-item input,#edit-container-prep-b-evidence',
       'data-parsley-message' => t('Please choose at least one option in question 1 or add some content in question 2.'),
@@ -63,7 +63,7 @@ function preparatory_b(&$form_state, &$next_step) {
     ),
   );
 
-  $form['#validate'][] = 'preparatory_b_validate';
+  $form['#validate'][] = __FUNCTION__ . '_validate';
 
   return $form;
 }
@@ -78,8 +78,8 @@ function preparatory_b_validate($form, &$form_state) {
     return;
   }
 
-  $evidence = new validation($form, $form_state, 'preparatory_b.preparatory_b_evidence');
-  $support = new validation($form, $form_state, 'preparatory_b.preparatory_b_support');
+  $evidence = new validation($form, $form_state, 'preparatory_b.b_2');
+  $support = new validation($form, $form_state, 'preparatory_b.b_1');
   if (!$evidence->fieldIsNotEmpty() && !$support->fieldIsNotEmpty()) {
     $messages = array(
       'validation_messages' => array(t('Please choose at least one option in question 1 or add some content in question 2.')),

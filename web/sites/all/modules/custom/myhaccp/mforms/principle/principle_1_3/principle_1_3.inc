@@ -3,13 +3,13 @@
 /**
  * Principle 1, Question 3.
  */
-function principle_1_question_3(&$form_state, &$next_step) {
+function principle_1_3(&$form_state, &$next_step) {
   // Define following step callback. If none set, that implies it is
   // the last step.
-  $next_step = 'principle_2_question_1_3';
+  $next_step = 'principle_2_1';
 
   // Retrieve submitted values.
-  $data = mforms_get_vals('myhaccp', 'principle_1_question_3');
+  $data = mforms_get_vals('myhaccp', 'principle_1_3');
 
   // If we have the data it means we arrived here from back action, so show
   // them in form as default vals.
@@ -22,7 +22,7 @@ function principle_1_question_3(&$form_state, &$next_step) {
   $form['#attributes']['class'][] = 'principle-1-question-3';
 
   // Wrap the form section in a fieldset.
-  $form['principle_1_question_3'] = array(
+  $form['principle_1_3'] = array(
     '#type' => 'fieldset',
     '#tree' => TRUE,
   );
@@ -33,9 +33,9 @@ function principle_1_question_3(&$form_state, &$next_step) {
   // Fetch the previous step data.
   $steps = MformsSteps::getInstance($store);
 
-  // Ensure data has been entered on principle_1_question_1.
-  $principle_1_question_1 = mforms_get_vals('myhaccp', 'principle_1_question_1');
-  if (myhaccp_ensure_hazards_exist($principle_1_question_1) == 0) {
+  // Ensure data has been entered on principle_1_1.
+  $principle_1_1 = mforms_get_vals('myhaccp', 'principle_1_1');
+  if (myhaccp_ensure_hazards_exist($principle_1_1) == 0) {
     // There were no hazards.
     drupal_set_message('You must add at least a step number and step name in step 1.1 as well as at least a hazard for the step. Please return to 1.1', 'error');
     return $form;
@@ -54,13 +54,13 @@ function principle_1_question_3(&$form_state, &$next_step) {
   $items = myhaccp_get_items_over_threshold();
 
   // Create the fieldset container.
-  $form['principle_1_question_3'] = array(
+  $form['principle_1_3'] = array(
     '#type' => 'fieldset',
     '#tree' => TRUE,
   );
 
   // Create the table.
-  $form['principle_1_question_3']['instance_table'] = array(
+  $form['principle_1_3']['instance_table'] = array(
     '#theme' => 'myhacpp_p1q3_table',
   );
 
@@ -76,25 +76,25 @@ function principle_1_question_3(&$form_state, &$next_step) {
     // The hazard column text.
     $hazard_text = '<div class="label hazard">' . $details['name'] . '</div><div class="hazard-description">' . $item['description'] . '</div>';
 
-    $form['principle_1_question_3']['instance_table']['row_' . $key]['process_step'] = array(
+    $form['principle_1_3']['instance_table']['row_' . $key]['process_step'] = array(
       '#markup' => $process_step_text,
     );
 
     $hazard_details = $details;
     $hazard_details['description'] = $item['description'];
-    $hazard_details['control_measure'] = array_get($values, "principle_1_question_3.instance_table.row_$key.control_measure", FALSE);
+    $hazard_details['control_measure'] = array_get($values, "principle_1_3.instance_table.row_$key.control_measure", FALSE);
 
-    $form['principle_1_question_3']['instance_table']['row_' . $key]['hazard'] = array(
+    $form['principle_1_3']['instance_table']['row_' . $key]['hazard'] = array(
       '#prefix' => $hazard_text,
       '#type' => 'hidden',
       '#value' => serialize($hazard_details),
     );
 
-    $form['principle_1_question_3']['instance_table']['row_' . $key]['control_measure'] = array(
+    $form['principle_1_3']['instance_table']['row_' . $key]['control_measure'] = array(
       '#type' => 'textarea',
       '#help_text' => t('For each significant hazard, please specify the control measure.'),
       '#resizable' => FALSE,
-      '#default_value' => array_get($values, "principle_1_question_3.instance_table.row_$key.control_measure", FALSE),
+      '#default_value' => array_get($values, "principle_1_3.instance_table.row_$key.control_measure", FALSE),
       '#attributes' => array(
         'data-parsley-error-message' => t('Please add a control measure.'),
         'data-parsley-required' => TRUE,
@@ -104,7 +104,7 @@ function principle_1_question_3(&$form_state, &$next_step) {
 
 
   // Add the validation handler.
-  $form['#validate'][] = 'principle_1_question_3_validate';
+  $form['#validate'][] = 'principle_1_3_validate';
 
   return $form;
 }
@@ -112,17 +112,17 @@ function principle_1_question_3(&$form_state, &$next_step) {
 /**
  * Validation handler for Principle 1 Question 3.
  */
-function principle_1_question_3_validate($form, &$form_state) {
-  $validator = new validator($form, $form_state, 'principle_1_question_3');
+function principle_1_3_validate($form, &$form_state) {
+  $validator = new validator($form, $form_state, 'principle_1_3');
 
   if ($validator->allFieldsAreEmpty()) {
     return;
   }
 
-  $rows = array_get($form_state, 'values.principle_1_question_3.instance_table', array());
+  $rows = array_get($form_state, 'values.principle_1_3.instance_table', array());
   foreach ($rows as $key => $row) {
     $checks = array(
-      "principle_1_question_3.instance_table.$key.control_measure" => 'fieldIsNotEmpty',
+      "principle_1_3.instance_table.$key.control_measure" => 'fieldIsNotEmpty',
     );
   }
 

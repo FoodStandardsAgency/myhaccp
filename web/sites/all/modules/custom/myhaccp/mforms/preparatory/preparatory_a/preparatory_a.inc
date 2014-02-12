@@ -24,12 +24,12 @@ function preparatory_a(&$form_state, &$next_step) {
     '#tree' => TRUE,
   );
 
-  $form['preparatory_a']['prereq'] = array(
+  $form['preparatory_a']['a_1'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Mark all boxes where you can demonstrate that you have control of the prerequisites'),
 '#help_link' => 13,
     '#help_text' => t("These are 'pre-requirements' to the application and implementation of a HACCP system, to demonstrate you have control they should be well established, fully operational (including records) and verified."),
-    '#options' => array_flip(drupal_map_assoc(array(
+    '#options' => drupal_map_assoc(array(
       t('Supplier approval'),
       t('Packaging'),
       t('Incoming material specifications'),
@@ -62,31 +62,30 @@ function preparatory_a(&$form_state, &$next_step) {
       t('Contamination control'),
       t('Return to work'),
       t('Other'),
-      ), 'drupal_html_id'
     )),
-    '#default_value' => array_get($values, 'preparatory_a.prereq', array()),
+    '#default_value' => array_get($values, 'preparatory_a.a_1', array()),
     '#attributes' => array(
       'data-parsley-group' => 'checkgroup',
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please choose at least one option from the prerequisites field.'),
-      'data-parsley-error-container' => '#edit-prep-a-prereq',
+      'data-parsley-error-container' => '#edit-prep-a-a_1',
     ),
   );
 
-  $form['preparatory_a']['location'] = array(
+  $form['preparatory_a']['a_2'] = array(
     '#type' => 'textarea',
     '#resizable' => FALSE,
     '#title' => t('Please specify the location of the above documents.'),
     '#help_text' => t("State where you have stored the information.  You may wish to specify a manual e.g. manual of prerequisites,  where information on these is filed e.g. all documents filed under prerequisites, cabinet 1 or reference a particular document e.g.  PRP 01."),
     '#help_link' => 13,
-    '#default_value' => array_get($values, 'preparatory_a.location', FALSE),
+    '#default_value' => array_get($values, 'preparatory_a.a_2', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Enter the location of your documents.'),
     ),
   );
 
-  $form['#validate'][] = 'preparatory_a_validate';
+  $form['#validate'][] = __FUNCTION__ . '_validate';
 
   return $form;
 }
@@ -103,8 +102,8 @@ function preparatory_a_validate($form, &$form_state) {
 
   // Validation: Some content.
   $checks = array(
-    'preparatory_a.prereq' => 'fieldIsNotEmpty',
-    'preparatory_a.location' => 'fieldIsNotEmpty',
+    'preparatory_a.a_1' => 'fieldIsNotEmpty',
+    'preparatory_a.a_2' => 'fieldIsNotEmpty',
   );
 
   foreach ($checks as $target => $method) {

@@ -27,8 +27,6 @@ function principle_7(&$form_state, &$next_step) {
     '#tree' => TRUE,
   );
 
-  // Determine how many instances we need to display. This is based on the data
-  // from Principle 1 Question 3.
   $store = mforms_store_get('myhaccp');
   // Fetch the previous step data.
   $steps = MformsSteps::getInstance($store);
@@ -41,7 +39,6 @@ function principle_7(&$form_state, &$next_step) {
   );
 
   // Now the form fields.
-
   $form['principle_7']['study'] = array(
     '#type' => 'checkboxes',
     '#title' => t('1. Mark all forms of documentation relating to the HACCP study that your organisation retain.'),

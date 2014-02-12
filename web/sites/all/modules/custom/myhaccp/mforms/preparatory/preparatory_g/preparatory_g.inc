@@ -76,7 +76,7 @@ function preparatory_g(&$form_state, &$next_step) {
     ),
   );
 
-  $form['#validate'][] = 'preparatory_g_validate';
+  $form['#validate'][] = __FUNCTION__ . '_validate';
 
   return $form;
 }

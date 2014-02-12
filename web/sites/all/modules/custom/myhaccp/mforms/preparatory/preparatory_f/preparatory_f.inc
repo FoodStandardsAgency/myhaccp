@@ -174,7 +174,7 @@ function preparatory_f(&$form_state, &$next_step) {
     ),
   );
 
-  $form['#validate'][] = 'preparatory_f_validate';
+  $form['#validate'][] = __FUNCTION__ . '_validate';
 
   return $form;
 }

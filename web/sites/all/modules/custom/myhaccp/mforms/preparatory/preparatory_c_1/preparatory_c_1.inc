@@ -1,14 +1,14 @@
 <?php
 
-function preparatory_c_question_1_3(&$form_state, &$next_step) {
+function preparatory_c_1(&$form_state, &$next_step) {
 
   // Define following step callback. If none set, that implies it is
   // the last step.
-  $next_step = 'preparatory_c_question_4';
+  $next_step = 'preparatory_c_2';
 
   // Retrieve submitted values. This comes in handy when back action
   // occurred and we need to display values that were originally submitted.
-  $data = mforms_get_vals('myhaccp', 'preparatory_c_question_1_3');
+  $data = mforms_get_vals('myhaccp', 'preparatory_c_1');
 
   // If we have the data it means we arrived here from back action, so show
   // them in form as default values.
@@ -20,13 +20,13 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
   $form['#attributes']['class'][] = 'prep-c-1';
 
   // Wrap the form section in a fieldset.
-  $form['preparatory_c_question_1_3'] = array(
+  $form['preparatory_c_1'] = array(
     '#type' => 'fieldset',
     '#tree' => TRUE,
   );
 
   // 1. What type of HACCP plan are you producing?
-  $form['preparatory_c_question_1_3']['type'] = array(
+  $form['preparatory_c_1']['c_1'] = array(
     '#type' => 'select',
     '#title' => t('1. What type of HACCP plan are you producing?'),
     '#help_link' => 15,
@@ -43,17 +43,17 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
       'data-parsley-notequal' => '0',
       'data-parsley-error-message' => t('Please select the type of HACCP plan you are producing.'),
     ),
-    '#default_value' => array_get($values, 'preparatory_c_question_1_3.type', array()),
+    '#default_value' => array_get($values, 'preparatory_c_1.c_1', array()),
   );
 
   // 2. State the type of product you are producing and briefly how it is going to be packed.
-  $form['preparatory_c_question_1_3']['product'] = array(
+  $form['preparatory_c_1']['c_2'] = array(
     '#type' => 'textarea',
     '#resizable' => FALSE,
     '#title' => t('2. State the type of product you are producing and briefly how it is going to be packed:'),
     '#help_link' => 15,
-    '#help_text' => t("State the products you are making (those covered in the HACCP plan) and how they are packaged e.g. vacuum packed, gas flushed, flexible pouches."),
-    '#default_value' => array_get($values, 'preparatory_c_question_1_3.product', FALSE),
+    '#help_text' => t("State the c_2s you are making (those covered in the HACCP plan) and how they are packaged e.g. vacuum packed, gas flushed, flexible pouches."),
+    '#default_value' => array_get($values, 'preparatory_c_1.c_2', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please state the type of product you are producing and how it will be packed.'),
@@ -61,11 +61,11 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
   );
 
   // 3.State the process start and end points of the HACCP plan.
-  $form['preparatory_c_question_1_3']['q3'] = array(
+  $form['preparatory_c_1']['c_3'] = array(
     '#type' => 'container',
   );
 
-  $form['preparatory_c_question_1_3']['q3']['title'] = array(
+  $form['preparatory_c_1']['c_3']['title'] = array(
 
     '#markup' => '<div class="label">' . t('3. State the process start and end points of the HACCP plan. !tip !help', array(
         '!tip' => _help_tip(15),
@@ -75,27 +75,27 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
     );
 
 
-  $form['preparatory_c_question_1_3']['q3']['start'] = array(
+  $form['preparatory_c_1']['c_3']['start'] = array(
     '#type' => 'textfield',
     '#title' => t('It will start at '),
-    '#default_value' => array_get($values, 'preparatory_c_question_1_3.q3.start', FALSE),
+    '#default_value' => array_get($values, 'preparatory_c_1.c_3.start', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please state the process start.'),
     ),
   );
 
-  $form['preparatory_c_question_1_3']['q3']['end'] = array(
+  $form['preparatory_c_1']['c_3']['end'] = array(
     '#type' => 'textfield',
     '#title' => t('Through to '),
-    '#default_value' => array_get($values, 'preparatory_c_question_1_3.q3.end', FALSE),
+    '#default_value' => array_get($values, 'preparatory_c_1.c_3.end', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please state the process end.'),
     ),
   );
 
-  $form['#validate'][] = 'preparatory_c_question_1_3_validate';
+  $form['#validate'][] = __FUNCTION__ . '_validate';
 
   return $form;
 }
@@ -103,8 +103,8 @@ function preparatory_c_question_1_3(&$form_state, &$next_step) {
 /**
  * Validation handler.
  */
-function preparatory_c_question_1_3_validate($form, &$form_state) {
-  $validator = new validator($form, $form_state, 'preparatory_c_question_1_3');
+function preparatory_c_1_validate($form, &$form_state) {
+  $validator = new validator($form, $form_state, 'preparatory_c_1');
 
   if ($validator->allFieldsAreEmpty()) {
     return;
@@ -112,10 +112,10 @@ function preparatory_c_question_1_3_validate($form, &$form_state) {
 
   // Validation: Some content.
   $checks = array(
-    'preparatory_c_question_1_3.type' => 'fieldIsNotEmpty',
-    'preparatory_c_question_1_3.product' => 'fieldIsNotEmpty',
-    'preparatory_c_question_1_3.q3.start' => 'fieldIsNotEmpty',
-    'preparatory_c_question_1_3.q3.end' => 'fieldIsNotEmpty',
+    'preparatory_c_1.c_1' => 'fieldIsNotEmpty',
+    'preparatory_c_1.c_2' => 'fieldIsNotEmpty',
+    'preparatory_c_1.c_3.start' => 'fieldIsNotEmpty',
+    'preparatory_c_1.c_3.end' => 'fieldIsNotEmpty',
   );
 
   foreach ($checks as $target => $method) {

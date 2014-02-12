@@ -3,13 +3,13 @@
 /**
  * Principle 2, Question (part) 4.
  */
-function principle_2_question_4(&$form_state, &$next_step) {
+function principle_2_2(&$form_state, &$next_step) {
   // Define following step callback. If none set, that implies it is
   // the last step.
   $next_step = 'principle_3';
 
   // Retrieve submitted values.
-  $data = mforms_get_vals('myhaccp', 'principle_2_question_4');
+  $data = mforms_get_vals('myhaccp', 'principle_2_2');
 
   // If we have the data it means we arrived here from back action, so show
   // them in form as default vals.
@@ -22,7 +22,7 @@ function principle_2_question_4(&$form_state, &$next_step) {
   $form['#attributes']['class'][] = 'principle-2-question-4';
 
   // Wrap the form section in a fieldset.
-  $form['principle_2_question_4'] = array(
+  $form['principle_2_2'] = array(
     '#type' => 'fieldset',
     '#tree' => TRUE,
   );
@@ -36,13 +36,13 @@ function principle_2_question_4(&$form_state, &$next_step) {
   $previous_data = $store->getStore($prev_step);
 
   // Fetch the data from principle 1 question 3.
-  $hazard_data = mforms_get_vals('myhaccp', 'principle_1_question_3');
+  $hazard_data = mforms_get_vals('myhaccp', 'principle_1_3');
 
   $items = array();
 
   // Iterate through the previous data.
   if (isset($hazard_data)) {
-    foreach ($hazard_data['principle_1_question_3']['instance_table'] as $key => $item) {
+    foreach ($hazard_data['principle_1_3']['instance_table'] as $key => $item) {
       $hazard = unserialize($item['hazard']);
       $hazard['control_measure'] = $item['control_measure'];
       $items[] = $hazard;
@@ -71,22 +71,22 @@ function principle_2_question_4(&$form_state, &$next_step) {
   }
 
   // Create the fieldset container.
-  $form['principle_2_question_4'] = array(
+  $form['principle_2_2'] = array(
     '#type' => 'fieldset',
     '#tree' => TRUE,
   );
 
   // Create the table.
-  $form['principle_2_question_4']['instance_table'] = array(
+  $form['principle_2_2']['instance_table'] = array(
     '#theme' => 'myhacpp_p2q4_table',
   );
 
   // Based on the information in the previous stage, build out the decision tree
   // radios.
-  $decision_tree = array_get($previous_data, 'principle_2_question_1_3.decision_tree', '0');
-  $tree_type = array_get($previous_data, 'principle_2_question_1_3.which_tree', '0');
+  $decision_tree = array_get($previous_data, 'principle_2_1.decision_tree', '0');
+  $tree_type = array_get($previous_data, 'principle_2_1.which_tree', '0');
 
-  $form['principle_2_question_4']['instance_table']['decision_tree'] = array(
+  $form['principle_2_2']['instance_table']['decision_tree'] = array(
     '#type' => 'hidden',
     '#value' => $decision_tree,
   );
@@ -100,17 +100,17 @@ function principle_2_question_4(&$form_state, &$next_step) {
     // The hazard column text.
     $hazard_text = '<div class="label hazard">' . $item['name'] . '</div><div class="hazard-description">' . $item['description'] . '</div>';
 
-    $form['principle_2_question_4']['instance_table']['row_' . $key]['process_step'] = array(
+    $form['principle_2_2']['instance_table']['row_' . $key]['process_step'] = array(
       '#markup' => $process_step_text,
     );
 
-    $form['principle_2_question_4']['instance_table']['row_' . $key]['hazard'] = array(
+    $form['principle_2_2']['instance_table']['row_' . $key]['hazard'] = array(
       '#type' => 'hidden',
       '#value' => serialize($hazard),
       '#prefix' => $hazard_text,
     );
 
-    $form['principle_2_question_4']['instance_table']['row_' . $key]['control_measure'] = array(
+    $form['principle_2_2']['instance_table']['row_' . $key]['control_measure'] = array(
       '#markup' => '<div class="hazard-control-measure">' . $item['control_measure'] . '</div>',
     );
 
@@ -137,7 +137,7 @@ function principle_2_question_4(&$form_state, &$next_step) {
           }
         }
 
-        $form['principle_2_question_4']['instance_table']['row_' . $key]['decision_tree'][$id] = array(
+        $form['principle_2_2']['instance_table']['row_' . $key]['decision_tree'][$id] = array(
           '#type' => 'radios',
           '#options' => array(
             'yes' => t('Yes'),
@@ -145,7 +145,7 @@ function principle_2_question_4(&$form_state, &$next_step) {
             'n/a' => t('N/A'),
           ),
           '#title' => $id,
-          '#default_value' => array_get($values, "principle_2_question_4.instance_table.row_$key.decision_tree.$id", array()),
+          '#default_value' => array_get($values, "principle_2_2.instance_table.row_$key.decision_tree.$id", array()),
           '#attributes' => array(
             'data-parsley-required' => 'true',
             'data-parsley-error-message' => t('Please indicate \'Yes\', \'No\' or \'N/A\' for this question in the decision tree.'),
@@ -155,19 +155,19 @@ function principle_2_question_4(&$form_state, &$next_step) {
 
     }
     else {
-      $form['principle_2_question_4']['instance_table']['row_' . $key]['decision_tree'] = array(
+      $form['principle_2_2']['instance_table']['row_' . $key]['decision_tree'] = array(
         '#type' => 'hidden',
         '#value' => $decision_tree,
       );
     }
 
-    $form['principle_2_question_4']['instance_table']['row_' . $key]['ccp'] = array(
+    $form['principle_2_2']['instance_table']['row_' . $key]['ccp'] = array(
       '#type' => 'radios',
       '#options' => array(
         'yes' => t('Yes'),
         'no' => t('No'),
       ),
-      '#default_value' => array_get($values, "principle_2_question_4.instance_table.row_$key.ccp", array()),
+      '#default_value' => array_get($values, "principle_2_2.instance_table.row_$key.ccp", array()),
       '#attributes' => array(
         'data-parsley-required' => 'true',
         'data-parsley-error-message' => t('Please indicate whether this process step is a critical control point.'),
@@ -176,7 +176,7 @@ function principle_2_question_4(&$form_state, &$next_step) {
   }
 
   // Add the validation handler.
-  $form['#validate'][] = 'principle_2_question_4_validate';
+  $form['#validate'][] = 'principle_2_2_validate';
 
   return $form;
 }
@@ -184,8 +184,8 @@ function principle_2_question_4(&$form_state, &$next_step) {
 /**
  * Validation handler for Principle 2 Question 4.
  */
-function principle_2_question_4_validate($form, &$form_state) {
-  $validator = new validator($form, $form_state, 'principle_2_question_4');
+function principle_2_2_validate($form, &$form_state) {
+  $validator = new validator($form, $form_state, 'principle_2_2');
 
   if ($validator->allFieldsAreEmpty()) {
     return;
@@ -196,7 +196,7 @@ function principle_2_question_4_validate($form, &$form_state) {
   // Checks is an array with the key being the element being targeted (in dot
   // notation) and the value being the callback to use to check whether the
   // field is empty.
-  $rows = array_get($form_state, 'values.principle_2_question_4.instance_table', array());
+  $rows = array_get($form_state, 'values.principle_2_2.instance_table', array());
   // Get rid of the hidden decision_tree row as that is needed only for the
   // table theme function.
   unset($rows['decision_tree']);
@@ -207,11 +207,11 @@ function principle_2_question_4_validate($form, &$form_state) {
     $tree = array_get($row, "decision_tree", array());
     if (is_array($tree)) {
       foreach ($tree as $id => $element) {
-        $checks["principle_2_question_4.instance_table.$key.decision_tree.$id"] = 'fieldIsNotEmpty';
+        $checks["principle_2_2.instance_table.$key.decision_tree.$id"] = 'fieldIsNotEmpty';
       }
     }
     // Ensure there is a CCP value.
-    $checks["principle_2_question_4.instance_table.$key.ccp"] = 'fieldIsNotEmpty';
+    $checks["principle_2_2.instance_table.$key.ccp"] = 'fieldIsNotEmpty';
   }
 
   // Check all the errors.

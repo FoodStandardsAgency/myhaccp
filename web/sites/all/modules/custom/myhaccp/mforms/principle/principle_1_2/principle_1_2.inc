@@ -3,13 +3,13 @@
 /**
  * Principle 1, Question 2.
  */
-function principle_1_question_2(&$form_state, &$next_step) {
+function principle_1_2(&$form_state, &$next_step) {
   // Define following step callback. If none set, that implies it is
   // the last step.
-  $next_step = 'principle_1_question_3';
+  $next_step = 'principle_1_3';
 
   // Retrieve submitted values.
-  $data = mforms_get_vals('myhaccp', 'principle_1_question_2');
+  $data = mforms_get_vals('myhaccp', 'principle_1_2');
 
   // If we have the data it means we arrived here from back action, so show
   // them in form as default vals.
@@ -36,7 +36,7 @@ function principle_1_question_2(&$form_state, &$next_step) {
     '#id' => 'validation-messages',
     '#weight' => -10,
     '#attributes' => array(
-      'data-validation-stage' => 'principle_1_question_2',
+      'data-validation-stage' => 'principle_1_2',
     ),
   );
 
@@ -102,7 +102,7 @@ function principle_1_question_2(&$form_state, &$next_step) {
     }
 
     // Create a fieldset to wrap this instance and give it a legend.
-    $form['principle_1_question_2']['instance_' . $i] = array(
+    $form['principle_1_2']['instance_' . $i] = array(
       '#type' => 'fieldset',
       '#title' => t('Process Step !step_no: !step_name', array(
         '!step_no' => $step_no,
@@ -111,7 +111,7 @@ function principle_1_question_2(&$form_state, &$next_step) {
     );
 
     // Create the table.
-    $form['principle_1_question_2']['instance_' . $i]['instance_table'] = array(
+    $form['principle_1_2']['instance_' . $i]['instance_table'] = array(
       '#theme' => 'myhacpp_p1q2_table',
     );
 
@@ -119,9 +119,9 @@ function principle_1_question_2(&$form_state, &$next_step) {
     // @todo: What do we do with existing data? Do we only care about previous step.
     foreach ($hazards as $hazard => $name) {
       // Simplify the depth of the form with a reference.
-      $form_position = &$form['principle_1_question_2']['instance_' . $i]['instance_table'][$hazard];
+      $form_position = &$form['principle_1_2']['instance_' . $i]['instance_table'][$hazard];
       // Reference the form's default values to make it easier.
-      $default_value = &$values['principle_1_question_2']['instance_' . $i]['instance_table'][$hazard];
+      $default_value = &$values['principle_1_2']['instance_' . $i]['instance_table'][$hazard];
       // Create the elements of a row.
       $details = array(
         'step_name' => $step_name,
@@ -186,20 +186,20 @@ function principle_1_question_2(&$form_state, &$next_step) {
         ),
         '#attached' => array(
           'js' => array(
-            drupal_get_path('module', 'myhaccp') . '/mforms/js/principle_1_question_2.js',
+            drupal_get_path('module', 'myhaccp') . '/mforms/js/principle_1_2.js',
           ),
         ),
       );
     }
   }
 
-  $form['principle_1_question_2']['threshold'] = array(
+  $form['principle_1_2']['threshold'] = array(
     '#title' => t('Determine the threshold, above which you consider the hazard to be \'significant\': !tip', array(
       '!tip' => _help_tip(),
       )),
     '#help_text' => t('Please enter a number above which we will consider the hazard to be significant.'),
     '#type' => 'textfield',
-    '#default_value' => array_get($values, 'principle_1_question_2.threshold', FALSE),
+    '#default_value' => array_get($values, 'principle_1_2.threshold', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-min' => 1,
@@ -211,7 +211,7 @@ function principle_1_question_2(&$form_state, &$next_step) {
   );
 
   // Add the validation handler.
-  $form['#validate'][] = 'principle_1_question_2_validate';
+  $form['#validate'][] = 'principle_1_2_validate';
 
   return $form;
 }
@@ -219,8 +219,8 @@ function principle_1_question_2(&$form_state, &$next_step) {
 /**
  * Validation handler for Principle 1 Question 2.
  */
-function principle_1_question_2_validate($form, &$form_state) {
-  $validator = new validator($form, $form_state, 'principle_1_question_2');
+function principle_1_2_validate($form, &$form_state) {
+  $validator = new validator($form, $form_state, 'principle_1_2');
 
   if ($validator->allFieldsAreEmpty()) {
     return;
@@ -230,10 +230,10 @@ function principle_1_question_2_validate($form, &$form_state) {
 
   // Iterate over each instance.
   for ($i = 0; $i < $num_instances; $i++) {
-    $rows = array_get($form_state['values'], "principle_1_question_2.instance_$i.instance_table", array());
+    $rows = array_get($form_state['values'], "principle_1_2.instance_$i.instance_table", array());
     foreach ($rows as $key => $hazard) {
       $checks = array(
-        "principle_1_question_2.instance_$i.instance_table.$key.description" => 'fieldIsNotEmpty',
+        "principle_1_2.instance_$i.instance_table.$key.description" => 'fieldIsNotEmpty',
       );
       foreach ($checks as $target => $method) {
         $validator->validate($method, $target);

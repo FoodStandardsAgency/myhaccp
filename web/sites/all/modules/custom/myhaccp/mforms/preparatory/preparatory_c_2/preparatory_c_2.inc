@@ -1,6 +1,6 @@
 <?php
 
-function preparatory_c_question_4(&$form_state, &$next_step) {
+function preparatory_c_2(&$form_state, &$next_step) {
 
   // Define following step callback. If none set, that implies it is
   // the last step.
@@ -8,7 +8,7 @@ function preparatory_c_question_4(&$form_state, &$next_step) {
 
   // Retrieve submitted values. This comes in handy when back action
   // occurred and we need to display values that were originally submitted.
-  $data = mforms_get_vals('myhaccp', 'preparatory_c_question_4');
+  $data = mforms_get_vals('myhaccp', 'preparatory_c_2');
 
   // If we have the data it means we arrived here from back action, so show
   // them in form as default values.
@@ -20,15 +20,15 @@ function preparatory_c_question_4(&$form_state, &$next_step) {
   $form['#attributes']['class'][] = 'prep-c-2';
 
   // Show global message on this form.
-  $form['validation_messages']['#attributes']['data-validation-stage'] = 'preparatory_c_question_4';
+  $form['validation_messages']['#attributes']['data-validation-stage'] = 'preparatory_c_2';
 
   // Wrap the form section in a fieldset.
-  $form['preparatory_c_question_4'] = array(
+  $form['preparatory_c_2'] = array(
     '#type' => 'fieldset',
     '#tree' => TRUE,
   );
 
-  $form['preparatory_c_question_4']['wrapper_title'] = array(
+  $form['preparatory_c_2']['wrapper_title'] = array(
     '#markup' => '<div class="label">' . t('4. What hazards will the HACCP plan cover? !tip !help', array(
       '!tip' => _help_tip(15),
       '!help' => '<div class="help-text">State which hazards will be considered in the HACCP plan (i.e. Biological, Physical, Chemical, Allergenic).</div>',
@@ -38,14 +38,14 @@ function preparatory_c_question_4(&$form_state, &$next_step) {
 
   // Physical hazards.
 
-  $form['preparatory_c_question_4']['wrapper']['physical_preparatory_c_question_4'] = array(
+  $form['preparatory_c_2']['wrapper']['physical_c_4'] = array(
     '#type' => 'container',
     '#attributes' => array(
       'id' => 'physical',
     ),
   );
 
-  $form['preparatory_c_question_4']['wrapper']['physical_preparatory_c_question_4']['physical'] = array(
+  $form['preparatory_c_2']['wrapper']['physical_c_4']['physical'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Physical'),
     '#options' => drupal_map_assoc(
@@ -68,25 +68,25 @@ function preparatory_c_question_4(&$form_state, &$next_step) {
         t('Pests'),
       )
     ),
-    '#default_value' => array_get($values, 'preparatory_c_question_4.wrapper.physical_preparatory_c_question_4.physical', array()),
+    '#default_value' => array_get($values, 'preparatory_c_2.wrapper.physical_c_4.physical', array()),
   );
 
-  $form['preparatory_c_question_4']['wrapper']['physical_preparatory_c_question_4']['physical_other'] = array(
+  $form['preparatory_c_2']['wrapper']['physical_c_4']['physical_other'] = array(
     '#type' => 'textarea',
     '#title' => t('Other'),
-    '#default_value' => array_get($values, 'preparatory_c_question_4.wrapper.physical_preparatory_c_question_4.physical_other', FALSE),
+    '#default_value' => array_get($values, 'preparatory_c_2.wrapper.physical_c_4.physical_other', FALSE),
   );
 
   // Chemical.
 
-  $form['preparatory_c_question_4']['wrapper']['chemical_preparatory_c_question_4'] = array(
+  $form['preparatory_c_2']['wrapper']['chemical_c_4'] = array(
     '#type' => 'container',
     '#attributes' => array(
       'id' => 'chemical',
     ),
   );
 
-  $form['preparatory_c_question_4']['wrapper']['chemical_preparatory_c_question_4']['chemical'] = array(
+  $form['preparatory_c_2']['wrapper']['chemical_c_4']['chemical'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Chemical'),
     '#options' => drupal_map_assoc(
@@ -107,25 +107,25 @@ function preparatory_c_question_4(&$form_state, &$next_step) {
         t('Chemical residues migrating from packaging (e.g. plasticisers, BPA)'),
       )
     ),
-    '#default_value' => array_get($values, 'preparatory_c_question_4.wrapper.chemical_preparatory_c_question_4.chemical', array()),
+    '#default_value' => array_get($values, 'preparatory_c_2.wrapper.chemical_c_4.chemical', array()),
   );
 
-  $form['preparatory_c_question_4']['wrapper']['chemical_preparatory_c_question_4']['chemical_other'] = array(
+  $form['preparatory_c_2']['wrapper']['chemical_c_4']['chemical_other'] = array(
     '#type' => 'textarea',
     '#title' => t('Other'),
-    '#default_value' => array_get($values, 'preparatory_c_question_4.wrapper.chemical_preparatory_c_question_4.chemical_other', FALSE),
+    '#default_value' => array_get($values, 'preparatory_c_2.wrapper.chemical_c_4.chemical_other', FALSE),
   );
 
   // Biological.
 
-  $form['preparatory_c_question_4']['wrapper']['biological_preparatory_c_question_4'] = array(
+  $form['preparatory_c_2']['wrapper']['biological_c_4'] = array(
     '#type' => 'container',
     '#attributes' => array(
       'id' => 'biological',
     ),
   );
 
-  $form['preparatory_c_question_4']['wrapper']['biological_preparatory_c_question_4']['biological'] = array(
+  $form['preparatory_c_2']['wrapper']['biological_c_4']['biological'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Biological'),
     '#options' => array_flip(drupal_map_assoc(array(
@@ -146,25 +146,25 @@ function preparatory_c_question_4(&$form_state, &$next_step) {
         t('Toxoplasma'),
       ), 'drupal_html_id')
     ),
-    '#default_value' => array_get($values, 'preparatory_c_question_4.wrapper.biological_preparatory_c_question_4.biological', array()),
+    '#default_value' => array_get($values, 'preparatory_c_2.wrapper.biological_c_4.biological', array()),
   );
 
-  $form['preparatory_c_question_4']['wrapper']['biological_preparatory_c_question_4']['biological_other'] = array(
+  $form['preparatory_c_2']['wrapper']['biological_c_4']['biological_other'] = array(
     '#type' => 'textarea',
     '#title' => t('Other'),
-    '#default_value' => array_get($values, 'preparatory_c_question_4.wrapper.biological_preparatory_c_question_4.biological_other', FALSE),
+    '#default_value' => array_get($values, 'preparatory_c_2.wrapper.biological_c_4.biological_other', FALSE),
   );
 
   // Allergens.
 
-  $form['preparatory_c_question_4']['wrapper']['allergens_preparatory_c_question_4'] = array(
+  $form['preparatory_c_2']['wrapper']['allergens_c_4'] = array(
     '#type' => 'container',
     '#attributes' => array(
       'id' => 'allergens',
     ),
   );
 
-  $form['preparatory_c_question_4']['wrapper']['allergens_preparatory_c_question_4']['allergens'] = array(
+  $form['preparatory_c_2']['wrapper']['allergens_c_4']['allergens'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Allergens'),
     '#options' => drupal_map_assoc(
@@ -185,16 +185,16 @@ function preparatory_c_question_4(&$form_state, &$next_step) {
         t('Nuts, namely: almonds, hazelnuts,walnuts,cashewnuts, pecan nuts, Brazil nuts, pistachio nuts, macadamia or Queensland nuts and products thereof, except for nuts used for making alcoholic distillates including ethyl alcohol of agricultural origin.'),
       )
     ),
-    '#default_value' => array_get($values, 'preparatory_c_question_4.wrapper.allergens_preparatory_c_question_4.allergens', array()),
+    '#default_value' => array_get($values, 'preparatory_c_2.wrapper.allergens_c_4.allergens', array()),
   );
 
-  $form['preparatory_c_question_4']['wrapper']['allergens_preparatory_c_question_4']['allergens_other'] = array(
+  $form['preparatory_c_2']['wrapper']['allergens_c_4']['allergens_other'] = array(
     '#type' => 'textarea',
     '#title' => t('Other'),
-    '#default_value' => array_get($values, 'preparatory_c_question_4.wrapper.allergens_preparatory_c_question_4.allergens_other', FALSE),
+    '#default_value' => array_get($values, 'preparatory_c_2.wrapper.allergens_c_4.allergens_other', FALSE),
   );
 
-  $form['#validate'][] = 'preparatory_c_question_4_validate';
+  $form['#validate'][] = __FUNCTION__ . '_validate';
 
   return $form;
 }
@@ -202,8 +202,8 @@ function preparatory_c_question_4(&$form_state, &$next_step) {
 /**
  * Validation handler.
  */
-function preparatory_c_question_4_validate($form, &$form_state) {
-  $validator = new validator($form, $form_state, 'preparatory_c_question_4');
+function preparatory_c_2_validate($form, &$form_state) {
+  $validator = new validator($form, $form_state, 'preparatory_c_2');
 
   if ($validator->allFieldsAreEmpty()) {
     return;
@@ -211,14 +211,14 @@ function preparatory_c_question_4_validate($form, &$form_state) {
 
   // Validation: Some content.
   $checks = array(
-    'preparatory_c_question_4.wrapper.physical_preparatory_c_question_4.physical' => 'fieldIsNotEmpty',
-    'preparatory_c_question_4.wrapper.chemical_preparatory_c_question_4.chemical' => 'fieldIsNotEmpty',
-    'preparatory_c_question_4.wrapper.biological_preparatory_c_question_4.biological' => 'fieldIsNotEmpty',
-    'preparatory_c_question_4.wrapper.allergens_preparatory_c_question_4.allergens' => 'fieldIsNotEmpty',
-    'preparatory_c_question_4.wrapper.physical_preparatory_c_question_4.physical_other' => 'fieldIsNotEmpty',
-    'preparatory_c_question_4.wrapper.chemical_preparatory_c_question_4.chemical_other' => 'fieldIsNotEmpty',
-    'preparatory_c_question_4.wrapper.biological_preparatory_c_question_4.biological_other' => 'fieldIsNotEmpty',
-    'preparatory_c_question_4.wrapper.allergens_preparatory_c_question_4.allergens_other' => 'fieldIsNotEmpty',
+    'preparatory_c_2.wrapper.physical_c_4.physical' => 'fieldIsNotEmpty',
+    'preparatory_c_2.wrapper.chemical_c_4.chemical' => 'fieldIsNotEmpty',
+    'preparatory_c_2.wrapper.biological_c_4.biological' => 'fieldIsNotEmpty',
+    'preparatory_c_2.wrapper.allergens_c_4.allergens' => 'fieldIsNotEmpty',
+    'preparatory_c_2.wrapper.physical_c_4.physical_other' => 'fieldIsNotEmpty',
+    'preparatory_c_2.wrapper.chemical_c_4.chemical_other' => 'fieldIsNotEmpty',
+    'preparatory_c_2.wrapper.biological_c_4.biological_other' => 'fieldIsNotEmpty',
+    'preparatory_c_2.wrapper.allergens_c_4.allergens_other' => 'fieldIsNotEmpty',
   );
 
   foreach ($checks as $target => $method) {

@@ -6,8 +6,8 @@
 function myhaccp_init() {
   // Declare all of the step forms.
   $files = _get_all_steps();
-  foreach ($files as $file => $dir) {
-    ctools_include($file, 'myhaccp', 'mforms/' . $dir);
+  foreach ($files as $file => $type) {
+    ctools_include($file, 'myhaccp', "mforms/$type/$file");
   }
 }
 
@@ -36,6 +36,13 @@ function myhaccp_menu() {
     'page callback' => 'myhaccp_create',
     'access callback' => 'myhaccp_access',
     'access arguments' => array('create'),
+    'file' => 'myhaccp.pages.inc',
+    'type' => MENU_CALLBACK,
+  );
+  $items['prototype/form/%/preview'] = array(
+    'page callback' => 'myhaccp_preview',
+    'access callback' => 'myhaccp_access',
+    'access arguments' => array('view'),
     'file' => 'myhaccp.pages.inc',
     'type' => MENU_CALLBACK,
   );
@@ -243,28 +250,41 @@ function myhaccp_start_form($form, &$form_state, $iid = FALSE) {
 /**
  * Implements hook_theme().
  */
-function myhaccp_theme() {
-  $path = drupal_get_path('module', 'myhaccp') . '/theme';
-  return array(
+function myhaccp_theme($existing, $type, $theme, $path) {
+  $path = drupal_get_path('module', 'myhaccp');
+  $hooks = array(
     'myhacpp_p1q2_table' => array(
       'render element' => 'element',
-      'path' => $path,
+      'path' => $path . '/theme',
       'file' => 'myhaccp.theme.inc',
       'function' => 'theme_myhacpp_p1q2_table',
     ),
     'myhacpp_p1q3_table' => array(
       'render element' => 'element',
-      'path' => $path,
+      'path' => $path . '/theme',
       'file' => 'myhaccp.theme.inc',
       'function' => 'theme_myhacpp_p1q3_table',
     ),
     'myhacpp_p2q4_table' => array(
       'render element' => 'element',
-      'path' => $path,
+      'path' => $path . '/theme',
       'file' => 'myhaccp.theme.inc',
       'function' => 'theme_myhacpp_p2q4_table',
     ),
   );
+  $all = _get_all_steps();
+  foreach ($all as $stage => $subtype) {
+    // Now the hook. We want to pass in the form_state data so have added the
+    // data variable. This will get properly sorted by a preprocess function so
+    // the template has the correct data to display.
+    $hooks[$stage] = array(
+      'variables' => array('data' => NULL),
+      'file' => "$stage.theme.inc",
+      'path' => "$path/mforms/$subtype/$stage",
+      'template' => $stage
+    );
+  }
+  return $hooks;
 }
 
 /**
@@ -316,18 +336,18 @@ function _get_all_steps() {
   $files = array(
     'preparatory_a' => 'preparatory',
     'preparatory_b' => 'preparatory',
-    'preparatory_c_question_1_3' => 'preparatory',
-    'preparatory_c_question_4' => 'preparatory',
+    'preparatory_c_1' => 'preparatory',
+    'preparatory_c_2' => 'preparatory',
     'preparatory_d' => 'preparatory',
     'preparatory_e' => 'preparatory',
     'preparatory_f' => 'preparatory',
     'preparatory_g' => 'preparatory',
     'preparatory_h' => 'preparatory',
-    'principle_1_question_1' => 'principle',
-    'principle_1_question_2' => 'principle',
-    'principle_1_question_3' => 'principle',
-    'principle_2_question_1_3' => 'principle',
-    'principle_2_question_4' => 'principle',
+    'principle_1_1' => 'principle',
+    'principle_1_2' => 'principle',
+    'principle_1_3' => 'principle',
+    'principle_2_1' => 'principle',
+    'principle_2_2' => 'principle',
     'principle_3' => 'principle',
     'principle_4' => 'principle',
     'principle_5' => 'principle',
