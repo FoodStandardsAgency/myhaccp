@@ -54,6 +54,14 @@ function myhaccp_menu() {
     'file' => 'myhaccp.pages.inc',
     'type' => MENU_NORMAL_ITEM,
   );
+  $items['tool/study/%/pdf'] = array(
+    'page callback' => 'myhaccp_output_pdf',
+    'page arguments' => array(2),
+    'access callback' => 'myhaccp_access',
+    'access arguments' => array('view'),
+    'file' => 'includes/myhaccp.pdf.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
   $items['help/%ctools_js/%'] = array(
     'title' => 'Help',
     'page arguments' => array(1, 2),
@@ -1044,4 +1052,36 @@ function myhaccp_find_values($iterator, $found) {
     // Move on to the next element.
     $iterator->next();
   }
+}
+
+/**
+ * Gets the results of all the stages of the study.
+ *
+ * @param int $iid
+ *   The study ID to preview.
+ *
+ * @return array
+ *   An empty array if the IID wasn't found, otherwise an array keyed with the
+ *   stage name and the values being the unserialized form state values.
+ */
+function myhaccp_study_get_all_stage_data($iid) {
+  // Fetch all the keys.
+  $keys = _get_all_step_names();
+  // Get all the stages from the db.
+  $query = db_select('mforms_storage_steps', 'mss')
+    ->fields('mss', array('store_key', 'store_data'))
+    ->condition('mss.store_key', $keys, 'IN')
+    ->condition('mss.iid', $iid);
+  $results = $query->execute()->fetchAllAssoc('store_key');
+  if ($results) {
+    // Unpack the data into an array keyed by the stage name.
+    asort($results);
+    foreach ($results as $stage => $values) {
+      $results[$stage] = unserialize($values->store_data);
+    }
+    // Sort it alphabetically and return it.
+    return $results;
+  }
+  // Return an empty array if the study has not been found.
+  return array();
 }

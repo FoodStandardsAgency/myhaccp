@@ -94,7 +94,9 @@ function myhaccp_study_preview($iid) {
     // Check this study is valid.
     $study = myhaccp_study_get_all_stage_data($iid);
     if (!empty($study)) {
+      // Create the PDF button/link.
       $output = '';
+      $output .= myhaccp_add_pdf_link($iid);
       // We have a fully loaded study. Iterate over each stage (key) and process
       // it with the suitable function.
       foreach ($study as $stage => $data) {
@@ -112,39 +114,20 @@ function myhaccp_study_preview($iid) {
 }
 
 /**
- * Gets the results of all the stages of the study.
+ * Returns a pdf link.
  *
  * @param int $iid
- *   The study ID to preview.
+ *   The IID of the study to render as PDF.
  *
- * @return array
- *   An empty array if the IID wasn't found, otherwise an array keyed with the
- *   stage name and the values being the unserialized form state values.
+ * @return string
+ *   The link to render the PDF.
  */
-function myhaccp_study_get_all_stage_data($iid) {
-  // Fetch all the keys.
-  $keys = _get_all_step_names();
-  // Get all the stages from the db.
-  $query = db_select('mforms_storage_steps', 'mss')
-    ->fields('mss', array('store_key', 'store_data'))
-    ->condition('mss.store_key', $keys, 'IN')
-    ->condition('mss.iid', $iid);
-  $results = $query->execute()->fetchAllAssoc('store_key');
-  if ($results) {
-    // Unpack the data into an array keyed by the stage name.
-    asort($results);
-    foreach ($results as $stage => $values) {
-      $results[$stage] = unserialize($values->store_data);
-    }
-    // Sort it alphabetically and return it.
-    return $results;
-  }
-  // Return an empty array if the study has not been found.
-  return array();
+function myhaccp_add_pdf_link($iid) {
+  return l(t('Create PDF'), "tool/study/$iid/pdf", array());
 }
 
 /**
- * Create a new study.
+ * Menu callback for starting a new study.
  */
 function myhaccp_study_create() {
   global $user;
