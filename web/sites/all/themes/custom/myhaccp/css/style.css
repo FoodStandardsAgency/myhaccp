@@ -3209,3 +3209,14 @@ html.ie7 .principle-1-q1 .hazards > .form-item {
   padding-left: 0;
   padding-right: 3%;
 }
+
+@media print {
+  body {
+    background-color: #fafafa;
+    font-family: 'cartogothicstd';
+  }
+
+  section.page {
+    page-break-after: always;
+  }
+}

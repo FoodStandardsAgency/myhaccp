@@ -1,0 +1,9 @@
+@media print {
+  body {
+    background-color: $page_background;
+    font-family: 'cartogothicstd';
+  }
+  section.page {
+    page-break-after: always;
+  }
+}
