@@ -74,22 +74,22 @@ function myhaccp_preprocess_preparatory_c_2(&$variables) {
 
   if (!empty($physical_hazards)) {
     $physical_hazards = implode('</li><li>', $physical_hazards);
-    $content .= '<p>' . t('Physical') . '<ul><li>' . $physical_hazards . '</li></ul></p>';
+    $content .= '<div><p>' . t('Physical') . '</p><ul><li>' . $physical_hazards . '</li></ul></div>';
   }
 
   if (!empty($chemical_hazards)) {
     $chemical_hazards = implode('</li><li>', $chemical_hazards);
-    $content .= '<p>' . t('Chemical') . '<ul><li>' . $chemical_hazards . '</li></ul></p>';
+    $content .= '<div><p>' . t('Chemical') . '</p><ul><li>' . $chemical_hazards . '</li></ul></div>';
   }
 
   if (!empty($biological_hazards)) {
     $biological_hazards = implode('</li><li>', $biological_hazards);
-    $content .= '<p>' . t('Biological') . '<ul><li>' . $biological_hazards . '</li></ul></p>';
+    $content .= '<div><p>' . t('Biological') . '</p><ul><li>' . $biological_hazards . '</li></ul></div>';
   }
 
   if (!empty($allergens_hazards)) {
     $allergens_hazards = implode('</li><li>', $allergens_hazards);
-    $content .= '<p>' . t('Allergens') . '<ul><li>' . $allergens_hazards . '</li></ul></p>';
+    $content .= '<div><p>' . t('Allergens') . '</p><ul><li>' . $allergens_hazards . '</li></ul></div>';
   }
 
   // Finally we have the output.

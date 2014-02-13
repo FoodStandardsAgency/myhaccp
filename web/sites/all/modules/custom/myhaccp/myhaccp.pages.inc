@@ -92,7 +92,7 @@ function myhaccp_list() {
 function myhaccp_study_preview($iid) {
   if (is_numeric($iid)) {
     // Check this study is valid.
-    $study = myhaccp_study_get_all_stage_data($iid);
+    $study = myhaccp_study_get_all_stages_data($iid);
     if (!empty($study)) {
       // Create the PDF button/link.
       $output = '';
