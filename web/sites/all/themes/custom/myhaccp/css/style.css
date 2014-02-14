@@ -1625,7 +1625,6 @@ div.exposed-filters input#edit-submit:active {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
 }
 
-input#edit-submit,
 input#edit-actions-submit,
 input[id^="save-continue"],
 input#edit-actions-save,
@@ -1644,9 +1643,7 @@ input#edit-previous,
   background-color: #006f51;
   color: #FFF;
 }
-input#edit-submit:hover, input#edit-submit:focus,
-input#edit-actions-submit:hover,
-input#edit-actions-submit:focus,
+input#edit-actions-submit:hover, input#edit-actions-submit:focus,
 input[id^="save-continue"]:hover,
 input[id^="save-continue"]:focus,
 input#edit-actions-save:hover,
@@ -1660,7 +1657,6 @@ input#edit-previous:focus,
   background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
   cursor: pointer;
 }
-input#edit-submit.disabled,
 input#edit-actions-submit.disabled,
 input[id^="save-continue"].disabled,
 input#edit-actions-save.disabled,
@@ -1671,9 +1667,7 @@ input#edit-previous.disabled,
   cursor: not-allowed;
   opacity: 0.5;
 }
-input#edit-submit.active, input#edit-submit:active,
-input#edit-actions-submit.active,
-input#edit-actions-submit:active,
+input#edit-actions-submit.active, input#edit-actions-submit:active,
 input[id^="save-continue"].active,
 input[id^="save-continue"]:active,
 input#edit-actions-save.active,
@@ -2152,7 +2146,7 @@ div.teaser-checkbox .form-item,
   display: inline;
   color: #676767;
 }
-.form-save-wrapper #edit-save {
+.form-save-wrapper .form-save {
   background-color: #e6e6e6;
   color: rgba(0, 0, 0, 0.8);
   border: 0 none transparent;
@@ -2167,16 +2161,16 @@ div.teaser-checkbox .form-item,
   font-size: 0.8em;
   display: inline;
 }
-.form-save-wrapper #edit-save:hover, .form-save-wrapper #edit-save:focus {
+.form-save-wrapper .form-save:hover, .form-save-wrapper .form-save:focus {
   background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
   cursor: pointer;
 }
-.form-save-wrapper #edit-save.disabled {
+.form-save-wrapper .form-save.disabled {
   background-image: none;
   cursor: not-allowed;
   opacity: 0.5;
 }
-.form-save-wrapper #edit-save.active, .form-save-wrapper #edit-save:active {
+.form-save-wrapper .form-save.active, .form-save-wrapper .form-save:active {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
 }
 
@@ -2185,11 +2179,57 @@ div.teaser-checkbox .form-item,
   border-top: 1px solid #007fb2;
   padding-top: 1em;
 }
-.form-nav-wrapper input[type="submit"] {
+.form-nav-wrapper .form-previous {
+  background-color: #e6e6e6;
+  color: rgba(0, 0, 0, 0.8);
+  border: 0 none transparent;
+  padding: 0.6em 1.5em 0.5em 1.5em;
+  text-decoration: none;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  background-color: #006f51;
+  color: #FFF;
   margin-left: 0;
 }
-.form-nav-wrapper input#edit-continue {
+.form-nav-wrapper .form-previous:hover, .form-nav-wrapper .form-previous:focus {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+}
+.form-nav-wrapper .form-previous.disabled {
+  background-image: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.form-nav-wrapper .form-previous.active, .form-nav-wrapper .form-previous:active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
+}
+.form-nav-wrapper .form-continue {
+  background-color: #e6e6e6;
+  color: rgba(0, 0, 0, 0.8);
+  border: 0 none transparent;
+  padding: 0.6em 1.5em 0.5em 1.5em;
+  text-decoration: none;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  background-color: #006f51;
+  color: #FFF;
   float: right;
+}
+.form-nav-wrapper .form-continue:hover, .form-nav-wrapper .form-continue:focus {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+}
+.form-nav-wrapper .form-continue.disabled {
+  background-image: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.form-nav-wrapper .form-continue.active, .form-nav-wrapper .form-continue:active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
 }
 
 /**

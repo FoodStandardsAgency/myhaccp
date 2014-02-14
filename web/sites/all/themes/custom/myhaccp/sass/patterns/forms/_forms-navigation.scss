@@ -64,7 +64,7 @@
     display: inline;
     color: $text-lighter;
   }
-  #edit-save {
+  .form-save {
     @include agile-button(dark, small);
     display: inline;
   }
@@ -74,10 +74,12 @@
   clear: both;
   border-top: 1px solid $accent-2;
   padding-top: 1em;
-  input[type="submit"] {
+  .form-previous {
+    @include agile-button($style: primary);
     margin-left: 0;
   }
-  input#edit-continue {
+  .form-continue {
+    @include agile-button($style: primary);
     float: right;
   }
 }

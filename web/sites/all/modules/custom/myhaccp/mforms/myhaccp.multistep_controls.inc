@@ -173,6 +173,9 @@ class MyHACCPMultiStepControls extends MformsControls {
         '#attributes' => $this->attributes_continue,
         '#submit' => array('_mforms_back_submit'),
         '#store_key' => $this->store->getKey(),
+        '#attributes' => array(
+          'class' => array('form-continue'),
+        ),
       );
 
       if ($this->ajaxified) {
@@ -206,6 +209,9 @@ class MyHACCPMultiStepControls extends MformsControls {
         '#store_key' => $this->store->getKey(),
         '#mforms_step' => $this->steps->getPrev(),
         '#submit' => array('_mforms_back_submit'),
+        '#attributes' => array(
+          'class' => array('form-previous'),
+        ),
       );
 
       if ($this->ajaxified) {
@@ -238,6 +244,9 @@ class MyHACCPMultiStepControls extends MformsControls {
       '#store_key' => $this->store->getKey(),
       '#mforms_step' => $this->steps->getCurr(),
       '#submit' => array('_mforms_back_submit'),
+      '#attributes' => array(
+        'class' => array('form-save'),
+      ),
     );
 
     $form_controls['form_save_wrapper']['message'] = array(
