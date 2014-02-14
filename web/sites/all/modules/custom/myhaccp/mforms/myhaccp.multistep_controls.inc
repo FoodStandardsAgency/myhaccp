@@ -155,7 +155,7 @@ class MyHACCPMultiStepControls extends MformsControls {
       }
     }
 
-    // Create a wrapper for the form save button and accompanying message
+    // Create a wrapper for the continue and previous buttons
     $form_controls['form_nav_wrapper'] = array(
       '#type' => 'container',
       '#weight' => $this->weight_nav,
