@@ -40,22 +40,11 @@ function principle_1_2(&$form_state, &$next_step) {
     ),
   );
 
-  // Determine how many instances we need to display. This is based on the data
-  // from Principle 1 Question 1.
-  $store = mforms_store_get('myhaccp');
-  // Fetch the previous step data.
-  $steps = MformsSteps::getInstance($store);
-  $prev_step = $steps->getPrev();
-  $previous_data = $store->getStore($prev_step);
+  $hazards = new hazards();
 
   // Set an instance count so we know how many instances of the fieldsets we
-  // need to show. One instance per previous step instance.
-  $instance_count = 0;
-
-  // Iterate through the previous data and look for instances which have a step
-  // number and step name and then dig deeper for a hazard. We need this semi
-  // validation up front so we know what to show.
-  $instance_count = myhaccp_ensure_hazards_exist();
+  // need to show. One instance per step.
+  $instance_count = $hazards->countHazards();
 
   // Bail out here with a message if there are no instances of the fieldsets
   // filled out correctly in the previous screen.
@@ -65,73 +54,39 @@ function principle_1_2(&$form_state, &$next_step) {
   }
 
   // Check whether the form_state has instances already filled out.
-  // @todo: How do we deal with changing instance numbers in the previous screen if a user has started filling out this screen?
   $form_state['num_instances'] = $instance_count;
 
-  // Iterate over all the instances and generate a fieldset per previous
-  // screen's instances (or filled out instances saved in the form_state).
-  for ($i = 0; $i < $form_state['num_instances']; $i++) {
-    // Get the necessary values from the previous step.
-    $step_no = $previous_data['principle_1_question_1']['instance_' . $i]['wrapper']['step_no'];
-    $step_name = $previous_data['principle_1_question_1']['instance_' . $i]['wrapper']['step_name'];
-    // Prepare each of the four categories of hazard.
-    $categories = array(
-      'bio' => $previous_data['principle_1_question_1']['instance_' . $i]['hazards_wrapper']['biological'],
-      'chem' => $previous_data['principle_1_question_1']['instance_' . $i]['hazards_wrapper']['chemical'],
-      'phys' => $previous_data['principle_1_question_1']['instance_' . $i]['hazards_wrapper']['physical'],
-      'allergens' => $previous_data['principle_1_question_1']['instance_' . $i]['hazards_wrapper']['allergens'],
-    );
-    // Process the hazards within each category.
-    $hazards = array();
-    // Iterate over the categories.
-    foreach ($categories as $category) {
-      if (!empty($category)) {
-        // Split the hazard items listed in the category text area into an
-        // array, one item per line in the text area.
-        $hazard_items = explode("\r\n", trim($category));
-        // Iterate over each hazard item in this category.
-        foreach ($hazard_items as $item) {
-          // If the item isn't empty add the hazard.
-          if ($item != '') {
-            // Create a unique id for this item.
-            $key = drupal_html_id($item);
-            $hazards[$key] = $item;
-          }
-        }
-      }
-    }
+  // Keep a step count.
+  $step_count = 0;
 
+  $steps = $hazards->getHazardsByStep();
+
+  // Iterate over the steps.
+  foreach ($steps as $step_id => $step) {
     // Create a fieldset to wrap this instance and give it a legend.
-    $form['principle_1_2']['instance_' . $i] = array(
+    $form['principle_1_2'][$step_id] = array(
       '#type' => 'fieldset',
       '#title' => t('Process Step !step_no: !step_name', array(
-        '!step_no' => $step_no,
-        '!step_name' => $step_name,
+        '!step_no' => $step['no'],
+        '!step_name' => $step['name'],
       )),
     );
 
-    // Create the table.
-    $form['principle_1_2']['instance_' . $i]['instance_table'] = array(
-      '#theme' => 'myhacpp_p1q2_table',
+    // Create a table per step.
+    $form['principle_1_2'][$step_id]['instance_table'] = array(
+      '#theme' => 'myhaccp_1_2_table',
     );
 
     // Build out the rows.
-    // @todo: What do we do with existing data? Do we only care about previous step.
-    foreach ($hazards as $hazard => $name) {
+    foreach ($step['hazards'] as $hazard_key => $hazard) {
       // Simplify the depth of the form with a reference.
-      $form_position = &$form['principle_1_2']['instance_' . $i]['instance_table'][$hazard];
+      $form_position = &$form['principle_1_2'][$step_id]['instance_table'][$hazard_key];
       // Reference the form's default values to make it easier.
-      $default_value = &$values['principle_1_2']['instance_' . $i]['instance_table'][$hazard];
+      $default_value = &$values['principle_1_2'][$step_id]['instance_table'][$hazard_key];
       // Create the elements of a row.
-      $details = array(
-        'step_name' => $step_name,
-        'step_number' => $step_no,
-        'name' => $name,
-      );
-      $form_position['details'] = array(
+      $form_position['name'] = array(
         '#type' => 'hidden',
-        '#prefix' => $name,
-        '#value' => serialize($details),
+        '#value' => $hazard->name,
       );
       $form_position['description'] = array(
         '#type' => 'textarea',
@@ -191,6 +146,8 @@ function principle_1_2(&$form_state, &$next_step) {
         ),
       );
     }
+    // Increment the count.
+    $step_count++;
   }
 
   $form['principle_1_2']['threshold'] = array(
@@ -226,14 +183,15 @@ function principle_1_2_validate($form, &$form_state) {
     return;
   }
 
-  $num_instances = $form_state['num_instances'];
-
-  // Iterate over each instance.
-  for ($i = 0; $i < $num_instances; $i++) {
-    $rows = array_get($form_state['values'], "principle_1_2.instance_$i.instance_table", array());
+  // Iterate over each step.
+  foreach ($form_state['values']['principle_1_2'] as $step_id) {
+    $rows = array_get($form_state['values'], "principle_1_2.instance_$step_id.instance_table", array());
     foreach ($rows as $key => $hazard) {
       $checks = array(
-        "principle_1_2.instance_$i.instance_table.$key.description" => 'fieldIsNotEmpty',
+        "principle_1_2.instance_$step_id.instance_table.$key.description" => 'fieldIsNotEmpty',
+//        "principle_1_2.instance_$step_count.instance_table.$key.severity" => 'fieldIsNotEmpty',
+//        "principle_1_2.instance_$step_count.instance_table.$key.likelihood" => 'fieldIsNotEmpty',
+//        "principle_1_2.instance_$step_count.instance_table.$key.significance" => 'fieldIsNotEmpty',
       );
       foreach ($checks as $target => $method) {
         $validator->validate($method, $target);

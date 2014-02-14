@@ -5,4 +5,5 @@ package = MyHACCP
 files[] = mforms/myhaccp_database_storage.inc
 files[] = mforms/myhaccp.multistep_controls.inc
 files[] = includes/validation.inc
+files[] = includes/hazards.inc
 dependencies[] = mforms

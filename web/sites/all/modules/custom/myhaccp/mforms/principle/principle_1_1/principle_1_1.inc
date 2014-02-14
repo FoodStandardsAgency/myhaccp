@@ -31,9 +31,15 @@ function principle_1_1(&$form_state, &$next_step) {
   );
 
   // Set the number of instances to 1 if not already set.
-  if (empty($form_state['num_instances'])) {
+  if (empty($values['principle_1_1'])) {
     $form_state['num_instances'] = 1;
   }
+  else {
+    // Get the number of instances from the saved form data.
+    unset($values['principle_1_1']['controls']);
+    $form_state['num_instances'] = count($values['principle_1_1']);
+  }
+
   for ($i = 0; $i < $form_state['num_instances']; $i++) {
     // Contain everything for this instance inside a fieldset.
     $form['principle_1_1']['instance_' . $i] = array(

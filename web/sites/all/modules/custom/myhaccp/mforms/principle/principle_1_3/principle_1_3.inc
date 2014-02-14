@@ -27,22 +27,16 @@ function principle_1_3(&$form_state, &$next_step) {
     '#tree' => TRUE,
   );
 
-  // Determine how many instances we need to display. This is based on the data
-  // from Principle 1 Question 2.
-  $store = mforms_store_get('myhaccp');
-  // Fetch the previous step data.
-  $steps = MformsSteps::getInstance($store);
+  $hazards = new hazards();
 
-  // Ensure data has been entered on principle_1_1.
-  $principle_1_1 = mforms_get_vals('myhaccp', 'principle_1_1');
-  if (myhaccp_ensure_hazards_exist($principle_1_1) == 0) {
+  if ($hazards->countHazards() == 0) {
     // There were no hazards.
     drupal_set_message('You must add at least a step number and step name in step 1.1 as well as at least a hazard for the step. Please return to 1.1', 'error');
     return $form;
   }
 
   // Check if we have anything over the threshold set in principle 1 question 2.
-  $instance_count = myhaccp_ensure_over_threshold();
+  $instance_count = $hazards->countHazardsOverThreshold();
   // Bail out here with a message if there are no instances of the fieldsets
   // filled out correctly in the previous screen.
   if ($instance_count == 0) {
@@ -50,8 +44,6 @@ function principle_1_3(&$form_state, &$next_step) {
     drupal_set_message('You have no significant hazards so you cannot continue', 'error');
     return $form;
   }
-
-  $items = myhaccp_get_items_over_threshold();
 
   // Create the fieldset container.
   $form['principle_1_3'] = array(
@@ -61,47 +53,39 @@ function principle_1_3(&$form_state, &$next_step) {
 
   // Create the table.
   $form['principle_1_3']['instance_table'] = array(
-    '#theme' => 'myhacpp_p1q3_table',
+    '#theme' => 'myhaccp_1_3_table',
   );
 
+  $theshold = $hazards->getHazardsOverTheshold();
+
   // Build out the rows (three columns).
-  foreach ($items as $key => $item) {
+  foreach ($theshold as $hazard_key => $hazard) {
 
-    // Get the details of this step and item, serialized into a hidden form
-    // element in the previous question (seemed like the easiest way).
-    $details = unserialize($item['details']);
-
+    $step = $hazard->step;
     // Prepare the text.
-    $process_step_text = '(' . $details['step_number'] . ') ' . $details['step_name'];
+    $process_step_text = '(' . $step->no . ') ' . $step->name;
     // The hazard column text.
-    $hazard_text = '<div class="label hazard">' . $details['name'] . '</div><div class="hazard-description">' . $item['description'] . '</div>';
+    $hazard_text = '<div class="label hazard">' . $hazard->name . '</div><div class="hazard-description">' . $hazard->description . '</div>';
 
-    $form['principle_1_3']['instance_table']['row_' . $key]['process_step'] = array(
+    $form['principle_1_3']['instance_table'][$hazard_key]['process_step'] = array(
       '#markup' => $process_step_text,
     );
 
-    $hazard_details = $details;
-    $hazard_details['description'] = $item['description'];
-    $hazard_details['control_measure'] = array_get($values, "principle_1_3.instance_table.row_$key.control_measure", FALSE);
-
-    $form['principle_1_3']['instance_table']['row_' . $key]['hazard'] = array(
-      '#prefix' => $hazard_text,
-      '#type' => 'hidden',
-      '#value' => serialize($hazard_details),
+    $form['principle_1_3']['instance_table'][$hazard_key]['hazard'] = array(
+      '#markup' => $hazard_text,
     );
 
-    $form['principle_1_3']['instance_table']['row_' . $key]['control_measure'] = array(
+    $form['principle_1_3']['instance_table'][$hazard_key]['control_measure'] = array(
       '#type' => 'textarea',
       '#help_text' => t('For each significant hazard, please specify the control measure.'),
       '#resizable' => FALSE,
-      '#default_value' => array_get($values, "principle_1_3.instance_table.row_$key.control_measure", FALSE),
+      '#default_value' => array_get($values, "principle_1_3.instance_table.$hazard_key.control_measure", FALSE),
       '#attributes' => array(
         'data-parsley-error-message' => t('Please add a control measure.'),
         'data-parsley-required' => TRUE,
       ),
     );
   }
-
 
   // Add the validation handler.
   $form['#validate'][] = 'principle_1_3_validate';
@@ -120,10 +104,8 @@ function principle_1_3_validate($form, &$form_state) {
   }
 
   $rows = array_get($form_state, 'values.principle_1_3.instance_table', array());
-  foreach ($rows as $key => $row) {
-    $checks = array(
-      "principle_1_3.instance_table.$key.control_measure" => 'fieldIsNotEmpty',
-    );
+  foreach ($rows as $hazard_key => $row) {
+    $checks["principle_1_3.instance_table.$hazard_key.control_measure"] = 'fieldIsNotEmpty';
   }
 
   foreach ($checks as $target => $method) {
