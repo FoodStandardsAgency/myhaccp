@@ -27,11 +27,6 @@ function principle_6(&$form_state, &$next_step) {
     '#tree' => TRUE,
   );
 
-  $store = mforms_store_get('myhaccp');
-  // Fetch the previous step data.
-  $steps = MformsSteps::getInstance($store);
-  $prev_step = $steps->getPrev();
-
   // Create the fieldset container.
   $form['principle_6'] = array(
     '#type' => 'fieldset',
@@ -39,31 +34,31 @@ function principle_6(&$form_state, &$next_step) {
   );
 
   // Now the form fields.
-  $form['principle_6']['document'] = array(
+  $form['principle_6']['6_1'] = array(
     '#type' => 'textarea',
     '#resizable' => FALSE,
     '#title' => t('1. Document your validation study in the space below.'),
     '#help_text' => t('Provide details of all validation studies carried out.'),
-    '#default_value' => array_get($values, "principle_6.document", FALSE),
+    '#default_value' => array_get($values, "principle_6.6_1", FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please add documentation of your validation study.'),
     ),
   );
 
-  $form['principle_6']['responsible'] = array(
+  $form['principle_6']['6_2'] = array(
     '#type' => 'textarea',
     '#resizable' => FALSE,
     '#title' => t('2. Who is responsible for ensuring the contents of the HACCP plan are validated?'),
     '#help_text' => t('Enter the name of the person  responsible.'),
-    '#default_value' => array_get($values, "principle_6.responsible", FALSE),
+    '#default_value' => array_get($values, "principle_6.6_2", FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please state who is responsible for ensuring the contents of the HACCP plan are validated.'),
     ),
   );
 
-  $form['principle_6']['trained'] = array(
+  $form['principle_6']['6_3'] = array(
     '#type' => 'radios',
     '#options' => array(
       'yes' => t('Yes'),
@@ -71,33 +66,33 @@ function principle_6(&$form_state, &$next_step) {
     ),
     '#title' => t('3. Is this the same person who will formally sign off the HACCP plan?'),
     '#help_text' => t('Enter the name of the person.'),
-    '#default_value' => array_get($values, "principle_6.trained", FALSE),
+    '#default_value' => array_get($values, "principle_6.6_3", FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please indicate if this is the same person who will formally sign off the HACCP plan.'),
     ),
   );
 
-  $form['principle_6']['sign_off'] = array(
+  $form['principle_6']['6_3a'] = array(
     '#type' => 'textfield',
     '#title' => t('3a. Who will formally sign off the HACCP plan?'),
-    '#default_value' => array_get($values, "principle_6.sign_off", FALSE),
+    '#default_value' => array_get($values, "principle_6.6_3a", FALSE),
     '#attributes' => array(
       'data-parsley-error-message' => t('Please state who is responsible for ensuring the contents of the HACCP plan are validated.'),
     ),
     '#states' => array(
       'visible' => array(
-        ':input[name="principle_6[trained]"]' => array('value' => 'no'),
+        ':input[name="principle_6[6_3]"]' => array('value' => 'no'),
       ),
     ),
   );
 
-  $form['principle_6']['verification'] = array(
+  $form['principle_6']['6_4'] = array(
     '#type' => 'container',
-    '#prefix' => '<div class="label">What verification activities do you carry out? Mark all those that apply.</div>',
+    '#prefix' => '<div class="label">4. What verification activities do you carry out? Mark all those that apply.</div>',
   );
 
-  $form['principle_6']['verification']['internal'] = array(
+  $form['principle_6']['6_4']['1'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Internal audits of'),
     '#options' => array(
@@ -106,39 +101,39 @@ function principle_6(&$form_state, &$next_step) {
       'records' => 'Records of monitoring',
       'corrective' => 'Corrective actions',
     ),
-    '#default_value' => array_get($values, "principle_6.verification.internal", array()),
+    '#default_value' => array_get($values, "principle_6.6_4.1", array()),
   );
 
-  $form['principle_6']['verification']['external'] = array(
+  $form['principle_6']['6_4']['2'] = array(
     '#type' => 'checkboxes',
     '#title' => t('External auditing programmes'),
     '#options' => array(
       'supplier' => 'Supplier audits'
     ),
-    '#default_value' => array_get($values, "principle_6.verification.external", array()),
+    '#default_value' => array_get($values, "principle_6.6_4.2", array()),
   );
 
-  $form['principle_6']['verification']['finished'] = array(
+  $form['principle_6']['6_4']['3'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Finished product'),
     '#options' => array(
       'microbial' => 'Microbiological testing',
       'chemical' => 'Chemical testing',
     ),
-    '#default_value' => array_get($values, "principle_6.verification.finished", array()),
+    '#default_value' => array_get($values, "principle_6.6_4.3", array()),
   );
 
-  $form['principle_6']['verification']['interim'] = array(
+  $form['principle_6']['6_4']['4'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Interim product'),
     '#options' => array(
       'microbial' => 'Microbiological testing',
       'chemical' => 'Chemical testing',
     ),
-    '#default_value' => array_get($values, "principle_6.verification.interim", array()),
+    '#default_value' => array_get($values, "principle_6.6_4.4", array()),
   );
 
-  $form['principle_6']['verification']['other'] = array(
+  $form['principle_6']['6_4']['5'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Other'),
     '#options' => array(
@@ -148,10 +143,10 @@ function principle_6(&$form_state, &$next_step) {
       'trending' => 'Trending and analysing customer complaints',
       'buy' => 'Product buy - back(buying your product from end point in market place and sampling and testing it for unexpected safety problems',
     ),
-    '#default_value' => array_get($values, "principle_6.verification.other", array()),
+    '#default_value' => array_get($values, "principle_6.6_4.5", array()),
   );
 
-  $form['principle_6']['verification']['reviewing'] = array(
+  $form['principle_6']['6_4']['6'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Reviewing'),
     '#options' => array(
@@ -161,60 +156,60 @@ function principle_6(&$form_state, &$next_step) {
       'rework' => 'Rework',
       'trending' => 'Trending of monitoring results',
     ),
-    '#default_value' => array_get($values, "principle_6.verification.reviewing", array()),
+    '#default_value' => array_get($values, "principle_6.6_4.6", array()),
   );
 
-  $form['principle_6']['list'] = array(
+  $form['principle_6']['6_5'] = array(
     '#type' => 'textarea',
     '#resizable' => FALSE,
-    '#title' => t('List any other verification activities carried out in your organisation.'),
+    '#title' => t('5. List any other verification activities carried out in your organisation.'),
     '#help_text' => t('If you carry out additional verification activities not listed above, record them here.'),
-    '#default_value' => array_get($values, "principle_6.document", FALSE),
+    '#default_value' => array_get($values, "principle_6.6_5", FALSE),
     '#attributes' => array(
       'data-parsley-error-message' => t('Please list any other verification activities carried out in your organisation.'),
     ),
   );
 
-  $form['principle_6']['maintained'] = array(
+  $form['principle_6']['6_6'] = array(
     '#type' => 'radios',
     '#options' => array(
       'yes' => t('Yes'),
       'no' => t('No'),
     ),
-    '#title' => t('Are all verification records maintained?'),
+    '#title' => t('6. Are all verification records maintained?'),
     '#help_text' => t('You should keep verification records for a minimum of the life of a product  plus an extension period of ‘typically’ 3 months.  You must take into consideration abuse of your product and may wish to keep records for a longer period.'),
-    '#default_value' => array_get($values, "principle_6.maintained", FALSE),
+    '#default_value' => array_get($values, "principle_6.6_6", FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please confirm that all verification records are maintained.'),
     ),
   );
 
-  $form['principle_6']['reviewed'] = array(
+  $form['principle_6']['6_7'] = array(
     '#type' => 'textfield',
-    '#title' => t('How often is the HACCP system formally reviewed?'),
+    '#title' => t('7. How often is the HACCP system formally reviewed?'),
     '#help_text' => t('Is this annually, bi-annually or more frequently?'),
-    '#default_value' => array_get($values, "principle_6.reviewed", FALSE),
+    '#default_value' => array_get($values, "principle_6.6_7", FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please detail how often the HACCP system is formally reviewed.'),
     ),
   );
 
-  $form['principle_6']['responsible_review'] = array(
+  $form['principle_6']['6_8'] = array(
     '#type' => 'textfield',
-    '#title' => t('Who is responsible for carrying out a formal annual review?'),
+    '#title' => t('8. Who is responsible for carrying out a formal annual review?'),
     '#help_text' => t('Provide name of individual responsible.'),
-    '#default_value' => array_get($values, "principle_6.responsible_review", FALSE),
+    '#default_value' => array_get($values, "principle_6.6_8", FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please state who is responsible for carrying out a formal annual review.'),
     ),
   );
 
-  $form['principle_6']['triggers'] = array(
+  $form['principle_6']['6_9'] = array(
     '#type' => 'checkboxes',
-    '#title' => t("Mark any of the following 'triggers' that will initiate a review in your organisation:"),
+    '#title' => t("9. Mark any of the following 'triggers' that will initiate a review in your organisation:"),
     '#options' => array(
       'advances' => 'Technological advances in production',
       'controls' => 'New controls that become available',
@@ -236,26 +231,26 @@ function principle_6(&$form_state, &$next_step) {
       'changes_environmental' => 'Environmental changes/issues (i.e. local changes external to the food operation; climate changes)',
     ),
     '#help_text' => t('If any of the items listed occur  your HACCP plan may not be valid and your product potentially unsafe.  In such a case it would be necessary to trigger a review.'),
-    '#default_value' => array_get($values, "principle_6.triggers", array()),
+    '#default_value' => array_get($values, "principle_6.6_9", array()),
   );
 
-  $form['principle_6']['mechanisms'] = array(
+  $form['principle_6']['6_10'] = array(
     '#type' => 'textfield',
-    '#title' => t("List any other mechanisms which are in place to automatically 'trigger' a review."),
-    '#default_value' => array_get($values, "principle_6.mechanisms", FALSE),
+    '#title' => t("10. List any other mechanisms which are in place to automatically 'trigger' a review."),
+    '#default_value' => array_get($values, "principle_6.6_10", FALSE),
     '#attributes' => array(
       'data-parsley-error-message' => t('Please list any other mechanisms which are in place to automatically ‘trigger’ a review.'),
     ),
   );
 
-  $form['principle_6']['records_reviews'] = array(
+  $form['principle_6']['6_11'] = array(
     '#type' => 'radios',
-    '#title' => t('Are all records from reviews documented, brought to the attention of senior management (for companies where this is appropriate)  and used to keep the HACCP plan up-to-date?'),
+    '#title' => t('11. Are all records from reviews documented, brought to the attention of senior management (for companies where this is appropriate)  and used to keep the HACCP plan up-to-date?'),
     '#options' => array(
       'yes' => t('Yes'),
       'no' => t('No'),
     ),
-    '#default_value' => array_get($values, "principle_6.records_reviews", FALSE),
+    '#default_value' => array_get($values, "principle_6.6_11", FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
       'data-parsley-error-message' => t('Please specify if all records from reviews documented, brought to the attention of senior management (for companies where this is appropriate) and used to keep the HACCP plan up-to-date.'),
@@ -282,8 +277,8 @@ function principle_6_validate($form, &$form_state) {
   // notation) and the value being the callback to use to check whether the
   // field is empty.
   $checks = array(
-    'principle_6.document' => 'fieldIsNotEmpty',
-    'principle_6.responsible' => 'fieldIsNotEmpty',
+    'principle_6.6_1' => 'fieldIsNotEmpty',
+    'principle_6.6_2' => 'fieldIsNotEmpty',
     'principle_6.trained' => 'fieldIsNotEmpty',
     'principle_6.maintained' => 'fieldIsNotEmpty',
     'principle_6.reviewed' => 'fieldIsNotEmpty',
@@ -296,7 +291,7 @@ function principle_6_validate($form, &$form_state) {
   }
 
   // Now check if the radio button in 3 is set to yes.
-  if (array_get($form_state['values'], "principle_6.trained", FALSE) == 'yes') {
+  if (array_get($form_state['values'], "principle_6.6_3", FALSE) == 'yes') {
     // Now check that the dependent fields 5a has something in it.
     $validator->validate('fieldIsNotEmpty', 'principle_6.sign_off');
   }

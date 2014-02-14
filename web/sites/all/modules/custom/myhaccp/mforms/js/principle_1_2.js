@@ -5,7 +5,7 @@
 
 (function($) {
 
-  Drupal.behaviors.p1q2 = {
+  Drupal.behaviors.principle_1_2 = {
     attach: function(context) {
       // Calculate significance from the values in severity and likelihood.
       $('input.severity, input.likelihood').bind('change, keyup', function(e) {

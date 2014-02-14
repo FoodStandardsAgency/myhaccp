@@ -5,13 +5,13 @@
  *
  * Principle 1 Question 1.
  */
-function theme_myhacpp_p1q2_table($variables) {
+function theme_myhaccp_1_2_table($variables) {
   $element = $variables['element'];
 
   $rows = array();
   foreach (element_children($element) as $key) {
     $rows[] = array(
-      array('data' => $element[$key]['details']),
+      array('data' => $element[$key]['name']['#value']),
       array('data' => $element[$key]['description']),
       array('data' => $element[$key]['severity']),
       array('data' => $element[$key]['likelihood']),
@@ -58,7 +58,7 @@ function theme_myhacpp_p1q2_table($variables) {
  *
  * Principle 1 Question 3.
  */
-function theme_myhacpp_p1q3_table($variables) {
+function theme_myhaccp_1_3_table($variables) {
   $element = $variables['element'];
 
   $rows = array();
@@ -98,12 +98,13 @@ function theme_myhacpp_p1q3_table($variables) {
  *
  * Principle 2 Question 4.
  */
-function theme_myhacpp_p2q4_table($variables) {
+function theme_myhaccp_2_2_table($variables) {
   $element = $variables['element'];
 
-  $decision_tree_value = array_get($element, 'decision_tree.#value', FALSE);
+  $data = mforms_get_vals('myhaccp', 'principle_2_1');
+
+  $decision_tree_value = array_get($data, 'principle_2_1.2_1_1', FALSE);
   $decision_tree = $decision_tree_value == 'yes' ? TRUE : FALSE;
-  unset($element['decision_tree']);
 
   $rows = array();
 

@@ -27,68 +27,44 @@ function principle_5(&$form_state, &$next_step) {
     '#tree' => TRUE,
   );
 
+  $hazards = new hazards();
+
   // Ensure there are hazards over the threshold.
-  if (myhaccp_ensure_over_threshold() == 0) {
+  if ($hazards->countHazardsOverThreshold() == 0) {
     drupal_set_message('You have no significant hazards so you cannot continue', 'error');
     return $form;
   }
 
-  $items = myhaccp_get_ccps();
+  // Determine how many instances we need to display. This is based on the data
+  // from Principle 1 Question 3.
+  $ccps = $hazards->getCCPs();
 
-  $instance_count = count($items);
-  // Bail out here with a message if there are no critical control points.
+  $instance_count = count($ccps);
+
+  // Bail out here with a message if there are no instances of the fieldsets
+  // filled out correctly in the previous screen.
   if ($instance_count == 0) {
     drupal_set_message('You have no critical control points so you cannot continue');
     return $form;
   }
 
-  // Create the fieldset container.
-  $form['principle_5'] = array(
-    '#type' => 'fieldset',
-    '#tree' => TRUE,
-  );
-
   // Build out the instances.
-  foreach ($items as $key => $item) {
-    $ccp_number_text = '<div class="ccp-number"><span class="label">Critical Control Point (CCP) Number:</span> ' . ($key + 1) . '</div>';
-    // Prepare the text.
-    $process_step_text = '<div class="process-step"><span class="label">Process Step:</span> ' . '(' . $item['step_number'] . ') ' . $item['step_name'] . '</div>';
-    // The hazard text.
-    $hazard_text = '<div class="hazard"><span class="label">Hazard:</span> ' . $item['name'] . '<div class="hazard-description">' . $item['description'] . '</div></div>';
-    $control_text = '<div class="control-measure"><span class="label">Control Measure:</span> ' . $item['control_measure'] . '</div>';
-
-    $item['ccp_no'] = $key + 1;
+  foreach ($ccps as $hazard_key => $hazard) {
+    $header = $hazard->getHeader();
 
     // Create the instance container.
-    $form['principle_5']['instance_' . $key] = array(
+    $form['principle_5'][$hazard_key] = array(
       '#type' => 'container',
     );
 
-    // Each hazard with a ccp is an instance. Show the text first.
-    $form['principle_5']['instance_' . $key]['ccp_no'] = array(
-      '#type' => 'hidden',
-      '#value' => serialize($item),
-      '#prefix' => $ccp_number_text,
-    );
-
-    $form['principle_5']['instance_' . $key]['process_step'] = array(
-      '#markup' => $process_step_text,
-    );
-
-    $form['principle_5']['instance_' . $key]['hazard'] = array(
-      '#markup' => $hazard_text,
-    );
-
-    $form['principle_5']['instance_' . $key]['control_measure'] = array(
-      '#markup' => $control_text,
-    );
+    $form['principle_5'][$hazard_key] += $header;
 
     // Now the form fields.
-    $form['principle_5']['instance_' . $key]['action'] = array(
+    $form['principle_5'][$hazard_key]['5_1'] = array(
       '#type' => 'textarea',
       '#resizable' => FALSE,
       '#title' => t('1. Action to be taken'),
-      '#default_value' => array_get($values, "principle_5.instance_$key.action", FALSE),
+      '#default_value' => array_get($values, "principle_5.$hazard_key.5_1", FALSE),
       '#help_text' => t("Provide details of what should be done in the event of failure to meet a critical limit."),
       '#attributes' => array(
         'data-parsley-required' => 'true',
@@ -96,23 +72,23 @@ function principle_5(&$form_state, &$next_step) {
       ),
     );
 
-    $form['principle_5']['instance_' . $key]['authority'] = array(
+    $form['principle_5'][$hazard_key]['5_2'] = array(
       '#type' => 'textarea',
       '#resizable' => FALSE,
       '#title' => t('2. Detail personnel who have the authority to take the stated corrective action.'),
-      '#default_value' => array_get($values, "principle_5.instance_$key.authority", FALSE),
-      '#help_text' => t("Provide names.  These people should be trained and competent in the activities that they are to perform when something has failed to meet a critical limit."),
+      '#default_value' => array_get($values, "principle_5.$hazard_key.5_2", FALSE),
+      '#help_text' => t("Provide names. These people should be trained and competent in the activities that they are to perform when something has failed to meet a critical limit."),
       '#attributes' => array(
         'data-parsley-required' => 'true',
         'data-parsley-error-message' => t('Please detail the personnel who have the authority to take the stated corrective action.'),
       ),
     );
 
-    $form['principle_5']['instance_' . $key]['product'] = array(
+    $form['principle_5'][$hazard_key]['5_3'] = array(
       '#type' => 'textarea',
       '#resizable' => FALSE,
       '#title' => t('3. What happens to the product created during the period that a CCP was out of control? Detail any variation in handling this product that relates to, a parameter, eg degree of control lost.'),
-      '#default_value' => array_get($values, "principle_5.instance_$key.product", FALSE),
+      '#default_value' => array_get($values, "principle_5.$hazard_key.5_3", FALSE),
       '#help_text' => t("Describe what will happen to the affected product?  E.g. will the product be disposed of ?  If so, how? Please provide all details. "),
       '#attributes' => array(
         'data-parsley-required' => 'true',
@@ -120,11 +96,11 @@ function principle_5(&$form_state, &$next_step) {
       ),
     );
 
-    $form['principle_5']['instance_' . $key]['document_location'] = array(
+    $form['principle_5'][$hazard_key]['5_4'] = array(
       '#type' => 'textarea',
       '#resizable' => FALSE,
       '#title' => t('4. Where are you going to document what you have done with the product produced during the time period that a CCP was \'out of control\' (for example since the last good check)?'),
-      '#default_value' => array_get($values, "principle_5.instance_$key.document_location", FALSE),
+      '#default_value' => array_get($values, "principle_5.$hazard_key.5_4", FALSE),
       '#help_text' => t("Where will this information be recorded?  E.g. on a monitoring sheet, on a corrective action note, do you hold a specific file where this information is recorded?"),
       '#attributes' => array(
         'data-parsley-required' => 'true',
@@ -132,14 +108,14 @@ function principle_5(&$form_state, &$next_step) {
       ),
     );
 
-    $form['principle_5']['instance_' . $key]['trained'] = array(
+    $form['principle_5'][$hazard_key]['5_5'] = array(
       '#type' => 'radios',
       '#options' => array(
         'yes' => t('Yes'),
         'no' => t('No'),
       ),
       '#title' => t('5. Are all personnel (identified in any of the steps from 1-6 for all CCP’s) trained and competent for performing the activities stated?'),
-      '#default_value' => array_get($values, "principle_5.instance_$key.trained", FALSE),
+      '#default_value' => array_get($values, "principle_5.$hazard_key.5_5", FALSE),
       '#help_text' => t("Is their training specific to the tasks they are expected to carry out?  Is it up-to-date."),
       '#attributes' => array(
         'data-parsley-required' => 'true',
@@ -147,15 +123,15 @@ function principle_5(&$form_state, &$next_step) {
       ),
     );
 
-    $form['principle_5']['instance_' . $key]['competencies'] = array(
+    $form['principle_5'][$hazard_key]['5_6'] = array(
       '#type' => 'radios',
       '#options' => array(
         'yes' => t('Yes'),
         'no' => t('No'),
       ),
-      '#title' => t('Are records of competency maintained?'),
+      '#title' => t('6. Are records of competency maintained?'),
       '#help_text' => t("The competencies of staff should be reviewed. It may be necessary to train staff, refresh their training, provide on-the-job experience, records of which should be kept to reflect that staff are capable of performing the task they are undertaking"),
-      '#default_value' => array_get($values, "principle_5.instance_$key.competencies", FALSE),
+      '#default_value' => array_get($values, "principle_5.$hazard_key.5_6", FALSE),
       '#help_text' => t("State the person's name."),
       '#attributes' => array(
         'data-parsley-required' => 'true',
@@ -185,12 +161,12 @@ function principle_5_validate($form, &$form_state) {
   // Iterate over each row.
   foreach ($rows as $key => $row) {
     $checks = array(
-      "principle_5.$key.action" => 'fieldIsNotEmpty',
-      "principle_5.$key.authority" => 'fieldIsNotEmpty',
-      "principle_5.$key.product" => 'fieldIsNotEmpty',
-      "principle_5.$key.document_location" => 'fieldIsNotEmpty',
-      "principle_5.$key.trained" => 'fieldIsNotEmpty',
-      "principle_5.$key.competencies" => 'fieldIsNotEmpty',
+      "principle_5.$key.5_1" => 'fieldIsNotEmpty',
+      "principle_5.$key.5_2" => 'fieldIsNotEmpty',
+      "principle_5.$key.5_3" => 'fieldIsNotEmpty',
+      "principle_5.$key.5_4" => 'fieldIsNotEmpty',
+      "principle_5.$key.5_5" => 'fieldIsNotEmpty',
+      "principle_5.$key.5_6" => 'fieldIsNotEmpty',
     );
 
     foreach ($checks as $target => $method) {

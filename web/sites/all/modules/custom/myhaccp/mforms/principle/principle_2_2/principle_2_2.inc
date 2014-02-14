@@ -35,37 +35,16 @@ function principle_2_2(&$form_state, &$next_step) {
   $prev_step = $steps->getPrev();
   $previous_data = $store->getStore($prev_step);
 
-  // Fetch the data from principle 1 question 3.
-  $hazard_data = mforms_get_vals('myhaccp', 'principle_1_3');
+  $hazards = new hazards();
 
-  $items = array();
-
-  // Iterate through the previous data.
-  if (isset($hazard_data)) {
-    foreach ($hazard_data['principle_1_3']['instance_table'] as $key => $item) {
-      $hazard = unserialize($item['hazard']);
-      $hazard['control_measure'] = $item['control_measure'];
-      $items[] = $hazard;
-    }
-  }
-
-  // Ensure data has been entered on principle_1_question_1.
-  if (myhaccp_ensure_hazards_exist() == 0) {
+  if ($hazards->countHazards() == 0) {
     // There were no hazards.
     drupal_set_message('You must add at least a step number and step name in step 1.1 as well as at least a hazard for the step. Please return to 1.1', 'error');
     return $form;
   }
 
   // Ensure there are hazards over the threshold.
-  if (myhaccp_ensure_over_threshold() == 0) {
-    drupal_set_message('You have no significant hazards so you cannot continue', 'error');
-    return $form;
-  }
-
-  $instance_count = count($items);
-  // Bail out here with a message if there are no instances of the fieldsets
-  // filled out correctly in the previous screen.
-  if ($instance_count == 0) {
+  if ($hazards->countHazardsOverThreshold() == 0) {
     drupal_set_message('You have no significant hazards so you cannot continue', 'error');
     return $form;
   }
@@ -78,7 +57,7 @@ function principle_2_2(&$form_state, &$next_step) {
 
   // Create the table.
   $form['principle_2_2']['instance_table'] = array(
-    '#theme' => 'myhacpp_p2q4_table',
+    '#theme' => 'myhaccp_2_2_table',
   );
 
   // Based on the information in the previous stage, build out the decision tree
@@ -86,32 +65,24 @@ function principle_2_2(&$form_state, &$next_step) {
   $decision_tree = array_get($previous_data, 'principle_2_1.decision_tree', '0');
   $tree_type = array_get($previous_data, 'principle_2_1.which_tree', '0');
 
-  $form['principle_2_2']['instance_table']['decision_tree'] = array(
-    '#type' => 'hidden',
-    '#value' => $decision_tree,
-  );
-
   // Build out the rows (three columns).
-  foreach ($items as $key => $item) {
-    // Prepare the hazard.
-    $hazard = $item;
+  foreach ($hazards->getHazardsOverTheshold() as $hazard_key => $hazard) {
     // Prepare the text.
-    $process_step_text = '(' . $item['step_number'] . ') ' . $item['step_name'];
+    $step = $hazard->step;
+    $process_step_text = '(' . $step->no . ') ' . $step->name;
     // The hazard column text.
-    $hazard_text = '<div class="label hazard">' . $item['name'] . '</div><div class="hazard-description">' . $item['description'] . '</div>';
+    $hazard_text = '<div class="label hazard">' . $hazard->name . '</div><div class="hazard-description">' . $hazard->description . '</div>';
 
-    $form['principle_2_2']['instance_table']['row_' . $key]['process_step'] = array(
+    $form['principle_2_2']['instance_table'][$hazard_key]['process_step'] = array(
       '#markup' => $process_step_text,
     );
 
-    $form['principle_2_2']['instance_table']['row_' . $key]['hazard'] = array(
-      '#type' => 'hidden',
-      '#value' => serialize($hazard),
-      '#prefix' => $hazard_text,
+    $form['principle_2_2']['instance_table'][$hazard_key]['hazard'] = array(
+      '#markup' => $hazard_text,
     );
 
-    $form['principle_2_2']['instance_table']['row_' . $key]['control_measure'] = array(
-      '#markup' => '<div class="hazard-control-measure">' . $item['control_measure'] . '</div>',
+    $form['principle_2_2']['instance_table'][$hazard_key]['control_measure'] = array(
+      '#markup' => '<div class="hazard-control-measure">' . $hazard->controlMeasure . '</div>',
     );
 
     if ($decision_tree !== 'no') {
@@ -137,7 +108,7 @@ function principle_2_2(&$form_state, &$next_step) {
           }
         }
 
-        $form['principle_2_2']['instance_table']['row_' . $key]['decision_tree'][$id] = array(
+        $form['principle_2_2']['instance_table'][$hazard_key]['decision_tree'][$id] = array(
           '#type' => 'radios',
           '#options' => array(
             'yes' => t('Yes'),
@@ -145,7 +116,7 @@ function principle_2_2(&$form_state, &$next_step) {
             'n/a' => t('N/A'),
           ),
           '#title' => $id,
-          '#default_value' => array_get($values, "principle_2_2.instance_table.row_$key.decision_tree.$id", array()),
+          '#default_value' => array_get($values, "principle_2_2.instance_table.$hazard_key.decision_tree.$id", array()),
           '#attributes' => array(
             'data-parsley-required' => 'true',
             'data-parsley-error-message' => t('Please indicate \'Yes\', \'No\' or \'N/A\' for this question in the decision tree.'),
@@ -155,19 +126,19 @@ function principle_2_2(&$form_state, &$next_step) {
 
     }
     else {
-      $form['principle_2_2']['instance_table']['row_' . $key]['decision_tree'] = array(
+      $form['principle_2_2']['instance_table'][$hazard_key]['decision_tree'] = array(
         '#type' => 'hidden',
         '#value' => $decision_tree,
       );
     }
 
-    $form['principle_2_2']['instance_table']['row_' . $key]['ccp'] = array(
+    $form['principle_2_2']['instance_table'][$hazard_key]['ccp'] = array(
       '#type' => 'radios',
       '#options' => array(
         'yes' => t('Yes'),
         'no' => t('No'),
       ),
-      '#default_value' => array_get($values, "principle_2_2.instance_table.row_$key.ccp", array()),
+      '#default_value' => array_get($values, "principle_2_2.instance_table.$hazard_key.ccp", array()),
       '#attributes' => array(
         'data-parsley-required' => 'true',
         'data-parsley-error-message' => t('Please indicate whether this process step is a critical control point.'),

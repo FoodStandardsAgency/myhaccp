@@ -69,7 +69,7 @@ function preparatory_d(&$form_state, &$next_step) {
         'data-parsley-error-message' => t('Please indicate if this person is internal (works at the company) or external (eg an external consultant).'),
       ),
       '#title' => t('Is this person Internal or External to the company?'),
-    '#help_link' => 21,
+      '#help_link' => 21,
       '#help_text' => t("State if the person is an employee of the company (internal) or not (external)."),
       '#default_value' => array_get($values, "preparatory_d.instance_$i.d_2", FALSE),
     );
@@ -79,7 +79,7 @@ function preparatory_d(&$form_state, &$next_step) {
       '#weight' => '2',
       '#type' => 'textfield',
       '#title' => t('What is the role of this individual in the HACCP team?'),
-    '#help_link' => 21,
+      '#help_link' => 21,
       '#help_text' => t("For example, QA Manager to provide technical expertise, Consultant to provide knowledge of HACCP and expertise from a chemical and biological hazard perspective."),
       '#default_value' => array_get($values, "preparatory_d.instance_$i.d_3", FALSE),
       '#attributes' => array(

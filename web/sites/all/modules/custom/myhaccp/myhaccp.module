@@ -291,23 +291,23 @@ function myhaccp_study_resume($form, &$form_state, $iid = FALSE) {
 function myhaccp_theme($existing, $type, $theme, $path) {
   $path = drupal_get_path('module', 'myhaccp');
   $hooks = array(
-    'myhacpp_p1q2_table' => array(
+    'myhaccp_1_2_table' => array(
       'render element' => 'element',
       'path' => $path . '/theme',
       'file' => 'myhaccp.theme.inc',
-      'function' => 'theme_myhacpp_p1q2_table',
+      'function' => 'theme_myhaccp_1_2_table',
     ),
-    'myhacpp_p1q3_table' => array(
+    'myhaccp_1_3_table' => array(
       'render element' => 'element',
       'path' => $path . '/theme',
       'file' => 'myhaccp.theme.inc',
-      'function' => 'theme_myhacpp_p1q3_table',
+      'function' => 'theme_myhaccp_1_3_table',
     ),
-    'myhacpp_p2q4_table' => array(
+    'myhaccp_2_2_table' => array(
       'render element' => 'element',
       'path' => $path . '/theme',
       'file' => 'myhaccp.theme.inc',
-      'function' => 'theme_myhacpp_p2q4_table',
+      'function' => 'theme_myhaccp_2_2_table',
     ),
   );
   $all = _get_all_steps();
@@ -545,120 +545,6 @@ function myhaccp_prepare_more_link($nid) {
 
   // Return the link.
   return l(t('More information &raquo;'), $destination, $options);
-}
-
-/**
- * Checks to make sure hazard data exists.
- *
- * This is used by principle steps to check that previous steps have been filled
- * in correctly, or at least enough to progress to a stage in the form.
- *
- * @return int
- *   Return an instance count.
- */
-function myhaccp_ensure_hazards_exist() {
-  $data = mforms_get_vals('myhaccp', 'principle_1_question_1');
-  $instance_count = 0;
-  if (isset($data)) {
-    foreach ($data['principle_1_question_1'] as $key => $instance) {
-      if (strpos($key, 'instance') === 0) {
-        if (array_get($instance, 'wrapper.step_no', FALSE) && array_get($instance, 'wrapper.step_name', FALSE)) {
-          $checks = array(
-            "hazards_wrapper.biological" => '_text_field_is_empty',
-            "hazards_wrapper.physical" => '_text_field_is_empty',
-            "hazards_wrapper.allergens" => '_text_field_is_empty',
-            "hazards_wrapper.chemical" => '_text_field_is_empty',
-          );
-
-          // Check that the hazard fields have been filled in.
-          foreach ($checks as $target => $callback) {
-            $invalid[] = $callback($instance, $target);
-          }
-
-          // If all four hazard fields from the previous stage are 'invalid'
-          // (empty) then this instance doesn't pass.
-          if (in_array(FALSE, $invalid)) {
-            // Increment the instance count.
-            $instance_count++;
-          }
-
-        }
-      }
-    }
-  }
-  return $instance_count;
-}
-
-
-/**
- * Gets all hazards over the specified threshold in principle 1 question 2.
- *
- * @return array
- *   An array of each item's data.
- */
-function myhaccp_get_items_over_threshold() {
-  $items = array();
-  $data = mforms_get_vals('myhaccp', 'principle_1_question_2');
-  $threshold = array_get($data, 'principle_1_question_2.threshold', FALSE);
-  // Iterate through the previous data and look for instances which have the
-  // correct form fields filled out.
-  if (isset($data) && $threshold) {
-    foreach ($data['principle_1_question_2'] as $key => $instance) {
-      if (strpos($key, 'instance') === 0) {
-        foreach ($instance['instance_table'] as $key => $item) {
-          if (isset($item['significance']) && $item['significance'] >= $threshold) {
-            $items[] = $item;
-          }
-        }
-      }
-    }
-  }
-  return $items;
-}
-
-/**
- * Ensure there are hazards over the set threshold in principle 1 question 2.
- *
- * @return int
- *   The count of hazards over the threshold.
- */
-function myhaccp_ensure_over_threshold() {
-  $items = myhaccp_get_items_over_threshold();
-  return count($items);
-}
-
-/**
- * Gets all hazards which are a CCP.
- *
- * @return array
- *   Returns all CCP items.
- */
-function myhaccp_get_ccps() {
-  $items = array();
-  $data = mforms_get_vals('myhaccp', 'principle_2_question_4');
-  $rows = array_get($data, 'principle_2_question_4.instance_table', array());
-  // Iterate through the previous data.
-  foreach ($rows as $key => $item) {
-    if (is_array($item)) {
-      $hazard = unserialize($item['hazard']);
-      // Determine the critical control point.
-      if (!empty($item['ccp']) && $item['ccp'] == 'yes') {
-        $items[] = $hazard;
-      }
-    }
-  }
-  return $items;
-}
-
-/**
- * Returns the CCP count.
- *
- * @return int
- *   The count of ccp items found.
- */
-function myhaccp_ensure_ccps_exist() {
-  $items = myhaccp_get_ccps();
-  return count($items);
 }
 
 /**
