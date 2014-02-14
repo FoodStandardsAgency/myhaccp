@@ -54,3 +54,30 @@
     }
   }
 }
+
+.form-save-wrapper {
+  float: right;
+  max-width: 500px;
+  margin-bottom: 1em;
+  text-align: right;
+  .help {
+    display: inline;
+    color: $text-lighter;
+  }
+  #edit-save {
+    @include agile-button(dark, small);
+    display: inline;
+  }
+}
+
+.form-nav-wrapper {
+  clear: both;
+  border-top: 1px solid $accent-2;
+  padding-top: 1em;
+  input[type="submit"] {
+    margin-left: 0;
+  }
+  input#edit-continue {
+    float: right;
+  }
+}

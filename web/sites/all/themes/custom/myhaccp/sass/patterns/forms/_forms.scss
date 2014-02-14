@@ -219,8 +219,8 @@ div.exposed-filters input#edit-submit {
 input#edit-submit,
 input#edit-actions-submit,
 input[id^="save-continue"],
-input[id^="edit-save"],
-input#edit-save,
+//input[id^="edit-save"],
+//input#edit-save,
 input#edit-actions-save,
 input#edit-continue,
 input#edit-previous,
@@ -373,6 +373,17 @@ div.teaser-checkbox .form-item,
   padding: 5px 0;
   margin: 0;
   border: 0;
+}
+
+#mforms-wrapper-myhaccp {
+  fieldset {
+    border-width: 0;
+    padding-bottom: 0;
+    fieldset {
+      border-width: 1px;
+      padding-bottom: 1em;
+    }
+  }
 }
 
 #myhaccp-start-form {
