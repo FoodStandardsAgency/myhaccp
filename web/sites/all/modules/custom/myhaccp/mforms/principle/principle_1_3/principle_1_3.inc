@@ -16,7 +16,7 @@ function principle_1_3(&$form_state, &$next_step) {
   $values = myhaccp_prepare_values($data, $form_state);
 
   // Set the page title.
-  drupal_set_title('Principle 1, question 3: Specify control measures.', PASS_THROUGH);
+  drupal_set_title('Principle 1, Question 3: Specify control measures.', PASS_THROUGH);
 
   $form = array();
   $form['#attributes']['class'][] = 'principle-1-question-3';

@@ -16,7 +16,7 @@ function principle_1_2(&$form_state, &$next_step) {
   $values = myhaccp_prepare_values($data, $form_state);
 
   // Set the page title.
-  drupal_set_title('Principle 1, question 2: Conduct a hazard analysis.');
+  drupal_set_title('Principle 1, Question 2: Conduct a hazard analysis.');
 
   $form = array();
   $form['#tree'] = TRUE;
