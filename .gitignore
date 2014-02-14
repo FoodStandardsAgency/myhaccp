@@ -22,3 +22,6 @@ behat/vendor
 behat/bin
 behat/composer.phar
 behat/composer.lock
+
+# mPDF cache
+web/sites/all/libraries/mpdf/ttfontdata
