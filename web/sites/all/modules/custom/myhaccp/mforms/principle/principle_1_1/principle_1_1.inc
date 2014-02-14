@@ -23,16 +23,6 @@ function principle_1_1(&$form_state, &$next_step) {
   $form['#tree'] = TRUE;
   $form['#attributes']['class'][] = 'principle-1-question-1';
 
-  // Show global message on this form.
-  $form['validation_messages'] = array(
-    '#type' => 'container',
-    '#id' => 'validation-messages',
-    '#weight' => -10,
-    '#attributes' => array(
-      'data-validation-stage' => 'principle_1_1',
-    ),
-  );
-
   // The wrapper fieldset for the form.
   $form['principle_1_1'] = array(
     // Set up the wrapper so that AJAX will be able to replace the fieldset.

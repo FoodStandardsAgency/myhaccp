@@ -26,12 +26,12 @@ function preparatory_e(&$form_state, &$next_step) {
   );
 
   // 1. Ingredients.
-  $form['preparatory_e']['ingredients'] = array(
+  $form['preparatory_e']['e_1'] = array(
     '#type' => 'textarea',
     '#title' => t('1. List all the ingredients with the supplier for each in brackets.'),
     '#help_link' => 18,
     '#help_text' => t('A full description of the finished product  or intermediate product (depending what your HACCP study covers should be provided.  This should include every ingredient that is used in the product and the supplier.'),
-    '#default_value' => array_get($values, 'preparatory_e.ingredients', FALSE),
+    '#default_value' => array_get($values, 'preparatory_e.e_1', FALSE),
     '#resizable' => FALSE,
     '#attributes' => array(
       'data-parsley-required' => 'true',
@@ -40,12 +40,12 @@ function preparatory_e(&$form_state, &$next_step) {
   );
 
   // 2. Physical properties.
-  $form['preparatory_e']['properties'] = array(
+  $form['preparatory_e']['e_2'] = array(
     '#type' => 'textarea',
     '#title' => t('2. State the physical properties (a<sub>w</sub>,pH,emulsion).'),
     '#help_link' => 18,
     '#help_text' => t('E.g. a<sub>w</sub> 0.93, pH 4.5.'),
-    '#default_value' => array_get($values, 'preparatory_e.properties', FALSE),
+    '#default_value' => array_get($values, 'preparatory_e.e_2', FALSE),
     '#resizable' => FALSE,
     '#attributes' => array(
       'data-parsley-required' => 'true',
@@ -54,12 +54,12 @@ function preparatory_e(&$form_state, &$next_step) {
   );
 
   // 3. Product processed description.
-  $form['preparatory_e']['processed'] = array(
+  $form['preparatory_e']['e_3'] = array(
     '#type' => 'textarea',
     '#title' => t('3. Describe how the product has been processed and/or other preservation methods.'),
     '#help_link' => 18,
     '#help_text' => t('Has the product been sterilised, pasteurised, smoked?'),
-    '#default_value' => array_get($values, 'preparatory_e.processed', FALSE),
+    '#default_value' => array_get($values, 'preparatory_e.e_3', FALSE),
     '#resizable' => FALSE,
     '#attributes' => array(
       'data-parsley-required' => 'true',
@@ -68,12 +68,12 @@ function preparatory_e(&$form_state, &$next_step) {
   );
 
   // 4. Product processed description.
-  $form['preparatory_e']['packed'] = array(
+  $form['preparatory_e']['e_4'] = array(
     '#type' => 'textarea',
     '#title' => t('4. How was the product packed and what are the packaging materials?'),
     '#help_link' => 18,
     '#help_text' => t('e.g. Is it packed into glass bottles, flexible pouches, aseptically packed?'),
-    '#default_value' => array_get($values, 'preparatory_e.packed', FALSE),
+    '#default_value' => array_get($values, 'preparatory_e.e_4', FALSE),
     '#resizable' => FALSE,
     '#attributes' => array(
       'data-parsley-required' => 'true',
@@ -82,11 +82,11 @@ function preparatory_e(&$form_state, &$next_step) {
   );
 
   // 5. Product stored and distributed.
-  $form['preparatory_e']['stored'] = array(
+  $form['preparatory_e']['e_5'] = array(
     '#type' => 'textarea',
     '#title' => t('5. How is the product going to be stored and distributed?'),
     '#help_link' => 18,
-    '#default_value' => array_get($values, 'preparatory_e.stored', FALSE),
+    '#default_value' => array_get($values, 'preparatory_e.e_5', FALSE),
     '#resizable' => FALSE,
     '#help_text' => t('e.g. Is it to be stored frozen , ambient or chilled? Is it to be distributed frozen, ambient or chilled.'),
     '#attributes' => array(
@@ -96,12 +96,12 @@ function preparatory_e(&$form_state, &$next_step) {
   );
 
   // 6. State the shelf-life of the product?
-  $form['preparatory_e']['shelf_life'] = array(
+  $form['preparatory_e']['e_6'] = array(
     '#type' => 'textarea',
     '#title' => t('6. State the shelf-life of the product.'),
     '#help_link' => 18,
     '#help_text' => t('Under the  prescribed conditions what is the use by date or best before date e.g. Use By 3 months from date of purchase or best before  4 months from date of manufacture.'),
-    '#default_value' => array_get($values, 'preparatory_e.shelf_life', FALSE),
+    '#default_value' => array_get($values, 'preparatory_e.e_6', FALSE),
     '#resizable' => FALSE,
     '#attributes' => array(
       'data-parsley-required' => 'true',
@@ -110,12 +110,12 @@ function preparatory_e(&$form_state, &$next_step) {
   );
 
   // 7. State instructions for product use.
-  $form['preparatory_e']['handled'] = array(
+  $form['preparatory_e']['e_7'] = array(
     '#type' => 'textarea',
     '#title' => t('7. State how the product is to be stored and handled.'),
     '#help_link' => 18,
     '#help_text' => t('e.g. store in a cool place away from direct light, defrost thoroughly before cooking, cook for 15 minutes at 220°C.'),
-    '#default_value' => array_get($values, 'preparatory_e.handled', FALSE),
+    '#default_value' => array_get($values, 'preparatory_e.e_7', FALSE),
     '#resizable' => FALSE,
     '#attributes' => array(
       'data-parsley-required' => 'true',
@@ -139,13 +139,13 @@ function preparatory_e_validate($form, &$form_state) {
   }
 
   $checks = array(
-    'preparatory_e.ingredients' => 'fieldIsNotEmpty',
-    'preparatory_e.properties' => 'fieldIsNotEmpty',
-    'preparatory_e.processed' => 'fieldIsNotEmpty',
-    'preparatory_e.packed' => 'fieldIsNotEmpty',
-    'preparatory_e.stored' => 'fieldIsNotEmpty',
-    'preparatory_e.shelf_life' => 'fieldIsNotEmpty',
-    'preparatory_e.handled' => 'fieldIsNotEmpty',
+    'preparatory_e.e_1' => 'fieldIsNotEmpty',
+    'preparatory_e.e_2' => 'fieldIsNotEmpty',
+    'preparatory_e.e_3' => 'fieldIsNotEmpty',
+    'preparatory_e.e_4' => 'fieldIsNotEmpty',
+    'preparatory_e.e_5' => 'fieldIsNotEmpty',
+    'preparatory_e.e_6' => 'fieldIsNotEmpty',
+    'preparatory_e.e_7' => 'fieldIsNotEmpty',
   );
 
   foreach ($checks as $target => $method) {
