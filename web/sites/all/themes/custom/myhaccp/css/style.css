@@ -2509,7 +2509,7 @@ footer[role=contentinfo] {
 }
 
 .help-tip {
-  background: lightgrey;
+  background: #006f51;
   border-radius: 900px;
   color: #FFFFFF;
   display: inline-block;
