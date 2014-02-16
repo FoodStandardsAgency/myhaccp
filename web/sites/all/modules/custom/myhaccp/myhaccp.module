@@ -21,7 +21,7 @@ function myhaccp_menu() {
     'page callback' => 'myhaccp_list',
     'page arguments' => array(),
     'access callback' => 'myhaccp_access',
-    'access arguments' => array(1),
+    'access arguments' => array('list'),
     'file' => 'myhaccp.pages.inc',
     'type' => MENU_NORMAL_ITEM,
   );
@@ -29,7 +29,7 @@ function myhaccp_menu() {
     'page callback' => 'drupal_get_form',
     'page arguments' => array('myhaccp_study_resume', 2),
     'access callback' => 'myhaccp_access',
-    'access arguments' => array(2),
+    'access arguments' => array('edit'),
     'type' => MENU_NORMAL_ITEM,
   );
   $items['tool/study/create'] = array(
@@ -93,12 +93,20 @@ function myhaccp_permission() {
       'description' => t('Edit any user\'s myhaccp studies.'),
     ),
     'delete own myhaccp study' => array(
-      'title' => t('Edit any myhaccp studies'),
+      'title' => t('Delete own myhaccp studies'),
       'description' => t('Delete a user\'s own myhaccp studies.'),
     ),
     'delete any myhaccp study' => array(
       'title' => t('Delete any myhaccp studies'),
       'description' => t('Delete any user\'s myhaccp studies.'),
+    ),
+    'list own myhaccp study' => array(
+      'title' => t('List own myhaccp studies'),
+      'description' => t('List a user\'s own myhaccp studies.'),
+    ),
+    'list any myhaccp study' => array(
+      'title' => t('List any myhaccp studies'),
+      'description' => t('List any user\'s myhaccp studies.'),
     ),
   );
 }
@@ -117,10 +125,14 @@ function myhaccp_access($op) {
     return user_access('create myhaccp study');
   }
   elseif ($op == 'delete') {
-    return user_access('delete any myhaccp study') && user_access('delete own myhaccp study');
+    return user_access('delete any myhaccp study') || user_access('delete own myhaccp study');
+  }
+  elseif ($op == 'edit') {
+    return user_access('edit any myhaccp study') || user_access('edit own myhaccp study');
   }
   else {
-    return user_access('edit any myhaccp study') && user_access('edit own myhaccp study');
+    // List haccp studies.
+    return user_access('list any myhaccp study') || user_access('list own myhaccp study');
   }
 }
 
