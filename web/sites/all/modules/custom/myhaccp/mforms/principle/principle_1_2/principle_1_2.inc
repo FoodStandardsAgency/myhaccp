@@ -96,6 +96,7 @@ function principle_1_2(&$form_state, &$next_step) {
         '#attributes' => array(
           'data-parsley-required' => 'true',
           'data-parsley-error-message' => t('Please add a description.'),
+          'class' => array('description'),
         ),
       );
       $form_position['severity'] = array(
