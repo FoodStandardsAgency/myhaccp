@@ -83,6 +83,9 @@ function principle_1_3(&$form_state, &$next_step) {
       '#attributes' => array(
         'data-parsley-error-message' => t('Please add a control measure.'),
         'data-parsley-required' => TRUE,
+        'class' => array(
+          'control-measure',
+        ),
       ),
     );
   }

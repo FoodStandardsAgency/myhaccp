@@ -81,7 +81,6 @@ class FeatureContext extends Drupal\DrupalExtension\Context\DrupalContext {
     $value = $this->fixStepArgument($value);
     // Get the field by row and class.
     $target = 'tr:nth-of-type(' . $row . ') td .' . $class;
-    echo $target;
     $field = $this->getSession()->getPage()->find('css', $target);
     // Check if we found a field.
     if (NULL === $field) {
@@ -103,19 +102,26 @@ class FeatureContext extends Drupal\DrupalExtension\Context\DrupalContext {
 
   protected function stage_1_2() {
     return array(
-      new Step\Then('I fill in "principle_1_2[a-step-in-my-process][instance_table][salmonella-spp][description]" with "A description"'),
-      new Step\Then('I fill in "principle_1_2[a-step-in-my-process][instance_table][salmonella-spp][severity]" with "3"'),
-      new Step\Then('I fill in "principle_1_2[a-step-in-my-process][instance_table][salmonella-spp][likelihood]" with "3"'),
-      new Step\Then('I fill in "principle_1_2[a-step-in-my-process][instance_table][salmonella-spp][significance]" with "9"'),
-      new Step\Then('I fill in "principle_1_2[a-step-in-my-process][instance_table][stones][description]" with "Another description"'),
-      new Step\Then('I fill in "principle_1_2[a-step-in-my-process][instance_table][stones][severity]" with "3"'),
-      new Step\Then('I fill in "principle_1_2[a-step-in-my-process][instance_table][stones][likelihood]" with "2"'),
-      new Step\Then('I fill in "principle_1_2[a-step-in-my-process][instance_table][stones][significance]" with "6"'),
-      new Step\Then('I fill in "principle_1_2[a-step-in-my-process][instance_table][sesame-seeds][description]" with "Stones description"'),
-      new Step\Then('I fill in "principle_1_2[a-step-in-my-process][instance_table][sesame-seeds][severity]" with "1"'),
-      new Step\Then('I fill in "principle_1_2[a-step-in-my-process][instance_table][sesame-seeds][likelihood]" with "2"'),
-      new Step\Then('I fill in "principle_1_2[a-step-in-my-process][instance_table][sesame-seeds][significance]" with "2"'),
-      new Step\Then('I fill in "principle_1_2[threshold]" with "6"'),
+      new Step\When('I fill row "1" "description" with "A description"'),
+      new Step\When('I fill row "1" "severity" with "3"'),
+      new Step\When('I fill row "1" "likelihood" with "3"'),
+      new Step\When('I fill row "1" "significance" with "9"'),
+      new Step\When('I fill row "2" "description" with "Another description"'),
+      new Step\When('I fill row "2" "severity" with "3"'),
+      new Step\When('I fill row "2" "likelihood" with "2"'),
+      new Step\When('I fill row "2" "significance" with "6"'),
+      new Step\When('I fill row "3" "description" with "Stones description"'),
+      new Step\When('I fill row "3" "severity" with "1"'),
+      new Step\When('I fill row "3" "likelihood" with "2"'),
+      new Step\When('I fill row "3" "significance" with "2"'),
+      new Step\When('I fill in "Determine the threshold" with "6"'),
+    );
+  }
+
+  protected function stage_1_3() {
+    return array(
+      new Step\Given('I fill row "1" "control-measure" with "My control measure"'),
+      new Step\When('I fill row "2" "control-measure" with "Another control measure"'),
     );
   }
 
