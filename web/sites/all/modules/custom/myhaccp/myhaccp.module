@@ -376,6 +376,17 @@ function _help_tip($link = '#') {
 }
 
 /**
+ * Validation handler that shows a successful save message.
+ *
+ * @see myhaccp_form_myhaccp_start_form_alter()
+ */
+function myhaccp_saved_message($form, &$form_state) {
+  if (isset($form_state['clicked_button']) && $form_state['clicked_button']['#value'] == 'Save this page') {
+    drupal_set_message('Study saved', 'status', FALSE);
+  }
+}
+
+/**
  * Defines all the function names of the stages.
  *
  * @return array
