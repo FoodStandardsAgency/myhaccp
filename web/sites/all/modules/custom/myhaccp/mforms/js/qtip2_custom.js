@@ -7,6 +7,7 @@
       $('.help-tip').once().each(function() {
         // Check if there is a help-text element to render.
         var help_text = $(this).parents('.form-item, th, div.label').children('.help-text');
+
         // If we have some help text then move on and add the tooltip.
         if (help_text.length > 0) {
           // Disable the usual click event on the button.

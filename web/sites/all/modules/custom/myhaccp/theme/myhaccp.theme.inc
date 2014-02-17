@@ -82,7 +82,7 @@ function theme_myhaccp_1_3_table($variables) {
       'class' => array('hazard'),
     ),
     'control_measure' => array(
-      'data' => t('Control Measure !tip', array(
+      'data' => t('Control Measure !tip !help', array(
         '!tip' => _help_tip(27),
         '!help' => '<div class="help-text">Please record what control measures have been put in place for each significant hazard. ' . myhaccp_prepare_more_link(27) . '</div>'
       )),
