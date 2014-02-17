@@ -23,9 +23,11 @@ function myhaccp_preprocess_preparatory_c_2(&$variables) {
 
   // Physical hazards.
   $physical_hazards = array();
-  foreach ($values['physical_c_4']['physical'] as $key => $value) {
-    if ($key === $value) {
-      $physical_hazards[] = $value;
+  if (!empty($values['biological_c_4']['physical'])) {
+    foreach ($values['physical_c_4']['physical'] as $key => $value) {
+      if ($key === $value) {
+        $physical_hazards[] = $value;
+      }
     }
   }
   if (array_get($values, 'physical_c_4.physical_other', FALSE)) {
@@ -35,9 +37,11 @@ function myhaccp_preprocess_preparatory_c_2(&$variables) {
 
   // Chemical hazards.
   $chemical_hazards = array();
-  foreach ($values['chemical_c_4']['chemical'] as $key => $value) {
-    if ($key === $value) {
-      $chemical_hazards[] = $value;
+  if (!empty($values['biological_c_4']['chemical'])) {
+    foreach ($values['chemical_c_4']['chemical'] as $key => $value) {
+      if ($key === $value) {
+        $chemical_hazards[] = $value;
+      }
     }
   }
   if (array_get($values, 'chemical_c_4.chemical_other', FALSE)) {
@@ -47,9 +51,11 @@ function myhaccp_preprocess_preparatory_c_2(&$variables) {
 
   // Biological hazards.
   $biological_hazards = array();
-  foreach ($values['biological_c_4']['biological'] as $key => $value) {
-    if ($key === $value) {
-      $biological_hazards[] = $value;
+  if (!empty($values['biological_c_4']['biological'])) {
+    foreach ($values['biological_c_4']['biological'] as $key => $value) {
+      if ($key === $value) {
+        $biological_hazards[] = $value;
+      }
     }
   }
   if (array_get($values, 'biological_c_4.biological_other', FALSE)) {
@@ -59,9 +65,11 @@ function myhaccp_preprocess_preparatory_c_2(&$variables) {
 
   // Allergens hazards.
   $allergens_hazards = array();
-  foreach ($values['allergens_c_4']['allergens'] as $key => $value) {
-    if ($key === $value) {
-      $allergens_hazards[] = $value;
+  if (!empty($values['biological_c_4']['allergens'])) {
+    foreach ($values['allergens_c_4']['allergens'] as $key => $value) {
+      if ($key === $value) {
+        $allergens_hazards[] = $value;
+      }
     }
   }
   if (array_get($values, 'allergens_c_4.allergens_other', FALSE)) {
