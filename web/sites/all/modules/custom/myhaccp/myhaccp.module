@@ -68,7 +68,7 @@ function myhaccp_menu() {
     'page arguments' => array(1, 2),
     'page callback' => 'myhaccp_help_modal',
     'access callback' => TRUE,
-    'type' => MENU_NORMAL_ITEM,
+    'type' => MENU_CALLBACK,
   );
   return $items;
 }
