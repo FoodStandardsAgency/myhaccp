@@ -108,6 +108,14 @@ function myhaccp_permission() {
       'title' => t('List any myhaccp studies'),
       'description' => t('List any user\'s myhaccp studies.'),
     ),
+    'view own myhaccp study' => array(
+      'title' => t('View own myhaccp studies'),
+      'description' => t('View the output of a user\'s own myhaccp studies.'),
+    ),
+    'view any myhaccp study' => array(
+      'title' => t('View any myhaccp studies'),
+      'description' => t('View the output of any user\'s myhaccp studies.'),
+    ),
   );
 }
 
@@ -129,6 +137,9 @@ function myhaccp_access($op) {
   }
   elseif ($op == 'edit') {
     return user_access('edit any myhaccp study') || user_access('edit own myhaccp study');
+  }
+  elseif ($op == 'view') {
+    return user_access('view any myhaccp study') || user_access('view own myhaccp study');
   }
   else {
     // List haccp studies.

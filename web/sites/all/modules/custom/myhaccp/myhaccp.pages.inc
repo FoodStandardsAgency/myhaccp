@@ -46,9 +46,9 @@ function myhaccp_list() {
   $results = $query->execute()->fetchAll();
   foreach ($results as $delta => $result) {
     // Build out the rows.
-    $edit = user_access('edit own myhaccp forms') || user_access('edit any myhaccp forms') ? l(t('Resume'), 'tool/study/' . $result->iid) : '';
-    $preview = user_access('view own myhaccp forms') || user_access('view any myhaccp forms') ? l(t('Preview'), 'tool/study/' . $result->iid . '/preview') : '';
-    $delete = user_access('delete own myhaccp forms') || user_access('delete any myhaccp forms') ? l(t('Delete'), 'tool/study/' . $result->iid . '/delete') : '';
+    $edit = user_access('edit own myhaccp study') || user_access('edit any myhaccp study') ? l(t('Resume'), 'tool/study/' . $result->iid) : '';
+    $preview = user_access('view own myhaccp study') || user_access('view any myhaccp study') ? l(t('Preview'), 'tool/study/' . $result->iid . '/preview') : '';
+    $delete = user_access('delete own myhaccp study') || user_access('delete any myhaccp study') ? l(t('Delete'), 'tool/study/' . $result->iid . '/delete') : '';
 
     $rows[] = array(
       'data' => array(
