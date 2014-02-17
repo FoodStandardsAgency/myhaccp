@@ -34,7 +34,7 @@ function principle_1_1(&$form_state, &$next_step) {
   if (empty($values['principle_1_1']) && empty($form_state['num_instances'])) {
     $form_state['num_instances'] = 1;
   }
-  elseif (isset($form_state['triggering_element']['#limit_validation_errors']) && $form_state['triggering_element']['#limit_validation_errors'] == TRUE) {
+  elseif (isset($form_state['triggering_element']['#limit_validation_errors']) && is_array($form_state['triggering_element']['#limit_validation_errors'])) {
     // This is the ajax trigger.
     $form_state['num_instances'] = $form_state['num_instances'];
   }
@@ -158,7 +158,7 @@ function principle_1_1(&$form_state, &$next_step) {
     '#type' => 'submit',
     '#value' => t('Add another step'),
     '#submit' => array('instance_add_more_add_one'),
-    '#limit_validation_errors' => TRUE,
+    '#limit_validation_errors' => array(),
     '#ajax' => array(
       'callback' => 'instance_add_more_callback_principle_1_1',
       'wrapper' => 'instance-container',
@@ -172,7 +172,7 @@ function principle_1_1(&$form_state, &$next_step) {
       '#type' => 'submit',
       '#value' => t('Remove a step'),
       '#submit' => array('instance_add_more_remove_one'),
-      '#limit_validation_errors' => TRUE,
+      '#limit_validation_errors' => array(),
       '#ajax' => array(
         'callback' => 'instance_add_more_callback_principle_1_1',
         'wrapper' => 'instance-container',
@@ -197,7 +197,7 @@ function principle_1_1_validate($form, &$form_state) {
   }
 
   // Bail out if the ajax buttons were used.
-  if (isset($form_state['triggering_element']['#limit_validation_errors']) && $form_state['triggering_element']['#limit_validation_errors'] == TRUE) {
+  if (isset($form_state['triggering_element']['#limit_validation_errors']) && is_array($form_state['triggering_element']['#limit_validation_errors'])) {
     return TRUE;
   }
 

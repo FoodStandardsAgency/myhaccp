@@ -84,13 +84,15 @@ class hazards {
     // Get all the steps and match them up with our hazard data.
     foreach ($this->getHazardsByStep() as $step_key => $step) {
       // Each hazard in the step table.
-      foreach ($data['principle_1_2'][$step_key]['instance_table'] as $hazard_key => $hazard_data) {
-        // Check it exists.
-        if (isset($this->hazards[$hazard_key])) {
-          // Add the description.
-          $this->hazards[$hazard_key]->description = $hazard_data['description'];
-          // Add the significance.
-          $this->hazards[$hazard_key]->significance = !empty($hazard_data['significance']) ? $hazard_data['significance'] : 0;
+      if (isset($data['principle_1_2'][$step_key])) {
+        foreach ($data['principle_1_2'][$step_key]['instance_table'] as $hazard_key => $hazard_data) {
+          // Check it exists.
+          if (isset($this->hazards[$hazard_key])) {
+            // Add the description.
+            $this->hazards[$hazard_key]->description = $hazard_data['description'];
+            // Add the significance.
+            $this->hazards[$hazard_key]->significance = !empty($hazard_data['significance']) ? $hazard_data['significance'] : 0;
+          }
         }
       }
     }
