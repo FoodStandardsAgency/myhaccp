@@ -62,8 +62,8 @@ function principle_2_2(&$form_state, &$next_step) {
 
   // Based on the information in the previous stage, build out the decision tree
   // radios.
-  $decision_tree = array_get($previous_data, 'principle_2_1.decision_tree', '0');
-  $tree_type = array_get($previous_data, 'principle_2_1.which_tree', '0');
+  $decision_tree = array_get($previous_data, 'principle_2_1.2_1_1', 'no');
+  $tree_type = array_get($previous_data, 'principle_2_1.2_1_1a', FALSE);
 
   // Build out the rows (three columns).
   foreach ($hazards->getHazardsOverTheshold() as $hazard_key => $hazard) {
@@ -118,6 +118,9 @@ function principle_2_2(&$form_state, &$next_step) {
           '#title' => $id,
           '#default_value' => array_get($values, "principle_2_2.instance_table.$hazard_key.decision_tree.$id", array()),
           '#attributes' => array(
+            'class' => array(
+              'question-' . $id,
+            ),
             'data-parsley-required' => 'true',
             'data-parsley-error-message' => t('Please indicate \'Yes\', \'No\' or \'N/A\' for this question in the decision tree.'),
           ),
@@ -140,6 +143,9 @@ function principle_2_2(&$form_state, &$next_step) {
       ),
       '#default_value' => array_get($values, "principle_2_2.instance_table.$hazard_key.ccp", array()),
       '#attributes' => array(
+        'class' => array(
+          'ccp',
+        ),
         'data-parsley-required' => 'true',
         'data-parsley-error-message' => t('Please indicate whether this process step is a critical control point.'),
       ),
