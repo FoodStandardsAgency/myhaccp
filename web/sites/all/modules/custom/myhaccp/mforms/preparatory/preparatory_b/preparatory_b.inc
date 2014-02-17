@@ -31,13 +31,13 @@ function preparatory_b(&$form_state, &$next_step) {
     '#help_link' => 14,
     '#help_text' => t("Where in your company could you look for evidence to demonstrate that senior management are engaged and dedicated to the development of an ongoing HACCP study."),
     '#options' => drupal_map_assoc(array(
+      t('N/A - I am the management and can confirm that I am committed.'),
       t('A Food Safety Policy has been drawn up and signed by management.'),
       t('Senior management document, support and communicate their policies.'),
       t('Minutes of team meetings are taken and reviewed.'),
       t('Senior management support the work of the HACCP team.'),
       t('Resources identified by the HACCP team are made available as required to develop, implement and maintain the HACCP system.'),
       t('Training takes place for HACCP studies.'),
-      t('N/A - I am the management and can confirm that I am committed.'),
     )),
     '#default_value' => array_get($values, 'preparatory_b.b_1', array()),
     '#attributes' => array(
