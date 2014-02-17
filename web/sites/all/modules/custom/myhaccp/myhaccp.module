@@ -266,6 +266,7 @@ function myhaccp_element_info_alter(&$types) {
   foreach ($types as $type => $values) {
     $types[$type]['#process'][] = 'myhaccp_process';
   }
+  ctools_include('myhaccp.form', 'myhaccp', 'includes');
   return;
 }
 
