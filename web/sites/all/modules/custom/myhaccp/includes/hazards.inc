@@ -36,6 +36,11 @@ class hazards {
   protected function getThreshold() {
     $data = mforms_get_vals('myhaccp', 'principle_1_2');
     $threshold = array_get($data, 'principle_1_2.threshold', 0);
+    if (empty($threshold)) {
+      // If no threshold has been set then return a higher number so that no
+      // CCPs can be returned later in the stages.
+      return 10;
+    }
     return $threshold;
   }
 
