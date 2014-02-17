@@ -26,8 +26,8 @@ function preparatory_a(&$form_state, &$next_step) {
 
   $form['preparatory_a']['a_1'] = array(
     '#type' => 'checkboxes',
-    '#title' => t('Mark all boxes where you can demonstrate that you have control of the prerequisites'),
-'#help_link' => 13,
+    '#title' => t('1. Mark all boxes where you can demonstrate that you have control of the prerequisites'),
+    '#help_link' => 13,
     '#help_text' => t("These are 'pre-requirements' to the application and implementation of a HACCP system, to demonstrate you have control they should be well established, fully operational (including records) and verified."),
     '#options' => drupal_map_assoc(array(
       t('Supplier approval'),
@@ -75,7 +75,7 @@ function preparatory_a(&$form_state, &$next_step) {
   $form['preparatory_a']['a_2'] = array(
     '#type' => 'textarea',
     '#resizable' => FALSE,
-    '#title' => t('Please specify the location of the above documents.'),
+    '#title' => t('2. Please specify the location of the above documents.'),
     '#help_text' => t("State where you have stored the information.  You may wish to specify a manual e.g. manual of prerequisites,  where information on these is filed e.g. all documents filed under prerequisites, cabinet 1 or reference a particular document e.g.  PRP 01."),
     '#help_link' => 13,
     '#default_value' => array_get($values, 'preparatory_a.a_2', FALSE),
