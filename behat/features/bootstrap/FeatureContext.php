@@ -6,6 +6,8 @@ use Drupal\DrupalExtension\Context\DrupalContext,
 use Behat\Behat\Exception\PendingException,
     Behat\Behat\Context\Step;
 
+use Behat\Mink\Selector;
+
 use Behat\Gherkin\Node\PyStringNode,
     Behat\Gherkin\Node\TableNode;
 
@@ -86,6 +88,29 @@ class FeatureContext extends Drupal\DrupalExtension\Context\DrupalContext {
     if (NULL === $field) {
       throw new ElementNotFoundException($this->getSession(), 'form field', 'css', $field);
     }
+    // Set the field's value.
+    $field->setValue($value);
+  }
+
+  /**
+   * @When /^I select the radio button "([^"]*)" in row "([^"]*)" "([^"]*)"$/
+   */
+  public function iSelectTheRadioButtonInRow($label, $row, $class) {
+    $row = $this->fixStepArgument($row);
+    $class = $this->fixStepArgument($class);
+    $label = $this->fixStepArgument($label);
+    // Get the field by row and class.
+    $target = 'tr:nth-of-type(' . $row . ') td .' . $class;
+    $parent = $this->getSession()->getPage()->find('css', $target)->getParent();
+    // Now find the right input field.
+    $field = $parent->find('named', array(
+      'radio',
+      $this->getSession()->getSelectorsHandler()->xpathLiteral($label),
+    ));
+    if (NULL === $field) {
+      throw new ElementNotFoundException($this->getSession(), 'form field', 'css', $field);
+    }
+    $value = $field->getAttribute('value');
     // Set the field's value.
     $field->setValue($value);
   }

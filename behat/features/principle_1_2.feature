@@ -4,7 +4,7 @@ Feature: Principle 1 Question 2
   As an authenticated user
   I need to be able to complete stage 1.1 and 1.2
 
-  Background:
+  Background: Begin a study
     Given I am logged in as a user with the "authenticated user" role
     And I visit "/tool/study/create"
     And I press the "1.1" button
