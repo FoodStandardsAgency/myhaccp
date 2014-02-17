@@ -34,7 +34,7 @@ function principle_1_1(&$form_state, &$next_step) {
   if (empty($values['principle_1_1']) && empty($form_state['num_instances'])) {
     $form_state['num_instances'] = 1;
   }
-  elseif (isset($form_state['triggering_element']['#limit_validation_errors']) && is_array($form_state['triggering_element']['#limit_validation_errors'])) {
+  elseif (principle_1_1_triggering_element_check($form_state)) {
     // This is the ajax trigger.
     $form_state['num_instances'] = $form_state['num_instances'];
   }
@@ -197,7 +197,7 @@ function principle_1_1_validate($form, &$form_state) {
   }
 
   // Bail out if the ajax buttons were used.
-  if (isset($form_state['triggering_element']['#limit_validation_errors']) && is_array($form_state['triggering_element']['#limit_validation_errors'])) {
+  if (principle_1_1_triggering_element_check($form_state)) {
     return TRUE;
   }
 
@@ -278,4 +278,16 @@ function principle_1_1_validate($form, &$form_state) {
  */
 function instance_add_more_callback_principle_1_1($form, $form_state) {
   return $form['principle_1_1'];
+}
+
+/**
+ * Check whether the step buttons have been clicked.
+ */
+function principle_1_1_triggering_element_check($form_state) {
+  if (isset($form_state['triggering_element']['#value'])) {
+    if ($form_state['triggering_element']['#value'] == 'Remove a step' || $form_state['triggering_element']['#value'] == 'Add another step') {
+      return TRUE;
+    }
+  }
+  return FALSE;
 }
