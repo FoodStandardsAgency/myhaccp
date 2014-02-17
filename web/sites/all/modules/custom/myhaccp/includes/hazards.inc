@@ -12,7 +12,7 @@
 class hazards {
 
   public $steps;
-  public $hazards;
+  public $hazards = array();
   public $threshold;
 
   /**
