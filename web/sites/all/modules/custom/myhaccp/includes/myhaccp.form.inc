@@ -47,6 +47,14 @@ function myhaccp_process($element, &$form_state) {
  *   The modified form array.
  */
 function myhaccp_form_process($form, $form_state) {
+  // Get the title of the page.
+  $title = drupal_get_title();
+  // Add the title in as a new markup element.
+  $form['title'] = array(
+    '#markup' => '<h1>' . $title . '</h1>',
+    '#weight' => -20,
+  );
+  
   // First check for validation messages.
   if (isset($form_state['values']['validate'])) {
     // Ensure that these validations apply to this form. We ensure this
@@ -83,12 +91,5 @@ function myhaccp_form_process($form, $form_state) {
     }
   }
 
-  // Get the title of the page.
-  $title = drupal_get_title();
-  // Add the title in as a new markup element.
-  $form['title'] = array(
-    '#markup' => '<h1>' . $title . '</h1>',
-    '#weight' => -20,
-  );
   return $form;
 }
