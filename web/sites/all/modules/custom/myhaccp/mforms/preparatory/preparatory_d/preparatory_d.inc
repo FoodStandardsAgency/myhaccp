@@ -139,9 +139,9 @@ function preparatory_d(&$form_state, &$next_step) {
   // First instance of the team role field should have a default value and for
   // it to be un-editable (enforced).
   $form['preparatory_d']['instance_0']['d_3']['#default_value'] = t('HACCP Lead');
-  $form['preparatory_d']['instance_0']['d_3']['#disabled'] = TRUE;
+  $form['preparatory_d']['instance_0']['d_3']['#access'] = FALSE;
   $form['preparatory_d']['instance_0']['d_3']['#help_text'] = t("The first person identified here should be the HACCP Lead, so this field is pre-completed to read 'HACCP Lead'.");
-  $form['preparatory_d']['instance_0']['d_2']['#disabled'] = TRUE;
+  $form['preparatory_d']['instance_0']['d_2']['#access'] = FALSE;
   $form['preparatory_d']['instance_0']['d_2']['#default_value'] = 'internal';
   $form['preparatory_d']['instance_0']['d_2']['#help_text'] = t("The HACCP Lead should be an employee of the company, so this option is pre-selected to be 'Internal'.");
   $form['preparatory_d']['instance_0']['d_1']['#title'] = t('Name of HACCP lead for business:');
@@ -216,6 +216,11 @@ function preparatory_d_validate($form, &$form_state) {
 
   if ($validator->allFieldsAreEmpty()) {
     return;
+  }
+
+  // Bail out if the ajax buttons were used.
+  if (isset($form_state['triggering_element']['#limit_validation_errors']) && $form_state['triggering_element']['#limit_validation_errors'] == TRUE) {
+    return TRUE;
   }
 
   for ($i = 0; $i < $form_state['num_instances']; $i++) {

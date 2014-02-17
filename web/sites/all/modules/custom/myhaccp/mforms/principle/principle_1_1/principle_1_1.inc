@@ -31,8 +31,12 @@ function principle_1_1(&$form_state, &$next_step) {
   );
 
   // Set the number of instances to 1 if not already set.
-  if (empty($values['principle_1_1'])) {
+  if (empty($values['principle_1_1']) && empty($form_state['num_instances'])) {
     $form_state['num_instances'] = 1;
+  }
+  elseif (isset($form_state['triggering_element']['#limit_validation_errors']) && $form_state['triggering_element']['#limit_validation_errors'] == TRUE) {
+    // This is the ajax trigger.
+    $form_state['num_instances'] = $form_state['num_instances'];
   }
   else {
     // Get the number of instances from the saved form data.
