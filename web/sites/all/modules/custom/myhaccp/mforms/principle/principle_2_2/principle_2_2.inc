@@ -164,6 +164,10 @@ function principle_2_2_validate($form, &$form_state) {
 
   $checks = array();
 
+  // Get the data from the previous stage.
+  $previous = mforms_get_vals('myhaccp', 'principle_2_1');
+  $decision = array_get($previous, 'principle_2_1.2_1_1', 'no') == 'yes' ? TRUE : FALSE;
+
   // Checks is an array with the key being the element being targeted (in dot
   // notation) and the value being the callback to use to check whether the
   // field is empty.
@@ -176,7 +180,7 @@ function principle_2_2_validate($form, &$form_state) {
     // Within each row there may be multiple elements of a decision tree. There
     // may also be no decision tree.
     $tree = array_get($row, "decision_tree", array());
-    if (is_array($tree)) {
+    if ($decision) {
       foreach ($tree as $id => $element) {
         $checks["principle_2_2.instance_table.$key.decision_tree.$id"] = 'fieldIsNotEmpty';
       }
