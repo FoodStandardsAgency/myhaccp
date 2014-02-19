@@ -50,11 +50,31 @@ class FeatureContext extends Drupal\DrupalExtension\Context\DrupalContext {
   }
 
   /**
-   * @When /^I complete stage "([^"]*)"$/
+   * @When /^I complete principle "([^"]*)"$/
    */
-  public function iCompleteStage($stage) {
-    $function = 'stage_' . str_replace('.', '_', $stage);
+  public function iCompletePrinciple($stage) {
+    $function = 'principle_' . str_replace('.', '_', $stage);
     return $this->$function();
+  }
+
+  /**
+   * @Given /^I complete all principles up to "([^"]*)"$/
+   */
+  public function iCompleteAllPrinciplesUpTo($stage) {
+    $stages = $this->getPrinciples();
+    $complete = array();
+    // Iterate through each stage until we get to the stated stage.
+    foreach ($stages as $name => $type) {
+      $complete = array_merge($complete, $this->$name());
+      $stage_name = 'principle_' . str_replace('.', '_', $stage);
+      if ($stage_name == $name) {
+        // Stop iterating.
+        break;
+      }
+      // Add a save and continue as we have further stages.
+      $complete[] = new Step\When('I press the "Save and continue" button');
+    }
+    return $complete;
   }
 
   /**
@@ -115,38 +135,66 @@ class FeatureContext extends Drupal\DrupalExtension\Context\DrupalContext {
     $field->setValue($value);
   }
 
-  protected function stage_1_1() {
+  protected function principle_1_1() {
     return array(
       new Step\When('I fill in "Step no." with "1"'),
-      new Step\Then('I fill in "Step name" with "A step in my process"'),
-      new Step\Then('I fill in "Biological" with "Salmonella spp."'),
-      new Step\Then('I fill in "Allergens" with "Sesame seeds"'),
-      new Step\Then('I fill in "Physical" with "Stones"')
+      new Step\When('I fill in "Step name" with "A step in my process"'),
+      new Step\When('I fill in "Biological" with "Salmonella spp."'),
+      new Step\When('I fill in "Allergens" with "Sesame seeds"'),
+      new Step\When('I fill in "Physical" with "Stones"')
     );
   }
 
-  protected function stage_1_2() {
+  protected function principle_1_2() {
     return array(
       new Step\When('I fill row "1" "description" with "A description"'),
       new Step\When('I fill row "1" "severity" with "3"'),
       new Step\When('I fill row "1" "likelihood" with "3"'),
       new Step\When('I fill row "1" "significance" with "9"'),
-      new Step\When('I fill row "2" "description" with "Another description"'),
+      new Step\When('I fill row "2" "description" with "Stones description"'),
       new Step\When('I fill row "2" "severity" with "3"'),
       new Step\When('I fill row "2" "likelihood" with "2"'),
       new Step\When('I fill row "2" "significance" with "6"'),
-      new Step\When('I fill row "3" "description" with "Stones description"'),
+      new Step\When('I fill row "3" "description" with "Another description"'),
       new Step\When('I fill row "3" "severity" with "1"'),
       new Step\When('I fill row "3" "likelihood" with "2"'),
       new Step\When('I fill row "3" "significance" with "2"'),
-      new Step\When('I fill in "Determine the threshold" with "6"'),
+      new Step\When('I fill in "Determine the threshold" with "5"'),
     );
   }
 
-  protected function stage_1_3() {
+  protected function principle_1_3() {
     return array(
-      new Step\Given('I fill row "1" "control-measure" with "My control measure"'),
+      new Step\When('I fill row "1" "control-measure" with "My control measure"'),
       new Step\When('I fill row "2" "control-measure" with "Another control measure"'),
+    );
+  }
+
+  protected function principle_2_1() {
+    return array(
+      new Step\When('I select the radio button "Yes"'),
+      new Step\When('I select "Campden" from "1a"'),
+    );
+  }
+
+  /**
+   * Returns an array of all stages in order.
+   *
+   * @return array
+   *   The stages.
+   */
+  protected function getPrinciples() {
+    return array(
+      'principle_1_1' => 'principle',
+      'principle_1_2' => 'principle',
+      'principle_1_3' => 'principle',
+      'principle_2_1' => 'principle',
+      'principle_2_2' => 'principle',
+      'principle_3' => 'principle',
+      'principle_4' => 'principle',
+      'principle_5' => 'principle',
+      'principle_6' => 'principle',
+      'principle_7' => 'principle',
     );
   }
 

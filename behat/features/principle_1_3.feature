@@ -9,10 +9,15 @@ Feature: Principle 1 Question 3
     And I visit "/tool/study/create"
     And I press the "1.1" button
 
-  Scenario: Complete Principle 1.3 with two control measures
-    Given I complete stage "1.1"
+  Scenario: Check that previous stages have been filled in
+    Given I complete all principles up to "1.2"
     And I press the "Save and continue" button
-    Then I complete stage "1.2"
+    Then I should see "Stones"
+    And I should see "Stones description"
+    And I should see "Salmonella spp."
+
+  Scenario: Complete Principle 1.3 with two control measures
+    Given I complete all principles up to "1.2"
     And I press the "Save and continue" button
     And I fill row "1" "control-measure" with "My control measure"
     And I fill row "2" "control-measure" with "Another control measure"
@@ -21,9 +26,7 @@ Feature: Principle 1 Question 3
     And I should see "Control measure"
 
   Scenario: Test validation for Principle 1.3
-    Given I complete stage "1.1"
-    And I press the "Save and continue" button
-    Then I complete stage "1.2"
+    Given I complete all principles up to "1.2"
     And I press the "Save and continue" button
     And I fill row "1" "control-measure" with "My control measure"
     And I press the "Save and continue" button

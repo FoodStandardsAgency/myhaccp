@@ -10,12 +10,8 @@ Feature: Principle 2 Question 1
     And I press the "1.1" button
 
   Scenario: Complete Principle 2.1 selecting Campden decision tree
-    Given I complete stage "1.1"
+    Given I complete all principles up to "1.3"
     And I press the "Save and continue" button
-    Then I complete stage "1.2"
-    And I press the "Save and continue" button
-    Then I complete stage "1.3"
-    And I press the "2.1" button
     When I select the radio button "Yes"
     And I select "Campden" from "1a"
     And I press the "2.2" button
@@ -23,12 +19,8 @@ Feature: Principle 2 Question 1
     And I should not see "Q1a"
 
   Scenario: Complete Principle 2.1 selecting Codex decision tree
-    Given I complete stage "1.1"
+    Given I complete all principles up to "1.3"
     And I press the "Save and continue" button
-    Then I complete stage "1.2"
-    And I press the "Save and continue" button
-    Then I complete stage "1.3"
-    And I press the "2.1" button
     When I select the radio button "Yes"
     And I select "Codex" from "1a"
     And I press the "2.2" button
@@ -36,12 +28,8 @@ Feature: Principle 2 Question 1
     And I should not see "Q2a"
 
   Scenario: Complete Principle 2.1 selecting no decision tree
-    Given I complete stage "1.1"
+    Given I complete all principles up to "1.3"
     And I press the "Save and continue" button
-    Then I complete stage "1.2"
-    And I press the "Save and continue" button
-    Then I complete stage "1.3"
-    And I press the "2.1" button
     When I select the radio button "No"
     And I press the "2.2" button
     Then I should not see "Q1a"
