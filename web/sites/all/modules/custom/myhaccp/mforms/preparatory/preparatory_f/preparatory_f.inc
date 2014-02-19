@@ -28,9 +28,9 @@ function preparatory_f(&$form_state, &$next_step) {
   // 1. Name of the product?
   $form['preparatory_f']['f_1'] = array(
     '#type' => 'textfield',
-    '#title' => t('1. Name of the product:'),
+    '#title' => t('1. What is the name of the product:'),
     '#help_link' => 19,
-    '#help_text' => t('Specify the name.'),
+    '#help_text' => t('Specify the product name.'),
     '#default_value' => array_get($values, 'preparatory_f.f_1', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
