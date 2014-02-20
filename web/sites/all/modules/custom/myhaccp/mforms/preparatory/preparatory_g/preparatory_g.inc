@@ -14,7 +14,8 @@ function preparatory_g(&$form_state, &$next_step) {
   // them in form as default values.
   $values = myhaccp_prepare_values($data, $form_state);
 
-  drupal_set_title('Preparatory Stage G: Construct a flow diagram', PASS_THROUGH);
+  $titles = _get_all_stage_names();
+  drupal_set_title($titles[__FUNCTION__], PASS_THROUGH);
 
   $default_file = array_get($values, 'preparatory_g.g_2', FALSE);
   $default_file = $default_file ? $default_file['fid'] : FALSE;

@@ -14,7 +14,8 @@ function preparatory_e(&$form_state, &$next_step) {
   // them in form as default values.
   $values = myhaccp_prepare_values($data, $form_state);
 
-  drupal_set_title('Preparatory Stage E: Describe the product', PASS_THROUGH);
+  $titles = _get_all_stage_names();
+  drupal_set_title($titles[__FUNCTION__], PASS_THROUGH);
 
   $form = array();
   $form['#attributes']['class'][] = 'prep-e';

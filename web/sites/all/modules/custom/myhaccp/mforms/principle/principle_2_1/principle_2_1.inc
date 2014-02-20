@@ -14,7 +14,8 @@ function principle_2_1(&$form_state, &$next_step) {
   // them in form as default values.
   $values = myhaccp_prepare_values($data, $form_state);
 
-  drupal_set_title('Principle 2, Questions 1-3: Determine Critical Control Points (CCPs)', PASS_THROUGH);
+  $titles = _get_all_stage_names();
+  drupal_set_title($titles[__FUNCTION__], PASS_THROUGH);
 
   $form = array();
   $form['#attributes']['class'][] = 'principle-2-question-1-3';

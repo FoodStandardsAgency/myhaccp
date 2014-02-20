@@ -202,6 +202,11 @@ function myhaccp_myhaccp_mforms_init() {
       'value' => 'H',
       'weight' => 9,
     ),
+    'preparatory_summary' => array(
+      'stage' => 'preparatory',
+      'value' => 'Summary',
+      'weight' => 10,
+    ),
     'principle_1_1' => array(
       'stage' => 'principles',
       'value' => '1.1',
@@ -416,6 +421,7 @@ function _get_all_steps() {
     'preparatory_f' => 'preparatory',
     'preparatory_g' => 'preparatory',
     'preparatory_h' => 'preparatory',
+    'preparatory_summary' => 'preparatory',
     'principle_1_1' => 'principle',
     'principle_1_2' => 'principle',
     'principle_1_3' => 'principle',
@@ -428,6 +434,31 @@ function _get_all_steps() {
     'principle_7' => 'principle',
   );
   return $files;
+}
+
+function _get_all_stage_names() {
+  return array(
+    'preparatory_a' => 'Preparatory Stage A: Prerequisites',
+    'preparatory_b' => 'Preparatory Stage B: Management Commitment',
+    'preparatory_c_1' => 'Preparatory Stage C: Define scope of the study, <br/>Questions 1-3',
+    'preparatory_c_2' => 'Preparatory Stage C: Define scope of the study, <br/>Question 4',
+    'preparatory_d' => 'Preparatory Stage D: Select the team',
+    'preparatory_e' => 'Preparatory Stage E: Describe the product',
+    'preparatory_f' => 'Preparatory Stage F: Identify intended use of the product',
+    'preparatory_g' => 'Preparatory Stage G: Construct a flow diagram',
+    'preparatory_h' => 'Preparatory Stage H: On-site confirmation of flow diagram',
+    'preparatory_summary' => 'Preparatory Summary',
+    'principle_1_1' => 'Principle 1, Question 1: Identify and list potential hazards.',
+    'principle_1_2' => 'Principle 1, Question 2: Conduct a hazard analysis.',
+    'principle_1_3' => 'Principle 1, Question 3: Specify control measures.',
+    'principle_2_1' => 'Principle 2, Questions 1-3: Determine Critical Control Points (CCPs)',
+    'principle_2_2' => 'Principle 2, Question 4: Specify control measures.',
+    'principle_3' => 'Principle 3: Establish Critical Limits',
+    'principle_4' => 'Principle 4: Establish a monitoring system for each CCP',
+    'principle_5' => 'Principle 5: Establish a corrective action plan',
+    'principle_6' => 'Principle 6: Verification',
+    'principle_7' => 'Principle 7: Establish documentation and record keeping',
+  );
 }
 
 /**
@@ -616,6 +647,8 @@ function myhaccp_find_values($iterator, $found) {
 /**
  * Gets the results of all the stages of the study.
  *
+ * @param array $keys
+ *   The names of the store keys (stages) to get the data for.
  * @param int $iid
  *   The study ID to preview.
  *
@@ -623,9 +656,7 @@ function myhaccp_find_values($iterator, $found) {
  *   An empty array if the IID wasn't found, otherwise an array keyed with the
  *   stage name and the values being the unserialized form state values.
  */
-function myhaccp_study_get_all_stages_data($iid) {
-  // Fetch all the keys.
-  $keys = _get_all_step_names();
+function myhaccp_study_get_stages_data($keys, $iid) {
   // Get all the stages from the db.
   $query = db_select('mforms_storage_steps', 'mss')
     ->fields('mss', array('store_key', 'store_data'))

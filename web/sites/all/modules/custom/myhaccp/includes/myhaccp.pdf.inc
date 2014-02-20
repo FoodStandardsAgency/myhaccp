@@ -5,7 +5,7 @@
  */
 function myhaccp_output_pdf($iid) {
   // Load the study.
-  $study = myhaccp_study_get_all_stages_data($iid);
+  $study = myhaccp_study_get_stages_data($iid);
   if (!empty($study)) {
     // Load the mPDF library and start a new PDF.
     $path = libraries_get_path('mpdf');
