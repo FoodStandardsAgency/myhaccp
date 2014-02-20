@@ -94,11 +94,21 @@ class MformsDatabaseStore implements MformsIstore {
    * Gets the stored record for the given key.
    */
   public function getStore($key) {
+    $stages = new stages();
+
     // The step names (functions) are only stored in the db once submitted but
     // we want to be able to jump around between steps so need them declared
     // up front.
     if ($key == 'steps') {
-      return _get_all_step_names();
+      return array_keys($stages->allStages);
+    }
+
+    // Check if there is a specified stage url.
+    if ($key == 'curr_step' && arg(3) && arg(4)) {
+      // Match the url to a stage function.
+      if ($step = $stages->getNameFromUrl(arg(4))) {
+        return $step;
+      }
     }
 
     // Load the results from the db.

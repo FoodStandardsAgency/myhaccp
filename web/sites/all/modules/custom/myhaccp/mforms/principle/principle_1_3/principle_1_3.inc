@@ -16,8 +16,9 @@ function principle_1_3(&$form_state, &$next_step) {
   $values = myhaccp_prepare_values($data, $form_state);
 
   // Set the page title.
-  $titles = _get_all_stage_names();
-  drupal_set_title($titles[__FUNCTION__], PASS_THROUGH);
+  $stages = new stages();
+  $stage = $stages->allStages[__FUNCTION__];
+  drupal_set_title($stage->title, PASS_THROUGH);
 
   $form = array();
   $form['#attributes']['class'][] = 'principle-1-question-3';
