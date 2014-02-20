@@ -4,11 +4,14 @@
  * Implements hook_init().
  */
 function myhaccp_init() {
-  $stages = new stages();
-  // Declare all of the stages (steps) forms.
-  foreach ($stages->allStages as $file => $stage) {
-    $type = $stage->type;
-    ctools_include($file, 'myhaccp', "mforms/$type/$file");
+  // Add some protection to ensure the class is loaded.
+  if (class_exists('stages')) {
+    $stages = new stages();
+    // Declare all of the stages (steps) forms.
+    foreach ($stages->allStages as $file => $stage) {
+      $type = $stage->type;
+      ctools_include($file, 'myhaccp', "mforms/$type/$file");
+    }
   }
   ctools_include('myhaccp.form', 'myhaccp', 'includes');
 }
@@ -342,16 +345,16 @@ function myhaccp_theme($existing, $type, $theme, $path) {
       'function' => 'theme_myhaccp_2_2_table',
     ),
   );
-  $all = _get_all_steps();
-  foreach ($all as $stage => $subtype) {
+  $stages = new stages();
+  foreach ($stages->allStages as $stage) {
     // Now the hook. We want to pass in the form_state data so have added the
     // data variable. This will get properly sorted by a preprocess function so
     // the template has the correct data to display.
-    $hooks[$stage] = array(
+    $hooks[$stage->name] = array(
       'variables' => array('data' => NULL),
-      'file' => "$stage.theme.inc",
-      'path' => "$path/mforms/$subtype/$stage",
-      'template' => $stage
+      'file' => $stage->name . ".theme.inc",
+      'path' => "$path/mforms/$stage->type/$stage->name",
+      'template' => $stage->name
     );
   }
   return $hooks;
