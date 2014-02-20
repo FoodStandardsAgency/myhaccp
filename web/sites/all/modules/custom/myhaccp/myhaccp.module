@@ -4,10 +4,14 @@
  * Implements hook_init().
  */
 function myhaccp_init() {
-  // Declare all of the stages (steps) forms.
-  $files = _get_all_steps();
-  foreach ($files as $file => $type) {
-    ctools_include($file, 'myhaccp', "mforms/$type/$file");
+  // Add some protection to ensure the class is loaded.
+  if (class_exists('stages')) {
+    $stages = new stages();
+    // Declare all of the stages (steps) forms.
+    foreach ($stages->allStages as $file => $stage) {
+      $type = $stage->type;
+      ctools_include($file, 'myhaccp', "mforms/$type/$file");
+    }
   }
   ctools_include('myhaccp.form', 'myhaccp', 'includes');
 }
@@ -288,6 +292,8 @@ function myhaccp_element_info_alter(&$types) {
 
 /**
  * Menu callback which displays the form.
+ *
+ * This function is called whenever the form is loaded.
  */
 function myhaccp_study_resume($form, &$form_state, $iid = FALSE) {
   // If we've been passed an IID then set the session to that.
@@ -339,16 +345,16 @@ function myhaccp_theme($existing, $type, $theme, $path) {
       'function' => 'theme_myhaccp_2_2_table',
     ),
   );
-  $all = _get_all_steps();
-  foreach ($all as $stage => $subtype) {
+  $stages = new stages();
+  foreach ($stages->allStages as $stage) {
     // Now the hook. We want to pass in the form_state data so have added the
     // data variable. This will get properly sorted by a preprocess function so
     // the template has the correct data to display.
-    $hooks[$stage] = array(
+    $hooks[$stage->name] = array(
       'variables' => array('data' => NULL),
-      'file' => "$stage.theme.inc",
-      'path' => "$path/mforms/$subtype/$stage",
-      'template' => $stage
+      'file' => $stage->name . ".theme.inc",
+      'path' => "$path/mforms/$stage->type/$stage->name",
+      'template' => $stage->name
     );
   }
   return $hooks;
@@ -404,71 +410,51 @@ function myhaccp_saved_message($form, &$form_state) {
 }
 
 /**
- * Defines all the function names of the stages.
- *
- * @return array
- *   an array keyed by the function name with the value being the preparatory or
- *   principle stage.
+ * Callback for the pager buttons.
  */
-function _get_all_steps() {
-  $files = array(
-    'preparatory_a' => 'preparatory',
-    'preparatory_b' => 'preparatory',
-    'preparatory_c_1' => 'preparatory',
-    'preparatory_c_2' => 'preparatory',
-    'preparatory_d' => 'preparatory',
-    'preparatory_e' => 'preparatory',
-    'preparatory_f' => 'preparatory',
-    'preparatory_g' => 'preparatory',
-    'preparatory_h' => 'preparatory',
-    'preparatory_summary' => 'preparatory',
-    'principle_1_1' => 'principle',
-    'principle_1_2' => 'principle',
-    'principle_1_3' => 'principle',
-    'principle_2_1' => 'principle',
-    'principle_2_2' => 'principle',
-    'principle_3' => 'principle',
-    'principle_4' => 'principle',
-    'principle_5' => 'principle',
-    'principle_6' => 'principle',
-    'principle_7' => 'principle',
-  );
-  return $files;
-}
-
-function _get_all_stage_names() {
-  return array(
-    'preparatory_a' => 'Preparatory Stage A: Prerequisites',
-    'preparatory_b' => 'Preparatory Stage B: Management Commitment',
-    'preparatory_c_1' => 'Preparatory Stage C: Define scope of the study, <br/>Questions 1-3',
-    'preparatory_c_2' => 'Preparatory Stage C: Define scope of the study, <br/>Question 4',
-    'preparatory_d' => 'Preparatory Stage D: Select the team',
-    'preparatory_e' => 'Preparatory Stage E: Describe the product',
-    'preparatory_f' => 'Preparatory Stage F: Identify intended use of the product',
-    'preparatory_g' => 'Preparatory Stage G: Construct a flow diagram',
-    'preparatory_h' => 'Preparatory Stage H: On-site confirmation of flow diagram',
-    'preparatory_summary' => 'Preparatory Summary',
-    'principle_1_1' => 'Principle 1, Question 1: Identify and list potential hazards.',
-    'principle_1_2' => 'Principle 1, Question 2: Conduct a hazard analysis.',
-    'principle_1_3' => 'Principle 1, Question 3: Specify control measures.',
-    'principle_2_1' => 'Principle 2, Questions 1-3: Determine Critical Control Points (CCPs)',
-    'principle_2_2' => 'Principle 2, Question 4: Specify control measures.',
-    'principle_3' => 'Principle 3: Establish Critical Limits',
-    'principle_4' => 'Principle 4: Establish a monitoring system for each CCP',
-    'principle_5' => 'Principle 5: Establish a corrective action plan',
-    'principle_6' => 'Principle 6: Verification',
-    'principle_7' => 'Principle 7: Establish documentation and record keeping',
-  );
+function myhaccp_pager_submit($form, &$form_state) {
+  // Only deal with back submit if we have store key.
+  if (isset($form_state['clicked_button']['#store_key'])) {
+    // Add $_POST into values as they got unset in the validation process due to
+    // limit_validation_errors property of the back/step button.
+    $form_state['values'] += $_POST;
+    $stages = new stages();
+    $stage = $stages->allStages[$form_state['clicked_button']['#mforms_step']];
+    $form_state['redirect'] = 'tool/study/' . $_SESSION['iid'] . '/' . $stage->url;
+    mforms_submit($form_state['clicked_button']['#store_key'], $form, $form_state);
+  }
 }
 
 /**
- * Gets all the stage functions.
- *
- * @return array
- *   Returns the array keys relating to the step names.
+ * Callback for save and continue.
  */
-function _get_all_step_names() {
-  return array_keys(_get_all_steps());
+function myhaccp_continue_submit($form, &$form_state) {
+  // Only deal with back submit if we have store key.
+  if (isset($form_state['clicked_button']['#store_key'])) {
+    // Add $_POST into values as they got unset in the validation process due to
+    // limit_validation_errors property of the back/step button.
+    $form_state['values'] += $_POST;
+    $stages = new stages();
+    $stage = $stages->allStages[$form['next_step']['#value']];
+    $form_state['redirect'] = 'tool/study/' . $_SESSION['iid'] . '/' . $stage->url;
+    mforms_submit($form_state['clicked_button']['#store_key'], $form, $form_state);
+  }
+}
+
+/**
+ * Callback for save and continue.
+ */
+function myhaccp_back_submit($form, &$form_state) {
+  // Only deal with back submit if we have store key.
+  if (isset($form_state['clicked_button']['#store_key'])) {
+    // Add $_POST into values as they got unset in the validation process due to
+    // limit_validation_errors property of the back/step button.
+    $form_state['values'] += $_POST;
+    $stages = new stages();
+    $stage = $stages->allStages[$form['prev_step']['#value']];
+    $form_state['redirect'] = 'tool/study/' . $_SESSION['iid'] . '/' . $stage->url;
+    mforms_submit($form_state['clicked_button']['#store_key'], $form, $form_state);
+  }
 }
 
 /**
