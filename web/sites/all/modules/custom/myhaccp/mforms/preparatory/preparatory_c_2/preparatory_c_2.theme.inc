@@ -23,7 +23,7 @@ function myhaccp_preprocess_preparatory_c_2(&$variables) {
 
   // Physical hazards.
   $physical_hazards = array();
-  if (!empty($values['biological_c_4']['physical'])) {
+  if (!empty($values['physical_c_4']['physical'])) {
     foreach ($values['physical_c_4']['physical'] as $key => $value) {
       if ($key === $value) {
         $physical_hazards[] = $value;
@@ -37,7 +37,7 @@ function myhaccp_preprocess_preparatory_c_2(&$variables) {
 
   // Chemical hazards.
   $chemical_hazards = array();
-  if (!empty($values['biological_c_4']['chemical'])) {
+  if (!empty($values['chemical_c_4']['chemical'])) {
     foreach ($values['chemical_c_4']['chemical'] as $key => $value) {
       if ($key === $value) {
         $chemical_hazards[] = $value;
@@ -65,7 +65,7 @@ function myhaccp_preprocess_preparatory_c_2(&$variables) {
 
   // Allergens hazards.
   $allergens_hazards = array();
-  if (!empty($values['biological_c_4']['allergens'])) {
+  if (!empty($values['allergens_c_4']['allergens'])) {
     foreach ($values['allergens_c_4']['allergens'] as $key => $value) {
       if ($key === $value) {
         $allergens_hazards[] = $value;

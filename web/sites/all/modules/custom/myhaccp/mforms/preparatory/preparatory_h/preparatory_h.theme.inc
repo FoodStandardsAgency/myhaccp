@@ -20,6 +20,8 @@ function myhaccp_preprocess_preparatory_h(&$variables) {
   $stage = 'preparatory_h';
   $values = $variables['data'][$stage];
 
+  //dpm($values);
+
   // a_1
   // $variables['a_1_title'] = t('The company has in place a number of effective prerequisite programmes, including:');
   // $variables['a_1'] = !empty($names) ? '<ul><li>' . implode('</li><li>', $names) . '</li></ul>' : '';
