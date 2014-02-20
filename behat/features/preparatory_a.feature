@@ -12,8 +12,8 @@ Feature: Preparatory A
   Scenario: Complete Preparatory A and confirm data entry
     Given I check "Supplier approval"
     And I check "Glass and plastic management"
-#    When I press the "Save and continue" button
-#    And I press the "Previous" button
+    When I press the "Save and continue" button
+    And I press the "Previous" button
     Then the "Supplier approval" checkbox should be checked
     And the "Glass and plastic management" checkbox should be checked
     And the "Pest Control" checkbox should not be checked
