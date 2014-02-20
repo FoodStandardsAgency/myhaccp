@@ -1625,11 +1625,8 @@ div.exposed-filters input#edit-submit:active {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
 }
 
-input#edit-submit,
 input#edit-actions-submit,
 input[id^="save-continue"],
-input[id^="edit-save"],
-input#edit-save,
 input#edit-actions-save,
 input#edit-continue,
 input#edit-previous,
@@ -1646,15 +1643,9 @@ input#edit-previous,
   background-color: #006f51;
   color: #FFF;
 }
-input#edit-submit:hover, input#edit-submit:focus,
-input#edit-actions-submit:hover,
-input#edit-actions-submit:focus,
+input#edit-actions-submit:hover, input#edit-actions-submit:focus,
 input[id^="save-continue"]:hover,
 input[id^="save-continue"]:focus,
-input[id^="edit-save"]:hover,
-input[id^="edit-save"]:focus,
-input#edit-save:hover,
-input#edit-save:focus,
 input#edit-actions-save:hover,
 input#edit-actions-save:focus,
 input#edit-continue:hover,
@@ -1666,11 +1657,8 @@ input#edit-previous:focus,
   background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
   cursor: pointer;
 }
-input#edit-submit.disabled,
 input#edit-actions-submit.disabled,
 input[id^="save-continue"].disabled,
-input[id^="edit-save"].disabled,
-input#edit-save.disabled,
 input#edit-actions-save.disabled,
 input#edit-continue.disabled,
 input#edit-previous.disabled,
@@ -1679,15 +1667,9 @@ input#edit-previous.disabled,
   cursor: not-allowed;
   opacity: 0.5;
 }
-input#edit-submit.active, input#edit-submit:active,
-input#edit-actions-submit.active,
-input#edit-actions-submit:active,
+input#edit-actions-submit.active, input#edit-actions-submit:active,
 input[id^="save-continue"].active,
 input[id^="save-continue"]:active,
-input[id^="edit-save"].active,
-input[id^="edit-save"]:active,
-input#edit-save.active,
-input#edit-save:active,
 input#edit-actions-save.active,
 input#edit-actions-save:active,
 input#edit-continue.active,
@@ -1875,6 +1857,15 @@ div.teaser-checkbox .form-item,
   padding: 5px 0;
   margin: 0;
   border: 0;
+}
+
+#mforms-wrapper-myhaccp fieldset {
+  border-width: 0;
+  padding-bottom: 0;
+}
+#mforms-wrapper-myhaccp fieldset fieldset {
+  border-width: 1px;
+  padding-bottom: 1em;
 }
 
 #myhaccp-start-form .help {
@@ -2143,6 +2134,102 @@ div.teaser-checkbox .form-item,
 }
 .pager-wrapper .pager-controls input.visited-step:hover {
   color: black;
+}
+
+.form-save-wrapper {
+  float: right;
+  max-width: 500px;
+  margin-bottom: 1em;
+  text-align: right;
+}
+.form-save-wrapper .help {
+  display: inline;
+  color: #676767;
+}
+.form-save-wrapper .form-save {
+  background-color: #e6e6e6;
+  color: rgba(0, 0, 0, 0.8);
+  border: 0 none transparent;
+  padding: 0.6em 1.5em 0.5em 1.5em;
+  text-decoration: none;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  background-color: #eeeeee;
+  color: black;
+  font-size: 0.8em;
+  display: inline;
+}
+.form-save-wrapper .form-save:hover, .form-save-wrapper .form-save:focus {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+}
+.form-save-wrapper .form-save.disabled {
+  background-image: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.form-save-wrapper .form-save.active, .form-save-wrapper .form-save:active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
+}
+
+.form-nav-wrapper {
+  clear: both;
+  border-top: 1px solid #007fb2;
+  padding-top: 1em;
+}
+.form-nav-wrapper .form-previous {
+  background-color: #e6e6e6;
+  color: rgba(0, 0, 0, 0.8);
+  border: 0 none transparent;
+  padding: 0.6em 1.5em 0.5em 1.5em;
+  text-decoration: none;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  background-color: #006f51;
+  color: #FFF;
+  margin-left: 0;
+}
+.form-nav-wrapper .form-previous:hover, .form-nav-wrapper .form-previous:focus {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+}
+.form-nav-wrapper .form-previous.disabled {
+  background-image: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.form-nav-wrapper .form-previous.active, .form-nav-wrapper .form-previous:active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
+}
+.form-nav-wrapper .form-continue {
+  background-color: #e6e6e6;
+  color: rgba(0, 0, 0, 0.8);
+  border: 0 none transparent;
+  padding: 0.6em 1.5em 0.5em 1.5em;
+  text-decoration: none;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  background-color: #006f51;
+  color: #FFF;
+  float: right;
+}
+.form-nav-wrapper .form-continue:hover, .form-nav-wrapper .form-continue:focus {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+}
+.form-nav-wrapper .form-continue.disabled {
+  background-image: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.form-nav-wrapper .form-continue.active, .form-nav-wrapper .form-continue:active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
 }
 
 /**
@@ -2422,7 +2509,7 @@ footer[role=contentinfo] {
 }
 
 .help-tip {
-  background: lightgrey;
+  background: #006f51;
   border-radius: 900px;
   color: #FFFFFF;
   display: inline-block;
@@ -3208,4 +3295,15 @@ html.ie7 .principle-1-q1 .hazards > .form-item {
   width: 40%;
   padding-left: 0;
   padding-right: 3%;
+}
+
+@media print {
+  body {
+    background-color: #fafafa;
+    font-family: 'cartogothicstd';
+  }
+
+  section.page {
+    page-break-after: always;
+  }
 }

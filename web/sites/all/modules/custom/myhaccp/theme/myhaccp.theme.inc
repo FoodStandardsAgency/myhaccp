@@ -5,13 +5,13 @@
  *
  * Principle 1 Question 1.
  */
-function theme_myhacpp_p1q2_table($variables) {
+function theme_myhaccp_1_2_table($variables) {
   $element = $variables['element'];
 
   $rows = array();
   foreach (element_children($element) as $key) {
     $rows[] = array(
-      array('data' => $element[$key]['details']),
+      array('data' => $element[$key]['name']['#value']),
       array('data' => $element[$key]['description']),
       array('data' => $element[$key]['severity']),
       array('data' => $element[$key]['likelihood']),
@@ -58,7 +58,7 @@ function theme_myhacpp_p1q2_table($variables) {
  *
  * Principle 1 Question 3.
  */
-function theme_myhacpp_p1q3_table($variables) {
+function theme_myhaccp_1_3_table($variables) {
   $element = $variables['element'];
 
   $rows = array();
@@ -82,7 +82,7 @@ function theme_myhacpp_p1q3_table($variables) {
       'class' => array('hazard'),
     ),
     'control_measure' => array(
-      'data' => t('Control Measure !tip', array(
+      'data' => t('Control Measure !tip !help', array(
         '!tip' => _help_tip(27),
         '!help' => '<div class="help-text">Please record what control measures have been put in place for each significant hazard. ' . myhaccp_prepare_more_link(27) . '</div>'
       )),
@@ -98,12 +98,13 @@ function theme_myhacpp_p1q3_table($variables) {
  *
  * Principle 2 Question 4.
  */
-function theme_myhacpp_p2q4_table($variables) {
+function theme_myhaccp_2_2_table($variables) {
   $element = $variables['element'];
 
-  $decision_tree_value = array_get($element, 'decision_tree.#value', FALSE);
+  $data = mforms_get_vals('myhaccp', 'principle_2_1');
+
+  $decision_tree_value = array_get($data, 'principle_2_1.2_1_1', FALSE);
   $decision_tree = $decision_tree_value == 'yes' ? TRUE : FALSE;
-  unset($element['decision_tree']);
 
   $rows = array();
 
@@ -142,14 +143,14 @@ function theme_myhacpp_p2q4_table($variables) {
     'decision_tree' => array(
       'data' => t('Decision Tree Q\'s !tip !help', array(
         '!tip' => _help_tip(28),
-         '!help' => '<div class="help-text">Please record your answers to each decision tree question below, selecting N/A if a question is not relevant. ' . myhaccp_prepare_more_link(28) . '</div>'
+         '!help' => '<div class="help-text">Be very careful to answer the questions correctly.' . myhaccp_prepare_more_link(28) . '</div>'
       )),
       'class' => array('decision-tree'),
     ),
     'ccp' => array(
       'data' => t('CCP? !tip !help', array(
         '!tip' => _help_tip(28),
-        '!help' => '<div class="help-text">Please record whether each .</div>'
+        '!help' => '<div class="help-text">Providing you have answered  the  questions to the decision tree correctly , and entered the answers  into the system  correctly this will show whether the control of the hazard is regarded as a critical control point or not according to Campden or Codex.</div>'
       )),
       'class' => array('ccp'),
     ),

@@ -34,35 +34,6 @@ function _get_step($function, $type, &$form_state, &$next_step) {
   }
 }
 
-///**
-// * Preparatory A.
-// */
-//function preparatory_a(&$form_state, &$next_step) {
-//  $function = __FUNCTION__;
-//  $type = 'preparatory';
-//  return _get_step($function, $type, $form_state, $next_step);
-//}
-//
-///**
-// * Principle 1, question 1.
-// */
-//function principle_1_question_1(&$form_state, &$next_step) {
-//  $function = __FUNCTION__;
-//  $type = 'principle';
-//  return _get_step($function, $type, $form_state, $next_step);
-//}
-//
-///**
-// * Principle 1, question 2.
-// */
-//function principle_1_question_2(&$form_state, &$next_step) {
-//  $function = __FUNCTION__;
-//  $type = 'principle';
-//  return _get_step($function, $type, $form_state, $next_step);
-//}
-
-
-
 /**
  * Ajax callback which returns the form array element to be applied against.
  */
@@ -96,9 +67,10 @@ function instance_add_more_remove_one($form, &$form_state) {
  * Adds the parsley attributes to the form element. Also adds a save message
  * handler.
  */
-function myhaccp_form_myhaccp_start_form_alter(&$form, &$form_state) {
+function myhaccp_form_myhaccp_study_resume_alter(&$form, &$form_state) {
   $form['#attributes']['data-parsley-namespace'] = 'data-parsley-';
   $form['#attributes']['data-parsley-validate'] = '';
+  // The message that says the stage has saved.
   $form['#validate'][] = 'myhaccp_saved_message';
   // Add the validation messages container.
   $form['validation_messages'] = array(

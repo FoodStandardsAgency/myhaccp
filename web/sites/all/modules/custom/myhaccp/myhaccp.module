@@ -4,11 +4,12 @@
  * Implements hook_init().
  */
 function myhaccp_init() {
-  // Declare all of the step forms.
+  // Declare all of the stages (steps) forms.
   $files = _get_all_steps();
-  foreach ($files as $file => $dir) {
-    ctools_include($file, 'myhaccp', 'mforms/' . $dir);
+  foreach ($files as $file => $type) {
+    ctools_include($file, 'myhaccp', "mforms/$type/$file");
   }
+  ctools_include('myhaccp.form', 'myhaccp', 'includes');
 }
 
 /**
@@ -20,15 +21,15 @@ function myhaccp_menu() {
     'page callback' => 'myhaccp_list',
     'page arguments' => array(),
     'access callback' => 'myhaccp_access',
-    'access arguments' => array(1),
+    'access arguments' => array('list'),
     'file' => 'myhaccp.pages.inc',
     'type' => MENU_NORMAL_ITEM,
   );
   $items['tool/study/%'] = array(
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('myhaccp_start_form', 2, 3),
+    'page arguments' => array('myhaccp_study_resume', 2),
     'access callback' => 'myhaccp_access',
-    'access arguments' => array(1),
+    'access arguments' => array('edit'),
     'type' => MENU_NORMAL_ITEM,
   );
   $items['tool/study/create'] = array(
@@ -39,11 +40,27 @@ function myhaccp_menu() {
     'type' => MENU_NORMAL_ITEM,
   );
   $items['tool/study/%/delete'] = array(
-    'page callback' => 'myhaccp_study_delete',
-    'page arguments' => array(3),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('myhaccp_study_delete', 2),
     'access callback' => 'myhaccp_access',
     'access arguments' => array('delete'),
     'file' => 'myhaccp.pages.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
+  $items['tool/study/%/preview'] = array(
+    'page callback' => 'myhaccp_study_preview',
+    'page arguments' => array(2),
+    'access callback' => 'myhaccp_access',
+    'access arguments' => array('view'),
+    'file' => 'myhaccp.pages.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
+  $items['tool/study/%/pdf'] = array(
+    'page callback' => 'myhaccp_output_pdf',
+    'page arguments' => array(2),
+    'access callback' => 'myhaccp_access',
+    'access arguments' => array('view'),
+    'file' => 'includes/myhaccp.pdf.inc',
     'type' => MENU_NORMAL_ITEM,
   );
   $items['help/%ctools_js/%'] = array(
@@ -51,7 +68,7 @@ function myhaccp_menu() {
     'page arguments' => array(1, 2),
     'page callback' => 'myhaccp_help_modal',
     'access callback' => TRUE,
-    'type' => MENU_NORMAL_ITEM,
+    'type' => MENU_CALLBACK,
   );
   return $items;
 }
@@ -76,12 +93,28 @@ function myhaccp_permission() {
       'description' => t('Edit any user\'s myhaccp studies.'),
     ),
     'delete own myhaccp study' => array(
-      'title' => t('Edit any myhaccp studies'),
+      'title' => t('Delete own myhaccp studies'),
       'description' => t('Delete a user\'s own myhaccp studies.'),
     ),
     'delete any myhaccp study' => array(
       'title' => t('Delete any myhaccp studies'),
       'description' => t('Delete any user\'s myhaccp studies.'),
+    ),
+    'list own myhaccp study' => array(
+      'title' => t('List own myhaccp studies'),
+      'description' => t('List a user\'s own myhaccp studies.'),
+    ),
+    'list any myhaccp study' => array(
+      'title' => t('List any myhaccp studies'),
+      'description' => t('List any user\'s myhaccp studies.'),
+    ),
+    'view own myhaccp study' => array(
+      'title' => t('View own myhaccp studies'),
+      'description' => t('View the output of a user\'s own myhaccp studies.'),
+    ),
+    'view any myhaccp study' => array(
+      'title' => t('View any myhaccp studies'),
+      'description' => t('View the output of any user\'s myhaccp studies.'),
     ),
   );
 }
@@ -100,10 +133,17 @@ function myhaccp_access($op) {
     return user_access('create myhaccp study');
   }
   elseif ($op == 'delete') {
-    return user_access('delete any myhaccp study') && user_access('delete own myhaccp study');
+    return user_access('delete any myhaccp study') || user_access('delete own myhaccp study');
+  }
+  elseif ($op == 'edit') {
+    return user_access('edit any myhaccp study') || user_access('edit own myhaccp study');
+  }
+  elseif ($op == 'view') {
+    return user_access('view any myhaccp study') || user_access('view own myhaccp study');
   }
   else {
-    return user_access('edit any myhaccp study') && user_access('edit own myhaccp study');
+    // List haccp studies.
+    return user_access('list any myhaccp study') || user_access('list own myhaccp study');
   }
 }
 
@@ -127,12 +167,12 @@ function myhaccp_myhaccp_mforms_init() {
       'value' => 'B',
       'weight' => 2,
     ),
-    'preparatory_c_question_1_3' => array(
+    'preparatory_c_1' => array(
       'stage' => 'preparatory',
       'value' => 'C.1',
       'weight' => 3,
     ),
-    'preparatory_c_question_4' => array(
+    'preparatory_c_2' => array(
       'stage' => 'preparatory',
       'value' => 'C.2',
       'weight' => 4,
@@ -162,27 +202,32 @@ function myhaccp_myhaccp_mforms_init() {
       'value' => 'H',
       'weight' => 9,
     ),
-    'principle_1_question_1' => array(
+    'preparatory_summary' => array(
+      'stage' => 'preparatory',
+      'value' => 'Summary',
+      'weight' => 10,
+    ),
+    'principle_1_1' => array(
       'stage' => 'principles',
       'value' => '1.1',
       'weight' => 11,
     ),
-    'principle_1_question_2' => array(
+    'principle_1_2' => array(
       'stage' => 'principles',
       'value' => '1.2',
       'weight' => 12,
     ),
-    'principle_1_question_3' => array(
+    'principle_1_3' => array(
       'stage' => 'principles',
       'value' => '1.3',
       'weight' => 13,
     ),
-    'principle_2_question_1_3' => array(
+    'principle_2_1' => array(
       'stage' => 'principles',
       'value' => '2.1',
       'weight' => 14,
     ),
-    'principle_2_question_4' => array(
+    'principle_2_2' => array(
       'stage' => 'principles',
       'value' => '2.2',
       'weight' => 15,
@@ -230,36 +275,21 @@ function myhaccp_myhaccp_mforms_init() {
   mforms_init_module('myhaccp', 'myhaccp', $store, $controls);
 }
 
-function myhaccp_prepare_form($iid, $stage) {
-  // If we've been passed an IID then set the session to that.
-  if ($iid && is_numeric($iid)) {
-    // Check that this user has permission to look at this form.
-    global $user;
-    $select = db_select('mforms_storage', 's')
-      ->fields('s', array('uid'))
-      ->condition('s.iid', $iid);
-    $uid = $select->execute()->fetchField();
-    if (user_access('edit any myhaccp form') || $user->uid == $uid) {
-      $_SESSION['iid'] = $iid;
-    }
-    else {
-      drupal_set_message('You do not have permission to edit this user\'s form', 'error');
-      drupal_access_denied();
-    }
+/**
+ * Implements hook_element_info_alter().
+ */
+function myhaccp_element_info_alter(&$types) {
+  foreach ($types as $type => $values) {
+    $types[$type]['#process'][] = 'myhaccp_process';
   }
-  else {
-    // If there is no current session open then create a new db row.
-    drupal_set_message('Please edit an existing form or create a new one.');
-    drupal_goto('tool');
-  }
-  // Otherwise lets build the form.
-  return forms_build('myhaccp', 'preparatory_a', $form_state);
+  ctools_include('myhaccp.form', 'myhaccp', 'includes');
+  return;
 }
 
 /**
  * Menu callback which displays the form.
  */
-function myhaccp_start_form($form, &$form_state, $iid = FALSE, $stage = FALSE) {
+function myhaccp_study_resume($form, &$form_state, $iid = FALSE) {
   // If we've been passed an IID then set the session to that.
   if ($iid && is_numeric($iid)) {
     // Check that this user has permission to look at this form.
@@ -280,9 +310,6 @@ function myhaccp_start_form($form, &$form_state, $iid = FALSE, $stage = FALSE) {
     // If there is no current session open then create a new db row.
     drupal_set_message('Please edit an existing form or create a new one.');
     drupal_goto('tool');
-  }
-  if ($stage) {
-
   }
   return mforms_build('myhaccp', 'preparatory_a', $form_state);
 }
@@ -290,28 +317,41 @@ function myhaccp_start_form($form, &$form_state, $iid = FALSE, $stage = FALSE) {
 /**
  * Implements hook_theme().
  */
-function myhaccp_theme() {
-  $path = drupal_get_path('module', 'myhaccp') . '/theme';
-  return array(
-    'myhacpp_p1q2_table' => array(
+function myhaccp_theme($existing, $type, $theme, $path) {
+  $path = drupal_get_path('module', 'myhaccp');
+  $hooks = array(
+    'myhaccp_1_2_table' => array(
       'render element' => 'element',
-      'path' => $path,
+      'path' => $path . '/theme',
       'file' => 'myhaccp.theme.inc',
-      'function' => 'theme_myhacpp_p1q2_table',
+      'function' => 'theme_myhaccp_1_2_table',
     ),
-    'myhacpp_p1q3_table' => array(
+    'myhaccp_1_3_table' => array(
       'render element' => 'element',
-      'path' => $path,
+      'path' => $path . '/theme',
       'file' => 'myhaccp.theme.inc',
-      'function' => 'theme_myhacpp_p1q3_table',
+      'function' => 'theme_myhaccp_1_3_table',
     ),
-    'myhacpp_p2q4_table' => array(
+    'myhaccp_2_2_table' => array(
       'render element' => 'element',
-      'path' => $path,
+      'path' => $path . '/theme',
       'file' => 'myhaccp.theme.inc',
-      'function' => 'theme_myhacpp_p2q4_table',
+      'function' => 'theme_myhaccp_2_2_table',
     ),
   );
+  $all = _get_all_steps();
+  foreach ($all as $stage => $subtype) {
+    // Now the hook. We want to pass in the form_state data so have added the
+    // data variable. This will get properly sorted by a preprocess function so
+    // the template has the correct data to display.
+    $hooks[$stage] = array(
+      'variables' => array('data' => NULL),
+      'file' => "$stage.theme.inc",
+      'path' => "$path/mforms/$subtype/$stage",
+      'template' => $stage
+    );
+  }
+  return $hooks;
 }
 
 /**
@@ -353,6 +393,17 @@ function _help_tip($link = '#') {
 }
 
 /**
+ * Validation handler that shows a successful save message.
+ *
+ * @see myhaccp_form_myhaccp_start_form_alter()
+ */
+function myhaccp_saved_message($form, &$form_state) {
+  if (isset($form_state['clicked_button']) && $form_state['clicked_button']['#value'] == 'Save this page') {
+    drupal_set_message('Study saved', 'status', FALSE);
+  }
+}
+
+/**
  * Defines all the function names of the stages.
  *
  * @return array
@@ -363,18 +414,19 @@ function _get_all_steps() {
   $files = array(
     'preparatory_a' => 'preparatory',
     'preparatory_b' => 'preparatory',
-    'preparatory_c_question_1_3' => 'preparatory',
-    'preparatory_c_question_4' => 'preparatory',
+    'preparatory_c_1' => 'preparatory',
+    'preparatory_c_2' => 'preparatory',
     'preparatory_d' => 'preparatory',
     'preparatory_e' => 'preparatory',
     'preparatory_f' => 'preparatory',
     'preparatory_g' => 'preparatory',
     'preparatory_h' => 'preparatory',
-    'principle_1_question_1' => 'principle',
-    'principle_1_question_2' => 'principle',
-    'principle_1_question_3' => 'principle',
-    'principle_2_question_1_3' => 'principle',
-    'principle_2_question_4' => 'principle',
+    'preparatory_summary' => 'preparatory',
+    'principle_1_1' => 'principle',
+    'principle_1_2' => 'principle',
+    'principle_1_3' => 'principle',
+    'principle_2_1' => 'principle',
+    'principle_2_2' => 'principle',
     'principle_3' => 'principle',
     'principle_4' => 'principle',
     'principle_5' => 'principle',
@@ -384,34 +436,29 @@ function _get_all_steps() {
   return $files;
 }
 
-function _match_url_to_stage($url_to_match) {
-  $stages = array(
-    'preparatory_a' => 'a',
-    'preparatory_b' => 'b',
-    'preparatory_c_question_1_3' => 'c-1',
-    'preparatory_c_question_4' => 'c-2',
-    'preparatory_d' => 'd',
-    'preparatory_e' => 'e',
-    'preparatory_f' => 'f',
-    'preparatory_g' => 'g',
-    'preparatory_h' => 'h',
-    'principle_1_question_1' => 'principle',
-    'principle_1_question_2' => 'principle',
-    'principle_1_question_3' => 'principle',
-    'principle_2_question_1_3' => 'principle',
-    'principle_2_question_4' => 'principle',
-    'principle_3' => 'principle',
-    'principle_4' => 'principle',
-    'principle_5' => 'principle',
-    'principle_6' => 'principle',
-    'principle_7' => 'principle',
+function _get_all_stage_names() {
+  return array(
+    'preparatory_a' => 'Preparatory Stage A: Prerequisites',
+    'preparatory_b' => 'Preparatory Stage B: Management Commitment',
+    'preparatory_c_1' => 'Preparatory Stage C: Define scope of the study, <br/>Questions 1-3',
+    'preparatory_c_2' => 'Preparatory Stage C: Define scope of the study, <br/>Question 4',
+    'preparatory_d' => 'Preparatory Stage D: Select the team',
+    'preparatory_e' => 'Preparatory Stage E: Describe the product',
+    'preparatory_f' => 'Preparatory Stage F: Identify intended use of the product',
+    'preparatory_g' => 'Preparatory Stage G: Construct a flow diagram',
+    'preparatory_h' => 'Preparatory Stage H: On-site confirmation of flow diagram',
+    'preparatory_summary' => 'Preparatory Summary',
+    'principle_1_1' => 'Principle 1, Question 1: Identify and list potential hazards.',
+    'principle_1_2' => 'Principle 1, Question 2: Conduct a hazard analysis.',
+    'principle_1_3' => 'Principle 1, Question 3: Specify control measures.',
+    'principle_2_1' => 'Principle 2, Questions 1-3: Determine Critical Control Points (CCPs)',
+    'principle_2_2' => 'Principle 2, Question 4: Specify control measures.',
+    'principle_3' => 'Principle 3: Establish Critical Limits',
+    'principle_4' => 'Principle 4: Establish a monitoring system for each CCP',
+    'principle_5' => 'Principle 5: Establish a corrective action plan',
+    'principle_6' => 'Principle 6: Verification',
+    'principle_7' => 'Principle 7: Establish documentation and record keeping',
   );
-  foreach ($stages as $stage => $url) {
-    if ($url == $url_to_match) {
-      return $stage;
-    }
-  }
-  return FALSE;
 }
 
 /**
@@ -422,302 +469,6 @@ function _match_url_to_stage($url_to_match) {
  */
 function _get_all_step_names() {
   return array_keys(_get_all_steps());
-}
-
-/**
- * Implements hook_element_info_alter().
- */
-function myhaccp_element_info_alter(&$types) {
-  foreach ($types as $type => $values) {
-    $types[$type]['#process'][] = 'myhaccp_process';
-  }
-  return;
-}
-
-/**
- * Callback: Process form elements to add errors.
- *
- * Checks the form state's storage array element for a validate entry and then
- * tries to match it's key to the current form element's #name attribute. If
- * there is a match then it adds the error class to the form element and also
- * prints a message if the form has been executed. This ensures the message
- * only appears on the current stage.
- *
- * @see myhaccp_element_info_alter()
- */
-function myhaccp_process($element, &$form_state) {
-  if (isset($form_state['values']['validate'])) {
-    $validation = reset($form_state['values']['validate']);
-    // Add the error class to each of the elements.
-    foreach ($validation as $target => $message) {
-      $target_parts = explode('.', $target);
-      if (!empty($element['#parents'])) {
-        // Check that the intersection of the target and the current element's
-        // parents array are the same. If they are then this is the element we
-        // want to operate on.
-        if (count(array_intersect($target_parts, $element['#parents'])) == count($target_parts)) {
-          // Set the error attribute.
-          $element['#attributes']['class']['error'] = 'error';
-          if (!empty($message) && $form_state['executed'] == TRUE && $element['#type'] !== 'radio') {
-            // Add the message inline.
-            $element['#validation_message'] = $message;
-          }
-        }
-      }
-    }
-  }
-  return $element;
-}
-
-/**
- * Process function which handles validation messages and the page title.
- *
- * @param array $form
- *   The form array to modify.
- * @param array $form_state
- *   The form_state array to get the validation from.
- *
- * @return array
- *   The modified form array.
- */
-function myhaccp_form_process($form, $form_state) {
-  // First check for validation messages.
-  if (isset($form_state['values']['validate'])) {
-    // Ensure that these validations apply to this form. We ensure this
-    // by making sure the key of the element below validate is used in the
-    // current form array.
-    $stage = key($form_state['values']['validate']);
-    if (!isset($form[$stage])) {
-      // The key wasn't found so return the form.
-      return $form;
-    }
-    // The validation will be the only element under validate.
-    $validation = reset($form_state['values']['validate']);
-    // Provide an intro.
-    $messages = array(
-      'intro' => 'The following items have errors you will need to correct:',
-    );
-
-    // Add any messages that aren't associated with fields, so called 'global'
-    // validation messages.
-    foreach ($validation as $target => $message) {
-      $element = array_get($form, $target, FALSE);
-      if ($element && isset($element['#title'])) {
-        $message = $element['#title'];
-      }
-      $messages[$target] = $message;
-    }
-    // If we already have validation messages then merge ours.
-    if (isset($form['validation_messages']['#validation_message'])) {
-      array_merge($form['validation_messages']['#validation_message'], $messages);
-    }
-    else {
-      // Otherwise set the messages.
-      $form['validation_messages']['#validation_message'] = $messages;
-    }
-  }
-
-  // Get the title of the page.
-  $title = drupal_get_title();
-  // Add the title in as a new markup element.
-  $form['title'] = array(
-    '#markup' => '<h1>' . $title . '</h1>',
-    '#weight' => -20,
-  );
-  return $form;
-}
-
-/**
- * Converts a #name to a dot notation suitable for an array_get to parse.
- *
- * @param string $name
- *   The name to convert.
- *
- * @return string
- *   The string as dot notation.
- */
-function myhacpp_element_name_to_dot($name) {
-  foreach (explode('[', $name) as $element_name) {
-    // Chop off the ] that may exist.
-    if (substr($element_name, -1) == ']') {
-      $element_name = substr($element_name, 0, -1);
-    }
-    $parts[] = $element_name;
-  }
-  return implode('.', $parts);
-}
-
-/**
- * Helper to prepare the form_state and $_POST ready to save into the db.
- *
- * Used to prepare validation messages.
- *
- * @param string $target
- *   The form #name parameter to target.
- * @param string $message
- *   The message to display.
- * @param array $form_state
- *   The current form_state array.
- * @param array $options.
- *   Options array elements:
- *   'stage' => The element key of the stage. e.g. 'preparatory_a'. Used to
- *     make sure that the validation messages don't appear on the wrong stage.
- */
-function myhacpp_prepare_validation($target, $message, &$form_state, $options) {
-  // Convert the dot notation target to name style elements.
-  $exploded = explode('.', $target);
-  $name = '';
-  foreach ($exploded as $key => $element) {
-    $name .= $key == 0 ? $element : '[' . $element . ']';
-  }
-  // Add it to the form_state.
-  if (isset($options['stage'])) {
-    $stage = $options['stage'];
-    $form_state['values']['validate'][$stage][$name] = $message;
-  }
-  else {
-    $form_state['values']['validate'][$name] = $message;
-  }
-  // Add it to the $_POST to make sure in gets saved in the db.
-  $_POST['validate'][$name] = $message;
-}
-
-/**
- * Helper to clear validation errors on successful pass.
- *
- * @param array $form_state
- *   The form state array.
- */
-function myhaccp_clear_validation(&$form_state) {
-  if (isset($form_state['values']['validate'])) {
-    unset($form_state['values']['validate']);
-  }
-  if (isset($_POST['validate'])) {
-    unset($_POST['validate']);
-  }
-}
-
-/**
- * Helper to check whether any options have been chosen in checkboxes fields.
- *
- * @param array $values
- *   The values of form_state to check.
- * @param array $element
- *   The $form element to check.
- *
- * @return bool
- *   TRUE if options are not set.
- */
-function _checkboxes_field_is_empty($values, $element) {
-  $options = array_get($values, $element, array());
-  foreach ($options as $option) {
-    if ($option !== 0) {
-      $option_check = TRUE;
-    }
-  }
-  if (!isset($option_check)) {
-    return TRUE;
-  }
-  return FALSE;
-}
-
-function _checkbox_field_is_empty($values, $element) {
-  // Just use the text field function as its the same.
-  return _text_field_is_empty($values, $element);
-}
-
-/**
- * Helper to check whether any options have been chosen in radios fields.
- *
- * @param array $values
- *   The values of form_state to check.
- * @param array $element
- *   The $form element to check.
- *
- * @return bool
- *   TRUE if options are not set.
- */
-function _radios_field_is_empty($values, $element) {
-  // Just use the text field function as its the same.
-  return _text_field_is_empty($values, $element);
-}
-
-/**
- * Checks whether a specific option has not been chosen in radio fields.
- *
- * @param string $check_value
- *   The value to check for.
- * @param array $values
- *   The values of form_state to check.
- * @param array $element
- *   The $form element to check.
- *
- * @return bool
- *   FALSE if the radio option selected is equal to the check_value.
- */
-function _radios_field_is_not_value($check_value, $values, $element) {
-  $value = array_get($values, $element, FALSE);
-  if ($value && $value == $check_value) {
-    return FALSE;
-  }
-  return TRUE;
-}
-
-/**
- * Checks whether a select field has nothing selected.
- *
- * @param array $values
- *   The values of form_state to check.
- * @param array $element
- *   The $form element to check.
- *
- * @return bool
- *   TRUE if the field is empty.
- */
-function _select_field_is_empty($values, $element) {
-  $value = array_get($values, $element, 0);
-  if ($value == '0' || empty($value)) {
-    return TRUE;
-  }
-  return FALSE;
-}
-
-/**
- * Checks whether a file field has nothing selected.
- *
- * @param array $values
- *   The values of form_state to check.
- * @param array $element
- *   The $form element to check.
- *
- * @return bool
- *   TRUE if the field is empty.
- */
-function _file_field_is_empty($values, $element) {
-  $value = array_get($values, $element, FALSE);
-  if ($value == 0 || empty($value)) {
-    return TRUE;
-  }
-  return FALSE;
-}
-
-/**
- * Checks whether the given element is empty of value.
- *
- * @param array $values
- *   The values of form_state to check.
- * @param array $element
- *   The $form element to check.
- *
- * @return bool
- *   TRUE if the field is empty.
- */
-function _text_field_is_empty($values, $element) {
-  $value = array_get($values, $element, FALSE);
-  if ($value) {
-    return FALSE;
-  }
-  return TRUE;
 }
 
 /**
@@ -796,51 +547,6 @@ function myhaccp_prepare_values($data, &$form_state) {
 }
 
 /**
- * Callback to check validation for a field.
- *
- * @param string $callback
- *   Validation callback function name.
- * @param string $target
- *   Dot notation string relating to the depth of the array element to target.
- * @param array $form
- *   The form.
- * @param array $form_state
- *   The form state containing the values.
- * @param array $options
- *   An array of possible options:
- *   'check_only' boolean - determines whether to just use this function to
- *     check validation but not add any error messages to the form.
- *
- *
- * @return bool
- *   Boolean determining whether the form has failed validation.
- */
-function _check_validation($callback, $target, $form, &$form_state, $options = array()) {
-  $invalid = $callback($form_state['values'], $target);
-  // Its possible we only want to check a field and return the invalid boolean,
-  // in which case ignore the next part.
-  $check_only = isset($options['check_only']) ? $options['check_only'] : FALSE;
-  if (!$check_only && $invalid) {
-    // Get the message from the attributes of the element.
-    $message = array_get($form, $target . '.#attributes.data-parsley-error-message', NULL);
-    // Prepare the validation message.
-    myhacpp_prepare_validation($target, $message, $form_state, $options);
-  }
-  return $invalid;
-}
-
-/**
- * Validation handler that shows a successful save message.
- *
- * @see myhaccp_form_myhaccp_start_form_alter()
- */
-function myhaccp_saved_message($form, &$form_state) {
-  if (isset($form_state['clicked_button']) && $form_state['clicked_button']['#value'] == 'Save') {
-    drupal_set_message('Study saved', 'status', FALSE);
-  }
-}
-
-/**
  * The modal dialog for the help pages menu callback.
  *
  * Renders the node and passes it back in a ctools modal.
@@ -908,152 +614,6 @@ function myhaccp_prepare_more_link($nid) {
 }
 
 /**
- * Checks to make sure hazard data exists.
- *
- * This is used by principle steps to check that previous steps have been filled
- * in correctly, or at least enough to progress to a stage in the form.
- *
- * @return int
- *   Return an instance count.
- */
-function myhaccp_ensure_hazards_exist() {
-  $data = mforms_get_vals('myhaccp', 'principle_1_question_1');
-  $instance_count = 0;
-  if (isset($data)) {
-    foreach ($data['principle_1_question_1'] as $key => $instance) {
-      if (strpos($key, 'instance') === 0) {
-        if (array_get($instance, 'wrapper.step_no', FALSE) && array_get($instance, 'wrapper.step_name', FALSE)) {
-          $checks = array(
-            "hazards_wrapper.biological" => '_text_field_is_empty',
-            "hazards_wrapper.physical" => '_text_field_is_empty',
-            "hazards_wrapper.allergens" => '_text_field_is_empty',
-            "hazards_wrapper.chemical" => '_text_field_is_empty',
-          );
-
-          // Check that the hazard fields have been filled in.
-          foreach ($checks as $target => $callback) {
-            $invalid[] = $callback($instance, $target);
-          }
-
-          // If all four hazard fields from the previous stage are 'invalid'
-          // (empty) then this instance doesn't pass.
-          if (in_array(FALSE, $invalid)) {
-            // Increment the instance count.
-            $instance_count++;
-          }
-
-        }
-      }
-    }
-  }
-  return $instance_count;
-}
-
-
-/**
- * Gets all hazards over the specified threshold in principle 1 question 2.
- *
- * @return array
- *   An array of each item's data.
- */
-function myhaccp_get_items_over_threshold() {
-  $items = array();
-  $data = mforms_get_vals('myhaccp', 'principle_1_question_2');
-  $threshold = array_get($data, 'principle_1_question_2.threshold', FALSE);
-  // Iterate through the previous data and look for instances which have the
-  // correct form fields filled out.
-  if (isset($data) && $threshold) {
-    foreach ($data['principle_1_question_2'] as $key => $instance) {
-      if (strpos($key, 'instance') === 0) {
-        foreach ($instance['instance_table'] as $key => $item) {
-          if (isset($item['significance']) && $item['significance'] >= $threshold) {
-            $items[] = $item;
-          }
-        }
-      }
-    }
-  }
-  return $items;
-}
-
-/**
- * Ensure there are hazards over the set threshold in principle 1 question 2.
- *
- * @return int
- *   The count of hazards over the threshold.
- */
-function myhaccp_ensure_over_threshold() {
-  $items = myhaccp_get_items_over_threshold();
-  return count($items);
-}
-
-/**
- * Gets all hazards which are a CCP.
- *
- * @return array
- *   Returns all CCP items.
- */
-function myhaccp_get_ccps() {
-  $items = array();
-  $data = mforms_get_vals('myhaccp', 'principle_2_question_4');
-  $rows = array_get($data, 'principle_2_question_4.instance_table', array());
-  // Iterate through the previous data.
-  foreach ($rows as $key => $item) {
-    if (is_array($item)) {
-      $hazard = unserialize($item['hazard']);
-      // Determine the critical control point.
-      if (!empty($item['ccp']) && $item['ccp'] == 'yes') {
-        $items[] = $hazard;
-      }
-    }
-  }
-  return $items;
-}
-
-/**
- * Returns the CCP count.
- *
- * @return int
- *   The count of ccp items found.
- */
-function myhaccp_ensure_ccps_exist() {
-  $items = myhaccp_get_ccps();
-  return count($items);
-}
-
-/**
- * Check that there is data in one or more fields.
- *
- * @param array $form_state
- *   The form_state array containing the values.
- * @param string $validation_name
- *   The name of the calling function using the magic constant.
- *
- * @return bool
- *   Boolean indicating whether any field values were found. TRUE if none were
- *   found, FALSE if there were one or more values.
- */
-function myhacpp_all_fields_are_empty($form_state, $validation_name) {
-  // Get the stage name from the passed validation function name.
-  $stage = str_replace('_validate', '', $validation_name);
-  // Iterate over all the form_state values.
-  $iterator = new RecursiveArrayIterator($form_state['values'][$stage]);
-  // Prepare a new standard class so we can pass through items found from the
-  // iterator.
-  $found = new stdClass;
-  $found->items = array();
-  // Apply an iterator callback to each element of the array.
-  iterator_apply($iterator, 'myhaccp_find_values', array($iterator, $found));
-  // Check if there are any found items.
-  if (!empty($found->items)) {
-    // We have one of more values so return FALSE.
-    return FALSE;
-  }
-  // Nothing found so return TRUE.
-  return TRUE;
-}
-
-/**
  * Iterator function to traverse the fields.
  *
  * @param RecursiveArrayIterator $iterator
@@ -1084,12 +644,34 @@ function myhaccp_find_values($iterator, $found) {
   }
 }
 
-function myhaccp_set_pager_url($form, &$form_state) {
-  // Only deal with back submit if we have store key.
-  if (isset($form_state['clicked_button']['#store_key'])) {
-    // Add $_POST into values as they got unset in the validation process due to
-    // limit_validation_errors property of the back/step button.
-    $form_state['values'] += $_POST;
-    mforms_submit($form_state['clicked_button']['#store_key'], $form, $form_state);
+/**
+ * Gets the results of all the stages of the study.
+ *
+ * @param array $keys
+ *   The names of the store keys (stages) to get the data for.
+ * @param int $iid
+ *   The study ID to preview.
+ *
+ * @return array
+ *   An empty array if the IID wasn't found, otherwise an array keyed with the
+ *   stage name and the values being the unserialized form state values.
+ */
+function myhaccp_study_get_stages_data($keys, $iid) {
+  // Get all the stages from the db.
+  $query = db_select('mforms_storage_steps', 'mss')
+    ->fields('mss', array('store_key', 'store_data'))
+    ->condition('mss.store_key', $keys, 'IN')
+    ->condition('mss.iid', $iid);
+  $results = $query->execute()->fetchAllAssoc('store_key');
+  if ($results) {
+    // Unpack the data into an array keyed by the stage name.
+    asort($results);
+    foreach ($results as $stage => $values) {
+      $results[$stage] = unserialize($values->store_data);
+    }
+    // Sort it alphabetically and return it.
+    return $results;
   }
+  // Return an empty array if the study has not been found.
+  return array();
 }

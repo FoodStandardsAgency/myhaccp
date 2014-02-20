@@ -5,12 +5,12 @@ default:
     Behat\MinkExtension\Extension:
       goutte: ~
       selenium2: ~
+      zombie: ~
       base_url: http://l.myhaccp
     Drupal\DrupalExtension\Extension:
+      api_driver: "drupal"
       blackbox: ~
-gitlab:
-  formatter:
-    name: pretty
-  extensions:
-    Behat\MinkExtension\Extension:
-      base_url: http://l.myhaccp
+      drush:
+        root: /vagrant_sites/l.myhaccp/web
+      drupal:
+        drupal_root: /vagrant_sites/l.myhaccp/web
