@@ -140,7 +140,7 @@ class MyHACCPMultiStepControls extends MformsControls {
 //        '#disabled' => $visited,
         '#attributes' => array('class' => array($class)),
         '#limit_validation_errors' => array(),
-        '#submit' => array('myhaccp_set_pager_url'),
+        '#submit' => array('myhaccp_pager_submit'),
         '#store_key' => $this->store->getKey(),
         '#mforms_step' => $id,
       );
@@ -155,7 +155,7 @@ class MyHACCPMultiStepControls extends MformsControls {
       }
     }
 
-    // Create a wrapper for the continue and previous buttons
+    // Create a wrapper for the continue and previous buttons.
     $form_controls['form_nav_wrapper'] = array(
       '#type' => 'container',
       '#weight' => $this->weight_nav,
@@ -171,7 +171,7 @@ class MyHACCPMultiStepControls extends MformsControls {
         '#value' => $this->label_continue,
         '#weight' => 20,
         '#attributes' => $this->attributes_continue,
-        '#submit' => array('_mforms_back_submit'),
+        '#submit' => array('myhaccp_continue_submit'),
         '#store_key' => $this->store->getKey(),
         '#attributes' => array(
           'class' => array('form-continue'),
@@ -208,7 +208,7 @@ class MyHACCPMultiStepControls extends MformsControls {
         '#attributes' => $this->attributes_back,
         '#store_key' => $this->store->getKey(),
         '#mforms_step' => $this->steps->getPrev(),
-        '#submit' => array('_mforms_back_submit'),
+        '#submit' => array('myhaccp_back_submit'),
         '#attributes' => array(
           'class' => array('form-previous'),
         ),
@@ -225,7 +225,7 @@ class MyHACCPMultiStepControls extends MformsControls {
     }
 
 
-    // Create a wrapper for the form save button and accompanying message
+    // Create a wrapper for the form save button and accompanying message.
     $form_controls['form_save_wrapper'] = array(
       '#type' => 'container',
       '#weight' => $this->weight_save,
