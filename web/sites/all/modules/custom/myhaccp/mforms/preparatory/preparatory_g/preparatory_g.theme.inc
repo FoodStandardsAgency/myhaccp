@@ -20,8 +20,6 @@ function myhaccp_preprocess_preparatory_g(&$variables) {
   $stage = 'preparatory_g';
   $values = $variables['data'][$stage];
 
-  //dpm($values);
-
   // Hard copy location
   $variables['g_3'] = $values['g_3'];
 
