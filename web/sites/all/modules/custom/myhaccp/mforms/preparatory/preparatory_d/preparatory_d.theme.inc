@@ -20,8 +20,48 @@ function myhaccp_preprocess_preparatory_d(&$variables) {
   $stage = 'preparatory_d';
   $values = $variables['data'][$stage];
 
-  // a_1
-  // $variables['a_1_title'] = t('The company has in place a number of effective prerequisite programmes, including:');
-  // $variables['a_1'] = !empty($names) ? '<ul><li>' . implode('</li><li>', $names) . '</li></ul>' : '';
+  $instances = array();
+
+  // Find all instances
+  // Each instance = one team member
+  foreach($values as $key => $value) {
+    if(strpos($key, 'instance') !== false) {
+      $instances[] = $value;
+    }
+  }
+
+  // Now generate a table of team members
+
+  // First the table headers
+  $header = array(
+    array('data' => t('Name')),
+    array('data' => t('Role')),
+    array('data' => t('Training, experience & qualifications'))
+  );
+
+  // Now the table rows
+  foreach ($instances as $instance) {
+    // Generate a single item from training, experience and qualifications questions
+    $experience = implode('<br />', array_filter($instance['wrapper']));
+
+    $rows[] = array(
+      // Name
+      array('data' => $instance['d_1']),
+      // Role
+      array('data' => $instance['d_3']),
+      // Training, experience & qualifications
+      array('data' => $experience)
+    );
+  }
+
+  // Generate the table through a theme function
+  $variables['d_1_team'] = theme('table', array('header' => $header, 'rows' => $rows));
+
+  // Team skills
+  if ($values['team_skills'] == 'Yes') {
+    $variables['d_1_team_skills'] = t('We confirm that the team has sufficient skills (scientific/technical knowledge and HACCP expertise) to ensure the HACCP study will be effective.');
+  } else {
+    $variables['d_1_team_skills'] = t('We cannot confirm that the team has sufficient skills (scientific/technical knowledge and HACCP expertise) to ensure the HACCP study will be effective.<br /> We plan to address this by:');
+  }
 
 }

@@ -7,8 +7,9 @@ function preparatory_summary(&$form_state, &$next_step) {
   $next_step = 'principle_1_question_1';
 
   // Set the page title.
-  $titles = _get_all_stage_names();
-  drupal_set_title($titles[__FUNCTION__], PASS_THROUGH);
+  $stages = new stages();
+  $stage = $stages->allStages[__FUNCTION__];
+  drupal_set_title($stage->title, PASS_THROUGH);
 
   // Get the node output.
   $node = node_load(1);
