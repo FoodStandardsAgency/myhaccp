@@ -7,7 +7,7 @@
 /**
  * Class stages
  */
-class stages {
+class Stages {
 
   public $allStages = array();
 
@@ -18,10 +18,23 @@ class stages {
     // Populate the stage information.
     $stages = $this->getAll();
     foreach ($stages as $stage => $type) {
-      $this->allStages[$stage] = new stage($stage, $type);
+      $this->allStages[$stage] = new Stage($stage, $type);
       $this->allStages[$stage]->url = $this->getUrl($stage);
       $this->allStages[$stage]->title = $this->getTitle($stage);
     }
+  }
+
+  /**
+   * Returns a stage object.
+   *
+   * @param string $stage
+   *   The key name of the stage.
+   *
+   * @return bool|object
+   *   The stage object or FALSE if not found.
+   */
+  public function getStage($stage) {
+    return isset($this->allStages[$stage]) ? $this->allStages[$stage] : FALSE;
   }
 
   /**
@@ -174,9 +187,32 @@ class stages {
     return isset($all[$url]) ? $all[$url] : FALSE;
   }
 
+  /**
+   * Fetches the current stage for a given IID.
+   *
+   * @param int $iid
+   *   The unique ID of the study.
+   *
+   * @return string
+   *   The current stage.
+   */
+  public function getCurrentStage($iid) {
+    $data = db_select('mforms_storage', 'm');
+    $data->join('mforms_storage_steps', 's', 's.iid = m.iid');
+    $data->fields('s', array('store_data'))
+      ->condition('m.iid', $iid)
+      ->condition('s.store_key', 'curr_step');
+    $result = $data->execute()->fetchField();
+    if ($result) {
+      $data = unserialize($result);
+      return $data;
+    }
+    return '';
+  }
+
 }
 
-class stage {
+class Stage {
 
   public $type;
   public $name;

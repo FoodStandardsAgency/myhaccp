@@ -16,8 +16,8 @@ function principle_7(&$form_state, &$next_step) {
   $values = myhaccp_prepare_values($data, $form_state);
 
   // Set the page title.
-  $stages = new stages();
-  $stage = $stages->allStages[__FUNCTION__];
+  $stages = new Stages();
+  $stage = $stages->getStage(__FUNCTION__);
   drupal_set_title($stage->title, PASS_THROUGH);
 
   $form = array();
@@ -118,7 +118,7 @@ function principle_7(&$form_state, &$next_step) {
  * Validation handler for Principle 2 Question 4.
  */
 function principle_7_validate($form, &$form_state) {
-  $validator = new validator($form, $form_state, 'principle_7');
+  $validator = new Validator($form, $form_state, 'principle_7');
 
   if ($validator->allFieldsAreEmpty()) {
     return;

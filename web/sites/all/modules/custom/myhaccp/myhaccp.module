@@ -5,8 +5,8 @@
  */
 function myhaccp_init() {
   // Add some protection to ensure the class is loaded.
-  if (class_exists('stages')) {
-    $stages = new stages();
+  if (class_exists('Stages')) {
+    $stages = new Stages();
     // Declare all of the stages (steps) forms.
     foreach ($stages->allStages as $file => $stage) {
       $type = $stage->type;
@@ -345,17 +345,19 @@ function myhaccp_theme($existing, $type, $theme, $path) {
       'function' => 'theme_myhaccp_2_2_table',
     ),
   );
-  $stages = new stages();
-  foreach ($stages->allStages as $stage) {
-    // Now the hook. We want to pass in the form_state data so have added the
-    // data variable. This will get properly sorted by a preprocess function so
-    // the template has the correct data to display.
-    $hooks[$stage->name] = array(
-      'variables' => array('data' => NULL),
-      'file' => $stage->name . ".theme.inc",
-      'path' => "$path/mforms/$stage->type/$stage->name",
-      'template' => $stage->name
-    );
+  if (class_exists('Stages')) {
+    $stages = new Stages();
+    foreach ($stages->allStages as $stage) {
+      // Now the hook. We want to pass in the form_state data so have added the
+      // data variable. This will get properly sorted by a preprocess function so
+      // the template has the correct data to display.
+      $hooks[$stage->name] = array(
+        'variables' => array('data' => NULL),
+        'file' => $stage->name . ".theme.inc",
+        'path' => "$path/mforms/$stage->type/$stage->name",
+        'template' => $stage->name
+      );
+    }
   }
   return $hooks;
 }
@@ -418,7 +420,7 @@ function myhaccp_pager_submit($form, &$form_state) {
     // Add $_POST into values as they got unset in the validation process due to
     // limit_validation_errors property of the back/step button.
     $form_state['values'] += $_POST;
-    $stages = new stages();
+    $stages = new Stages();
     $stage = $stages->allStages[$form_state['clicked_button']['#mforms_step']];
     $form_state['redirect'] = 'tool/study/' . $_SESSION['iid'] . '/' . $stage->url;
     mforms_submit($form_state['clicked_button']['#store_key'], $form, $form_state);
@@ -434,7 +436,7 @@ function myhaccp_continue_submit($form, &$form_state) {
     // Add $_POST into values as they got unset in the validation process due to
     // limit_validation_errors property of the back/step button.
     $form_state['values'] += $_POST;
-    $stages = new stages();
+    $stages = new Stages();
     $stage = $stages->allStages[$form['next_step']['#value']];
     $form_state['redirect'] = 'tool/study/' . $_SESSION['iid'] . '/' . $stage->url;
     mforms_submit($form_state['clicked_button']['#store_key'], $form, $form_state);
@@ -450,7 +452,7 @@ function myhaccp_back_submit($form, &$form_state) {
     // Add $_POST into values as they got unset in the validation process due to
     // limit_validation_errors property of the back/step button.
     $form_state['values'] += $_POST;
-    $stages = new stages();
+    $stages = new Stages();
     $stage = $stages->allStages[$form['prev_step']['#value']];
     $form_state['redirect'] = 'tool/study/' . $_SESSION['iid'] . '/' . $stage->url;
     mforms_submit($form_state['clicked_button']['#store_key'], $form, $form_state);

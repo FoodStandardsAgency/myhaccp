@@ -94,7 +94,7 @@ class MformsDatabaseStore implements MformsIstore {
    * Gets the stored record for the given key.
    */
   public function getStore($key) {
-    $stages = new stages();
+    $stages = new Stages();
 
     // The step names (functions) are only stored in the db once submitted but
     // we want to be able to jump around between steps so need them declared

@@ -14,8 +14,8 @@ function preparatory_g(&$form_state, &$next_step) {
   // them in form as default values.
   $values = myhaccp_prepare_values($data, $form_state);
 
-  $stages = new stages();
-  $stage = $stages->allStages[__FUNCTION__];
+  $stages = new Stages();
+  $stage = $stages->getStage(__FUNCTION__);
   drupal_set_title($stage->title, PASS_THROUGH);
 
   $default_file = array_get($values, 'preparatory_g.g_2', FALSE);
@@ -87,7 +87,7 @@ function preparatory_g(&$form_state, &$next_step) {
  * Validation handler.
  */
 function preparatory_g_validate($form, &$form_state) {
-  $validator = new validator($form, $form_state, 'preparatory_g');
+  $validator = new Validator($form, $form_state, 'preparatory_g');
 
   if ($validator->allFieldsAreEmpty()) {
     return;
@@ -101,8 +101,8 @@ function preparatory_g_validate($form, &$form_state) {
     $validator->validate($method, $target);
   }
 
-  $upload = new validation($form, $form_state, 'preparatory_g.g_2');
-  $hard_copy = new validation($form, $form_state, 'preparatory_g.g_3');
+  $upload = new Validation($form, $form_state, 'preparatory_g.g_2');
+  $hard_copy = new Validation($form, $form_state, 'preparatory_g.g_3');
   if (!$upload->fieldIsNotEmpty() && !$hard_copy->fieldIsNotEmpty()) {
     $messages = array(
       'validation_messages' => array(t('Please either upload a digital copy of your flow diagram, or if you only have a hard copy please specify the location where it is retained and any document reference.')),
