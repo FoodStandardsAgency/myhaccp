@@ -15,11 +15,32 @@ function preparatory_summary(&$form_state, &$next_step) {
   $node = node_load(1);
   $node_output = node_view($node);
   $validation = new ValidateStages();
+  // Get the statuses.
   $statuses = $validation->getPreparatoryStagesStatuses();
   $message_output = '';
-  foreach ($statuses as $key => $state) {
-    $message_output .= '<h3>' . $titles[$key] . '</h3>';
+  // Iterate over all the statuses of all the stages.
+  foreach ($statuses as $key => $passed) {
+
+    // Get the stage.
+    $stage = $stages->getStage($key);
+
+    // Construct a url to the stage.
+    $url = 'tool/study/' . $_SESSION['iid'] . '/' . $stage->url;
+
+    // Determine what is displayed and the class name for a pass or fail.
+    if ($passed) {
+      $state = t('OK');
+      $class = 'passed';
+    }
+    else {
+      $state = l(t('Needs review'), $url);
+      $class = 'review';
+    }
+
+    $message_output .= '<div class="stage-validation ' . $class . '">';
+    $message_output .= '<h3>' . $stage->title . '</h3>';
     $message_output .= '<div class="validation-status">' . $state . '</div>';
+    $message_output .= '</div>';
   }
 
   $form = array();
