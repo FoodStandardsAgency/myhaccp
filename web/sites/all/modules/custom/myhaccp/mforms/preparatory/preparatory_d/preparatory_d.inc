@@ -14,7 +14,9 @@ function preparatory_d(&$form_state, &$next_step) {
   // them in form as default values.
   $values = myhaccp_prepare_values($data, $form_state);
 
-  drupal_set_title('Preparatory Stage D: Select the team');
+  $stages = new Stages();
+  $stage = $stages->getStage(__FUNCTION__);
+  drupal_set_title($stage->title, PASS_THROUGH);
 
   $form = array();
   $form['#tree'] = TRUE;
@@ -212,7 +214,7 @@ function preparatory_d(&$form_state, &$next_step) {
  * Validation handler.
  */
 function preparatory_d_validate($form, &$form_state) {
-  $validator = new validator($form, $form_state, 'preparatory_d');
+  $validator = new Validator($form, $form_state, 'preparatory_d');
 
   if ($validator->allFieldsAreEmpty()) {
     return;

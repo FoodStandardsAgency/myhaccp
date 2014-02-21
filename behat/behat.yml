@@ -5,6 +5,7 @@ default:
     Behat\MinkExtension\Extension:
       goutte: ~
       selenium2: ~
+      zombie: ~
       base_url: http://l.myhaccp
     Drupal\DrupalExtension\Extension:
       api_driver: "drupal"

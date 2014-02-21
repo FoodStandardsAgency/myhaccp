@@ -30,6 +30,8 @@ Feature: Principle 2 Question 2
   Scenario: Test validation for Principle 2.2
     Given I complete all principles up to "2.1"
     And I press the "Save and continue" button
-    Then I should see "CCP?"
-    When I press the "Save this page" button
-    Then I should see "Please indicate whether this process step is a critical control point."
+    When I select the radio button "Yes" in row "1" "ccp"
+    And I press the "Save this page" button
+    Then I should see "Study saved"
+    And I should see "Please indicate whether this process step is a critical control point"
+

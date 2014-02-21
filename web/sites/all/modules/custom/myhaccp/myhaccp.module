@@ -4,10 +4,14 @@
  * Implements hook_init().
  */
 function myhaccp_init() {
-  // Declare all of the stages (steps) forms.
-  $files = _get_all_steps();
-  foreach ($files as $file => $type) {
-    ctools_include($file, 'myhaccp', "mforms/$type/$file");
+  // Add some protection to ensure the class is loaded.
+  if (class_exists('Stages')) {
+    $stages = new Stages();
+    // Declare all of the stages (steps) forms.
+    foreach ($stages->allStages as $file => $stage) {
+      $type = $stage->type;
+      ctools_include($file, 'myhaccp', "mforms/$type/$file");
+    }
   }
   ctools_include('myhaccp.form', 'myhaccp', 'includes');
 }
@@ -202,6 +206,11 @@ function myhaccp_myhaccp_mforms_init() {
       'value' => 'H',
       'weight' => 9,
     ),
+    'preparatory_summary' => array(
+      'stage' => 'preparatory',
+      'value' => 'Summary',
+      'weight' => 10,
+    ),
     'principle_1_1' => array(
       'stage' => 'principles',
       'value' => '1.1',
@@ -283,6 +292,8 @@ function myhaccp_element_info_alter(&$types) {
 
 /**
  * Menu callback which displays the form.
+ *
+ * This function is called whenever the form is loaded.
  */
 function myhaccp_study_resume($form, &$form_state, $iid = FALSE) {
   // If we've been passed an IID then set the session to that.
@@ -334,17 +345,19 @@ function myhaccp_theme($existing, $type, $theme, $path) {
       'function' => 'theme_myhaccp_2_2_table',
     ),
   );
-  $all = _get_all_steps();
-  foreach ($all as $stage => $subtype) {
-    // Now the hook. We want to pass in the form_state data so have added the
-    // data variable. This will get properly sorted by a preprocess function so
-    // the template has the correct data to display.
-    $hooks[$stage] = array(
-      'variables' => array('data' => NULL),
-      'file' => "$stage.theme.inc",
-      'path' => "$path/mforms/$subtype/$stage",
-      'template' => $stage
-    );
+  if (class_exists('Stages')) {
+    $stages = new Stages();
+    foreach ($stages->allStages as $stage) {
+      // Now the hook. We want to pass in the form_state data so have added the
+      // data variable. This will get properly sorted by a preprocess function so
+      // the template has the correct data to display.
+      $hooks[$stage->name] = array(
+        'variables' => array('data' => NULL),
+        'file' => $stage->name . ".theme.inc",
+        'path' => "$path/mforms/$stage->type/$stage->name",
+        'template' => $stage->name
+      );
+    }
   }
   return $hooks;
 }
@@ -399,45 +412,51 @@ function myhaccp_saved_message($form, &$form_state) {
 }
 
 /**
- * Defines all the function names of the stages.
- *
- * @return array
- *   an array keyed by the function name with the value being the preparatory or
- *   principle stage.
+ * Callback for the pager buttons.
  */
-function _get_all_steps() {
-  $files = array(
-    'preparatory_a' => 'preparatory',
-    'preparatory_b' => 'preparatory',
-    'preparatory_c_1' => 'preparatory',
-    'preparatory_c_2' => 'preparatory',
-    'preparatory_d' => 'preparatory',
-    'preparatory_e' => 'preparatory',
-    'preparatory_f' => 'preparatory',
-    'preparatory_g' => 'preparatory',
-    'preparatory_h' => 'preparatory',
-    'principle_1_1' => 'principle',
-    'principle_1_2' => 'principle',
-    'principle_1_3' => 'principle',
-    'principle_2_1' => 'principle',
-    'principle_2_2' => 'principle',
-    'principle_3' => 'principle',
-    'principle_4' => 'principle',
-    'principle_5' => 'principle',
-    'principle_6' => 'principle',
-    'principle_7' => 'principle',
-  );
-  return $files;
+function myhaccp_pager_submit($form, &$form_state) {
+  // Only deal with back submit if we have store key.
+  if (isset($form_state['clicked_button']['#store_key'])) {
+    // Add $_POST into values as they got unset in the validation process due to
+    // limit_validation_errors property of the back/step button.
+    $form_state['values'] += $_POST;
+    $stages = new Stages();
+    $stage = $stages->allStages[$form_state['clicked_button']['#mforms_step']];
+    $form_state['redirect'] = 'tool/study/' . $_SESSION['iid'] . '/' . $stage->url;
+    mforms_submit($form_state['clicked_button']['#store_key'], $form, $form_state);
+  }
 }
 
 /**
- * Gets all the stage functions.
- *
- * @return array
- *   Returns the array keys relating to the step names.
+ * Callback for save and continue.
  */
-function _get_all_step_names() {
-  return array_keys(_get_all_steps());
+function myhaccp_continue_submit($form, &$form_state) {
+  // Only deal with back submit if we have store key.
+  if (isset($form_state['clicked_button']['#store_key'])) {
+    // Add $_POST into values as they got unset in the validation process due to
+    // limit_validation_errors property of the back/step button.
+    $form_state['values'] += $_POST;
+    $stages = new Stages();
+    $stage = $stages->allStages[$form['next_step']['#value']];
+    $form_state['redirect'] = 'tool/study/' . $_SESSION['iid'] . '/' . $stage->url;
+    mforms_submit($form_state['clicked_button']['#store_key'], $form, $form_state);
+  }
+}
+
+/**
+ * Callback for save and continue.
+ */
+function myhaccp_back_submit($form, &$form_state) {
+  // Only deal with back submit if we have store key.
+  if (isset($form_state['clicked_button']['#store_key'])) {
+    // Add $_POST into values as they got unset in the validation process due to
+    // limit_validation_errors property of the back/step button.
+    $form_state['values'] += $_POST;
+    $stages = new Stages();
+    $stage = $stages->allStages[$form['prev_step']['#value']];
+    $form_state['redirect'] = 'tool/study/' . $_SESSION['iid'] . '/' . $stage->url;
+    mforms_submit($form_state['clicked_button']['#store_key'], $form, $form_state);
+  }
 }
 
 /**
@@ -616,6 +635,8 @@ function myhaccp_find_values($iterator, $found) {
 /**
  * Gets the results of all the stages of the study.
  *
+ * @param array $keys
+ *   The names of the store keys (stages) to get the data for.
  * @param int $iid
  *   The study ID to preview.
  *
@@ -623,9 +644,7 @@ function myhaccp_find_values($iterator, $found) {
  *   An empty array if the IID wasn't found, otherwise an array keyed with the
  *   stage name and the values being the unserialized form state values.
  */
-function myhaccp_study_get_all_stages_data($iid) {
-  // Fetch all the keys.
-  $keys = _get_all_step_names();
+function myhaccp_study_get_stages_data($keys, $iid) {
   // Get all the stages from the db.
   $query = db_select('mforms_storage_steps', 'mss')
     ->fields('mss', array('store_key', 'store_data'))

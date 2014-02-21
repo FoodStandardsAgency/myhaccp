@@ -4,7 +4,7 @@ function preparatory_h(&$form_state, &$next_step) {
 
   // Define following step callback. If none set, that implies it is
   // the last step.
-  $next_step = 'principle_1_question_1';
+  $next_step = 'preparatory_summary';
 
   // Retrieve submitted values. This comes in handy when back action
   // occurred and we need to display values that were originally submitted.
@@ -14,7 +14,9 @@ function preparatory_h(&$form_state, &$next_step) {
   // them in form as default values.
   $values = myhaccp_prepare_values($data, $form_state);
 
-  drupal_set_title('Preparatory Stage H: On-site confirmation of flow diagram', PASS_THROUGH);
+  $stages = new Stages();
+  $stage = $stages->getStage(__FUNCTION__);
+  drupal_set_title($stage->title, PASS_THROUGH);
 
   $form = array();
   $form['#attributes']['class'][] = 'prep-f';
@@ -163,7 +165,7 @@ function preparatory_h(&$form_state, &$next_step) {
  * Validation handler.
  */
 function preparatory_h_validate($form, &$form_state) {
-  $validator = new validator($form, $form_state, 'preparatory_h');
+  $validator = new Validator($form, $form_state, 'preparatory_h');
 
   if ($validator->allFieldsAreEmpty()) {
     return;

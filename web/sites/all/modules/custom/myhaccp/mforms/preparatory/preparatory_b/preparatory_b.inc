@@ -14,7 +14,9 @@ function preparatory_b(&$form_state, &$next_step) {
   // them in form as default values.
   $values = myhaccp_prepare_values($data, $form_state);
 
-  drupal_set_title('Preparatory Stage B: Management Commitment');
+  $stages = new Stages();
+  $stage = $stages->getStage(__FUNCTION__);
+  drupal_set_title($stage->title, PASS_THROUGH);
 
   $form = array();
   $form['#attributes']['class'][] = 'prep-b';
@@ -71,14 +73,14 @@ function preparatory_b(&$form_state, &$next_step) {
  * Validation handler.
  */
 function preparatory_b_validate($form, &$form_state) {
-  $validator = new validator($form, $form_state, 'preparatory_b');
+  $validator = new Validator($form, $form_state, 'preparatory_b');
 
   if ($validator->allFieldsAreEmpty()) {
     return;
   }
 
-  $evidence = new validation($form, $form_state, 'preparatory_b.b_2');
-  $support = new validation($form, $form_state, 'preparatory_b.b_1');
+  $evidence = new Validation($form, $form_state, 'preparatory_b.b_2');
+  $support = new Validation($form, $form_state, 'preparatory_b.b_1');
   if (!$evidence->fieldIsNotEmpty() && !$support->fieldIsNotEmpty()) {
     $messages = array(
       'validation_messages' => array(t('Please choose at least one option in question 1 or add some content in question 2.')),

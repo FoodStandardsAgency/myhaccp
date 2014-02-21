@@ -17,7 +17,9 @@ function principle_1_1(&$form_state, &$next_step) {
   $values = myhaccp_prepare_values($data, $form_state);
 
   // Set the page title.
-  drupal_set_title('Principle 1, Question 1: Identify and list potential hazards.');
+  $stages = new Stages();
+  $stage = $stages->getStage(__FUNCTION__);
+  drupal_set_title($stage->title, PASS_THROUGH);
 
   $form = array();
   $form['#tree'] = TRUE;
@@ -190,7 +192,7 @@ function principle_1_1(&$form_state, &$next_step) {
  * Validation handler for Principle 1 Question 1.
  */
 function principle_1_1_validate($form, &$form_state) {
-  $validator = new validator($form, $form_state, 'principle_1_1');
+  $validator = new Validator($form, $form_state, 'principle_1_1');
 
   if ($validator->allFieldsAreEmpty()) {
     return;
@@ -231,7 +233,7 @@ function principle_1_1_validate($form, &$form_state) {
     );
 
     foreach ($checks as $target => $method) {
-      $validation = new validation($form, $form_state, $target);
+      $validation = new Validation($form, $form_state, $target);
       $invalid_hazards[] = $validation->$method();
     }
 
@@ -248,7 +250,7 @@ function principle_1_1_validate($form, &$form_state) {
     );
 
     foreach ($checks as $target => $method) {
-      $validation = new validation($form, $form_state, $target);
+      $validation = new Validation($form, $form_state, $target);
       $invalid_steps[] = $validation->$method();
     }
 

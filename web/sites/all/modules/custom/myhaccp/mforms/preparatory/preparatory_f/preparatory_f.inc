@@ -14,7 +14,9 @@ function preparatory_f(&$form_state, &$next_step) {
   // them in form as default values.
   $values = myhaccp_prepare_values($data, $form_state);
 
-  drupal_set_title('Preparatory Stage F: Identify intended use of the product', PASS_THROUGH);
+  $stages = new Stages();
+  $stage = $stages->getStage(__FUNCTION__);
+  drupal_set_title($stage->title, PASS_THROUGH);
 
   $form = array();
   $form['#attributes']['class'][] = 'prep-f';
@@ -183,7 +185,7 @@ function preparatory_f(&$form_state, &$next_step) {
  * Validation handler.
  */
 function preparatory_f_validate($form, &$form_state) {
-  $validator = new validator($form, $form_state, 'preparatory_f');
+  $validator = new Validator($form, $form_state, 'preparatory_f');
 
   if ($validator->allFieldsAreEmpty()) {
     return;

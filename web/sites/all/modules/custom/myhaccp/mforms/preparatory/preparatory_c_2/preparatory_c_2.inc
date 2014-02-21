@@ -14,7 +14,9 @@ function preparatory_c_2(&$form_state, &$next_step) {
   // them in form as default values.
   $values = myhaccp_prepare_values($data, $form_state);
 
-  drupal_set_title('Preparatory Stage C: Define scope of the study, <br/>Question 4', PASS_THROUGH);
+  $stages = new Stages();
+  $stage = $stages->getStage(__FUNCTION__);
+  drupal_set_title($stage->title, PASS_THROUGH);
 
   $form = array();
   $form['#attributes']['class'][] = 'prep-c-2';
@@ -202,7 +204,7 @@ function preparatory_c_2(&$form_state, &$next_step) {
  * Validation handler.
  */
 function preparatory_c_2_validate($form, &$form_state) {
-  $validator = new validator($form, $form_state, 'preparatory_c_2');
+  $validator = new Validator($form, $form_state, 'preparatory_c_2');
 
   if ($validator->allFieldsAreEmpty()) {
     return;
@@ -221,7 +223,7 @@ function preparatory_c_2_validate($form, &$form_state) {
   );
 
   foreach ($checks as $target => $method) {
-    $validation = new validation($form, $form_state, $target);
+    $validation = new Validation($form, $form_state, $target);
     $results[] = $validation->$method();
   }
 
