@@ -92,9 +92,11 @@ function myhaccp_list() {
 function myhaccp_study_preview($iid) {
   if (is_numeric($iid)) {
     // Fetch all the keys.
-    $keys = _get_all_step_names();
+    $stages = new stages();
+    $stages_keys = array_keys($stages->allStages);
+
     // Check this study is valid.
-    $study = myhaccp_study_get_stages_data($keys, $iid);
+    $study = myhaccp_study_get_stages_data($stages_keys,$iid);
     if (!empty($study)) {
       // Create the PDF button/link.
       $output = '';
