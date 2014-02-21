@@ -12,7 +12,7 @@ function preparatory_summary(&$form_state, &$next_step) {
   drupal_set_title($stage->title, PASS_THROUGH);
 
   // Get the node output.
-  $node = node_load(1);
+  $node = node_load(35);
   $node_output = node_view($node);
   $validation = new ValidateStages();
   // Get the statuses.
