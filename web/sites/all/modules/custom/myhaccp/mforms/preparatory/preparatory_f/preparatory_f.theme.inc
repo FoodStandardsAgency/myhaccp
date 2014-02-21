@@ -20,7 +20,7 @@ function myhaccp_preprocess_preparatory_f(&$variables) {
   $stage = 'preparatory_f';
   $values = $variables['data'][$stage];
 
-  dpm($values);
+  //dpm($values);
 
   // Name of the product
   $variables['f_1'] = $values['f_1'];
