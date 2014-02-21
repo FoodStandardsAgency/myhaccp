@@ -44,9 +44,16 @@ function myhaccp_list() {
     ->fields('m', array())
     ->condition('m.uid', $user->uid);
   $results = $query->execute()->fetchAll();
+  // Get a new Stages instance.
+  $stages = new Stages();
+  // Build out the rows.
   foreach ($results as $delta => $result) {
-    // Build out the rows.
-    $edit = user_access('edit own myhaccp study') || user_access('edit any myhaccp study') ? l(t('Resume'), 'tool/study/' . $result->iid) : '';
+    // Prepare the edit link based on the current stage.
+    $current_stage = $stages->getCurrentStage($result->iid);
+    $stage_url = $stages->getUrl($current_stage);
+    $edit_link = 'tool/study/' . $result->iid . '/' . $stage_url;
+    // Prepare the links.
+    $edit = user_access('edit own myhaccp study') || user_access('edit any myhaccp study') ? l(t('Resume'), $edit_link) : '';
     $preview = user_access('view own myhaccp study') || user_access('view any myhaccp study') ? l(t('Preview'), 'tool/study/' . $result->iid . '/preview') : '';
     $delete = user_access('delete own myhaccp study') || user_access('delete any myhaccp study') ? l(t('Delete'), 'tool/study/' . $result->iid . '/delete') : '';
 

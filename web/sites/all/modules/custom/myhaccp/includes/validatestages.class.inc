@@ -9,9 +9,9 @@
  *
  * Used to check the status of validation for all stages.
  */
-class validateStages {
+class ValidateStages {
 
-  public $stages = array();
+  public $stages;
   protected $iid;
 
   /**
@@ -19,7 +19,7 @@ class validateStages {
    */
   public function __construct() {
     // Get all the stages for later use.
-    $this->stages = _get_all_steps();
+    $this->stages = new Stages();
     // Get the IID from the session.
     $this->iid = $_SESSION['iid'];
   }
@@ -27,18 +27,18 @@ class validateStages {
   /**
    * Gets the data for a specific stage from the database.
    *
-   * @param string $stage
+   * @param Stage $stage
    *   The stage to query for data.
    *
    * @return array
    *   The stage data from the database or empty array if not found.
    */
-  protected function getStageData($stage) {
+  protected function getStageData(Stage $stage) {
     $data = array();
     // Get the stage from the db.
     $query = db_select('mforms_storage_steps', 'mss')
       ->fields('mss', array('store_data'))
-      ->condition('mss.store_key', $stage)
+      ->condition('mss.store_key', $stage->name)
       ->condition('mss.iid', $this->iid);
     $result = $query->execute()->fetchField(0);
     if ($result) {
@@ -59,7 +59,7 @@ class validateStages {
    */
   protected function getAllStageData($type = 'all') {
     $data = array();
-    foreach ($this->stages as $key => $stage_type) {
+    foreach ($this->stages->allStages as $key => $stage_type) {
       if ($type !== 'all' && $stage_type == $type) {
         $data[$key] = getStageData($key);
       }
@@ -81,7 +81,7 @@ class validateStages {
     $data = $this->getStageData($stage);
     if (!empty($data)) {
       if (isset($data['validate'])) {
-        $messages = $data['validate'][$stage];
+        $messages = $data['validate'][$stage->name];
       }
     }
     return $messages;
@@ -102,7 +102,7 @@ class validateStages {
    */
   public function getPreparatoryStagesMessages() {
     $messages = array();
-    foreach ($this->stages as $stage => $type) {
+    foreach ($this->stages->allStages as $stage => $type) {
       if ($type == 'preparatory') {
         // Get the messages for this stage.
         $stage_messages = $this->getStageMessages($stage);
@@ -120,15 +120,14 @@ class validateStages {
    * Gets the preparatory stages validation statuses.
    *
    * @return array
-   *   An array of stages and whether they are 'OK' or 'Needs review'.
+   *   An array of stages with boolean values showing pass or fail.
    */
   public function getPreparatoryStagesStatuses() {
     $statuses = array();
-    foreach ($this->stages as $stage => $type) {
-      if ($type == 'preparatory') {
+    foreach ($this->stages->allStages as $stage) {
+      if ($stage->type == 'preparatory') {
         // Get the messages for this stage.
-        $status = $this->stageHasPassed($stage) ? 'OK' : 'Needs review';
-        $statuses[$stage] = $status;
+        $statuses[$stage->name] = $this->stageHasPassed($stage);
       }
     }
     return $statuses;

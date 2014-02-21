@@ -14,8 +14,8 @@ function principle_2_1(&$form_state, &$next_step) {
   // them in form as default values.
   $values = myhaccp_prepare_values($data, $form_state);
 
-  $stages = new stages();
-  $stage = $stages->allStages[__FUNCTION__];
+  $stages = new Stages();
+  $stage = $stages->getStage(__FUNCTION__);
   drupal_set_title($stage->title, PASS_THROUGH);
 
   $form = array();
@@ -27,7 +27,7 @@ function principle_2_1(&$form_state, &$next_step) {
     '#tree' => TRUE,
   );
 
-  $hazards = new hazards();
+  $hazards = new Hazards();
 
   // Ensure data has been entered on principle_1_1.
   if ($hazards->countHazards() == 0) {
@@ -111,7 +111,7 @@ function principle_2_1(&$form_state, &$next_step) {
  * Validation handler.
  */
 function principle_2_1_validate($form, &$form_state) {
-  $validator = new validator($form, $form_state, 'principle_2_1');
+  $validator = new Validator($form, $form_state, 'principle_2_1');
 
   if ($validator->allFieldsAreEmpty()) {
     return;
