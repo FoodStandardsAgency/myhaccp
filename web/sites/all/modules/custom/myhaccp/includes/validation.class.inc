@@ -10,7 +10,7 @@
  * A stage validation used to validate multiple elements and set or clear
  * messages.
  */
-class validator {
+class Validator {
 
   public $results = array();
   public $passed = TRUE;
@@ -47,7 +47,7 @@ class validator {
     }
     // Iterate over every method passed to check validation against.
     foreach ($methods as $method) {
-      $validation = new validation($this->form, $this->state, $target);
+      $validation = new Validation($this->form, $this->state, $target);
       // Get the valid boolean indicating pass (TRUE) or fail (FALSE).
       $valid[] = $validation->$method();
     }
@@ -141,7 +141,7 @@ class validator {
  *
  * A single validation element to be tested for validity.
  */
-class validation {
+class Validation {
 
   /**
    * Constructor method.

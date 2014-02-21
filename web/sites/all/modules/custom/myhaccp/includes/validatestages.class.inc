@@ -9,7 +9,7 @@
  *
  * Used to check the status of validation for all stages.
  */
-class validateStages {
+class ValidateStages {
 
   public $stages = array();
   protected $iid;

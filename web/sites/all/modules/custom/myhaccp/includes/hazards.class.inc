@@ -9,7 +9,7 @@
  *
  * Gets current CCPs and hazards and provides methods of querying their status.
  */
-class hazards {
+class Hazards {
 
   public $steps;
   public $hazards = array();
@@ -62,7 +62,7 @@ class hazards {
       $step_hazards = $this->getHazardsFromCategories($instance['hazards_wrapper']);
       // Create a new hazard object for each one in step_hazards.
       foreach ($step_hazards as $hazard_key => $hazard_name) {
-        $hazard = new hazard($hazard_key);
+        $hazard = new Hazard($hazard_key);
         $hazard->name = $hazard_name;
         $hazard->key = $hazard_key;
         $hazard->step->name = $step_name;
@@ -263,7 +263,7 @@ class hazards {
 
 }
 
-class hazard {
+class Hazard {
 
   public $name;
   public $description;
@@ -277,7 +277,7 @@ class hazard {
    * Constructor method.
    */
   public function __construct() {
-    $this->step = new step();
+    $this->step = new Step();
   }
 
   public function getHeader() {
@@ -319,7 +319,7 @@ class hazard {
 
 }
 
-class step {
+class Step {
 
   public $key;
   public $name;

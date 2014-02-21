@@ -13,8 +13,8 @@ function preparatory_a(&$form_state, &$next_step) {
   // them in form as default values.
   $values = myhaccp_prepare_values($data, $form_state);
 
-  $stages = new stages();
-  $stage = $stages->allStages[__FUNCTION__];
+  $stages = new Stages();
+  $stage = $stages->getStage(__FUNCTION__);
   drupal_set_title($stage->title, PASS_THROUGH);
 
   $form = array();
@@ -96,7 +96,7 @@ function preparatory_a(&$form_state, &$next_step) {
  * Validation handler.
  */
 function preparatory_a_validate($form, &$form_state) {
-  $validator = new validator($form, $form_state, 'preparatory_a');
+  $validator = new Validator($form, $form_state, 'preparatory_a');
 
   if ($validator->allFieldsAreEmpty()) {
     return;
