@@ -8,7 +8,7 @@
  */
 
 /**
- * Implements hook_preprocess_preparatory_1_1().
+ * Implements hook_preprocess_principle_1_1().
  *
  * Prepare the form_state data for presentation in the template file.
  *
@@ -16,14 +16,60 @@
  *   Form state data to process into variables for the template
  *   to display.
  */
-function myhaccp_preprocess_preparatory_1_1(&$variables) {
-  $stage = 'preparatory_1_1';
+function myhaccp_preprocess_principle_1_1(&$variables) {
+  $stage = 'principle_1_1';
   $values = $variables['data'][$stage];
 
   //dpm($values);
 
-  // a_1
-  // $variables['a_1_title'] = t('The company has in place a number of effective prerequisite programmes, including:');
-  // $variables['a_1'] = !empty($names) ? '<ul><li>' . implode('</li><li>', $names) . '</li></ul>' : '';
+  $steps = array();
+
+  // Find all steps
+  // Arrays with 'instance' in the key are a step
+  foreach($values as $key => $value) {
+    if(strpos($key, 'instance') !== false) {
+      $steps[] = $value;
+    }
+  }
+
+  // Now generate a table of hazards per step
+
+  // First the table headers
+  $header = array(
+    array('data' => t('Step No.')),
+    array('data' => t('Step Name')),
+    array('data' => t('Biological')),
+    array('data' => t('Chemical')),
+    array('data' => t('Physical')),
+    array('data' => t('Allergens'))
+  );
+
+  // Now the table rows
+  foreach ($steps as $step) {
+    // Split hazards on new lines using <br />
+    $biological = nl2br($step['hazards_wrapper']['biological']);
+    $chemical = nl2br($step['hazards_wrapper']['chemical']);
+    $physical = nl2br($step['hazards_wrapper']['physical']);
+    $allergens = nl2br($step['hazards_wrapper']['biological']);
+
+    $rows[] = array(
+      // Step No.
+      array('data' => $step['wrapper']['step_no']),
+      // Step Name.
+      array('data' => $step['wrapper']['step_name']),
+      // Biological
+      array('data' => $biological),
+      // Chemical
+      array('data' => $chemical),
+      // Physical
+      array('data' => $physical),
+      // Allergens
+      array('data' => $allergens)
+    );
+  }
+
+
+  // Generate the table through a theme function
+  $variables['p_1_hazard_tables'] = theme('table', array('header' => $header, 'rows' => $rows));
 
 }
