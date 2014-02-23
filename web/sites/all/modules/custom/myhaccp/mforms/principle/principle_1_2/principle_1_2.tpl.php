@@ -10,7 +10,7 @@
 
   <?php print $p_1_2_hazard_table ?>
 
-  <p><?php //print $d_1_team_skills ?></p>
+  <p><?php print $p_1_2_threshold ?></p>
 
 </section>
 

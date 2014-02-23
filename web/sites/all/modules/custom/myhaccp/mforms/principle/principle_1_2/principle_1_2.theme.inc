@@ -68,4 +68,6 @@ function myhaccp_preprocess_principle_1_2(&$variables) {
   // Add all the tables together into one variable
   $variables['p_1_2_hazard_table'] = '<div>' . implode('</div><div>', $step_ha_tables) . '</div>';
 
+  // Threshold
+  $variables['p_1_2_threshold'] = t('The threshold, above which we consider the hazard to be \'significant\' is: <span class="p-1-2-threshold">') . $values['threshold'] . '</span>';
 }
