@@ -6,7 +6,7 @@
 function principle_7(&$form_state, &$next_step) {
   // Define following step callback. If none set, that implies it is
   // the last step.
-  $next_step = 'principle_7';
+  $next_step = 'principle_summary';
 
   // Retrieve submitted values.
   $data = mforms_get_vals('myhaccp', 'principle_7');
@@ -120,7 +120,7 @@ function principle_7(&$form_state, &$next_step) {
 function principle_7_validate($form, &$form_state) {
   $validator = new Validator($form, $form_state, 'principle_7');
 
-  if ($validator->allFieldsAreEmpty()) {
+  if ($validator->pagerButtonUsed() && $validator->allFieldsAreEmpty()) {
     return;
   }
 

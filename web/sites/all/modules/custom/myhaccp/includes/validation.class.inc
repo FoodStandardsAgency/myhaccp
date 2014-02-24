@@ -121,7 +121,7 @@ class Validator {
     $iterator = new RecursiveArrayIterator($this->state['values'][$this->stage]);
     // Prepare a new standard class so we can pass through items found from the
     // iterator.
-    $found = new stdClass;
+    $found = new stdClass();
     $found->items = array();
     // Apply an iterator callback to each element of the array.
     iterator_apply($iterator, 'myhaccp_find_values', array($iterator, $found));
@@ -132,6 +132,38 @@ class Validator {
     }
     // Nothing found so return TRUE.
     return TRUE;
+  }
+
+  /**
+   * Returns a boolean based on whether the save buttons have been used.
+   *
+   * @return bool
+   *   If the pager was used it will return FALSE, otherwise TRUE.
+   */
+  public function saveButtonUsed() {
+    if (isset($this->state['clicked_button'])) {
+      $button = $this->state['clicked_button'];
+      if ($button['#submit'] != 'myhaccp_pager_submit') {
+        return TRUE;
+      }
+    }
+    return FALSE;
+  }
+
+  /**
+   * Returns a boolean based on whether the pager is used to save the form.
+   *
+   * @return bool
+   *   If the pager was used it will return FALSE, otherwise TRUE.
+   */
+  public function pagerButtonUsed() {
+    if (isset($this->state['clicked_button'])) {
+      $button = $this->state['clicked_button'];
+      if ($button['#submit'][0] == 'myhaccp_pager_submit') {
+        return TRUE;
+      }
+    }
+    return FALSE;
   }
 
 }

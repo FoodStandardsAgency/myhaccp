@@ -110,6 +110,7 @@ class Stages {
       'principle_5' => 'principle',
       'principle_6' => 'principle',
       'principle_7' => 'principle',
+      'principle_summary' => 'principle',
     );
     return $stages;
   }
@@ -198,6 +199,7 @@ class Stages {
       'principle_5' => 'Principle 5: Establish a corrective action plan',
       'principle_6' => 'Principle 6: Verification',
       'principle_7' => 'Principle 7: Establish documentation and record keeping',
+      'principle_summary' => 'Principles Summary',
     );
   }
 

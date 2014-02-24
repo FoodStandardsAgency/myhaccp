@@ -19,6 +19,7 @@ class Hazards {
    * Constructor method.
    */
   public function __construct() {
+    // Ensure the mforms object exists. This is needed for output of stages.
     $this->getAllHazards();
     $this->populateSignificance();
     $this->populateControlMeasure();

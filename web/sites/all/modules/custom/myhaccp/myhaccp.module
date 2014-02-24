@@ -261,6 +261,11 @@ function myhaccp_myhaccp_mforms_init() {
       'value' => '7',
       'weight' => 20,
     ),
+    'principle_summary' => array(
+      'stage' => 'principles',
+      'value' => 'Summary',
+      'weight' => 21,
+    ),
   ));
 
   // Add the parsley.js library.
