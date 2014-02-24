@@ -14,3 +14,27 @@
     }
   }
 }
+
+// jQuery UI based modals.
+.ui-widget-overlay {
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+}
+
+.ui-dialog {
+  top: 4em!important;
+  border: 0.4em solid #222;
+  .ui-dialog-titlebar {
+    display: none;
+  }
+  .ui-dialog-content {
+    padding: 0 1em;
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }
+  &.ui-corner-all {
+    @include border-radius(0);
+  }
+}
+
+
