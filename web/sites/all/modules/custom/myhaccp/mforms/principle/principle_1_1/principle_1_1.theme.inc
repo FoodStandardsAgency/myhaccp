@@ -20,8 +20,6 @@ function myhaccp_preprocess_principle_1_1(&$variables) {
   $stage = 'principle_1_1';
   $values = $variables['data'][$stage];
 
-  //dpm($values);
-
   $steps = array();
 
   // Find all steps
@@ -67,7 +65,6 @@ function myhaccp_preprocess_principle_1_1(&$variables) {
       array('data' => $allergens)
     );
   }
-
 
   // Generate the table through a theme function
   $variables['p_1_hazard_tables'] = theme('table', array('header' => $header, 'rows' => $rows));

@@ -8,7 +8,7 @@
  */
 
 /**
- * Implements hook_preprocess_preparatory_2_2().
+ * Implements hook_preprocess_principle_2_2().
  *
  * Prepare the form_state data for presentation in the template file.
  *
@@ -16,12 +16,12 @@
  *   Form state data to process into variables for the template
  *   to display.
  */
-function myhaccp_preprocess_preparatory_2_2(&$variables) {
-  $stage = 'preparatory_2_2';
+function myhaccp_preprocess_principle_2_2(&$variables) {
+  // @todo pull in data on hazards e.g Step No. / hazard name
+
+  $stage = 'principle_2_2';
   $values = $variables['data'][$stage];
 
-  // a_1
-  // $variables['a_1_title'] = t('The company has in place a number of effective prerequisite programmes, including:');
-  // $variables['a_1'] = !empty($names) ? '<ul><li>' . implode('</li><li>', $names) . '</li></ul>' : '';
+  // $hazards = new Hazards();
 
 }

@@ -41,10 +41,10 @@ function myhaccp_preprocess_principle_1_2(&$variables) {
     $rows = array();
 
     // Add each hazard to a new table row
-    foreach ($step['instance_table'] as $hazard) {
+    foreach ($step['instance_table'] as $h_key => $hazard) {
       $rows[] = array(
         // Hazard
-        array('data' => $hazard['name']),
+        array('data' => $h_key),
         // Hazard Description
         array('data' => $hazard['description']),
         // Severity
