@@ -107,7 +107,7 @@ function myhaccp_update_7001() {
 }
 
 /**
- * Update the menu item for the tool to point to the new url 'tool'.
+ * Enable the dialog module.
  */
 function myhaccp_update_7002() {
   module_enable('dialog');
