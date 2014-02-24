@@ -8,7 +8,7 @@
  */
 
 /**
- * Implements hook_preprocess_preparatory_4().
+ * Implements hook_preprocess_principle_4().
  *
  * Prepare the form_state data for presentation in the template file.
  *
@@ -20,8 +20,5 @@ function myhaccp_preprocess_principle_4(&$variables) {
   $stage = 'principle_4';
   $values = $variables['data'][$stage];
 
-  // a_1
-  // $variables['a_1_title'] = t('The company has in place a number of effective prerequisite programmes, including:');
-  // $variables['a_1'] = !empty($names) ? '<ul><li>' . implode('</li><li>', $names) . '</li></ul>' : '';
-
+  // dpm($values);
 }

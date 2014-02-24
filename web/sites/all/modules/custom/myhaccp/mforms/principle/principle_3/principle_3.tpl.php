@@ -6,6 +6,6 @@
 ?>
 
 <section class="page">
-  <h3><?php // print $a_1_title ?></h3>
+  <h2>Establish Critical Limits</h2>
   <?php // print $a_1; ?>
 </section>
