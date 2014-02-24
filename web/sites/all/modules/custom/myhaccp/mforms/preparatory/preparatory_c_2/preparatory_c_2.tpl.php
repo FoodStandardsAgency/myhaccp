@@ -3,10 +3,10 @@
  * @file
  * Stage output template.
  *
- * Note: continues from previous c_1 so no title needed.
+ * Note: continues from previous c_1 so no title needed and no opening section tag
  */
 ?>
-<section class="page">
+
   <h3><?php print $c_4_title ?></h3>
   <?php print $c_4; ?>
 </section>

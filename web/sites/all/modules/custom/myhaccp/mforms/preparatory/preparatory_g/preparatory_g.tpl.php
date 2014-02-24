@@ -5,7 +5,6 @@
  */
 ?>
 <section class="page">
-
   <h2>Process flow and confirmation</h2>
   <p class="intro">We have completed a flow diagram covering all steps in the manufacturing process of this product.</p>
 

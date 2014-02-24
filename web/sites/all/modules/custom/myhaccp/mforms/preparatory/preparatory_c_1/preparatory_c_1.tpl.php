@@ -2,10 +2,12 @@
 /**
  * @file
  * Stage output template.
+ *
+ * C.2 continues so no closing section tag here
  */
 ?>
 
 <section class="page">
-  <h2>Preparatory Stage C: Define scope of the study</h2>
-  <p class="intro"><?php print $c_intro ?></p>
-</section>
+  <h2>Define scope of the study</h2>
+  <p><?php print $c_intro ?></p>
+

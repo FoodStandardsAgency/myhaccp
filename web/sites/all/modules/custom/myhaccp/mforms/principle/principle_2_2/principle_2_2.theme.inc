@@ -22,6 +22,16 @@ function myhaccp_preprocess_principle_2_2(&$variables) {
   $stage = 'principle_2_2';
   $values = $variables['data'][$stage];
 
-  // $hazards = new Hazards();
+
+  //$stages = new Stages();
+  //$stage = $stages->getStage(__FUNCTION__);
+
+  //$store = MformsDatabaseStore::getInstance('myhaccp');
+  //$steps = MformsSteps::getInstance($store);
+
+  //$hazards = new Hazards();
+
+
+  //dpm($store);
 
 }

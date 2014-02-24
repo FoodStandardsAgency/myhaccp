@@ -4,7 +4,6 @@
  * Stage output template.
  */
 ?>
-
 <section class="page">
   <h2>Intended Use</h2>
 
