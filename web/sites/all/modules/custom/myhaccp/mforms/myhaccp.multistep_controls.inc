@@ -243,7 +243,7 @@ class MyHACCPMultiStepControls extends MformsControls {
       '#attributes' => $this->attributes_save,
       '#store_key' => $this->store->getKey(),
       '#mforms_step' => $this->steps->getCurr(),
-      '#submit' => array('_mforms_back_submit'),
+      '#submit' => array('myhaccp_save_submit'),
       '#attributes' => array(
         'class' => array('form-save'),
       ),

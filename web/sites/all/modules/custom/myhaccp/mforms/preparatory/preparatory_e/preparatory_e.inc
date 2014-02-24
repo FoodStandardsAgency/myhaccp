@@ -134,9 +134,10 @@ function preparatory_e(&$form_state, &$next_step) {
  * Validation handler.
  */
 function preparatory_e_validate($form, &$form_state) {
-  $validator = new Validator($form, $form_state, 'preparatory_e');
+  $validator = Validator::getInstance();
+  $validator->setFormState($form_state);
 
-  if ($validator->allFieldsAreEmpty()) {
+  if ($validator->pagerButtonUsed() && $validator->allFieldsAreEmpty()) {
     return;
   }
 

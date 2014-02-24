@@ -46,7 +46,9 @@ function myhaccp_process($element, &$form_state) {
  * @return array
  *   The modified form array.
  */
-function myhaccp_form_process($form, $form_state) {
+function myhaccp_form_process($form, &$form_state) {
+  $validator = Validator::getInstance();
+  $validator->setFormStateValidation($form_state);
   // Get the title of the page.
   $title = drupal_get_title();
   // Add the title in as a new markup element.
@@ -54,13 +56,13 @@ function myhaccp_form_process($form, $form_state) {
     '#markup' => '<h1>' . $title . '</h1>',
     '#weight' => -20,
   );
-  
+
   // First check for validation messages.
   if (isset($form_state['values']['validate'])) {
     // Ensure that these validations apply to this form. We ensure this
     // by making sure the key of the element below validate is used in the
     // current form array.
-    $stage = key($form_state['values']['validate']);
+    $stage = str_replace('_validation', '', key($form_state['values']['validate']));
     if (!isset($form[$stage])) {
       // The key wasn't found so return the form.
       return $form;

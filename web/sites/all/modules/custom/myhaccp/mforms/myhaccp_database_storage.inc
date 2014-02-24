@@ -19,6 +19,7 @@ class MformsDatabaseStore implements MformsIstore {
    * Gets an instance based on store key.
    *
    * @param string $store_key
+   *
    * @return MformsIstore
    */
   static function getInstance($store_key) {

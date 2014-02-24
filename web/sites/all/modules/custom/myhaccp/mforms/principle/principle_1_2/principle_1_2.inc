@@ -180,9 +180,10 @@ function principle_1_2(&$form_state, &$next_step) {
  * Validation handler for Principle 1 Question 2.
  */
 function principle_1_2_validate($form, &$form_state) {
-  $validator = new Validator($form, $form_state, 'principle_1_2');
+  $validator = Validator::getInstance();
+  $validator->setFormState($form_state);
 
-  if ($validator->allFieldsAreEmpty()) {
+  if ($validator->pagerButtonUsed() && $validator->allFieldsAreEmpty()) {
     return;
   }
 

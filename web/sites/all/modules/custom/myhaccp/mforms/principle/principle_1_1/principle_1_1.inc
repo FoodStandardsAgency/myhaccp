@@ -192,7 +192,8 @@ function principle_1_1(&$form_state, &$next_step) {
  * Validation handler for Principle 1 Question 1.
  */
 function principle_1_1_validate($form, &$form_state) {
-  $validator = new Validator($form, $form_state, 'principle_1_1');
+  $validator = Validator::getInstance();
+  $validator->setFormState($form_state);
 
   if ($validator->pagerButtonUsed() && $validator->allFieldsAreEmpty()) {
     return;
