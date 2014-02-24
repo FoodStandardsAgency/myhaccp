@@ -5,7 +5,9 @@
  */
 ?>
 
-<h2>Identify and list potential hazards.</h2>
+<section class="page">
+  <h2>Identify and list potential hazards</h2>
 
+  <?php print $p_1_hazard_tables; ?>
 
-<?php print $p_1_hazard_tables; ?>
+</section>

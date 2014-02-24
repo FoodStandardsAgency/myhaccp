@@ -16,8 +16,8 @@
  *   Form state data to process into variables for the template
  *   to display.
  */
-function myhaccp_preprocess_preparatory_4(&$variables) {
-  $stage = 'preparatory_4';
+function myhaccp_preprocess_principle_4(&$variables) {
+  $stage = 'principle_4';
   $values = $variables['data'][$stage];
 
   // a_1

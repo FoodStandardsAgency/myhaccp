@@ -23,11 +23,6 @@ function myhaccp_preprocess_principle_1_2(&$variables) {
   $stage = 'principle_1_2';
   $values = $variables['data'][$stage];
 
-  $stages = new Stages();
-  dpm($stages);
-  //$thestage = $stages->getStage(__FUNCTION__);
-
-
   $header = array(
     array('data' => t('Hazard')),
     array('data' => t('Hazard Description')),

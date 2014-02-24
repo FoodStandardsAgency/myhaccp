@@ -22,4 +22,8 @@ function myhaccp_preprocess_principle_1_3(&$variables) {
   $stage = 'principle_1_3';
   $values = $variables['data'][$stage];
 
+  foreach($values['instance_table'] as $key =>  $control_measure) {
+    $variables[''] = '';
+  }
+
 }
