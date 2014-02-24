@@ -67,7 +67,7 @@ function myhaccp_menu() {
     'file' => 'includes/myhaccp.pdf.inc',
     'type' => MENU_NORMAL_ITEM,
   );
-  $items['help/%ctools_js/%'] = array(
+  $items['help/%dialog_js/%'] = array(
     'title' => 'Help',
     'page arguments' => array(1, 2),
     'page callback' => 'myhaccp_help_modal',
@@ -260,6 +260,11 @@ function myhaccp_myhaccp_mforms_init() {
       'stage' => 'principles',
       'value' => '7',
       'weight' => 20,
+    ),
+    'principle_summary' => array(
+      'stage' => 'principles',
+      'value' => 'Summary',
+      'weight' => 21,
     ),
   ));
 
@@ -553,16 +558,26 @@ function myhaccp_help_modal($js = FALSE, $nid = FALSE) {
     drupal_goto('help/guidance');
   }
   if ($js) {
-    // Required includes for ctools to work:
-    ctools_include('modal');
-    ctools_include('ajax');
     // Load the node object.
     $node = node_load($nid);
     if ($node) {
       // Render the contents.
       $contents = render(node_view($node, 'full'));
       // Return the modal with node title and rendered contents.
-      return ctools_modal_render($node->title, $contents);
+      $commands = array();
+      $options = array(
+        'title' => '',
+        'width' => '80%',
+        'position' => array(
+          'center',
+          'bottom',
+        ),
+        'show' => 1000,
+        'hide' => 1000,
+      );
+      $commands[] = dialog_command_display($contents, $options);
+      ajax_deliver(array('#type' => 'ajax', '#commands' => $commands));
+      drupal_exit();
     }
   }
 
@@ -580,15 +595,15 @@ function myhaccp_help_modal($js = FALSE, $nid = FALSE) {
  *   The rendered link.
  */
 function myhaccp_prepare_more_link($nid) {
-  // Add the ajax library.
-  drupal_add_library('system', 'drupal.ajax');
+  // Add the dialog library.
+  drupal_add_library('dialog', 'dialog');
   // Prepare the options.
   $options = array(
     'html' => TRUE,
     'attributes' => array(
       'class' => array(
         'use-ajax',
-        'ctools-modal-myhaccp-style',
+        'use-dialog',
         'more-link',
       ),
       'title' => 'Link through to further guidance on this subject.',

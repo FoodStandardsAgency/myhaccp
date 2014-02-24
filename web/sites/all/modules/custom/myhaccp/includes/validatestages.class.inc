@@ -141,11 +141,10 @@ class ValidateStages {
    */
   public function getPrincipleStagesStatuses() {
     $statuses = array();
-    foreach ($this->stages as $stage => $type) {
-      if ($type == 'principle') {
+    foreach ($this->stages->allStages as $stage) {
+      if ($stage->type == 'principle') {
         // Get the messages for this stage.
-        $status = $this->stageHasPassed($stage) ? 'OK' : 'Needs review';
-        $statuses[$stage] = $status;
+        $statuses[$stage->name] = $this->stageHasPassed($stage);
       }
     }
     return $statuses;

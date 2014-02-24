@@ -111,7 +111,7 @@ function principle_1_1(&$form_state, &$next_step) {
       '#type' => 'textarea',
       '#resizable' => FALSE,
       '#title' => t('Biological'),
-    '#help_link' => 16,
+      '#help_link' => 16,
       '#help_text' => t('List all biological hazards e.g. Salmonella spp., Listeria spp., Norovirus.'),
       '#default_value' => array_get($values, "principle_1_1.instance_$i.hazards_wrapper.biological", FALSE),
     );
@@ -194,7 +194,7 @@ function principle_1_1(&$form_state, &$next_step) {
 function principle_1_1_validate($form, &$form_state) {
   $validator = new Validator($form, $form_state, 'principle_1_1');
 
-  if ($validator->allFieldsAreEmpty()) {
+  if ($validator->pagerButtonUsed() && $validator->allFieldsAreEmpty()) {
     return;
   }
 
@@ -256,7 +256,7 @@ function principle_1_1_validate($form, &$form_state) {
 
     if (!in_array(TRUE, $invalid_steps)) {
       $message = t('Steps must have a step number and a step name.');
-      $messages['steps'] = $message;
+      $messages["principle_1_1.instance_$i.wrapper"] = $message;
       $validator->passed = FALSE;
     }
   }

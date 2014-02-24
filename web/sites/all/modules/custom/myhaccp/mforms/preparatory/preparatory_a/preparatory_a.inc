@@ -98,7 +98,7 @@ function preparatory_a(&$form_state, &$next_step) {
 function preparatory_a_validate($form, &$form_state) {
   $validator = new Validator($form, $form_state, 'preparatory_a');
 
-  if ($validator->allFieldsAreEmpty()) {
+  if ($validator->pagerButtonUsed() && $validator->allFieldsAreEmpty()) {
     return;
   }
 

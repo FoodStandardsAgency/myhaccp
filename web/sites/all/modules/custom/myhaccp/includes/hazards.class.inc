@@ -11,6 +11,7 @@
  */
 class Hazards {
 
+  private static $instances = array();
   public $steps;
   public $hazards = array();
   public $threshold;
@@ -19,12 +20,37 @@ class Hazards {
    * Constructor method.
    */
   public function __construct() {
+    // Ensure the mforms object exists. This is needed for output of stages.
     $this->getAllHazards();
     $this->populateSignificance();
     $this->populateControlMeasure();
     $this->populateCCPs();
     $this->addCCPnumbers();
     $this->threshold = $this->getThreshold();
+  }
+
+  /**
+   * Init hazards object and get its singleton.
+   *
+   * @param int $iid
+   *   The unique id of the form instance.
+   *
+   * @return Hazards
+   *   Singleton object.
+   */
+  public static function getInstance($iid = NULL) {
+    if (is_null($iid)) {
+      $iid = $_SESSION['iid'];
+    }
+    // If singleton instance is NULL, instantiate the Hazard.
+    if (empty(self::$instances[$iid])) {
+      myhaccp_myhaccp_mforms_init();
+      $class = get_called_class();
+      self::$instances[$iid] = new $class();
+    }
+
+    // Return instantiated and set Hazard object.
+    return self::$instances[$iid];
   }
 
   /**

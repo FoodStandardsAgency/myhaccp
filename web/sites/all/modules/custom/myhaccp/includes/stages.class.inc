@@ -110,6 +110,7 @@ class Stages {
       'principle_5' => 'principle',
       'principle_6' => 'principle',
       'principle_7' => 'principle',
+      'principle_summary' => 'principle',
     );
     return $stages;
   }
@@ -123,6 +124,12 @@ class Stages {
     }
   }
 
+  /**
+   * Gets the title of a stage.
+   *
+   * @param string $stage
+   * @return mixed
+   */
   public function getTitle($stage) {
     $stage = $this->allStages[$stage];
     $all = $this->getAllTitles();
@@ -131,31 +138,45 @@ class Stages {
     }
   }
 
+  /**
+   * An array of key names matching a value of urls.
+   *
+   * @return array
+   *   The key is the function/machine name of a stage and the value is the
+   *   url for that stage.
+   */
   public function getUrls() {
     return array(
-      'preparatory_a' => 'stage-a',
-      'preparatory_b' => 'stage-b',
-      'preparatory_c_1' => 'stage-c-1',
-      'preparatory_c_2' => 'stage-c-2',
-      'preparatory_d' => 'stage-d',
-      'preparatory_e' => 'stage-e',
-      'preparatory_f' => 'stage-f',
-      'preparatory_g' => 'stage-g',
-      'preparatory_h' => 'stage-h',
-      'preparatory_summary' => 'preparatory-summary',
-      'principle_1_1' => 'stage-1-1',
-      'principle_1_2' => 'stage-1-2',
-      'principle_1_3' => 'stage-1-3',
-      'principle_2_1' => 'stage-2-1',
-      'principle_2_2' => 'stage-2-2',
-      'principle_3' => 'stage-3',
-      'principle_4' => 'stage-4',
-      'principle_5' => 'stage-5',
-      'principle_6' => 'stage-6',
-      'principle_7' => 'stage-7',
+      'preparatory_a' => 'a',
+      'preparatory_b' => 'b',
+      'preparatory_c_1' => 'c-1',
+      'preparatory_c_2' => 'c-2',
+      'preparatory_d' => 'd',
+      'preparatory_e' => 'e',
+      'preparatory_f' => 'f',
+      'preparatory_g' => 'g',
+      'preparatory_h' => 'h',
+      'preparatory_summary' => 'summary',
+      'principle_1_1' => '1-1',
+      'principle_1_2' => '1-2',
+      'principle_1_3' => '1-3',
+      'principle_2_1' => '2-1',
+      'principle_2_2' => '2-2',
+      'principle_3' => '3',
+      'principle_4' => '4',
+      'principle_5' => '5',
+      'principle_6' => '6',
+      'principle_7' => '7',
+      'principle_summary' => 'summary',
     );
   }
 
+  /**
+   * Returns an array of function/machine names matching to stage titles.
+   *
+   * @return array
+   *   The key is the function/machine name and the value is the stage title.
+   */
   protected function getAllTitles() {
     return array(
       'preparatory_a' => 'Preparatory Stage A: Prerequisites',
@@ -178,9 +199,19 @@ class Stages {
       'principle_5' => 'Principle 5: Establish a corrective action plan',
       'principle_6' => 'Principle 6: Verification',
       'principle_7' => 'Principle 7: Establish documentation and record keeping',
+      'principle_summary' => 'Principles Summary',
     );
   }
 
+  /**
+   * Helper method which gets the machine name of a stage given the url.
+   *
+   * @param string $url
+   *   The url to match.
+   *
+   * @return string|bool
+   *   The machine name of the stage or FALSE if no match.
+   */
   public function getNameFromUrl($url) {
     $all = $this->getUrls();
     $all = array_flip($all);

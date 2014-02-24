@@ -29,7 +29,7 @@ function principle_4(&$form_state, &$next_step) {
     '#tree' => TRUE,
   );
 
-  $hazards = new Hazards();
+  $hazards = Hazards::getInstance();
 
   // Ensure there are hazards over the threshold.
   if ($hazards->countHazardsOverThreshold() == 0) {

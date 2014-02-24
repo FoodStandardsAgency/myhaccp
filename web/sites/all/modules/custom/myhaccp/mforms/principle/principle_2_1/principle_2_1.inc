@@ -27,7 +27,7 @@ function principle_2_1(&$form_state, &$next_step) {
     '#tree' => TRUE,
   );
 
-  $hazards = new Hazards();
+  $hazards = Hazards::getInstance();
 
   // Ensure data has been entered on principle_1_1.
   if ($hazards->countHazards() == 0) {
