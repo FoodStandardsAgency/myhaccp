@@ -29,7 +29,7 @@ function principle_1_3(&$form_state, &$next_step) {
     '#tree' => TRUE,
   );
 
-  $hazards = new Hazards();
+  $hazards = Hazards::getInstance();
 
   if ($hazards->countHazards() == 0) {
     // There were no hazards.

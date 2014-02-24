@@ -42,7 +42,7 @@ function principle_1_2(&$form_state, &$next_step) {
     ),
   );
 
-  $hazards = new Hazards();
+  $hazards = Hazards::getInstance();
 
   // Set an instance count so we know how many instances of the fieldsets we
   // need to show. One instance per step.

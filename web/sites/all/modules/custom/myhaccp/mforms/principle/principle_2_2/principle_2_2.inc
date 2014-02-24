@@ -37,7 +37,7 @@ function principle_2_2(&$form_state, &$next_step) {
   $prev_step = $steps->getPrev();
   $previous_data = $store->getStore($prev_step);
 
-  $hazards = new Hazards();
+  $hazards = Hazards::getInstance();
 
   if ($hazards->countHazards() == 0) {
     // There were no hazards.
