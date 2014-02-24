@@ -22,15 +22,15 @@ function myhaccp_preprocess_principle_1_1(&$variables) {
 
   $steps = array();
 
-  // Find all steps
-  // Arrays with 'instance' in the key are a step
+  // Find all steps.
+  // Arrays with 'instance' in the key are a step.
   foreach($values as $key => $value) {
     if(strpos($key, 'instance') !== false) {
       $steps[] = $value;
     }
   }
 
-  // Now generate a table of hazards per step
+  // Now generate a table of hazards per step.
 
   // First the table headers
   $header = array(

@@ -16,13 +16,15 @@
  *   Form state data to process into variables for the template
  *   to display.
  */
-
 function myhaccp_preprocess_principle_1_2(&$variables) {
-  // @todo add step no. and name to array
-
   $stage = 'principle_1_2';
   $values = $variables['data'][$stage];
 
+  // Get details of all Hazards.
+  $hazards = Hazards::getInstance();
+  $by_step = $hazards->getHazardsByStep();
+
+  // Table header.
   $header = array(
     array('data' => t('Hazard')),
     array('data' => t('Hazard Description')),
@@ -31,37 +33,37 @@ function myhaccp_preprocess_principle_1_2(&$variables) {
     array('data' => t('Significance'))
   );
 
-  // Generate table for each step
+  // Generate table for each step.
   foreach ($values as $key => $step) {
-    // Ignore this item if it's the threshold
+    // Ignore this item if it's the threshold.
     if ($key == 'threshold') {
       break;
     }
 
-    // Reset the rows variable
+    // Reset the rows variable.
     $rows = array();
 
-    // Add each hazard to a new table row
+    // Add each hazard to a new table row.
     foreach ($step['instance_table'] as $h_key => $hazard) {
       $rows[] = array(
-        // Hazard
-        array('data' => $h_key),
-        // Hazard Description
+        // Hazard name.
+        array('data' => $hazards->hazards[$h_key]->name),
+        // Hazard Description.
         array('data' => $hazard['description']),
-        // Severity
+        // Severity.
         array('data' => $hazard['severity']),
-        // Likelihood
+        // Likelihood.
         array('data' => $hazard['likelihood']),
-        // Significance
+        // Significance.
         array('data' => $hazard['significance'])
       );
 
-      // Generate the table through a theme function
-      $step_ha_tables[$key] = theme('table', array('header' => $header, 'rows' => $rows));
+      // Add the step no. and name as a heading, from the $by_step object.
+      $step_ha_tables[$key] = '<h3>' . $by_step[$key]['no'] . '. ' . $by_step[$key]['name'] . '</h3>';
 
-      // Add the step name as a heading
-      // @todo add step name, using key for the moment
-      $step_ha_tables[$key] = '<h3>' . $key . '</h3>' . $step_ha_tables[$key];
+      // Generate the table through a theme function.
+      $step_ha_tables[$key] .= theme('table', array('header' => $header, 'rows' => $rows));
+
     }
 
   }
