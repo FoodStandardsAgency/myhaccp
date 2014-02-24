@@ -9,3 +9,4 @@ files[] = includes/hazards.class.inc
 files[] = includes/validatestages.class.inc
 files[] = includes/stages.class.inc
 dependencies[] = mforms
+dependencies[] = dialog
