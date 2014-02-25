@@ -22,4 +22,7 @@ function myhaccp_preprocess_principle_7(&$variables) {
 
   //dpm($values);
 
+  $variables['p_7_1'] = '';
+
+
 }

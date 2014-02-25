@@ -6,6 +6,6 @@
 ?>
 
 <section class="page">
-  <h2>Establish a corrective action plan</h2>
-  <?php // print $a_1; ?>
+  <h2>HACCP plan</h2>
+  <?php print $p_5_table; ?>
 </section>
