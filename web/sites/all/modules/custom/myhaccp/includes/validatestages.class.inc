@@ -34,11 +34,37 @@ class ValidateStages {
    *   The stage data from the database or empty array if not found.
    */
   protected function getStageData(Stage $stage) {
+    return $this->getData($stage->name);
+  }
+
+  /**
+   * Gets stage validation data for a stage.
+   *
+   * @param Stage $stage
+   *   The stage to query for data.
+   *
+   * @return array
+   *   The stage data from the database or empty array if not found.
+   */
+  protected function getStageValidation(Stage $stage) {
+    return $this->getData($stage->name . '_validation');
+  }
+
+  /**
+   * Returns data from the database.
+   *
+   * @param string $key
+   *   The key to fetch data for.
+   *
+   * @return array
+   *   The data retrieved from the database or an empty array if not found.
+   */
+  protected function getData($key) {
     $data = array();
     // Get the stage from the db.
     $query = db_select('mforms_storage_steps', 'mss')
       ->fields('mss', array('store_data'))
-      ->condition('mss.store_key', $stage->name)
+      ->condition('mss.store_key', $key)
       ->condition('mss.iid', $this->iid);
     $result = $query->execute()->fetchField(0);
     if ($result) {
@@ -78,10 +104,10 @@ class ValidateStages {
    */
   public function getStageMessages($stage) {
     $messages = array();
-    $data = $this->getStageData($stage);
+    $data = $this->getStageValidation($stage);
     if (!empty($data)) {
-      if (isset($data['validate'])) {
-        $messages = $data['validate'][$stage->name];
+      if (isset($data[$stage->name . '_validation'])) {
+        $messages = $data[$stage->name . '_validation'];
       }
     }
     return $messages;
@@ -112,8 +138,22 @@ class ValidateStages {
     return $messages;
   }
 
+  /**
+   * Gets the preparatory stages messages.
+   *
+   * @return array
+   *   An array of stages with sub arrays of the messages.
+   */
   public function getPrincipleStagesMessages() {
-
+    $messages = array();
+    foreach ($this->stages->allStages as $stage => $type) {
+      if ($type == 'principle') {
+        // Get the messages for this stage.
+        $stage_messages = $this->getStageMessages($stage);
+        $messages[$stage] = $stage_messages;
+      }
+    }
+    return $messages;
   }
 
   /**

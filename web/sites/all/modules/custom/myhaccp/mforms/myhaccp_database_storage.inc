@@ -107,7 +107,7 @@ class MformsDatabaseStore implements MformsIstore {
     // Check if there is a specified stage url.
     if ($key == 'curr_step' && arg(3) && arg(4)) {
       // Match the url to a stage function.
-      if ($step = $stages->getNameFromUrl(arg(4))) {
+      if ($step = $stages->getNameFromUrl(arg(3), arg(4))) {
         return $step;
       }
     }

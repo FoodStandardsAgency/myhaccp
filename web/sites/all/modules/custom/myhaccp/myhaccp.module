@@ -208,7 +208,7 @@ function myhaccp_myhaccp_mforms_init() {
     ),
     'preparatory_summary' => array(
       'stage' => 'preparatory',
-      'value' => 'Summary',
+      'value' => 'S',
       'weight' => 10,
     ),
     'principle_1_1' => array(
@@ -263,7 +263,7 @@ function myhaccp_myhaccp_mforms_init() {
     ),
     'principle_summary' => array(
       'stage' => 'principles',
-      'value' => 'Summary',
+      'value' => 'S',
       'weight' => 21,
     ),
   ));

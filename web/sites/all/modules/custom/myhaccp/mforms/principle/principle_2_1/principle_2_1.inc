@@ -32,13 +32,13 @@ function principle_2_1(&$form_state, &$next_step) {
   // Ensure data has been entered on principle_1_1.
   if ($hazards->countHazards() == 0) {
     // There were no hazards.
-    drupal_set_message('You must add at least a step number and step name in step 1.1 as well as at least a hazard for the step. Please return to 1.1', 'error');
+    drupal_set_message('You must add at least a step number and step name in step 1.1 as well as at least a hazard for the step. Please return to 1.1', 'error', FALSE);
     return $form;
   }
 
   // Ensure there are hazards over the threshold.
   if ($hazards->countHazardsOverThreshold() == 0) {
-    drupal_set_message('You have no significant hazards so you cannot continue', 'error');
+    drupal_set_message('You have no significant hazards so you cannot continue', 'error', FALSE);
     return $form;
   }
 

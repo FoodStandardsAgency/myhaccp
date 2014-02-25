@@ -33,7 +33,7 @@ function principle_1_3(&$form_state, &$next_step) {
 
   if ($hazards->countHazards() == 0) {
     // There were no hazards.
-    drupal_set_message('You must add at least a step number and step name in step 1.1 as well as at least a hazard for the step. Please return to 1.1', 'error');
+    drupal_set_message('You must add at least a step number and step name in step 1.1 as well as at least a hazard for the step. Please return to 1.1', 'error', FALSE);
     return $form;
   }
 
@@ -43,7 +43,7 @@ function principle_1_3(&$form_state, &$next_step) {
   // filled out correctly in the previous screen.
   if ($instance_count == 0) {
     // There were no hazards over the threshold.
-    drupal_set_message('You have no significant hazards so you cannot continue', 'error');
+    drupal_set_message('You have no significant hazards so you cannot continue', 'error', FALSE);
     return $form;
   }
 
