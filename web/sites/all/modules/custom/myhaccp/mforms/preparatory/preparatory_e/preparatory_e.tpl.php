@@ -5,12 +5,13 @@
  */
 ?>
 
-<section class="page">
+<section class="page prep-e">
   <h2>Product description and intended use</h2>
 
   <h3>Product description:</h3>
 
   <h4>Ingredients</h4>
+  <span class="description">Suppliers listed in brackets.</span>
   <p><?php print $e_1; ?></p>
 
   <h4>Physical properties</h4>
@@ -30,5 +31,3 @@
 
   <h4>Storage & handling</h4>
   <p><?php print $e_7; ?></p>
-
-</section>

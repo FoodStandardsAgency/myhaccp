@@ -102,4 +102,9 @@ function myhaccp_preprocess_preparatory_c_2(&$variables) {
 
   // Finally we have the output.
   $variables['c_4'] = $content;
+
+  // Get values from Prep Stage A and merge in.
+  $prep_a_data = myhaccp_preparatory_stage_a_data();
+  $variables = array_merge($variables, $prep_a_data);
+
 }

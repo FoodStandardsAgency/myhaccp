@@ -10,5 +10,3 @@
 
   <h3>A copy of our flow diagram can be obtained from the following location:</h3>
   <?php print $g_3; ?>
-
-</section>

@@ -8,6 +8,6 @@
 ?>
 
 <section class="page">
-  <h2>Define scope of the study</h2>
+  <h2>Terms of reference</h2>
   <p><?php print $c_intro ?></p>
 

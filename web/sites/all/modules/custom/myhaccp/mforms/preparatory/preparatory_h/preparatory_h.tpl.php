@@ -5,7 +5,6 @@
  */
 ?>
 
-<section class="page">
   <h2>On-site confirmation of flow diagram</h2>
 
   <p><?php print $h_1; ?></p>

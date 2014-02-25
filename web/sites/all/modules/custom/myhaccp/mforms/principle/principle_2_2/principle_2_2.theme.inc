@@ -25,10 +25,6 @@ function myhaccp_preprocess_principle_2_2(&$variables) {
   // Get details of all Hazards.
   $hazards = Hazards::getInstance();
 
-  dpm($values);
-
-  dpm($hazards);
-
   // Table header.
   $header = array(
     array('data' => t('Step No.')),
@@ -40,7 +36,7 @@ function myhaccp_preprocess_principle_2_2(&$variables) {
 
   // Generate table row for each hazard.
   foreach ($values['instance_table'] as $h_key => $controlled_hazard) {
-    dpm($controlled_hazard);
+    // Add Questions & Answers for Decision Tree to a html string
     $qa = '';
     foreach ($controlled_hazard['decision_tree'] as $q => $answer) {
       $qa .= $q . ': ' . $answer . '<br />';
