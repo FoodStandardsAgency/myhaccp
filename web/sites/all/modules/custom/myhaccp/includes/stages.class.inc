@@ -115,12 +115,20 @@ class Stages {
     return $stages;
   }
 
+  /**
+   * Given a stage machine name returns it's URL.
+   *
+   * @param string $stage
+   *   The stage machine name.
+   *
+   * @return string
+   *   The url, made of two segments, the type and the stage.
+   */
   public function getUrl($stage) {
     $stage = $this->allStages[$stage];
     $all = $this->getUrls();
-    $type = $stage->type;
     if ($all[$stage->name]) {
-      return $type . '/' . $all[$stage->name];
+      return $all[$stage->name];
     }
   }
 
@@ -128,7 +136,10 @@ class Stages {
    * Gets the title of a stage.
    *
    * @param string $stage
-   * @return mixed
+   *   The stage machine name.
+   *
+   * @return string
+   *   The title if found.
    */
   public function getTitle($stage) {
     $stage = $this->allStages[$stage];
@@ -147,27 +158,27 @@ class Stages {
    */
   public function getUrls() {
     return array(
-      'preparatory_a' => 'a',
-      'preparatory_b' => 'b',
-      'preparatory_c_1' => 'c-1',
-      'preparatory_c_2' => 'c-2',
-      'preparatory_d' => 'd',
-      'preparatory_e' => 'e',
-      'preparatory_f' => 'f',
-      'preparatory_g' => 'g',
-      'preparatory_h' => 'h',
-      'preparatory_summary' => 'summary',
-      'principle_1_1' => '1-1',
-      'principle_1_2' => '1-2',
-      'principle_1_3' => '1-3',
-      'principle_2_1' => '2-1',
-      'principle_2_2' => '2-2',
-      'principle_3' => '3',
-      'principle_4' => '4',
-      'principle_5' => '5',
-      'principle_6' => '6',
-      'principle_7' => '7',
-      'principle_summary' => 'summary',
+      'preparatory_a' => 'preparatory/a',
+      'preparatory_b' => 'preparatory/b',
+      'preparatory_c_1' => 'preparatory/c-1',
+      'preparatory_c_2' => 'preparatory/c-2',
+      'preparatory_d' => 'preparatory/d',
+      'preparatory_e' => 'preparatory/e',
+      'preparatory_f' => 'preparatory/f',
+      'preparatory_g' => 'preparatory/g',
+      'preparatory_h' => 'preparatory/h',
+      'preparatory_summary' => 'preparatory/summary',
+      'principle_1_1' => 'principle/1-1',
+      'principle_1_2' => 'principle/1-2',
+      'principle_1_3' => 'principle/1-3',
+      'principle_2_1' => 'principle/2-1',
+      'principle_2_2' => 'principle/2-2',
+      'principle_3' => 'principle/3',
+      'principle_4' => 'principle/4',
+      'principle_5' => 'principle/5',
+      'principle_6' => 'principle/6',
+      'principle_7' => 'principle/7',
+      'principle_summary' => 'principle/summary',
     );
   }
 
@@ -206,16 +217,18 @@ class Stages {
   /**
    * Helper method which gets the machine name of a stage given the url.
    *
+   * @param string $type
+   *   The first part of the url, the stage type.
    * @param string $url
-   *   The url to match.
+   *   The stage url to match.
    *
    * @return string|bool
    *   The machine name of the stage or FALSE if no match.
    */
-  public function getNameFromUrl($url) {
+  public function getNameFromUrl($type, $url) {
     $all = $this->getUrls();
     $all = array_flip($all);
-    return isset($all[$url]) ? $all[$url] : FALSE;
+    return isset($all[$type . '/' . $url]) ? $all[$type . '/' . $url] : FALSE;
   }
 
   /**
