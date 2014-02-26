@@ -20,6 +20,8 @@ function myhaccp_preprocess_preparatory_e(&$variables) {
   $stage = 'preparatory_e';
   $values = $variables['data'][$stage];
 
+  // @todo turn all titles (e.g 'Ingredients') into variables passed through t()
+
   // Ingredients
   $variables['e_1'] = $values['e_1'];
 
