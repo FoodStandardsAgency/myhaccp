@@ -19,7 +19,7 @@ function preparatory_h(&$form_state, &$next_step) {
   drupal_set_title($stage->title, PASS_THROUGH);
 
   $form = array();
-  $form['#attributes']['class'][] = 'prep-f';
+  $form['#attributes']['class'][] = 'prep-h';
 
   // Wrap the form section in a fieldset.
   $form['preparatory_h'] = array(

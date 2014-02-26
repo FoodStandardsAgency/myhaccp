@@ -97,11 +97,12 @@ function principle_6(&$form_state, &$next_step) {
   $form['principle_6']['6_4']['1'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Internal audits of'),
-    '#options' => array(
-      'ccps' => 'Critical Control Points',
-      'prerequisites' => 'Prerequisites',
-      'records' => 'Records of monitoring',
-      'corrective' => 'Corrective actions',
+    '#options' => drupal_map_assoc(array(
+        t('Critical Control Points'),
+        t('Prerequisites'),
+        t('Records of monitoring'),
+        t('Corrective actions'),
+      )
     ),
     '#default_value' => array_get($values, "principle_6.6_4.1", array()),
   );
@@ -109,8 +110,9 @@ function principle_6(&$form_state, &$next_step) {
   $form['principle_6']['6_4']['2'] = array(
     '#type' => 'checkboxes',
     '#title' => t('External auditing programmes'),
-    '#options' => array(
-      'supplier' => 'Supplier audits'
+    '#options' => drupal_map_assoc(array(
+        t('Supplier audits')
+      )
     ),
     '#default_value' => array_get($values, "principle_6.6_4.2", array()),
   );
@@ -118,9 +120,10 @@ function principle_6(&$form_state, &$next_step) {
   $form['principle_6']['6_4']['3'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Finished product'),
-    '#options' => array(
-      'microbial' => 'Microbiological testing',
-      'chemical' => 'Chemical testing',
+    '#options' => drupal_map_assoc(array(
+        t('Microbiological testing'),
+        t('Chemical testing'),
+      )
     ),
     '#default_value' => array_get($values, "principle_6.6_4.3", array()),
   );
@@ -128,9 +131,10 @@ function principle_6(&$form_state, &$next_step) {
   $form['principle_6']['6_4']['4'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Interim product'),
-    '#options' => array(
-      'microbial' => 'Microbiological testing',
-      'chemical' => 'Chemical testing',
+    '#options' => drupal_map_assoc(array(
+        t('Microbiological testing'),
+        t('Chemical testing'),
+      )
     ),
     '#default_value' => array_get($values, "principle_6.6_4.4", array()),
   );
@@ -138,12 +142,13 @@ function principle_6(&$form_state, &$next_step) {
   $form['principle_6']['6_4']['5'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Other'),
-    '#options' => array(
-      'monitoring' => 'Environmental monitoring of production area',
-      'findings' => 'Addressing the findings of customer and third party audits',
-      'third_party' => 'Third party certification(SOFHT, BRC)',
-      'trending' => 'Trending and analysing customer complaints',
-      'buy' => 'Product buy - back(buying your product from end point in market place and sampling and testing it for unexpected safety problems',
+    '#options' => drupal_map_assoc(array(
+        t('Environmental monitoring of production area'),
+        t('Addressing the findings of customer and third party audits'),
+        t('Third party certification(SOFHT, BRC)'),
+        t('Trending and analysing customer complaints'),
+        t('Product buy - back(buying your product from end point in market place and sampling and testing it for unexpected safety problems'),
+      )
     ),
     '#default_value' => array_get($values, "principle_6.6_4.5", array()),
   );
@@ -151,12 +156,13 @@ function principle_6(&$form_state, &$next_step) {
   $form['principle_6']['6_4']['6'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Reviewing'),
-    '#options' => array(
-      'deviations' => 'Deviations',
-      'corrective' => 'Corrective actions',
-      'disposal' => 'Product disposal',
-      'rework' => 'Rework',
-      'trending' => 'Trending of monitoring results',
+    '#options' => drupal_map_assoc(array(
+        t('Deviations'),
+        t('Corrective actions'),
+        t('Product disposal'),
+        t('Rework'),
+        t('Trending of monitoring results'),
+      )
     ),
     '#default_value' => array_get($values, "principle_6.6_4.6", array()),
   );
@@ -212,25 +218,26 @@ function principle_6(&$form_state, &$next_step) {
   $form['principle_6']['6_9'] = array(
     '#type' => 'checkboxes',
     '#title' => t("9. Mark any of the following 'triggers' that will initiate a review in your organisation:"),
-    '#options' => array(
-      'advances' => 'Technological advances in production',
-      'controls' => 'New controls that become available',
-      'changes' => 'Change in raw material/ingredients/product formulation/packaging',
-      'changes_supplier' => 'Change of raw material supplier',
-      'changes_processing' => 'Change in processing system (e.g. changes in method of preservation – such as addition of preservatives, water activity changes, going from a sterilisation to a pasteurisation activity)',
-      'changes_layout' => 'Changes in layout and environment of the factory',
-      'modification' => 'Modification to process equipment (e.g. new equipment, modification of existing equipment)',
-      'changes_cleaning' => 'Changes in cleaning and disinfection programme (i.e. a change to any supporting prerequisite programme)',
-      'failuers' => 'Failures in the system, e.g. corrective actions or the need for product recall/withdrawal',
-      'changes_storage' => 'Changes in the storage and distribution systems',
-      'changes_staff' => 'Changes in staff levels and/or responsibilities',
-      'anticipated' => 'Anticipated change in use of product by customer/consumer',
-      'receipt' => 'Receipt of information from the market place indicating a health risk associated with the product',
-      'emergence' => 'Emergence of foodborne pathogens with public health significance',
-      'changes_legislation' => 'Changes in legislation',
-      'scientific' => 'New scientific/technical knowledge (e.g. new information on hazards and control measures)',
-      'unexpected' => 'Unexpected use of product by the consumer',
-      'changes_environmental' => 'Environmental changes/issues (i.e. local changes external to the food operation; climate changes)',
+    '#options' => drupal_map_assoc(array(
+        t('Technological advances in production'),
+        t('New controls that become available'),
+        t('Change in raw material/ingredients/product formulation/packaging'),
+        t('Change of raw material supplier'),
+        t('Change in processing system (e.g. changes in method of preservation – such as addition of preservatives, water activity changes, going from a sterilisation to a pasteurisation activity)'),
+        t('Changes in layout and environment of the factory'),
+        t('Modification to process equipment (e.g. new equipment, modification of existing equipment)'),
+        t('Changes in cleaning and disinfection programme (i.e. a change to any supporting prerequisite programme)'),
+        t('Failures in the system, e.g. corrective actions or the need for product recall/withdrawal'),
+        t('Changes in the storage and distribution systems'),
+        t('Changes in staff levels and/or responsibilities'),
+        t('Anticipated change in use of product by customer/consumer'),
+        t('Receipt of information from the market place indicating a health risk associated with the product'),
+        t('Emergence of foodborne pathogens with public health significance'),
+        t('Changes in legislation'),
+        t('New scientific/technical knowledge (e.g. new information on hazards and control measures)'),
+        t('Unexpected use of product by the consumer'),
+        t('Environmental changes/issues (i.e. local changes external to the food operation; climate changes)'),
+      )
     ),
     '#help_text' => t('If any of the items listed occur  your HACCP plan may not be valid and your product potentially unsafe.  In such a case it would be necessary to trigger a review.'),
     '#default_value' => array_get($values, "principle_6.6_9", array()),

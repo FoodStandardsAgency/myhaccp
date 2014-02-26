@@ -58,7 +58,7 @@ function myhaccp_form_process($form, &$form_state) {
   );
 
   // First check for validation messages.
-  if (isset($form_state['values']['validate'])) {
+  if (isset($form_state['values']['validate']) && !empty($form_state['values']['validate'])) {
     // Ensure that these validations apply to this form. We ensure this
     // by making sure the key of the element below validate is used in the
     // current form array.
@@ -69,6 +69,11 @@ function myhaccp_form_process($form, &$form_state) {
     }
     // The validation will be the only element under validate.
     $validation = reset($form_state['values']['validate']);
+    // The validation messages may have been cleared so check for an empty
+    // array.
+    if (empty($validation)) {
+      return $form;
+    }
     // Provide an intro.
     $messages = array(
       'intro' => 'The following items have errors you will need to correct:',
