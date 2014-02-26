@@ -35,12 +35,8 @@ function myhaccp_preparatory_stage_a_data() {
   $values = $data[$stage];
 
   // Iterate over the checkboxes fetching their labels.
-  $names = array();
-  foreach ($values['a_1'] as $key => $value) {
-    if ($key === $value) {
-      $names[] = $value;
-    }
-  }
+  $names = myhaccp_prepare_checkboxes_output('preparatory_a', 'a_1', $values);
+
   // a_1
   $variables['a_1_title'] = t('The company has in place a number of effective prerequisite programmes, including:');
   $variables['a_1'] = !empty($names) ? '<ul><li>' . implode('</li><li>', $names) . '</li></ul>' : '';
