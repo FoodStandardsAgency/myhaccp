@@ -101,7 +101,7 @@ function myhaccp_study_preview($iid) {
     // Fetch all the keys.
     $stages = new stages();
     $stages_keys = array_keys($stages->allStages);
-
+    myhaccp_myhaccp_mforms_init();
     // Check this study is valid.
     $study = myhaccp_study_get_stages_data($stages_keys,$iid);
     if (!empty($study)) {
