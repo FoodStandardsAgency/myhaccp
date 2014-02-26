@@ -421,12 +421,12 @@ function myhaccp_saved_message($form, &$form_state) {
  */
 function myhaccp_pager_submit($form, &$form_state) {
   // Only deal with back submit if we have store key.
-  if (isset($form_state['clicked_button']['#store_key'])) {
+  if (isset($form_state['triggering_element']['#store_key'])) {
     // Add $_POST into values as they got unset in the validation process due to
     // limit_validation_errors property of the back/step button.
     $form_state['values'] += $_POST;
     $stages = new Stages();
-    $stage = $stages->allStages[$form_state['clicked_button']['#mforms_step']];
+    $stage = $stages->allStages[$form_state['triggering_element']['#mforms_step']];
     $form_state['redirect'] = 'tool/study/' . $_SESSION['iid'] . '/' . $stage->url;
     mforms_submit($form_state['clicked_button']['#store_key'], $form, $form_state);
   }
