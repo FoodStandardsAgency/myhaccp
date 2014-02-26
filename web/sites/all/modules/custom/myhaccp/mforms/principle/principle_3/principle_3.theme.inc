@@ -19,6 +19,4 @@
 function myhaccp_preprocess_principle_3(&$variables) {
   $stage = 'principle_3';
   $values = $variables['data'][$stage];
-
-  //dpm($values);
 }

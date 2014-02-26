@@ -16,10 +16,16 @@
 
   <h3><?php print $p_6_4_title; ?></h3>
 
-  <p>@TODO</p>
+  <?php print $p_6_4; ?>
 
   <p><?php print $p_6_7; ?></p>
 
   <p><?php print $p_6_8; ?></p>
+
+  <?php print $p_6_9; ?>
+
+  <?php print $p_6_10; ?>
+
+  <?php print $p_6_11; ?>
 
 </section>
