@@ -145,7 +145,7 @@ class MyHACCPMultiStepControls extends MformsControls {
         '#mforms_step' => $id,
       );
 
-      if (strpos($id, 'summary') !== FALSE) {
+      if (strpos($id, 'review') || strpos($id, 'intro')) {
         $form_controls['steps_btns_wrapper'][$definition['stage']]['pager_controls']['callback_' . $id]['#name'] = $id;
       }
 

@@ -54,6 +54,7 @@ class Stages {
         $stages[$stage->name] = $stage;
       }
     }
+    $stages = $this->removeIntroReview($stages);
     return $stages;
   }
 
@@ -68,6 +69,24 @@ class Stages {
     foreach ($this->allStages as $stage) {
       if ($stage->type == 'principle') {
         $stages[$stage->name] = $stage;
+      }
+    }
+    $stages = $this->removeIntroReview($stages);
+    return $stages;
+  }
+
+  /**
+   * Removes intro and review stages from an array of stages.
+   *
+   * @param array $stages
+   *   The stages to iterate over.
+   * @return array
+   *   The array without intro or review.
+   */
+  protected function removeIntroReview($stages) {
+    foreach ($stages as $key => $stage) {
+      if (strpos($stage->name, 'review') || strpos($stage->name, 'intro')) {
+        unset($stages[$key]);
       }
     }
     return $stages;
@@ -299,7 +318,7 @@ class Stage {
   }
 
   public function getValidationData() {
-    $data = array();
+    $data = FALSE;
     $iid = $_SESSION['iid'];
     $key = $this->name . '_validation';
     $query = db_select('mforms_storage', 'm');

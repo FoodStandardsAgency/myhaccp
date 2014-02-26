@@ -14,27 +14,28 @@ function preparatory_review(&$form_state, &$next_step) {
   // Get the node output.
   $node = node_load(35);
   $node_output = node_view($node);
-  $validation = new ValidateStages();
-  // Get the statuses.
-  $statuses = $validation->getPreparatoryStagesStatuses();
+
+  $stages = new Stages();
+
   $message_output = '';
   // Iterate over all the statuses of all the stages.
-  foreach ($statuses as $key => $passed) {
-
-    // Get the stage.
-    $stage = $stages->getStage($key);
+  foreach ($stages->getPreparatories() as $key => $stage) {
 
     // Construct a url to the stage.
     $url = 'tool/study/' . $_SESSION['iid'] . '/' . $stage->url;
 
     // Determine what is displayed and the class name for a pass or fail.
-    if ($passed) {
+    if ($stage->status == VALID) {
       $state = t('OK');
       $class = 'passed';
     }
-    else {
+    if ($stage->status == INVALID) {
       $state = l(t('Needs review'), $url);
       $class = 'review';
+    }
+    if ($stage->status == NOT_STARTED) {
+      $state = l(t('Not started'), $url);
+      $class = 'not_started';
     }
 
     $message_output .= '<div class="stage-validation ' . $class . '">';
