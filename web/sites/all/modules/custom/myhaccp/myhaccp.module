@@ -208,7 +208,7 @@ function myhaccp_myhaccp_mforms_init() {
     ),
     'preparatory_summary' => array(
       'stage' => 'preparatory',
-      'value' => 'Summary',
+      'value' => 'S',
       'weight' => 10,
     ),
     'principle_1_1' => array(
@@ -263,7 +263,7 @@ function myhaccp_myhaccp_mforms_init() {
     ),
     'principle_summary' => array(
       'stage' => 'principles',
-      'value' => 'Summary',
+      'value' => 'S',
       'weight' => 21,
     ),
   ));
@@ -459,6 +459,23 @@ function myhaccp_back_submit($form, &$form_state) {
     $form_state['values'] += $_POST;
     $stages = new Stages();
     $stage = $stages->allStages[$form['prev_step']['#value']];
+    $form_state['redirect'] = 'tool/study/' . $_SESSION['iid'] . '/' . $stage->url;
+    mforms_submit($form_state['clicked_button']['#store_key'], $form, $form_state);
+  }
+}
+
+/**
+ * Callback for save button.
+ */
+function myhaccp_save_submit($form, &$form_state) {
+  // Only deal with back submit if we have store key.
+  if (isset($form_state['clicked_button']['#store_key'])) {
+    // Add $_POST into values as they got unset in the validation process due to
+    // limit_validation_errors property of the back/step button.
+    $form_state['values'] += $_POST;
+    $form_state['rebuild'] = TRUE;
+    $stages = new Stages();
+    $stage = $stages->allStages[$form['curr_step']['#value']];
     $form_state['redirect'] = 'tool/study/' . $_SESSION['iid'] . '/' . $stage->url;
     mforms_submit($form_state['clicked_button']['#store_key'], $form, $form_state);
   }

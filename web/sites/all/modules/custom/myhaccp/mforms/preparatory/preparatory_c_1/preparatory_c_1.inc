@@ -72,9 +72,9 @@ function preparatory_c_1(&$form_state, &$next_step) {
     '#markup' => '<div class="label">' . t('3. State the process start and end points of the HACCP plan. !tip !help', array(
         '!tip' => _help_tip(15),
         '!help' => '<div class="help-text">State where your HACCP plan begin e.g. at raw materials or goods in.  State where it will end e.g. at delivery to the wholesaler, at despatch, when purchased by the  the consumer.</div>')) . '</div>',
-      '#title' => t('2. State the type of product you are producing and briefly how it is going to be packed:'),
+    '#title' => t('2. State the type of product you are producing and briefly how it is going to be packed:'),
     '#help_link' => 15,
-    );
+  );
 
 
   $form['preparatory_c_1']['c_3']['start'] = array(
@@ -106,9 +106,10 @@ function preparatory_c_1(&$form_state, &$next_step) {
  * Validation handler.
  */
 function preparatory_c_1_validate($form, &$form_state) {
-  $validator = new Validator($form, $form_state, 'preparatory_c_1');
+  $validator = Validator::getInstance();
+  $validator->setFormState($form_state);
 
-  if ($validator->allFieldsAreEmpty()) {
+  if ($validator->pagerButtonUsed() && $validator->allFieldsAreEmpty()) {
     return;
   }
 

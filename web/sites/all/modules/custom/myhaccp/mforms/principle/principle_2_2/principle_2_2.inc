@@ -41,13 +41,13 @@ function principle_2_2(&$form_state, &$next_step) {
 
   if ($hazards->countHazards() == 0) {
     // There were no hazards.
-    drupal_set_message('You must add at least a step number and step name in step 1.1 as well as at least a hazard for the step. Please return to 1.1', 'error');
+    drupal_set_message('You must add at least a step number and step name in step 1.1 as well as at least a hazard for the step. Please return to 1.1', 'error', FALSE);
     return $form;
   }
 
   // Ensure there are hazards over the threshold.
   if ($hazards->countHazardsOverThreshold() == 0) {
-    drupal_set_message('You have no significant hazards so you cannot continue', 'error');
+    drupal_set_message('You have no significant hazards so you cannot continue', 'error', FALSE);
     return $form;
   }
 
@@ -164,9 +164,10 @@ function principle_2_2(&$form_state, &$next_step) {
  * Validation handler for Principle 2 Question 4.
  */
 function principle_2_2_validate($form, &$form_state) {
-  $validator = new Validator($form, $form_state, 'principle_2_2');
+  $validator = Validator::getInstance();
+  $validator->setFormState($form_state);
 
-  if ($validator->allFieldsAreEmpty()) {
+  if ($validator->pagerButtonUsed() && $validator->allFieldsAreEmpty()) {
     return;
   }
 

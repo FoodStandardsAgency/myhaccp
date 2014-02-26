@@ -19,7 +19,7 @@ function preparatory_h(&$form_state, &$next_step) {
   drupal_set_title($stage->title, PASS_THROUGH);
 
   $form = array();
-  $form['#attributes']['class'][] = 'prep-f';
+  $form['#attributes']['class'][] = 'prep-h';
 
   // Wrap the form section in a fieldset.
   $form['preparatory_h'] = array(
@@ -165,9 +165,10 @@ function preparatory_h(&$form_state, &$next_step) {
  * Validation handler.
  */
 function preparatory_h_validate($form, &$form_state) {
-  $validator = new Validator($form, $form_state, 'preparatory_h');
+  $validator = Validator::getInstance();
+  $validator->setFormState($form_state);
 
-  if ($validator->allFieldsAreEmpty()) {
+  if ($validator->pagerButtonUsed() && $validator->allFieldsAreEmpty()) {
     return;
   }
 

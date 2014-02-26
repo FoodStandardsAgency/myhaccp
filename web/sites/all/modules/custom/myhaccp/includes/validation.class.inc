@@ -12,16 +12,98 @@
  */
 class Validator {
 
+  private static $instances = array();
   public $results = array();
   public $passed = TRUE;
 
   /**
    * Constructor method.
    */
-  public function __construct($form, &$form_state, $stage) {
-    $this->form = $form;
-    $this->state = &$form_state;
-    $this->stage = $stage;
+  public function __construct($stage = NULL) {
+    $this->stage = $this->getCurrentStage($stage);
+    $store = MformsDatabaseStore::getInstance('myhaccp');
+    $steps = MformsSteps::getInstance($store);
+    $controls = mforms_controls_get('myhaccp');
+    // Get instance of Mform.
+    $this->state = $store->getFormState();
+    $mform = Mform::getInstance($store, $steps, $controls, $this->stage);
+    // Get the form definition for the provided step.
+    $this->form = $mform->call('build', array(), $this->state, array());
+  }
+
+  /**
+   * Init validator object and get its singleton.
+   *
+   * @param int $iid
+   *   The unique id of the form instance.
+   *
+   * @return Validator
+   *   Singleton object.
+   */
+  public static function getInstance($iid = NULL) {
+    if (is_null($iid)) {
+      $iid = $_SESSION['iid'];
+    }
+    // If singleton instance is NULL, instantiate the Validator.
+    if (empty(self::$instances[$iid])) {
+      myhaccp_myhaccp_mforms_init();
+      $class = get_called_class();
+      self::$instances[$iid] = new $class();
+    }
+
+    // Return instantiated and set Validator object.
+    return self::$instances[$iid];
+  }
+
+  /**
+   * Sets the form state within the validator.
+   *
+   * @param array $form_state
+   *   The form state array.
+   */
+  public function setFormState($form_state) {
+    $this->state = $form_state;
+  }
+
+  /**
+   * Returns the current stage.
+   *
+   * @param string $stage
+   *   The stage if specified.
+   *
+   * @return string
+   *   The current stage from the curr_step stored or the passed in stage.
+   */
+  private function getCurrentStage($stage) {
+    if (empty($stage)) {
+      $store = MformsDatabaseStore::getInstance('myhaccp');
+      $stage = $store->getStore('curr_step');
+    }
+    return $stage;
+  }
+
+  /**
+   * Gets the validation from the db for the current stage.
+   */
+  public function getValidation() {
+    $data = mforms_get_vals('myhaccp', $this->stage . '_validation');
+    if (empty($data)) {
+      return NULL;
+    }
+    return $data;
+  }
+
+  /**
+   * Sets the validation up in form_state.
+   *
+   * @param array $form_state
+   *   The form state to modify.
+   */
+  public function setFormStateValidation(&$form_state) {
+    // Only do this for the myhaccp forms.
+    if (is_array($form_state) && $form_state['build_info']['form_id'] == 'myhaccp_study_resume') {
+      $form_state['values']['validate'] = $this->getValidation();
+    }
   }
 
   /**
@@ -76,8 +158,9 @@ class Validator {
       $this->clearValidation();
       return;
     }
-    // If we have any failures iterate over them and add the messages to the
-    // form state to be picked up by the process function later.
+
+    $key = $this->stage . '_validation';
+    // If we have any failures store them in the db to be picked up later.
     foreach ($this->results as $target => $valid) {
       if (!$valid) {
         // This field has failed validation and needs to have a message
@@ -85,15 +168,20 @@ class Validator {
         $message = array_get($this->form, $target . '.#attributes.data-parsley-error-message', FALSE);
         if ($message) {
           $this->state['values']['validate'][$this->stage][$target] = $message;
-          // Add it to the $_POST to make sure in gets saved in the db.
-          $_POST['validate'][$this->stage][$target] = $message;
+          $data[$key][$target] = $message;
         }
       }
     }
+
     // It's possible to explicitly pass in error messages to be shown.
     foreach ($messages as $target => $message) {
       $this->state['values']['validate'][$this->stage][$target] = $message;
+      $data[$key][$target] = $message;
     }
+
+    // Store the validation data in the db.
+    $store = MformsDatabaseStore::getInstance('myhaccp');
+    $store->setStore($key, $data);
   }
 
   /**
@@ -106,6 +194,15 @@ class Validator {
     if (isset($_POST['validate'])) {
       unset($_POST['validate']);
     }
+
+    $key = $this->stage . '_validation';
+    $data = array(
+      $key => array(),
+    );
+
+    // Unset the validation from the db.
+    $store = MformsDatabaseStore::getInstance('myhaccp');
+    $store->setStore($key, $data);
   }
 
   /**

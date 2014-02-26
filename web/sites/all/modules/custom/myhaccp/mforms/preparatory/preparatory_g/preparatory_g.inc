@@ -18,8 +18,7 @@ function preparatory_g(&$form_state, &$next_step) {
   $stage = $stages->getStage(__FUNCTION__);
   drupal_set_title($stage->title, PASS_THROUGH);
 
-  $default_file = array_get($values, 'preparatory_g.g_2', FALSE);
-  $default_file = $default_file ? $default_file['fid'] : FALSE;
+  $default_file = array_get($values, 'preparatory_g.g_2.fid', FALSE);
 
   $form = array();
   $form['#attributes']['class'][] = 'prep-g';
@@ -87,9 +86,10 @@ function preparatory_g(&$form_state, &$next_step) {
  * Validation handler.
  */
 function preparatory_g_validate($form, &$form_state) {
-  $validator = new Validator($form, $form_state, 'preparatory_g');
+  $validator = Validator::getInstance();
+  $validator->setFormState($form_state);
 
-  if ($validator->allFieldsAreEmpty()) {
+  if ($validator->pagerButtonUsed() && $validator->allFieldsAreEmpty()) {
     return;
   }
 
@@ -101,6 +101,7 @@ function preparatory_g_validate($form, &$form_state) {
     $validator->validate($method, $target);
   }
 
+  // Check that there is either an upload or a hard copy.
   $upload = new Validation($form, $form_state, 'preparatory_g.g_2');
   $hard_copy = new Validation($form, $form_state, 'preparatory_g.g_3');
   if (!$upload->fieldIsNotEmpty() && !$hard_copy->fieldIsNotEmpty()) {

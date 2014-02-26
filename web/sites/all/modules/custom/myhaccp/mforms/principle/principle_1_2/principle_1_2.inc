@@ -51,7 +51,7 @@ function principle_1_2(&$form_state, &$next_step) {
   // Bail out here with a message if there are no instances of the fieldsets
   // filled out correctly in the previous screen.
   if ($instance_count == 0) {
-    drupal_set_message('You must add at least a step number and step name in the previous question as well as at least a hazard for the step.', 'error');
+    drupal_set_message('You must add at least a step number and step name in the previous question as well as at least a hazard for the step.', 'error', FALSE);
     return $form;
   }
 
@@ -180,9 +180,10 @@ function principle_1_2(&$form_state, &$next_step) {
  * Validation handler for Principle 1 Question 2.
  */
 function principle_1_2_validate($form, &$form_state) {
-  $validator = new Validator($form, $form_state, 'principle_1_2');
+  $validator = Validator::getInstance();
+  $validator->setFormState($form_state);
 
-  if ($validator->allFieldsAreEmpty()) {
+  if ($validator->pagerButtonUsed() && $validator->allFieldsAreEmpty()) {
     return;
   }
 
