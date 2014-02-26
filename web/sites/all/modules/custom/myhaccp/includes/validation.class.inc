@@ -86,7 +86,7 @@ class Validator {
    * Gets the validation from the db for the current stage.
    */
   public function getValidation($stage) {
-    $data = mforms_get_vals('myhaccp', $stage->name . '_validation');
+    $data = mforms_get_vals('myhaccp', $stage . '_validation');
     if (empty($data)) {
       return NULL;
     }

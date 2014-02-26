@@ -284,13 +284,32 @@ class Stage {
   }
 
   public function getStatus() {
-
+    // Check if there is any validation stored.
+    if (is_array($this->validation)) {
+      // If the array is empty it means validation has passed.
+      if (empty($this->validation)) {
+        return VALID;
+      }
+      else {
+        return INVALID;
+      }
+    }
+    // There is no validation which means the stage hasn't been started.
+    return NOT_STARTED;
   }
 
   public function getValidationData() {
-    $data = mforms_get_vals('myhaccp', $this->name . '_validation');
-    if (empty($data)) {
-      return NULL;
+    $data = array();
+    $iid = $_SESSION['iid'];
+    $key = $this->name . '_validation';
+    $query = db_select('mforms_storage', 'm');
+    $query->join('mforms_storage_steps', 's', 's.iid = m.iid');
+    $query->fields('s', array('store_data'))
+      ->condition('m.iid', $iid)
+      ->condition('s.store_key', $key);
+    $result = $query->execute()->fetchField();
+    if ($result) {
+      $data = unserialize($result);
     }
     return $data;
   }
