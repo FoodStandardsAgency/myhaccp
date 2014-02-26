@@ -85,8 +85,8 @@ class Validator {
   /**
    * Gets the validation from the db for the current stage.
    */
-  public function getValidation() {
-    $data = mforms_get_vals('myhaccp', $this->stage . '_validation');
+  public function getValidation($stage) {
+    $data = mforms_get_vals('myhaccp', $stage->name . '_validation');
     if (empty($data)) {
       return NULL;
     }
@@ -102,7 +102,7 @@ class Validator {
   public function setFormStateValidation(&$form_state) {
     // Only do this for the myhaccp forms.
     if (is_array($form_state) && $form_state['build_info']['form_id'] == 'myhaccp_study_resume') {
-      $form_state['values']['validate'] = $this->getValidation();
+      $form_state['values']['validate'] = $this->getValidation($this->stage);
     }
   }
 

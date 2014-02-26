@@ -90,6 +90,7 @@ class Stages {
    */
   public function getAll() {
     $stages = array(
+      'preparatory_intro' => 'preparatory',
       'preparatory_a' => 'preparatory',
       'preparatory_b' => 'preparatory',
       'preparatory_c_1' => 'preparatory',
@@ -99,7 +100,8 @@ class Stages {
       'preparatory_f' => 'preparatory',
       'preparatory_g' => 'preparatory',
       'preparatory_h' => 'preparatory',
-      'preparatory_summary' => 'preparatory',
+      'preparatory_review' => 'preparatory',
+      'principle_intro' => 'principle',
       'principle_1_1' => 'principle',
       'principle_1_2' => 'principle',
       'principle_1_3' => 'principle',
@@ -110,7 +112,7 @@ class Stages {
       'principle_5' => 'principle',
       'principle_6' => 'principle',
       'principle_7' => 'principle',
-      'principle_summary' => 'principle',
+      'principle_review' => 'principle',
     );
     return $stages;
   }
@@ -158,6 +160,7 @@ class Stages {
    */
   public function getUrls() {
     return array(
+      'preparatory_intro' => 'preparatory/introduction',
       'preparatory_a' => 'preparatory/a',
       'preparatory_b' => 'preparatory/b',
       'preparatory_c_1' => 'preparatory/c-1',
@@ -167,7 +170,8 @@ class Stages {
       'preparatory_f' => 'preparatory/f',
       'preparatory_g' => 'preparatory/g',
       'preparatory_h' => 'preparatory/h',
-      'preparatory_summary' => 'preparatory/summary',
+      'preparatory_review' => 'preparatory/review',
+      'principle_intro' => 'principle/introduction',
       'principle_1_1' => 'principle/1-1',
       'principle_1_2' => 'principle/1-2',
       'principle_1_3' => 'principle/1-3',
@@ -178,7 +182,7 @@ class Stages {
       'principle_5' => 'principle/5',
       'principle_6' => 'principle/6',
       'principle_7' => 'principle/7',
-      'principle_summary' => 'principle/summary',
+      'principle_review' => 'principle/review',
     );
   }
 
@@ -190,6 +194,7 @@ class Stages {
    */
   protected function getAllTitles() {
     return array(
+      'preparatory_intro' => 'Preparatory: Intro',
       'preparatory_a' => 'Preparatory Stage A: Prerequisites',
       'preparatory_b' => 'Preparatory Stage B: Management Commitment',
       'preparatory_c_1' => 'Preparatory Stage C: Define scope of the study, <br/>Questions 1-3',
@@ -199,7 +204,8 @@ class Stages {
       'preparatory_f' => 'Preparatory Stage F: Identify intended use of the product',
       'preparatory_g' => 'Preparatory Stage G: Construct a flow diagram',
       'preparatory_h' => 'Preparatory Stage H: On-site confirmation of flow diagram',
-      'preparatory_summary' => 'Preparatory Summary',
+      'preparatory_review' => 'Preparatory: Review',
+      'principle_intro' => 'Principles: Intro',
       'principle_1_1' => 'Principle 1, Question 1: Identify and list potential hazards.',
       'principle_1_2' => 'Principle 1, Question 2: Conduct a hazard analysis.',
       'principle_1_3' => 'Principle 1, Question 3: Specify control measures.',
@@ -210,7 +216,7 @@ class Stages {
       'principle_5' => 'Principle 5: Establish a corrective action plan',
       'principle_6' => 'Principle 6: Verification',
       'principle_7' => 'Principle 7: Establish documentation and record keeping',
-      'principle_summary' => 'Principles Summary',
+      'principle_review' => 'Principles: Review',
     );
   }
 
@@ -269,6 +275,20 @@ class Stage {
     // Populate the stage information.
     $this->type = $type;
     $this->name = $stage;
+    $this->validation = $this->getValidationData();
+    $this->status = $this->getStatus();
+  }
+
+  public function getStatus() {
+    
+  }
+
+  public function getValidationData() {
+    $data = mforms_get_vals('myhaccp', $this->name . '_validation');
+    if (empty($data)) {
+      return NULL;
+    }
+    return $data;
   }
 
 }

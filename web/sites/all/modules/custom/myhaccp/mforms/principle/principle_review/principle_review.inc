@@ -1,10 +1,6 @@
 <?php
 
-function preparatory_summary(&$form_state, &$next_step) {
-
-  // Define following step callback. If none set, that implies it is
-  // the last step.
-  $next_step = 'principle_1_question_1';
+function principle_review(&$form_state, &$next_step) {
 
   // Set the page title.
   $stages = new Stages();
@@ -16,7 +12,7 @@ function preparatory_summary(&$form_state, &$next_step) {
   $node_output = node_view($node);
   $validation = new ValidateStages();
   // Get the statuses.
-  $statuses = $validation->getPreparatoryStagesStatuses();
+  $statuses = $validation->getPrincipleStagesStatuses();
   $message_output = '';
   // Iterate over all the statuses of all the stages.
   foreach ($statuses as $key => $passed) {
@@ -45,21 +41,21 @@ function preparatory_summary(&$form_state, &$next_step) {
 
   $form = array();
 
-  $form['preparatory_summary'] = array(
+  $form['preparatory_review'] = array(
     '#type' => 'fieldset',
     '#tree' => TRUE,
   );
 
-  $form['preparatory_summary']['validation'] = array(
+  $form['preparatory_review']['validation'] = array(
     '#type' => 'container',
   );
 
-  $form['preparatory_summary']['validation']['messages'] = array(
+  $form['preparatory_review']['validation']['messages'] = array(
     '#markup' => $message_output,
   );
 
 
-  $form['preparatory_summary']['node'] = array(
+  $form['preparatory_review']['node'] = array(
     '#markup' => drupal_render($node_output),
   );
 

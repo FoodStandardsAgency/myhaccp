@@ -161,6 +161,11 @@ function myhaccp_myhaccp_mforms_init() {
   // If using mustistep controls you need to explicitly define form steps and
   // its attributes.
   $controls = MyHACCPMultiStepControls::getInstance($store, $steps, array(
+    'preparatory_intro' => array(
+      'stage' => 'preparatory',
+      'value' => 'Intro',
+      'weight' => 0,
+    ),
     'preparatory_a' => array(
       'stage' => 'preparatory',
       'value' => 'A',
@@ -206,65 +211,70 @@ function myhaccp_myhaccp_mforms_init() {
       'value' => 'H',
       'weight' => 9,
     ),
-    'preparatory_summary' => array(
+    'preparatory_review' => array(
       'stage' => 'preparatory',
-      'value' => 'S',
+      'value' => 'Review',
       'weight' => 10,
+    ),
+    'principle_intro' => array(
+      'stage' => 'principles',
+      'value' => 'Intro',
+      'weight' => 11,
     ),
     'principle_1_1' => array(
       'stage' => 'principles',
       'value' => '1.1',
-      'weight' => 11,
+      'weight' => 12,
     ),
     'principle_1_2' => array(
       'stage' => 'principles',
       'value' => '1.2',
-      'weight' => 12,
+      'weight' => 13,
     ),
     'principle_1_3' => array(
       'stage' => 'principles',
       'value' => '1.3',
-      'weight' => 13,
+      'weight' => 14,
     ),
     'principle_2_1' => array(
       'stage' => 'principles',
       'value' => '2.1',
-      'weight' => 14,
+      'weight' => 15,
     ),
     'principle_2_2' => array(
       'stage' => 'principles',
       'value' => '2.2',
-      'weight' => 15,
+      'weight' => 16,
     ),
     'principle_3' => array(
       'stage' => 'principles',
       'value' => '3',
-      'weight' => 16,
+      'weight' => 17,
     ),
     'principle_4' => array(
       'stage' => 'principles',
       'value' => '4',
-      'weight' => 17,
+      'weight' => 18,
     ),
     'principle_5' => array(
       'stage' => 'principles',
       'value' => '5',
-      'weight' => 18,
+      'weight' => 19,
     ),
     'principle_6' => array(
       'stage' => 'principles',
       'value' => '6',
-      'weight' => 19,
+      'weight' => 20,
     ),
     'principle_7' => array(
       'stage' => 'principles',
       'value' => '7',
-      'weight' => 20,
-    ),
-    'principle_summary' => array(
-      'stage' => 'principles',
-      'value' => 'S',
       'weight' => 21,
+    ),
+    'principle_review' => array(
+      'stage' => 'principles',
+      'value' => 'Review',
+      'weight' => 22,
     ),
   ));
 
