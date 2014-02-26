@@ -695,3 +695,48 @@ function myhaccp_study_get_stages_data($keys, $iid) {
   // Return an empty array if the study has not been found.
   return array();
 }
+
+/**
+ * Gets the label for a stored checkbox key.
+ *
+ * @param string $stage
+ *   The machine name of the stage.
+ * @param string $target
+ *   The form element to target in the stage in dot notation.
+ * @param array $values
+ *   The values to match the keys to find the labels.
+ *
+ * @return array
+ *   An empty array if nothing found or an array of labels to display.
+ */
+function myhaccp_prepare_checkboxes_output($stage, $target, $values) {
+  // Prepare the fake values needed to fetch the form.
+  $form_state = array();
+  $next_stage = '';
+  // Fetch the form.
+  $form = $stage($form_state, $next_stage);
+  // Get the checkbox values.
+  $checkbox_values = array_get($values, $target, array());
+  // Get the checkbox element.
+  $target = $stage . '.' . $target;
+  $element = array_get($form, $target, FALSE);
+  // Prepare the labels array.
+  $labels = array();
+  // Bail if no element was found.
+  if (!$element) {
+    return $labels;
+  }
+  // Get the options from the element.
+  $target = $target . '.#options';
+  $options = array_get($form, $target, FALSE);
+  // Iterate over the checkboxes values and try to match the key to the label.
+  foreach ($checkbox_values as $key => $value) {
+    if ($value !== 0) {
+      // Get the label.
+      if (isset($options[$key])) {
+        $labels[] = $options[$key];
+      }
+    }
+  }
+  return $labels;
+}

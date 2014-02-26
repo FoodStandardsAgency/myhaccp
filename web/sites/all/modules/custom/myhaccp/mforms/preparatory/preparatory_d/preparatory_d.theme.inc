@@ -34,8 +34,8 @@ function myhaccp_preprocess_preparatory_d(&$variables) {
 
   // First the table headers
   $header = array(
-    array('data' => t('Name')),
     array('data' => t('Role')),
+    array('data' => t('Name')),
     array('data' => t('Training, experience & qualifications'))
   );
 
@@ -45,10 +45,10 @@ function myhaccp_preprocess_preparatory_d(&$variables) {
     $experience = implode('<br />', array_filter($instance['wrapper']));
 
     $rows[] = array(
-      // Name
-      array('data' => $instance['d_1']),
       // Role
       array('data' => $instance['d_3']),
+      // Name
+      array('data' => $instance['d_1']),
       // Training, experience & qualifications
       array('data' => $experience)
     );
@@ -59,9 +59,11 @@ function myhaccp_preprocess_preparatory_d(&$variables) {
 
   // Team skills
   if ($values['team_skills'] == 'Yes') {
-    $variables['d_1_team_skills'] = t('We confirm that the team has sufficient skills (scientific/technical knowledge and HACCP expertise) to ensure the HACCP study will be effective.');
+    $variables['d_1_team_skills'] = t('We confirm that the team have sufficient skills (scientific/technical knowledge and HACCP expertise) to ensure that the HACCP study will be effective.');
   } else {
-    $variables['d_1_team_skills'] = t('We cannot confirm that the team has sufficient skills (scientific/technical knowledge and HACCP expertise) to ensure the HACCP study will be effective.<br /> We plan to address this by:');
+    $variables['d_1_team_skills'] = t('We cannot confirm that the team have sufficient skills (scientific/technical knowledge and HACCP expertise) to ensure that the HACCP study will be effective.');
   }
+
+  // @todo - need another field adding for an explanation if d_1 = no.
 
 }
