@@ -133,7 +133,7 @@ function preparatory_f(&$form_state, &$next_step) {
       'yes' => t('Yes'),
       'no' => t('No'),
     ),
-    '#title' => t('7. Are there any other groups of people that may consume your product that require f_7 consideration?'),
+    '#title' => t('7. Are there any other groups of people that may consume your product that require special consideration?'),
     '#help_link' => 19,
     '#help_text' => t('List any others if not considered in steps 2-6.'),
     '#default_value' => array_get($values, 'preparatory_f.f_7', array()),
