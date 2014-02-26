@@ -17,8 +17,6 @@
  *   to display.
  */
 function myhaccp_preprocess_principle_2_2(&$variables) {
-  // @todo pull in data on hazards e.g Step No. / hazard name
-
   $stage = 'principle_2_2';
   $values = $variables['data'][$stage];
 
@@ -58,6 +56,5 @@ function myhaccp_preprocess_principle_2_2(&$variables) {
 
   // Generate the table through a theme function.
   $variables['p_2_2_table'] = theme('table', array('header' => $header, 'rows' => $rows));
-
 
 }

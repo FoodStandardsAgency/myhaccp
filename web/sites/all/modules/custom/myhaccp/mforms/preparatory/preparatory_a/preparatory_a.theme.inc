@@ -17,7 +17,7 @@
  *   to display.
  */
 function myhaccp_preprocess_preparatory_a(&$variables) {
-
+  myhaccp_myhaccp_mforms_init();
 }
 
 /**
@@ -29,7 +29,7 @@ function myhaccp_preprocess_preparatory_a(&$variables) {
 function myhaccp_preparatory_stage_a_data() {
   // Initialise mforms so we can get values from other stages and then
   // get values from other stages.
-  myhaccp_myhaccp_mforms_init();
+
   $stage = 'preparatory_a';
   $data = mforms_get_vals('myhaccp', $stage);
   $values = $data[$stage];
