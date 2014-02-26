@@ -33,6 +33,6 @@ function myhaccp_preprocess_preparatory_b(&$variables) {
     $variables['b_1'] = !empty($names) ? '<ul><li>' . implode('</li><li>', $names) . '</li></ul>' : '';
   }
   // b_2
-  $variables['b_2_title'] = t('Other Evidence of management commitment:');
+  $variables['b_2_title'] = t('Other evidence of management commitment');
   $variables['b_2'] = $values['b_2'] ? $values['b_2'] : '';
 }

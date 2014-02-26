@@ -21,7 +21,7 @@ function myhaccp_preprocess_preparatory_h(&$variables) {
   $values = $variables['data'][$stage];
 
   // 1. Name of person(s) confirming flow diagram is correct:
-  $variables['h_1'] = $values['h_1'] . ' ' . t('has confirmed that our flow diagram is correct.');
+  $variables['h_1'] = '<strong>' . $values['h_1'] . '</strong> ' . t('has confirmed that our flow diagram is correct.');
 
   // 2. Is every process step identified on the flow diagram?
   if($values['h_2'] == 'yes') {
@@ -59,16 +59,13 @@ function myhaccp_preprocess_preparatory_h(&$variables) {
   }
 
   // 7. Who in your organisation is aware that any changes to the process will require changes to the flow diagram?
-
   $h7 = explode("\r\n", trim($values['h_7']));
   $h7 = implode('</li><li>', $h7);
   $h7 = '<div><p>' . t('The following members of our organisation are aware that any changes to the process will require changes to the flow diagram:') . '</p><ul><li>' . $h7 . '</li></ul></div>';
 
   $variables['h_7'] = $h7;
 
-
   // 8. Who in your organisation is responsible for storing all out-of-date versions of the flow diagram?
-
   $h8 = explode("\r\n", trim($values['h_8']));
   $h8 = implode('</li><li>', $h8);
   $h8 = '<div><p>' . t('The following members of our organisation are responsible for storing all out-of-date versions of the flow diagram:') . '</p><ul><li>' . $h8 . '</li></ul></div>';
