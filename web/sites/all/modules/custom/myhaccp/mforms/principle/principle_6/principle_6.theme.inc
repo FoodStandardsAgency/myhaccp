@@ -35,6 +35,25 @@ function myhaccp_preprocess_principle_6(&$variables) {
 
   $variables['p_6_4_title'] = t('The following verification activities are undertaken:');
 
+  $content = '';
+  foreach($values['6_4'] as $key => $activity_group) {
+    //dpm($key);
+    switch ($key) {
+      case '1':
+        $content .= '<h4>' . t('Internal audits of') . '</h4>';
+        $content .= '<ul><li>';
+        $content .= implode('</li><li>', $activity_group);
+        $content .= '</li></ul>';
+
+        //dpm($activity_group);
+        break;
+      case '2':
+    }
+
+    //dpm($activity_group);
+  }
+  //dpm($content);
+
   // @todo need the checkbox labels here
 
   // 7. How often is the HACCP system formally reviewed?

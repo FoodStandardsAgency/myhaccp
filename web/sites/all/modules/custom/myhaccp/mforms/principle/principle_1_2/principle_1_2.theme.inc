@@ -63,7 +63,6 @@ function myhaccp_preprocess_principle_1_2(&$variables) {
 
       // Generate the table through a theme function.
       $step_ha_tables[$key] .= theme('table', array('header' => $header, 'rows' => $rows));
-
     }
 
   }
