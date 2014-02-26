@@ -4,6 +4,10 @@
  * Stages class to make getting stage information easier.
  */
 
+define('NOT_STARTED', 0);
+define('INVALID', 1);
+define('VALID', 2);
+
 /**
  * Class stages
  */
@@ -280,7 +284,7 @@ class Stage {
   }
 
   public function getStatus() {
-    
+
   }
 
   public function getValidationData() {
