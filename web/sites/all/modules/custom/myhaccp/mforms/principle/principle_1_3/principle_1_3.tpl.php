@@ -6,7 +6,7 @@
 ?>
 
 <section class="page">
-  <h2>Specify Control Measures</h2>
+  <h2>Control Measures</h2>
 
   <?php print $p_1_3_table ?>
 

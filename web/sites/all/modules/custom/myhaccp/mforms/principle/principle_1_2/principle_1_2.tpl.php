@@ -6,7 +6,7 @@
 ?>
 
 <section class="page">
-  <h2>Conduct a hazard analysis</h2>
+  <h2>Severity scores</h2>
 
   <?php print $p_1_2_hazard_table ?>
 
