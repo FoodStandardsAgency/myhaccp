@@ -34,8 +34,7 @@ function preparatory_d(&$form_state, &$next_step) {
   );
 
   // Check whether the number of instances has been set and if so show them,
-  // otherwise show 2. If instances has been set but there is only 1 then show a
-  // second (blank) one.
+  // otherwise show 1.
   if (empty($form_state['num_instances'])) {
     $form_state['num_instances'] = 1;
   }

@@ -4,11 +4,12 @@
  * Outputs a study as a PDF.
  */
 function myhaccp_output_pdf($iid) {
-  // Load the study.
-  $stages = new stages();
-  $stages_keys = array_keys($stages->allStages);
+  // Get the dependency injection container.
+  global $container;
+  $configuration = $container['configuration'];
+  $keys = array_keys($configuration->getMachineNames());
 
-  $study = myhaccp_study_get_stages_data($stages_keys, $iid);
+  $study = myhaccp_study_get_stages_data($keys, $iid);
   if (!empty($study)) {
     // Load the mPDF library and start a new PDF.
     $path = libraries_get_path('mpdf');
