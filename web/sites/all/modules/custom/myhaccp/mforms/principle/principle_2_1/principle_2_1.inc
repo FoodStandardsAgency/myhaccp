@@ -14,8 +14,12 @@ function principle_2_1(&$form_state, &$next_step) {
   // them in form as default values.
   $values = myhaccp_prepare_values($data, $form_state);
 
-  $stages = new Stages();
-  $stage = $stages->getStage(__FUNCTION__);
+  // Get the dependency injection container.
+  global $container;
+  // Get the current study.
+  $study = $container['study'];
+  // Get the stage.
+  $stage = $study->getCurrentStage();
   drupal_set_title($stage->title, PASS_THROUGH);
 
   $form = array();
