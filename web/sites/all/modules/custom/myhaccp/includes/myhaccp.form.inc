@@ -47,8 +47,7 @@ function myhaccp_process($element, &$form_state) {
  *   The modified form array.
  */
 function myhaccp_form_process($form, &$form_state) {
-//  $validator = Validator::getInstance();
-//  $validator->setFormStateValidation($form_state);
+
   // Get the title of the page.
   $title = drupal_get_title();
   // Add the title in as a new markup element.
