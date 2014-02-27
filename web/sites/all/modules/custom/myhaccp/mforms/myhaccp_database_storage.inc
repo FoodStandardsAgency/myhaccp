@@ -95,20 +95,23 @@ class MformsDatabaseStore implements MformsIstore {
    * Gets the stored record for the given key.
    */
   public function getStore($key) {
-    $stages = new Stages();
+    global $container;
+    $study = $container['study'];
+    $configuration = $container['configuration'];
 
     // The step names (functions) are only stored in the db once submitted but
     // we want to be able to jump around between steps so need them declared
     // up front.
     if ($key == 'steps') {
-      return array_keys($stages->allStages);
+      return array_keys($configuration->getMachineNames());
     }
 
     // Check if there is a specified stage url.
     if ($key == 'curr_step' && arg(3) && arg(4)) {
       // Match the url to a stage function.
-      if ($step = $stages->getNameFromUrl(arg(3), arg(4))) {
-        return $step;
+      if ($stage = $study->getStageFromUrl(arg(3), arg(4))) {
+        $study->setCurrentStage($stage);
+        return $stage->name;
       }
     }
 

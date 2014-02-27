@@ -5,15 +5,51 @@
  */
 function myhaccp_init() {
   // Add some protection to ensure the class is loaded.
-  if (class_exists('Stages')) {
-    $stages = new Stages();
+  if (class_exists('Pimple')) {
+    myhaccp_di_container();
+    global $container;
+    $files = $container['configuration']->getFiles();
     // Declare all of the stages (steps) forms.
-    foreach ($stages->allStages as $file => $stage) {
-      $type = $stage->type;
-      ctools_include($file, 'myhaccp', "mforms/$type/$file");
+    foreach ($files as $name => $phase) {
+      ctools_include($name, 'myhaccp', "mforms/$phase/$name");
     }
   }
+  // Initialise the study.
+  myhaccp_initialise_study();
   ctools_include('myhaccp.form', 'myhaccp', 'includes');
+}
+
+/**
+ * The dependency injection container.
+ *
+ * @return Pimple
+ */
+function myhaccp_di_container() {
+  // Store this as a global.
+  global $container;
+  $container = new Pimple();
+
+  $container['configuration'] = function($c) {
+    return new Configuration();
+  };
+  $container['validation'] = $container->factory(function($c) {
+//    return new Validation();
+  });
+  $container['validator'] = $container->factory(function($c) {
+    return new Validator();
+  });
+  $container['study'] = function($c) {
+    return new Study();
+  };
+  $container['phase'] = $container->factory(function($c) {
+    $phase = new Phase();
+    return $phase;
+  });
+  $container['stage'] = $container->factory(function($c) {
+    $stage = new Stage();
+    $stage->setValidator($c['validator']);
+    return $stage;
+  });
 }
 
 /**
@@ -328,11 +364,51 @@ function myhaccp_study_resume($form, &$form_state, $iid = FALSE) {
     }
   }
   else {
-    // If there is no current session open then create a new db row.
+    // If there is no current session open then return to the tool.
     drupal_set_message('Please edit an existing form or create a new one.');
     drupal_goto('tool');
   }
+  // Return the form.
+  // Add the IID to the study object.
+  global $container;
+  $study = $container['study'];
+  $study->setCurrentStudy($iid);
   return mforms_build('myhaccp', 'preparatory_a', $form_state);
+}
+
+/**
+ * Initialises a study and all dependencies.
+ */
+function myhaccp_initialise_study() {
+  // Get the DI container.
+  global $container;
+  // Get the study object.
+  $study = $container['study'];
+  // Initialise the two phases.
+  $preparatory = $container['phase'];
+  $preparatory->setName('preparatory');
+  $principles = $container['phase'];
+  $principles->setName('principle');
+  // Add the phases to the study.
+  $study->addPhase($preparatory);
+  $study->addPhase($principles);
+  // Initialise all the stages and add to the correct phase.
+  $configuration = $container['configuration'];
+  $urls = $configuration->getStageUrls();
+  $titles = $configuration->getStageTitles();
+  foreach ($configuration->getMachineNames() as $name => $phase) {
+    $stage = $container['stage'];
+    // Set the machine name for the stage.
+    $stage->setName($name);
+    // Set the url for the stage.
+    $stage->setUrl($urls[$name]);
+    // Set the title for the stage.
+    $stage->setTitle($titles[$name]);
+    $stage->validator->setStage($stage);
+    // Add the stage to the phase.
+    $phase = $study->getPhase($phase);
+    $phase->addStage($stage);
+  }
 }
 
 /**
@@ -360,17 +436,18 @@ function myhaccp_theme($existing, $type, $theme, $path) {
       'function' => 'theme_myhaccp_2_2_table',
     ),
   );
-  if (class_exists('Stages')) {
-    $stages = new Stages();
-    foreach ($stages->allStages as $stage) {
+  if (class_exists('Pimple')) {
+    global $container;
+    $files = $container['configuration']->getFiles();
+    foreach ($files as $name => $phase) {
       // Now the hook. We want to pass in the form_state data so have added the
       // data variable. This will get properly sorted by a preprocess function so
       // the template has the correct data to display.
-      $hooks[$stage->name] = array(
+      $hooks[$name] = array(
         'variables' => array('data' => NULL),
-        'file' => $stage->name . ".theme.inc",
-        'path' => "$path/mforms/$stage->type/$stage->name",
-        'template' => $stage->name
+        'file' => $name . ".theme.inc",
+        'path' => "$path/mforms/$phase/$name",
+        'template' => $name
       );
     }
   }
@@ -435,8 +512,11 @@ function myhaccp_pager_submit($form, &$form_state) {
     // Add $_POST into values as they got unset in the validation process due to
     // limit_validation_errors property of the back/step button.
     $form_state['values'] += $_POST;
-    $stages = new Stages();
-    $stage = $stages->allStages[$form_state['triggering_element']['#mforms_step']];
+    // Get the dependency injection container.
+    global $container;
+    // Get the current study.
+    $study = $container['study'];
+    $stage = $study->getStage($form_state['triggering_element']['#mforms_step']);
     $form_state['redirect'] = 'tool/study/' . $_SESSION['iid'] . '/' . $stage->url;
     mforms_submit($form_state['clicked_button']['#store_key'], $form, $form_state);
   }
@@ -451,8 +531,11 @@ function myhaccp_continue_submit($form, &$form_state) {
     // Add $_POST into values as they got unset in the validation process due to
     // limit_validation_errors property of the back/step button.
     $form_state['values'] += $_POST;
-    $stages = new Stages();
-    $stage = $stages->allStages[$form['next_step']['#value']];
+    // Get the dependency injection container.
+    global $container;
+    // Get the current study.
+    $study = $container['study'];
+    $stage = $study->getStage($form['next_step']['#value']);
     $form_state['redirect'] = 'tool/study/' . $_SESSION['iid'] . '/' . $stage->url;
     mforms_submit($form_state['clicked_button']['#store_key'], $form, $form_state);
   }
@@ -467,8 +550,11 @@ function myhaccp_back_submit($form, &$form_state) {
     // Add $_POST into values as they got unset in the validation process due to
     // limit_validation_errors property of the back/step button.
     $form_state['values'] += $_POST;
-    $stages = new Stages();
-    $stage = $stages->allStages[$form['prev_step']['#value']];
+    // Get the dependency injection container.
+    global $container;
+    // Get the current study.
+    $study = $container['study'];
+    $stage = $study->getStage($form['prev_step']['#value']);
     $form_state['redirect'] = 'tool/study/' . $_SESSION['iid'] . '/' . $stage->url;
     mforms_submit($form_state['clicked_button']['#store_key'], $form, $form_state);
   }
@@ -484,8 +570,11 @@ function myhaccp_save_submit($form, &$form_state) {
     // limit_validation_errors property of the back/step button.
     $form_state['values'] += $_POST;
     $form_state['rebuild'] = TRUE;
-    $stages = new Stages();
-    $stage = $stages->allStages[$form['curr_step']['#value']];
+    // Get the dependency injection container.
+    global $container;
+    // Get the current study.
+    $study = $container['study'];
+    $stage = $study->getStage($form['curr_step']['#value']);
     $form_state['redirect'] = 'tool/study/' . $_SESSION['iid'] . '/' . $stage->url;
     mforms_submit($form_state['clicked_button']['#store_key'], $form, $form_state);
   }

@@ -15,9 +15,12 @@ function principle_5(&$form_state, &$next_step) {
   // them in form as default vals.
   $values = myhaccp_prepare_values($data, $form_state);
 
-  // Set the page title.
-  $stages = new Stages();
-  $stage = $stages->getStage(__FUNCTION__);
+  // Get the dependency injection container.
+  global $container;
+  // Get the current study.
+  $study = $container['study'];
+  // Get the stage.
+  $stage = $study->getCurrentStage();
   drupal_set_title($stage->title, PASS_THROUGH);
 
   $form = array();
@@ -153,8 +156,15 @@ function principle_5(&$form_state, &$next_step) {
  * Validation handler for Principle 2 Question 4.
  */
 function principle_5_validate($form, &$form_state) {
-  $validator = Validator::getInstance();
+  // Get the dependency injection container.
+  global $container;
+  // Get the current study.
+  $study = $container['study'];
+  // Get the stage.
+  $stage = $study->getStage('preparatory_a');
+  $validator = $stage->getValidator();
   $validator->setFormState($form_state);
+  $validator->setForm($form);
 
   if ($validator->pagerButtonUsed() && $validator->allFieldsAreEmpty()) {
     return;
@@ -179,6 +189,7 @@ function principle_5_validate($form, &$form_state) {
   }
 
   $validator->setErrorMessages();
+  $form_state = $validator->getFormState();
 
 }
 

@@ -12,47 +12,11 @@
  */
 class Validator {
 
-  private static $instances = array();
-  public $results = array();
-  public $passed = TRUE;
-
   /**
-   * Constructor method.
+   * Constructor to set the validation status to TRUE on first build.
    */
-  public function __construct($stage = NULL) {
-    $this->stage = $this->getCurrentStage($stage);
-    $store = MformsDatabaseStore::getInstance('myhaccp');
-    $steps = MformsSteps::getInstance($store);
-    $controls = mforms_controls_get('myhaccp');
-    // Get instance of Mform.
-    $this->state = $store->getFormState();
-    $mform = Mform::getInstance($store, $steps, $controls, $this->stage);
-    // Get the form definition for the provided step.
-    $this->form = $mform->call('build', array(), $this->state, array());
-  }
-
-  /**
-   * Init validator object and get its singleton.
-   *
-   * @param int $iid
-   *   The unique id of the form instance.
-   *
-   * @return Validator
-   *   Singleton object.
-   */
-  public static function getInstance($iid = NULL) {
-    if (is_null($iid)) {
-      $iid = $_SESSION['iid'];
-    }
-    // If singleton instance is NULL, instantiate the Validator.
-    if (empty(self::$instances[$iid])) {
-      myhaccp_myhaccp_mforms_init();
-      $class = get_called_class();
-      self::$instances[$iid] = new $class();
-    }
-
-    // Return instantiated and set Validator object.
-    return self::$instances[$iid];
+  public function __construct() {
+    $this->setStatus(TRUE);
   }
 
   /**
@@ -62,24 +26,54 @@ class Validator {
    *   The form state array.
    */
   public function setFormState($form_state) {
-    $this->state = $form_state;
+    $this->formState = $form_state;
   }
 
   /**
-   * Returns the current stage.
-   *
-   * @param string $stage
-   *   The stage if specified.
-   *
-   * @return string
-   *   The current stage from the curr_step stored or the passed in stage.
+   * Returns the form state.
    */
-  private function getCurrentStage($stage) {
-    if (empty($stage)) {
-      $store = MformsDatabaseStore::getInstance('myhaccp');
-      $stage = $store->getStore('curr_step');
-    }
-    return $stage;
+  public function getFormState() {
+    return $this->formState;
+  }
+
+  public function setStage(Stage $stage) {
+    $this->stage = $stage;
+  }
+
+  public function getForm() {
+    return $this->form;
+  }
+
+  public function setForm($form) {
+    $this->form = $form;
+  }
+
+  public function getStage() {
+    return $this->stage;
+  }
+
+  /**
+   * Gets the status of the validation.
+   *
+   * @return bool
+   *   TRUE if passed validation, FALSE if not.
+   */
+  public function getStatus() {
+    return isset($this->status) ? $this->status : FALSE;
+  }
+
+  /**
+   * Sets the status of the validation.
+   *
+   * @param bool $status
+   *   TRUE if passed validation, FALSE if not.
+   */
+  public function setStatus($status) {
+    $this->status = $status;
+  }
+
+  public function getResults() {
+    return isset($this->results) ? $this->results : array();
   }
 
   /**
@@ -93,6 +87,14 @@ class Validator {
     return $data;
   }
 
+  public function setResult($target, $result) {
+    $this->results[$target] = $result;
+  }
+
+  public function getResult($target) {
+    return isset($this->results[$target]) ? $this->results[$target] : FALSE;
+  }
+
   /**
    * Sets the validation up in form_state.
    *
@@ -102,7 +104,7 @@ class Validator {
   public function setFormStateValidation(&$form_state) {
     // Only do this for the myhaccp forms.
     if (is_array($form_state) && $form_state['build_info']['form_id'] == 'myhaccp_study_resume') {
-      $form_state['values']['validate'] = $this->getValidation($this->stage);
+      $form_state['values']['validate'] = $this->getValidation($this->getStage());
     }
   }
 
@@ -129,20 +131,21 @@ class Validator {
     }
     // Iterate over every method passed to check validation against.
     foreach ($methods as $method) {
-      $validation = new Validation($this->form, $this->state, $target);
+      $validation = new Validation($this->getForm(), $this->getFormState(), $target);
       // Get the valid boolean indicating pass (TRUE) or fail (FALSE).
       $valid[] = $validation->$method();
     }
     // Check all results of validation on this target. If any of them are FALSE
-    // then add a FALSE entry to results.
+    // then add a FALSE entry to results and set the status to FALSE;
     if (in_array(FALSE, $valid)) {
-      $this->passed = FALSE;
-      $this->results[$target] = FALSE;
+      $this->setStatus(FALSE);
+      $this->setResult($target, FALSE);
     }
     else {
-      $this->results[$target] = TRUE;
+      // This set has passed so add TRUE to the status.
+      $this->setResult($target, TRUE);
     }
-    return $this->results[$target];
+    return $this->getResult($target);
   }
 
   /**
@@ -154,20 +157,22 @@ class Validator {
    */
   public function setErrorMessages($messages = array()) {
     // First of all check if we've passed all validation.
-    if ($this->passed == TRUE) {
+    if ($this->getStatus() == TRUE) {
       $this->clearValidation();
       return;
     }
 
-    $key = $this->stage . '_validation';
+    $key = $this->stage->name . '_validation';
     // If we have any failures store them in the db to be picked up later.
-    foreach ($this->results as $target => $valid) {
+    foreach ($this->getResults() as $target => $valid) {
       if (!$valid) {
         // This field has failed validation and needs to have a message
         // displayed.
         $message = array_get($this->form, $target . '.#attributes.data-parsley-error-message', FALSE);
         if ($message) {
-          $this->state['values']['validate'][$this->stage][$target] = $message;
+          $form_state = $this->getFormState();
+          $form_state['values']['validate'][$this->stage->name][$target] = $message;
+          $this->setFormState($form_state);
           $data[$key][$target] = $message;
         }
       }
@@ -175,7 +180,9 @@ class Validator {
 
     // It's possible to explicitly pass in error messages to be shown.
     foreach ($messages as $target => $message) {
-      $this->state['values']['validate'][$this->stage][$target] = $message;
+      $form_state = $this->getFormState();
+      $form_state['values']['validate'][$this->stage->name][$target] = $message;
+      $this->setFormState($form_state);
       $data[$key][$target] = $message;
     }
 
@@ -188,14 +195,17 @@ class Validator {
    * Clears the form_state and post of validation messages.
    */
   public function clearValidation() {
-    if (isset($this->state['values']['validate'])) {
-      unset($this->state['values']['validate']);
+    $form_state = $this->getFormState();
+    if (isset($form_state['values']['validate'])) {
+      unset($form_state['values']['validate']);
+      // Update the local form state.
+      $this->setFormState($form_state);
     }
     if (isset($_POST['validate'])) {
       unset($_POST['validate']);
     }
 
-    $key = $this->stage . '_validation';
+    $key = $this->stage->name . '_validation';
     $data = array(
       $key => array(),
     );

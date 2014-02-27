@@ -111,8 +111,15 @@ function principle_2_1(&$form_state, &$next_step) {
  * Validation handler.
  */
 function principle_2_1_validate($form, &$form_state) {
-  $validator = Validator::getInstance();
+  // Get the dependency injection container.
+  global $container;
+  // Get the current study.
+  $study = $container['study'];
+  // Get the stage.
+  $stage = $study->getStage('preparatory_a');
+  $validator = $stage->getValidator();
   $validator->setFormState($form_state);
+  $validator->setForm($form);
 
   if ($validator->pagerButtonUsed() && $validator->allFieldsAreEmpty()) {
     return;
@@ -140,4 +147,5 @@ function principle_2_1_validate($form, &$form_state) {
   }
 
   $validator->setErrorMessages();
+  $form_state = $validator->getFormState();
 }

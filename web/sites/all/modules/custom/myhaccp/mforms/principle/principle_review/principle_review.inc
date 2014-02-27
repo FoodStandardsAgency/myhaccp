@@ -2,9 +2,12 @@
 
 function principle_review(&$form_state, &$next_step) {
 
-  // Set the page title.
-  $stages = new Stages();
-  $stage = $stages->getStage(__FUNCTION__);
+  // Get the dependency injection container.
+  global $container;
+  // Get the current study.
+  $study = $container['study'];
+  // Get the stage.
+  $stage = $study->getCurrentStage();
   drupal_set_title($stage->title, PASS_THROUGH);
 
   // Get the node output.

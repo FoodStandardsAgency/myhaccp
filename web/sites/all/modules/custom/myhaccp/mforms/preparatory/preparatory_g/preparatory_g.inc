@@ -14,8 +14,12 @@ function preparatory_g(&$form_state, &$next_step) {
   // them in form as default values.
   $values = myhaccp_prepare_values($data, $form_state);
 
-  $stages = new Stages();
-  $stage = $stages->getStage(__FUNCTION__);
+  // Get the dependency injection container.
+  global $container;
+  // Get the current study.
+  $study = $container['study'];
+  // Get the stage.
+  $stage = $study->getCurrentStage();
   drupal_set_title($stage->title, PASS_THROUGH);
 
   $default_file = array_get($values, 'preparatory_g.g_2.fid', FALSE);
@@ -86,8 +90,15 @@ function preparatory_g(&$form_state, &$next_step) {
  * Validation handler.
  */
 function preparatory_g_validate($form, &$form_state) {
-  $validator = Validator::getInstance();
+  // Get the dependency injection container.
+  global $container;
+  // Get the current study.
+  $study = $container['study'];
+  // Get the stage.
+  $stage = $study->getCurrentStage();
+  $validator = $stage->getValidator();
   $validator->setFormState($form_state);
+  $validator->setForm($form);
 
   if ($validator->pagerButtonUsed() && $validator->allFieldsAreEmpty()) {
     return;
@@ -109,10 +120,12 @@ function preparatory_g_validate($form, &$form_state) {
       'validation_messages' => array(t('Please either upload a digital copy of your flow diagram, or if you only have a hard copy please specify the location where it is retained and any document reference.')),
     );
     $validator->passed = FALSE;
-    $validator->setErrorMessages($messages);
+    $validator->setErrorMessages(($messages));
+  $form_state = $validator->getFormState();
   }
 
   $validator->setErrorMessages();
+  $form_state = $validator->getFormState();
 
   // Make sure uploaded files are permanently stored.
   if (array_get($form_state, 'values.preparatory_g.g_2', FALSE)) {
