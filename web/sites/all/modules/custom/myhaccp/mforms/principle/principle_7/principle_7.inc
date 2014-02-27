@@ -6,7 +6,7 @@
 function principle_7(&$form_state, &$next_step) {
   // Define following step callback. If none set, that implies it is
   // the last step.
-  $next_step = 'principle_7';
+  $next_step = 'principle_summary';
 
   // Retrieve submitted values.
   $data = mforms_get_vals('myhaccp', 'principle_7');
@@ -15,9 +15,12 @@ function principle_7(&$form_state, &$next_step) {
   // them in form as default vals.
   $values = myhaccp_prepare_values($data, $form_state);
 
-  // Set the page title.
-  $stages = new Stages();
-  $stage = $stages->getStage(__FUNCTION__);
+  // Get the dependency injection container.
+  global $container;
+  // Get the current study.
+  $study = $container['study'];
+  // Get the stage.
+  $stage = $study->getCurrentStage();
   drupal_set_title($stage->title, PASS_THROUGH);
 
   $form = array();
@@ -118,9 +121,17 @@ function principle_7(&$form_state, &$next_step) {
  * Validation handler for Principle 2 Question 4.
  */
 function principle_7_validate($form, &$form_state) {
-  $validator = new Validator($form, $form_state, 'principle_7');
+  // Get the dependency injection container.
+  global $container;
+  // Get the current study.
+  $study = $container['study'];
+  // Get the stage.
+  $stage = $study->getCurrentStage();
+  $validator = $stage->getValidator();
+  $validator->setFormState($form_state);
+  $validator->setForm($form);
 
-  if ($validator->allFieldsAreEmpty()) {
+  if ($validator->pagerButtonUsed() && $validator->allFieldsAreEmpty()) {
     return;
   }
 
@@ -136,5 +147,6 @@ function principle_7_validate($form, &$form_state) {
   }
 
   $validator->setErrorMessages();
+  $form_state = $validator->getFormState();
 }
 

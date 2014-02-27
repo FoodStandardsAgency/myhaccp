@@ -15,9 +15,12 @@ function principle_1_2(&$form_state, &$next_step) {
   // them in form as default vals.
   $values = myhaccp_prepare_values($data, $form_state);
 
-  // Set the page title.
-  $stages = new Stages();
-  $stage = $stages->getStage(__FUNCTION__);
+  // Get the dependency injection container.
+  global $container;
+  // Get the current study.
+  $study = $container['study'];
+  // Get the stage.
+  $stage = $study->getCurrentStage();
   drupal_set_title($stage->title, PASS_THROUGH);
 
   $form = array();
@@ -42,7 +45,7 @@ function principle_1_2(&$form_state, &$next_step) {
     ),
   );
 
-  $hazards = new Hazards();
+  $hazards = Hazards::getInstance();
 
   // Set an instance count so we know how many instances of the fieldsets we
   // need to show. One instance per step.
@@ -51,7 +54,7 @@ function principle_1_2(&$form_state, &$next_step) {
   // Bail out here with a message if there are no instances of the fieldsets
   // filled out correctly in the previous screen.
   if ($instance_count == 0) {
-    drupal_set_message('You must add at least a step number and step name in the previous question as well as at least a hazard for the step.', 'error');
+    drupal_set_message('You must add at least a step number and step name in the previous question as well as at least a hazard for the step.', 'error', FALSE);
     return $form;
   }
 
@@ -180,9 +183,17 @@ function principle_1_2(&$form_state, &$next_step) {
  * Validation handler for Principle 1 Question 2.
  */
 function principle_1_2_validate($form, &$form_state) {
-  $validator = new Validator($form, $form_state, 'principle_1_2');
+  // Get the dependency injection container.
+  global $container;
+  // Get the current study.
+  $study = $container['study'];
+  // Get the stage.
+  $stage = $study->getCurrentStage();
+  $validator = $stage->getValidator();
+  $validator->setFormState($form_state);
+  $validator->setForm($form);
 
-  if ($validator->allFieldsAreEmpty()) {
+  if ($validator->pagerButtonUsed() && $validator->allFieldsAreEmpty()) {
     return;
   }
 
@@ -203,5 +214,6 @@ function principle_1_2_validate($form, &$form_state) {
   }
 
   $validator->setErrorMessages();
+  $form_state = $validator->getFormState();
 }
 

@@ -105,7 +105,7 @@ h2 {
 
 h3 {
   font-size: 1.333em;
-  line-height: 2.25056em;
+  line-height: 1.68792em;
   margin-top: 1.12528em;
   margin-bottom: 0.56264em;
   color: #888888;
@@ -2570,6 +2570,31 @@ table thead th .help-tip {
   margin-top: 0;
 }
 
+.ui-widget-overlay {
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+}
+
+.ui-dialog {
+  top: 4em !important;
+  border: 0.4em solid #222;
+}
+.ui-dialog .ui-dialog-titlebar {
+  display: none;
+}
+.ui-dialog .ui-dialog-content {
+  padding: 0 1em;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+.ui-dialog.ui-corner-all {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
+}
+
 .node-homepage.view-mode-full {
   /** General layout **/
   /** Specific styling **/
@@ -3303,7 +3328,7 @@ html.ie7 .principle-1-q1 .hazards > .form-item {
     font-family: 'cartogothicstd';
   }
 
-  section.page {
+  div.page-break {
     page-break-after: always;
   }
 }

@@ -44,13 +44,22 @@ function myhaccp_list() {
     ->fields('m', array())
     ->condition('m.uid', $user->uid);
   $results = $query->execute()->fetchAll();
-  // Get a new Stages instance.
-  $stages = new Stages();
+  // Get the dependency injection container.
+  global $container;
+  // Get the current study.
+  $study = $container['study'];
+
   // Build out the rows.
   foreach ($results as $delta => $result) {
     // Prepare the edit link based on the current stage.
-    $current_stage = $stages->getCurrentStage($result->iid);
-    $stage_url = $stages->getUrl($current_stage);
+    $current_stage = myhaccp_find_current_stage($result->iid);
+    if (!empty($current_stage)) {
+      $stage = $study->getStage($current_stage);
+      $stage_url = $stage->getUrl();
+    }
+    else {
+      $stage_url = 'preparatory_a';
+    }
     $edit_link = 'tool/study/' . $result->iid . '/' . $stage_url;
     // Prepare the links.
     $edit = user_access('edit own myhaccp study') || user_access('edit any myhaccp study') ? l(t('Resume'), $edit_link) : '';
@@ -94,16 +103,40 @@ function myhaccp_list() {
 }
 
 /**
+ * Given an IID tried to find which is the stored current stage.
+ *
+ * @param int $iid
+ *
+ * @return string
+ *   The stage name if found or an empty string.
+ */
+function myhaccp_find_current_stage($iid) {
+  $data = db_select('mforms_storage', 'm');
+  $data->join('mforms_storage_steps', 's', 's.iid = m.iid');
+  $data->fields('s', array('store_data'))
+    ->condition('m.iid', $iid)
+    ->condition('s.store_key', 'curr_step');
+  $result = $data->execute()->fetchField();
+  if ($result) {
+    $data = unserialize($result);
+    return $data;
+  }
+  return '';
+}
+
+/**
  * Previews a study and allows for exporting as PDF.
  */
 function myhaccp_study_preview($iid) {
   if (is_numeric($iid)) {
-    // Fetch all the keys.
-    $stages = new stages();
-    $stages_keys = array_keys($stages->allStages);
-
+    myhaccp_myhaccp_mforms_init();
+    // Get the dependency injection container.
+    global $container;
+    // Get the current study.
+    $configuration = $container['configuration'];
+    $keys = array_keys($configuration->getMachineNames());
     // Check this study is valid.
-    $study = myhaccp_study_get_stages_data($stages_keys,$iid);
+    $study = myhaccp_study_get_stages_data($keys, $iid);
     if (!empty($study)) {
       // Create the PDF button/link.
       $output = '';
@@ -116,11 +149,13 @@ function myhaccp_study_preview($iid) {
       return $output;
     }
     else {
-      drupal_set_message('The requested study does not exist.', 'error');
+      drupal_set_message('The requested study does not exist or has no data.', 'error');
+      return '';
     }
   }
   else {
     drupal_set_message('A study ID is required to preview a study.', 'error');
+    return '';
   }
 }
 

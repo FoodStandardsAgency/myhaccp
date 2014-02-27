@@ -14,8 +14,12 @@ function preparatory_b(&$form_state, &$next_step) {
   // them in form as default values.
   $values = myhaccp_prepare_values($data, $form_state);
 
-  $stages = new Stages();
-  $stage = $stages->getStage(__FUNCTION__);
+  // Get the dependency injection container.
+  global $container;
+  // Get the current study.
+  $study = $container['study'];
+  // Get the stage.
+  $stage = $study->getCurrentStage();
   drupal_set_title($stage->title, PASS_THROUGH);
 
   $form = array();
@@ -73,9 +77,19 @@ function preparatory_b(&$form_state, &$next_step) {
  * Validation handler.
  */
 function preparatory_b_validate($form, &$form_state) {
-  $validator = new Validator($form, $form_state, 'preparatory_b');
+  // Get the dependency injection container.
+  global $container;
+  // Get the current study.
+  $study = $container['study'];
+  // Get the stage.
+  $stage = $study->getCurrentStage();
+  $validator = $stage->getValidator();
+  $validator->setFormState($form_state);
+  $validator->setForm($form);
 
-  if ($validator->allFieldsAreEmpty()) {
+  $messages = array();
+
+  if ($validator->pagerButtonUsed() && $validator->allFieldsAreEmpty()) {
     return;
   }
 
@@ -86,7 +100,8 @@ function preparatory_b_validate($form, &$form_state) {
       'validation_messages' => array(t('Please choose at least one option in question 1 or add some content in question 2.')),
     );
     $validator->passed = FALSE;
-    $validator->setErrorMessages($messages);
   }
 
+  $validator->setErrorMessages(($messages));
+  $form_state = $validator->getFormState();
 }

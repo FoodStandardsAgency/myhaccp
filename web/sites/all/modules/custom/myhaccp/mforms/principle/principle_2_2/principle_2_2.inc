@@ -15,9 +15,12 @@ function principle_2_2(&$form_state, &$next_step) {
   // them in form as default vals.
   $values = myhaccp_prepare_values($data, $form_state);
 
-  // Set the page title.
-  $stages = new Stages();
-  $stage = $stages->getStage(__FUNCTION__);
+  // Get the dependency injection container.
+  global $container;
+  // Get the current study.
+  $study = $container['study'];
+  // Get the stage.
+  $stage = $study->getCurrentStage();
   drupal_set_title($stage->title, PASS_THROUGH);
 
   $form = array();
@@ -37,17 +40,17 @@ function principle_2_2(&$form_state, &$next_step) {
   $prev_step = $steps->getPrev();
   $previous_data = $store->getStore($prev_step);
 
-  $hazards = new Hazards();
+  $hazards = Hazards::getInstance();
 
   if ($hazards->countHazards() == 0) {
     // There were no hazards.
-    drupal_set_message('You must add at least a step number and step name in step 1.1 as well as at least a hazard for the step. Please return to 1.1', 'error');
+    drupal_set_message('You must add at least a step number and step name in step 1.1 as well as at least a hazard for the step. Please return to 1.1', 'error', FALSE);
     return $form;
   }
 
   // Ensure there are hazards over the threshold.
   if ($hazards->countHazardsOverThreshold() == 0) {
-    drupal_set_message('You have no significant hazards so you cannot continue', 'error');
+    drupal_set_message('You have no significant hazards so you cannot continue', 'error', FALSE);
     return $form;
   }
 
@@ -164,9 +167,17 @@ function principle_2_2(&$form_state, &$next_step) {
  * Validation handler for Principle 2 Question 4.
  */
 function principle_2_2_validate($form, &$form_state) {
-  $validator = new Validator($form, $form_state, 'principle_2_2');
+  // Get the dependency injection container.
+  global $container;
+  // Get the current study.
+  $study = $container['study'];
+  // Get the stage.
+  $stage = $study->getCurrentStage();
+  $validator = $stage->getValidator();
+  $validator->setFormState($form_state);
+  $validator->setForm($form);
 
-  if ($validator->allFieldsAreEmpty()) {
+  if ($validator->pagerButtonUsed() && $validator->allFieldsAreEmpty()) {
     return;
   }
 
@@ -203,6 +214,7 @@ function principle_2_2_validate($form, &$form_state) {
   }
 
   $validator->setErrorMessages();
+  $form_state = $validator->getFormState();
 
 }
 

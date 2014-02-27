@@ -105,3 +105,10 @@ function myhaccp_update_7001() {
     ->condition('link_path', 'prototype')
     ->execute();
 }
+
+/**
+ * Enable the dialog module.
+ */
+function myhaccp_update_7002() {
+  module_enable('dialog');
+}

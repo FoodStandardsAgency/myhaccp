@@ -14,8 +14,12 @@ function preparatory_f(&$form_state, &$next_step) {
   // them in form as default values.
   $values = myhaccp_prepare_values($data, $form_state);
 
-  $stages = new Stages();
-  $stage = $stages->getStage(__FUNCTION__);
+  // Get the dependency injection container.
+  global $container;
+  // Get the current study.
+  $study = $container['study'];
+  // Get the stage.
+  $stage = $study->getCurrentStage();
   drupal_set_title($stage->title, PASS_THROUGH);
 
   $form = array();
@@ -133,7 +137,7 @@ function preparatory_f(&$form_state, &$next_step) {
       'yes' => t('Yes'),
       'no' => t('No'),
     ),
-    '#title' => t('7. Are there any other groups of people that may consume your product that require f_7 consideration?'),
+    '#title' => t('7. Are there any other groups of people that may consume your product that require special consideration?'),
     '#help_link' => 19,
     '#help_text' => t('List any others if not considered in steps 2-6.'),
     '#default_value' => array_get($values, 'preparatory_f.f_7', array()),
@@ -185,9 +189,17 @@ function preparatory_f(&$form_state, &$next_step) {
  * Validation handler.
  */
 function preparatory_f_validate($form, &$form_state) {
-  $validator = new Validator($form, $form_state, 'preparatory_f');
+  // Get the dependency injection container.
+  global $container;
+  // Get the current study.
+  $study = $container['study'];
+  // Get the stage.
+  $stage = $study->getCurrentStage();
+  $validator = $stage->getValidator();
+  $validator->setFormState($form_state);
+  $validator->setForm($form);
 
-  if ($validator->allFieldsAreEmpty()) {
+  if ($validator->pagerButtonUsed() && $validator->allFieldsAreEmpty()) {
     return;
   }
 
@@ -208,4 +220,5 @@ function preparatory_f_validate($form, &$form_state) {
   }
 
   $validator->setErrorMessages();
+  $form_state = $validator->getFormState();
 }

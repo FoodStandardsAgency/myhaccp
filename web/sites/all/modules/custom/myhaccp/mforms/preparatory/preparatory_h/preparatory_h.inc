@@ -4,7 +4,7 @@ function preparatory_h(&$form_state, &$next_step) {
 
   // Define following step callback. If none set, that implies it is
   // the last step.
-  $next_step = 'preparatory_summary';
+  $next_step = 'preparatory_review';
 
   // Retrieve submitted values. This comes in handy when back action
   // occurred and we need to display values that were originally submitted.
@@ -14,12 +14,16 @@ function preparatory_h(&$form_state, &$next_step) {
   // them in form as default values.
   $values = myhaccp_prepare_values($data, $form_state);
 
-  $stages = new Stages();
-  $stage = $stages->getStage(__FUNCTION__);
+  // Get the dependency injection container.
+  global $container;
+  // Get the current study.
+  $study = $container['study'];
+  // Get the stage.
+  $stage = $study->getCurrentStage();
   drupal_set_title($stage->title, PASS_THROUGH);
 
   $form = array();
-  $form['#attributes']['class'][] = 'prep-f';
+  $form['#attributes']['class'][] = 'prep-h';
 
   // Wrap the form section in a fieldset.
   $form['preparatory_h'] = array(
@@ -165,9 +169,17 @@ function preparatory_h(&$form_state, &$next_step) {
  * Validation handler.
  */
 function preparatory_h_validate($form, &$form_state) {
-  $validator = new Validator($form, $form_state, 'preparatory_h');
+  // Get the dependency injection container.
+  global $container;
+  // Get the current study.
+  $study = $container['study'];
+  // Get the stage.
+  $stage = $study->getCurrentStage();
+  $validator = $stage->getValidator();
+  $validator->setFormState($form_state);
+  $validator->setForm($form);
 
-  if ($validator->allFieldsAreEmpty()) {
+  if ($validator->pagerButtonUsed() && $validator->allFieldsAreEmpty()) {
     return;
   }
 
@@ -187,4 +199,5 @@ function preparatory_h_validate($form, &$form_state) {
   }
 
   $validator->setErrorMessages();
+  $form_state = $validator->getFormState();
 }

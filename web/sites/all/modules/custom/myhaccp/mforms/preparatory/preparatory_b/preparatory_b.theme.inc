@@ -20,13 +20,9 @@ function myhaccp_preprocess_preparatory_b(&$variables) {
   $stage = 'preparatory_b';
   $values = $variables['data'][$stage];
   // Iterate over the checkboxes fetching their labels.
-  $names = array();
-  foreach ($values['b_1'] as $key => $value) {
-    if ($key === $value) {
-      $names[] = $value;
-    }
-  }
-  // b_1 Logic: IF ‘I am the management and can confirm that I am committed.’  is selected:
+  $names = myhaccp_prepare_checkboxes_output('preparatory_b', 'b_1', $values);
+
+  // b_1 Logic: IF 'I am the management and can confirm that I am committed.'  is selected:
   if (in_array('N/A - I am the management and can confirm that I am committed.', $names)) {
     $variables['b_1_title'] = t('I am the management and can confirm that I am committed to food safety management based on HACCP.');
     // Don't show any of the checkboxes output.
@@ -37,6 +33,6 @@ function myhaccp_preprocess_preparatory_b(&$variables) {
     $variables['b_1'] = !empty($names) ? '<ul><li>' . implode('</li><li>', $names) . '</li></ul>' : '';
   }
   // b_2
-  $variables['b_2_title'] = t('Other Evidence of management commitment:');
+  $variables['b_2_title'] = t('Other evidence of management commitment');
   $variables['b_2'] = $values['b_2'] ? $values['b_2'] : '';
 }

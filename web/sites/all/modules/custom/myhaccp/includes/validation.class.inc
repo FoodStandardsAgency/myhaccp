@@ -12,16 +12,146 @@
  */
 class Validator {
 
-  public $results = array();
-  public $passed = TRUE;
+  /**
+   * Sets the form state within the validator.
+   *
+   * @param array $form_state
+   *   The form state array.
+   */
+  public function setFormState($form_state) {
+    $this->formState = $form_state;
+  }
 
   /**
-   * Constructor method.
+   * Returns the form state.
    */
-  public function __construct($form, &$form_state, $stage) {
-    $this->form = $form;
-    $this->state = &$form_state;
+  public function getFormState() {
+    return $this->formState;
+  }
+
+  public function setStage(Stage $stage) {
     $this->stage = $stage;
+  }
+
+  public function getForm() {
+    return $this->form;
+  }
+
+  public function setForm($form) {
+    $this->form = $form;
+  }
+
+  public function getStage() {
+    return $this->stage;
+  }
+
+  /**
+   * Gets the status of the validation.
+   *
+   * @return bool
+   *   TRUE if passed validation, FALSE if not.
+   */
+  public function getStatus($stored = FALSE) {
+    if (isset($this->status)) {
+      return $this->status;
+    }
+    else {
+      if ($stored) {
+        // Get the validation from the database.
+        $stage = $this->getStage();
+        $validation_name = $stage->name . '_validation';
+        $validation = $this->getValidation($stage);
+        // Check if there is any validation stored.
+        if (is_array($validation) && isset($validation[$validation_name])) {
+          $validation = $validation[$validation_name];
+          // If the array is empty it means validation has passed.
+          if (empty($validation)) {
+            $status = VALID;
+          }
+          else {
+            $status = INVALID;
+          }
+        }
+        else {
+          // There is no validation which means the stage hasn't been started.
+          $status = NOT_STARTED;
+        }
+      }
+      else {
+        // Check for results.
+        if (is_array($this->getResults())) {
+          if (in_array(INVALID, $this->getResults())) {
+            $status = INVALID;
+          }
+          else {
+            $status = VALID;
+          }
+        }
+      }
+      // Set the status.
+      $this->setStatus($status);
+      return $this->getStatus();
+    }
+  }
+
+  /**
+   * Sets the status of the validation.
+   *
+   * @param bool $status
+   *   TRUE if passed validation, FALSE if not.
+   */
+  public function setStatus($status) {
+    $this->status = $status;
+  }
+
+  /**
+   * Gets all the results for this validation.
+   *
+   * @return array
+   *   An array of targets and booleans.
+   */
+  public function getResults() {
+    return isset($this->results) ? $this->results : array();
+  }
+
+  /**
+   * Gets the validation from the db for the current stage.
+   */
+  public function getValidation($stage) {
+    $data = FALSE;
+    $iid = $_SESSION['iid'];
+    $key = $stage->name . '_validation';
+    $query = db_select('mforms_storage', 'm');
+    $query->join('mforms_storage_steps', 's', 's.iid = m.iid');
+    $query->fields('s', array('store_data'))
+      ->condition('m.iid', $iid)
+      ->condition('s.store_key', $key);
+    $result = $query->execute()->fetchField();
+    if ($result) {
+      $data = unserialize($result);
+    }
+    return $data;
+  }
+
+  public function setResult($target, $result) {
+    $this->results[$target] = $result;
+  }
+
+  public function getResult($target) {
+    return isset($this->results[$target]) ? $this->results[$target] : FALSE;
+  }
+
+  /**
+   * Sets the validation up in form_state.
+   *
+   * @param array $form_state
+   *   The form state to modify.
+   */
+  public function setFormStateValidation(&$form_state) {
+    // Only do this for the myhaccp forms.
+    if (is_array($form_state) && $form_state['build_info']['form_id'] == 'myhaccp_study_resume') {
+      $form_state['values']['validate'] = $this->getValidation($this->getStage());
+    }
   }
 
   /**
@@ -47,20 +177,21 @@ class Validator {
     }
     // Iterate over every method passed to check validation against.
     foreach ($methods as $method) {
-      $validation = new Validation($this->form, $this->state, $target);
+      $validation = new Validation($this->getForm(), $this->getFormState(), $target);
       // Get the valid boolean indicating pass (TRUE) or fail (FALSE).
       $valid[] = $validation->$method();
     }
     // Check all results of validation on this target. If any of them are FALSE
-    // then add a FALSE entry to results.
+    // then add a FALSE entry to results and set the status to FALSE;
     if (in_array(FALSE, $valid)) {
-      $this->passed = FALSE;
-      $this->results[$target] = FALSE;
+      $this->setStatus(INVALID);
+      $this->setResult($target, INVALID);
     }
     else {
-      $this->results[$target] = TRUE;
+      // This set has passed so add TRUE to the results.
+      $this->setResult($target, VALID);
     }
-    return $this->results[$target];
+    return $this->getResult($target);
   }
 
   /**
@@ -71,41 +202,64 @@ class Validator {
    *   display the error message in and the value is the message.
    */
   public function setErrorMessages($messages = array()) {
+    $data = array();
     // First of all check if we've passed all validation.
-    if ($this->passed == TRUE) {
+    if ($this->getStatus() == VALID) {
       $this->clearValidation();
       return;
     }
-    // If we have any failures iterate over them and add the messages to the
-    // form state to be picked up by the process function later.
-    foreach ($this->results as $target => $valid) {
-      if (!$valid) {
+
+    $key = $this->stage->name . '_validation';
+    // If we have any failures store them in the db to be picked up later.
+    foreach ($this->getResults() as $target => $valid) {
+      if ($valid == INVALID) {
         // This field has failed validation and needs to have a message
         // displayed.
         $message = array_get($this->form, $target . '.#attributes.data-parsley-error-message', FALSE);
         if ($message) {
-          $this->state['values']['validate'][$this->stage][$target] = $message;
-          // Add it to the $_POST to make sure in gets saved in the db.
-          $_POST['validate'][$this->stage][$target] = $message;
+          $form_state = $this->getFormState();
+          $form_state['values']['validate'][$this->stage->name][$target] = $message;
+          $this->setFormState($form_state);
+          $data[$key][$target] = $message;
         }
       }
     }
+
     // It's possible to explicitly pass in error messages to be shown.
     foreach ($messages as $target => $message) {
-      $this->state['values']['validate'][$this->stage][$target] = $message;
+      $form_state = $this->getFormState();
+      $form_state['values']['validate'][$this->stage->name][$target] = $message;
+      $this->setFormState($form_state);
+      $data[$key][$target] = $message;
     }
+
+    // Store the validation data in the db.
+    $store = MformsDatabaseStore::getInstance('myhaccp');
+    $store->setStore($key, $data);
   }
 
   /**
    * Clears the form_state and post of validation messages.
    */
   public function clearValidation() {
-    if (isset($this->state['values']['validate'])) {
-      unset($this->state['values']['validate']);
+    $form_state = $this->getFormState();
+    if (isset($form_state['values']['validate'])) {
+      unset($form_state['values']['validate']);
+      // Update the local form state.
+      $this->setFormState($form_state);
     }
     if (isset($_POST['validate'])) {
       unset($_POST['validate']);
     }
+
+    $key = $this->stage->name . '_validation';
+    $data = array(
+      $key => array(),
+    );
+
+    // Unset the validation from the db.
+    $store = MformsDatabaseStore::getInstance('myhaccp');
+    $store->setStore($key, $data);
   }
 
   /**
@@ -121,7 +275,7 @@ class Validator {
     $iterator = new RecursiveArrayIterator($this->state['values'][$this->stage]);
     // Prepare a new standard class so we can pass through items found from the
     // iterator.
-    $found = new stdClass;
+    $found = new stdClass();
     $found->items = array();
     // Apply an iterator callback to each element of the array.
     iterator_apply($iterator, 'myhaccp_find_values', array($iterator, $found));
@@ -132,6 +286,38 @@ class Validator {
     }
     // Nothing found so return TRUE.
     return TRUE;
+  }
+
+  /**
+   * Returns a boolean based on whether the save buttons have been used.
+   *
+   * @return bool
+   *   If the pager was used it will return FALSE, otherwise TRUE.
+   */
+  public function saveButtonUsed() {
+    if (isset($this->state['clicked_button'])) {
+      $button = $this->state['clicked_button'];
+      if ($button['#submit'] != 'myhaccp_pager_submit') {
+        return TRUE;
+      }
+    }
+    return FALSE;
+  }
+
+  /**
+   * Returns a boolean based on whether the pager is used to save the form.
+   *
+   * @return bool
+   *   If the pager was used it will return FALSE, otherwise TRUE.
+   */
+  public function pagerButtonUsed() {
+    if (isset($this->state['clicked_button'])) {
+      $button = $this->state['clicked_button'];
+      if ($button['#submit'][0] == 'myhaccp_pager_submit') {
+        return TRUE;
+      }
+    }
+    return FALSE;
   }
 
 }

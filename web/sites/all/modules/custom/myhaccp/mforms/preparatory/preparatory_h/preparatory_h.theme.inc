@@ -20,10 +20,56 @@ function myhaccp_preprocess_preparatory_h(&$variables) {
   $stage = 'preparatory_h';
   $values = $variables['data'][$stage];
 
-  //dpm($values);
+  // 1. Name of person(s) confirming flow diagram is correct:
+  $variables['h_1'] = '<strong>' . $values['h_1'] . '</strong> ' . t('has confirmed that our flow diagram is correct.');
 
-  // a_1
-  // $variables['a_1_title'] = t('The company has in place a number of effective prerequisite programmes, including:');
-  // $variables['a_1'] = !empty($names) ? '<ul><li>' . implode('</li><li>', $names) . '</li></ul>' : '';
+  // 2. Is every process step identified on the flow diagram?
+  if($values['h_2'] == 'yes') {
+    $variables['h_2'] =  t('Every process step is identified in our flow diagram.');
+  } else {
+    $variables['h_2'] = '';
+  }
+
+  // 3. Is the flow diagram an accurate representation of the process from start to finish?
+  if($values['h_3'] == 'yes') {
+    $variables['h_3'] =  t('The flow diagram is an accurate representation of the process from start to finish.');
+  } else {
+    $variables['h_3'] = '';
+  }
+
+  // 4. Is the process flow diagram correct for all shifts (e.g. days, nights and weekend)?
+  if($values['h_4'] == 'yes') {
+    $variables['h_4'] =  t('The flow diagram is correct for all shifts (e.g. days, nights and weekend).');
+  } else {
+    $variables['h_4'] = '';
+  }
+
+  // 5. Is the flow diagram correct during all seasonal variations?
+  if($values['h_5'] == 'yes') {
+    $variables['h_5'] =  t('The flow diagram is correct during all seasonal variations.');
+  } else {
+    $variables['h_5'] = '';
+  }
+
+  // 6. Has the team leader signed off and dated the flow diagram as being correct?
+  if($values['h_6'] == 'yes') {
+    $variables['h_6'] =  t('The team leader has signed and dated the flow diagram as being correct.');
+  } else {
+    $variables['h_6'] = '';
+  }
+
+  // 7. Who in your organisation is aware that any changes to the process will require changes to the flow diagram?
+  $h7 = explode("\r\n", trim($values['h_7']));
+  $h7 = implode('</li><li>', $h7);
+  $h7 = '<div><p>' . t('The following members of our organisation are aware that any changes to the process will require changes to the flow diagram:') . '</p><ul><li>' . $h7 . '</li></ul></div>';
+
+  $variables['h_7'] = $h7;
+
+  // 8. Who in your organisation is responsible for storing all out-of-date versions of the flow diagram?
+  $h8 = explode("\r\n", trim($values['h_8']));
+  $h8 = implode('</li><li>', $h8);
+  $h8 = '<div><p>' . t('The following members of our organisation are responsible for storing all out-of-date versions of the flow diagram:') . '</p><ul><li>' . $h8 . '</li></ul></div>';
+
+  $variables['h_8'] = $h8;
 
 }

@@ -8,7 +8,7 @@
  */
 
 /**
- * Implements hook_preprocess_preparatory_5().
+ * Implements hook_preprocess_principle_5().
  *
  * Prepare the form_state data for presentation in the template file.
  *
@@ -16,12 +16,47 @@
  *   Form state data to process into variables for the template
  *   to display.
  */
-function myhaccp_preprocess_preparatory_5(&$variables) {
-  $stage = 'preparatory_5';
+function myhaccp_preprocess_principle_5(&$variables) {
+  $stage = 'principle_5';
   $values = $variables['data'][$stage];
 
-  // a_1
-  // $variables['a_1_title'] = t('The company has in place a number of effective prerequisite programmes, including:');
-  // $variables['a_1'] = !empty($names) ? '<ul><li>' . implode('</li><li>', $names) . '</li></ul>' : '';
+  // Get details of all Hazards.
+  $hazards = Hazards::getInstance();
+  $by_step = $hazards->getHazardsByStep();
+
+  // Table header.
+  $header = array(
+    array('data' => t('Process step')),
+    array('data' => t('Step no.')),
+    array('data' => t('Hazard')),
+    array('data' => t('Control measure')),
+    array('data' => t('Critical limit')),
+    array('data' => t('Monitoring procedures')),
+    array('data' => t('Corrective action'))
+  );
+
+  foreach($hazards->hazards as $h_key => $hazard) {
+    if($hazard->ccp) {
+      $rows[] = array(
+        // Process step
+        array('data' => $hazards->hazards[$h_key]->step->name),
+        // Step no.
+        array('data' => $hazards->hazards[$h_key]->step->no),
+        // Hazard.
+        array('data' => $hazards->hazards[$h_key]->name),
+        // Control measure.
+        array('data' => $hazards->hazards[$h_key]->controlMeasure),
+        // Critical limit.
+        array('data' => 'CL'),
+        // Monitoring procedures
+        array('data' => 'MP'),
+        // Corrective action
+        array('data' => 'CA')
+      );
+    }
+  }
+
+  // Generate the table through a theme function.
+  $variables['p_5_table'] = theme('table', array('header' => $header, 'rows' => $rows));
 
 }

@@ -145,6 +145,10 @@ class MyHACCPMultiStepControls extends MformsControls {
         '#mforms_step' => $id,
       );
 
+      if (strpos($id, 'review') || strpos($id, 'intro')) {
+        $form_controls['steps_btns_wrapper'][$definition['stage']]['pager_controls']['callback_' . $id]['#name'] = $id;
+      }
+
       if ($this->ajaxified) {
         $form_controls['steps_btns_wrapper'][$definition['stage']]['pager_controls']['callback_' . $id]['#ajax'] = array(
           'callback' => '_mforms_ajax_get_form',
@@ -243,7 +247,7 @@ class MyHACCPMultiStepControls extends MformsControls {
       '#attributes' => $this->attributes_save,
       '#store_key' => $this->store->getKey(),
       '#mforms_step' => $this->steps->getCurr(),
-      '#submit' => array('_mforms_back_submit'),
+      '#submit' => array('myhaccp_save_submit'),
       '#attributes' => array(
         'class' => array('form-save'),
       ),
