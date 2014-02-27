@@ -15,8 +15,9 @@ function preparatory_intro(&$form_state, &$next_step) {
   drupal_set_title($stage->title, PASS_THROUGH);
 
   // Get the node output.
-  $node = node_load(35);
-  $node_output = node_view($node);
+  $node = node_load(37);
+  $node->title = NULL;
+  $node_output = node_view($node, 'full');
 
   $form = array();
 

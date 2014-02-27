@@ -55,6 +55,17 @@ function principle_review(&$form_state, &$next_step) {
     $message_output .= '</div>';
   }
 
+  // Get the two blocks used for the text.
+  $intro = block_load('block', 4);
+  $render = _block_render_blocks(array($intro));
+  $render_array = _block_get_renderable_array($render);
+  $intro_output = drupal_render($render_array);
+
+  $main = block_load('block', 5);
+  $render = _block_render_blocks(array($main));
+  $render_array = _block_get_renderable_array($render);
+  $main_output = drupal_render($render_array);
+
   $form = array();
 
   $form['preparatory_review'] = array(
@@ -67,12 +78,12 @@ function principle_review(&$form_state, &$next_step) {
   );
 
   $form['preparatory_review']['validation']['messages'] = array(
-    '#markup' => $message_output,
+    '#markup' => $intro_output . $message_output,
   );
 
 
   $form['preparatory_review']['node'] = array(
-    '#markup' => drupal_render($node_output),
+    '#markup' => $main_output,
   );
 
   return $form;
