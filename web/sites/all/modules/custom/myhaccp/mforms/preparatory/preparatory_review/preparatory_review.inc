@@ -6,36 +6,51 @@ function preparatory_review(&$form_state, &$next_step) {
   // the last step.
   $next_step = 'principle_1_question_1';
 
+  // Get the dependency injection container.
+  global $container;
+  // Get the current study.
+  $study = $container['study'];
+  $stage = $study->getCurrentStage();
+
   // Set the page title.
-  $stages = new Stages();
-  $stage = $stages->getStage(__FUNCTION__);
   drupal_set_title($stage->title, PASS_THROUGH);
 
   // Get the node output.
   $node = node_load(35);
   $node_output = node_view($node);
 
-  $stages = new Stages();
+  // Get the stage.
+  $phase = $study->getPhase('preparatory');
 
   $message_output = '';
   // Iterate over all the statuses of all the stages.
-  foreach ($stages->getPreparatories() as $key => $stage) {
+  foreach ($phase->getStages() as $stage) {
+
+    if (strpos($stage->name, 'review') || strpos($stage->name, 'intro')) {
+      // Do nothing for these stages.
+      continue;
+    }
 
     // Construct a url to the stage.
     $url = 'tool/study/' . $_SESSION['iid'] . '/' . $stage->url;
 
     // Determine what is displayed and the class name for a pass or fail.
-    if ($stage->status == VALID) {
-      $state = t('OK');
-      $class = 'passed';
-    }
-    if ($stage->status == INVALID) {
-      $state = l(t('Needs review'), $url);
-      $class = 'review';
-    }
-    if ($stage->status == NOT_STARTED) {
-      $state = l(t('Not started'), $url);
-      $class = 'not_started';
+    $status = $stage->getStatus();
+    switch ($status) {
+      case VALID:
+        $state = t('OK');
+        $class = 'passed';
+        break;
+
+      case INVALID:
+        $state = l(t('Needs review'), $url);
+        $class = 'review';
+        break;
+
+      case NOT_STARTED:
+        $state = l(t('Not started'), $url);
+        $class = 'not_started';
+        break;
     }
 
     $message_output .= '<div class="stage-validation ' . $class . '">';

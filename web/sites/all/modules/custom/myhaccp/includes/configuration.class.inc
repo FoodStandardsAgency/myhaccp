@@ -1,5 +1,9 @@
 <?php
 
+define('NOT_STARTED', 0);
+define('INVALID', 1);
+define('VALID', 2);
+
 class Configuration {
 
   /**

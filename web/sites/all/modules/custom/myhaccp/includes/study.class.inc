@@ -122,7 +122,7 @@ class Study implements StudyInterface {
     }
     // Try to figure out the stage from the url.
     $url = $_GET['q'];
-    $parts = explode($url, '/');
+    $parts = explode('/', $url);
     if (isset($parts[3]) && isset($parts[4])) {
       if ($stage = $this->getStageFromUrl($parts[3], $parts[4])) {
         // Set the stage for future checks.

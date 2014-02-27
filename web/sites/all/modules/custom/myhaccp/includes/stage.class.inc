@@ -54,19 +54,25 @@ class Stage implements StageInterface {
    * @return int
    *   The state the stage is in.
    */
-  public function getState() {
-    // @todo: How to determine state.
-    return $this->state;
+  public function getStatus() {
+    if (isset($this->status)) {
+      return $this->status;
+    }
+    else {
+      $status = $this->getValidator()->getStatus(TRUE);
+      $this->setStatus($status);
+      return $this->getStatus();
+    }
   }
 
   /**
    * Sets the state of the stage.
    *
-   * @param int $state
-   *   The state as an integer.
+   * @param int $status
+   *   The status as an integer.
    */
-  public function setState($state) {
-    $this->state = $state;
+  public function setStatus($status) {
+    $this->status = $status;
   }
 
   /**
@@ -84,6 +90,7 @@ class Stage implements StageInterface {
    */
   public function setValidator(Validator $validator) {
     $this->validator = $validator;
+    $this->validator->setStage($this);
   }
 
   /**

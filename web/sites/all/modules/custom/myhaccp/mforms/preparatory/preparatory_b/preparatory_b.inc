@@ -87,6 +87,8 @@ function preparatory_b_validate($form, &$form_state) {
   $validator->setFormState($form_state);
   $validator->setForm($form);
 
+  $messages = array();
+
   if ($validator->pagerButtonUsed() && $validator->allFieldsAreEmpty()) {
     return;
   }
@@ -98,8 +100,8 @@ function preparatory_b_validate($form, &$form_state) {
       'validation_messages' => array(t('Please choose at least one option in question 1 or add some content in question 2.')),
     );
     $validator->passed = FALSE;
-    $validator->setErrorMessages(($messages));
-    $form_state = $validator->getFormState();
   }
 
+  $validator->setErrorMessages(($messages));
+  $form_state = $validator->getFormState();
 }

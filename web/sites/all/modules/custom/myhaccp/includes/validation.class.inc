@@ -13,13 +13,6 @@
 class Validator {
 
   /**
-   * Constructor to set the validation status to TRUE on first build.
-   */
-  public function __construct() {
-    $this->setStatus(TRUE);
-  }
-
-  /**
    * Sets the form state within the validator.
    *
    * @param array $form_state
@@ -58,8 +51,47 @@ class Validator {
    * @return bool
    *   TRUE if passed validation, FALSE if not.
    */
-  public function getStatus() {
-    return isset($this->status) ? $this->status : FALSE;
+  public function getStatus($stored = FALSE) {
+    if (isset($this->status)) {
+      return $this->status;
+    }
+    else {
+      if ($stored) {
+        // Get the validation from the database.
+        $stage = $this->getStage();
+        $validation_name = $stage->name . '_validation';
+        $validation = $this->getValidation($stage);
+        // Check if there is any validation stored.
+        if (is_array($validation) && isset($validation[$validation_name])) {
+          $validation = $validation[$validation_name];
+          // If the array is empty it means validation has passed.
+          if (empty($validation)) {
+            $status = VALID;
+          }
+          else {
+            $status = INVALID;
+          }
+        }
+        else {
+          // There is no validation which means the stage hasn't been started.
+          $status = NOT_STARTED;
+        }
+      }
+      else {
+        // Check for results.
+        if (is_array($this->getResults())) {
+          if (in_array(INVALID, $this->getResults())) {
+            $status = INVALID;
+          }
+          else {
+            $status = VALID;
+          }
+        }
+      }
+      // Set the status.
+      $this->setStatus($status);
+      return $this->getStatus();
+    }
   }
 
   /**
@@ -72,6 +104,12 @@ class Validator {
     $this->status = $status;
   }
 
+  /**
+   * Gets all the results for this validation.
+   *
+   * @return array
+   *   An array of targets and booleans.
+   */
   public function getResults() {
     return isset($this->results) ? $this->results : array();
   }
@@ -80,9 +118,17 @@ class Validator {
    * Gets the validation from the db for the current stage.
    */
   public function getValidation($stage) {
-    $data = mforms_get_vals('myhaccp', $stage . '_validation');
-    if (empty($data)) {
-      return NULL;
+    $data = FALSE;
+    $iid = $_SESSION['iid'];
+    $key = $stage->name . '_validation';
+    $query = db_select('mforms_storage', 'm');
+    $query->join('mforms_storage_steps', 's', 's.iid = m.iid');
+    $query->fields('s', array('store_data'))
+      ->condition('m.iid', $iid)
+      ->condition('s.store_key', $key);
+    $result = $query->execute()->fetchField();
+    if ($result) {
+      $data = unserialize($result);
     }
     return $data;
   }
@@ -138,12 +184,12 @@ class Validator {
     // Check all results of validation on this target. If any of them are FALSE
     // then add a FALSE entry to results and set the status to FALSE;
     if (in_array(FALSE, $valid)) {
-      $this->setStatus(FALSE);
-      $this->setResult($target, FALSE);
+      $this->setStatus(INVALID);
+      $this->setResult($target, INVALID);
     }
     else {
-      // This set has passed so add TRUE to the status.
-      $this->setResult($target, TRUE);
+      // This set has passed so add TRUE to the results.
+      $this->setResult($target, VALID);
     }
     return $this->getResult($target);
   }
@@ -156,8 +202,9 @@ class Validator {
    *   display the error message in and the value is the message.
    */
   public function setErrorMessages($messages = array()) {
+    $data = array();
     // First of all check if we've passed all validation.
-    if ($this->getStatus() == TRUE) {
+    if ($this->getStatus() == VALID) {
       $this->clearValidation();
       return;
     }
@@ -165,7 +212,7 @@ class Validator {
     $key = $this->stage->name . '_validation';
     // If we have any failures store them in the db to be picked up later.
     foreach ($this->getResults() as $target => $valid) {
-      if (!$valid) {
+      if ($valid == INVALID) {
         // This field has failed validation and needs to have a message
         // displayed.
         $message = array_get($this->form, $target . '.#attributes.data-parsley-error-message', FALSE);

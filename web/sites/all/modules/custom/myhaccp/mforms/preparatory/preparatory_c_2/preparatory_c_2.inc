@@ -241,4 +241,6 @@ function preparatory_c_2_validate($form, &$form_state) {
 
   // The new method of checking if all fields are empty renders any checks
   // useless so we're not doing anything else here.
+  $validator->setErrorMessages();
+  $form_state = $validator->getFormState();
 }
