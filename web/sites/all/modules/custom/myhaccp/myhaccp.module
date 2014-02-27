@@ -438,7 +438,7 @@ function myhaccp_theme($existing, $type, $theme, $path) {
       'function' => 'theme_myhaccp_2_2_table',
     ),
   );
-  if (class_exists('Pimple')) {
+  if (class_exists('Configuration')) {
     global $container;
     $files = $container['configuration']->getFiles();
     foreach ($files as $name => $phase) {
