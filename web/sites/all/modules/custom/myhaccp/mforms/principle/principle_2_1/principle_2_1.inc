@@ -116,7 +116,7 @@ function principle_2_1_validate($form, &$form_state) {
   // Get the current study.
   $study = $container['study'];
   // Get the stage.
-  $stage = $study->getStage('preparatory_a');
+  $stage = $study->getCurrentStage();
   $validator = $stage->getValidator();
   $validator->setFormState($form_state);
   $validator->setForm($form);
