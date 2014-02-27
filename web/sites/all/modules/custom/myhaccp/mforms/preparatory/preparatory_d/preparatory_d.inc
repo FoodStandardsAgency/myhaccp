@@ -35,6 +35,20 @@ function preparatory_d(&$form_state, &$next_step) {
 
   // Check whether the number of instances has been set and if so show them,
   // otherwise show 1.
+  if (empty($form_state['triggering_element']['#limit_validation_errors'])) {
+    $instances = 0;
+    if (isset($data['preparatory_d'])) {
+      foreach ($data['preparatory_d'] as $key => $instance) {
+        if (strpos($key, 'instance') !== FALSE) {
+          $instances++;
+        }
+      }
+    }
+    if (count($instances)) {
+      $form_state['num_instances'] = $instances;
+    }
+  }
+
   if (empty($form_state['num_instances'])) {
     $form_state['num_instances'] = 1;
   }
