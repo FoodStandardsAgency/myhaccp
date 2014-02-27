@@ -380,34 +380,36 @@ function myhaccp_study_resume($form, &$form_state, $iid = FALSE) {
  * Initialises a study and all dependencies.
  */
 function myhaccp_initialise_study() {
-  // Get the DI container.
-  global $container;
-  // Get the study object.
-  $study = $container['study'];
-  // Initialise the two phases.
-  $preparatory = $container['phase'];
-  $preparatory->setName('preparatory');
-  $principles = $container['phase'];
-  $principles->setName('principle');
-  // Add the phases to the study.
-  $study->addPhase($preparatory);
-  $study->addPhase($principles);
-  // Initialise all the stages and add to the correct phase.
-  $configuration = $container['configuration'];
-  $urls = $configuration->getStageUrls();
-  $titles = $configuration->getStageTitles();
-  foreach ($configuration->getMachineNames() as $name => $phase) {
-    $stage = $container['stage'];
-    // Set the machine name for the stage.
-    $stage->setName($name);
-    // Set the url for the stage.
-    $stage->setUrl($urls[$name]);
-    // Set the title for the stage.
-    $stage->setTitle($titles[$name]);
-    $stage->validator->setStage($stage);
-    // Add the stage to the phase.
-    $phase = $study->getPhase($phase);
-    $phase->addStage($stage);
+  if (class_exists('Pimple')) {
+    // Get the DI container.
+    global $container;
+    // Get the study object.
+    $study = $container['study'];
+    // Initialise the two phases.
+    $preparatory = $container['phase'];
+    $preparatory->setName('preparatory');
+    $principles = $container['phase'];
+    $principles->setName('principle');
+    // Add the phases to the study.
+    $study->addPhase($preparatory);
+    $study->addPhase($principles);
+    // Initialise all the stages and add to the correct phase.
+    $configuration = $container['configuration'];
+    $urls = $configuration->getStageUrls();
+    $titles = $configuration->getStageTitles();
+    foreach ($configuration->getMachineNames() as $name => $phase) {
+      $stage = $container['stage'];
+      // Set the machine name for the stage.
+      $stage->setName($name);
+      // Set the url for the stage.
+      $stage->setUrl($urls[$name]);
+      // Set the title for the stage.
+      $stage->setTitle($titles[$name]);
+      $stage->validator->setStage($stage);
+      // Add the stage to the phase.
+      $phase = $study->getPhase($phase);
+      $phase->addStage($stage);
+    }
   }
 }
 
