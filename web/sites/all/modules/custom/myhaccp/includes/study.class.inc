@@ -130,14 +130,13 @@ class Study implements StudyInterface {
         return $stage;
       }
     }
-    else if (!isset($parts[3])) {
+    else {
       // Reset the stage to preparatory_a as this may occur when creating a
       // new study and the url hasn't been set yet.
       $stage = $this->getStage('preparatory_a');
       $this->setCurrentStage($stage);
       return $stage;
     }
-    throw new exception('No current stage was found in the study object.');
   }
 
   /**
