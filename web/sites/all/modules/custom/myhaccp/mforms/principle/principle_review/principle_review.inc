@@ -68,22 +68,30 @@ function principle_review(&$form_state, &$next_step) {
 
   $form = array();
 
-  $form['preparatory_review'] = array(
+  $form['principle_review'] = array(
     '#type' => 'fieldset',
     '#tree' => TRUE,
   );
 
-  $form['preparatory_review']['validation'] = array(
+  $form['principle_review']['validation'] = array(
     '#type' => 'container',
   );
 
-  $form['preparatory_review']['validation']['messages'] = array(
+  $form['principle_review']['validation']['messages'] = array(
     '#markup' => $intro_output . $message_output,
   );
 
 
-  $form['preparatory_review']['node'] = array(
+  $form['principle_review']['node'] = array(
     '#markup' => $main_output,
+  );
+
+  $form['principle_review']['complete'] = array(
+    '#markup' => l(t('Complete study'), 'tool/study/' . $_SESSION['iid'] . '/complete', array(
+      'attributes' => array(
+        'class' => array('complete'),
+      )
+    )),
   );
 
   return $form;

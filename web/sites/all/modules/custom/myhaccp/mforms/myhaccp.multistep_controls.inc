@@ -182,15 +182,12 @@ class MyHACCPMultiStepControls extends MformsControls {
         ),
       );
 
-      if ($this->ajaxified) {
-        $form_controls['form_nav_wrapper']['continue']['#ajax'] = array(
-          'callback' => '_mforms_ajax_get_form',
-          'wrapper' => $wrapper_id,
-          'method' => 'replace',
-          'effect' => 'fade',
-        );
+      // If this is a review or intro stage change the wording.
+      if ($this->reviewOrIntro($this->steps->getCurr())) {
+        $form_controls['form_nav_wrapper']['continue']['#value'] = t('Continue');
       }
     }
+
     // todo: Add the final submit back in.
 //    else {
 //      // If there is no next step then show the final submit button.
@@ -201,8 +198,6 @@ class MyHACCPMultiStepControls extends MformsControls {
 //        '#attributes' => $this->attributes_submit,
 //      );
 //    }
-
-
 
     if ($this->steps->getPrev() != NULL) {
       $form_controls['form_nav_wrapper']['previous'] = array(
@@ -217,46 +212,40 @@ class MyHACCPMultiStepControls extends MformsControls {
           'class' => array('form-previous'),
         ),
       );
-
-      if ($this->ajaxified) {
-        $form_controls['form_nav_wrapper']['previous']['#ajax'] = array(
-          'callback' => '_mforms_ajax_get_form',
-          'wrapper' => $wrapper_id,
-          'method' => 'replace',
-          'effect' => 'fade',
-        );
-      }
     }
 
+    // Hide the save button on a review or intro stage.
+    if (!$this->reviewOrIntro($this->steps->getCurr())) {
 
-    // Create a wrapper for the form save button and accompanying message.
-    $form_controls['form_save_wrapper'] = array(
-      '#type' => 'container',
-      '#weight' => $this->weight_save,
-      '#attributes' => array(
-        'class' => array('form-save-wrapper'),
-      ),
-    );
+      // Create a wrapper for the form save button and accompanying message.
+      $form_controls['form_save_wrapper'] = array(
+        '#type' => 'container',
+        '#weight' => $this->weight_save,
+        '#attributes' => array(
+          'class' => array('form-save-wrapper'),
+        ),
+      );
 
-    // Add a save button. This button simply saves the form state, much as the
-    // previous and next buttons do.
-    $form_controls['form_save_wrapper']['save'] = array(
-      '#type' => 'submit',
-      '#value' => $this->label_save,
-      '#weight' => 20,
-      '#attributes' => $this->attributes_save,
-      '#store_key' => $this->store->getKey(),
-      '#mforms_step' => $this->steps->getCurr(),
-      '#submit' => array('myhaccp_save_submit'),
-      '#attributes' => array(
-        'class' => array('form-save'),
-      ),
-    );
+      // Add a save button. This button simply saves the form state, much as the
+      // previous and next buttons do.
+      $form_controls['form_save_wrapper']['save'] = array(
+        '#type' => 'submit',
+        '#value' => $this->label_save,
+        '#weight' => 20,
+        '#attributes' => $this->attributes_save,
+        '#store_key' => $this->store->getKey(),
+        '#mforms_step' => $this->steps->getCurr(),
+        '#submit' => array('myhaccp_save_submit'),
+        '#attributes' => array(
+          'class' => array('form-save'),
+        ),
+      );
 
-    $form_controls['form_save_wrapper']['message'] = array(
-      '#markup' => '<div class="help">Navigating within the tool will save your progress. If you are leaving the tool entirely you can </div>',
-      '#weight' => 10,
-    );
+      $form_controls['form_save_wrapper']['message'] = array(
+        '#markup' => '<div class="help">Navigating within the tool will save your progress. If you are leaving the tool entirely you can </div>',
+        '#weight' => 10,
+      );
+    }
 
     return $form_controls;
   }
@@ -264,6 +253,13 @@ class MyHACCPMultiStepControls extends MformsControls {
   function doSubmitOnClickedAction() {
     $step_definition = $this->steps_definition[$this->steps->getCurr()];
     return isset($step_definition['submit']) ? $step_definition['submit'] : FALSE;
+  }
+
+  function reviewOrIntro($id) {
+    if (strpos($id, 'review') || strpos($id, 'intro')) {
+      return TRUE;
+    }
+    return FALSE;
   }
 
   /**
