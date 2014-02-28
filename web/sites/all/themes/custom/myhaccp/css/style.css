@@ -3272,10 +3272,6 @@ a:visited {
   color: #006f51;
 }
 
-html body.admin-menu.adminimal-menu {
-  margin-top: 0 !important;
-}
-
 /**
  * IE7 Compatibility
  */

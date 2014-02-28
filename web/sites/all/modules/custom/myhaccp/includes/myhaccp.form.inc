@@ -47,7 +47,13 @@ function myhaccp_process($element, &$form_state) {
  *   The modified form array.
  */
 function myhaccp_form_process($form, &$form_state) {
-
+  // Get the dependency injection container.
+  global $container;
+  // Get the current study.
+  $study = $container['study'];
+  $stage = $study->getCurrentStage();
+  $validator = $stage->getValidator();
+  $form_state = $validator->addValidationtoFormState($form_state);
   // Get the title of the page.
   $title = drupal_get_title();
   // Add the title in as a new markup element.

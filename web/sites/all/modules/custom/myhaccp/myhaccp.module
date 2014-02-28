@@ -28,13 +28,9 @@ function myhaccp_di_container() {
   // Store this as a global.
   global $container;
   $container = new Pimple();
-
   $container['configuration'] = function($c) {
     return new Configuration();
   };
-  $container['validation'] = $container->factory(function($c) {
-//    return new Validation();
-  });
   $container['validator'] = $container->factory(function($c) {
     return new Validator();
   });
@@ -89,6 +85,15 @@ function myhaccp_menu() {
   );
   $items['tool/study/%/preview'] = array(
     'page callback' => 'myhaccp_study_preview',
+    'title' => 'Preview study',
+    'page arguments' => array(2),
+    'access callback' => 'myhaccp_access',
+    'access arguments' => array('view'),
+    'file' => 'myhaccp.pages.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
+  $items['tool/study/%/complete'] = array(
+    'page callback' => 'myhaccp_study_complete',
     'page arguments' => array(2),
     'access callback' => 'myhaccp_access',
     'access arguments' => array('view'),
@@ -440,6 +445,10 @@ function myhaccp_theme($existing, $type, $theme, $path) {
   );
   if (class_exists('Configuration')) {
     global $container;
+    // Avoid a fatal error when using update.php
+    if (empty($container)) {
+      myhaccp_di_container();
+    }
     $files = $container['configuration']->getFiles();
     foreach ($files as $name => $phase) {
       // Now the hook. We want to pass in the form_state data so have added the
