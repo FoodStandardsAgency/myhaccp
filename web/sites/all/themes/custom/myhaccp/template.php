@@ -11,8 +11,9 @@ function NEWTHEME_preprocess_html(&$vars) {
 
 function myhaccp_preprocess_page(&$variables, $hook) {
   // Get rid of the page title on form pages.
-  $menu_item = menu_get_item();
-  if (strpos($menu_item['path'], 'tool/study') === 0) {
+  $path = $_GET['q'];
+  $match = preg_match('/tool\/study\/.+?\/.+?\/.+?/', $path);
+  if ($match) {
     $variables['title'] = FALSE;
   }
 }

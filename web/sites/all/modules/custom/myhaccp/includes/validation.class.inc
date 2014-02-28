@@ -48,50 +48,56 @@ class Validator {
   /**
    * Gets the status of the validation.
    *
+   * @param bool $stored
+   *   Whether to use the stored database values.
+   *
    * @return bool
    *   TRUE if passed validation, FALSE if not.
    */
   public function getStatus($stored = FALSE) {
+    // If we have a status return it.
     if (isset($this->status)) {
       return $this->status;
     }
-    else {
-      if ($stored) {
-        // Get the validation from the database.
-        $stage = $this->getStage();
-        $validation_name = $stage->name . '_validation';
-        $validation = $this->getValidation($stage);
-        // Check if there is any validation stored.
-        if (is_array($validation) && isset($validation[$validation_name])) {
-          $validation = $validation[$validation_name];
-          // If the array is empty it means validation has passed.
-          if (empty($validation)) {
-            $status = VALID;
-          }
-          else {
-            $status = INVALID;
-          }
+
+    // Check whether the stored database value is the one being requested.
+    if ($stored) {
+      // Get the validation from the database.
+      $stage = $this->getStage();
+      $validation_name = $stage->name . '_validation';
+      $validation = $this->getValidation($stage);
+      // Check if there is any validation stored.
+      if (is_array($validation) && isset($validation[$validation_name])) {
+        $validation = $validation[$validation_name];
+        // If the array is empty it means validation has passed.
+        if (empty($validation)) {
+          $status = VALID;
         }
         else {
-          // There is no validation which means the stage hasn't been started.
-          $status = NOT_STARTED;
+          $status = INVALID;
         }
       }
       else {
-        // Check for results.
-        if (is_array($this->getResults())) {
-          if (in_array(INVALID, $this->getResults())) {
-            $status = INVALID;
-          }
-          else {
-            $status = VALID;
-          }
-        }
+        // There is no validation which means the stage hasn't been started.
+        $status = NOT_STARTED;
       }
       // Set the status.
       $this->setStatus($status);
       return $this->getStatus();
     }
+
+    // Check for results from a validation.
+    if (is_array($this->getResults())) {
+      if (in_array(INVALID, $this->getResults())) {
+        $status = INVALID;
+      }
+      else {
+        $status = VALID;
+      }
+    }
+    // Set the status.
+    $this->setStatus($status);
+    return $this->getStatus();
   }
 
   /**
@@ -146,12 +152,19 @@ class Validator {
    *
    * @param array $form_state
    *   The form state to modify.
+   *
+   * @return array
+   *   THe form state array.
    */
-  public function setFormStateValidation(&$form_state) {
+  public function addValidationtoFormState($form_state) {
     // Only do this for the myhaccp forms.
     if (is_array($form_state) && $form_state['build_info']['form_id'] == 'myhaccp_study_resume') {
-      $form_state['values']['validate'] = $this->getValidation($this->getStage());
+      $data = $this->getValidation($this->getStage());
+      if ($data) {
+        $form_state['values']['validate'] = $this->getValidation($this->getStage());
+      }
     }
+    return $form_state;
   }
 
   /**

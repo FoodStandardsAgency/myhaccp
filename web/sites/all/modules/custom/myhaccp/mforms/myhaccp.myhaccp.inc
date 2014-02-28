@@ -8,33 +8,6 @@
  */
 
 /**
- * Helper function which loads the correct file for the step.
- *
- * Includes files which are named after the calling function with the following
- * pattern: [function name].inc
- *
- * @param string $function
- *   The function name as provided by __FUNCTION__
- * @param string $type
- *   The type dictates the name of the directory under mforms, e.g. principles.
- * @param array $form_state
- *   The form state array.
- * @param string $next_step
- *   The next step to be considered.
- *
- * @return array
- *   The form array for the called function.
- */
-function _get_step($function, $type, &$form_state, &$next_step) {
-  // Use ctools include to include our step file.
-  ctools_include($function, 'myhaccp', 'mforms/' . $type);
-  $function = '_' . $function;
-  if (function_exists($function)) {
-    return $function($form_state, $next_step);
-  }
-}
-
-/**
  * Ajax callback which returns the form array element to be applied against.
  */
 function instance_add_more_callback($form, $form_state) {
