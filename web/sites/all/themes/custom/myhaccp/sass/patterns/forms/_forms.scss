@@ -615,3 +615,28 @@ div.teaser-checkbox .form-item,
     @extend %inline-radios;
   }
 }
+
+/** Review stages **/
+.validation-stages {
+  display: table;
+  width: 100%;
+  .validation-stage {
+    width: 100%;
+    display: table-row;
+    h3 {
+      font-size: 1em;
+      width: 70%;
+      padding-right: 2em;
+      display: table-cell;
+    }
+    .validation-status {
+      width: 30%;
+      display: table-cell;
+    }
+    &.review {
+      a {
+        color: $accent-3;
+      }
+    }
+  }
+}
