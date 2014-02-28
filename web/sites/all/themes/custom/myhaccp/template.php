@@ -354,3 +354,37 @@ function myhaccp_container($variables) {
 
   return '<div' . drupal_attributes($element['#attributes']) . '>' . $messages . $element['#children'] . '</div>';
 }
+
+/**
+ * THEME_menu_link override.
+ *
+ * Adds destination parameter to the login link so that logged out users get
+ * redirected to their destination after a 403 error.
+ */
+function myhaccp_menu_link($variables) {
+
+  $element = $variables['element'];
+  $sub_menu = '';
+
+  $element['#attributes']['class'][] = 'menu-' . $element['#original_link']['mlid'];
+
+  if ($element['#below']) {
+    $sub_menu = drupal_render($element['#below']);
+  }
+
+  // Add destination to login link.
+  if ($element['#href'] == 'user/login') {
+    $status = drupal_get_http_header('status');
+    if (strpos($status, '403') !== FALSE) {
+      $dest = drupal_get_destination();
+    }
+    else {
+      $dest = array('destination' => 'tool');
+    }
+    $element['#localized_options']['query'] = $dest;
+    $element['#attributes']['class'][] = 'login';
+  }
+
+  $output = l($element['#title'], $element['#href'], $element['#localized_options']);
+  return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
+}
