@@ -8,6 +8,6 @@
 ?>
 
 <section class="page">
-  <h2>Terms of reference</h2>
+  <h1>Terms of reference</h1>
   <p><?php print $c_intro ?></p>
 

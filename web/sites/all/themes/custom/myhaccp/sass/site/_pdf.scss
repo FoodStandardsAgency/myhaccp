@@ -1,4 +1,35 @@
 @media print {
+  h1 {
+    border-bottom: 5px solid #DDDDDD;
+  }
+
+  ul li {
+    padding-left: 4em;
+  }
+
+  $border_colour: #DDDDDD;
+  table {
+    width: 100%;
+    border-left: 1px solid $border_colour;
+    border-bottom: 1px solid $border_colour;
+    thead th {
+      background: black;
+      color: white;
+    }
+    td, th {
+      padding: 10px;
+      text-align: left;
+      border-top: 1px solid $border_colour;
+      border-right: 1px solid $border_colour;
+    }
+    td:first-child {
+      border-left: 1px solid $border_colour;
+    }
+    thead:first-child tr:first-child th,
+    thead:first-child tr:first-child td {
+        border-top: 0 none;
+    }
+  }
   body {
     background-color: $page_background;
     font-family: 'cartogothicstd';

@@ -5,7 +5,7 @@
  */
 ?>
 <section class="page">
-  <h2>Process flow and confirmation</h2>
+  <h1>Process flow and confirmation</h1>
   <p class="intro">We have completed a flow diagram covering all steps in the manufacturing process of this product.</p>
 
   <?php if ($g_3): ?>

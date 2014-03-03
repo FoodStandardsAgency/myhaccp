@@ -6,7 +6,7 @@
 ?>
 
 <section class="page">
-  <h2>The HACCP team</h2>
+  <h1>The HACCP team</h1>
 
   <?php print $d_1_team ?>
 

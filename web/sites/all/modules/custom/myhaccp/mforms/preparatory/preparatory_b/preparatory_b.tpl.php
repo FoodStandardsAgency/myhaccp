@@ -6,7 +6,7 @@
 ?>
 
 <section class="page">
-  <h2>Management commitment</h2>
+  <h1>Management commitment</h1>
   <h3><?php print $b_1_title ?></h3>
   <?php print $b_1; ?>
   <?php if ($b_2) : ?>

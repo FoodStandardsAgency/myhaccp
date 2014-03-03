@@ -17,7 +17,7 @@ function myhaccp_output_pdf($iid) {
     $mpdf = new mPDF('', 'A4');
     // Get the stylesheets involved.
     $style_path = drupal_get_path('theme', 'myhaccp');
-    $stylesheet = file_get_contents($style_path . '/css/style.css');
+    $stylesheet = file_get_contents($style_path . '/css/pdf-style.css');
     $mpdf->WriteHTML($stylesheet, 1);
 
     $output = '';

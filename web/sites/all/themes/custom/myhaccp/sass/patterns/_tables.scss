@@ -19,8 +19,28 @@
   }
 }
 
+@mixin tables_borders {
+  td, th {
+    padding: 10px;
+    text-align: left;
+    border-top: 1px solid #DDDDDD;
+    border-left: 1px solid #DDDDDD;
+  }
+  td:last-child {
+    border-right: 1px solid #DDDDDD;
+  }
+  thead:first-child tr:first-child th,
+  thead:first-child tr:first-child td {
+      border-top: 0 none;
+  }
+}
+
 table {
   @include tables_basic;
+}
+
+table.borders {
+  @include tables_borders;
 }
 
 table.striped {

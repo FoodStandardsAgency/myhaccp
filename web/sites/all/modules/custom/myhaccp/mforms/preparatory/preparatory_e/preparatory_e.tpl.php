@@ -6,7 +6,7 @@
 ?>
 
 <section class="page prep-e">
-  <h2>Product description and intended use</h2>
+  <h1>Product description and intended use</h1>
 
   <h3>Product description:</h3>
 
