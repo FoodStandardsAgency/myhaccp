@@ -6,8 +6,7 @@
 ?>
 
 <section class="page">
-  <h2>Documentation and record keeping</h2>
-  <?php // print $a_1; ?>
+  <h1>Documentation and record keeping</h1>
 
   <h3><?php print $p_7_2_title; ?></h3>
   <p><?php print $p_7_2; ?></p>
@@ -20,3 +19,4 @@
   <p><?php print $p_7_5; ?></p>
 
 </section>
+<div class="page-break"></div>

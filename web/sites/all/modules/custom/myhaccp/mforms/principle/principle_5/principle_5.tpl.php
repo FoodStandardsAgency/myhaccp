@@ -6,6 +6,7 @@
 ?>
 
 <section class="page">
-  <h2>HACCP plan</h2>
+  <h1>HACCP plan</h1>
   <?php print $p_5_table; ?>
 </section>
+<div class="page-break"></div>
