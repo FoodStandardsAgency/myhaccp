@@ -15,14 +15,10 @@ function preparatory_review(&$form_state, &$next_step) {
   // Set the page title.
   drupal_set_title($stage->title, PASS_THROUGH);
 
-  // Get the node output.
-  $node = node_load(35);
-  $node_output = node_view($node);
-
   // Get the stage.
   $phase = $study->getPhase('preparatory');
 
-  $message_output = '';
+  $message_output = '<div class="validation-stages">';
   // Iterate over all the statuses of all the stages.
   foreach ($phase->getStages() as $stage) {
 
@@ -49,15 +45,16 @@ function preparatory_review(&$form_state, &$next_step) {
 
       case NOT_STARTED:
         $state = l(t('Not started'), $url);
-        $class = 'not_started';
+        $class = 'not-started';
         break;
     }
 
-    $message_output .= '<div class="stage-validation ' . $class . '">';
-    $message_output .= '<h3>' . $stage->title . '</h3>';
+    $message_output .= '<div class="validation-stage ' . $class . '">';
+    $message_output .= '<h3>' . filter_xss($stage->title) . '</h3>';
     $message_output .= '<div class="validation-status">' . $state . '</div>';
     $message_output .= '</div>';
   }
+  $message_output .= '</div>';
 
   // Get the two blocks used for the text.
   $intro = block_load('block', 2);

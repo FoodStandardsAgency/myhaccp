@@ -1,5 +1,22 @@
 /* Import the Open Sans webfont from Google CDN */
-@import url(//fonts.googleapis.com/css?family=Open+Sans:400,300&subset=latin,greek,cyrillic,vietnamese);
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Open Sans Light'), local('OpenSans-Light'), url(https://themes.googleusercontent.com/static/fonts/opensans/v6/DXI1ORHCpsQm3Vp6mXoaTRsxEYwM7FgeyaSgU71cLG0.woff) format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url(https://themes.googleusercontent.com/static/fonts/opensans/v6/uYKcPVoh6c5R0NpdEY5A-Q.woff) format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(https://themes.googleusercontent.com/static/fonts/opensans/v6/MTP_ySUJH_bn48VBG8sNShsxEYwM7FgeyaSgU71cLG0.woff) format('woff');
+}
 
 /* Blink Animation */
 @keyframes blink {
@@ -26,10 +43,6 @@
     99% {background-color: #f69231;}
 }
 
-html {
-  margin-top: 29px !important;
-}
-
 /* Admin menu */
 body.adminimal-menu div#admin-menu {
   background: #333;
@@ -54,7 +67,8 @@ body.adminimal-menu div#admin-menu ul.dropdown span.admin-menu-home-icon:hover {
   background-position: 0px -86px;
 }
 
-body.adminimal-menu div#admin-menu a {
+body.adminimal-menu div#admin-menu a,
+body.adminimal-menu div#admin-menu span {
   border: none !important;
   font-family: "Open Sans", "Segoe UI", "Helvetica", sans-serif;
   font-size: 12px;
@@ -79,7 +93,7 @@ body.adminimal-menu #admin-menu .dropdown li li > li.admin-menu-toolbar-category
 }
 
 body.adminimal-menu #admin-menu .dropdown li li li:hover,
-body.adminimal-menu .dropdown li:hover {
+body.adminimal-menu #admin-menu .dropdown li:hover {
   background: #0074bd !important;
 }
 
@@ -271,7 +285,7 @@ body.adminimal-menu.admin-menu.menu-render-dropdown .toolbar-shortcuts select#sh
     background: url("images/shortcut.png") no-repeat scroll 7px 7px #222222;
     border: medium none;
     color: #EEEEEE;
-    font-family: Open Sans;
+    font-family: "Open Sans", "Segoe UI", "Helvetica", sans-serif;
     font-size: 12px;
     padding: 5px 4px 4px 24px;
 }
@@ -287,4 +301,19 @@ body.adminimal-menu.admin-menu.menu-render-dropdown .toolbar-shortcuts select#sh
 body.adminimal-menu #admin-menu .dropdown .admin-menu-tab {
     background: #444;
     padding-bottom: 2px;
+}
+
+
+/* Environment indicator 2.x */
+body.adminimal-menu #admin-menu #environment-indicator {
+  text-shadow: none;
+}
+
+body.adminimal-menu #admin-menu #environment-indicator .environment-indicator-name {
+  background-image: none;
+  border-left: 1px solid #323232;
+  border-radius: 0;
+  font-size: 12px;
+  line-height: 18px;
+  padding: 5px 10px;
 }

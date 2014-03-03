@@ -2081,6 +2081,29 @@ div.teaser-checkbox .form-item,
 }
 
 /** Principle 6 **/
+/** Review stages **/
+.validation-stages {
+  display: table;
+  width: 100%;
+}
+.validation-stages .validation-stage {
+  width: 100%;
+  display: table-row;
+}
+.validation-stages .validation-stage h3 {
+  font-size: 1em;
+  width: 70%;
+  padding-right: 2em;
+  display: table-cell;
+}
+.validation-stages .validation-stage .validation-status {
+  width: 30%;
+  display: table-cell;
+}
+.validation-stages .validation-stage.review a {
+  color: #f15d22;
+}
+
 /**
  * The pager element
  * Displayed at the top of the tool
@@ -3284,10 +3307,6 @@ a:link,
 a:visited {
   text-decoration: none;
   color: #006f51;
-}
-
-html body.admin-menu.adminimal-menu {
-  margin-top: 0 !important;
 }
 
 /**

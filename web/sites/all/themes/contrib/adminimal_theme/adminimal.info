@@ -4,6 +4,7 @@ core = 7.x
 stylesheets[screen][] = css/reset.css
 stylesheets[screen][] = css/style.css
 stylesheets[screen][] = css/custom.css
+scripts[] = js/adminimal_theme.js
 settings[shortcut_module_link] = 1
 settings[display_icons_config] = 1
 regions[content] = Content
@@ -13,9 +14,9 @@ regions[page_bottom] = Page bottom
 regions[sidebar_first] = First sidebar
 regions_hidden[] = sidebar_first
 
-; Information added by drupal.org packaging script on 2013-10-26
-version = "7.x-1.0+14-dev"
+; Information added by Drupal.org packaging script on 2014-02-23
+version = "7.x-1.2"
 core = "7.x"
 project = "adminimal_theme"
-datestamp = "1382789716"
+datestamp = "1393145376"
 

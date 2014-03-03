@@ -146,6 +146,8 @@ function myhaccp_study_preview($iid) {
       foreach ($study as $stage => $data) {
         $output .= theme($stage, array('data' => $data));
       }
+      // Force the title to be set here.
+      drupal_set_title('Study preview');
       return $output;
     }
     else {
@@ -157,6 +159,40 @@ function myhaccp_study_preview($iid) {
     drupal_set_message('A study ID is required to preview a study.', 'error');
     return '';
   }
+}
+
+/**
+ * Presents a completion page for the study.
+ *
+ * @param int $iid
+ *   The ID of the study.
+ *
+ * @return string
+ *   The rendered page output.
+ */
+function myhaccp_study_complete($iid) {
+  // Load the node with the text to show.
+  $node = node_load(39);
+  drupal_set_title($node->title);
+  $node->title = NULL;
+  $node_output = node_view($node, 'full');
+
+  // Offer a preview link.
+  $preview = l(t('Preview the study'), "tool/study/$iid/preview", array(
+    'attributes' => array(
+      'class' => array('preview'),
+    )
+  ));
+  // Offer a download link.
+  $download = l(t('Download the study'), "tool/study/$iid/pdf", array(
+    'attributes' => array(
+      'class' => array('download'),
+    )
+  ));
+  // Output the page.
+  $output = drupal_render($node_output);
+  $output .= $preview . $download;
+  return $output;
 }
 
 /**
