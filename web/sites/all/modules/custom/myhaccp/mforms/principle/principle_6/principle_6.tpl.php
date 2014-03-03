@@ -6,7 +6,7 @@
 ?>
 
 <section class="page">
-  <h2>Verification</h2>
+  <h1>Verification</h1>
 
   <h3>Validation study</h3>
   <p><?php print $p_6_1; ?></p>
@@ -29,3 +29,4 @@
   <?php print $p_6_11; ?>
 
 </section>
+<div class="page-break"></div>

@@ -6,9 +6,9 @@
 ?>
 
 <section class="page">
-  <h2>Control Measures</h2>
+  <h1>Control Measures</h1>
 
   <?php print $p_1_3_table ?>
 
 </section>
-
+<div class="page-break"></div>
