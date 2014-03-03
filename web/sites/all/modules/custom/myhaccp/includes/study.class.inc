@@ -6,6 +6,18 @@ interface StudyInterface {
 
   public function setCurrentStudy($iid);
 
+  public function addPhase(Phase $phase);
+
+  public function getPhase($phase);
+
+  public function getPhases();
+
+  public function getStage($name);
+
+  public function getCurrentStage();
+
+  public function setCurrentStage($stage);
+
 }
 
 class Study implements StudyInterface {
@@ -106,7 +118,8 @@ class Study implements StudyInterface {
         }
       }
     }
-    throw new Exception('Stage not found for requested ' . $name);
+    // If the stage wasn't found (doesn't exist) then throw an exception.
+    throw new Exception(t('Stage %stage not found. This could mean the stage used to exist but no longer exists.', array('%stage', $name)));
   }
 
   /**

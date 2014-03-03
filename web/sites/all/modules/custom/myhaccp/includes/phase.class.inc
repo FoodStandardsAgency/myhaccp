@@ -6,26 +6,13 @@ interface PhaseInterface {
 
   public function setName($name);
 
+  public function getStudy();
+
+  public function setStudy(Study $study);
+
 }
 
 class Phase implements PhaseInterface {
-
-  /**
-   * Gets the study this phase belongs to.
-   */
-  public function getStudy() {
-    return $this->study;
-  }
-
-  /**
-   * Sets the study this phase belongs to.
-   *
-   * @param Study $study
-   *   An instance of the Study object.
-   */
-  public function setStudy(Study $study) {
-    $this->study = $study;
-  }
 
   /**
    * Gets this phase's machine name.
@@ -45,6 +32,23 @@ class Phase implements PhaseInterface {
    */
   public function setName($name) {
     $this->name = $name;
+  }
+
+  /**
+   * Gets the study this phase belongs to.
+   */
+  public function getStudy() {
+    return $this->study;
+  }
+
+  /**
+   * Sets the study this phase belongs to.
+   *
+   * @param Study $study
+   *   An instance of the Study object.
+   */
+  public function setStudy(Study $study) {
+    $this->study = $study;
   }
 
   /**

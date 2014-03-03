@@ -221,20 +221,23 @@ class Validator {
       $this->clearValidation();
       return;
     }
-
-    $key = $this->stage->name . '_validation';
+    // Set up the stage name.
+    $stage_name = $this->getStage()->getName();
+    $key = $stage_name . '_validation';
     // If we have any failures store them in the db to be picked up later.
     foreach ($this->getResults() as $target => $valid) {
       if ($valid == INVALID) {
         // This field has failed validation and needs to have a message
         // displayed.
-        $message = array_get($this->form, $target . '.#attributes.data-parsley-error-message', FALSE);
-        if ($message) {
-          $form_state = $this->getFormState();
-          $form_state['values']['validate'][$this->stage->name][$target] = $message;
-          $this->setFormState($form_state);
-          $data[$key][$target] = $message;
-        }
+        $message = array_get($this->getForm(), $target . '.#attributes.data-parsley-error-message', '');
+        watchdog('MyHACCP', 'Validation error, message for field %field on stage %stage is missing', array(
+          '%field' => $target,
+          '%stage' => $stage_name,
+        ), WATCHDOG_DEBUG);
+        $form_state = $this->getFormState();
+        $form_state['values']['validate'][$stage_name][$target] = $message;
+        $this->setFormState($form_state);
+        $data[$key][$target] = $message;
       }
     }
 
