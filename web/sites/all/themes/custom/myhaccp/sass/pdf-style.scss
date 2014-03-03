@@ -1,0 +1,35 @@
+/***
+ * This is a 'base partial'
+ *
+ * Drupal files to nuke:
+ * - system.base.css
+ * - system.menus.css
+ * - system.messages.css
+ * - system.theme.css
+ *
+ */
+
+// Site variables
+@import 'site/fonts';
+@import 'site/variables';
+
+// Compass plugins
+@import "compass/typography/vertical_rhythm";
+@import "compass/support";
+@import "compass/css3";
+
+// Agile Patterns libraries
+@import 'lib/type';
+@import 'lib/normalize';
+
+// Patterns
+//@import 'patterns/tables';
+
+// Layouts
+//@import 'layouts/site-wide';
+
+// Setup for this site
+@import 'site/site-wide';
+
+// PDF
+@import 'site/pdf';

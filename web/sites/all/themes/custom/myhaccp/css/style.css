@@ -105,7 +105,7 @@ h2 {
 
 h3 {
   font-size: 1.333em;
-  line-height: 2.25056em;
+  line-height: 1.68792em;
   margin-top: 1.12528em;
   margin-bottom: 0.56264em;
   color: #888888;
@@ -1271,17 +1271,25 @@ select:focus {
 }
 
 .prep-d .form-radios .form-item, .prep-f .form-radios .form-item,
-.prep-h .form-radios .form-item, .principle-2-question-4 td > .form-radios .form-item {
+.prep-h .form-radios .form-item, .principle-2-question-1-3 .form-radios .form-item, .principle-2-question-4 td > .form-radios .form-item, .principle-3 .form-radios .form-item,
+.principle-4 .form-radios .form-item,
+.principle-5 .form-radios .form-item, .principle-6 .form-radios .form-item {
   display: inline;
 }
 .prep-d .form-radios label, .prep-d .form-item-prep-d-team-skills .form-radios label, .prep-f .form-radios label,
-.prep-h .form-radios label, .principle-2-question-4 td > .form-radios label, .prep-d .form-radios input, .prep-d .form-item-prep-d-team-skills .form-radios input, .prep-f .form-radios input,
-.prep-h .form-radios input, .principle-2-question-4 td > .form-radios input {
+.prep-h .form-radios label, .principle-2-question-1-3 .form-radios label, .principle-2-question-4 td > .form-radios label, .principle-3 .form-radios label,
+.principle-4 .form-radios label,
+.principle-5 .form-radios label, .principle-6 .form-radios label, .prep-d .form-radios input, .prep-d .form-item-prep-d-team-skills .form-radios input, .prep-f .form-radios input,
+.prep-h .form-radios input, .principle-2-question-1-3 .form-radios input, .principle-2-question-4 td > .form-radios input, .principle-3 .form-radios input,
+.principle-4 .form-radios input,
+.principle-5 .form-radios input, .principle-6 .form-radios input {
   display: inline;
   margin-right: 0.25em;
 }
 .prep-d .form-radios input, .prep-d .form-item-prep-d-team-skills .form-radios input, .prep-f .form-radios input,
-.prep-h .form-radios input, .principle-2-question-4 td > .form-radios input {
+.prep-h .form-radios input, .principle-2-question-1-3 .form-radios input, .principle-2-question-4 td > .form-radios input, .principle-3 .form-radios input,
+.principle-4 .form-radios input,
+.principle-5 .form-radios input, .principle-6 .form-radios input {
   vertical-align: baseline;
 }
 
@@ -1617,11 +1625,8 @@ div.exposed-filters input#edit-submit:active {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
 }
 
-input#edit-submit,
 input#edit-actions-submit,
 input[id^="save-continue"],
-input[id^="edit-save"],
-input#edit-save,
 input#edit-actions-save,
 input#edit-continue,
 input#edit-previous,
@@ -1638,15 +1643,9 @@ input#edit-previous,
   background-color: #006f51;
   color: #FFF;
 }
-input#edit-submit:hover, input#edit-submit:focus,
-input#edit-actions-submit:hover,
-input#edit-actions-submit:focus,
+input#edit-actions-submit:hover, input#edit-actions-submit:focus,
 input[id^="save-continue"]:hover,
 input[id^="save-continue"]:focus,
-input[id^="edit-save"]:hover,
-input[id^="edit-save"]:focus,
-input#edit-save:hover,
-input#edit-save:focus,
 input#edit-actions-save:hover,
 input#edit-actions-save:focus,
 input#edit-continue:hover,
@@ -1658,11 +1657,8 @@ input#edit-previous:focus,
   background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
   cursor: pointer;
 }
-input#edit-submit.disabled,
 input#edit-actions-submit.disabled,
 input[id^="save-continue"].disabled,
-input[id^="edit-save"].disabled,
-input#edit-save.disabled,
 input#edit-actions-save.disabled,
 input#edit-continue.disabled,
 input#edit-previous.disabled,
@@ -1671,15 +1667,9 @@ input#edit-previous.disabled,
   cursor: not-allowed;
   opacity: 0.5;
 }
-input#edit-submit.active, input#edit-submit:active,
-input#edit-actions-submit.active,
-input#edit-actions-submit:active,
+input#edit-actions-submit.active, input#edit-actions-submit:active,
 input[id^="save-continue"].active,
 input[id^="save-continue"]:active,
-input[id^="edit-save"].active,
-input[id^="edit-save"]:active,
-input#edit-save.active,
-input#edit-save:active,
 input#edit-actions-save.active,
 input#edit-actions-save:active,
 input#edit-continue.active,
@@ -1869,6 +1859,15 @@ div.teaser-checkbox .form-item,
   border: 0;
 }
 
+#mforms-wrapper-myhaccp fieldset {
+  border-width: 0;
+  padding-bottom: 0;
+}
+#mforms-wrapper-myhaccp fieldset fieldset {
+  border-width: 1px;
+  padding-bottom: 1em;
+}
+
 #myhaccp-start-form .help {
   color: #676767;
   font-size: 0.8em;
@@ -1984,9 +1983,17 @@ div.teaser-checkbox .form-item,
   width: 3em;
   min-width: 3em;
 }
-.p1q1-step .form-item input.step-name {
-  width: 20em;
-  min-width: 20em;
+@media all and (min-width: 860px) {
+  .p1q1-step .form-item input.step-name {
+    width: 20em;
+    min-width: 20em;
+  }
+}
+@media all and (min-width: 1250px) {
+  .p1q1-step .form-item input.step-name {
+    width: 35em;
+    min-width: 35em;
+  }
 }
 
 /** Principle 1, Q2 **/
@@ -2014,7 +2021,7 @@ div.teaser-checkbox .form-item,
   width: 3em;
 }
 
-/** Principle 2.2 **/
+/** Principle 2 **/
 .principle-2-question-4 table td {
   vertical-align: top;
 }
@@ -2039,6 +2046,62 @@ div.teaser-checkbox .form-item,
 }
 .principle-2-question-4 td > .form-type-radios input {
   vertical-align: baseline;
+}
+
+/** Principle 3, 4 & 5 **/
+.principle-3 .ccp-number .label,
+.principle-3 .process-step .label,
+.principle-3 .hazard .label,
+.principle-3 .control-measure .label,
+.principle-4 .ccp-number .label,
+.principle-4 .process-step .label,
+.principle-4 .hazard .label,
+.principle-4 .control-measure .label,
+.principle-5 .ccp-number .label,
+.principle-5 .process-step .label,
+.principle-5 .hazard .label,
+.principle-5 .control-measure .label {
+  font-weight: bold;
+}
+.principle-3 .control-measure,
+.principle-4 .control-measure,
+.principle-5 .control-measure {
+  margin-bottom: 1em;
+}
+.principle-3 .form-wrapper,
+.principle-4 .form-wrapper,
+.principle-5 .form-wrapper {
+  margin-bottom: 1em;
+  border-bottom: 1px solid black;
+}
+.principle-3 .form-wrapper:last-child,
+.principle-4 .form-wrapper:last-child,
+.principle-5 .form-wrapper:last-child {
+  border-bottom: none;
+}
+
+/** Principle 6 **/
+/** Review stages **/
+.validation-stages {
+  display: table;
+  width: 100%;
+}
+.validation-stages .validation-stage {
+  width: 100%;
+  display: table-row;
+}
+.validation-stages .validation-stage h3 {
+  font-size: 1em;
+  width: 70%;
+  padding-right: 2em;
+  display: table-cell;
+}
+.validation-stages .validation-stage .validation-status {
+  width: 30%;
+  display: table-cell;
+}
+.validation-stages .validation-stage.review a {
+  color: #f15d22;
 }
 
 /**
@@ -2094,6 +2157,102 @@ div.teaser-checkbox .form-item,
 }
 .pager-wrapper .pager-controls input.visited-step:hover {
   color: black;
+}
+
+.form-save-wrapper {
+  float: right;
+  max-width: 500px;
+  margin-bottom: 1em;
+  text-align: right;
+}
+.form-save-wrapper .help {
+  display: inline;
+  color: #676767;
+}
+.form-save-wrapper .form-save {
+  background-color: #e6e6e6;
+  color: rgba(0, 0, 0, 0.8);
+  border: 0 none transparent;
+  padding: 0.6em 1.5em 0.5em 1.5em;
+  text-decoration: none;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  background-color: #eeeeee;
+  color: black;
+  font-size: 0.8em;
+  display: inline;
+}
+.form-save-wrapper .form-save:hover, .form-save-wrapper .form-save:focus {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+}
+.form-save-wrapper .form-save.disabled {
+  background-image: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.form-save-wrapper .form-save.active, .form-save-wrapper .form-save:active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
+}
+
+.form-nav-wrapper {
+  clear: both;
+  border-top: 1px solid #007fb2;
+  padding-top: 1em;
+}
+.form-nav-wrapper .form-previous {
+  background-color: #e6e6e6;
+  color: rgba(0, 0, 0, 0.8);
+  border: 0 none transparent;
+  padding: 0.6em 1.5em 0.5em 1.5em;
+  text-decoration: none;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  background-color: #006f51;
+  color: #FFF;
+  margin-left: 0;
+}
+.form-nav-wrapper .form-previous:hover, .form-nav-wrapper .form-previous:focus {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+}
+.form-nav-wrapper .form-previous.disabled {
+  background-image: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.form-nav-wrapper .form-previous.active, .form-nav-wrapper .form-previous:active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
+}
+.form-nav-wrapper .form-continue {
+  background-color: #e6e6e6;
+  color: rgba(0, 0, 0, 0.8);
+  border: 0 none transparent;
+  padding: 0.6em 1.5em 0.5em 1.5em;
+  text-decoration: none;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  background-color: #006f51;
+  color: #FFF;
+  float: right;
+}
+.form-nav-wrapper .form-continue:hover, .form-nav-wrapper .form-continue:focus {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+}
+.form-nav-wrapper .form-continue.disabled {
+  background-image: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.form-nav-wrapper .form-continue.active, .form-nav-wrapper .form-continue:active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
 }
 
 /**
@@ -2169,6 +2328,20 @@ table td, table th {
 }
 table thead:first-child tr:first-child th,
 table thead:first-child tr:first-child td {
+  border-top: 0 none;
+}
+
+table.borders td, table.borders th {
+  padding: 10px;
+  text-align: left;
+  border-top: 1px solid #DDDDDD;
+  border-left: 1px solid #DDDDDD;
+}
+table.borders td:last-child {
+  border-right: 1px solid #DDDDDD;
+}
+table.borders thead:first-child tr:first-child th,
+table.borders thead:first-child tr:first-child td {
   border-top: 0 none;
 }
 
@@ -2373,7 +2546,7 @@ footer[role=contentinfo] {
 }
 
 .help-tip {
-  background: lightgrey;
+  background: #006f51;
   border-radius: 900px;
   color: #FFFFFF;
   display: inline-block;
@@ -2400,10 +2573,10 @@ table thead th .help-tip {
 }
 
 .qtip-haccp {
-  border-width: 1px;
+  border-width: 4px;
   border-style: solid;
-  border-color: #fafafa;
-  background-color: lightgrey;
+  border-color: #6cb33f;
+  background-color: #FFF;
   color: black;
   font-size: 1em;
   line-height: normal;
@@ -2421,6 +2594,42 @@ table thead th .help-tip {
   border-color: #CCC;
   background: #F1F1F1;
   color: #777;
+}
+.qtip-haccp a:link,
+.qtip-haccp a:visited {
+  font-weight: bold;
+}
+
+#modalContent #modal-content {
+  padding-top: 0;
+}
+#modalContent #modal-content article > h2 {
+  margin-top: 0;
+}
+
+.ui-widget-overlay {
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+}
+
+.ui-dialog {
+  top: 4em !important;
+  border: 0.4em solid #222;
+}
+.ui-dialog .ui-dialog-titlebar {
+  display: none;
+}
+.ui-dialog .ui-dialog-content {
+  padding: 0 1em;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+.ui-dialog.ui-corner-all {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
 }
 
 .node-homepage.view-mode-full {
@@ -3094,13 +3303,10 @@ p.intro {
   color: #676767;
 }
 
-a:link {
+a:link,
+a:visited {
   text-decoration: none;
   color: #006f51;
-}
-
-html body.admin-menu.adminimal-menu {
-  margin-top: 0 !important;
 }
 
 /**
@@ -3147,4 +3353,46 @@ html.ie7 .principle-1-q1 .hazards > .form-item {
   width: 40%;
   padding-left: 0;
   padding-right: 3%;
+}
+
+@media print {
+  h1 {
+    border-bottom: 5px solid #DDDDDD;
+  }
+
+  ul li {
+    padding-left: 4em;
+  }
+
+  table {
+    width: 100%;
+    border-left: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+  }
+  table thead th {
+    background: black;
+    color: white;
+  }
+  table td, table th {
+    padding: 10px;
+    text-align: left;
+    border-top: 1px solid #dddddd;
+    border-right: 1px solid #dddddd;
+  }
+  table td:first-child {
+    border-left: 1px solid #dddddd;
+  }
+  table thead:first-child tr:first-child th,
+  table thead:first-child tr:first-child td {
+    border-top: 0 none;
+  }
+
+  body {
+    background-color: #fafafa;
+    font-family: 'cartogothicstd';
+  }
+
+  div.page-break {
+    page-break-after: always;
+  }
 }

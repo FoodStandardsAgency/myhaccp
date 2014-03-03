@@ -136,7 +136,6 @@ class Mform {
     // If we have submit action indicate we go for form rebuild and
     // set submitted data into store.
     if ($type == 'submit') {
-      $form_state['rebuild'] = TRUE;
       $this->setStore($form_state['values']);
     }
 

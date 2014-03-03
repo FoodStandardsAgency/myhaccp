@@ -44,6 +44,7 @@
 @import 'patterns/header';
 @import 'patterns/footer';
 @import 'patterns/help-tips';
+@import 'patterns/modals';
 @import 'patterns/node-homepage';
 
 // Drupal Patterns
@@ -65,3 +66,6 @@
 
 // Compatibility
 @import 'site/ie7';
+
+// PDF
+@import 'site/pdf';

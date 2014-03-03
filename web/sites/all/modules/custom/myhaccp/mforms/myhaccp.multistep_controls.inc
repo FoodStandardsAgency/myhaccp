@@ -23,11 +23,10 @@ class MyHACCPMultiStepControls extends MformsControls {
   protected $label_delete;
   protected $label_save;
 
-  protected $weight_back = 10;
-  protected $weight_continue = 20;
+  protected $weight_nav = 20;
   protected $weight_submit = 20;
   protected $weight_delete = 12;
-  protected $weight_save = 15;
+  protected $weight_save = 5;
 
   protected $attributes_back = array();
   protected $attributes_continue = array();
@@ -53,9 +52,9 @@ class MyHACCPMultiStepControls extends MformsControls {
     $this->steps_definition = $steps_definition;
 
     // Init default labels.
-    $this->label_continue = t('Next');
+    $this->label_continue = t('Save and continue');
     $this->label_back = t('Previous');
-    $this->label_save = t('Save');
+    $this->label_save = t('Save this page');
     $this->label_submit = t('Submit');
     $this->label_delete = t('Reset');
   }
@@ -141,10 +140,14 @@ class MyHACCPMultiStepControls extends MformsControls {
 //        '#disabled' => $visited,
         '#attributes' => array('class' => array($class)),
         '#limit_validation_errors' => array(),
-        '#submit' => array('_mforms_back_submit'),
+        '#submit' => array('myhaccp_pager_submit'),
         '#store_key' => $this->store->getKey(),
         '#mforms_step' => $id,
       );
+
+      if (strpos($id, 'review') || strpos($id, 'intro')) {
+        $form_controls['steps_btns_wrapper'][$definition['stage']]['pager_controls']['callback_' . $id]['#name'] = $id;
+      }
 
       if ($this->ajaxified) {
         $form_controls['steps_btns_wrapper'][$definition['stage']]['pager_controls']['callback_' . $id]['#ajax'] = array(
@@ -156,26 +159,35 @@ class MyHACCPMultiStepControls extends MformsControls {
       }
     }
 
+    // Create a wrapper for the continue and previous buttons.
+    $form_controls['form_nav_wrapper'] = array(
+      '#type' => 'container',
+      '#weight' => $this->weight_nav,
+      '#attributes' => array(
+        'class' => array('form-nav-wrapper'),
+      ),
+    );
+
     // Check if there is a next step (screen).
     if ($this->steps->getNext() != NULL) {
-      $form_controls['continue'] = array(
+      $form_controls['form_nav_wrapper']['continue'] = array(
         '#type' => 'submit',
         '#value' => $this->label_continue,
-        '#weight' => $this->weight_continue,
+        '#weight' => 20,
         '#attributes' => $this->attributes_continue,
-        '#submit' => array('_mforms_back_submit'),
+        '#submit' => array('myhaccp_continue_submit'),
         '#store_key' => $this->store->getKey(),
+        '#attributes' => array(
+          'class' => array('form-continue'),
+        ),
       );
 
-      if ($this->ajaxified) {
-        $form_controls['continue']['#ajax'] = array(
-          'callback' => '_mforms_ajax_get_form',
-          'wrapper' => $wrapper_id,
-          'method' => 'replace',
-          'effect' => 'fade',
-        );
+      // If this is a review or intro stage change the wording.
+      if ($this->reviewOrIntro($this->steps->getCurr())) {
+        $form_controls['form_nav_wrapper']['continue']['#value'] = t('Continue');
       }
     }
+
     // todo: Add the final submit back in.
 //    else {
 //      // If there is no next step then show the final submit button.
@@ -187,43 +199,53 @@ class MyHACCPMultiStepControls extends MformsControls {
 //      );
 //    }
 
-    // Add a save button. This button simply saves the form state, much as the
-    // previous and next buttons do.
-    $form_controls['save'] = array(
-      '#type' => 'submit',
-      '#value' => $this->label_save,
-      '#weight' => $this->weight_save,
-      '#attributes' => $this->attributes_save,
-      '#store_key' => $this->store->getKey(),
-      '#mforms_step' => $this->steps->getCurr(),
-      '#submit' => array('_mforms_back_submit'),
-    );
-
     if ($this->steps->getPrev() != NULL) {
-      $form_controls['previous'] = array(
+      $form_controls['form_nav_wrapper']['previous'] = array(
         '#type' => 'submit',
         '#value' => $this->label_back,
-        '#weight' => $this->weight_back,
+        '#weight' => 10,
         '#attributes' => $this->attributes_back,
         '#store_key' => $this->store->getKey(),
         '#mforms_step' => $this->steps->getPrev(),
-        '#submit' => array('_mforms_back_submit'),
+        '#submit' => array('myhaccp_back_submit'),
+        '#attributes' => array(
+          'class' => array('form-previous'),
+        ),
       );
-
-      if ($this->ajaxified) {
-        $form_controls['previous']['#ajax'] = array(
-          'callback' => '_mforms_ajax_get_form',
-          'wrapper' => $wrapper_id,
-          'method' => 'replace',
-          'effect' => 'fade',
-        );
-      }
     }
 
-    $form_controls['message'] = array(
-      '#markup' => '<div class="help">Clicking \'Next\' or \'Previous\' will also Save this page.</div>',
-      '#weight' => 100,
-    );
+    // Hide the save button on a review or intro stage.
+    if (!$this->reviewOrIntro($this->steps->getCurr())) {
+
+      // Create a wrapper for the form save button and accompanying message.
+      $form_controls['form_save_wrapper'] = array(
+        '#type' => 'container',
+        '#weight' => $this->weight_save,
+        '#attributes' => array(
+          'class' => array('form-save-wrapper'),
+        ),
+      );
+
+      // Add a save button. This button simply saves the form state, much as the
+      // previous and next buttons do.
+      $form_controls['form_save_wrapper']['save'] = array(
+        '#type' => 'submit',
+        '#value' => $this->label_save,
+        '#weight' => 20,
+        '#attributes' => $this->attributes_save,
+        '#store_key' => $this->store->getKey(),
+        '#mforms_step' => $this->steps->getCurr(),
+        '#submit' => array('myhaccp_save_submit'),
+        '#attributes' => array(
+          'class' => array('form-save'),
+        ),
+      );
+
+      $form_controls['form_save_wrapper']['message'] = array(
+        '#markup' => '<div class="help">Navigating within the tool will save your progress. If you are leaving the tool entirely you can </div>',
+        '#weight' => 10,
+      );
+    }
 
     return $form_controls;
   }
@@ -231,6 +253,13 @@ class MyHACCPMultiStepControls extends MformsControls {
   function doSubmitOnClickedAction() {
     $step_definition = $this->steps_definition[$this->steps->getCurr()];
     return isset($step_definition['submit']) ? $step_definition['submit'] : FALSE;
+  }
+
+  function reviewOrIntro($id) {
+    if (strpos($id, 'review') || strpos($id, 'intro')) {
+      return TRUE;
+    }
+    return FALSE;
   }
 
   /**

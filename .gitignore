@@ -14,3 +14,14 @@ web/sites/default/settings.php
 # IDE and OS files
 .idea
 .DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# Behat
+behat/vendor
+behat/bin
+behat/composer.phar
+behat/composer.lock
+
+# mPDF cache
+web/sites/all/libraries/mpdf/ttfontdata
