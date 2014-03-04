@@ -1607,7 +1607,9 @@ function ckeditor_admin_values_to_settings($values) {
   unset($values['name'], $values['input_formats'], $values['_profile'], $values['op'], $values['submit'], $values['form_build_id'], $values['form_token'], $values['form_id'], $values['loadPlugins']);
 
   // Replace CRLF with LF in toolbar settings
-  $values['toolbar'] = str_replace("\r\n", "\n", $values['toolbar']);
+  if(isset($values['toolbar'])){
+    $values['toolbar'] = str_replace("\r\n", "\n", $values['toolbar']);
+  }
 
   module_load_include('inc', 'ckeditor', 'includes/ckeditor.lib');
   $plugin_list = ckeditor_load_plugins();
