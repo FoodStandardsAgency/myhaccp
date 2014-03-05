@@ -35,7 +35,7 @@ function principle_2_1(&$form_state, &$next_step) {
   $form['principle_2_1']['intro'] = array(
     '#prefix' => '<p class="intro">',
     '#suffix' => '</p>',
-    '#markup' => t('A CCP is a step at which control can be applied and is essential to prevent or eliminate a food safety hazard or reduce it to an acceptable level.'),
+    '#markup' => t('A CCP is a step at which control can be applied and is essential to prevent or eliminate a food safety hazard or reduce it to an acceptable level. We strongly advise using one of the following decision trees:<ul><li>Campden Decision Tree</li><li>Codex Decision Tree</li></ul>'),
   );
 
   $hazards = Hazards::getInstance();
