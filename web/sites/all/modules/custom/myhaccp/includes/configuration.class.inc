@@ -92,12 +92,12 @@ class Configuration {
       'principle_1_2' => 'Principle 1.2: Conduct a Hazard Analysis',
       'principle_1_3' => 'Principle 1.3: Specify the Control Measures for each hazard',
       'principle_2_1' => 'Principle 2.1: Determine the Critical Control Points (CCPs)',
-      'principle_2_2' => 'Principle 2, Question 4: Specify control measures.',
+      'principle_2_2' => 'Principle 2.2: Determine the Critical Control Points (CCPs) (Continued)',
       'principle_3' => 'Principle 3: Establish the Critical Limits',
-      'principle_4' => 'Principle 4: Establish a monitoring system for each CCP',
-      'principle_5' => 'Principle 5: Establish a corrective action plan',
+      'principle_4' => 'Principle 4: Establish a Monitoring System for each CCP',
+      'principle_5' => 'Principle 5: Establish a Corrective Action plan',
       'principle_6' => 'Principle 6: Verification',
-      'principle_7' => 'Principle 7: Establish Documentation and Record keeping',
+      'principle_7' => 'Principle 7: Establish Documentation and Record Keeping',
       'principle_review' => 'Principles: Review',
     );
   }

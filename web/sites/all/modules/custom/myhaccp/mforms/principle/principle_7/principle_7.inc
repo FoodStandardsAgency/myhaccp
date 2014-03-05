@@ -32,7 +32,7 @@ function principle_7(&$form_state, &$next_step) {
     '#tree' => TRUE,
   );
 
-  // Introductionary text.
+  // Introductory text.
   $form['principle_7']['intro'] = array(
     '#prefix' => '<p class="intro">',
     '#suffix' => '</p>',
@@ -42,7 +42,7 @@ function principle_7(&$form_state, &$next_step) {
   // Now the form fields.
   $form['principle_7']['7_1'] = array(
     '#type' => 'checkboxes',
-    '#title' => t('1. Select all forms of documentation relating to this HACCP study that your organisation retain.'),
+    '#title' => t('1. Select all forms of documentation relating to this HACCP study that your business retains.'),
     '#options' => array(
       'scope' => 'Scope of the study',
       'reference' => 'Reference to prerequisite programmes',
