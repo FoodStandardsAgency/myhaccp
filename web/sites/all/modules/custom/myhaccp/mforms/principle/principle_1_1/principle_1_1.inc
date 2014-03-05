@@ -69,6 +69,13 @@ function principle_1_1(&$form_state, &$next_step) {
         'class' => array('p1q1-step'),
       ),
     );
+
+    $form['principle_1_1']['instance_' . $i]['wrapper']['step_intro'] = array(
+      '#prefix' => '<div class="group-title">',
+      '#suffix' => '</div>',
+      '#markup' => t('Enter the process step number and name.'),
+    );
+
     // Step no.
     $form['principle_1_1']['instance_' . $i]['wrapper']['step_no'] = array(
       '#weight' => '0',
@@ -109,10 +116,7 @@ function principle_1_1(&$form_state, &$next_step) {
     // Markup used as a title for the group.
     $form['principle_1_1']['instance_' . $i]['hazards_wrapper']['hazards_title'] = array(
       '#weight' => -10,
-     //'#markup' => '<div class="group-title">' . t('List all potential hazards that may be reasonably expected to occur at this process step:  !tip', array(
-     //     '!tip' => _help_tip(16),
-     //   )) . '</div>',
-      '#markup' => '<div class="group-title">' . t('List all potential hazards that may be reasonably expected to occur at this process step.') . '</div>',
+      '#markup' => '<div class="group-title">' . t('List all potential hazards that may be reasonably expected to occur at this process step. In the text boxes below, please list each hazard on a new line.') . '</div>',
 
     );
     // Biological.
