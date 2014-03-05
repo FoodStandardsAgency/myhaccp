@@ -22,7 +22,16 @@ function preparatory_g(&$form_state, &$next_step) {
   $stage = $study->getCurrentStage();
   drupal_set_title($stage->title, PASS_THROUGH);
 
-  $default_file = array_get($values, 'preparatory_g.g_2.fid', FALSE);
+  // Fetch the existing file if it exists.
+  if (array_get($form_state, 'values.preparatory_g.g_2', FALSE)) {
+    $default_file = array_get($form_state, 'values.preparatory_g.g_2', FALSE);
+  }
+  else {
+    $default_file = array_get($values, 'preparatory_g.g_2', FALSE);
+    if (is_array($default_file)) {
+      $default_file = reset($default_file);
+    }
+  }
 
   $form = array();
   $form['#attributes']['class'][] = 'prep-g';
@@ -127,7 +136,7 @@ function preparatory_g_validate($form, &$form_state) {
     );
     $validator->passed = FALSE;
     $validator->setErrorMessages(($messages));
-  $form_state = $validator->getFormState();
+    $form_state = $validator->getFormState();
   }
 
   $validator->setErrorMessages();

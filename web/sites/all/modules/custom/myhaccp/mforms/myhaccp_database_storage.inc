@@ -108,10 +108,14 @@ class MformsDatabaseStore implements MformsIstore {
 
     // Check if there is a specified stage url.
     if ($key == 'curr_step' && arg(3) && arg(4)) {
+      $url = $_GET['q'];
+      $parts = explode('/', $url);
       // Match the url to a stage function.
-      if ($stage = $study->getStageFromUrl(arg(3), arg(4))) {
-        $study->setCurrentStage($stage);
-        return $stage->name;
+      if (isset($parts[3]) && isset($parts[4]) && $study->getPhase($parts[3])) {
+        if ($stage = $study->getStageFromUrl(arg(3), arg(4))) {
+          $study->setCurrentStage($stage);
+          return $stage->name;
+        }
       }
     }
 
