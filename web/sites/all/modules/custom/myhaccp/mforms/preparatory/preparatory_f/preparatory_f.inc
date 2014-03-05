@@ -50,7 +50,7 @@ function preparatory_f(&$form_state, &$next_step) {
     ),
   );
 
-  // 2. Physical properties.
+  // 2. Is the product specifically designed for consumption by the general public?
   $form['preparatory_f']['f_2'] = array(
     '#type' => 'radios',
     '#options' => array(
@@ -67,7 +67,7 @@ function preparatory_f(&$form_state, &$next_step) {
     ),
   );
 
-  // 3. Physical properties.
+  // 3. Is the product specifically designed for the young?
   $form['preparatory_f']['f_3'] = array(
     '#type' => 'radios',
     '#options' => array(
@@ -84,7 +84,7 @@ function preparatory_f(&$form_state, &$next_step) {
     ),
   );
 
-  // 3. Product processed description.
+  // 4. Is the product specifically designed for the elderly?
   $form['preparatory_f']['f_4'] = array(
     '#type' => 'radios',
     '#options' => array(
@@ -101,7 +101,7 @@ function preparatory_f(&$form_state, &$next_step) {
     ),
   );
 
-  // 4. Product processed description.
+  // 5. Is the product specifically designed for pregnant ladies?
   $form['preparatory_f']['f_5'] = array(
     '#type' => 'radios',
     '#options' => array(
@@ -118,7 +118,7 @@ function preparatory_f(&$form_state, &$next_step) {
     ),
   );
 
-  // 5. Product stored and distributed.
+  // 6. Is the product specifically designed for the immunosuppressed / immunocompromised?
   $form['preparatory_f']['f_6'] = array(
     '#type' => 'radios',
     '#options' => array(
@@ -135,7 +135,7 @@ function preparatory_f(&$form_state, &$next_step) {
     ),
   );
 
-  // 7. State the shelf-life of the product?
+  // 7. Is the product specifically designed for people with allergies or intolerances?
   $form['preparatory_f']['f_7'] = array(
     '#type' => 'radios',
     '#options' => array(
@@ -152,8 +152,7 @@ function preparatory_f(&$form_state, &$next_step) {
     ),
   );
 
-  // 9. Detail below how you have considered the likely abuse / unintended use
-  // of the product by the consumer.
+  // 8. Detail below how you have considered the likely abuse/unintended use of the product by the consumer or purchaser.
   $form['preparatory_f']['f_8'] = array(
     '#type' => 'textarea',
     '#title' => t('8. Detail below how you have considered the likely abuse/unintended use of the product by the consumer or purchaser.'),
