@@ -3,6 +3,10 @@
     border-bottom: 5px solid #DDDDDD;
   }
 
+  h2 {
+    color: #555;
+  }
+
   ul li {
     padding-left: 4em;
   }
@@ -13,8 +17,7 @@
     border-left: 1px solid $border_colour;
     border-bottom: 1px solid $border_colour;
     thead th {
-      background: black;
-      color: white;
+      background: #EEE;
     }
     td, th {
       padding: 10px;
