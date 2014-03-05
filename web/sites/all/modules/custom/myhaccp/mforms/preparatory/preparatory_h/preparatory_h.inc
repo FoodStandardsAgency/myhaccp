@@ -31,6 +31,12 @@ function preparatory_h(&$form_state, &$next_step) {
     '#tree' => TRUE,
   );
 
+  $form['preparatory_h']['intro'] = array(
+    '#prefix' => '<p class="intro">',
+    '#suffix' => '</p>',
+    '#markup' => t('The process flow diagram must be checked to verify that it is correct and shows all the steps involved in the process as outlined in the scope of study (Preparatory Stage C).'),
+  );
+
   // 1. Name of person(s) confirming flow diagram is correct:
   $form['preparatory_h']['h_1'] = array(
     '#type' => 'textfield',

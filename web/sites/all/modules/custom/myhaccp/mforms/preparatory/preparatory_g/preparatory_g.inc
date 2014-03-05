@@ -41,18 +41,18 @@ function preparatory_g(&$form_state, &$next_step) {
 
   // 1. Have you completed a flow diagram?
   $form['preparatory_g']['g_1'] = array(
-    '#type' => 'checkbox',
-    '#prefix' => '<div class="label">' . t('1. Have you completed a flow diagram? !tip !help', array(
-        '!tip' => _help_tip(20),
-        '!help' => '<div class="help-text">This is a diagram showing <strong>all process steps</strong> in the manufacture of a product or the processing of a product.</div>',)) . '</div>',
-    '#title' => t('I confirm that I have completed a flow diagram covering all steps in my manufacturing process.', array(
-      //'!tip' => _help_tip(20),
-    )),
-    //'#help_text' => t('This is a diagram showing <strong>all process steps</strong> in the manufacture of a product or the processing of a product.'),
+    '#type' => 'radios',
+    '#options' => array(
+      'yes' => t('Yes'),
+      'no' => t('No'),
+    ),
+    '#title' => t('1. Have you completed a flow diagram?'),
+    '#help_link' => 20,
+    '#help_text' => t('This is a diagram showing <strong>all process steps</strong> in the manufacture of a product or the processing of a product.'),
     '#default_value' => array_get($values, 'preparatory_g.g_1', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
-      'data-parsley-error-message' => t('Please confirm that you have completed a flow diagram covering all steps in my manufacturing process.'),
+      'data-parsley-error-message' => t('It is strongly advised that you complete a flow diagram covering all steps in your manufacturing process before proceeding.'),
     ),
   );
 
