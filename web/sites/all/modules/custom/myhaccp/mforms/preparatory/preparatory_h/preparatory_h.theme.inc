@@ -58,18 +58,11 @@ function myhaccp_preprocess_preparatory_h(&$variables) {
     $variables['h_6'] = '';
   }
 
-  // 7. Who in your organisation is aware that any changes to the process will require changes to the flow diagram?
+  // 7. Please state who in your organisation is responsible for making changes to the flow diagram and storing out of date versions.
   $h7 = explode("\r\n", trim($values['h_7']));
   $h7 = implode('</li><li>', $h7);
-  $h7 = '<div><p>' . t('The following members of our organisation are aware that any changes to the process will require changes to the flow diagram:') . '</p><ul><li>' . $h7 . '</li></ul></div>';
+  $h7 = '<div><p>' . t('The following members of our organisation are responsible for making changes to the flow diagram and storing out of date versions:') . '</p><ul><li>' . $h7 . '</li></ul></div>';
 
   $variables['h_7'] = $h7;
-
-  // 8. Who in your organisation is responsible for storing all out-of-date versions of the flow diagram?
-  $h8 = explode("\r\n", trim($values['h_8']));
-  $h8 = implode('</li><li>', $h8);
-  $h8 = '<div><p>' . t('The following members of our organisation are responsible for storing all out-of-date versions of the flow diagram:') . '</p><ul><li>' . $h8 . '</li></ul></div>';
-
-  $variables['h_8'] = $h8;
 
 }

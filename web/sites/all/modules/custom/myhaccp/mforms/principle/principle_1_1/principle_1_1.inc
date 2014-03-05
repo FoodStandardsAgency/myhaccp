@@ -112,7 +112,7 @@ function principle_1_1(&$form_state, &$next_step) {
      //'#markup' => '<div class="group-title">' . t('List all potential hazards that may be reasonably expected to occur at this process step:  !tip', array(
      //     '!tip' => _help_tip(16),
      //   )) . '</div>',
-      '#markup' => '<div class="group-title">' . t('List all potential hazards that may be reasonably expected to occur at this process step:') . '</div>',
+      '#markup' => '<div class="group-title">' . t('List all potential hazards that may be reasonably expected to occur at this process step.') . '</div>',
 
     );
     // Biological.

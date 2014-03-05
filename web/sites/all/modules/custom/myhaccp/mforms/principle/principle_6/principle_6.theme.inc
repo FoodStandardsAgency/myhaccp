@@ -36,7 +36,9 @@ function myhaccp_preprocess_principle_6(&$variables) {
   $variables['p_6_4_title'] = t('The following verification activities are undertaken:');
 
   // 4. Verification activities
-  // @todo - $activities = myhaccp_prepare_checkboxes_output('principle_6', '6_4.6_4_1', $values);
+  // $activities = myhaccp_prepare_checkboxes_output('principle_6', '6_4.6_4_1', $values);
+
+  // dpm($activities);
 
   $content = '';
   foreach($values['6_4'] as $key => $activity_group) {
