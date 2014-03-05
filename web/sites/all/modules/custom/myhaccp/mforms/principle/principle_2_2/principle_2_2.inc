@@ -60,6 +60,13 @@ function principle_2_2(&$form_state, &$next_step) {
     '#tree' => TRUE,
   );
 
+  // Introductory text.
+  $form['principle_2_2']['intro'] = array(
+    '#prefix' => '<p class="intro">',
+    '#suffix' => '</p>',
+    '#markup' => t('For each significant hazard you will need apply your chosen decision making process to identify if this step is a CCP.'),
+  );
+
   // Create the table.
   $form['principle_2_2']['instance_table'] = array(
     '#theme' => 'myhaccp_2_2_table',

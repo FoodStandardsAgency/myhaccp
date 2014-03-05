@@ -66,7 +66,7 @@ function principle_1_2(&$form_state, &$next_step) {
 
   $steps = $hazards->getHazardsByStep();
 
-  // Introductionary text.
+  // Introductory text.
   $form['principle_1_2']['intro'] = array(
     '#prefix' => '<p class="intro">',
     '#suffix' => '</p>',

@@ -31,7 +31,7 @@ function principle_2_1(&$form_state, &$next_step) {
     '#tree' => TRUE,
   );
 
-  // Introductionary text.
+  // Introductory text.
   $form['principle_2_1']['intro'] = array(
     '#prefix' => '<p class="intro">',
     '#suffix' => '</p>',

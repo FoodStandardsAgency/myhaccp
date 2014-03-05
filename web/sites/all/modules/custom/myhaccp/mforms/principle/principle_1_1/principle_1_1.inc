@@ -35,7 +35,7 @@ function principle_1_1(&$form_state, &$next_step) {
     '#suffix' => '</div>',
   );
 
-  // Introductionary text.
+  // Introductory text.
   $form['principle_1_1']['intro'] = array(
     '#prefix' => '<p class="intro">',
     '#suffix' => '</p>',
