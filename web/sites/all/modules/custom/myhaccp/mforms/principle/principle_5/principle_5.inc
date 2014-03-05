@@ -75,7 +75,7 @@ function principle_5(&$form_state, &$next_step) {
     $form['principle_5'][$hazard_key]['5_1'] = array(
       '#type' => 'textarea',
       '#resizable' => FALSE,
-      '#title' => t('1. Action to be taken'),
+      '#title' => t('1. Corrective action to be taken.'),
       '#default_value' => array_get($values, "principle_5.$hazard_key.5_1", FALSE),
       '#help_text' => t("Provide details of what should be done in the event of failure to meet a critical limit."),
       '#attributes' => array(

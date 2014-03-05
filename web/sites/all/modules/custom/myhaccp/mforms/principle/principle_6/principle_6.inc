@@ -38,6 +38,13 @@ function principle_6(&$form_state, &$next_step) {
     '#tree' => TRUE,
   );
 
+  // Introductory text.
+  $form['principle_6']['intro'] = array(
+    '#prefix' => '<p class="intro">',
+    '#suffix' => '</p>',
+    '#markup' => t('Verification is the principle which confirms that the HACCP plan, if followed, will produce safe food. First you need to validate the HACCP system to ensure that it is fit for purpose and effectively controls the hazards you identified. This is to be carried out prior to implementation and before the product is placed on the market.'),
+  );
+
   // Now the form fields.
   $form['principle_6']['6_1'] = array(
     '#type' => 'textarea',
