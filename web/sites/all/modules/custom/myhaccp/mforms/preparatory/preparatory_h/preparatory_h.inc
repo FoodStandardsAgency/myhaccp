@@ -31,6 +31,12 @@ function preparatory_h(&$form_state, &$next_step) {
     '#tree' => TRUE,
   );
 
+  $form['preparatory_h']['intro'] = array(
+    '#prefix' => '<p class="intro">',
+    '#suffix' => '</p>',
+    '#markup' => t('The process flow diagram must be checked to verify that it is correct and shows all the steps involved in the process as outlined in the scope of study (Preparatory Stage C).'),
+  );
+
   // 1. Name of person(s) confirming flow diagram is correct:
   $form['preparatory_h']['h_1'] = array(
     '#type' => 'textfield',
@@ -57,7 +63,7 @@ function preparatory_h(&$form_state, &$next_step) {
     '#default_value' => array_get($values, 'preparatory_h.h_2', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
-      'data-parsley-error-message' => t('Please confirm if every process step identified on the flow diagram.'),
+      'data-parsley-error-message' => t('The quality of your risk analysis will depend on identifying every process step in your flow diagram.'),
     ),
   );
 
@@ -75,7 +81,7 @@ function preparatory_h(&$form_state, &$next_step) {
     '#default_value' => array_get($values, 'preparatory_h.h_3', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
-      'data-parsley-error-message' => t('Please confirm if the flow diagram is an accurate representation of the process from start to finish.'),
+      'data-parsley-error-message' => t('The quality of your risk analysis will depend on an accurate representation of the process from start to finish.'),
     ),
   );
 
@@ -93,7 +99,7 @@ function preparatory_h(&$form_state, &$next_step) {
     '#default_value' => array_get($values, 'preparatory_h.h_4', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
-      'data-parsley-error-message' => t('Please confirm if the process flow diagram correct for all shifts (e.g. days, nights and weekend).'),
+      'data-parsley-error-message' => t('The quality of your risk analysis will depend on the process flow diagram being correct for all variations in shifts (e.g. days, nights and weekend).'),
     ),
   );
 
@@ -110,7 +116,7 @@ function preparatory_h(&$form_state, &$next_step) {
     '#default_value' => array_get($values, 'preparatory_h.h_5', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
-      'data-parsley-error-message' => t('Please confirm if the flow diagram correct during all seasonal variations.'),
+      'data-parsley-error-message' => t('The quality of your risk analysis will depend on the flow diagram being correct during all seasonal variations.'),
     ),
   );
 
@@ -122,13 +128,13 @@ function preparatory_h(&$form_state, &$next_step) {
       'yes' => t('Yes'),
       'no' => t('No'),
     ),
-    '#title' => t('6. Has the team leader signed off and dated the flow diagram as being correct?'),
+    '#title' => t('6. Has the HACCP lead signed off and dated the flow diagram as being correct?'),
     '#help_link' => 22,
-    '#help_text' => t('The leader for HACCP should do this as they have ultimate responsibility to ensure it is correct.'),
+    '#help_text' => t('The HACCP lead should do this as they have ultimate responsibility to ensure the whole process has been captured.'),
     '#default_value' => array_get($values, 'preparatory_h.h_6', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
-      'data-parsley-error-message' => t('Please confirm if the team leader has signed off and dated the flow diagram as being correct.'),
+      'data-parsley-error-message' => t('Please confirm if the HACCP lead has signed off and dated the flow diagram as being correct.'),
     ),
   );
 
@@ -136,27 +142,13 @@ function preparatory_h(&$form_state, &$next_step) {
   $form['preparatory_h']['h_7'] = array(
     '#type' => 'textarea',
     '#resizable' => FALSE,
-    '#title' => t('7. Who in your organisation is aware that any changes to the process will require changes to the flow diagram?'),
+    '#title' => t('7. Please state who in your organisation is responsible for making changes to the flow diagram and storing out of date versions.'),
     '#help_link' => 22,
-    '#help_text' => t('The flow diagram must be up-to-date at all times.  This should be all those involved in the HACCP study as a minimum.  For larger companies systems should be in place to ensure that a future planned or unplanned change to the process (equipment, product etc) will  trigger a change to the flow diagram.'),
+    '#help_text' => t('The flow diagram must be up-to-date at all times. Any member of the HACCP team can request a change to the process flow diagram, but one person should be responsible for making the change and storing out of date versions. For larger companies systems should be in place to ensure that a future planned or unplanned change to the process (equipment, product etc) will trigger a change to the flow diagram.'),
     '#default_value' => array_get($values, 'preparatory_h.h_7', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
-      'data-parsley-error-message' => t('Please confirm the name of at least one person in your organisation who is aware that any changes to the process will require changes to the flow diagram.'),
-    ),
-  );
-
-  // 8. Who in your organisation is responsible for storing all out-of-date versions of the flow diagram?
-  $form['preparatory_h']['h_8'] = array(
-    '#type' => 'textarea',
-    '#resizable' => FALSE,
-    '#title' => t('8. Who in your organisation is responsible for storing all out-of-date versions of the flow diagram?'),
-    '#help_link' => 22,
-    '#help_text' => t('Name of person responsible for this.'),
-    '#default_value' => array_get($values, 'preparatory_h.h_8', FALSE),
-    '#attributes' => array(
-      'data-parsley-required' => 'true',
-      'data-parsley-error-message' => t('Please confirm the name of at least one person in your organisation who is responsible for storing all out-of-date versions of the flow diagram.'),
+      'data-parsley-error-message' => t('Please confirm the name of at least one person in your organisation who is responsible for making changes to the flow diagram and storing out of date versions.'),
     ),
   );
 

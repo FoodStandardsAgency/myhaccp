@@ -21,3 +21,36 @@ function myhaccp_preprocess_principle_4(&$variables) {
   $values = $variables['data'][$stage];
 
 }
+
+/**
+ *
+ * Return monitoring procedures for a hazard.
+ *
+ * @param string $h_key
+ *   The key of the Hazard.
+ */
+
+function myhaccp_principle_4_m($h_key) {
+  $principle_4_data = mforms_get_vals('myhaccp', 'principle_4');
+  $values = $principle_4_data['principle_4'];
+
+  // dpm($values);
+
+  $content ='';
+
+  if($h_key) {
+    // 1. What monitoring activities are going to take place at this CCP?
+    $content .= '<p>' . $values[$h_key]['4_1'] . '</p>';
+
+    // 2. What monitoring activities are going to take place at this CCP?
+    $content .= '<p>' . $values[$h_key]['4_1'] . '</p>';
+
+    // @todo
+
+    return $content;
+
+  } else {
+    return $content;
+  }
+
+}

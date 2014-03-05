@@ -33,6 +33,12 @@ function preparatory_d(&$form_state, &$next_step) {
     '#suffix' => '</div>',
   );
 
+  $form['preparatory_d']['intro'] = array(
+    '#prefix' => '<p class="intro">',
+    '#suffix' => '</p>',
+    '#markup' => t('A HACCP study will require the collection and evaluation of technical data. Those responsible for this should possess the necessary skills and experience.'),
+  );
+
   // Check whether the number of instances has been set and if so show them,
   // otherwise show 1.
   if (empty($form_state['triggering_element']['#limit_validation_errors'])) {
@@ -163,7 +169,7 @@ function preparatory_d(&$form_state, &$next_step) {
   $form['preparatory_d']['instance_0']['d_2']['#access'] = FALSE;
   $form['preparatory_d']['instance_0']['d_2']['#default_value'] = 'internal';
   $form['preparatory_d']['instance_0']['d_2']['#help_text'] = t("The HACCP Lead should be an employee of the company, so this option is pre-selected to be 'Internal'.");
-  $form['preparatory_d']['instance_0']['d_1']['#title'] = t('Name of HACCP lead for business:');
+  $form['preparatory_d']['instance_0']['d_1']['#title'] = t('Name of HACCP lead for the business:');
   $form['preparatory_d']['instance_0']['d_1']['#attributes']['data-parsley-error-message'] = t('Please add the name of the HACCP lead for the business.');
   $form['preparatory_d']['instance_0']['d_1']['#help_text'] = t("State the person's name.");
 

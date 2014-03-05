@@ -593,13 +593,13 @@ a:visited {
   color: #006f51;
 }
 
-html body.admin-menu.adminimal-menu {
-  margin-top: 0 !important;
-}
-
 @media print {
   h1 {
     border-bottom: 5px solid #DDDDDD;
+  }
+
+  h2 {
+    color: #555;
   }
 
   ul li {
@@ -612,8 +612,7 @@ html body.admin-menu.adminimal-menu {
     border-bottom: 1px solid #dddddd;
   }
   table thead th {
-    background: black;
-    color: white;
+    background: #EEE;
   }
   table td, table th {
     padding: 10px;

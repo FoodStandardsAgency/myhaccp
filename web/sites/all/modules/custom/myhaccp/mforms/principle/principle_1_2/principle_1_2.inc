@@ -66,6 +66,13 @@ function principle_1_2(&$form_state, &$next_step) {
 
   $steps = $hazards->getHazardsByStep();
 
+  // Introductionary text.
+  $form['principle_1_2']['intro'] = array(
+    '#prefix' => '<p class="intro">',
+    '#suffix' => '</p>',
+    '#markup' => t('An assessment of the hazards identified is carried out to determine which hazards are of such a nature that their prevention, elimination or reduction to acceptable levels is essential to the production of safe food.'),
+  );
+
   // Iterate over the steps.
   foreach ($steps as $step_id => $step) {
     // Create a fieldset to wrap this instance and give it a legend.

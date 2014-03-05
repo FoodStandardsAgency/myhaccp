@@ -30,9 +30,15 @@ function preparatory_a(&$form_state, &$next_step) {
     '#tree' => TRUE,
   );
 
+  $form['preparatory_a']['intro'] = array(
+    '#prefix' => '<p class="intro">',
+    '#suffix' => '</p>',
+    '#markup' => t('Prior to the application of HACCP based food safety controls you should consider the prerequisite food hygiene requirements for your business.'),
+  );
+
   $form['preparatory_a']['a_1'] = array(
     '#type' => 'checkboxes',
-    '#title' => t('1. Mark all boxes where you can demonstrate that you have control of the prerequisites'),
+    '#title' => t('1. Select the boxes where you can demonstrate that you have control of the prerequisites.'),
     '#help_link' => 13,
     '#help_text' => t("These are 'pre-requirements' to the application and implementation of a HACCP system, to demonstrate you have control they should be well established, fully operational (including records) and verified."),
     '#options' => drupal_map_assoc(array(
@@ -45,7 +51,7 @@ function preparatory_a(&$form_state, &$next_step) {
       t('Pest Control'),
       t('Glass and plastic management'),
       t('Calibration'),
-      t('Standard Operating Procedures SOP\'s'),
+      t('Standard Operating Procedures (SOPs)'),
       t('Distribution'),
       t('Product recall'),
       t('Document control'),
@@ -56,7 +62,6 @@ function preparatory_a(&$form_state, &$next_step) {
       t('Preventative maintenance'),
       t('Traceability'),
       t('Utilities (air, water, energy)'),
-      t('Waste disposal'),
       t('Equipment suitability, cleaning and maintenance'),
       t('Measures to prevent cross-contamination'),
       t('Cleaning and sanitising'),

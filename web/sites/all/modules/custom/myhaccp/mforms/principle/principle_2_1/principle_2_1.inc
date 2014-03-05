@@ -31,6 +31,13 @@ function principle_2_1(&$form_state, &$next_step) {
     '#tree' => TRUE,
   );
 
+  // Introductionary text.
+  $form['principle_2_1']['intro'] = array(
+    '#prefix' => '<p class="intro">',
+    '#suffix' => '</p>',
+    '#markup' => t('A CCP is a step at which control can be applied and is essential to prevent or eliminate a food safety hazard or reduce it to an acceptable level.'),
+  );
+
   $hazards = Hazards::getInstance();
 
   // Ensure data has been entered on principle_1_1.

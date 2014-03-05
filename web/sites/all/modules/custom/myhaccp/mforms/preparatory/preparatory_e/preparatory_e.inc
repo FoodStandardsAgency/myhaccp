@@ -31,10 +31,16 @@ function preparatory_e(&$form_state, &$next_step) {
     '#tree' => TRUE,
   );
 
+  $form['preparatory_e']['intro'] = array(
+    '#prefix' => '<p class="intro">',
+    '#suffix' => '</p>',
+    '#markup' => t('This requires a full description of the product. This will help understanding of the presented hazards with the product/process and on what it relies on for safety.'),
+  );
+
   // 1. Ingredients.
   $form['preparatory_e']['e_1'] = array(
     '#type' => 'textarea',
-    '#title' => t('1. List all the ingredients with the supplier for each in brackets.'),
+    '#title' => t('1. List all the ingredients and the name of the supplier for each one.'),
     '#help_link' => 18,
     '#help_text' => t('A full description of the finished product  or intermediate product (depending what your HACCP study covers should be provided.  This should include every ingredient that is used in the product and the supplier.'),
     '#default_value' => array_get($values, 'preparatory_e.e_1', FALSE),
@@ -48,7 +54,7 @@ function preparatory_e(&$form_state, &$next_step) {
   // 2. Physical properties.
   $form['preparatory_e']['e_2'] = array(
     '#type' => 'textarea',
-    '#title' => t('2. State the physical properties (a<sub>w</sub>,pH,emulsion).'),
+    '#title' => t('2. State the physical properties of the product (a<sub>w</sub>,pH,emulsion).'),
     '#help_link' => 18,
     '#help_text' => t('E.g. a<sub>w</sub> 0.93, pH 4.5.'),
     '#default_value' => array_get($values, 'preparatory_e.e_2', FALSE),
@@ -62,7 +68,7 @@ function preparatory_e(&$form_state, &$next_step) {
   // 3. Product processed description.
   $form['preparatory_e']['e_3'] = array(
     '#type' => 'textarea',
-    '#title' => t('3. Describe how the product has been processed and/or other preservation methods.'),
+    '#title' => t('3. Describe how the product is processed and/or other preservation methods used.'),
     '#help_link' => 18,
     '#help_text' => t('Has the product been sterilised, pasteurised, smoked?'),
     '#default_value' => array_get($values, 'preparatory_e.e_3', FALSE),
@@ -76,7 +82,7 @@ function preparatory_e(&$form_state, &$next_step) {
   // 4. Product processed description.
   $form['preparatory_e']['e_4'] = array(
     '#type' => 'textarea',
-    '#title' => t('4. How was the product packed and what are the packaging materials?'),
+    '#title' => t('4. Describe how the product is packed and the packaging materials.'),
     '#help_link' => 18,
     '#help_text' => t('e.g. Is it packed into glass bottles, flexible pouches, aseptically packed?'),
     '#default_value' => array_get($values, 'preparatory_e.e_4', FALSE),
@@ -104,7 +110,7 @@ function preparatory_e(&$form_state, &$next_step) {
   // 6. State the shelf-life of the product?
   $form['preparatory_e']['e_6'] = array(
     '#type' => 'textarea',
-    '#title' => t('6. State the shelf-life of the product.'),
+    '#title' => t('6. What is the shelf-life of the product?'),
     '#help_link' => 18,
     '#help_text' => t('Under the  prescribed conditions what is the use by date or best before date e.g. Use By 3 months from date of purchase or best before  4 months from date of manufacture.'),
     '#default_value' => array_get($values, 'preparatory_e.e_6', FALSE),
@@ -118,7 +124,7 @@ function preparatory_e(&$form_state, &$next_step) {
   // 7. State instructions for product use.
   $form['preparatory_e']['e_7'] = array(
     '#type' => 'textarea',
-    '#title' => t('7. State how the product is to be stored and handled.'),
+    '#title' => t('7. State what your advice is to the purchaser for storing, handling and preparing the product.'),
     '#help_link' => 18,
     '#help_text' => t('e.g. store in a cool place away from direct light, defrost thoroughly before cooking, cook for 15 minutes at 220°C.'),
     '#default_value' => array_get($values, 'preparatory_e.e_7', FALSE),

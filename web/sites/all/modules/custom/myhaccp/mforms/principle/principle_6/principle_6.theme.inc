@@ -24,7 +24,7 @@ function myhaccp_preprocess_principle_6(&$variables) {
   $variables['p_6_1'] = $values['6_1'];
 
   // 2. Who is responsible for ensuring the contents of the HACCP plan are validated?
-  // 3. Is this the same person who will formally sign off the HACCP plan?
+  // 3. Is this the same person who will formally sign off the whole HACCP plan (which may contain several HACCP studies)?
   // 3a. Who will formally sign off the HACCP plan?
   if($values['6_3'] == 'no') {
     $variables['p_6_2'] =  '<p><strong>' . $values['6_2'] . '</strong>' . t(' is responsible for ensuring the contents of the HACCP plan are validated.') . '</p>';
@@ -36,7 +36,7 @@ function myhaccp_preprocess_principle_6(&$variables) {
   $variables['p_6_4_title'] = t('The following verification activities are undertaken:');
 
   // 4. Verification activities
-  // @todo $activities = myhaccp_prepare_checkboxes_output('principle_6', '6_41', $values);
+  // @todo - $activities = myhaccp_prepare_checkboxes_output('principle_6', '6_4.6_4_1', $values);
 
   $content = '';
   foreach($values['6_4'] as $key => $activity_group) {
@@ -94,7 +94,7 @@ function myhaccp_preprocess_principle_6(&$variables) {
 
   // @todo need the checkbox labels here
 
-  // 7. How often is the HACCP system formally reviewed?
+  // 7. How often is the whole HACCP plan formally reviewed?
   $variables['p_6_7'] = t('The HACCP system is formally reviewed <strong>') . $values['6_7'] . '</strong>.';
 
   // 8. Who is responsible for carrying out a formal annual review?

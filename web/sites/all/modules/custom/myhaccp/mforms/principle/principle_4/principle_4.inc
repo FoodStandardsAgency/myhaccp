@@ -32,6 +32,13 @@ function principle_4(&$form_state, &$next_step) {
     '#tree' => TRUE,
   );
 
+  // Introductionary text.
+  $form['principle_4']['intro'] = array(
+    '#prefix' => '<p class="intro">',
+    '#suffix' => '</p>',
+    '#markup' => t('Monitoring is the act of conducting a planned sequence of observations or measurements of control parameters to assess whether a CCP is under control.'),
+  );
+
   $hazards = Hazards::getInstance();
 
   // Ensure there are hazards over the threshold.

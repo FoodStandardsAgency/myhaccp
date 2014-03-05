@@ -69,7 +69,7 @@ function principle_6(&$form_state, &$next_step) {
       'yes' => t('Yes'),
       'no' => t('No'),
     ),
-    '#title' => t('3. Is this the same person who will formally sign off the HACCP plan?'),
+    '#title' => t('3. Is this the same person who will formally sign off the whole HACCP plan (which may contain several HACCP studies)?'),
     '#help_text' => t('Enter the name of the person.'),
     '#default_value' => array_get($values, "principle_6.6_3", FALSE),
     '#attributes' => array(
@@ -192,7 +192,7 @@ function principle_6(&$form_state, &$next_step) {
 
   $form['principle_6']['6_7'] = array(
     '#type' => 'textfield',
-    '#title' => t('7. How often is the HACCP system formally reviewed?'),
+    '#title' => t('7. How often is the whole HACCP plan formally reviewed?'),
     '#help_text' => t('Is this annually, bi-annually or more frequently?'),
     '#default_value' => array_get($values, "principle_6.6_7", FALSE),
     '#attributes' => array(
