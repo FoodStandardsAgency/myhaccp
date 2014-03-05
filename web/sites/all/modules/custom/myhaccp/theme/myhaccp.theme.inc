@@ -25,26 +25,34 @@ function theme_myhaccp_1_2_table($variables) {
     'hazard_name' => t('Hazard'),
     'hazard_desc' => t('Hazard Description !tip !help', array(
       '!tip' => _help_tip(),
-      '!help' => '<div class="help-text">Describe the hazard in more detail using presence, introduction, growth or survival and state the likely cause e.g. presence of metal from the supplier, introduction of Staphylococcus aureus from people (operatives).</div>'
+      '!help' => '<div class="help-text">' . t("Provide a detailed description of the hazard. Think about this stage carefully. It is common to make errors here and this will lead to implications further on. By describing the hazard in more detail it will help you later when you specify the control. Be aware that there may be more than one 'descriptor' for a hazard. If you identify more than one descriptor (this is quite common) you will have to go back to <strong>Principle 1.1</strong> and add an additional hazard, this time however it should have a descriptor in brackets after it (i.e. Salmonella spp (introduction) Salmonella spp (growth).</br> !link", array(
+          '!link' => myhaccp_prepare_more_link(17),
+        )) . '</div>'
     )),
     'severity' => array(
       'data' => t('Severity (1-3) !tip !help', array(
         '!tip' => _help_tip(),
-        '!help' => '<div class="help-text">Rate on scale of 1 - 3 (1 = minor, 3 = long-term illness leading to death or death).</div>'
+        '!help' => '<div class="help-text">' . t("Rate on scale of 1 - 3 (1 = minor, 3 = long-term illness leading to death or death). !link", array(
+          '!link' => myhaccp_prepare_more_link(17),
+        )) . '</div>'
         )),
       'class' => array('severity'),
     ),
     'likelihood' => array(
       'data' => t('Likelihood (1-3) !tip !help', array(
         '!tip' => _help_tip(),
-        '!help' => '<div class="help-text">Rate on scale of 1-3 (1=unlikely to occur but might, 3=definately will occur (at some time if it hasn’t occurred in the past).</div>'
+        '!help' => '<div class="help-text">' . t("Rate on scale of 1-3 (1=unlikely to occur but might, 3=definately will occur (at some time if it hasn’t occurred in the past). !link", array(
+            '!link' => myhaccp_prepare_more_link(17),
+          )) . '</div>'
         )),
       'class' => array('likelihood'),
     ),
     'significance' => array(
       'data' => t('Significance <span>(S x L)</span> !tip !help', array(
         '!tip' => _help_tip(),
-        '!help' => '<div class="help-text">Severity score multiplied by likelihood score.</div>'
+        '!help' => '<div class="help-text">' . t("Severity score multiplied by likelihood score. !link", array(
+            '!link' => myhaccp_prepare_more_link(17),
+          )) . '</div>'
         )),
       'class' => array('significance'),
     ),
