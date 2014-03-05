@@ -43,10 +43,11 @@ function myhaccp_preprocess_preparatory_d(&$variables) {
   foreach ($instances as $instance) {
     // Generate a single item from training, experience and qualifications questions
     $experience = implode('<br />', array_filter($instance['wrapper']));
+    $role = $instance['d_3'] ? $role : '';
 
     $rows[] = array(
       // Role
-      array('data' => $instance['d_3']),
+      array('data' => $role),
       // Name
       array('data' => $instance['d_1']),
       // Training, experience & qualifications
