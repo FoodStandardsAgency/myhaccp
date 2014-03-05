@@ -32,16 +32,16 @@ function principle_7(&$form_state, &$next_step) {
     '#tree' => TRUE,
   );
 
-  // Create the fieldset container.
-  $form['principle_7'] = array(
-    '#type' => 'fieldset',
-    '#tree' => TRUE,
+  $form['principle_7']['intro'] = array(
+    '#prefix' => '<p class="intro">',
+    '#suffix' => '</p>',
+    '#markup' => t('Efficient and accurate record keeping is essential to the application of a HACCP system.'),
   );
 
   // Now the form fields.
   $form['principle_7']['7_1'] = array(
     '#type' => 'checkboxes',
-    '#title' => t('1. Mark all forms of documentation relating to the HACCP study that your organisation retain.'),
+    '#title' => t('1. Select all forms of documentation relating to this HACCP study that your organisation retain.'),
     '#options' => array(
       'scope' => 'Scope of the study',
       'reference' => 'Reference to prerequisite programmes',
@@ -72,7 +72,7 @@ function principle_7(&$form_state, &$next_step) {
   $form['principle_7']['7_2'] = array(
     '#type' => 'textarea',
     '#resizable' => FALSE,
-    '#title' => t('2. Detail any other supporting information (i.e. anything that covers the HACCP system operation) that is retained.'),
+    '#title' => t('2. Provide details of any other supporting information (i.e. anything else covered in your HACCP plan) that is retained.'),
     '#help_text' => t('Is there anything else (other documents) covering HACCP  that you keep hold of?'),
     '#default_value' => array_get($values, "principle_7.7_2", FALSE),
   );

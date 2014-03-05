@@ -20,10 +20,10 @@ function myhaccp_preprocess_principle_7(&$variables) {
   $stage = 'principle_7';
   $values = $variables['data'][$stage];
 
-  // 1. Mark all forms of documentation relating to the HACCP study that your organisation retain.
+  // 1. Select all forms of documentation relating to this HACCP study that your organisation retain.
   // @todo $variables['p_7_1'] = '';
 
-  // 2. Detail any other supporting information (i.e. anything that covers the HACCP system operation) that is retained.
+  // 2. Provide details of any other supporting information (i.e. anything else covered in your HACCP plan) that is retained.
   $variables['p_7_2_title'] = t('Other supporting information that is retained');
   $variables['p_7_2'] = $values['7_2'];
 

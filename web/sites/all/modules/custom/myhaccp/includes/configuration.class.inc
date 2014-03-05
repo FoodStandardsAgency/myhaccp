@@ -97,7 +97,7 @@ class Configuration {
       'principle_4' => 'Principle 4: Establish a monitoring system for each CCP',
       'principle_5' => 'Principle 5: Establish a corrective action plan',
       'principle_6' => 'Principle 6: Verification',
-      'principle_7' => 'Principle 7: Establish documentation and record keeping',
+      'principle_7' => 'Principle 7: Establish Documentation and Record keeping',
       'principle_review' => 'Principles: Review',
     );
   }
