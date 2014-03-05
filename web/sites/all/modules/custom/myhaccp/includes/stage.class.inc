@@ -3,30 +3,33 @@
 
 interface StageInterface {
 
+  public function getName();
+
+  public function setName($name);
+
   public function getPhase();
 
   public function setPhase(Phase $phase);
 
+  public function getStatus();
+
+  public function setStatus($status);
+
+  public function getValidator();
+
+  public function setValidator(Validator $validator);
+
+  public function getUrl();
+
+  public function setUrl($url);
+
+  public function getTitle();
+
+  public function setTitle($title);
+
 }
 
 class Stage implements StageInterface {
-
-  /**
-   * Gets the phase this stage belongs to.
-   */
-  public function getPhase() {
-    return $this->phase;
-  }
-
-  /**
-   * Sets the phase this stage belongs to.
-   *
-   * @param Phase $phase
-   *   An instance of the Phase object.
-   */
-  public function setPhase(Phase $phase) {
-    $this->phase = $phase;
-  }
 
   /**
    * Gets this stage's machine name.
@@ -46,6 +49,23 @@ class Stage implements StageInterface {
    */
   public function setName($name) {
     $this->name = $name;
+  }
+
+  /**
+   * Gets the phase this stage belongs to.
+   */
+  public function getPhase() {
+    return $this->phase;
+  }
+
+  /**
+   * Sets the phase this stage belongs to.
+   *
+   * @param Phase $phase
+   *   An instance of the Phase object.
+   */
+  public function setPhase(Phase $phase) {
+    $this->phase = $phase;
   }
 
   /**
@@ -94,16 +114,6 @@ class Stage implements StageInterface {
   }
 
   /**
-   * Sets the stage url.
-   *
-   * @param string $url
-   *   The url for the stage.
-   */
-  public function setUrl($url) {
-    $this->url = $url;
-  }
-
-  /**
    * Gets the stage url.
    *
    * @return string
@@ -114,13 +124,13 @@ class Stage implements StageInterface {
   }
 
   /**
-   * Sets the stage title.
+   * Sets the stage url.
    *
-   * @param string $title
+   * @param string $url
    *   The url for the stage.
    */
-  public function setTitle($title) {
-    $this->title = $title;
+  public function setUrl($url) {
+    $this->url = $url;
   }
 
   /**
@@ -133,5 +143,14 @@ class Stage implements StageInterface {
     return $this->title;
   }
 
+  /**
+   * Sets the stage title.
+   *
+   * @param string $title
+   *   The url for the stage.
+   */
+  public function setTitle($title) {
+    $this->title = $title;
+  }
 
 }

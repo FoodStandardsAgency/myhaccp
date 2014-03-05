@@ -215,7 +215,6 @@ function principle_4_validate($form, &$form_state) {
       "principle_4.$key.4_2" => 'fieldIsNotEmpty',
       "principle_4.$key.4_3" => 'fieldIsNotEmpty',
       "principle_4.$key.4_4" => 'fieldIsNotEmpty',
-      "principle_4.$key.4_5" => 'fieldIsNotEmpty',
       "principle_4.$key.4_6" => 'fieldIsNotEmpty',
       "principle_4.$key.4_7" => 'fieldIsNotEmpty',
     );
@@ -246,6 +245,5 @@ function principle_4_validate($form, &$form_state) {
 
   $validator->setErrorMessages();
   $form_state = $validator->getFormState();
-
 }
 

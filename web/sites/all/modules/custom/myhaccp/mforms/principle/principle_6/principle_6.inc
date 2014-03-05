@@ -292,11 +292,11 @@ function principle_6_validate($form, &$form_state) {
   $checks = array(
     'principle_6.6_1' => 'fieldIsNotEmpty',
     'principle_6.6_2' => 'fieldIsNotEmpty',
-    'principle_6.trained' => 'fieldIsNotEmpty',
-    'principle_6.maintained' => 'fieldIsNotEmpty',
-    'principle_6.reviewed' => 'fieldIsNotEmpty',
-    'principle_6.responsible_review' => 'fieldIsNotEmpty',
-    'principle_6.records_reviews' => 'fieldIsNotEmpty',
+    'principle_6.6_3' => 'fieldIsNotEmpty',
+    'principle_6.6_6' => 'fieldIsNotEmpty',
+    'principle_6.6_7' => 'fieldIsNotEmpty',
+    'principle_6.6_8' => 'fieldIsNotEmpty',
+    'principle_6.6_11' => 'fieldIsNotEmpty',
   );
 
   foreach ($checks as $target => $method) {
@@ -304,13 +304,12 @@ function principle_6_validate($form, &$form_state) {
   }
 
   // Now check if the radio button in 3 is set to yes.
-  if (array_get($form_state['values'], "principle_6.6_3", FALSE) == 'yes') {
-    // Now check that the dependent fields 5a has something in it.
-    $validator->validate('fieldIsNotEmpty', 'principle_6.sign_off');
+  if (array_get($form_state['values'], "principle_6.6_3", FALSE) == 'no') {
+    // Now check that the dependent fields 3a has something in it.
+    $validator->validate('fieldIsNotEmpty', 'principle_6.6_3a');
   }
 
   $validator->setErrorMessages();
   $form_state = $validator->getFormState();
-
 }
 
