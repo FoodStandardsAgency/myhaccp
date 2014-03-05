@@ -35,6 +35,13 @@ function principle_1_1(&$form_state, &$next_step) {
     '#suffix' => '</div>',
   );
 
+  // Introductionary text.
+  $form['principle_1_1']['intro'] = array(
+    '#prefix' => '<p class="intro">',
+    '#suffix' => '</p>',
+    '#markup' => t('Potential hazards include all hazards (biological, chemical, physical and allergens) that may be reasonably expected to occur at a particular process step.'),
+  );
+
   // Set the number of instances to 1 if not already set.
   if (empty($values['principle_1_1']) && empty($form_state['num_instances'])) {
     $form_state['num_instances'] = 1;

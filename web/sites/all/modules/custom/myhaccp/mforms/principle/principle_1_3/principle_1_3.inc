@@ -26,12 +26,6 @@ function principle_1_3(&$form_state, &$next_step) {
   $form = array();
   $form['#attributes']['class'][] = 'principle-1-question-3';
 
-  // Wrap the form section in a fieldset.
-  $form['principle_1_3'] = array(
-    '#type' => 'fieldset',
-    '#tree' => TRUE,
-  );
-
   $hazards = Hazards::getInstance();
 
   if ($hazards->countHazards() == 0) {
@@ -54,6 +48,13 @@ function principle_1_3(&$form_state, &$next_step) {
   $form['principle_1_3'] = array(
     '#type' => 'fieldset',
     '#tree' => TRUE,
+  );
+
+  // Introductionary text.
+  $form['principle_1_3']['intro'] = array(
+    '#prefix' => '<p class="intro">',
+    '#suffix' => '</p>',
+    '#markup' => t('Control measures are actions and/or activities that are taken to prevent, eliminate or reduce the occurrence of a hazard.'),
   );
 
   // Create the table.

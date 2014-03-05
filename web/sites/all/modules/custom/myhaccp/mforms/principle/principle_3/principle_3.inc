@@ -52,7 +52,8 @@ function principle_3(&$form_state, &$next_step) {
     '#tree' => TRUE,
   );
 
-$form['principle_3']['intro'] = array(
+  // Introductionary text.
+  $form['principle_3']['intro'] = array(
     '#prefix' => '<p class="intro">',
     '#suffix' => '</p>',
     '#markup' => t('A critical limit is the maximum or minimum value for the control measure at a CCP to prevent, eliminate or reduce the hazard to an acceptable level.  It separates acceptable (safe) from unacceptable (unsafe) product.'),
