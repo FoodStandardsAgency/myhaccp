@@ -21,6 +21,14 @@ function myhaccp_preprocess_principle_3(&$variables) {
   $values = $variables['data'][$stage];
 }
 
+/**
+ *
+ * Return formatted critical limit information for a hazard.
+ *
+ * @param string $h_key
+ *   The key of the Hazard.
+ */
+
 function myhaccp_principle_3_cl($h_key) {
   $principle_3_data = mforms_get_vals('myhaccp', 'principle_3');
   $p_3_values = $principle_3_data['principle_3'];
@@ -49,7 +57,6 @@ function myhaccp_principle_3_cl($h_key) {
       $content .= '<p><strong>Target value:</strong> ' . $p_3_values[$h_key]['3_6'] . '<br />';
       $content .= '<p><strong>Tolerances:</strong> ' . $p_3_values[$h_key]['3_7'] . '</p>';
     }
-
     return $content;
 
   } else {
