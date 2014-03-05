@@ -66,7 +66,7 @@ function principle_1_2(&$form_state, &$next_step) {
 
   $steps = $hazards->getHazardsByStep();
 
-  // Introductionary text.
+  // Introductory text.
   $form['principle_1_2']['intro'] = array(
     '#prefix' => '<p class="intro">',
     '#suffix' => '</p>',
@@ -82,6 +82,12 @@ function principle_1_2(&$form_state, &$next_step) {
         '!step_no' => $step['no'],
         '!step_name' => $step['name'],
       )),
+    );
+
+    $form['principle_1_2'][$step_id]['intro'] = array(
+      '#prefix' => '<div class="group-title">',
+      '#suffix' => '</div>',
+      '#markup' => t('For each hazard conduct a hazard analysis, giving it a score for severity of hazard and likelihood of hazard.'),
     );
 
     // Create a table per step.
@@ -100,6 +106,7 @@ function principle_1_2(&$form_state, &$next_step) {
         '#type' => 'hidden',
         '#value' => $hazard->name,
       );
+
       $form_position['description'] = array(
         '#type' => 'textarea',
         '#resizable' => FALSE,
@@ -164,9 +171,7 @@ function principle_1_2(&$form_state, &$next_step) {
   }
 
   $form['principle_1_2']['threshold'] = array(
-    '#title' => t('Determine the threshold, above which you consider the hazard to be \'significant\': !tip', array(
-      '!tip' => _help_tip(),
-      )),
+    '#title' => t('Determine the threshold, above which you consider the hazard to be \'significant\':'),
     '#help_text' => t('Please enter a number above which we will consider the hazard to be significant.'),
     '#type' => 'textfield',
     '#default_value' => array_get($values, 'principle_1_2.threshold', FALSE),

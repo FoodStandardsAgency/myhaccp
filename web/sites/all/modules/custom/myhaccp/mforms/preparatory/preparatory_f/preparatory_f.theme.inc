@@ -23,28 +23,26 @@ function myhaccp_preprocess_preparatory_f(&$variables) {
   // Name of the product
   $variables['f_1'] = $values['f_1'];
 
-  // Is the product designed for the young?
-  $variables['f_2'] = ($values['f_2'] == 'yes' ? t('The product is designed for the young.') : '' );
+  // 2. Is the product specifically designed for consumption by the general public?
+  $variables['f_2'] = ($values['f_2'] == 'yes' ? t('The product is specifically designed for consumption by the general public.') : '' );
 
-  // Is the product designed for the elderly?
-  $variables['f_3'] = ($values['f_3'] == 'yes' ? t('The product is designed for the elderly.') : '' );
+  // 3. Is the product specifically designed for the young?
+  $variables['f_3'] = ($values['f_3'] == 'yes' ? t('The product is specifically designed for the young.') : '' );
 
-  // Is the product designed for pregnant ladies?
-  $variables['f_4'] = ($values['f_4'] == 'yes' ? t('The product is designed for pregnant ladies.') : '' );
+  // 4. Is the product specifically designed for the elderly?
+  $variables['f_4'] = ($values['f_4'] == 'yes' ? t('The product is specifically designed for the elderly.') : '' );
 
-  // Is the product designed for the immunosuppressed / immunocompromised?
-  $variables['f_5'] = ($values['f_5'] == 'yes' ? t('The product is designed for the immunosuppressed / immunocompromised.') : '' );
+  // 5. Is the product specifically designed for pregnant ladies?
+  $variables['f_5'] = ($values['f_5'] == 'yes' ? t('The product is specifically designed for pregnant ladies.') : '' );
 
-  // Is the product suitable for people with allergies or intolerances?
-  $variables['f_6'] = ($values['f_6'] == 'yes' ? t('The product is suitable for people with allergies or intolerances.') : '' );
+  // 6. Is the product specifically designed for the immunosuppressed / immunocompromised?
+  $variables['f_6'] = ($values['f_6'] == 'yes' ? t('The product is specifically designed for the immunosuppressed / immunocompromised.') : '' );
 
-  // Are there any other groups of people that may consume your product that require consideration?
-  $variables['f_7'] = ($values['f_7'] == 'yes' ? t('There are other groups of people that may consume the product that require special consideration.') : '' );
+  // 7. Is the product specifically designed for people with allergies or intolerances?
+  $variables['f_7'] = ($values['f_7'] == 'yes' ? t('The product is specifically designed for people with allergies or intolerances.') : '' );
 
-  // Is it possible that your product could be consumed by someone other than those for whom it is intended?
-  $variables['f_8'] = ($values['f_8'] == 'yes' ? t('It is possible that the product could be consumed by someone other than who it is intended for.') : '' );
-
-  // Detail below how you have considered the likely abuse / unintended use of the product by the consumer.
-  $variables['f_9'] = $values['f_9'];
+  // 8. Detail below how you have considered the likely abuse/unintended use of the product by the consumer or purchaser.
+  $variables['f_8_title'] = t('We have considered the likely abuse / unintended use of the product by the consumer in the following ways:');
+  $variables['f_8'] = $values['f_8'];
 
 }

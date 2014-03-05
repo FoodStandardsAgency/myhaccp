@@ -35,11 +35,9 @@
   <?php endif; ?>
 
   <?php if ($f_8): ?>
+    <h4><?php print $f_8_title; ?></h4>
     <p><?php print $f_8; ?></p>
   <?php endif; ?>
-
-  <h4>We have considered the likely abuse / unintended use of the product by the consumer in the following ways:</h4>
-  <p><?php print $f_9; ?></p>
 
 </section>
 
