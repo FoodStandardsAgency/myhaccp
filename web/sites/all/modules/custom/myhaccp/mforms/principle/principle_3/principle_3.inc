@@ -26,12 +26,6 @@ function principle_3(&$form_state, &$next_step) {
   $form = array();
   $form['#attributes']['class'][] = 'principle-3';
 
-  // Wrap the form section in a fieldset.
-  $form['principle_3'] = array(
-    '#type' => 'fieldset',
-    '#tree' => TRUE,
-  );
-
   $hazards = Hazards::getInstance();
 
   // Ensure there are hazards over the threshold.
@@ -56,6 +50,12 @@ function principle_3(&$form_state, &$next_step) {
   $form['principle_3'] = array(
     '#type' => 'fieldset',
     '#tree' => TRUE,
+  );
+
+$form['principle_3']['intro'] = array(
+    '#prefix' => '<p class="intro">',
+    '#suffix' => '</p>',
+    '#markup' => t('A critical limit is the maximum or minimum value for the control measure at a CCP to prevent, eliminate or reduce the hazard to an acceptable level.  It separates acceptable (safe) from unacceptable (unsafe) product.'),
   );
 
   // Build out the instances.

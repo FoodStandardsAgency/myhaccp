@@ -93,7 +93,7 @@ class Configuration {
       'principle_1_3' => 'Principle 1, Question 3: Specify control measures.',
       'principle_2_1' => 'Principle 2, Questions 1-3: Determine Critical Control Points (CCPs)',
       'principle_2_2' => 'Principle 2, Question 4: Specify control measures.',
-      'principle_3' => 'Principle 3: Establish Critical Limits',
+      'principle_3' => 'Principle 3: Establish the Critical Limits',
       'principle_4' => 'Principle 4: Establish a monitoring system for each CCP',
       'principle_5' => 'Principle 5: Establish a corrective action plan',
       'principle_6' => 'Principle 6: Verification',

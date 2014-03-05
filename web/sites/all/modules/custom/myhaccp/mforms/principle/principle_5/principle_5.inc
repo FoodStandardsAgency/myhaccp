@@ -32,6 +32,12 @@ function principle_5(&$form_state, &$next_step) {
     '#tree' => TRUE,
   );
 
+  $form['principle_5']['intro'] = array(
+    '#prefix' => '<p class="intro">',
+    '#suffix' => '</p>',
+    '#markup' => t('Document any action to be taken when monitoring results show that a CCP has deviated from the critical limit (indicating a loss of control).'),
+  );
+
   $hazards = Hazards::getInstance();
 
   // Ensure there are hazards over the threshold.
