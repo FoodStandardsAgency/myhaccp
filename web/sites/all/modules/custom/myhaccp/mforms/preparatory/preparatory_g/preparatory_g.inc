@@ -33,6 +33,12 @@ function preparatory_g(&$form_state, &$next_step) {
     '#tree' => TRUE,
   );
 
+  $form['preparatory_g']['intro'] = array(
+    '#prefix' => '<p class="intro">',
+    '#suffix' => '</p>',
+    '#markup' => t('A process flow diagram shows all the steps involved in the process outlined in the scope  of  the study.'),
+  );
+
   // 1. Have you completed a flow diagram?
   $form['preparatory_g']['g_1'] = array(
     '#type' => 'checkbox',
