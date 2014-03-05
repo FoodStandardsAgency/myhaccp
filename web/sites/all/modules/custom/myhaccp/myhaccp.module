@@ -378,7 +378,7 @@ function myhaccp_study_resume($form, &$form_state, $iid = FALSE) {
   global $container;
   $study = $container['study'];
   $study->setCurrentStudy($iid);
-  return mforms_build('myhaccp', 'preparatory_a', $form_state);
+  return mforms_build('myhaccp', 'preparatory_intro', $form_state);
 }
 
 /**

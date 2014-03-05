@@ -174,11 +174,11 @@ function preparatory_c_2(&$form_state, &$next_step) {
     '#title' => t('Allergens'),
     '#options' => drupal_map_assoc(
       array(
-        t('Eggs and products there of'),
+        t('Eggs and products thereof'),
         t('Milk and products thereof (including lactose), except: (a) whey used for making alcoholic distillates including ethyl alcohol of agricultural origin (b) lactitol'),
-        t('Fish and products there of, except fish gelatine used as carrier for vitamin or carotenoid preparations; fish gelatine or Isinglass used as fining agent in beer and wine.'),
+        t('Fish and products thereof, except fish gelatine used as carrier for vitamin or carotenoid preparations; fish gelatine or Isinglass used as fining agent in beer and wine.'),
         t('Sesame seeds and products thereof'),
-        t('Crustaceans and products there of '),
+        t('Crustaceans and products thereof'),
         t('Peanuts and products thereof'),
         t('Cereals containing gluten, namely: wheat, rye, barley, oats, spelt, kamut, or their hybridised strains, and products thereof, except: (a) wheat based glucose syrups including dextrose: (b) wheat based maltodextrins; (c) glucose syrups based on barley; (d) cereals used for making alcoholic distillates including ethyl alcohol of agricultural origin.'),
         t('Celery and products thereof'),

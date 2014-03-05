@@ -31,16 +31,22 @@ function preparatory_b(&$form_state, &$next_step) {
     '#tree' => TRUE,
   );
 
+  $form['preparatory_b']['intro'] = array(
+    '#prefix' => '<p class="intro">',
+    '#suffix' => '</p>',
+    '#markup' => t('You need to provide details of  support by management to an ongoing HACCP study.'),
+  );
+
   $form['preparatory_b']['b_1'] = array(
     '#type' => 'checkboxes',
-    '#title' => t('1. What documented evidence do you have to show the support of senior management to the food safety management based on HACCP?'),
+    '#title' => t('1. What documented evidence do you have to show the support of the food business operator or senior management to the food safety management system based on HACCP principles?'),
     '#help_link' => 14,
     '#help_text' => t("Where in your company could you look for evidence to demonstrate that senior management are engaged and dedicated to the development of an ongoing HACCP study."),
     '#options' => drupal_map_assoc(array(
       t('N/A - I am the management and can confirm that I am committed.'),
       t('A Food Safety Policy has been drawn up and signed by management.'),
-      t('Senior management document, support and communicate their policies.'),
-      t('Minutes of team meetings are taken and reviewed.'),
+      t('Senior management document, support and communicate their food safety policies.'),
+      t('Minutes of HACCP team meetings.'),
       t('Senior management support the work of the HACCP team.'),
       t('Resources identified by the HACCP team are made available as required to develop, implement and maintain the HACCP system.'),
       t('Training takes place for HACCP studies.'),
@@ -57,7 +63,7 @@ function preparatory_b(&$form_state, &$next_step) {
   $form['preparatory_b']['b_2'] = array(
     '#type' => 'textarea',
     '#resizable' => FALSE,
-    '#title' => t('2. Other evidence:'),
+    '#title' => t('2. Provide details of anything else that shows management commitment to the HACCP based food safety management system.'),
     '#help_link' => 14,
     '#help_text' => t("State anything else that would demonstrate you have management commitment."),
     '#default_value' => array_get($values, 'preparatory_b.b_2', FALSE),
