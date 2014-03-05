@@ -3360,6 +3360,10 @@ html.ie7 .principle-1-q1 .hazards > .form-item {
     border-bottom: 5px solid #DDDDDD;
   }
 
+  h2 {
+    color: #555;
+  }
+
   ul li {
     padding-left: 4em;
   }
@@ -3370,8 +3374,7 @@ html.ie7 .principle-1-q1 .hazards > .form-item {
     border-bottom: 1px solid #dddddd;
   }
   table thead th {
-    background: black;
-    color: white;
+    background: #EEE;
   }
   table td, table th {
     padding: 10px;

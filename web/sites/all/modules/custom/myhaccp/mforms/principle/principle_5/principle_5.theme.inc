@@ -37,6 +37,9 @@ function myhaccp_preprocess_principle_5(&$variables) {
 
   foreach($hazards->hazards as $h_key => $hazard) {
     if($hazard->ccp) {
+      // Critical limit.
+      $critical_limit = myhaccp_principle_3_cl($h_key);
+
       $rows[] = array(
         // Process step
         array('data' => $hazards->hazards[$h_key]->step->name),
@@ -47,7 +50,7 @@ function myhaccp_preprocess_principle_5(&$variables) {
         // Control measure.
         array('data' => $hazards->hazards[$h_key]->controlMeasure),
         // Critical limit.
-        array('data' => 'CL'),
+        array('data' => $critical_limit),
         // Monitoring procedures
         array('data' => 'MP'),
         // Corrective action
