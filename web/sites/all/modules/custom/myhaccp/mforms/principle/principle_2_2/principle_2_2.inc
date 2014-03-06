@@ -83,7 +83,7 @@ function principle_2_2(&$form_state, &$next_step) {
     $step = $hazard->step;
     $process_step_text = '(' . $step->no . ') ' . $step->name;
     // The hazard column text.
-    $hazard_text = '<div class="label hazard">' . $hazard->name . '</div><div class="hazard-description">' . $hazard->description . '</div>';
+    $hazard_text = '<div class="label hazard">' . $hazard->name . '</div><div class="hazard-description">' . nl2br($hazard->description) . '</div>';
 
     $form['principle_2_2']['instance_table'][$hazard_key]['process_step'] = array(
       '#markup' => $process_step_text,
@@ -94,7 +94,7 @@ function principle_2_2(&$form_state, &$next_step) {
     );
 
     $form['principle_2_2']['instance_table'][$hazard_key]['control_measure'] = array(
-      '#markup' => '<div class="hazard-control-measure">' . $hazard->controlMeasure . '</div>',
+      '#markup' => '<div class="hazard-control-measure">' . nl2br($hazard->controlMeasure) . '</div>',
     );
 
     if ($decision_tree !== 'no') {

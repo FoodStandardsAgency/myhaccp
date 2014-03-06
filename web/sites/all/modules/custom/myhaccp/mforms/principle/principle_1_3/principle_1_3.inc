@@ -71,7 +71,7 @@ function principle_1_3(&$form_state, &$next_step) {
     // Prepare the text.
     $process_step_text = '(' . $step->no . ') ' . $step->name;
     // The hazard column text.
-    $hazard_text = '<div class="label hazard">' . $hazard->name . '</div><div class="hazard-description">' . $hazard->description . '</div>';
+    $hazard_text = '<div class="label hazard">' . $hazard->name . '</div><div class="hazard-description">' . nl2br($hazard->description) . '</div>';
 
     $form['principle_1_3']['instance_table'][$hazard_key]['process_step'] = array(
       '#markup' => $process_step_text,
