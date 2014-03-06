@@ -442,6 +442,12 @@ function myhaccp_theme($existing, $type, $theme, $path) {
       'file' => 'myhaccp.theme.inc',
       'function' => 'theme_myhaccp_2_2_table',
     ),
+    'myhaccp_preview_diagram' => array(
+      'render element' => 'element',
+      'path' => $path . '/theme',
+      'file' => 'myhaccp.theme.inc',
+      'function' => 'theme_myhaccp_preview_diagram',
+    ),
   );
   if (class_exists('Configuration')) {
     global $container;
@@ -849,4 +855,35 @@ function myhaccp_prepare_checkboxes_output($stage, $target, $values) {
     }
   }
   return $labels;
+}
+
+/**
+ * Implements hook_file_download().
+ *
+ * @param $uri
+ *   The file uri.
+ *
+ * @return array
+ *   The headers for the file.
+ */
+function myhaccp_file_download($uri) {
+  // Get the file record based on the URI. If not in the database just return.
+  $files = file_load_multiple(array(), array('uri' => $uri));
+  if (count($files)) {
+    foreach ($files as $item) {
+      // Since some database servers sometimes use a case-insensitive comparison
+      // by default, double check that the filename is an exact match.
+      if ($item->uri === $uri) {
+        $file = $item;
+        break;
+      }
+    }
+  }
+  if (!isset($file)) {
+    return;
+  }
+
+  // Access is granted.
+  $headers = file_get_content_headers($file);
+  return $headers;
 }

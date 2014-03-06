@@ -15,6 +15,10 @@ function myhaccp_list() {
   global $user;
   // Prepare the table header.
   $header = array(
+    'name' => array(
+      'data' => 'Study name',
+      'field' => 'name',
+    ),
     'created' => array(
       'data' => 'Created on',
       'field' => 'created',
@@ -53,6 +57,7 @@ function myhaccp_list() {
   foreach ($results as $delta => $result) {
     // Prepare the edit link based on the current stage.
     $current_stage = myhaccp_find_current_stage($result->iid);
+    $study_name = myhaccp_find_study_name($result->iid);
     if (!empty($current_stage)) {
       $stage = $study->getStage($current_stage);
       $stage_url = $stage->getUrl();
@@ -62,12 +67,19 @@ function myhaccp_list() {
     }
     $edit_link = 'tool/study/' . $result->iid . '/' . $stage_url;
     // Prepare the links.
+    if ($study_name) {
+      $name = user_access('edit own myhaccp study') || user_access('edit any myhaccp study') ? l($study_name, $edit_link) : $study_name;
+    }
+    else {
+      $name = $study_name;
+    }
     $edit = user_access('edit own myhaccp study') || user_access('edit any myhaccp study') ? l(t('Resume'), $edit_link) : '';
     $preview = user_access('view own myhaccp study') || user_access('view any myhaccp study') ? l(t('Preview'), 'tool/study/' . $result->iid . '/preview') : '';
     $delete = user_access('delete own myhaccp study') || user_access('delete any myhaccp study') ? l(t('Delete'), 'tool/study/' . $result->iid . '/delete') : '';
 
     $rows[] = array(
       'data' => array(
+        'name' => $name,
         'created' => format_date($result->created, 'short'),
         'changed' => $result->changed ? format_date($result->changed, 'short') : 'Not updated',
         'edit' => $edit,
@@ -103,9 +115,10 @@ function myhaccp_list() {
 }
 
 /**
- * Given an IID tried to find which is the stored current stage.
+ * Given an IID tries to find which is the stored current stage.
  *
  * @param int $iid
+ *   The IID of the study.
  *
  * @return string
  *   The stage name if found or an empty string.
@@ -120,6 +133,31 @@ function myhaccp_find_current_stage($iid) {
   if ($result) {
     $data = unserialize($result);
     return $data;
+  }
+  return '';
+}
+
+/**
+ * Finds a study name (if set) for a study.
+ *
+ * @param int $iid
+ *   The IID of the study to fetch the name for.
+ *
+ * @return string
+ *   The study name if found or an empty string.
+ */
+function myhaccp_find_study_name($iid) {
+  $data = db_select('mforms_storage', 'm');
+  $data->join('mforms_storage_steps', 's', 's.iid = m.iid');
+  $data->fields('s', array('store_data'))
+    ->condition('m.iid', $iid)
+    ->condition('s.store_key', 'preparatory_intro');
+  $result = $data->execute()->fetchField();
+  if ($result) {
+    $data = unserialize($result);
+    if ($name = array_get($data, 'preparatory_intro.study_name', FALSE)) {
+      return $name;
+    }
   }
   return '';
 }

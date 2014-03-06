@@ -51,6 +51,7 @@ function myhaccp_form_process($form, &$form_state) {
   global $container;
   // Get the current study.
   $study = $container['study'];
+  // Check that an element has triggered the form build.
   $stage = $study->getCurrentStage();
   $validator = $stage->getValidator();
   $form_state = $validator->addValidationtoFormState($form_state);

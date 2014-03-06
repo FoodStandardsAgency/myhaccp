@@ -19,6 +19,14 @@ function preparatory_intro(&$form_state, &$next_step) {
   $node->title = NULL;
   $node_output = node_view($node, 'full');
 
+  // Retrieve submitted values. This comes in handy when back action
+  // occurred and we need to display values that were originally submitted.
+  $data = mforms_get_vals('myhaccp', 'preparatory_intro');
+
+  // If we have the data it means we arrived here from back action, so show
+  // them in form as default values.
+  $values = myhaccp_prepare_values($data, $form_state);
+
   $form = array();
 
   $form['preparatory_intro'] = array(
@@ -28,6 +36,13 @@ function preparatory_intro(&$form_state, &$next_step) {
 
   $form['preparatory_intro']['node'] = array(
     '#markup' => drupal_render($node_output),
+  );
+
+  $form['preparatory_intro']['study_name'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Study name'),
+    '#help_text' => t("The study name will be shown on your output document as well as on your studies overview page and is used to tell studies apart from each other. It can be the name of your product or anything else that makes sense to you."),
+    '#default_value' => array_get($values, 'preparatory_intro.study_name', array()),
   );
 
   return $form;

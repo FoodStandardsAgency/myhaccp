@@ -67,11 +67,14 @@ class Study implements StudyInterface {
    * @param string $phase
    *   The name of the phase.
    *
-   * @return Phase
-   *   The phase object.
+   * @return Phase|bool
+   *   The phase object or FALSE if not found.
    */
   public function getPhase($phase) {
-    return $this->phases[$phase];
+    if (isset($this->phases[$phase])) {
+      return $this->phases[$phase];
+    }
+    return FALSE;
   }
 
   public function getPhases() {
@@ -97,7 +100,8 @@ class Study implements StudyInterface {
         return $stage;
       }
     }
-    throw new Exception('Stage not found for url' . $phase . '/' . $url);
+    return FALSE;
+//    throw new Exception('Stage not found for url' . $phase . '/' . $url);
   }
 
   /**
@@ -130,25 +134,30 @@ class Study implements StudyInterface {
    *   The stage to be returned.
    */
   public function getCurrentStage() {
+    // If we have the current stage then return it.
     if (isset($this->currentStage)) {
       return $this->currentStage;
     }
+
     // Try to figure out the stage from the url.
     $url = $_GET['q'];
     $parts = explode('/', $url);
-    if (isset($parts[3]) && isset($parts[4])) {
+    // Ensure this is a phase, not an ajax callback.
+    if (isset($parts[3]) && isset($parts[4]) && $this->getPhase($parts[3])) {
       if ($stage = $this->getStageFromUrl($parts[3], $parts[4])) {
         // Set the stage for future checks.
         $this->setCurrentStage($stage);
-        return $stage;
+        return $this->getCurrentStage();
       }
     }
-    else {
-      // Reset the stage to preparatory_a as this may occur when creating a
-      // new study and the url hasn't been set yet.
-      $stage = $this->getStage('preparatory_a');
+
+    // Fallback is to get the current stage from the database.
+    $store = MformsDatabaseStore::getInstance('myhaccp');
+    $stage_name = $store->getStore('curr_step');
+    if ($stage = $this->getStage($stage_name)) {
+      // Set the stage for future checks.
       $this->setCurrentStage($stage);
-      return $stage;
+      return $this->getCurrentStage();
     }
   }
 
