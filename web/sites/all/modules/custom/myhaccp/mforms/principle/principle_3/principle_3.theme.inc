@@ -64,11 +64,12 @@ function myhaccp_principle_3_cl($h_key) {
     if($p_3_values[$h_key]['3_5'] == 'yes') {
       $content .= '<p><strong>Target value:</strong> ' . $p_3_values[$h_key]['3_6'] . '<br />';
       $content .= '<p><strong>Tolerances:</strong> ' . $p_3_values[$h_key]['3_7'] . '</p>';
+    } elseif($p_3_values[$h_key]['3_5'] == 'no') {
+      $content .= 'There is not a target value.';
     }
+
     return $content;
 
-  } else {
-    return $content;
   }
 
 }
