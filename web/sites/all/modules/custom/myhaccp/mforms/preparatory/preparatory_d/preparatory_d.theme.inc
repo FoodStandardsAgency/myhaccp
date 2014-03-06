@@ -30,36 +30,41 @@ function myhaccp_preprocess_preparatory_d(&$variables) {
     }
   }
 
-  // Now generate a table of team members
+  // Generate a table of team members
+  if(!empty($instances)) {
 
-  // First the table headers
-  $header = array(
-    array('data' => t('Role')),
-    array('data' => t('Name')),
-    array('data' => t('Training, experience & qualifications'))
-  );
-
-  // Now the table rows
-  foreach ($instances as $instance) {
-    // Role.
-    $role = !empty($instance['d_3']) ? $instance['d_3'] : '';
-    // Name.
-    $name = !empty($instance['d_1']) ? $instance['d_1'] : '';
-    // Generate a single item from training, experience and qualifications questions
-    $experience = implode('<br />', array_filter($instance['wrapper']));
-
-    $rows[] = array(
-      // Role.
-      array('data' => $role),
-      // Name.
-      array('data' => $name),
-      // Training, experience & qualifications.
-      array('data' => $experience)
+    // First the table headers
+    $header = array(
+      array('data' => t('Role')),
+      array('data' => t('Name')),
+      array('data' => t('Training')),
+      array('data' => t('Qualifications')),
+      array('data' => t('Experience'))
     );
-  }
 
-  // Generate the table through a theme function
-  $variables['d_1_team'] = theme('table', array('header' => $header, 'rows' => $rows));
+    // Now the table rows
+    foreach ($instances as $instance) {
+      $role = !empty($instance['d_3']) ? $instance['d_3'] : '';
+      $name = !empty($instance['d_1']) ? $instance['d_1'] : '';
+      $training = !empty($instance['wrapper']['d_4']) ? $instance['wrapper']['d_4'] : '';
+      $qualifications = !empty($instance['wrapper']['d_5']) ? $instance['wrapper']['d_5'] : '';
+      $experience = !empty($instance['wrapper']['d_5']) ? $instance['wrapper']['d_6'] : '';
+
+      // Generate a single item from training, experience and qualifications questions
+      // $experience = implode('<br />', array_filter($instance['wrapper']));
+
+      $rows[] = array(
+        array('data' => $role),
+        array('data' => $name),
+        array('data' => $training),
+        array('data' => $qualifications),
+        array('data' => $experience)
+      );
+    }
+
+    // Generate the table through a theme function
+    $variables['d_1_team'] = theme('table', array('header' => $header, 'rows' => $rows));
+  }
 
   // Team skills
   if ($values['team_skills'] == 'Yes') {

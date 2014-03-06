@@ -48,7 +48,7 @@ function myhaccp_preprocess_principle_1_1(&$variables) {
     $biological = nl2br($step['hazards_wrapper']['biological']);
     $chemical = nl2br($step['hazards_wrapper']['chemical']);
     $physical = nl2br($step['hazards_wrapper']['physical']);
-    $allergens = nl2br($step['hazards_wrapper']['biological']);
+    $allergens = nl2br($step['hazards_wrapper']['allergens']);
 
     $rows[] = array(
       // Step No.
