@@ -602,8 +602,9 @@ a:visited {
     color: #555;
   }
 
-  ul li {
-    padding-left: 4em;
+  span.description {
+    font-style: italic;
+    font-size: 0.8em;
   }
 
   table {

@@ -3364,8 +3364,9 @@ html.ie7 .principle-1-q1 .hazards > .form-item {
     color: #555;
   }
 
-  ul li {
-    padding-left: 4em;
+  span.description {
+    font-style: italic;
+    font-size: 0.8em;
   }
 
   table {

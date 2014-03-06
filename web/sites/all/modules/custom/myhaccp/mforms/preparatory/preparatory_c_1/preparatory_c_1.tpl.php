@@ -9,5 +9,7 @@
 
 <section class="page">
   <h1>Terms of reference</h1>
-  <p><?php print $c_intro ?></p>
+  <?php if(!empty($c_intro)) : ?>
+    <?php print $c_intro ?>
+  <?php endif; ?>
 
