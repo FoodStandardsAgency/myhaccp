@@ -18,6 +18,7 @@ function myhaccp_output_pdf($iid) {
     // Get the stylesheets involved.
     $style_path = drupal_get_path('theme', 'myhaccp');
     $stylesheet = file_get_contents($style_path . '/css/pdf-style.css');
+    $mpdf->list_indent_first_level = 1;
     $mpdf->WriteHTML($stylesheet, 1);
 
     $output = '';

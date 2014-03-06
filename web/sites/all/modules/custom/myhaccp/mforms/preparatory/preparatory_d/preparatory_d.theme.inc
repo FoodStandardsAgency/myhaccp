@@ -41,16 +41,19 @@ function myhaccp_preprocess_preparatory_d(&$variables) {
 
   // Now the table rows
   foreach ($instances as $instance) {
+    // Role.
+    $role = !empty($instance['d_3']) ? $instance['d_3'] : '';
+    // Name.
+    $name = !empty($instance['d_1']) ? $instance['d_1'] : '';
     // Generate a single item from training, experience and qualifications questions
     $experience = implode('<br />', array_filter($instance['wrapper']));
-    $role = $instance['d_3'] ? $role : '';
 
     $rows[] = array(
-      // Role
+      // Role.
       array('data' => $role),
-      // Name
-      array('data' => $instance['d_1']),
-      // Training, experience & qualifications
+      // Name.
+      array('data' => $name),
+      // Training, experience & qualifications.
       array('data' => $experience)
     );
   }

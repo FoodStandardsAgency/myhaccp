@@ -20,7 +20,14 @@ function myhaccp_preprocess_preparatory_g(&$variables) {
   $stage = 'preparatory_g';
   $values = $variables['data'][$stage];
 
+  // 1. Have you completed a flow diagram?
+  if($values['g_1'] == TRUE) {
+    $variables['g_1'] = t('We have completed a flow diagram covering all steps in the manufacturing process of this product.');
+  }
+
   // Hard copy location
-  $variables['g_3'] = $values['g_3'];
+  if(!empty($values['g_3'])) {
+    $variables['g_3'] = $values['g_3'];
+  }
 
 }

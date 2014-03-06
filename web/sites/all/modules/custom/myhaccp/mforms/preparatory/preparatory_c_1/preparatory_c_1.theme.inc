@@ -20,7 +20,7 @@ function myhaccp_preprocess_preparatory_c_1(&$variables) {
   $stage = 'preparatory_c_1';
   $values = $variables['data'][$stage];
 
-  $variables['c_intro'] = t('This <strong>@c_1</strong> HACCP plan covers:<br/><strong>@c_2</strong><p>
+  $variables['c_intro'] = t('<p>This <strong>@c_1</strong> HACCP plan covers:<br/><strong>@c_2</strong></p><p>
 It will start at <strong>@start</strong> through to <strong>@end</strong>.</p>',
     array(
       '@c_1' => $values['c_1'],

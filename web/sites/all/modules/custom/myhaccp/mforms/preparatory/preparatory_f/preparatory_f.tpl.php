@@ -4,11 +4,11 @@
  * Stage output template.
  */
 ?>
-
   <h2>Intended Use</h2>
 
-  <h4>Name of the product:</h4>
-  <p><?php print $f_1; ?></p>
+  <?php if(!empty($f_1)) : ?>
+    <p><strong>Name of the product:</strong> <?php print $f_1; ?></p>
+  <?php endif; ?>
 
   <?php if(!empty($f_2)): ?>
     <p><?php print $f_2; ?></p>

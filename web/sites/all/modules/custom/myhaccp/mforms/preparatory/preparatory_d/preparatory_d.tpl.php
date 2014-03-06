@@ -10,7 +10,9 @@
 
   <?php print $d_1_team ?>
 
-  <p><?php print $d_1_team_skills ?></p>
+  <?php if(!empty($d_1_team_skills)) : ?>
+    <p><?php print $d_1_team_skills ?></p>
+  <?php endif;  ?>
 
 </section>
 <div class="page-break"></div>
