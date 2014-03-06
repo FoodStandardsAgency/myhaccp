@@ -51,9 +51,9 @@ function myhaccp_preprocess_principle_5(&$variables) {
         // Hazard.
         array('data' => $hazards->hazards[$h_key]->name),
         // Control measure.
-        array('data' => $hazards->hazards[$h_key]->controlMeasure),
+        array('data' => nl2br($hazards->hazards[$h_key]->controlMeasure)),
         // Critical limit.
-        array('data' => $critical_limit),
+        array('data' => nl2br($critical_limit)),
         // Monitoring procedures
         array('data' => $monitoring_procedures),
         // Corrective action

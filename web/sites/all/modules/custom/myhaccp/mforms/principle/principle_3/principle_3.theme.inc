@@ -37,19 +37,27 @@ function myhaccp_principle_3_cl($h_key) {
 
   if($h_key) {
     // 1. What is the critical limit for this critical control point (what separates safe from potentially unsafe product)?
-    $content .= '<p><strong>' . $p_3_values[$h_key]['3_1'] . '</strong></p>';
+    if(!empty($p_3_values[$h_key]['3_1'])) {
+      $content .= '<p><strong>' . $p_3_values[$h_key]['3_1'] . '</strong></p>';
+    }
 
     // 2. Provide details of how the critical limit was determined.
-    $content .= '<p>' . $p_3_values[$h_key]['3_2'] . '</p>';
+    if(!empty($p_3_values[$h_key]['3_2'])) {
+      $content .= '<p>' . $p_3_values[$h_key]['3_2'] . '</p>';
+    }
 
     // 3. Is the critical limit appropriate to control the specific hazard?
     if($p_3_values[$h_key]['3_3'] == 'yes') {
       $content .= '<p>' . t('The critical limit is appropriate to control the specific hazard.') . '</p>';
+    } elseif ($p_3_values[$h_key]['3_3'] == 'no') {
+      $content .= '<p>' . t('The critical limit is not appropriate to control the specific hazard.') . '</p>';
     }
 
     // 4. Is the critical limit measurable or observable in real time?
-    if($p_3_values[$h_key]['3_3'] == 'yes') {
+    if($p_3_values[$h_key]['3_4'] == 'yes') {
       $content .= '<p>' . t('The critical limit is measurable or observable in real time.') . '</p>';
+    } elseif($p_3_values[$h_key]['3_4'] == 'no') {
+      $content .= '<p>' . t('The critical limit is not measurable or observable in real time.') . '</p>';
     }
 
     // Is there a target value?

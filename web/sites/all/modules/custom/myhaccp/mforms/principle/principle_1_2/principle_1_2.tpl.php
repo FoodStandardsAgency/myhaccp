@@ -8,9 +8,13 @@
 <section class="page">
   <h1>Severity scores</h1>
 
-  <?php print $p_1_2_hazard_table ?>
+  <?php if(!empty($p_1_2_hazard_table)): ?>
+    <?php print $p_1_2_hazard_table ?>
+  <?php endif; ?>
 
-  <p><?php print $p_1_2_threshold ?></p>
+  <?php if(!empty($p_1_2_threshold)) : ?>
+    <p><?php print $p_1_2_threshold ?></p>
+  <?php endif; ?>
 
 </section>
 

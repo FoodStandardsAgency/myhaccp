@@ -34,10 +34,17 @@ function myhaccp_preprocess_principle_2_2(&$variables) {
 
   // Generate table row for each hazard.
   foreach ($values['instance_table'] as $h_key => $controlled_hazard) {
-    // Add Questions & Answers for Decision Tree to a html string
+    // Format Questions & Answers to Decision Tree.
     $qa = '';
     foreach ($controlled_hazard['decision_tree'] as $q => $answer) {
-      $qa .= $q . ': ' . $answer . '<br />';
+      if(!empty($answer)) {
+        $qa .= '<strong>' . $q . ':</strong> ' . ucwords($answer) . '<br />';
+      }
+    }
+
+    // Uppercase CCP answer.
+    if(!empty($controlled_hazard['ccp'])) {
+      $ccp = ucwords($controlled_hazard['ccp']);
     }
 
     $rows[] = array(
@@ -50,7 +57,7 @@ function myhaccp_preprocess_principle_2_2(&$variables) {
       // Decision Tree question answers
       array('data' => $qa),
       // CCP?
-      array('data' => $controlled_hazard['ccp'])
+      array('data' => $ccp)
     );
   }
 

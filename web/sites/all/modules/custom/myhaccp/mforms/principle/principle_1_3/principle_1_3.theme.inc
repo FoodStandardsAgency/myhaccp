@@ -27,26 +27,32 @@ function myhaccp_preprocess_principle_1_3(&$variables) {
   // Table header.
   $header = array(
     array('data' => t('Step No.')),
+    array('data' => t('Step Name.')),
     array('data' => t('Hazard')),
     array('data' => t('Hazard Description')),
-    array('data' => t('Significance (S x L)')),
+    // array('data' => t('Significance (S x L)')),
     array('data' => t('Control Measures'))
   );
 
   // Generate table row for each hazard.
-  foreach ($values['instance_table'] as $h_key => $controlled_hazards) {
-    $rows[] = array(
-      // Step No.
-      array('data' => $hazards->hazards[$h_key]->step->no),
-      // Hazard.
-      array('data' => $hazards->hazards[$h_key]->name),
-      // Hazard Description.
-      array('data' => $hazards->hazards[$h_key]->description),
-      // Significance.
-      array('data' => $hazards->hazards[$h_key]->significance),
-      // Control Measure.
-      array('data' => $hazards->hazards[$h_key]->controlMeasure)
-    );
+  foreach ($values['instance_table'] as $h_key => $controlled_hazard) {
+    // Only generate a row if there is a control measure set.
+    if(!empty($hazards->hazards[$h_key]->controlMeasure)) {
+      $rows[] = array(
+        // Step No.
+        array('data' => $hazards->hazards[$h_key]->step->no),
+        // Step Name.
+        array('data' => $hazards->hazards[$h_key]->step->name),
+        // Hazard.
+        array('data' => $hazards->hazards[$h_key]->name),
+        // Hazard Description.
+        array('data' => $hazards->hazards[$h_key]->description),
+        // Significance.
+        // array('data' => $hazards->hazards[$h_key]->significance),
+        // Control Measure.
+        array('data' => $hazards->hazards[$h_key]->controlMeasure)
+      );
+    }
   }
 
   // Generate the table through a theme function.

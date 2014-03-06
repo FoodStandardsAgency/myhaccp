@@ -28,7 +28,7 @@ function myhaccp_preprocess_principle_1_2(&$variables) {
   $header = array(
     array('data' => t('Hazard')),
     array('data' => t('Hazard Description')),
-    array('data' => t('Severity 1-3')),
+    array('data' => t('Severity')),
     array('data' => t('Likelihood')),
     array('data' => t('Significance'))
   );
@@ -71,5 +71,7 @@ function myhaccp_preprocess_principle_1_2(&$variables) {
   $variables['p_1_2_hazard_table'] = '<div>' . implode('</div><div>', $step_ha_tables) . '</div>';
 
   // Threshold
-  $variables['p_1_2_threshold'] = t('The threshold, above which we consider the hazard to be \'significant\' is: <span class="p-1-2-threshold">') . $values['threshold'] . '</span>';
+  if(!empty($values['threshold'])) {
+    $variables['p_1_2_threshold'] = t('The threshold, above which we consider the hazard to be \'significant\' is: <strong>') . $values['threshold'] . '</strong>';
+  }
 }

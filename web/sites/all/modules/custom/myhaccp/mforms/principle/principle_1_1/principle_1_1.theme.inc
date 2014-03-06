@@ -44,26 +44,29 @@ function myhaccp_preprocess_principle_1_1(&$variables) {
 
   // Now the table rows
   foreach ($steps as $step) {
-    // Split hazards on new lines using <br />
-    $biological = nl2br($step['hazards_wrapper']['biological']);
-    $chemical = nl2br($step['hazards_wrapper']['chemical']);
-    $physical = nl2br($step['hazards_wrapper']['physical']);
-    $allergens = nl2br($step['hazards_wrapper']['allergens']);
+    // Steps must have a number and name.
+    if(!empty($step['wrapper']['step_no']) && !empty($step['wrapper']['step_name'])) {
+      // Split hazards on new lines using <br />
+      $biological = nl2br($step['hazards_wrapper']['biological']);
+      $chemical = nl2br($step['hazards_wrapper']['chemical']);
+      $physical = nl2br($step['hazards_wrapper']['physical']);
+      $allergens = nl2br($step['hazards_wrapper']['allergens']);
 
-    $rows[] = array(
-      // Step No.
-      array('data' => $step['wrapper']['step_no']),
-      // Step Name.
-      array('data' => $step['wrapper']['step_name']),
-      // Biological
-      array('data' => $biological),
-      // Chemical
-      array('data' => $chemical),
-      // Physical
-      array('data' => $physical),
-      // Allergens
-      array('data' => $allergens)
-    );
+      $rows[] = array(
+        // Step No.
+        array('data' => $step['wrapper']['step_no']),
+        // Step Name.
+        array('data' => $step['wrapper']['step_name']),
+        // Biological
+        array('data' => $biological),
+        // Chemical
+        array('data' => $chemical),
+        // Physical
+        array('data' => $physical),
+        // Allergens
+        array('data' => $allergens)
+      );
+    }
   }
 
   // Generate the table through a theme function
