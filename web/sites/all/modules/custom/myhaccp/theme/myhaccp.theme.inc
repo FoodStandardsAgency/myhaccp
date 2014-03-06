@@ -171,3 +171,24 @@ function theme_myhaccp_2_2_table($variables) {
 
   return theme('table', array('header' => $header, 'rows' => $rows));
 }
+
+/**
+ * Theme function for showing a preview image thumbnail for uploaded diagrams.
+ *
+ * @param array $variables
+ *   The available variables.
+ *
+ * @return string
+ *   The rendered HTML output.
+ */
+function theme_myhaccp_preview_diagram($variables) {
+  $element = $variables['element'];
+
+  if (isset($element['#file']->uri)) {
+    $image = theme('image_style', array(
+      'style_name' => 'thumbnail',
+      'path' => $element['#file']->uri,
+    ));
+    return $image;
+  }
+}
