@@ -4,7 +4,7 @@
  * Stage output template.
  */
 ?>
-
+<div class="page-break"></div>
 <section class="page">
   <h1>Documentation and record keeping</h1>
 
@@ -19,4 +19,3 @@
   <p><?php print $p_7_5; ?></p>
 
 </section>
-<div class="page-break"></div>
