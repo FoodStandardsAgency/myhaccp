@@ -311,8 +311,8 @@ class Hazard {
     // Prepare the text.
     $process_step_text = '<div class="process-step"><span class="label">Process Step:</span> ' . '(' . $this->step->no . ') ' . $this->step->name . '</div>';
     // The hazard text.
-    $hazard_text = '<div class="hazard"><span class="label">Hazard:</span> ' . $this->name . '<div class="hazard-description">' . $this->description . '</div></div>';
-    $control_text = '<div class="control-measure"><span class="label">Control Measure:</span> ' . $this->controlMeasure . '</div>';
+    $hazard_text = '<div class="hazard"><span class="label">Hazard:</span> ' . $this->name . '<div class="hazard-description">' . nl2br($this->description) . '</div></div>';
+    $control_text = '<div class="control-measure"><span class="label">Control Measure:</span> ' . nl2br($this->controlMeasure) . '</div>';
 
     // Prepare the form segments to return.
     $form['header'] = array(
