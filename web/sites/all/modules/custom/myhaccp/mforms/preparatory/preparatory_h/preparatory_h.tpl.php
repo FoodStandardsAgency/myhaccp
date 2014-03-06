@@ -4,7 +4,6 @@
  * Stage output template.
  */
 ?>
-
   <h2>On-site confirmation of flow diagram</h2>
 
     <?php if(!empty($h_1)) : ?>

@@ -4,7 +4,6 @@
  * Stage output template.
  */
 ?>
-
   <h2>Intended Use</h2>
 
   <?php if(!empty($f_1)) : ?>

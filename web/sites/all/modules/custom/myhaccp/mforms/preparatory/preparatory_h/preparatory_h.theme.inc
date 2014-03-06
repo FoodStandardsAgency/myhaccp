@@ -65,7 +65,6 @@ function myhaccp_preprocess_preparatory_h(&$variables) {
     $h7 = explode("\r\n", trim($values['h_7']));
     $h7 = implode('</li><li>', $h7);
     $h7 = '<div><p>' . t('The following members of our organisation are responsible for making changes to the flow diagram and storing out of date versions:') . '</p><ul><li>' . $h7 . '</li></ul></div>';
-
     $variables['h_7'] = $h7;
   }
 
