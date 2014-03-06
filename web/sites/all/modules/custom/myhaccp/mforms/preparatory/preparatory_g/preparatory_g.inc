@@ -23,6 +23,7 @@ function preparatory_g(&$form_state, &$next_step) {
   drupal_set_title($stage->title, PASS_THROUGH);
 
   // Fetch the existing file if it exists.
+  $preview = '';
   if (array_get($form_state, 'values.preparatory_g.g_2', FALSE)) {
     $default_file = array_get($form_state, 'values.preparatory_g.g_2', FALSE);
   }
@@ -76,6 +77,10 @@ function preparatory_g(&$form_state, &$next_step) {
     '#default_value' => $default_file,
     '#progress_indicator' => 'bar',
     '#upload_location' => 'private://' . $user->uid,
+    '#process' => array(
+      'file_managed_file_process',
+      'preparatory_g_process',
+    ),
     '#upload_validators' => array(
       'file_validate_extensions' => array('jpg jpeg png pdf gif'),
     ),
@@ -156,4 +161,27 @@ function preparatory_g_validate($form, &$form_state) {
       file_usage_add($file, 'myhaccp', 'form', $iid);
     }
   }
+}
+
+/**
+ * A process function which runs after file_managed_process.
+ *
+ * Used to change the filename to a thumbnail image.
+ *
+ * @param array $element
+ *   The file element to modify.
+ *
+ * @return array
+ *   The changed element.
+ */
+function preparatory_g_process(&$element) {
+  $fid = isset($element['#value']['fid']) ? $element['#value']['fid'] : 0;
+  if ($fid && $element['#file']) {
+    $element['filename'] = array(
+      '#type' => 'markup',
+      '#markup' => theme('myhaccp_preview_diagram', array('element' => $element)) . ' ',
+      '#weight' => -10,
+    );
+  }
+  return $element;
 }
