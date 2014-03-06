@@ -198,7 +198,6 @@ function preparatory_f_validate($form, &$form_state) {
     'preparatory_f.f_6' => 'fieldIsNotEmpty',
     'preparatory_f.f_7' => 'fieldIsNotEmpty',
     'preparatory_f.f_8' => 'fieldIsNotEmpty',
-    'preparatory_f.f_9' => 'fieldIsNotEmpty',
   );
 
   foreach ($checks as $target => $method) {

@@ -105,7 +105,7 @@ function principle_3(&$form_state, &$next_step) {
       '#default_value' => array_get($values, "principle_3.$hazard_key.3_3", array()),
       '#attributes' => array(
         'data-parsley-required' => 'true',
-        'data-parsley-error-message' => t('Validation message to be added'),
+        'data-parsley-error-message' => t('It is essential that the critical limit is appropriate to control the specific hazard.'),
       ),
     );
 
@@ -120,7 +120,7 @@ function principle_3(&$form_state, &$next_step) {
       '#default_value' => array_get($values, "principle_3.$hazard_key.3_4", array()),
       '#attributes' => array(
         'data-parsley-required' => 'true',
-        'data-parsley-error-message' => t('Validation message to be added'),
+        'data-parsley-error-message' => t('It is essential that critical limit is measurable or observable in real time.'),
       ),
     );
 
@@ -135,7 +135,7 @@ function principle_3(&$form_state, &$next_step) {
       '#default_value' => array_get($values, "principle_3.$hazard_key.3_5", array()),
       '#attributes' => array(
         'data-parsley-required' => 'true',
-        'data-parsley-error-message' => t('Validation message to be added'),
+        'data-parsley-error-message' => t(''),
       ),
     );
 

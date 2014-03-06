@@ -192,6 +192,21 @@ function preparatory_d(&$form_state, &$next_step) {
     ),
   );
 
+  $form['preparatory_d']['team_no_skills'] = array(
+    '#type' => 'textarea',
+    '#title' => 'Please explain why you have answered no to this question and how you propose to address this issue.',
+    '#default_value' => array_get($values, 'preparatory_d.team_no_skills', FALSE),
+    '#weight' => 11,
+    '#attributes' => array(
+      'data-parsley-error-message' => t("Please explain how you propose to address the team's insufficient skills."),
+    ),
+    '#states' => array(
+      'visible' => array(
+        ':input[name="preparatory_d[team_skills]"]' => array('value' => 'No'),
+      ),
+    ),
+  );
+
   // Add a preparatory_d for the button controls.
   $form['preparatory_d']['controls'] = array(
     '#type' => 'container',
@@ -280,6 +295,10 @@ function preparatory_d_validate($form, &$form_state) {
 
   // Check the team skills field has been filled in.
   $validator->validate('fieldIsNotEmpty', 'preparatory_d.team_skills');
+
+  if (array_get($form_state['values'], 'preparatory_d.team_skills', FALSE) == 'No') {
+    $validator->validate('fieldIsNotEmpty', 'preparatory_d.team_no_skills');
+  }
 
   $validator->setErrorMessages();
   $form_state = $validator->getFormState();

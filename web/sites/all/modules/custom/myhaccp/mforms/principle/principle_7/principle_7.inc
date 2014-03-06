@@ -140,7 +140,7 @@ function principle_7_validate($form, &$form_state) {
     'principle_7.7_1' => 'fieldIsNotEmpty',
     'principle_7.7_3' => 'fieldIsNotEmpty',
     'principle_7.7_4' => 'fieldIsNotEmpty',
-    'principle_7.7_5' => 'fieldIsNotEmpty',
+    'principle_7.7_5' => array('fieldIsNotEmpty', 'radioIsNotNo'),
   );
 
   foreach ($checks as $target => $method) {

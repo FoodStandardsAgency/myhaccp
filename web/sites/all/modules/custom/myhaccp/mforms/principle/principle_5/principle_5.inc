@@ -147,7 +147,7 @@ function principle_5(&$form_state, &$next_step) {
       '#help_text' => t("State the person's name."),
       '#attributes' => array(
         'data-parsley-required' => 'true',
-        'data-parsley-error-message' => t('Please indicate if records of competency are maintained.'),
+        'data-parsley-error-message' => t('It is essential that all verification records are maintained.'),
       ),
     );
 
@@ -185,8 +185,8 @@ function principle_5_validate($form, &$form_state) {
       "principle_5.$key.5_2" => 'fieldIsNotEmpty',
       "principle_5.$key.5_3" => 'fieldIsNotEmpty',
       "principle_5.$key.5_4" => 'fieldIsNotEmpty',
-      "principle_5.$key.5_5" => 'fieldIsNotEmpty',
-      "principle_5.$key.5_6" => 'fieldIsNotEmpty',
+      "principle_5.$key.5_5" => array('fieldIsNotEmpty', 'radioIsNotNo'),
+      "principle_5.$key.5_6" => array('fieldIsNotEmpty', 'radioIsNotNo'),
     );
 
     foreach ($checks as $target => $method) {
