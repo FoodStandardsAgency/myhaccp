@@ -21,12 +21,19 @@ function myhaccp_output_pdf($iid) {
     $mpdf->list_indent_first_level = 1;
     $mpdf->WriteHTML($stylesheet, 1);
 
-    $output = '';
     // Prepare each page.
     foreach ($study as $stage => $data) {
-      $output .= theme($stage, array('data' => $data));
+      // Switch to landscape orientation.
+      if ($stage == 'principle_1_1') {
+        $mpdf->AddPage('L');
+      }
+      // Switch to portrait.
+      if ($stage == 'principle_6') {
+        $mpdf->AddPage('P');
+      }
+      $output = theme($stage, array('data' => $data));
+      $mpdf->WriteHTML($output, 2);
     }
-    $mpdf->WriteHTML($output, 2);
 
     // Write the output and then exit.
     $mpdf->Output();

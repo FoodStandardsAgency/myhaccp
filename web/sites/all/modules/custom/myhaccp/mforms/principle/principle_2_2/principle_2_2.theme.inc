@@ -53,7 +53,7 @@ function myhaccp_preprocess_principle_2_2(&$variables) {
       // Hazard.
       array('data' => $hazards->hazards[$h_key]->name),
       // Control Measures.
-      array('data' => $hazards->hazards[$h_key]->controlMeasure),
+      array('data' => nl2br($hazards->hazards[$h_key]->controlMeasure)),
       // Decision Tree question answers
       array('data' => $qa),
       // CCP?
