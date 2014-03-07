@@ -24,8 +24,6 @@ function myhaccp_list() {
     );
   }
 
-
-
   global $user;
   // Prepare the table header.
   $header = array(
@@ -181,6 +179,9 @@ function myhaccp_find_study_name($iid) {
  */
 function myhaccp_study_preview($iid) {
   if (is_numeric($iid)) {
+    // Make sure the IID exists in the session. Its possible to log in and
+    // preview a document without the IID getting stored in the SESSION.
+    $_SESSION['iid'] = $iid;
     myhaccp_myhaccp_mforms_init();
     // Get the dependency injection container.
     global $container;
