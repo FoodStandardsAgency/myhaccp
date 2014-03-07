@@ -13,7 +13,7 @@
   <?php endif; ?>
 
   <?php if(!empty($d_1_team_skills)) : ?>
-    <p><?php print $d_1_team_skills ?></p>
+    <?php print $d_1_team_skills ?>
   <?php endif;  ?>
 
 </section>
