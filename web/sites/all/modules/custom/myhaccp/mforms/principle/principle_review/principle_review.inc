@@ -65,11 +65,6 @@ function principle_review(&$form_state, &$next_step) {
 
   $form = array();
 
-  $form['principle_review'] = array(
-    '#type' => 'fieldset',
-    '#tree' => TRUE,
-  );
-
   $form['principle_review']['validation'] = array(
     '#type' => 'container',
   );

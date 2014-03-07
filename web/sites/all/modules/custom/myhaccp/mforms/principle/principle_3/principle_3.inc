@@ -50,6 +50,11 @@ function principle_3(&$form_state, &$next_step) {
   $form['principle_3'] = array(
     '#type' => 'fieldset',
     '#tree' => TRUE,
+    '#attributes' => array(
+      'class' => array(
+        'stage-fieldset',
+      ),
+    ),
   );
 
   // Introductory text.

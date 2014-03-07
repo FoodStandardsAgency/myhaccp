@@ -30,12 +30,22 @@ function principle_6(&$form_state, &$next_step) {
   $form['principle_6'] = array(
     '#type' => 'fieldset',
     '#tree' => TRUE,
+    '#attributes' => array(
+      'class' => array(
+        'stage-fieldset',
+      ),
+    ),
   );
 
   // Create the fieldset container.
   $form['principle_6'] = array(
     '#type' => 'fieldset',
     '#tree' => TRUE,
+    '#attributes' => array(
+      'class' => array(
+        'stage-fieldset',
+      ),
+    ),
   );
 
   // Introductory text.
