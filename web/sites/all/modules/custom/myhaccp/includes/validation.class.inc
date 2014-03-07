@@ -249,6 +249,13 @@ class Validator {
       $data[$key][$target] = $message;
     }
 
+    // If the validation has passed then data will be empty so store it in the
+    // database for future validation checking.
+    if (empty($data)) {
+      $data = array(
+        $key => array(),
+      );
+    }
     // Store the validation data in the db.
     $store = MformsDatabaseStore::getInstance('myhaccp');
     $store->setStore($key, $data);
@@ -288,7 +295,8 @@ class Validator {
    */
   public function allFieldsAreEmpty() {
     // Iterate over all the form_state values.
-    $iterator = new RecursiveArrayIterator($this->state['values'][$this->stage]);
+
+    $iterator = new RecursiveArrayIterator($this->formState['values'][$this->getStage()->getName()]);
     // Prepare a new standard class so we can pass through items found from the
     // iterator.
     $found = new stdClass();
@@ -327,8 +335,8 @@ class Validator {
    *   If the pager was used it will return FALSE, otherwise TRUE.
    */
   public function pagerButtonUsed() {
-    if (isset($this->state['clicked_button'])) {
-      $button = $this->state['clicked_button'];
+    if (isset($this->formState['clicked_button'])) {
+      $button = $this->formState['clicked_button'];
       if ($button['#submit'][0] == 'myhaccp_pager_submit') {
         return TRUE;
       }
