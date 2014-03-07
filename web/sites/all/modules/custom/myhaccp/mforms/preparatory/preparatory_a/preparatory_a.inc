@@ -89,7 +89,7 @@ function preparatory_a(&$form_state, &$next_step) {
   );
 
   $form['preparatory_a']['a_1_1'] = array(
-    '#type' => 'textfield',
+    '#type' => 'textarea',
     '#title' => t('1a. What are the other prerequisites?'),
     '#default_value' => array_get($values, "preparatory_a.a_1_1", FALSE),
     '#states' => array(
