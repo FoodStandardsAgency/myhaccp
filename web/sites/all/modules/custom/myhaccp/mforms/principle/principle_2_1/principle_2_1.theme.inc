@@ -21,18 +21,18 @@ function myhaccp_preprocess_principle_2_1(&$variables) {
   $values = $variables['data'][$stage];
 
   // 1. Are you using a decision tree?
-  if ($values['2_1_1'] == 'yes') {
+  if (!empty($values['2_1_1']) && $values['2_1_1'] == 'yes') {
     $variables['p_2_1_1'] = '';
-  } elseif ($values['2_1_1'] == 'no') {
+  } elseif (!empty($values['2_1_1']) && $values['2_1_1'] == 'no') {
     $variables['p_2_1_1'] = t('For this study we are not using a decision tree. We are deciding on our CCPS in the following ways:<br />');
     $variables['p_2_1_1'] .= $values['2_1_1b'];
   }
 
   // 1a. Which decision tree are you using?
-  if ($values['2_1_1a'] == 'codex') {
-    $variables['p_2_1_1a'] = t('For this study, we are using the Codex decision tree.');
-  } elseif ($values['2_1_1a'] == 'campden') {
-    $variables['p_2_1_1a'] = t('For this study, we are using the Campden decision tree.');
+  if (!empty($values['2_1_1a']) && $values['2_1_1a'] == 'codex') {
+    $variables['p_2_1_1a'] = t('For this study, we are using the <strong>Codex</strong> decision tree.');
+  } elseif (!empty($values['2_1_1a']) && $values['2_1_1a'] == 'campden') {
+    $variables['p_2_1_1a'] = t('For this study, we are using the <strong>Campden</strong> decision tree.');
   }
 
 }

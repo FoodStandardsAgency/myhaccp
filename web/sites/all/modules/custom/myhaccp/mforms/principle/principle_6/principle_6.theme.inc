@@ -38,7 +38,6 @@ function myhaccp_preprocess_principle_6(&$variables) {
   $variables['p_6_4_title'] = t('The following verification activities are undertaken:');
 
   // 4. Verification activities
-
   $content = '';
 
   // Internal audits.
