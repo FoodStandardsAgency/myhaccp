@@ -5,6 +5,7 @@
 
 .pager-wrapper {
   @include clearfix();
+  margin: 1.25em 0 0 0;
   padding-bottom: 1em;
   border-bottom: 4px solid $grey-1;
   h2.pager-title {
@@ -14,16 +15,14 @@
     margin: 4.05em 2em 0 0;
   }
   h3 {
-    font-size: 1em;
-  }
-  .preparatory-wrapper {
     float: left;
-    margin-right: 5em;
-  }
-  .principles-wrapper {
-    float: left;
+    margin: 0 0 0 0;
+    font-size: 1.3em;
+    width: 6em;
   }
   .pager-controls {
+    float: left;
+    margin: 0.2em 0 0 0;
     input {
       margin: 0 0.25em 0 0;
       border: 0;
@@ -52,6 +51,19 @@
         }
       }
     }
+  }
+  .preparatory-wrapper {
+    float: left;
+    .pager-controls {
+      input {
+        margin-right: 0.5em;
+      }
+    }
+  ;
+  }
+  .principles-wrapper {
+    float: left;
+    margin-top: 0.75em;
   }
 }
 

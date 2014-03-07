@@ -2111,6 +2111,7 @@ div.teaser-checkbox .form-item,
 .pager-wrapper {
   overflow: hidden;
   *zoom: 1;
+  margin: 1.25em 0 0 0;
   padding-bottom: 1em;
   border-bottom: 4px solid #eeeeee;
 }
@@ -2121,14 +2122,14 @@ div.teaser-checkbox .form-item,
   margin: 4.05em 2em 0 0;
 }
 .pager-wrapper h3 {
-  font-size: 1em;
-}
-.pager-wrapper .preparatory-wrapper {
   float: left;
-  margin-right: 5em;
+  margin: 0 0 0 0;
+  font-size: 1.3em;
+  width: 6em;
 }
-.pager-wrapper .principles-wrapper {
+.pager-wrapper .pager-controls {
   float: left;
+  margin: 0.2em 0 0 0;
 }
 .pager-wrapper .pager-controls input {
   margin: 0 0.25em 0 0;
@@ -2157,6 +2158,16 @@ div.teaser-checkbox .form-item,
 }
 .pager-wrapper .pager-controls input.visited-step:hover {
   color: black;
+}
+.pager-wrapper .preparatory-wrapper {
+  float: left;
+}
+.pager-wrapper .preparatory-wrapper .pager-controls input {
+  margin-right: 0.5em;
+}
+.pager-wrapper .principles-wrapper {
+  float: left;
+  margin-top: 0.75em;
 }
 
 .form-save-wrapper {

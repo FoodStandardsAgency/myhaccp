@@ -80,14 +80,13 @@ class MyHACCPMultiStepControls extends MformsControls {
     $form_controls['steps_btns_wrapper']['preparatory'] = array(
       '#type' => 'container',
       '#title' => $this->getStepsLabel(),
-      '#prefix' => '<h2 class="pager-title">' . t('Index') . '</h2>',
       '#attributes' => array(
         'class' => array('preparatory-wrapper'),
       ),
     );
     $form_controls['steps_btns_wrapper']['preparatory']['pager_controls'] = array(
       '#type' => 'container',
-      '#prefix' => '<h3>' . t('Preparatory stages') . '</h3>',
+      '#prefix' => '<h3>' . t('Preparatory: ') . '</h3>',
       '#attributes' => array(
         'class' => array('pager-controls'),
       ),
@@ -101,35 +100,33 @@ class MyHACCPMultiStepControls extends MformsControls {
     );
     $form_controls['steps_btns_wrapper']['principles']['pager_controls'] = array(
       '#type' => 'container',
-      '#prefix' => '<h3>' . t('Principles') . '</h3>',
+      '#prefix' => '<h3>' . t('Principles: ') . '</h3>',
       '#attributes' => array(
         'class' => array('pager-controls'),
       ),
     );
 
-    $is_highlightable = TRUE;
+    // Get the dependency injection container.
+    global $container;
+    // Get the current study.
+    $study = $container['study'];
 
     // Iterate through all the form steps and display them one after another.
     foreach ($this->steps_definition as $id => $definition) {
+      $stage = $study->getStage($id);
+
       $unvisited = TRUE;
       if ($this->store->getStore($id) && !$this->isSingleStep()) {
         $unvisited = FALSE;
       }
 
-      $class = '';
-      if ($this->steps->getCurr() == $id || $is_highlightable) {
-        $class = 'visited-step';
-      }
+      $class = 'pager-item';
 
       if ($this->steps->getCurr() == $id) {
         $class .= ' current-step';
-        $is_highlightable = FALSE;
       }
       elseif ($unvisited) {
         $class .= ' unvisited-step';
-      }
-      elseif (in_array($id, $this->steps->getSteps())) {
-        $class .= ' visited-step';
       }
 
       // Show the step button.
@@ -137,7 +134,6 @@ class MyHACCPMultiStepControls extends MformsControls {
         '#type' => 'submit',
         '#value' => $definition['value'],
         '#weight' => $definition['weight'],
-//        '#disabled' => $visited,
         '#attributes' => array('class' => array($class)),
         '#limit_validation_errors' => array(),
         '#submit' => array('myhaccp_pager_submit'),
@@ -187,17 +183,6 @@ class MyHACCPMultiStepControls extends MformsControls {
         $form_controls['form_nav_wrapper']['continue']['#value'] = t('Continue');
       }
     }
-
-    // todo: Add the final submit back in.
-//    else {
-//      // If there is no next step then show the final submit button.
-//      $form_controls['submit'] = array(
-//        '#type' => 'submit',
-//        '#value' => $this->label_submit,
-//        '#weight' => $this->weight_submit,
-//        '#attributes' => $this->attributes_submit,
-//      );
-//    }
 
     if ($this->steps->getPrev() != NULL) {
       $form_controls['form_nav_wrapper']['previous'] = array(
