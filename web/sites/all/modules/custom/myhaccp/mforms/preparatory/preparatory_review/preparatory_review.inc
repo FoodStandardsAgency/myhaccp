@@ -69,11 +69,6 @@ function preparatory_review(&$form_state, &$next_step) {
 
   $form = array();
 
-  $form['preparatory_review'] = array(
-    '#type' => 'fieldset',
-    '#tree' => TRUE,
-  );
-
   $form['preparatory_review']['validation'] = array(
     '#type' => 'container',
   );

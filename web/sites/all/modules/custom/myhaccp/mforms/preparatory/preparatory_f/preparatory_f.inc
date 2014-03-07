@@ -29,6 +29,11 @@ function preparatory_f(&$form_state, &$next_step) {
   $form['preparatory_f'] = array(
     '#type' => 'fieldset',
     '#tree' => TRUE,
+    '#attributes' => array(
+      'class' => array(
+        'stage-fieldset',
+      ),
+    ),
   );
 
   $form['preparatory_f']['intro'] = array(

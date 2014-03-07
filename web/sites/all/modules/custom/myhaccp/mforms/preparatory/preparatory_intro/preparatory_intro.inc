@@ -29,11 +29,6 @@ function preparatory_intro(&$form_state, &$next_step) {
 
   $form = array();
 
-  $form['preparatory_intro'] = array(
-    '#type' => 'fieldset',
-    '#tree' => TRUE,
-  );
-
   $form['preparatory_intro']['node'] = array(
     '#markup' => drupal_render($node_output),
   );

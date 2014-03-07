@@ -76,7 +76,7 @@ h1 {
 
 h2 {
   @include adjust-font-size-to($h2-font-size);
-  @include leader(1, $h2-font-size);
+  @include leader(1.5, $h2-font-size);
   @include trailer(0.5, $h2-font-size);
   font-family: $heading-font-family;
   color: $heading-font-color-3;

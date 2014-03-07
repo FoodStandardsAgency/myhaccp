@@ -96,7 +96,7 @@ h1 {
 h2 {
   font-size: 1.777em;
   line-height: 1.68824em;
-  margin-top: 0.84412em;
+  margin-top: 1.26618em;
   margin-bottom: 0.42206em;
   font-family: "CartoGothicStd", helvetica, arial, serif;
   color: #888888;
@@ -1463,6 +1463,10 @@ ul.parsley-error-list li {
   padding: 2px 5px;
 }
 
+form .stage-fieldset {
+  padding-top: 1em;
+}
+
 form div.error {
   outline: 2px solid #b73939;
 }
@@ -2101,7 +2105,7 @@ div.teaser-checkbox .form-item,
   display: table-cell;
 }
 .validation-stages .validation-stage.review a {
-  color: #dc8f19;
+  color: #f15d22;
 }
 
 /**
@@ -2141,7 +2145,7 @@ div.teaser-checkbox .form-item,
   color: #007fb2;
 }
 .pager-wrapper .pager-controls input.pager-item.needs-review {
-  color: #dc8f19;
+  color: #f15d22;
 }
 .pager-wrapper .pager-controls input.pager-item:hover {
   color: black;

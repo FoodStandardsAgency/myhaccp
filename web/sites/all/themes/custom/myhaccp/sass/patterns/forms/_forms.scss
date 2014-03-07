@@ -61,6 +61,10 @@ ul.parsley-error-list {
   }
 }
 
+form .stage-fieldset {
+  padding-top: 1em;
+}
+
 form div.error {
   outline: 2px solid $negative;
 }

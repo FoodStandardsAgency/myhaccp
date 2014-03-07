@@ -30,6 +30,11 @@ function principle_2_2(&$form_state, &$next_step) {
   $form['principle_2_2'] = array(
     '#type' => 'fieldset',
     '#tree' => TRUE,
+    '#attributes' => array(
+      'class' => array(
+        'stage-fieldset',
+      ),
+    ),
   );
 
   // Determine how many instances we need to display. This is based on the data
@@ -58,6 +63,11 @@ function principle_2_2(&$form_state, &$next_step) {
   $form['principle_2_2'] = array(
     '#type' => 'fieldset',
     '#tree' => TRUE,
+    '#attributes' => array(
+      'class' => array(
+        'stage-fieldset',
+      ),
+    ),
   );
 
   // Introductory text.

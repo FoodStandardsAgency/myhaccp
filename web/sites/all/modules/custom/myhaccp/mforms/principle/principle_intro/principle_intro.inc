@@ -21,11 +21,6 @@ function principle_intro(&$form_state, &$next_step) {
 
   $form = array();
 
-  $form['principle_intro'] = array(
-    '#type' => 'fieldset',
-    '#tree' => TRUE,
-  );
-
   $form['principle_intro']['node'] = array(
     '#markup' => drupal_render($node_output),
   );
