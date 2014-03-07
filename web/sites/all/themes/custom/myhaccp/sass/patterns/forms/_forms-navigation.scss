@@ -28,26 +28,26 @@
       border: 0;
       background: none;
       font-size: 1.3em;
-      &.current-step {
-        background: $accent-1;
-        color: #FFF;
-        &.visited-step {
-          color: #FFF;
-          &:hover {
-            color: #FFF;
-          }
-        }
-      }
-      &.active-step {
-        color: $accent-1;
-        &:hover {
-          color: $text;
-        }
-      }
-      &.visited-step {
+      &.pager-item {
         color: $accent-2;
+        &.needs-review {
+          color: $accent-3;
+        }
+        &.valid {
+          color: $accent-1;
+        }
         &:hover {
           color: $text;
+        }
+        &.current-step {
+          background: $accent-1;
+          color: #FFF;
+          &.visited-step {
+            color: #FFF;
+            &:hover {
+              color: #FFF;
+            }
+          }
         }
       }
     }
@@ -59,7 +59,6 @@
         margin-right: 0.5em;
       }
     }
-  ;
   }
   .principles-wrapper {
     float: left;

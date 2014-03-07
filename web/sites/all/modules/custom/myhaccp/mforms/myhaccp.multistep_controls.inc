@@ -114,6 +114,8 @@ class MyHACCPMultiStepControls extends MformsControls {
     // Iterate through all the form steps and display them one after another.
     foreach ($this->steps_definition as $id => $definition) {
       $stage = $study->getStage($id);
+      // Fetch the stage status.
+      $status = $stage->getStatus();
 
       $unvisited = TRUE;
       if ($this->store->getStore($id) && !$this->isSingleStep()) {
@@ -127,6 +129,20 @@ class MyHACCPMultiStepControls extends MformsControls {
       }
       elseif ($unvisited) {
         $class .= ' unvisited-step';
+      }
+
+      switch ($status) {
+        case NOT_STARTED:
+          $class .= ' not-started';
+          break;
+
+        case INVALID:
+          $class .= ' needs-review';
+          break;
+
+        case VALID:
+          $class .= ' valid';
+          break;
       }
 
       // Show the step button.

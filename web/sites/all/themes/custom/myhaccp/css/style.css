@@ -2137,27 +2137,27 @@ div.teaser-checkbox .form-item,
   background: none;
   font-size: 1.3em;
 }
-.pager-wrapper .pager-controls input.current-step {
+.pager-wrapper .pager-controls input.pager-item {
+  color: #007fb2;
+}
+.pager-wrapper .pager-controls input.pager-item.needs-review {
+  color: #f15d22;
+}
+.pager-wrapper .pager-controls input.pager-item.valid {
+  color: #6cb33f;
+}
+.pager-wrapper .pager-controls input.pager-item:hover {
+  color: black;
+}
+.pager-wrapper .pager-controls input.pager-item.current-step {
   background: #6cb33f;
   color: #FFF;
 }
-.pager-wrapper .pager-controls input.current-step.visited-step {
+.pager-wrapper .pager-controls input.pager-item.current-step.visited-step {
   color: #FFF;
 }
-.pager-wrapper .pager-controls input.current-step.visited-step:hover {
+.pager-wrapper .pager-controls input.pager-item.current-step.visited-step:hover {
   color: #FFF;
-}
-.pager-wrapper .pager-controls input.active-step {
-  color: #6cb33f;
-}
-.pager-wrapper .pager-controls input.active-step:hover {
-  color: black;
-}
-.pager-wrapper .pager-controls input.visited-step {
-  color: #007fb2;
-}
-.pager-wrapper .pager-controls input.visited-step:hover {
-  color: black;
 }
 .pager-wrapper .preparatory-wrapper {
   float: left;
