@@ -2147,9 +2147,6 @@ div.teaser-checkbox .form-item,
 .pager-wrapper .pager-controls input.pager-item.needs-review {
   color: #f15d22;
 }
-.pager-wrapper .pager-controls input.pager-item.valid {
-  color: #006f51;
-}
 .pager-wrapper .pager-controls input.pager-item:hover {
   color: black;
 }

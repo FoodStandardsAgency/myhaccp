@@ -88,6 +88,21 @@ function preparatory_a(&$form_state, &$next_step) {
     ),
   );
 
+  $form['preparatory_a']['a_1_1'] = array(
+    '#type' => 'textfield',
+    '#title' => t('1a. What are the other prerequisites?'),
+    '#default_value' => array_get($values, "preparatory_a.a_1_1", FALSE),
+    '#states' => array(
+      'visible' => array(
+        ':input[name="preparatory_a[a_1][Other]"]' => array('checked' => TRUE),
+      ),
+    ),
+    '#attributes' => array(
+      'data-parsley-required' => 'true',
+      'data-parsley-error-message' => t('Please state the other prerequisites.'),
+    ),
+  );
+
   $form['preparatory_a']['a_2'] = array(
     '#type' => 'textarea',
     '#resizable' => FALSE,
@@ -129,6 +144,12 @@ function preparatory_a_validate($form, &$form_state) {
     'preparatory_a.a_1' => 'fieldIsNotEmpty',
     'preparatory_a.a_2' => 'fieldIsNotEmpty',
   );
+
+  if ($checkboxes = array_get($form_state['values'], 'preparatory_a.a_1', FALSE)) {
+    if (in_array('Other', $checkboxes) && $checkboxes['Other'] == 'Other') {
+      $checks['preparatory_a.a_1_1'] = 'fieldIsNotEmpty';
+    }
+  }
 
   foreach ($checks as $target => $method) {
     $validator->validate($method, $target);
