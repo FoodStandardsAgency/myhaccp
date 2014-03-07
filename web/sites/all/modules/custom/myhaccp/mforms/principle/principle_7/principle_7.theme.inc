@@ -20,23 +20,39 @@ function myhaccp_preprocess_principle_7(&$variables) {
   $stage = 'principle_7';
   $values = $variables['data'][$stage];
 
-  // 1. Select all forms of documentation relating to this HACCP study that your organisation retain.
-  // @todo $variables['p_7_1'] = '';
+  // 1. Select all forms of documentation relating to this HACCP study that your business retains.
+  $documentation = myhaccp_prepare_checkboxes_output('principle_7', '7_1', $values);
+  $content = '';
+  if(!empty($documentation)) {
+    $content .= '<h4>' . t('Documentation relating to this HACCP study that the business retains:') . '</h4>';
+    $content .= '<ul><li>';
+    $content .= implode('</li><li>', $documentation);
+    $content .= '</li></ul>';
+    $variables['p_7_1'] = $content;
+  }
 
   // 2. Provide details of any other supporting information (i.e. anything else covered in your HACCP plan) that is retained.
-  $variables['p_7_2_title'] = t('Other supporting information that is retained');
-  $variables['p_7_2'] = $values['7_2'];
+  if(!empty($values['7_2'])) {
+    $variables['p_7_2_title'] = t('Other supporting information that is retained');
+    $variables['p_7_2'] = nl2br($values['7_2']);
+  }
 
   // 3. How is documentation controlled (up-dates / issue number)?
-  $variables['p_7_3_title'] = t('Documentation control');
-  $variables['p_7_3'] = $values['7_3'];
+  if(!empty($values['7_3'])) {
+    $variables['p_7_3_title'] = t('Documentation control');
+    $variables['p_7_3'] = $values['7_3'];
+  }
 
   // 4. What is the maximum length of time that you retain this information for?
-  $variables['p_7_4'] = t('The maximum length of time we retain this information for is ') . '<strong>' . $values['7_4'] . '</strong>';
+  if(!empty($values['7_4'])) {
+    $variables['p_7_4'] = t('The maximum length of time we retain this information for is ') . '<strong>' . $values['7_4'] . '</strong>';
+  }
 
   // 5. Are the records accessible, accurate and up to date?
-  if($values['7_5'] == 'yes') {
-    $variables['p_7_5'] = t('All records are accessible, accurate and up to date.');
+  if(!empty($values['7_5'])) {
+    if($values['7_5'] == 'yes') {
+      $variables['p_7_5'] = t('All records are accessible, accurate and up to date.');
+    }
   }
 
 }

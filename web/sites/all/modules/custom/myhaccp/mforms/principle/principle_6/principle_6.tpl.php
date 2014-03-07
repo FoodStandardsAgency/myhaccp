@@ -9,6 +9,7 @@
   <h1>Verification</h1>
 
   <h3>Validation study</h3>
+
   <?php if(!empty($p_6_1)): ?>
     <p><?php print $p_6_1; ?></p>
   <?php endif; ?>
@@ -24,6 +25,10 @@
   <?php if(!empty($p_6_4)): ?>
     <h3><?php print $p_6_4_title; ?></h3>
     <?php print $p_6_4; ?>
+  <?php endif; ?>
+
+  <?php if(!empty($p_6_6)): ?>
+    <p><?php print $p_6_6; ?></p>
   <?php endif; ?>
 
   <?php if(!empty($p_6_7)): ?>
@@ -42,7 +47,7 @@
     <?php print $p_6_10; ?>
   <?php endif; ?>
 
-  <?php if(!empty($p_6_111)): ?>
+  <?php if(!empty($p_6_11)): ?>
     <?php print $p_6_11; ?>
   <?php endif; ?>
 

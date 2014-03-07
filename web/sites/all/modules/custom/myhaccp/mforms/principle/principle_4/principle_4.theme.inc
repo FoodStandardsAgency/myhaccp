@@ -31,10 +31,8 @@ function myhaccp_preprocess_principle_4(&$variables) {
  */
 
 function myhaccp_principle_4_m($h_key) {
-  $principle_4_data = mforms_get_vals('myhaccp', 'principle_4');
-  $values = $principle_4_data['principle_4'];
-
-  // dpm($values);
+  $data = mforms_get_vals('myhaccp', 'principle_4');
+  $values = $data['principle_4'];
 
   $content ='';
 
@@ -61,12 +59,12 @@ function myhaccp_principle_4_m($h_key) {
 
     // 5. Please state the name and job title of the deputy if applicable:
     if(!empty($values[$h_key]['4_5'])) {
-      $content .= '<p>The deputy is: ' . nl2br($values[$h_key]['4_5']) . '</p>';
+      $content .= '<p>The deputy is: ' . $values[$h_key]['4_5'] . '</p>';
     }
 
     // 6. Where are the results of monitoring recorded?
     if(!empty($values[$h_key]['4_6'])) {
-      $content .= '<p>The results of monitoring are recorded: ' . nl2br($values[$h_key]['4_6']) . '</p>';
+      $content .= '<p>The results of monitoring are recorded: ' . $values[$h_key]['4_6'] . '</p>';
     }
 
     // 7. Will the monitoring records be checked and signed off by anyone?
