@@ -21,15 +21,28 @@ function myhaccp_output_pdf($iid) {
     $mpdf->list_indent_first_level = 1;
     $mpdf->WriteHTML($stylesheet, 1);
 
+    // Determine the orientation of the pages and where page breaks occur.
+    $breaks = array(
+      'preparatory_c_1' => 'P',
+      'preparatory_d' => 'P',
+      'preparatory_e' => 'P',
+      'preparatory_g' => 'P',
+      'principle_1_1' => 'L',
+      'principle_1_2' => 'L',
+      'principle_1_3' => 'L',
+      'principle_2_1' => 'L',
+      'principle_5' => 'L',
+      'principle_6' => 'P',
+      'principle_7' => 'P',
+    );
+
     // Prepare each page.
     foreach ($study as $stage => $data) {
-      // Switch to landscape orientation.
-      if ($stage == 'principle_1_1') {
-        $mpdf->AddPage('L');
-      }
-      // Switch to portrait.
-      if ($stage == 'principle_6') {
-        $mpdf->AddPage('P');
+      // Check for a page break.
+      if (isset($breaks[$stage])) {
+        // Get the orientation.
+        $orientation = $breaks[$stage];
+        $mpdf->AddPage($orientation);
       }
       $output = theme($stage, array('data' => $data));
       $mpdf->WriteHTML($output, 2);

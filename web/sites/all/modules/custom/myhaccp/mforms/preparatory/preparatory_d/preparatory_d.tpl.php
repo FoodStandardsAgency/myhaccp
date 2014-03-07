@@ -17,4 +17,3 @@
   <?php endif;  ?>
 
 </section>
-<div class="page-break"></div>
