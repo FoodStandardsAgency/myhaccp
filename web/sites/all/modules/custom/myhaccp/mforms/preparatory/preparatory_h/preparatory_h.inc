@@ -188,7 +188,6 @@ function preparatory_h_validate($form, &$form_state) {
     'preparatory_h.h_5' => array('fieldIsNotEmpty', 'radioIsNotNo'),
     'preparatory_h.h_6' => array('fieldIsNotEmpty', 'radioIsNotNo'),
     'preparatory_h.h_7' => 'fieldIsNotEmpty',
-    'preparatory_h.h_8' => 'fieldIsNotEmpty',
   );
 
   foreach ($checks as $target => $method) {

@@ -164,7 +164,7 @@ function principle_3(&$form_state, &$next_step) {
       '#type' => 'textfield',
       '#title' => t('5b. Please specify any tolerances'),
       '#help_text' => t('This is the value between the critical limit and the target value.'),
-      '#default_value' => array_get($values, "principle_3.$hazard_key.3_7s", FALSE),
+      '#default_value' => array_get($values, "principle_3.$hazard_key.3_7", FALSE),
       '#states' => array(
         'visible' => array(
           ':input[name="principle_3[' . $hazard_key . '][3_5]"]' => array('value' => 'yes'),

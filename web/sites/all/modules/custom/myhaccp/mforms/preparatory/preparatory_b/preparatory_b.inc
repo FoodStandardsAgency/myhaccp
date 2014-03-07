@@ -39,7 +39,7 @@ function preparatory_b(&$form_state, &$next_step) {
   $form['preparatory_b']['intro'] = array(
     '#prefix' => '<p class="intro">',
     '#suffix' => '</p>',
-    '#markup' => t('You need to provide details of  support by management to an ongoing HACCP study.'),
+    '#markup' => t('You need to provide details of support by management to an ongoing HACCP study.'),
   );
 
   $form['preparatory_b']['b_1'] = array(
