@@ -25,10 +25,10 @@ header .header-region nav {
       display: inline;
       margin-right: 1em;
       a {
-        color: $accent-1;
+        color: $accent-2;
         &.active,
         &.active-trail {
-          color: $accent-2;
+          color: $accent-1;
         }
       }
     }
@@ -47,10 +47,10 @@ header .header-region nav {
       margin-right: 1em;
       margin-bottom: 0.5em;
       a {
-        color: $accent-3;
+        color: $accent-2;
         &.active,
         &.active-trail {
-          color: $accent-2;
+          color: $accent-1;
         }
       }
     }

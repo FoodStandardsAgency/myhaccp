@@ -99,7 +99,7 @@ h2 {
   margin-top: 0.84412em;
   margin-bottom: 0.42206em;
   font-family: "CartoGothicStd", helvetica, arial, serif;
-  color: #007fb2;
+  color: #888888;
   font-weight: normal;
 }
 
@@ -1107,10 +1107,10 @@ header .header-region nav ul li {
   margin-right: 1em;
 }
 .block-menu-block-2 ul li a {
-  color: #6cb33f;
+  color: #007fb2;
 }
 .block-menu-block-2 ul li a.active, .block-menu-block-2 ul li a.active-trail {
-  color: #007fb2;
+  color: #6cb33f;
 }
 
 /** Main menu (level 3) **/
@@ -1132,10 +1132,10 @@ header .header-region nav ul li {
   margin-bottom: 0.5em;
 }
 .block-menu-block-3 ul li a {
-  color: #f15d22;
+  color: #007fb2;
 }
 .block-menu-block-3 ul li a.active, .block-menu-block-3 ul li a.active-trail {
-  color: #007fb2;
+  color: #6cb33f;
 }
 
 /**
@@ -2101,7 +2101,7 @@ div.teaser-checkbox .form-item,
   display: table-cell;
 }
 .validation-stages .validation-stage.review a {
-  color: #f15d22;
+  color: #dc8f19;
 }
 
 /**
@@ -2141,10 +2141,7 @@ div.teaser-checkbox .form-item,
   color: #007fb2;
 }
 .pager-wrapper .pager-controls input.pager-item.needs-review {
-  color: #f15d22;
-}
-.pager-wrapper .pager-controls input.pager-item.valid {
-  color: #6cb33f;
+  color: #dc8f19;
 }
 .pager-wrapper .pager-controls input.pager-item:hover {
   color: black;
@@ -3317,7 +3314,11 @@ p.intro {
 a:link,
 a:visited {
   text-decoration: none;
-  color: #006f51;
+  color: #007fb2;
+}
+
+a:hover {
+  color: black;
 }
 
 /**

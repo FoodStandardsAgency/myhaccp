@@ -16,5 +16,9 @@ p.intro {
 a:link,
 a:visited {
   text-decoration: none;
-  color: $base_color;
+  color: $accent-2;
+}
+
+a:hover {
+  color: $text;
 }

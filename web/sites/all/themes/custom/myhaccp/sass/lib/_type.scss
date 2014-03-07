@@ -79,7 +79,7 @@ h2 {
   @include leader(1, $h2-font-size);
   @include trailer(0.5, $h2-font-size);
   font-family: $heading-font-family;
-  color: $heading-font-color-2;
+  color: $heading-font-color-3;
   font-weight: normal;
 }
 

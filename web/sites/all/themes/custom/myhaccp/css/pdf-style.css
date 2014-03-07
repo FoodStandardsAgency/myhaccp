@@ -99,7 +99,7 @@ h2 {
   margin-top: 0.84412em;
   margin-bottom: 0.42206em;
   font-family: "CartoGothicStd", helvetica, arial, serif;
-  color: #007fb2;
+  color: #888888;
   font-weight: normal;
 }
 
@@ -590,7 +590,11 @@ p.intro {
 a:link,
 a:visited {
   text-decoration: none;
-  color: #006f51;
+  color: #007fb2;
+}
+
+a:hover {
+  color: black;
 }
 
 @media print {
