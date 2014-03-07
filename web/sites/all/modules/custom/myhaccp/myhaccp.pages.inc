@@ -7,10 +7,24 @@ function myhaccp_list() {
 
   drupal_set_title('MyHACCP Web Tool');
 
-  $output['intro'] = array(
-    '#type' => 'markup',
-    '#markup' => t('Welcome to the MyHACCP Web Tool, from here you can start new studies and resume studies you have previously started. While using the Web Tool to undertake a Study you will find help available through help icons, which can be clicked on to reveal specific help for that question.')
-  );
+  $node = node_load(44);
+
+  if ($node) {
+    $node->title = NULL;
+    $node_view = node_view($node, 'full');
+    $output['intro'] = array(
+      '#type' => 'markup',
+      '#markup' => drupal_render($node_view),
+    );
+  }
+  else {
+    $output['intro'] = array(
+      '#type' => 'markup',
+      '#markup' => t('Welcome to the MyHACCP Web Tool, from here you can start new studies and resume studies you have previously started. While using the Web Tool to undertake a Study you will find help available through help icons, which can be clicked on to reveal specific help for that question.')
+    );
+  }
+
+
 
   global $user;
   // Prepare the table header.
