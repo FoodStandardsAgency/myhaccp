@@ -7,10 +7,22 @@ function myhaccp_list() {
 
   drupal_set_title('MyHACCP Web Tool');
 
-  $output['intro'] = array(
-    '#type' => 'markup',
-    '#markup' => t('Welcome to the MyHACCP Web Tool, from here you can start new studies and resume studies you have previously started. While using the Web Tool to undertake a Study you will find help available through help icons, which can be clicked on to reveal specific help for that question.')
-  );
+  $node = node_load(44);
+
+  if ($node) {
+    $node->title = NULL;
+    $node_view = node_view($node, 'full');
+    $output['intro'] = array(
+      '#type' => 'markup',
+      '#markup' => drupal_render($node_view),
+    );
+  }
+  else {
+    $output['intro'] = array(
+      '#type' => 'markup',
+      '#markup' => t('Welcome to the MyHACCP Web Tool, from here you can start new studies and resume studies you have previously started. While using the Web Tool to undertake a Study you will find help available through help icons, which can be clicked on to reveal specific help for that question.')
+    );
+  }
 
   global $user;
   // Prepare the table header.
@@ -167,6 +179,9 @@ function myhaccp_find_study_name($iid) {
  */
 function myhaccp_study_preview($iid) {
   if (is_numeric($iid)) {
+    // Make sure the IID exists in the session. Its possible to log in and
+    // preview a document without the IID getting stored in the SESSION.
+    $_SESSION['iid'] = $iid;
     myhaccp_myhaccp_mforms_init();
     // Get the dependency injection container.
     global $container;

@@ -90,7 +90,7 @@ function preparatory_a(&$form_state, &$next_step) {
 
   $form['preparatory_a']['a_1_1'] = array(
     '#type' => 'textarea',
-    '#title' => t('1a. What are the other prerequisites?'),
+    '#title' => t('1a. Please specify any other prerequisites.'),
     '#default_value' => array_get($values, "preparatory_a.a_1_1", FALSE),
     '#states' => array(
       'visible' => array(
@@ -99,7 +99,7 @@ function preparatory_a(&$form_state, &$next_step) {
     ),
     '#attributes' => array(
       'data-parsley-required' => 'true',
-      'data-parsley-error-message' => t('Please state the other prerequisites.'),
+      'data-parsley-error-message' => t('You have selected other, please specify any other prerequisites.'),
     ),
   );
 

@@ -4,7 +4,6 @@
  * Stage output template.
  */
 ?>
-<div class="page-break"></div>
 <section class="page">
   <h1>Verification</h1>
 

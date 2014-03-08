@@ -46,11 +46,11 @@ function myhaccp_preprocess_principle_1_3(&$variables) {
         // Hazard.
         array('data' => $hazards->hazards[$h_key]->name),
         // Hazard Description.
-        array('data' => $hazards->hazards[$h_key]->description),
+        array('data' => nl2br($hazards->hazards[$h_key]->description)),
         // Significance.
         // array('data' => $hazards->hazards[$h_key]->significance),
         // Control Measure.
-        array('data' => $hazards->hazards[$h_key]->controlMeasure)
+        array('data' => nl2br($hazards->hazards[$h_key]->controlMeasure))
       );
     }
   }

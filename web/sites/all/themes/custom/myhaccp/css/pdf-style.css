@@ -646,4 +646,8 @@ a:hover {
   div.page-break {
     page-break-after: always;
   }
+
+  .haccp-plan table {
+    page-break-inside: avoid;
+  }
 }
