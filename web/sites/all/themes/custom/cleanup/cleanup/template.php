@@ -51,7 +51,7 @@ function cleanup_preprocess(&$vars, $hook) {
   // http://api.drupal.org/api/drupal/includes--theme.inc/function/template_preprocess_html/7
   $vars['cleanup_poorthemers_helper'] = "";
   // A one size fits all solution to the icon where it gets scaled down if needed.
-  $appletouchicon = '<link rel="apple-touch-icon" href="' . $base_url .'/'. $path . '/apple-touch-icon.png">';
+  $appletouchicon = '<link rel="apple-touch-icon-precomposed" href="' . $base_url .'/'. $path . '/apple-touch-icon-precomposed.png">';
 
   /*
     Go through all the hooks of drupal and give em epic love
