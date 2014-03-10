@@ -67,12 +67,10 @@ function myhaccp_preprocess_preparatory_d(&$variables) {
   }
 
   // Team skills
-  if ($values['team_skills'] == 'Yes') {
-    $variables['d_1_team_skills'] = t('We confirm that the team have sufficient skills (scientific/technical knowledge and HACCP expertise) to ensure that the HACCP study will be effective.');
-  } else {
-    $variables['d_1_team_skills'] = t('We cannot confirm that the team have sufficient skills (scientific/technical knowledge and HACCP expertise) to ensure that the HACCP study will be effective.');
+  if (!empty($values['team_skills']) && $values['team_skills'] == 'Yes') {
+    $variables['d_1_team_skills'] = '<p>' . t('We confirm that the team have sufficient skills (scientific/technical knowledge and HACCP expertise) to ensure that the HACCP study will be effective.') . '</p>';
+  } elseif(!empty($values['team_skills']) && !empty($values['team_no_skills']) && $values['team_skills'] == 'No') {
+    $variables['d_1_team_skills'] = '<p>' . t('The team do not have sufficient skills (scientific/technical knowledge and HACCP expertise) to ensure that the HACCP study will be effective. We plan to address this issue in the following way:') . '</p><p>' . $values['team_no_skills'] . '</p>';
   }
-
-  // @todo - need another field adding for an explanation if d_1 = no.
 
 }

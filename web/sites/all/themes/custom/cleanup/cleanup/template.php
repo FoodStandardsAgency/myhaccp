@@ -48,17 +48,11 @@ function cleanup_preprocess(&$vars, $hook) {
   $path = drupal_get_path('theme', $theme);
   $path_cleanup = drupal_get_path('theme', 'cleanup');
 
-  //http://api.drupal.org/api/drupal/includes--theme.inc/function/template_preprocess_html/7
+  // http://api.drupal.org/api/drupal/includes--theme.inc/function/template_preprocess_html/7
   $vars['cleanup_poorthemers_helper'] = "";
-  //For third-generation iPad with high-resolution Retina display
-  $appletouchicon = '<link rel="apple-touch-icon" sizes="144x144" href="' . $base_url .'/'. $path . '/apple-touch-icon-144x144.png">';
-  //For iPhone with high-resolution Retina display
-  $appletouchicon .= '<link rel="apple-touch-icon" sizes="114x114" href="' . $base_url .'/'. $path . '/apple-touch-icon-114x114.png">'. "\n";
-  //For first- and second-generation iPad:
-  $appletouchicon .= '<link rel="apple-touch-icon" sizes="72x72" href="' . $base_url .'/'.  $path . '/apple-touch-icon-72x72.png">' . "\n";
-  //For non-Retina iPhone, iPod Touch, and Android 2.1+ devices
-  $appletouchicon .=  '<link rel="apple-touch-icon" href="' . $base_url .'/'.  $path . '/apple-touch-icon.png">' . "\n";
-  $appletouchicon .=  '<link rel="apple-touch-startup-image" href="' . $base_url .'/'.  $path . '/apple-startup.png">' . "\n";
+  // A one size fits all solution to the icon where it gets scaled down if needed.
+  $appletouchicon = '<link rel="apple-touch-icon-precomposed" href="' . $base_url .'/'. $path . '/apple-touch-icon-precomposed.png">';
+
   /*
     Go through all the hooks of drupal and give em epic love
   */
