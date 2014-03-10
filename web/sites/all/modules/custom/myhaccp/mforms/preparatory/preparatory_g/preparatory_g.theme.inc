@@ -24,7 +24,6 @@ function myhaccp_preprocess_preparatory_g(&$variables) {
   // @todo - Create a full-page image style
   $file = file_load($values['g_2']);
   $image = image_load($file->uri);
-
   $variables['flow_diagram_file'] = array(
   'file' => array(
     '#theme' => 'image_style',
@@ -34,6 +33,13 @@ function myhaccp_preprocess_preparatory_g(&$variables) {
     '#height' => $image->info['height'],
     ),
   );
+
+  // Base 64 encode method to work with PDF.
+  $image_url = file_create_url($file->uri);
+  $image_uri = file_get_contents($file->uri);
+  $variables['flow_diagram_data'] = base64_encode($image_uri);
+  //$variables['imagestring'] = '<img src="data:image/gif;base64,' . $variables['flow_diagram_data'] . '" />';
+
 
   // 1. Have you completed a flow diagram?
   if($values['g_1'] == TRUE) {
