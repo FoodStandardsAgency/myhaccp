@@ -86,32 +86,32 @@ function myhaccp_principle_5_mp($h_key) {
   if($h_key) {
     // 1. Corrective action to be taken.
     if(!empty($values[$h_key]['5_1'])) {
-      $content .= '<p>Corrective action to be taken: ' . nl2br($values[$h_key]['5_1']) . '</p>';
+      $content .= '<p>Corrective action to be taken: ' . nl2br($values[$h_key]['5_1']) . '</p><br />';
     }
 
     // 2. Detail personnel who have the authority to take the stated corrective action.
     if(!empty($values[$h_key]['5_2'])) {
-      $content .= '<p>Personnel who have the authority to take the stated corrective action: ' . nl2br($values[$h_key]['5_2']) . '</p>';
+      $content .= '<p>Personnel who have the authority to take the stated corrective action: ' . nl2br($values[$h_key]['5_2']) . '</p><br />';
     }
 
     // 3. What happens to the product created during the period that a CCP was out of control? Detail any variation in handling this product that relates to, a parameter, eg degree of control lost.
     if(!empty($values[$h_key]['5_3'])) {
-      $content .= '<p>' . nl2br($values[$h_key]['5_3']) . '</p>';
+      $content .= '<p>' . nl2br($values[$h_key]['5_3']) . '</p><br />';
     }
 
     // 4. Where are you going to document what you have done with the product produced during the time period that a CCP was 'out of control' (for example since the last good check)?
     if(!empty($values[$h_key]['5_4'])) {
-      $content .= '<p>' . nl2br($values[$h_key]['5_4']) . '</p>';
+      $content .= '<p>' . nl2br($values[$h_key]['5_4']) . '</p><br />';
     }
 
     // 5. Are all personnel (identified in any of the steps from 1-6 for all CCP’s) trained and competent for performing the activities stated?
     if(!empty($values[$h_key]['5_5']) && $values[$h_key]['5_5'] == 'yes') {
-      $content .= '<p>' . t('All personnel are trained and competent for performing the activities stated.') . '</p>';
+      $content .= '<p>' . t('All personnel are trained and competent for performing the activities stated.') . '</p><br />';
     }
 
     // 6. Are records of competency maintained?
     if(!empty($values[$h_key]['5_6']) && $values[$h_key]['5_6'] == 'yes') {
-      $content .= '<p>' . t('Records of competancy are maintained.') . '</p>';
+      $content .= '<p>' . t('Records of competancy are maintained.') . '</p><br />';
     }
 
     return $content;

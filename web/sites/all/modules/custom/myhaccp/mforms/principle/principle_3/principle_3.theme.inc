@@ -36,7 +36,7 @@ function myhaccp_principle_3_cl($h_key) {
   if($h_key) {
     // 1. What is the critical limit for this critical control point (what separates safe from potentially unsafe product)?
     if(!empty($values[$h_key]['3_1'])) {
-      $content .= '<p><strong>' . $values[$h_key]['3_1'] . '</strong></p>';
+      $content .= '<p><strong>' . $values[$h_key]['3_1'] . '</strong></p><br />';
     }
 
     // 2. Provide details of how the critical limit was determined.
@@ -60,7 +60,7 @@ function myhaccp_principle_3_cl($h_key) {
 
     // Is there a target value?
     if(!empty($values[$h_key]['3_6'])) {
-      $content .= '<p><strong>Target value:</strong> ' . $values[$h_key]['3_6'] . '<br />';
+      $content .= '<p><strong>Target value:</strong> ' . $values[$h_key]['3_6'] . '</p><br />';
     }
 
     if(!empty($values[$h_key]['3_7'])) {
