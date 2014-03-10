@@ -215,15 +215,16 @@ function principle_1_2_validate($form, &$form_state) {
       if (!is_array($step)) {
         continue;
       }
-      $key = key($step['instance_table']);
-      $checks = array(
-        "principle_1_2.$step_id.instance_table.$key.description" => 'fieldIsNotEmpty',
-        "principle_1_2.$step_id.instance_table.$key.severity" => 'fieldIsNotEmpty',
-        "principle_1_2.$step_id.instance_table.$key.likelihood" => 'fieldIsNotEmpty',
-        "principle_1_2.$step_id.instance_table.$key.significance" => 'fieldIsNotEmpty',
-      );
-      foreach ($checks as $target => $method) {
-        $validator->validate($method, $target);
+      foreach ($step['instance_table'] as $key => $value) {
+        $checks = array(
+          "principle_1_2.$step_id.instance_table.$key.description" => 'fieldIsNotEmpty',
+          "principle_1_2.$step_id.instance_table.$key.severity" => 'fieldIsNotEmpty',
+          "principle_1_2.$step_id.instance_table.$key.likelihood" => 'fieldIsNotEmpty',
+          "principle_1_2.$step_id.instance_table.$key.significance" => 'fieldIsNotEmpty',
+        );
+        foreach ($checks as $target => $method) {
+          $validator->validate($method, $target);
+        }
       }
     }
   }
