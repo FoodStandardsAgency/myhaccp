@@ -46,7 +46,9 @@
   div.page-break {
     page-break-after: always;
   }
-  .haccp-plan table {
-    page-break-inside: avoid;
+  .haccp-plan {
+    table {
+      page-break-inside: avoid; // set this to 'auto' to allow tables to break across pages.
+    }
   }
 }

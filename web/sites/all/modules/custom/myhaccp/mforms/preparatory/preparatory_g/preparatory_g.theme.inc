@@ -20,6 +20,21 @@ function myhaccp_preprocess_preparatory_g(&$variables) {
   $stage = 'preparatory_g';
   $values = $variables['data'][$stage];
 
+  // Flow diagram file
+  // @todo - Create a full-page image style
+  $file = file_load($values['g_2']);
+  $image = image_load($file->uri);
+
+  $variables['flow_diagram_file'] = array(
+  'file' => array(
+    '#theme' => 'image_style',
+    '#style_name' => 'large',
+    '#path' => $image->source,
+    '#width' => $image->info['width'],
+    '#height' => $image->info['height'],
+    ),
+  );
+
   // 1. Have you completed a flow diagram?
   if($values['g_1'] == TRUE) {
     $variables['g_1'] = t('We have completed a flow diagram covering all steps in the manufacturing process of this product.');
