@@ -126,7 +126,7 @@ function principle_1_1(&$form_state, &$next_step) {
       '#resizable' => FALSE,
       '#title' => t('Biological'),
       '#help_link' => 16,
-      '#help_text' => t('List all biological hazards with each hazard on a new line, e.g.<br/>Salmonella spp.<br/>Listeria spp.<br/>Norovirus'),
+      '#help_text' => t('List all biological hazards with each hazard on a new line, e.g.<br/>Salmonella spp.<br/>Listeria spp.<br/>Norovirus<br/>'),
       '#default_value' => array_get($values, "principle_1_1.instance_$i.hazards_wrapper.biological", FALSE),
     );
     // Chemical.
@@ -136,7 +136,7 @@ function principle_1_1(&$form_state, &$next_step) {
       '#resizable' => FALSE,
       '#title' => t('Chemical'),
       '#help_link' => 16,
-      '#help_text' => t('List all chemical hazards with each hazard on a new line, e.g.<br/>nitrate<br/>patulin<br/>cadmium'),
+      '#help_text' => t('List all chemical hazards with each hazard on a new line, e.g.<br/>nitrate<br/>patulin<br/>cadmium<br/>'),
       '#default_value' => array_get($values, "principle_1_1.instance_$i.hazards_wrapper.chemical", FALSE),
     );
     // Physical.
@@ -146,7 +146,7 @@ function principle_1_1(&$form_state, &$next_step) {
       '#resizable' => FALSE,
       '#title' => t('Physical'),
       '#help_link' => 16,
-      '#help_text' => t('List all physical hazards, with each hazard on a new line, e.g.<br/>stones<br/>metal<br/>wood'),
+      '#help_text' => t('List all physical hazards, with each hazard on a new line, e.g.<br/>stones<br/>metal<br/>wood<br/>'),
       '#default_value' => array_get($values, "principle_1_1.instance_$i.hazards_wrapper.physical", FALSE),
     );
     // Allergens.
@@ -156,7 +156,7 @@ function principle_1_1(&$form_state, &$next_step) {
       '#resizable' => FALSE,
       '#title' => t('Allergens'),
       '#help_link' => 16,
-      '#help_text' => t('List all substances or products that cause allergies or intolerances, with each hazard on a new line, e.g.<br/>celery<br/>sesame seeds<br/>egg'),
+      '#help_text' => t('List all substances or products that cause allergies or intolerances, with each hazard on a new line, e.g.<br/>celery<br/>sesame seeds<br/>egg<br/>'),
       '#default_value' => array_get($values, "principle_1_1.instance_$i.hazards_wrapper.allergens", FALSE),
     );
   }
