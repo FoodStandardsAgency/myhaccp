@@ -211,13 +211,16 @@ function principle_1_2_validate($form, &$form_state) {
 
   // Iterate over each step.
   foreach ($form_state['values']['principle_1_2'] as $step_id) {
-    $rows = array_get($form_state['values'], "principle_1_2.instance_$step_id.instance_table", array());
-    foreach ($rows as $key => $hazard) {
+    foreach (array_get($form_state['values'], "principle_1_2", array()) as $step_id => $step) {
+      if (!is_array($step)) {
+        continue;
+      }
+      $key = key($step['instance_table']);
       $checks = array(
-        "principle_1_2.instance_$step_id.instance_table.$key.description" => 'fieldIsNotEmpty',
-//        "principle_1_2.instance_$step_count.instance_table.$key.severity" => 'fieldIsNotEmpty',
-//        "principle_1_2.instance_$step_count.instance_table.$key.likelihood" => 'fieldIsNotEmpty',
-//        "principle_1_2.instance_$step_count.instance_table.$key.significance" => 'fieldIsNotEmpty',
+        "principle_1_2.$step_id.instance_table.$key.description" => 'fieldIsNotEmpty',
+        "principle_1_2.$step_id.instance_table.$key.severity" => 'fieldIsNotEmpty',
+        "principle_1_2.$step_id.instance_table.$key.likelihood" => 'fieldIsNotEmpty',
+        "principle_1_2.$step_id.instance_table.$key.significance" => 'fieldIsNotEmpty',
       );
       foreach ($checks as $target => $method) {
         $validator->validate($method, $target);
