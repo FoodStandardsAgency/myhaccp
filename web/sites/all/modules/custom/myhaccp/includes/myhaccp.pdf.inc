@@ -21,9 +21,10 @@ function myhaccp_output_pdf($iid) {
     $mpdf->list_indent_first_level = 1;
     // These could be used to help with tables not breaking across pages.
     $mpdf->shrink_tables_to_fit = 1.2;
-    //$mpdf->tableMinSizePriority = false;
-    //$mpdf->use_kwt = false;       // "Keep-with-table"
+    // $mpdf->tableMinSizePriority = false;
+    // $mpdf->use_kwt = false;       // "Keep-with-table"
     // $mpdf->keep_table_proportions = false;
+    // $mpdf->debug = true;
     $mpdf->WriteHTML($stylesheet, 1);
 
     // Determine the orientation of the pages and where page breaks occur.
