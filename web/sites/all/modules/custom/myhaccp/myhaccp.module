@@ -887,3 +887,29 @@ function myhaccp_file_download($uri) {
   $headers = file_get_content_headers($file);
   return $headers;
 }
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function myhaccp_form_user_register_form_alter(&$form, $form_state) {
+  $form['profile_main']['#title'] = NULL;
+  $form['#validate'][] = 'myhaccp_user_register_form_validate';
+  $form['profile_main']['field_business_other'][LANGUAGE_NONE][0]['value']['#states'] = array(
+    'visible' => array(
+      '#edit-profile-main-field-business-type select' => array(
+        'value' => 'other'
+      ),
+    ),
+  );
+}
+
+/**
+ * Custom validation handler for the registration form.
+ */
+function myhaccp_user_register_form_validate($form, &$form_state) {
+  // Ensure that the country selected is United Kingdom.
+  $country = $form_state['values']['profile_main']['field_country'][LANGUAGE_NONE][0]['value'];
+  if (!is_null($country) && $country !== 'United Kingdom') {
+    form_set_error('profile_main][field_country', 'You must be located inside the United Kingdom to register on this site and use this tool.');
+  }
+}
