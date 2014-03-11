@@ -3,13 +3,17 @@
  */
 (function($) {
   Drupal.theme.prototype.myhaccp_modal = function() {
-    var html = '';
-    html += '<div id="ctools-modal" class="popups-box">';
-    html += '  <div class="ctools-modal-content ctools-modal-myhaccp-modal-content">';
-    html += '    <span class="popups-close"><a class="close" href="#">' + Drupal.CTools.Modal.currentSettings.closeImage + '</a></span>';
-    html += '    <div class="modal-scroll"><div id="modal-content" class="modal-content popups-body"></div></div>';
-    html += '  </div>';
-    html += '</div>';
-    return html;
+    console.log('loaded');
+    alert('loaded');
+    $('nav .help-menu ul li a').click(function() {
+      var link = $(this).attr('href');
+      $('nav .help-menu ul li a[href$="' + link + '"]').parent().addClass("active").siblings("li").removeClass("active");
+      $("#" + link).removeClass("hidden").siblings("article").addClass("hidden");
+      $(".ui-dialog").scrollTop(0)
+    });
+
+
+//    "#/" + this.settings.guidancePath + "/" + a !== window.location.hash && (window.location.hash = "#/" + this.settings.guidancePath + "/" + a),
+
   }
 })(jQuery);

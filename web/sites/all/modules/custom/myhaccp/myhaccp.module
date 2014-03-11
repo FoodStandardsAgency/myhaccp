@@ -696,26 +696,39 @@ function myhaccp_help_modal($js = FALSE, $nid = FALSE) {
     // Load all the help documents for the current phase.
     global $container;
     $study = $container['study'];
-    $stage = $study->getCurrentStage();
-    $phase = $stage->getPhase();
     $help = $container['configuration']->getHelpPages();
-    $stages = $phase->getStages();
     $node_content = '<div class="help-content">';
-    foreach ($stages as $stage) {
-      if (isset($help[$stage->getName()])) {
-        $node = node_load($help[$stage->getName()]);
-        if ($node) {
-          $node_content .= '<div id="help-' . $node->nid . '">';
-          $node_content .= render(node_view($node, 'full'));
-          $node_content .= '</div>';
+    foreach ($study->getPhases() as $phase) {
+      foreach ($phase->getStages() as $stage) {
+        if (isset($help[$stage->getName()])) {
+          $node = node_load($help[$stage->getName()]);
+          if ($node) {
+            if ($nid == $node->nid) {
+              $class = 'active';
+            }
+            else {
+              $class = 'hidden';
+            }
+            $article = render(node_view($node, 'full'));
+            // Strip the heading.
+            $node_content .= str_replace('class="node', 'id="help-' . $node->nid . '" class="' . $class . ' node', $article);
+            $node_content .= '</article>';
+          }
+          $phasename = $phase->getName();
+          $menu_items[$phasename][$node->nid] = '<a href="#help-' . $node->nid . '">' . $node->title . '</a>';
         }
-        $menu_items[$node->nid] = '<a href="#help-' . $node->nid . '">' . $node->title . '</a>';
       }
     }
     $node_content .= '</div>';
 
-    $menu = implode('</li><li>', $menu_items);
-    $menu = '<ul class="phase"><li>' . $menu . '</li></ul>';
+    $menu_prep = $menu_items['preparatory'];
+    $menu_principle = $menu_items['principle'];
+
+    $menu_prep = implode('</li><li>', $menu_prep);
+    $menu_principle = implode('</li><li>', $menu_principle);
+
+    $menu = '<nav class="help-menu"><h2>Help topics</h2><h3>Preparatory</h3><ul class="phase"><li>' . $menu_prep . '</li></ul>';
+    $menu .= '<h3>Principles</h3><ul class="phase"><li>' . $menu_principle . '</li></ul></nav>';
 
     $contents = $menu . $node_content;
 

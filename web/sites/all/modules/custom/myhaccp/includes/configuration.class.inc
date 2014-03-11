@@ -107,7 +107,6 @@ class Configuration {
       'preparatory_a' => 13,
       'preparatory_b' => 14,
       'preparatory_c_1' => 15,
-      'preparatory_c_2' => 16,
       'preparatory_d' => 21,
       'preparatory_e' => 18,
       'preparatory_f' => 19,

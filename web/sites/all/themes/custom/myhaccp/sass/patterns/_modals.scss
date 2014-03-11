@@ -36,16 +36,42 @@
     @include border-radius(0);
   }
   .ui-dialog-content {
+    padding: 0 1em;
     .help-content {
-      width: 75%;
+      width: 70%;
+      article {
+        padding-right: 3em;
+        padding-top: 1em;
+        border-right: 2px solid $grey-1;
+        &.active {
+          display: block;
+        }
+        &.hidden {
+          display: none;
+        }
+      }
     }
     .help-menu {
-      width: 20%;
-      position: fixed;
-      right: 20%;
-      list-style: none;
-      li {
-        padding-bottom: 0.5em;
+      width: 30%;
+      float: right;
+      font-size: 0.9em;
+      h2 {
+        padding-left: 0.6em;
+      }
+      h3 {
+        padding-left: 0.75em;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+        li {
+          padding: 0 0 0.75em 1em;
+          line-height: 1.5em;
+          &.active {
+            border-left: 2px solid $grey-2;
+            background: $grey-1;
+          }
+        }
       }
     }
   }
