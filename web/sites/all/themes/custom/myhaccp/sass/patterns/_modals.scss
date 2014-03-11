@@ -35,6 +35,20 @@
   &.ui-corner-all {
     @include border-radius(0);
   }
+  .ui-dialog-content {
+    .help-content {
+      width: 75%;
+    }
+    .help-menu {
+      width: 20%;
+      position: fixed;
+      right: 20%;
+      list-style: none;
+      li {
+        padding-bottom: 0.5em;
+      }
+    }
+  }
 }
 
 

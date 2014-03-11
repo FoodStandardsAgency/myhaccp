@@ -55,7 +55,9 @@ class Stage implements StageInterface {
    * Gets the phase this stage belongs to.
    */
   public function getPhase() {
-    return $this->phase;
+    if (isset($this->phase)) {
+      return $this->phase;
+    }
   }
 
   /**

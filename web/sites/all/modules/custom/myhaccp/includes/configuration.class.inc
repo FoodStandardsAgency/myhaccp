@@ -101,4 +101,27 @@ class Configuration {
       'principle_review' => 'Principles: Review',
     );
   }
+
+  public function getHelpPages() {
+    return array(
+      'preparatory_a' => 13,
+      'preparatory_b' => 14,
+      'preparatory_c_1' => 15,
+      'preparatory_c_2' => 16,
+      'preparatory_d' => 21,
+      'preparatory_e' => 18,
+      'preparatory_f' => 19,
+      'preparatory_g' => 20,
+      'preparatory_h' => 22,
+      'principle_1_1' => 16,
+      'principle_1_2' => 17,
+      'principle_1_3' => 27,
+      'principle_2_1' => 28,
+      'principle_3' => 29,
+      'principle_4' => 30,
+      'principle_5' => 31,
+      'principle_6' => 32,
+      'principle_7' => 33,
+    );
+  }
 }

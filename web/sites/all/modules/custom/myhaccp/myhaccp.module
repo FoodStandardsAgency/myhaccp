@@ -413,6 +413,8 @@ function myhaccp_initialise_study() {
       $stage->validator->setStage($stage);
       // Add the stage to the phase.
       $phase = $study->getPhase($phase);
+      // Set the phase in of the stage.
+      $stage->setPhase($phase);
       $phase->addStage($stage);
     }
   }
@@ -691,27 +693,47 @@ function myhaccp_help_modal($js = FALSE, $nid = FALSE) {
     drupal_goto('help/guidance');
   }
   if ($js) {
-    // Load the node object.
-    $node = node_load($nid);
-    if ($node) {
-      // Render the contents.
-      $contents = render(node_view($node, 'full'));
-      // Return the modal with node title and rendered contents.
-      $commands = array();
-      $options = array(
-        'title' => '',
-        'width' => '80%',
-        'position' => array(
-          'center',
-          'bottom',
-        ),
-        'show' => 1000,
-        'hide' => 1000,
-      );
-      $commands[] = dialog_command_display($contents, $options);
-      ajax_deliver(array('#type' => 'ajax', '#commands' => $commands));
-      drupal_exit();
+    // Load all the help documents for the current phase.
+    global $container;
+    $study = $container['study'];
+    $stage = $study->getCurrentStage();
+    $phase = $stage->getPhase();
+    $help = $container['configuration']->getHelpPages();
+    $stages = $phase->getStages();
+    $node_content = '<div class="help-content">';
+    foreach ($stages as $stage) {
+      if (isset($help[$stage->getName()])) {
+        $node = node_load($help[$stage->getName()]);
+        if ($node) {
+          $node_content .= '<div id="help-' . $node->nid . '">';
+          $node_content .= render(node_view($node, 'full'));
+          $node_content .= '</div>';
+        }
+        $menu_items[$node->nid] = '<a href="#help-' . $node->nid . '">' . $node->title . '</a>';
+      }
     }
+    $node_content .= '</div>';
+
+    $menu = implode('</li><li>', $menu_items);
+    $menu = '<ul class="phase"><li>' . $menu . '</li></ul>';
+
+    $contents = $menu . $node_content;
+
+    // Return the modal with node title and rendered contents.
+    $commands = array();
+    $options = array(
+      'title' => '',
+      'width' => '80%',
+      'position' => array(
+        'center',
+        'bottom',
+      ),
+      'show' => 1000,
+      'hide' => 1000,
+    );
+    $commands[] = dialog_command_display($contents, $options);
+    ajax_deliver(array('#type' => 'ajax', '#commands' => $commands));
+    drupal_exit();
   }
 
   // We don't have js so forward on to the help node.
