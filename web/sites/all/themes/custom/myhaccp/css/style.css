@@ -2140,6 +2140,10 @@ div.teaser-checkbox .form-item,
   border: 0;
   background: none;
   font-size: 1.3em;
+  padding-bottom: 3px;
+  padding-left: 6px;
+  padding-right: 6px;
+  padding-top: 2px;
 }
 .pager-wrapper .pager-controls input.pager-item {
   color: #007fb2;
