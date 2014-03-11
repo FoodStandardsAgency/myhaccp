@@ -24,9 +24,9 @@
 .ui-dialog {
   top: 4em!important;
   border: 0.4em solid #222;
-  .ui-dialog-titlebar {
-    display: none;
-  }
+  font-size: 0.8em;
+  line-height: 1.6em;
+  max-width: 1200px;
   .ui-dialog-content {
     padding: 0 1em;
     overflow-y: hidden;
@@ -38,9 +38,9 @@
   .ui-dialog-content {
     padding: 0 1em;
     .help-content {
-      width: 70%;
+      width: 72%;
       article {
-        padding-right: 3em;
+        padding-right: 2em;
         padding-top: 1em;
         border-right: 2px solid $grey-1;
         &.active {
@@ -49,23 +49,30 @@
         &.hidden {
           display: none;
         }
+        h2 {
+          margin-top: 0;
+        }
       }
     }
     .help-menu {
-      width: 30%;
+      width: 28%;
       float: right;
       font-size: 0.9em;
       h2 {
         padding-left: 0.6em;
+        margin-top: 0;
+        color: #000;
+        line-height: 1.3;
       }
       h3 {
         padding-left: 0.75em;
+        margin-top: 0.75em;
       }
       ul {
         list-style: none;
         padding: 0;
         li {
-          padding: 0 0 0.75em 1em;
+          padding: 0.5em 1em;
           line-height: 1.5em;
           &.active {
             border-left: 2px solid $grey-2;
@@ -77,4 +84,15 @@
   }
 }
 
+.ui-widget-header {
+  background: none;
+  border: none;
+  height: 10px;
+}
 
+.ui-dialog .ui-dialog-titlebar-close {
+  height: 30px;
+  width: 30px;
+  z-index: 200;
+  margin: 0;
+}

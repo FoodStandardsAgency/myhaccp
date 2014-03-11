@@ -2283,9 +2283,9 @@ table thead th .help-tip {
 .ui-dialog {
   top: 4em !important;
   border: 0.4em solid #222;
-}
-.ui-dialog .ui-dialog-titlebar {
-  display: none;
+  font-size: 0.8em;
+  line-height: 1.6em;
+  max-width: 1200px;
 }
 .ui-dialog .ui-dialog-content {
   padding: 0 1em;
@@ -2303,10 +2303,10 @@ table thead th .help-tip {
   padding: 0 1em;
 }
 .ui-dialog .ui-dialog-content .help-content {
-  width: 70%;
+  width: 72%;
 }
 .ui-dialog .ui-dialog-content .help-content article {
-  padding-right: 3em;
+  padding-right: 2em;
   padding-top: 1em;
   border-right: 2px solid #eeeeee;
 }
@@ -2316,28 +2316,48 @@ table thead th .help-tip {
 .ui-dialog .ui-dialog-content .help-content article.hidden {
   display: none;
 }
+.ui-dialog .ui-dialog-content .help-content article h2 {
+  margin-top: 0;
+}
 .ui-dialog .ui-dialog-content .help-menu {
-  width: 30%;
+  width: 28%;
   float: right;
   font-size: 0.9em;
 }
 .ui-dialog .ui-dialog-content .help-menu h2 {
   padding-left: 0.6em;
+  margin-top: 0;
+  color: #000;
+  line-height: 1.3;
 }
 .ui-dialog .ui-dialog-content .help-menu h3 {
   padding-left: 0.75em;
+  margin-top: 0.75em;
 }
 .ui-dialog .ui-dialog-content .help-menu ul {
   list-style: none;
   padding: 0;
 }
 .ui-dialog .ui-dialog-content .help-menu ul li {
-  padding: 0 0 0.75em 1em;
+  padding: 0.5em 1em;
   line-height: 1.5em;
 }
 .ui-dialog .ui-dialog-content .help-menu ul li.active {
   border-left: 2px solid #999999;
   background: #eeeeee;
+}
+
+.ui-widget-header {
+  background: none;
+  border: none;
+  height: 10px;
+}
+
+.ui-dialog .ui-dialog-titlebar-close {
+  height: 30px;
+  width: 30px;
+  z-index: 200;
+  margin: 0;
 }
 
 /**
