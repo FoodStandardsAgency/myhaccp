@@ -39,7 +39,14 @@ table {
 }
 .no-js {
   .help-text {
-
+    @include adjust-font-size-to(16.884px);
+    font-style: italic;
+    margin-bottom: 1em;
+    color: $grey-3;
+    border-left: 4px solid $grey-3;
+    padding-left: 0.5em;
+    margin-left: 0.5em;
+    font-weight: normal;
   }
 }
 
