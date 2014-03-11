@@ -650,4 +650,11 @@ a:hover {
   .haccp-plan table tr {
     page-break-inside: auto;
   }
+
+  .flow-diagram-container {
+    text-align: center;
+  }
+  .flow-diagram-container img {
+    max-height: 500px;
+  }
 }
