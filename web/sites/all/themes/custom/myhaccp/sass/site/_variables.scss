@@ -1,6 +1,6 @@
-/**
- * Colours
- */
+//
+// Colours
+//
 
 // Main page background
 $page_background: #FAFAFA;
@@ -19,7 +19,9 @@ $dark-background: #EEEEEE;
 // Text color for text on top of dark backgrounds
 $text-over-dark-background: #000;
 
-/** Brand Colours **/
+//
+//  Brand Colours
+//
 
 // Base colour (FSA Dark Green)
 $base-color: #006F51;
@@ -57,9 +59,9 @@ $grey-1: #eeeeee;
 // Grey, used for headings
 $grey-2: #999999;
 
-/**
- * Typography
- */
+//
+// Typography
+//
 
 // Colours
 $heading-font-color-1: $base-color;
@@ -83,26 +85,18 @@ $h6-font-size: 1        * $base-font-size;
 $base-font-family: 'CartoGothicStd', helvetica, arial, serif;
 $heading-font-family: 'CartoGothicStd', helvetica, arial, serif;
 
-/*
- * Breakpoints
- */
+// Breakpoints
 $break_small_up: 450px;
 $break_sm_up: 640px;
 $break_med_up: 860px;
 $break_large_up: 1020px;
 $break_massive_up: 1250px;
 
-
-/**
- * Grid
- */
+// Grid
 $_columns: 16;
 $_gutter: 25px;
 $_max-width: 1100px;
 
-
-/**
- * Forms
- */
+// Forms
 $forms_indent: 25%;
 $forms_max-width: 800px;
