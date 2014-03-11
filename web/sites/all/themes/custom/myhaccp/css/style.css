@@ -3058,40 +3058,6 @@ footer .footer-wrapper:after {
     box-sizing: border-box;
   }
 }
-.pattern-page-1 .main-content,
-.pattern-page-1 .sidebar-right {
-  width: 100%;
-  float: left;
-  padding-left: 25px;
-  padding-right: 25px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-@media all and (min-width: 1020px) {
-  .pattern-page-1 .main-content {
-    width: 62.5%;
-    float: left;
-    padding-left: 25px;
-    padding-right: 25px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-  .pattern-page-1 .sidebar-right {
-    width: 37.5%;
-    float: left;
-    padding-left: 25px;
-    padding-right: 25px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-}
-.pattern-page-1 .sidebar-right {
-  margin-top: 2em;
-}
-
 .homepage-1-1 {
   /** Layout **/
 }
