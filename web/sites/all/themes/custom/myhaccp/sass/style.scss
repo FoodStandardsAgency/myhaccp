@@ -25,13 +25,6 @@
 @import 'lib/agilegrid';
 @import 'lib/classy';
 
-// Style guide
-@import 'style-guide/colours';
-@import 'style-guide/buttons';
-@import 'style-guide/grid';
-@import 'style-guide/blockquotes';
-@import 'style-guide/theme';
-
 // Patterns
 @import 'patterns/mixins';
 @import 'patterns/menu-patterns';
@@ -45,7 +38,7 @@
 @import 'patterns/footer';
 @import 'patterns/help-tips';
 @import 'patterns/modals';
-@import 'patterns/node-homepage';
+
 
 // Drupal Patterns
 @import 'patterns/drupal/autocomplete';
@@ -55,17 +48,13 @@
 @import 'patterns/drupal/table-drag';
 @import 'patterns/drupal/table-header';
 
-// Layouts
-@import 'layouts/site-wide';
-@import 'layouts/pattern-page-1';
-@import 'layouts/homepage-1-1';
-@import 'layouts/web-tool-landing';
+// Pages
+@import 'pages/homepage';
+@import 'pages/site-wide';
+@import 'pages/web-tool-landing';
 
 // Setup for this site
 @import 'site/site-wide';
 
 // Compatibility
 @import 'site/ie7';
-
-// PDF
-@import 'site/pdf';

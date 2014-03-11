@@ -51,4 +51,10 @@
       page-break-inside: auto; // set this to 'auto' to allow tables to break across pages.
     }
   }
+  .flow-diagram-container {
+    text-align: center;
+    img {
+      max-height: 500px;
+    }
+  }
 }

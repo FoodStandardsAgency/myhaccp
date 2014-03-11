@@ -16,11 +16,10 @@
   <?php endif; ?>
 
   <?php if(!empty($flow_diagram_data)) : ?>
-    <img src="data:image/gif;base64,<?php print $flow_diagram_data; ?>" />
-    <?php //print render($flow_diagram_file); ?>
+    <div class="flow-diagram-container">
+      <img src="data:image/gif;base64,<?php print $flow_diagram_data; ?>" />
+    </div>
   <?php endif; ?>
-
-  <?php print $imagestring; ?>
 
   <?php if (!empty($g_3)): ?>
     <h3>A copy of our flow diagram can be obtained from the following location:</h3>

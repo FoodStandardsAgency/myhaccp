@@ -33,22 +33,6 @@
   font-style: normal;
 }
 
-/**
- * Colours
- */
-/** Brand Colours **/
-/**
- * Typography
- */
-/*
- * Breakpoints
- */
-/**
- * Grid
- */
-/**
- * Forms
- */
 * html {
   font-size: 125%;
 }
@@ -649,5 +633,12 @@ a:hover {
 
   .haccp-plan table tr {
     page-break-inside: auto;
+  }
+
+  .flow-diagram-container {
+    text-align: center;
+  }
+  .flow-diagram-container img {
+    max-height: 500px;
   }
 }

@@ -33,6 +33,7 @@ function myhaccp_output_pdf($iid) {
       'principle_1_2' => 'L',
       'principle_1_3' => 'L',
       'principle_2_1' => 'L',
+      'principle_3' => 'L',
       'principle_5' => 'L',
       'principle_6' => 'P',
       'principle_7' => 'P',

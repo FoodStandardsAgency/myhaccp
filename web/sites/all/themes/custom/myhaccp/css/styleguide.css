@@ -4,22 +4,6 @@
  *
  */
 /**
- * Colours
- */
-/** Brand Colours **/
-/**
- * Typography
- */
-/*
- * Breakpoints
- */
-/**
- * Grid
- */
-/**
- * Forms
- */
-/**
  * Agile Grid
  * A very simple semantic fluid grid system written in SASS
  * Uses the box-sizing: border box; method to allow for fluid width columns
@@ -510,6 +494,218 @@ h4.browser-title {
 }
 .form-1-principle-1 .p1q1-hazards textarea {
   width: 95%;
+}
+
+.pattern-page-1 .main-content,
+.pattern-page-1 .sidebar-right {
+  width: 100%;
+  float: left;
+  padding-left: 25px;
+  padding-right: 25px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+@media all and (min-width: 1020px) {
+  .pattern-page-1 .main-content {
+    width: 62.5%;
+    float: left;
+    padding-left: 25px;
+    padding-right: 25px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .pattern-page-1 .sidebar-right {
+    width: 37.5%;
+    float: left;
+    padding-left: 25px;
+    padding-right: 25px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+}
+.pattern-page-1 .sidebar-right {
+  margin-top: 2em;
+}
+
+.homepage-1-1 {
+  /** Layout **/
+}
+.homepage-1-1 section.main-content {
+  width: 100%;
+  float: left;
+  padding-left: 25px;
+  padding-right: 25px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  min-height: 400px;
+}
+.homepage-1-1 .region-sidebar-second {
+  width: 100%;
+  float: left;
+  padding-left: 25px;
+  padding-right: 25px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  min-height: 400px;
+}
+@media all and (min-width: 1020px) {
+  .homepage-1-1 section.main-content {
+    width: 75%;
+    float: left;
+    padding-left: 25px;
+    padding-right: 25px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .homepage-1-1 .region-sidebar-second {
+    width: 25%;
+    float: left;
+    padding-left: 25px;
+    padding-right: 25px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+}
+.homepage-1-1 .region-sidebar-first,
+.homepage-1-1 .region-sidebar-second {
+  background-color: #f2f2f2;
+}
+.homepage-1-1 section.main-content {
+  background-color: #ddd;
+}
+.homepage-1-1 section.highlighted {
+  min-height: 250px;
+  padding-top: 3em;
+}
+.homepage-1-1 section.highlighted .highlighted-inner > p {
+  width: 100%;
+  float: left;
+  padding-left: 25px;
+  padding-right: 25px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+@media all and (min-width: 860px) {
+  .homepage-1-1 section.highlighted .highlighted-inner > p {
+    width: 62.5%;
+    float: left;
+    padding-left: 25px;
+    padding-right: 25px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+}
+@media all and (min-width: 1020px) {
+  .homepage-1-1 section.highlighted .highlighted-inner > p {
+    width: 75%;
+    float: left;
+    padding-left: 25px;
+    padding-right: 25px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+}
+.homepage-1-1 .register-button {
+  width: 100%;
+  float: left;
+  padding-left: 25px;
+  padding-right: 25px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background-color: #e6e6e6;
+  color: rgba(0, 0, 0, 0.8);
+  border: 0 none transparent;
+  padding: 0.6em 1.5em 0.5em 1.5em;
+  text-decoration: none;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  background-color: #006f51;
+  color: #FFF;
+  font-size: 1.3em;
+}
+@media all and (min-width: 860px) {
+  .homepage-1-1 .register-button {
+    width: 37.5%;
+    float: left;
+    padding-left: 25px;
+    padding-right: 25px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+}
+@media all and (min-width: 1020px) {
+  .homepage-1-1 .register-button {
+    width: 25%;
+    float: left;
+    padding-left: 25px;
+    padding-right: 25px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+}
+.homepage-1-1 .register-button:hover, .homepage-1-1 .register-button:focus {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+}
+.homepage-1-1 .register-button.disabled {
+  background-image: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.homepage-1-1 .register-button.active, .homepage-1-1 .register-button:active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
+}
+
+.speaker-box {
+  width: 100%;
+  float: left;
+  padding-left: 25px;
+  padding-right: 25px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+@media all and (min-width: 860px) {
+  .speaker-box {
+    width: 37.5%;
+    float: left;
+    padding-left: 25px;
+    padding-right: 25px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    min-height: 10em;
+  }
+}
+@media all and (min-width: 1020px) {
+  .speaker-box {
+    width: 25%;
+    float: left;
+    padding-left: 25px;
+    padding-right: 25px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 33.333%;
+  }
+}
+.speaker-box h3 {
+  font-size: 1em;
 }
 
 .decision-tree-qs .decision-tree-q-row {

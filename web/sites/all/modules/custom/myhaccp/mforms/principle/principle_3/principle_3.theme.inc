@@ -19,6 +19,48 @@
 function myhaccp_preprocess_principle_3(&$variables) {
   $stage = 'principle_3';
   $values = $variables['data'][$stage];
+
+  // Get details of all Hazards.
+  $hazards = Hazards::getInstance();
+
+  // Table header.
+  $header = array(
+    array('data' => t('Step No.')),
+    array('data' => t('Step Name.')),
+    array('data' => t('Hazard')),
+    array('data' => t('Critical limit')),
+    array('data' => t('How was the critical limit determined?')),
+    array('data' => t('Will the critical limit control the specific hazard?')),
+    array('data' => t('Can the critical limit be measured or observed in real time?'))
+  );
+
+  // Generate table row for each hazard.
+  foreach ($values as $h_key => $ccp_hazard) {
+    // Only generate a row if there is a control measure set.
+    if(!empty($hazards->hazards[$h_key]->controlMeasure)) {
+      $rows[] = array(
+        // Step No.
+        array('data' => $hazards->hazards[$h_key]->step->no),
+        // Step Name.
+        array('data' => $hazards->hazards[$h_key]->step->name),
+        // Hazard.
+        array('data' => $hazards->hazards[$h_key]->name),
+        // Critical limit.
+        array('data' => nl2br($ccp_hazard['3_1'])),
+        // How was the critical limit determined?
+        array('data' => nl2br($ccp_hazard['3_2'])),
+        // Will the critical limit control the specific hazard?
+        array('data' => ucwords($ccp_hazard['3_3'])),
+        // Can the critical limit be measured or observed in real time?
+        array('data' => ucwords($ccp_hazard['3_4']))
+      );
+    }
+  }
+
+  // Generate the table through a theme function.
+  $variables['p_3_table'] = theme('table', array('header' => $header, 'rows' => $rows));
+
+
 }
 
 /**
@@ -38,25 +80,6 @@ function myhaccp_principle_3_cl($h_key) {
     if(!empty($values[$h_key]['3_1'])) {
       $content .= '<p><strong>' . $values[$h_key]['3_1'] . '</strong></p><br />';
     }
-
-    // 2. Provide details of how the critical limit was determined.
-    // if(!empty($values[$h_key]['3_2'])) {
-    //   $content .= '<p>' . nl2br($values[$h_key]['3_2']) . '</p>';
-    // }
-
-    // 3. Is the critical limit appropriate to control the specific hazard?
-    // if(!empty($values[$h_key]['3_3']) && $values[$h_key]['3_3'] == 'yes') {
-    //  $content .= '<p>' . t('The critical limit is appropriate to control the specific hazard.') . '</p>';
-    // } elseif (!empty($values[$h_key]['3_3']) && $values[$h_key]['3_3'] == 'no') {
-    //  $content .= '<p>' . t('The critical limit is not appropriate to control the specific hazard.') . '</p>';
-    // }
-
-    // 4. Is the critical limit measurable or observable in real time?
-    // if(!empty($values[$h_key]['3_4']) && $values[$h_key]['3_4'] == 'yes') {
-    //  $content .= '<p>' . t('The critical limit is measurable or observable in real time.') . '</p>';
-    // } elseif(!empty($values[$h_key]['3_4']) && $values[$h_key]['3_4'] == 'no') {
-    //  $content .= '<p>' . t('The critical limit is not measurable or observable in real time.') . '</p>';
-    // }
 
     // Is there a target value?
     if(!empty($values[$h_key]['3_6'])) {
