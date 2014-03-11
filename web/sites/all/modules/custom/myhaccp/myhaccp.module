@@ -736,13 +736,14 @@ function myhaccp_help_modal($js = FALSE, $nid = FALSE) {
     $commands = array();
     $options = array(
       'title' => '',
-      'width' => '80%',
+      'width' => '85%',
       'position' => array(
         'center',
         'bottom',
       ),
-      'show' => 1000,
-      'hide' => 1000,
+      'show' => 800,
+      'hide' => 500,
+      'draggable' => false,
     );
     $commands[] = dialog_command_display($contents, $options);
     ajax_deliver(array('#type' => 'ajax', '#commands' => $commands));
