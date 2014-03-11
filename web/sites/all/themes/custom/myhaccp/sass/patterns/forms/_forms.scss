@@ -517,7 +517,6 @@ div.teaser-checkbox .form-item,
 .principle-1-question-2 {
   table {
     width: 100%;
-
     // @todo refactor to be more sensible
     // add classes
     .form-type-textarea {
@@ -531,6 +530,7 @@ div.teaser-checkbox .form-item,
     th.likelihood,
     th.significance {
       max-width: 3em;
+      min-width: 120px;
       span {
         white-space: nowrap;
       }
@@ -542,6 +542,15 @@ div.teaser-checkbox .form-item,
     &.significance {
       min-width: 3em;
       width: 3em;
+    }
+  }
+}
+
+.no-js {
+  .principle-1-question-2 {
+    th {
+      min-width: 150px;
+      vertical-align: top;
     }
   }
 }

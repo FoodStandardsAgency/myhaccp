@@ -2014,6 +2014,7 @@ div.teaser-checkbox .form-item,
 .principle-1-question-2 table th.likelihood,
 .principle-1-question-2 table th.significance {
   max-width: 3em;
+  min-width: 120px;
 }
 .principle-1-question-2 table th.severity span,
 .principle-1-question-2 table th.likelihood span,
@@ -2023,6 +2024,11 @@ div.teaser-checkbox .form-item,
 .principle-1-question-2 input[type="text"].severity, .principle-1-question-2 input[type="text"].likelihood, .principle-1-question-2 input[type="text"].significance {
   min-width: 3em;
   width: 3em;
+}
+
+.no-js .principle-1-question-2 th {
+  min-width: 150px;
+  vertical-align: top;
 }
 
 /** Principle 2 **/
@@ -2586,6 +2592,18 @@ table thead th .help-tip {
 
 .js .help-text {
   display: none;
+}
+
+.no-js .help-text {
+  font-size: 0.8442em;
+  line-height: 1.77683em;
+  font-style: italic;
+  margin-bottom: 1em;
+  color: #575757;
+  border-left: 4px solid #575757;
+  padding-left: 0.5em;
+  margin-left: 0.5em;
+  font-weight: normal;
 }
 
 .qtip-haccp {
