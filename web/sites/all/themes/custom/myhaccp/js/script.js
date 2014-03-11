@@ -5,5 +5,6 @@
 */
 
 var addToHomeConfig = {
-  touchIcon: true
+  touchIcon: true,
+  returningVisitor: true
 };
