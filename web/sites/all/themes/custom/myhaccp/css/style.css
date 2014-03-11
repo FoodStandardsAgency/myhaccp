@@ -3421,7 +3421,7 @@ html.ie7 .principle-1-q1 .hazards > .form-item {
     page-break-after: always;
   }
 
-  .haccp-plan table {
-    page-break-inside: avoid;
+  .haccp-plan table tr {
+    page-break-inside: auto;
   }
 }

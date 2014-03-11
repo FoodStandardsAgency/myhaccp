@@ -47,8 +47,8 @@
     page-break-after: always;
   }
   .haccp-plan {
-    table {
-      page-break-inside: avoid; // set this to 'auto' to allow tables to break across pages.
+    table tr {
+      page-break-inside: auto; // set this to 'auto' to allow tables to break across pages.
     }
   }
 }

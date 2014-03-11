@@ -21,10 +21,6 @@ function myhaccp_output_pdf($iid) {
     $mpdf->list_indent_first_level = 1;
     // These could be used to help with tables not breaking across pages.
     $mpdf->shrink_tables_to_fit = 1.2;
-    // $mpdf->tableMinSizePriority = false;
-    // $mpdf->use_kwt = false;       // "Keep-with-table"
-    // $mpdf->keep_table_proportions = false;
-    // $mpdf->debug = true;
     $mpdf->WriteHTML($stylesheet, 1);
 
     // Determine the orientation of the pages and where page breaks occur.
@@ -44,12 +40,23 @@ function myhaccp_output_pdf($iid) {
 
     // Prepare each page.
     foreach ($study as $stage => $data) {
+      // We need to fake the page title on principle 5.
+      if ($stage == 'principle_5') {
+        $mpdf->SetTopMargin('25');
+        $mpdf->SetHTMLHeader('<h1>The HACCP Plan</h1>');
+      }
+      else {
+        // Reset back to normal.
+        $mpdf->SetTopMargin('12');
+        $mpdf->SetHTMLHeader('');
+      }
       // Check for a page break.
       if (isset($breaks[$stage])) {
         // Get the orientation.
         $orientation = $breaks[$stage];
         $mpdf->AddPage($orientation);
       }
+
       $output = theme($stage, array('data' => $data));
       $mpdf->WriteHTML($output, 2);
     }
