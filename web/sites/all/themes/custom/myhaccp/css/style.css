@@ -829,6 +829,10 @@ ul.inline li {
   padding-bottom: 0.5em;
 }
 
+nav.tabs {
+  margin-bottom: 1em;
+}
+
 ul.tabs.primary {
   margin-top: 2em;
   padding: 0;
