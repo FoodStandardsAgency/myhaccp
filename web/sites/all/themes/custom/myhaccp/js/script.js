@@ -6,7 +6,7 @@
         $('.help-menu ul li a').removeClass("active");
         $('.help-menu a[href$="' + link + '"]').addClass("active");
         $(link).removeClass("hidden").siblings("article").addClass("hidden");
-        $(".ui-widget-overlay").scrollTop(0)
+        $(".ui-widget-overlay").scrollTop(0);
       });
     }
   }
