@@ -2854,7 +2854,7 @@ footer .footer-wrapper:after {
 .studies-table thead {
   border-bottom: 3px solid #dddddd;
 }
-.studies-table thead th a {
+.studies-table thead th, .studies-table thead th a {
   color: #006f51;
 }
 .studies-table tbody td {
