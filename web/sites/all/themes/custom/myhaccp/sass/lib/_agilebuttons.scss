@@ -1,3 +1,7 @@
+//
+// Agile Buttons
+// A SASS & Compass plugin for creating CSS buttons.
+//
 @mixin agile-button($style: plain, $size: normal, $background-color: #E6E6E6, $color: rgba(0, 0, 0, 0.8)) {
   background-color: $background-color;
   color: $color;
@@ -32,6 +36,7 @@
   }
   @if $style == "negative" {
     background-color: $negative;
+    color: #FFF;
   }
   @if $style == "dark" {
     background-color: $dark-background;

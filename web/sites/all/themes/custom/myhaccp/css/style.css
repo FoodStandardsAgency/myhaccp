@@ -1382,6 +1382,7 @@ input#edit-delete-all {
   transition: all 0.25s ease;
   background-color: #b73939;
   color: #FFF;
+  color: #FFF;
 }
 input#edit-delete:hover, input#edit-delete:focus,
 input#remove-button:hover,
@@ -2019,7 +2020,7 @@ div.error p.error {
 table td, table th {
   padding: 10px;
   text-align: left;
-  border-top: 1px solid #DDDDDD;
+  border-top: 1px solid #dddddd;
 }
 table thead:first-child tr:first-child th,
 table thead:first-child tr:first-child td {
@@ -2029,11 +2030,11 @@ table thead:first-child tr:first-child td {
 table.borders td, table.borders th {
   padding: 10px;
   text-align: left;
-  border-top: 1px solid #DDDDDD;
-  border-left: 1px solid #DDDDDD;
+  border-top: 1px solid #dddddd;
+  border-left: 1px solid #dddddd;
 }
 table.borders td:last-child {
-  border-right: 1px solid #DDDDDD;
+  border-right: 1px solid #dddddd;
 }
 table.borders thead:first-child tr:first-child th,
 table.borders thead:first-child tr:first-child td {
@@ -2814,11 +2815,11 @@ footer .footer-wrapper:after {
   }
 }
 @media (min-width: 860px) {
-  .page-prototype table.studies-table {
+  .page-tool table.studies-table {
     min-width: 40em;
   }
 }
-.page-prototype a.new-study {
+.page-tool a.new-study {
   background-color: #e6e6e6;
   color: rgba(0, 0, 0, 0.8);
   border: 0 none transparent;
@@ -2830,19 +2831,112 @@ footer .footer-wrapper:after {
   transition: all 0.25s ease;
   background-color: #006f51;
   color: #FFF;
+  margin-bottom: 1em;
   display: inline-block;
-  margin-top: 1em;
 }
-.page-prototype a.new-study:hover, .page-prototype a.new-study:focus {
+.page-tool a.new-study:hover, .page-tool a.new-study:focus {
   background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
   cursor: pointer;
 }
-.page-prototype a.new-study.disabled {
+.page-tool a.new-study.disabled {
   background-image: none;
   cursor: not-allowed;
   opacity: 0.5;
 }
-.page-prototype a.new-study.active, .page-prototype a.new-study:active {
+.page-tool a.new-study.active, .page-tool a.new-study:active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
+}
+
+.studies-table {
+  width: 100%;
+  max-width: 44em;
+}
+.studies-table thead {
+  border-bottom: 3px solid #dddddd;
+}
+.studies-table thead th a {
+  color: #006f51;
+}
+.studies-table tbody td {
+  padding: 0.5em;
+}
+.studies-table tbody td:last-child {
+  padding-right: 0;
+}
+.studies-table .resume-link {
+  background-color: #e6e6e6;
+  color: rgba(0, 0, 0, 0.8);
+  border: 0 none transparent;
+  padding: 0.6em 1.5em 0.5em 1.5em;
+  text-decoration: none;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  background-color: #4d8f46;
+  color: #FFF;
+  font-size: 0.8em;
+}
+.studies-table .resume-link:hover, .studies-table .resume-link:focus {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+}
+.studies-table .resume-link.disabled {
+  background-image: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.studies-table .resume-link.active, .studies-table .resume-link:active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
+}
+.studies-table .preview-link {
+  background-color: #e6e6e6;
+  color: rgba(0, 0, 0, 0.8);
+  border: 0 none transparent;
+  padding: 0.6em 1.5em 0.5em 1.5em;
+  text-decoration: none;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  font-size: 0.8em;
+}
+.studies-table .preview-link:hover, .studies-table .preview-link:focus {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+}
+.studies-table .preview-link.disabled {
+  background-image: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.studies-table .preview-link.active, .studies-table .preview-link:active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
+}
+.studies-table .delete-link {
+  background-color: #e6e6e6;
+  color: rgba(0, 0, 0, 0.8);
+  border: 0 none transparent;
+  padding: 0.6em 1.5em 0.5em 1.5em;
+  text-decoration: none;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  background-color: #b73939;
+  color: #FFF;
+  font-size: 0.8em;
+}
+.studies-table .delete-link:hover, .studies-table .delete-link:focus {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+}
+.studies-table .delete-link.disabled {
+  background-image: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.studies-table .delete-link.active, .studies-table .delete-link:active {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
 }
 

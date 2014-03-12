@@ -1,4 +1,4 @@
-.page-prototype {
+.page-tool {
   @media (min-width: $break_med_up) {
     table.studies-table {
       min-width: 40em;
@@ -6,7 +6,36 @@
   }
   a.new-study {
     @include agile-button($style: primary);
+    margin-bottom: 1em;
     display: inline-block;
-    margin-top: 1em;
+  }
+}
+
+.studies-table {
+  width: 100%;
+  max-width: 44em;
+  thead {
+    border-bottom: 3px solid $grey-4;
+    th a {
+      color: $base-color;
+    }
+  }
+  tbody {
+    td {
+      padding: 0.5em;
+    }
+    td:last-child {
+      padding-right: 0;
+    }
+  }
+
+  .resume-link {
+    @include agile-button($style: positive, $size: small);
+  }
+  .preview-link {
+    @include agile-button($size: small);
+  }
+  .delete-link {
+    @include agile-button($style: negative, $size: small);
   }
 }

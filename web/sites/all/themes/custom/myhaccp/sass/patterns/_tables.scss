@@ -2,7 +2,7 @@
   td, th {
     padding: 10px;
     text-align: left;
-    border-top: 1px solid #DDDDDD;
+    border-top: 1px solid $grey-4;
   }
 
   thead:first-child tr:first-child th,
@@ -23,11 +23,11 @@
   td, th {
     padding: 10px;
     text-align: left;
-    border-top: 1px solid #DDDDDD;
-    border-left: 1px solid #DDDDDD;
+    border-top: 1px solid $grey-4;
+    border-left: 1px solid $grey-4;
   }
   td:last-child {
-    border-right: 1px solid #DDDDDD;
+    border-right: 1px solid $grey-4;
   }
   thead:first-child tr:first-child th,
   thead:first-child tr:first-child td {
