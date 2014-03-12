@@ -2,7 +2,6 @@ footer[role=contentinfo] {
   background-color: $dark-background;
   color: $text-over-dark-background;
   min-height: 7em;
-  //border-top: 4px solid $base-color;
 }
 
 .footer-inside {
@@ -12,7 +11,7 @@ footer[role=contentinfo] {
     margin-bottom: 0;
   }
   .footer-links {
-    max-width: 50em;
+    max-width: 54em;
     color: $text-lighter;
     font-size: 0.844em;
     a {
