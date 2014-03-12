@@ -2889,7 +2889,7 @@ footer .footer-wrapper:after {
 .studies-table .resume-link.active, .studies-table .resume-link:active {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
 }
-.studies-table .preview-link {
+.studies-table .complete-link {
   background-color: #e6e6e6;
   color: rgba(0, 0, 0, 0.8);
   border: 0 none transparent;
@@ -2901,16 +2901,16 @@ footer .footer-wrapper:after {
   transition: all 0.25s ease;
   font-size: 0.8em;
 }
-.studies-table .preview-link:hover, .studies-table .preview-link:focus {
+.studies-table .complete-link:hover, .studies-table .complete-link:focus {
   background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
   cursor: pointer;
 }
-.studies-table .preview-link.disabled {
+.studies-table .complete-link.disabled {
   background-image: none;
   cursor: not-allowed;
   opacity: 0.5;
 }
-.studies-table .preview-link.active, .studies-table .preview-link:active {
+.studies-table .complete-link.active, .studies-table .complete-link:active {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
 }
 .studies-table .delete-link {

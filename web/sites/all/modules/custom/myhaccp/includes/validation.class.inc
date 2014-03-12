@@ -23,6 +23,25 @@ class Validator {
   }
 
   /**
+   * Sets the IID of the study.
+   *
+   * @param int $iid
+   */
+  public function setIID($iid) {
+    $this->iid = $iid;
+  }
+
+  /**
+   * Gets the study's IID.
+   *
+   * @return int
+   *   The IID of the study.
+   */
+  public function getIID() {
+    return $this->iid;
+  }
+
+  /**
    * Returns the form state.
    */
   public function getFormState() {
@@ -125,7 +144,7 @@ class Validator {
    */
   public function getValidation($stage) {
     $data = FALSE;
-    $iid = $_SESSION['iid'];
+    $iid = $this->getIID();
     $key = $stage->name . '_validation';
     $query = db_select('mforms_storage', 'm');
     $query->join('mforms_storage_steps', 's', 's.iid = m.iid');

@@ -27,6 +27,11 @@ interface StageInterface {
 
   public function setTitle($title);
 
+  public function getIID();
+
+  public function setIID($iid);
+
+
 }
 
 class Stage implements StageInterface {
@@ -49,6 +54,25 @@ class Stage implements StageInterface {
    */
   public function setName($name) {
     $this->name = $name;
+  }
+
+  /**
+   * Sets the IID of the study.
+   *
+   * @param int $iid
+   */
+  public function setIID($iid) {
+    $this->iid = $iid;
+  }
+
+  /**
+   * Gets the study's IID.
+   *
+   * @return int
+   *   The IID of the study.
+   */
+  public function getIID() {
+    return $this->iid;
   }
 
   /**
@@ -113,6 +137,7 @@ class Stage implements StageInterface {
   public function setValidator(Validator $validator) {
     $this->validator = $validator;
     $this->validator->setStage($this);
+    $this->validator->setIID($this->getIID());
   }
 
   /**

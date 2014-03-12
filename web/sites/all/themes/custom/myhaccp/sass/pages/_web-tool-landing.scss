@@ -32,7 +32,7 @@
   .resume-link {
     @include agile-button($style: positive, $size: small);
   }
-  .preview-link {
+  .complete-link {
     @include agile-button($size: small);
   }
   .delete-link {
