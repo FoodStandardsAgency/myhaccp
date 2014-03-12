@@ -7,16 +7,24 @@ footer[role=contentinfo] {
 .footer-inside {
   @include column();
   font-size: 0.9em;
+  .gov-uk-logo {
+    float: right;
+  }
   p.copyright-message {
     margin-bottom: 0;
   }
   .footer-links {
+    clear: both;
     max-width: 54em;
     color: $text-lighter;
     font-size: 0.844em;
+    padding-top: 0.5em;
     a {
       color: $text-lighter;
     }
+    @media all and (min-width: $break_med_up) {
+      clear: none;
+      padding-top: 0;
+    }
   }
-
 }

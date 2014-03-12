@@ -2231,16 +2231,27 @@ footer[role=contentinfo] {
   box-sizing: border-box;
   font-size: 0.9em;
 }
+.footer-inside .gov-uk-logo {
+  float: right;
+}
 .footer-inside p.copyright-message {
   margin-bottom: 0;
 }
 .footer-inside .footer-links {
+  clear: both;
   max-width: 54em;
   color: #676767;
   font-size: 0.844em;
+  padding-top: 0.5em;
 }
 .footer-inside .footer-links a {
   color: #676767;
+}
+@media all and (min-width: 860px) {
+  .footer-inside .footer-links {
+    clear: none;
+    padding-top: 0;
+  }
 }
 
 .help-tip {
