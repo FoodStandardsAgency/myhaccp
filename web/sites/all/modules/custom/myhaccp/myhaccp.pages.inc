@@ -85,21 +85,33 @@ function myhaccp_list() {
     else {
       $name = $study_name;
     }
-    $edit = user_access('edit own myhaccp study') || user_access('edit any myhaccp study') ? l(t('Resume'), $edit_link) : '';
-    $preview = user_access('view own myhaccp study') || user_access('view any myhaccp study') ? l(t('Preview'), 'tool/study/' . $result->iid . '/preview') : '';
-    $delete = user_access('delete own myhaccp study') || user_access('delete any myhaccp study') ? l(t('Delete'), 'tool/study/' . $result->iid . '/delete') : '';
+    $edit = user_access('edit own myhaccp study') || user_access('edit any myhaccp study') ? l(t('Resume'), $edit_link, array('attributes' => array('class' => 'resume-link'))) : '';
+    $preview = user_access('view own myhaccp study') || user_access('view any myhaccp study') ? l(t('Preview'), 'tool/study/' . $result->iid . '/preview', array('attributes' => array('class' => 'preview-link'))) : '';
+    $delete = user_access('delete own myhaccp study') || user_access('delete any myhaccp study') ? l(t('Delete'), 'tool/study/' . $result->iid . '/delete', array('attributes' => array('class' => 'delete-link'))) : '';
 
     $rows[] = array(
       'data' => array(
         'name' => $name,
-        'created' => format_date($result->created, 'short'),
-        'changed' => $result->changed ? format_date($result->changed, 'short') : 'Not updated',
+        'created' => format_date($result->created, 'short_date'),
+        'changed' => $result->changed ? format_date($result->changed, 'short_date') : 'Not updated',
         'edit' => $edit,
         'preview' => $preview,
         'delete' => $delete,
       ),
     );
   }
+
+  if (!empty($rows)) {
+    $output['new'] = array(
+      '#type' => 'link',
+      '#title' => 'Start a new study',
+      '#href' => 'tool/study/create',
+      '#attributes' => array(
+        'class' => array('new-study'),
+      ),
+    );
+  }
+
   $output['table'] = array(
     '#type' => 'markup',
     '#markup' => theme('table', array(
@@ -113,16 +125,6 @@ function myhaccp_list() {
 
   );
 
-  if (!empty($rows)) {
-    $output['new'] = array(
-      '#type' => 'link',
-      '#title' => 'Start a new study',
-      '#href' => 'tool/study/create',
-      '#attributes' => array(
-        'class' => array('new-study'),
-      ),
-    );
-  }
   return $output;
 }
 

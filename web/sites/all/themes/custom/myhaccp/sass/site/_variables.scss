@@ -35,32 +35,35 @@ $accent-1: #6CB33F;
 $accent-1-lighter: mix($accent-1, #FFF, 80%);
 $accent-1-lightest: mix($accent-1, #FFF, 20%);
 
-// Accent 2 (FSA Light Blue)
+// Accent 2 (FSA Light Blue).
 $accent-2: #007FB2;
 $accent-2-lighter: mix($accent-2, #FFF, 80%);
 
-// Accent 3 (Orange/Brown)
+// Accent 3 (Orange/Brown).
 $accent-3: #F15D22;
 
-// Help tips
+// Help tips.
 $help-tips: #d3d3d3;
 
-// For positive actions, such as submit buttons
+// For positive actions, such as submit buttons.
 $positive: #4D8F46;
 $positive-lighter: $accent-1-lightest;
 
-// For negative actions, such as delete buttons
+// For negative actions, such as delete buttons.
 $negative: #B73939;
 $negative-lighter: mix($negative, #FFF, 10%);
 
-// Grey, used for borders
+// Grey 1, used for borders.
 $grey-1: #eeeeee;
 
-// Grey, used for headings
+// Grey 2, used for headings.
 $grey-2: #999999;
 
-// Grey, dark, passes WCAG
+// Grey 3, dark, passes WCAG.
 $grey-3: #575757;
+
+// Grey 4, table borders.
+$grey-4: #DDDDDD;
 
 //
 // Typography
