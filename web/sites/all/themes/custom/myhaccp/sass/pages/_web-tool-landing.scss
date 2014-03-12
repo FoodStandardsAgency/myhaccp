@@ -16,7 +16,7 @@
   max-width: 44em;
   thead {
     border-bottom: 3px solid $grey-4;
-    th a {
+    th, th a {
       color: $base-color;
     }
   }

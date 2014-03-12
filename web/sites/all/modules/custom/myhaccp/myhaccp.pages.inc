@@ -29,16 +29,16 @@ function myhaccp_list() {
   $header = array(
     'name' => array(
       'data' => 'Study name',
-      'field' => 'name',
+      //'field' => 'name',
     ),
     'created' => array(
       'data' => 'Created on',
-      'field' => 'created',
-      'sort' => 'desc',
+      //'field' => 'created',
+      //'sort' => 'desc',
     ),
     'changed' => array(
       'data' => 'Last updated',
-      'field' => 'changed',
+      //'field' => 'changed',
     ),
     'status' => array(
       'data' => 'Status',
