@@ -715,7 +715,7 @@ function myhaccp_help_modal($js = FALSE, $nid = FALSE) {
             $node_content .= '</article>';
           }
           $phasename = $phase->getName();
-          $menu_items[$phasename][$node->nid] = '<a href="#help-' . $node->nid . '">' . $node->title . '</a>';
+          $menu_items[$phasename][$node->nid] = '<a href="#help-' . $node->nid . '" class="' . $class . '">' . $node->title . '</a>';
         }
       }
     }

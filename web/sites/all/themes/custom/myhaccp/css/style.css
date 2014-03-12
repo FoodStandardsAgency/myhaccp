@@ -2307,7 +2307,8 @@ table thead th .help-tip {
 }
 .ui-dialog .ui-dialog-content .help-content article {
   padding-right: 2em;
-  padding-top: 1em;
+  padding-top: 0.5em;
+  padding-left: 1em;
   border-right: 2px solid #eeeeee;
 }
 .ui-dialog .ui-dialog-content .help-content article.active {
@@ -2338,11 +2339,12 @@ table thead th .help-tip {
   list-style: none;
   padding: 0;
 }
-.ui-dialog .ui-dialog-content .help-menu ul li {
+.ui-dialog .ui-dialog-content .help-menu ul li a {
   padding: 0.5em 1em;
   line-height: 1.5em;
+  display: block;
 }
-.ui-dialog .ui-dialog-content .help-menu ul li.active {
+.ui-dialog .ui-dialog-content .help-menu ul li a.active {
   border-left: 2px solid #999999;
   background: #eeeeee;
 }
