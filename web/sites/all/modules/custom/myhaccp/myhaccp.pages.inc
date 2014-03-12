@@ -29,20 +29,19 @@ function myhaccp_list() {
   $header = array(
     'name' => array(
       'data' => 'Study name',
-      //'field' => 'name',
     ),
     'created' => array(
       'data' => 'Created on',
-      //'field' => 'created',
-      //'sort' => 'desc',
+      'field' => 'm.created',
+      'sort' => 'asc',
     ),
     'changed' => array(
       'data' => 'Last updated',
-      //'field' => 'changed',
+      'field' => 'm.changed',
     ),
     'status' => array(
       'data' => 'Status',
-      'field' => 'status',
+      'field' => 'm.status',
     ),
     'edit' => array(
       'data' => '',
@@ -62,8 +61,9 @@ function myhaccp_list() {
     '!start' => l(t('start one now?'), 'tool/study/create'),
   ));
   // Only display this user's form instances.
-  $query = db_select('mforms_storage', 'm')
-    ->fields('m', array())
+  $query = db_select('mforms_storage', 'm');
+  $query->extend('TableSort')->orderByHeader($header);
+  $query->fields('m', array())
     ->condition('m.uid', $user->uid);
   $results = $query->execute()->fetchAll();
 
@@ -160,6 +160,7 @@ function myhaccp_list() {
       'attributes' => array(
         'class' => array('studies-table'),
       ),
+      'sticky' => FALSE,
     )),
 
   );
