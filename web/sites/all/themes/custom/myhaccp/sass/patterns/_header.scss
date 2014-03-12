@@ -11,8 +11,7 @@ header[role="banner"] {
     }
   }
 
-  /** Styling **/
-
+  // Styling
   .site-details {
     overflow: hidden;
     .logo {
@@ -48,11 +47,11 @@ header[role="banner"] {
     }
   }
 
+  // Utility menu (Log in, Register etc).
   .header-utility {
     margin-bottom: 1em;
     color: $text-lighter;
     font-size: 0.85em;
-    //@include pie-clearfix;
     @media all and (min-width: $break_med_up) {
       margin-top: 0.5em;
     }
@@ -90,6 +89,9 @@ header[role="banner"] {
         li {
           display: inline;
           margin-right: 0.5em;
+          a.active {
+            font-weight: bold;
+          }
         }
       }
     }
