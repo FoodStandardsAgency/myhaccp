@@ -271,17 +271,44 @@ function myhaccp_study_finish($iid) {
   $node->title = NULL;
   $node_output = node_view($node, 'full');
 
-  $complete = l(t('Mark your HACCP study as complete'), "tool/study/$iid/complete/1", array(
-    'attributes' => array(
-      'class' => array('download'),
-    )
-  ));
+  // Set up a study for this result.
+  $study = new Study();
+  $study->setIID($iid);
+  myhaccp_initialise_study($study);
+  $validation_status = $study->getValidationStatus();
+
+  // Get the current page.
+  $destination = drupal_get_destination();
+
+  if ($study->getStatus() == 0 && $validation_status == VALID) {
+    // The study is currently incomplete but valid so present a complete
+    // button to the user.
+    $complete = l(t('Mark your HACCP study as complete'), 'tool/study/' . $study->getIID() . '/complete/1', array(
+      'attributes' => array(
+        'class' => 'complete-link',
+      ),
+      'query' => $destination,
+    ));
+  }
+  elseif ($study->getStatus() == 1) {
+    // The study is current in a complete state (but may be invalid) so
+    // allow the user to change it to incomplete.
+    $complete = l(t('Mark your HACCP study as incomplete'), 'tool/study/' . $study->getIID() . '/complete/0', array(
+      'attributes' => array(
+        'class' => 'complete-link',
+      ),
+      'query' => $destination,
+    ));
+  }
+
+  $download_text = $validation_status == VALID ? t('Download your HACCP study') : t('Download your incomplete HACCP study');
   // Offer a download link.
-  $download = l(t('Download your HACCP study'), "tool/study/$iid/pdf", array(
+  $download = l($download_text, "tool/study/$iid/pdf", array(
     'attributes' => array(
       'class' => array('download'),
-    )
+    ),
   ));
+
   // Output the page.
   $output = drupal_render($node_output);
   $output .= $complete . ' ' . $download;
