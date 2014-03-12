@@ -40,16 +40,22 @@ function myhaccp_list() {
       'data' => 'Last updated',
       //'field' => 'changed',
     ),
-    'edit' => array(
-      'data' => '',
+    'status' => array(
+      'data' => 'Status',
+      'field' => 'status',
     ),
-    'preview' => array(
+    'edit' => array(
       'data' => '',
     ),
     'delete' => array(
       'data' => '',
     ),
+    'complete' => array(
+      'data' => '',
+    ),
   );
+
+  // Prepare the rows.
   $rows = array();
   // Prepare the empty text in case there aren't any rows.
   $empty = t('You haven\'t yet started a study. Would you like to !start', array(
@@ -60,13 +66,16 @@ function myhaccp_list() {
     ->fields('m', array())
     ->condition('m.uid', $user->uid);
   $results = $query->execute()->fetchAll();
-  // Get the dependency injection container.
-  global $container;
-  // Get the current study.
-  $study = $container['study'];
 
   // Build out the rows.
   foreach ($results as $delta => $result) {
+
+    // Set up a study for this result.
+    $study = new Study();
+    $study->setIID($result->iid);
+    myhaccp_initialise_study($study);
+    $validation_status = $study->getValidationStatus();
+
     // Prepare the edit link based on the current stage.
     $current_stage = myhaccp_find_current_stage($result->iid);
     $study_name = myhaccp_find_study_name($result->iid);
@@ -85,18 +94,48 @@ function myhaccp_list() {
     else {
       $name = $study_name;
     }
+    // The resume link.
     $edit = user_access('edit own myhaccp study') || user_access('edit any myhaccp study') ? l(t('Resume'), $edit_link, array('attributes' => array('class' => 'resume-link'))) : '';
-    $preview = user_access('view own myhaccp study') || user_access('view any myhaccp study') ? l(t('Preview'), 'tool/study/' . $result->iid . '/preview', array('attributes' => array('class' => 'preview-link'))) : '';
+    // The delete link.
     $delete = user_access('delete own myhaccp study') || user_access('delete any myhaccp study') ? l(t('Delete'), 'tool/study/' . $result->iid . '/delete', array('attributes' => array('class' => 'delete-link'))) : '';
+    $destination = drupal_get_destination();
+    // The complete link if possible.
+    $complete = '';
+    if (user_access('edit own myhaccp study') || user_access('edit any myhaccp study')) {
+      if ($study->getStatus() == 0 && $validation_status == VALID) {
+        // The study is currently incomplete but valid so present a complete
+        // button to the user.
+        $complete = l(t('Complete'), 'tool/study/' . $result->iid . '/complete/1', array(
+          'attributes' => array(
+            'class' => 'complete-link',
+          ),
+          'query' => $destination,
+        ));
+      }
+      elseif ($study->getStatus() == 1) {
+        // The study is current in a complete state (but may be invalid) so
+        // allow the user to change it to incomplete.
+        $complete = l(t('Incomplete'), 'tool/study/' . $result->iid . '/complete/0', array(
+          'attributes' => array(
+            'class' => 'complete-link',
+          ),
+          'query' => $destination,
+        ));
+      }
+    }
+
+    // Convert status integers to a word.
+    $status = $result->status == 1 ? 'Complete' : 'Incomplete';
 
     $rows[] = array(
       'data' => array(
         'name' => $name,
         'created' => format_date($result->created, 'short_date'),
         'changed' => $result->changed ? format_date($result->changed, 'short_date') : 'Not updated',
+        'status' => $status,
         'edit' => $edit,
-        'preview' => $preview,
         'delete' => $delete,
+        'complete' => $complete,
       ),
     );
   }
@@ -225,28 +264,54 @@ function myhaccp_study_preview($iid) {
  * @return string
  *   The rendered page output.
  */
-function myhaccp_study_complete($iid) {
+function myhaccp_study_finish($iid) {
   // Load the node with the text to show.
   $node = node_load(39);
   drupal_set_title($node->title);
   $node->title = NULL;
   $node_output = node_view($node, 'full');
 
-  // Offer a preview link.
-  $preview = l(t('Preview the study'), "tool/study/$iid/preview", array(
-    'attributes' => array(
-      'class' => array('preview'),
-    )
-  ));
+  // Set up a study for this result.
+  $study = new Study();
+  $study->setIID($iid);
+  myhaccp_initialise_study($study);
+  $validation_status = $study->getValidationStatus();
+
+  // Get the current page.
+  $destination = drupal_get_destination();
+
+  if ($study->getStatus() == 0 && $validation_status == VALID) {
+    // The study is currently incomplete but valid so present a complete
+    // button to the user.
+    $complete = l(t('Mark your HACCP study as complete'), 'tool/study/' . $study->getIID() . '/complete/1', array(
+      'attributes' => array(
+        'class' => 'complete-link',
+      ),
+      'query' => $destination,
+    ));
+  }
+  elseif ($study->getStatus() == 1) {
+    // The study is current in a complete state (but may be invalid) so
+    // allow the user to change it to incomplete.
+    $complete = l(t('Mark your HACCP study as incomplete'), 'tool/study/' . $study->getIID() . '/complete/0', array(
+      'attributes' => array(
+        'class' => 'complete-link',
+      ),
+      'query' => $destination,
+    ));
+  }
+
+  $download_text = $validation_status == VALID ? t('Download your HACCP study') : t('Download your incomplete HACCP study');
   // Offer a download link.
-  $download = l(t('Download the study'), "tool/study/$iid/pdf", array(
+  $download = l($download_text, "tool/study/$iid/pdf", array(
     'attributes' => array(
       'class' => array('download'),
-    )
+    ),
   ));
+
   // Output the page.
   $output = drupal_render($node_output);
-  $output .= $preview . $download;
+  $output .= $complete . ' ' . $download;
   return $output;
 }
 

@@ -18,6 +18,13 @@ interface StudyInterface {
 
   public function setCurrentStage($stage);
 
+  public function getValidationStatus();
+
+  public function setValidationStatus($status);
+
+  public function setStatus($status);
+
+  public function getStatus();
 }
 
 class Study implements StudyInterface {
@@ -49,6 +56,32 @@ class Study implements StudyInterface {
    */
   public function setCurrentStudy($iid) {
     $_SESSION['iid'] = $iid;
+    $this->setIID($iid);
+  }
+
+  /**
+   * Sets the IID of the study.
+   *
+   * @param int $iid
+   */
+  public function setIID($iid) {
+    $this->iid = $iid;
+  }
+
+  /**
+   * Gets the study's IID.
+   *
+   * @return int
+   *   The IID of the study.
+   */
+  public function getIID() {
+    if (isset($this->iid)) {
+      return $this->iid;
+    }
+    if (isset($_SESSION['iid'])) {
+      $this->setIID($_SESSION['iid']);
+      return $this->getIID();
+    }
   }
 
   /**
@@ -173,4 +206,88 @@ class Study implements StudyInterface {
     $this->currentStage = $stage;
   }
 
+  /**
+   * Gets the completion status of the study.
+   */
+  public function getValidationStatus() {
+    if (isset($this->validationStatus)) {
+      return $this->validationStatus;
+    }
+    else {
+      // Iterate through each stage.
+      foreach ($this->getPhases() as $phase) {
+        foreach ($phase->getStages() as $stage) {
+          $results[$stage->getName()] = $stage->getStatus();
+        }
+      }
+      // Remove the intro and review stages.
+      $remove = array(
+        'preparatory_intro',
+        'preparatory_review',
+        'principle_intro',
+        'principle_review',
+      );
+      foreach ($remove as $key) {
+        unset($results[$key]);
+      }
+      // Check for any invalid results.
+      if (in_array(INVALID, $results)) {
+        $this->setValidationStatus(INVALID);
+        return $this->getValidationStatus();
+      }
+      // Check all the results are valid.
+      if (count(array_keys($results, VALID)) == count($results)) {
+        $this->setValidationStatus(VALID);
+        return $this->getValidationStatus();
+      }
+      // Fall back to not started.
+      $this->setValidationStatus(NOT_STARTED);
+      return $this->getValidationStatus();
+    }
+  }
+
+  /**
+   * Sets the completion status of the study.
+   *
+   * @param int $status
+   * @throws exception
+   */
+  public function setValidationStatus($status) {
+    if (!is_int($status)) {
+      throw new exception('Only integer values allowed.');
+    }
+    $this->validationStatus = $status;
+  }
+
+  /**
+   * Sets the status of the study in the database.
+   *
+   * @param int $status
+   *   The integer to store, 0 for incomplete, 1 for complete.
+   * @throws exception
+   */
+  public function setStatus($status) {
+    if (!is_int($status)) {
+      throw new exception('The status must be an integer.');
+    }
+    db_update('mforms_storage')
+      ->fields(array('status' => $status))
+      ->condition('iid', $this->getIID())
+      ->execute();
+  }
+
+  /**
+   * Gets the current status of the study from the database.
+   *
+   * @return int
+   *   The status integer (0 for incomplete, 1 for complete).
+   */
+  public function getStatus() {
+    // Attempt to load the status from the database.
+    $query = db_select('mforms_storage', 'm')
+      ->fields('m', array('status'))
+      ->condition('m.iid', $this->getIID());
+    $status = $query->execute()->fetchField();
+    return $status;
+  }
 }

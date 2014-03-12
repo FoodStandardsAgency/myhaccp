@@ -24,7 +24,7 @@ function principle_review(&$form_state, &$next_step) {
     }
 
     // Construct a url to the stage.
-    $url = 'tool/study/' . $_SESSION['iid'] . '/' . $stage->url;
+    $url = 'tool/study/' . $study->getIID() . '/' . $stage->getUrl();
 
     // Determine what is displayed and the class name for a pass or fail.
     $status = $stage->getStatus();
@@ -78,10 +78,10 @@ function principle_review(&$form_state, &$next_step) {
     '#markup' => $main_output,
   );
 
-  $form['principle_review']['complete'] = array(
-    '#markup' => l(t('Complete study'), 'tool/study/' . $_SESSION['iid'] . '/complete', array(
+  $form['principle_review']['finish'] = array(
+    '#markup' => l(t('Finish study'), 'tool/study/' . $study->getIID() . '/finish', array(
       'attributes' => array(
-        'class' => array('complete'),
+        'class' => array('finish'),
       )
     )),
   );

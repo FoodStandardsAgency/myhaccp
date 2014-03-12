@@ -40,11 +40,18 @@ function myhaccp_schema() {
         'not null' => FALSE,
         'length' => 255,
       ),
+      'status' => array(
+        'description' => 'The completed status of the study.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
     ),
     'indexes' => array(
       'instance_changed' => array('changed'),
       'instance_created' => array('created'),
       'uid' => array('uid'),
+      'status' => array('status'),
     ),
     'primary key' => array('iid'),
   );
@@ -58,13 +65,13 @@ function myhaccp_schema() {
         'not null' => TRUE,
       ),
       'iid' => array(
-        'description' => 'The instance ID of the form.',
+        'description' => 'The instance ID of the study.',
         'type' => 'int',
         'not null' => TRUE,
         'default' => 0,
       ),
       'store_key' => array(
-        'description' => 'The unique key for this aspect of the form.',
+        'description' => 'The unique key for this aspect of the study.',
         'type' => 'varchar',
         'length' => 255,
         'not null' => TRUE,
@@ -111,4 +118,24 @@ function myhaccp_update_7001() {
  */
 function myhaccp_update_7002() {
   module_enable('dialog');
+}
+
+/**
+ * Add a status column to the database.
+ */
+function myhaccp_update_7003() {
+  // The new status field's specifications.
+  $spec = array(
+    'description' => 'The completed status of the study.',
+    'type' => 'int',
+    'not null' => TRUE,
+    'default' => 0,
+    'initial' => 0,
+  );
+  // Add an index.
+  $indexes = array(
+    'status' => array('status'),
+  );
+  // Add the field.
+  db_add_field('mforms_storage', 'status', $spec, $indexes);
 }
