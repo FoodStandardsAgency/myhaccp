@@ -1,0 +1,50 @@
+//
+// Forms relating to the user account, including:
+// - Registration
+// - Login
+// - Forgotten password
+// - Edit
+//
+
+.page-user #main-content {
+  .form-item {
+    margin-bottom: 1em;
+  }
+  #main-content form div.description {
+    max-width: 75%;
+  }
+  #main-content form fieldset {
+    border-top: 1px solid $accent_2;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="date"],
+  input[type="datetime"],
+  input[type="datetime-local"],
+  input[type="email"],
+  input[type="month"],
+  input[type="number"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="time"],
+  input[type="url"],
+  input[type="week"],
+  input[type="password"],
+  select,
+  textarea {
+    min-width: 14em;
+  }
+}
+
+// User login form
+
+// Fix for weird bug in Chrome causing animation to be applied when page loads.
+#user-login {
+  input.form-submit {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
+  }
+}

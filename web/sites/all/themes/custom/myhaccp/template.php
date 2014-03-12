@@ -26,6 +26,17 @@ function myhaccp_preprocess_page(&$variables, $hook) {
     ),
   );
   drupal_add_html_head($metatags, 'add2home');
+
+  // Check if the user is logged in.
+  global $user;
+  if ($user->uid) {
+    // User is logged in.
+  } else {
+    // Remove page title for login and registration pages.
+    if (arg(0) == 'user') {
+      drupal_set_title('');
+    }
+  }
 }
 
 /*
