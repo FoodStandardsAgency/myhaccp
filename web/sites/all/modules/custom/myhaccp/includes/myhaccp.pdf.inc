@@ -62,8 +62,10 @@ function myhaccp_output_pdf($iid) {
       }
       else {
         // There were some failed stages.
-        $output .= '<section class="page"><h2>Failure</h2></section>';
+        $output .= '<section class="page error"><h3>One or more stages that contribute to this section do not pass validation, so the content for this section cannot be displayed.</h3><p>Please return to your HACCP study review pages to find and correct the problem.</p></section>';
       }
+
+      $output .= '</section>';
 
       $mpdf->WriteHTML($output, 2);
     }

@@ -179,7 +179,8 @@ function myhaccp_permission() {
  *
  * @param string $op
  *   Operation to check against.
- *
+ * @param bool $iid
+ *   The IID to check.
  * @return bool
  *   Boolean determining access.
  */
