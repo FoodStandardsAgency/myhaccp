@@ -1,0 +1,46 @@
+//
+// Resources, including resources view.
+//
+
+
+// Resource downloads view.
+.view-display-id-resources_downloads {
+  $dl_colour: $base-color;
+  max-width: 80%;
+  .views-field-field-file-1 {
+    border: 2px solid $dl_colour;
+    overflow: hidden;
+    display: inline-block;
+    .download-label {
+      float: left;
+      margin-right: 1em;
+      background: $dl_colour;
+      color: #FFF;
+      padding: 0.25em 0.75em;
+    }
+    .file {
+      float: left;
+      margin-right: 1em;
+      padding: 0.25em;
+    }
+    .filesize {
+      padding: 0.25em 0.75em;
+      float: left;
+      background-color: $grey-1;
+    }
+  }
+  div.description {
+    margin-bottom: 1em;
+  }
+  .views-row {
+    border-bottom: 1px solid $base-color;
+    padding-bottom: 2em;
+  }
+}
+
+// External resources view
+.view-id-resources.view-display-id-block_2 {
+  .views-row {
+    margin-bottom: 1em;
+  }
+}

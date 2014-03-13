@@ -2511,6 +2511,43 @@ table thead th .help-tip {
   background-image: url(/modules/file/icons/x-office-spreadsheet.png);
 }
 
+.view-display-id-resources_downloads {
+  max-width: 80%;
+}
+.view-display-id-resources_downloads .views-field-field-file-1 {
+  border: 2px solid #006f51;
+  overflow: hidden;
+  display: inline-block;
+}
+.view-display-id-resources_downloads .views-field-field-file-1 .download-label {
+  float: left;
+  margin-right: 1em;
+  background: #006f51;
+  color: #FFF;
+  padding: 0.25em 0.75em;
+}
+.view-display-id-resources_downloads .views-field-field-file-1 .file {
+  float: left;
+  margin-right: 1em;
+  padding: 0.25em;
+}
+.view-display-id-resources_downloads .views-field-field-file-1 .filesize {
+  padding: 0.25em 0.75em;
+  float: left;
+  background-color: #eeeeee;
+}
+.view-display-id-resources_downloads div.description {
+  margin-bottom: 1em;
+}
+.view-display-id-resources_downloads .views-row {
+  border-bottom: 1px solid #006f51;
+  padding-bottom: 2em;
+}
+
+.view-id-resources.view-display-id-block_2 .views-row {
+  margin-bottom: 1em;
+}
+
 /**
  * Autocomplete.
  *
