@@ -2,6 +2,8 @@
 // Resources, including resources view.
 //
 
+
+// Resource downloads view.
 .view-display-id-resources_downloads {
   $dl_colour: $base-color;
   max-width: 80%;
@@ -33,5 +35,12 @@
   .views-row {
     border-bottom: 1px solid $base-color;
     padding-bottom: 2em;
+  }
+}
+
+// External resources view
+.view-id-resources.view-display-id-block_2 {
+  .views-row {
+    margin-bottom: 1em;
   }
 }

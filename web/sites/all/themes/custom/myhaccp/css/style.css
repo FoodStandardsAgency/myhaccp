@@ -2544,6 +2544,10 @@ table thead th .help-tip {
   padding-bottom: 2em;
 }
 
+.view-id-resources.view-display-id-block_2 .views-row {
+  margin-bottom: 1em;
+}
+
 /**
  * Autocomplete.
  *
