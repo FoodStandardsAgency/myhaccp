@@ -114,7 +114,7 @@ function myhaccp_menu() {
     'page callback' => 'myhaccp_output_pdf',
     'page arguments' => array(2),
     'access callback' => 'myhaccp_access',
-    'access arguments' => array('view'),
+    'access arguments' => array('view', 2),
     'file' => 'includes/myhaccp.pdf.inc',
     'type' => MENU_NORMAL_ITEM,
   );
@@ -179,7 +179,8 @@ function myhaccp_permission() {
  *
  * @param string $op
  *   Operation to check against.
- *
+ * @param bool $iid
+ *   The IID to check.
  * @return bool
  *   Boolean determining access.
  */
@@ -414,6 +415,8 @@ function myhaccp_study_resume($form, &$form_state, $iid = FALSE) {
 
 /**
  * Initialises a study and all dependencies.
+ *
+ * Expects that the IID has already been set in the study with $study->setIID().
  */
 function myhaccp_initialise_study(&$study) {
   if (class_exists('Pimple')) {
@@ -484,20 +487,16 @@ function myhaccp_theme($existing, $type, $theme, $path) {
     ),
   );
   if (class_exists('Configuration')) {
-    global $container;
-    // Avoid a fatal error when using update.php
-    if (empty($container)) {
-      myhaccp_di_container();
-    }
-    $files = $container['configuration']->getFiles();
-    foreach ($files as $name => $phase) {
+    $configuration = new Configuration();
+    $files = $configuration->getPDFSections();
+    foreach ($files as $name => $section) {
       // Now the hook. We want to pass in the form_state data so have added the
       // data variable. This will get properly sorted by a preprocess function so
       // the template has the correct data to display.
       $hooks[$name] = array(
-        'variables' => array('data' => NULL),
+        'variables' => array('study' => NULL),
         'file' => $name . ".theme.inc",
-        'path' => "$path/mforms/$phase/$name",
+        'path' => "$path/mforms/sections/$name",
         'template' => $name
       );
     }

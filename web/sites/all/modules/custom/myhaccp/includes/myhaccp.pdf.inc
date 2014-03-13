@@ -7,9 +7,16 @@ function myhaccp_output_pdf($iid) {
   // Get the dependency injection container.
   global $container;
   $configuration = $container['configuration'];
-  $keys = array_keys($configuration->getMachineNames());
 
-  $study = myhaccp_study_get_stages_data($keys, $iid);
+  $study = new Study();
+  $study->setIID($iid);
+  myhaccp_initialise_study($study);
+  // Initialise mforms so we have access to its functions. This is needed
+  // when loading the forms to access the checkbox labels for example.
+  myhaccp_myhaccp_mforms_init();
+  // Set the session IID.
+  $_SESSION['iid'] = $iid;
+
   if (!empty($study)) {
     // Load the mPDF library and start a new PDF.
     $path = libraries_get_path('mpdf');
@@ -23,42 +30,43 @@ function myhaccp_output_pdf($iid) {
     $mpdf->shrink_tables_to_fit = 1.2;
     $mpdf->WriteHTML($stylesheet, 1);
 
-    // Determine the orientation of the pages and where page breaks occur.
-    $breaks = array(
-      'preparatory_c_1' => 'P',
-      'preparatory_d' => 'P',
-      'preparatory_e' => 'P',
-      'preparatory_g' => 'P',
-      'principle_1_1' => 'L',
-      'principle_1_2' => 'L',
-      'principle_1_3' => 'L',
-      'principle_2_1' => 'L',
-      'principle_3' => 'L',
-      'principle_5' => 'L',
-      'principle_6' => 'P',
-      'principle_7' => 'P',
-    );
+    $sections = $configuration->getPDFSections();
 
     // Prepare each page.
-    foreach ($study as $stage => $data) {
+    foreach ($sections as $key => $section) {
+      $output = '<section class="page">';
       // We need to fake the page title on principle 5.
-      if ($stage == 'principle_5') {
+      if ($key == 'plan') {
         $mpdf->SetTopMargin('25');
-        $mpdf->SetHTMLHeader('<h1>The HACCP Plan</h1>');
+        $mpdf->SetHTMLHeader('<h1>' . $section['title'] . '</h1>');
       }
       else {
         // Reset back to normal.
         $mpdf->SetTopMargin('12');
         $mpdf->SetHTMLHeader('');
-      }
-      // Check for a page break.
-      if (isset($breaks[$stage])) {
-        // Get the orientation.
-        $orientation = $breaks[$stage];
-        $mpdf->AddPage($orientation);
+        $output .= '<h1>' . $section['title'] . '</h1>';
       }
 
-      $output = theme($stage, array('data' => $data));
+      // Get the orientation.
+      $mpdf->AddPage($section['orientation']);
+
+      // Check the validation status of the needed stages.
+      $statuses = array();
+      foreach ($section['validation'] as $stage_name) {
+        $stage = $study->getStage($stage_name);
+        $statuses[] = $stage->getStatus();
+      }
+      // If all statuses are valid then all good.
+      if (count(array_keys($statuses, VALID)) == count($statuses)) {
+        $output .= theme($key, array('study' => $study));
+      }
+      else {
+        // There were some failed stages.
+        $output .= '<section class="page error"><h3>One or more stages that contribute to this section do not pass validation, so the content for this section cannot be displayed.</h3><p>Please return to your HACCP study review pages to find and correct the problem.</p></section>';
+      }
+
+      $output .= '</section>';
+
       $mpdf->WriteHTML($output, 2);
     }
 
