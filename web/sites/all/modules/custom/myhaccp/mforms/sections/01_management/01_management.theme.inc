@@ -16,9 +16,11 @@
  *   Form state data to process into variables for the template
  *   to display.
  */
-function myhaccp_preprocess_preparatory_b(&$variables) {
-  $stage = 'preparatory_b';
-  $values = $variables['data'][$stage];
+function myhaccp_preprocess_01_management(&$variables) {
+  $stage_name = 'preparatory_b';
+  $study = $variables['study'];
+  $data = $study->getStage($stage_name)->getData();
+  $values = $data['preparatory_b'];
   // Iterate over the checkboxes fetching their labels.
   $names = myhaccp_prepare_checkboxes_output('preparatory_b', 'b_1', $values);
 

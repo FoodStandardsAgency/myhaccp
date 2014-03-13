@@ -16,63 +16,80 @@
  *   Form state data to process into variables for the template
  *   to display.
  */
-function myhaccp_preprocess_preparatory_c_2(&$variables) {
-  $stage = 'preparatory_c_2';
-  $values = $variables['data'][$stage]['wrapper'];
+function myhaccp_preprocess_02_terms(&$variables) {
+  // This section is made up of data from three stages.
+  $study = $variables['study'];
+  $data = $study->getStage('preparatory_a')->getData();
+  $preparatory_a = $data['preparatory_a'];
+  $data = $study->getStage('preparatory_c_1')->getData();
+  $preparatory_c_1 = $data['preparatory_c_1'];
+  $data = $study->getStage('preparatory_c_2')->getData();
+  $preparatory_c_2 = $data['preparatory_c_2']['wrapper'];
+
   $content = '';
+
+  $variables['c_intro'] = t('<p>This <strong>@c_1</strong> HACCP plan covers:<br/><strong>@c_2</strong></p><p>
+It will start at <strong>@start</strong> through to <strong>@end</strong>.</p>',
+    array(
+      '@c_1' => $preparatory_c_1['c_1'],
+      '@c_2' => $preparatory_c_1['c_2'],
+      '@start' => $preparatory_c_1['c_3']['start'],
+      '@end' => $preparatory_c_1['c_3']['end'],
+    )
+  );
 
   // Physical hazards.
   $physical_hazards = array();
-  if (!empty($values['physical_c_4']['physical'])) {
-    foreach ($values['physical_c_4']['physical'] as $key => $value) {
+  if (!empty($preparatory_c_2['physical_c_4']['physical'])) {
+    foreach ($preparatory_c_2['physical_c_4']['physical'] as $key => $value) {
       if ($key === $value) {
         $physical_hazards[] = $value;
       }
     }
   }
-  if (array_get($values, 'physical_c_4.physical_other', FALSE)) {
+  if (array_get($preparatory_c_2, 'physical_c_4.physical_other', FALSE)) {
     $physical_other = explode("\r\n", trim($values['physical_c_4']['physical_other']));
     $physical_hazards = array_merge($physical_hazards, $physical_other);
   }
 
   // Chemical hazards.
   $chemical_hazards = array();
-  if (!empty($values['chemical_c_4']['chemical'])) {
-    foreach ($values['chemical_c_4']['chemical'] as $key => $value) {
+  if (!empty($preparatory_c_2['chemical_c_4']['chemical'])) {
+    foreach ($preparatory_c_2['chemical_c_4']['chemical'] as $key => $value) {
       if ($key === $value) {
         $chemical_hazards[] = $value;
       }
     }
   }
-  if (array_get($values, 'chemical_c_4.chemical_other', FALSE)) {
+  if (array_get($preparatory_c_2, 'chemical_c_4.chemical_other', FALSE)) {
     $chemical_other = explode("\r\n", trim($values['chemical_c_4']['chemical_other']));
     $chemical_hazards = array_merge($chemical_hazards, $chemical_other);
   }
 
   // Biological hazards.
   $biological_hazards = array();
-  if (!empty($values['biological_c_4']['biological'])) {
-    foreach ($values['biological_c_4']['biological'] as $key => $value) {
+  if (!empty($preparatory_c_2['biological_c_4']['biological'])) {
+    foreach ($preparatory_c_2['biological_c_4']['biological'] as $key => $value) {
       if ($key === $value) {
         $biological_hazards[] = $value;
       }
     }
   }
-  if (array_get($values, 'biological_c_4.biological_other', FALSE)) {
+  if (array_get($preparatory_c_2, 'biological_c_4.biological_other', FALSE)) {
     $biological_other = explode("\r\n", trim($values['biological_c_4']['biological_other']));
     $biological_hazards = array_merge($biological_hazards, $biological_other);
   }
 
   // Allergens hazards.
   $allergens_hazards = array();
-  if (!empty($values['allergens_c_4']['allergens'])) {
-    foreach ($values['allergens_c_4']['allergens'] as $key => $value) {
+  if (!empty($preparatory_c_2['allergens_c_4']['allergens'])) {
+    foreach ($preparatory_c_2['allergens_c_4']['allergens'] as $key => $value) {
       if ($key === $value) {
         $allergens_hazards[] = $value;
       }
     }
   }
-  if (array_get($values, 'allergens_c_4.allergens_other', FALSE)) {
+  if (array_get($preparatory_c_2, 'allergens_c_4.allergens_other', FALSE)) {
     $allergens_other = explode("\r\n", trim($values['allergens_c_4']['allergens_other']));
     $allergens_hazards = array_merge($allergens_hazards, $allergens_other);
   }
@@ -103,8 +120,14 @@ function myhaccp_preprocess_preparatory_c_2(&$variables) {
   // Finally we have the output.
   $variables['c_4'] = $content;
 
-  // Get values from Prep Stage A and merge in.
-  $prep_a_data = myhaccp_preparatory_stage_a_data();
-  $variables = array_merge($variables, $prep_a_data);
+  // Iterate over the checkboxes fetching their labels.
+  $names = myhaccp_prepare_checkboxes_output('preparatory_a', 'a_1', $preparatory_a);
+
+  // a_1
+  $variables['a_1_title'] = t('The company has in place a number of effective prerequisite programmes, including:');
+  $variables['a_1'] = !empty($names) ? '<ul><li>' . implode('</li><li>', $names) . '</li></ul>' : '';
+  // a_2
+  $variables['a_2_title'] = t('The location of the above documents is:');
+  $variables['a_2'] = $preparatory_a['a_2'] ? $preparatory_a['a_2'] : '';
 
 }
