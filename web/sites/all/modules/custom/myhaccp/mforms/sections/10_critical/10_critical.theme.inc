@@ -16,9 +16,10 @@
  *   Form state data to process into variables for the template
  *   to display.
  */
-function myhaccp_preprocess_principle_3(&$variables) {
-  $stage = 'principle_3';
-  $values = $variables['data'][$stage];
+function myhaccp_preprocess_10_critical(&$variables) {
+  $study = $variables['study'];
+  $data = $study->getStage('principle_3')->getData();
+  $principle_3 = $data['principle_3'];
 
   // Get details of all Hazards.
   $hazards = Hazards::getInstance();
@@ -35,9 +36,9 @@ function myhaccp_preprocess_principle_3(&$variables) {
   );
 
   // Generate table row for each hazard.
-  foreach ($values as $h_key => $ccp_hazard) {
+  foreach ($principle_3 as $h_key => $ccp_hazard) {
     // Only generate a row if there is a control measure set.
-    if(!empty($hazards->hazards[$h_key]->controlMeasure)) {
+    if (!empty($hazards->hazards[$h_key]->controlMeasure)) {
       $rows[] = array(
         // Step No.
         array('data' => $hazards->hazards[$h_key]->step->no),
@@ -59,37 +60,4 @@ function myhaccp_preprocess_principle_3(&$variables) {
 
   // Generate the table through a theme function.
   $variables['p_3_table'] = theme('table', array('header' => $header, 'rows' => $rows));
-
-
-}
-
-/**
- *
- * Return formatted critical limit information for a hazard.
- *
- * @param string $h_key
- *   The key of the Hazard.
- */
-function myhaccp_principle_3_cl($h_key) {
-  $data = mforms_get_vals('myhaccp', 'principle_3');
-  $values = $data['principle_3'];
-
-  $content ='';
-  if($h_key) {
-    // 1. What is the critical limit for this critical control point (what separates safe from potentially unsafe product)?
-    if(!empty($values[$h_key]['3_1'])) {
-      $content .= '<p><strong>' . $values[$h_key]['3_1'] . '</strong></p><br />';
-    }
-
-    // Is there a target value?
-    if(!empty($values[$h_key]['3_6'])) {
-      $content .= '<p><strong>Target value:</strong> ' . $values[$h_key]['3_6'] . '</p><br />';
-    }
-
-    if(!empty($values[$h_key]['3_7'])) {
-      $content .= '<p><strong>Tolerances:</strong> ' . $values[$h_key]['3_7'] . '</p>';
-    }
-
-    return $content;
-  }
 }

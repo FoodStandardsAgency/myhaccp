@@ -16,9 +16,10 @@
  *   Form state data to process into variables for the template
  *   to display.
  */
-function myhaccp_preprocess_principle_1_3(&$variables) {
-  $stage = 'principle_1_3';
-  $values = $variables['data'][$stage];
+function myhaccp_preprocess_08_control(&$variables) {
+  $study = $variables['study'];
+  $data = $study->getStage('principle_1_3')->getData();
+  $principle_1_3 = $data['principle_1_3'];
 
   // Get details of all Hazards.
   $hazards = Hazards::getInstance();
@@ -35,9 +36,9 @@ function myhaccp_preprocess_principle_1_3(&$variables) {
   );
 
   // Generate table row for each hazard.
-  foreach ($values['instance_table'] as $h_key => $controlled_hazard) {
+  foreach ($principle_1_3['instance_table'] as $h_key => $controlled_hazard) {
     // Only generate a row if there is a control measure set.
-    if(!empty($hazards->hazards[$h_key]->controlMeasure)) {
+    if (!empty($hazards->hazards[$h_key]->controlMeasure)) {
       $rows[] = array(
         // Step No.
         array('data' => $hazards->hazards[$h_key]->step->no),
