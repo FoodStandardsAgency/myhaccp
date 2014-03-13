@@ -16,24 +16,25 @@
  *   Form state data to process into variables for the template
  *   to display.
  */
-function myhaccp_preprocess_preparatory_d(&$variables) {
-  $stage = 'preparatory_d';
-  $values = $variables['data'][$stage];
+function myhaccp_preprocess_03_team(&$variables) {
+  $study = $variables['study'];
+  $data = $study->getStage('preparatory_d')->getData();
+  $preparatory_d = $data['preparatory_d'];
 
   $instances = array();
 
-  // Find all instances
-  // Each instance = one team member
-  foreach($values as $key => $value) {
-    if(strpos($key, 'instance') !== false) {
+  // Find all instances.
+  // Each instance = one team member.
+  foreach ($preparatory_d as $key => $value) {
+    if (strpos($key, 'instance') === 0) {
       $instances[] = $value;
     }
   }
 
-  // Generate a table of team members
-  if(!empty($instances)) {
+  // Generate a table of team members.
+  if (!empty($instances)) {
 
-    // First the table headers
+    // First the table headers.
     $header = array(
       array('data' => t('Role')),
       array('data' => t('Name')),
@@ -42,7 +43,7 @@ function myhaccp_preprocess_preparatory_d(&$variables) {
       array('data' => t('Experience'))
     );
 
-    // Now the table rows
+    // Now the table rows.
     foreach ($instances as $instance) {
       $role = !empty($instance['d_3']) ? $instance['d_3'] : '';
       $name = !empty($instance['d_1']) ? $instance['d_1'] : '';
@@ -62,15 +63,16 @@ function myhaccp_preprocess_preparatory_d(&$variables) {
       );
     }
 
-    // Generate the table through a theme function
+    // Generate the table through a theme function.
     $variables['d_1_team'] = theme('table', array('header' => $header, 'rows' => $rows));
   }
 
-  // Team skills
-  if (!empty($values['team_skills']) && $values['team_skills'] == 'Yes') {
+  // Team skills.
+  if (!empty($preparatory_d['team_skills']) && $preparatory_d['team_skills'] == 'Yes') {
     $variables['d_1_team_skills'] = '<p>' . t('We confirm that the team have sufficient skills (scientific/technical knowledge and HACCP expertise) to ensure that the HACCP study will be effective.') . '</p>';
-  } elseif(!empty($values['team_skills']) && !empty($values['team_no_skills']) && $values['team_skills'] == 'No') {
-    $variables['d_1_team_skills'] = '<p>' . t('The team do not have sufficient skills (scientific/technical knowledge and HACCP expertise) to ensure that the HACCP study will be effective. We plan to address this issue in the following way:') . '</p><p>' . $values['team_no_skills'] . '</p>';
+  }
+  elseif (!empty($preparatory_d['team_skills']) && !empty($preparatory_d['team_no_skills']) && $preparatory_d['team_skills'] == 'No') {
+    $variables['d_1_team_skills'] = '<p>' . t('The team do not have sufficient skills (scientific/technical knowledge and HACCP expertise) to ensure that the HACCP study will be effective. We plan to address this issue in the following way:') . '</p><p>' . $preparatory_d['team_no_skills'] . '</p>';
   }
 
 }

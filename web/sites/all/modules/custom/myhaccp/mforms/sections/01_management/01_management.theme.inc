@@ -17,12 +17,11 @@
  *   to display.
  */
 function myhaccp_preprocess_01_management(&$variables) {
-  $stage_name = 'preparatory_b';
   $study = $variables['study'];
-  $data = $study->getStage($stage_name)->getData();
-  $values = $data['preparatory_b'];
+  $data = $study->getStage('preparatory_b')->getData();
+  $preparatory_b = $data['preparatory_b'];
   // Iterate over the checkboxes fetching their labels.
-  $names = myhaccp_prepare_checkboxes_output('preparatory_b', 'b_1', $values);
+  $names = myhaccp_prepare_checkboxes_output('preparatory_b', 'b_1', $preparatory_b);
 
   // b_1 Logic: IF 'I am the management and can confirm that I am committed.'  is selected:
   if (in_array('N/A - I am the management and can confirm that I am committed.', $names)) {
@@ -36,5 +35,5 @@ function myhaccp_preprocess_01_management(&$variables) {
   }
   // b_2
   $variables['b_2_title'] = t('Other evidence of management commitment');
-  $variables['b_2'] = $values['b_2'] ? $values['b_2'] : '';
+  $variables['b_2'] = $preparatory_b['b_2'] ? $preparatory_b['b_2'] : '';
 }

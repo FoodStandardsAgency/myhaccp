@@ -48,7 +48,7 @@ It will start at <strong>@start</strong> through to <strong>@end</strong>.</p>',
     }
   }
   if (array_get($preparatory_c_2, 'physical_c_4.physical_other', FALSE)) {
-    $physical_other = explode("\r\n", trim($values['physical_c_4']['physical_other']));
+    $physical_other = explode("\r\n", trim($preparatory_c_2['physical_c_4']['physical_other']));
     $physical_hazards = array_merge($physical_hazards, $physical_other);
   }
 
@@ -62,7 +62,7 @@ It will start at <strong>@start</strong> through to <strong>@end</strong>.</p>',
     }
   }
   if (array_get($preparatory_c_2, 'chemical_c_4.chemical_other', FALSE)) {
-    $chemical_other = explode("\r\n", trim($values['chemical_c_4']['chemical_other']));
+    $chemical_other = explode("\r\n", trim($preparatory_c_2['chemical_c_4']['chemical_other']));
     $chemical_hazards = array_merge($chemical_hazards, $chemical_other);
   }
 
@@ -76,7 +76,7 @@ It will start at <strong>@start</strong> through to <strong>@end</strong>.</p>',
     }
   }
   if (array_get($preparatory_c_2, 'biological_c_4.biological_other', FALSE)) {
-    $biological_other = explode("\r\n", trim($values['biological_c_4']['biological_other']));
+    $biological_other = explode("\r\n", trim($preparatory_c_2['biological_c_4']['biological_other']));
     $biological_hazards = array_merge($biological_hazards, $biological_other);
   }
 
@@ -90,7 +90,7 @@ It will start at <strong>@start</strong> through to <strong>@end</strong>.</p>',
     }
   }
   if (array_get($preparatory_c_2, 'allergens_c_4.allergens_other', FALSE)) {
-    $allergens_other = explode("\r\n", trim($values['allergens_c_4']['allergens_other']));
+    $allergens_other = explode("\r\n", trim($preparatory_c_2['allergens_c_4']['allergens_other']));
     $allergens_hazards = array_merge($allergens_hazards, $allergens_other);
   }
 

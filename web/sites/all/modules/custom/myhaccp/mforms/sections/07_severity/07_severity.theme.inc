@@ -16,9 +16,10 @@
  *   Form state data to process into variables for the template
  *   to display.
  */
-function myhaccp_preprocess_principle_1_2(&$variables) {
-  $stage = 'principle_1_2';
-  $values = $variables['data'][$stage];
+function myhaccp_preprocess_07_severity(&$variables) {
+  $study = $variables['study'];
+  $data = $study->getStage('principle_1_2')->getData();
+  $principle_1_2 = $data['principle_1_2'];
 
   // Get details of all Hazards.
   $hazards = Hazards::getInstance();
@@ -34,7 +35,7 @@ function myhaccp_preprocess_principle_1_2(&$variables) {
   );
 
   // Generate table for each step.
-  foreach ($values as $key => $step) {
+  foreach ($principle_1_2 as $key => $step) {
     // Ignore this item if it's the threshold.
     if ($key == 'threshold') {
       break;
@@ -67,11 +68,11 @@ function myhaccp_preprocess_principle_1_2(&$variables) {
 
   }
 
-  // Add all the tables together into one variable
+  // Add all the tables together into one variable.
   $variables['p_1_2_hazard_table'] = '<div>' . implode('</div><div>', $step_ha_tables) . '</div>';
 
-  // Threshold
-  if(!empty($values['threshold'])) {
-    $variables['p_1_2_threshold'] = t('The threshold, above which we consider the hazard to be \'significant\' is: <strong>') . $values['threshold'] . '</strong>';
+  // Threshold.
+  if (!empty($principle_1_2['threshold'])) {
+    $variables['p_1_2_threshold'] = t('The threshold, above which we consider the hazard to be \'significant\' is: <strong>') . $principle_1_2['threshold'] . '</strong>';
   }
 }
