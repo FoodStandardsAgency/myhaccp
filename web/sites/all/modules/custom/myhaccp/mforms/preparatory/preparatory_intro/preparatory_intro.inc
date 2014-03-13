@@ -29,8 +29,8 @@ function preparatory_intro(&$form_state, &$next_step) {
 
   $form = array();
 
-  $form['preparatory_intro']['node'] = array(
-    '#markup' => drupal_render($node_output),
+  $form['preparatory_intro'] = array(
+    '#tree' => TRUE,
   );
 
   $form['preparatory_intro']['study_name'] = array(
@@ -38,6 +38,10 @@ function preparatory_intro(&$form_state, &$next_step) {
     '#title' => t('Study name'),
     '#help_text' => t("The study name will be shown on your output document as well as on your studies overview page and is used to tell studies apart from each other. It can be the name of your product or anything else that makes sense to you."),
     '#default_value' => array_get($values, 'preparatory_intro.study_name', array()),
+  );
+
+  $form['preparatory_intro']['node'] = array(
+    '#markup' => drupal_render($node_output),
   );
 
   return $form;

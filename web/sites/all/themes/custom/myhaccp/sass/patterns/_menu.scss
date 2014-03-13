@@ -135,10 +135,11 @@ ul.tabs.primary {
     display: inline;
     margin-right: 0.25em;
     a {
-      @include agile-button($style: primary);
+      @include agile-button();
       display: inline-block;
       &.active {
-        background-color: $accent-1;
+        background-color: $grey-2;
+        color: #FFF;
       }
     }
   }
@@ -151,7 +152,6 @@ ul.tabs.secondary {
     display: inline;
     margin-right: 1em;
     a {
-      // @include agile-button($style: primary, $size: small);
       color: $base-color;
       padding-bottom: 0.25em;
       &.active {
