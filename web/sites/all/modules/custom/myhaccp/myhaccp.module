@@ -763,6 +763,8 @@ function myhaccp_help_modal($js = FALSE, $nid = FALSE) {
     $menu .= '<h3>Principles</h3><ul class="phase"><li>' . $menu_principle . '</li></ul></nav>';
 
     $contents = $menu . $node_content;
+    // Add a footer close button.
+    $contents .= '<footer><a href="#close">Close guidance</a></footer>';
 
     // Return the modal with node title and rendered contents.
     $commands = array();

@@ -41,9 +41,11 @@ function preparatory_c_2(&$form_state, &$next_step) {
 
   $form['preparatory_c_2']['wrapper_title'] = array(
     '#markup' => '<div class="label">' . t('4. What hazards will the HACCP plan cover? !tip !help', array(
-      '!tip' => _help_tip(15),
-      '!help' => '<div class="help-text">State which hazards will be considered in the HACCP plan (i.e. Biological, Physical, Chemical, Allergenic).</div>',
-    )) . '</div>' ,
+        '!tip' => _help_tip(),
+        '!help' => '<div class="help-text">' . t("State which hazards will be considered in the HACCP plan (i.e. Biological, Physical, Chemical, Allergenic). !link", array(
+            '!link' => myhaccp_prepare_more_link(15),
+          )) . '</div>'
+    )) . '</div>',
 
   );
 
@@ -59,25 +61,23 @@ function preparatory_c_2(&$form_state, &$next_step) {
   $form['preparatory_c_2']['wrapper']['physical_c_4']['physical'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Physical'),
-    '#options' => drupal_map_assoc(
-      array(
-        t('Metal'),
-        t('Wood splinters'),
-        t('Glass and brittle plastic'),
-        t('Flexible plastic'),
-        t('Plasters'),
-        t('Stones'),
-        t('Shell'),
-        t('Fruit stones'),
-        t('Insects'),
-        t('Paper/board'),
-        t('Hair'),
-        t('Bones'),
-        t('Feathers'),
-        t('String'),
-        t('Finger nails'),
-        t('Pests'),
-      )
+    '#options' => array(
+      'metal' => t('Metal'),
+      'wood' => t('Wood splinters'),
+      'glass' => t('Glass and brittle plastic'),
+      'plastic' => t('Flexible plastic'),
+      'plasters' => t('Plasters'),
+      'stones' => t('Stones'),
+      'shell' => t('Shell'),
+      'fruit' => t('Fruit stones'),
+      'insects' => t('Insects'),
+      'paper' => t('Paper/board'),
+      'hair' => t('Hair'),
+      'bones' => t('Bones'),
+      'feathers' => t('Feathers'),
+      'string' => t('String'),
+      'nails' => t('Finger nails'),
+      'pests' => t('Pests'),
     ),
     '#default_value' => array_get($values, 'preparatory_c_2.wrapper.physical_c_4.physical', array()),
   );
@@ -100,23 +100,21 @@ function preparatory_c_2(&$form_state, &$next_step) {
   $form['preparatory_c_2']['wrapper']['chemical_c_4']['chemical'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Chemical'),
-    '#options' => drupal_map_assoc(
-      array(
-        t('Ingredient dependent Mycotoxins (e.g. deoxynivalenol in cereals; patulin in apples)'),
-        t('Ingredient dependent Phyto-toxins (plant-based e.g. lectins in kidney beans; cyanogenic glycosides in cassava)'),
-        t('Ingredient dependent Phyco-toxins (associated with shellfish and certain pelagic fish)'),
-        t('Agricultural residues: Pesticides'),
-        t('Agricultural residues: Nitrate'),
-        t('Veterinary Drugs'),
-        t('Non-permitted additives (e.g. konjac in children’s confectionery)'),
-        t('Heavy metals (arsenic, cadmium, lead, mercury)'),
-        t('Other microbiologically produced toxins (e.g. histamine in fish)'),
-        t('Environmental contaminants (e.g. dioxins)'),
-        t('Process toxicants (e.g. acrylamide in hig temeperature processed carbohydrate rich foods)'),
-        t('Adulterants (Synthetic colours (e.g. Sudan dyes), melamine, water & sugar (e.g honey))'),
-        t('Cleaning & sanitising chemicals'),
-        t('Chemical residues migrating from packaging (e.g. plasticisers, BPA)'),
-      )
+    '#options' => array(
+      'mycotoxins' => t('Ingredient dependent Mycotoxins (e.g. deoxynivalenol in cereals; patulin in apples)'),
+      'phytotoxins' => t('Ingredient dependent Phyto-toxins (plant-based e.g. lectins in kidney beans; cyanogenic glycosides in cassava)'),
+      'phycotoxins' => t('Ingredient dependent Phyco-toxins (associated with shellfish and certain pelagic fish)'),
+      'mycotoxins' => t('Agricultural residues: Pesticides'),
+      'nitrate' => t('Agricultural residues: Nitrate'),
+      'drugs' => t('Veterinary Drugs'),
+      'additives' => t('Non-permitted additives (e.g. konjac in children’s confectionery)'),
+      'heavy_metals' => t('Heavy metals (arsenic, cadmium, lead, mercury)'),
+      'micro_toxins' => t('Other microbiologically produced toxins (e.g. histamine in fish)'),
+      'environmental_contaminants' => t('Environmental contaminants (e.g. dioxins)'),
+      'process_toxicants' => t('Process toxicants (e.g. acrylamide in hig temeperature processed carbohydrate rich foods)'),
+      'adulterants' => t('Adulterants (Synthetic colours (e.g. Sudan dyes), melamine, water & sugar (e.g honey))'),
+      'cleaning' => t('Cleaning & sanitising chemicals'),
+      'chemical' => t('Chemical residues migrating from packaging (e.g. plasticisers, BPA)'),
     ),
     '#default_value' => array_get($values, 'preparatory_c_2.wrapper.chemical_c_4.chemical', array()),
   );
@@ -139,23 +137,23 @@ function preparatory_c_2(&$form_state, &$next_step) {
   $form['preparatory_c_2']['wrapper']['biological_c_4']['biological'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Biological'),
-    '#options' => drupal_map_assoc(array(
-      t('Salmonella'),
-      t('Listeria sp.'),
-      t('Escherichia coli'),
-      t('Clostridium botulinum'),
-      t('Clostridia perfringens'),
-      t('Staphylococcus aureus'),
-      t('Bacillus spp.'),
-      t('Campylobacter'),
-      t('Shigella'),
-      t('Hepatitis'),
-      t('Cryptosporidium (parasitic protozoa)'),
-      t('Psudomonas Spp.'),
-      t('Hepatitis'),
-      t('Norovirus'),
-      t('Toxoplasma'),
-    )),
+    '#options' => array(
+      'salmonella' => t('Salmonella'),
+      'listeria' => t('Listeria sp.'),
+      'escherichia' => t('Escherichia coli'),
+      'clortridium' => t('Clostridium botulinum'),
+      'clorstridia' => t('Clostridia perfringens'),
+      'staphylococcus' => t('Staphylococcus aureus'),
+      'bacillus' => t('Bacillus spp.'),
+      'campylobacter' => t('Campylobacter'),
+      'shigella' => t('Shigella'),
+      'hepatitis' => t('Hepatitis'),
+      'cryptosporidium' => t('Cryptosporidium (parasitic protozoa)'),
+      'psudomonas' => t('Psudomonas Spp.'),
+      'hepatitis' => t('Hepatitis'),
+      'norovirus' => t('Norovirus'),
+      'taxoplasma' => t('Toxoplasma'),
+    ),
     '#default_value' => array_get($values, 'preparatory_c_2.wrapper.biological_c_4.biological', array()),
   );
 
@@ -177,23 +175,21 @@ function preparatory_c_2(&$form_state, &$next_step) {
   $form['preparatory_c_2']['wrapper']['allergens_c_4']['allergens'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Allergens'),
-    '#options' => drupal_map_assoc(
-      array(
-        t('Eggs and products thereof'),
-        t('Milk and products thereof (including lactose), except: (a) whey used for making alcoholic distillates including ethyl alcohol of agricultural origin (b) lactitol'),
-        t('Fish and products thereof, except fish gelatine used as carrier for vitamin or carotenoid preparations; fish gelatine or Isinglass used as fining agent in beer and wine.'),
-        t('Sesame seeds and products thereof'),
-        t('Crustaceans and products thereof'),
-        t('Peanuts and products thereof'),
-        t('Cereals containing gluten, namely: wheat, rye, barley, oats, spelt, kamut, or their hybridised strains, and products thereof, except: (a) wheat based glucose syrups including dextrose: (b) wheat based maltodextrins; (c) glucose syrups based on barley; (d) cereals used for making alcoholic distillates including ethyl alcohol of agricultural origin.'),
-        t('Celery and products thereof'),
-        t('Mustard and products thereof'),
-        t('Lupin and products thereof'),
-        t('Soybeans and products thereof, except: (a)fully refined soybean oil and fat (b) natural mixed tocopherols (E306), natural D-alpha tocopherol, natural D-alpha tocopherol acetate, and natural D-alpha tocopherol succinate from soybean sources (c) vegetable oils derived phytosterol esters from soybean sources (d) plant stanol ester produced from vegetable oil sterols from soybean sources'),
-        t('Molluscs and products thereof'),
-        t('Sulphur dioxide and sulphites at concentrations of more than 10mg/kg or 10mg/litre in terms of the total SO2 which are to be calculated for products as proposed ready for consumption or as reconstituted according to the instructions of the manufacturers'),
-        t('Nuts, namely: almonds, hazelnuts,walnuts,cashewnuts, pecan nuts, Brazil nuts, pistachio nuts, macadamia or Queensland nuts and products thereof, except for nuts used for making alcoholic distillates including ethyl alcohol of agricultural origin.'),
-      )
+    '#options' => array(
+      'eggs' => t('Eggs and products thereof'),
+      'milk' => t('Milk and products thereof (including lactose), except: (a) whey used for making alcoholic distillates including ethyl alcohol of agricultural origin (b) lactitol'),
+      'fish' => t('Fish and products thereof, except fish gelatine used as carrier for vitamin or carotenoid preparations; fish gelatine or Isinglass used as fining agent in beer and wine.'),
+      'sesame' => t('Sesame seeds and products thereof'),
+      'crustaceans' => t('Crustaceans and products thereof'),
+      'peanuts' => t('Peanuts and products thereof'),
+      'cereals' => t('Cereals containing gluten, namely: wheat, rye, barley, oats, spelt, kamut, or their hybridised strains, and products thereof, except: (a) wheat based glucose syrups including dextrose: (b) wheat based maltodextrins; (c) glucose syrups based on barley; (d) cereals used for making alcoholic distillates including ethyl alcohol of agricultural origin.'),
+      'celery' => t('Celery and products thereof'),
+      'mustard' => t('Mustard and products thereof'),
+      'lupin' => t('Lupin and products thereof'),
+      'soybeans' => t('Soybeans and products thereof, except: (a)fully refined soybean oil and fat (b) natural mixed tocopherols (E306), natural D-alpha tocopherol, natural D-alpha tocopherol acetate, and natural D-alpha tocopherol succinate from soybean sources (c) vegetable oils derived phytosterol esters from soybean sources (d) plant stanol ester produced from vegetable oil sterols from soybean sources'),
+      'molluscs' => t('Molluscs and products thereof'),
+      'sulphur' => t('Sulphur dioxide and sulphites at concentrations of more than 10mg/kg or 10mg/litre in terms of the total SO2 which are to be calculated for products as proposed ready for consumption or as reconstituted according to the instructions of the manufacturers'),
+      'nuts' => t('Nuts, namely: almonds, hazelnuts,walnuts,cashewnuts, pecan nuts, Brazil nuts, pistachio nuts, macadamia or Queensland nuts and products thereof, except for nuts used for making alcoholic distillates including ethyl alcohol of agricultural origin.'),
     ),
     '#default_value' => array_get($values, 'preparatory_c_2.wrapper.allergens_c_4.allergens', array()),
   );

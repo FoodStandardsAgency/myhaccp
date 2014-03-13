@@ -115,7 +115,7 @@ function myhaccp_list() {
       elseif ($study->getStatus() == 1) {
         // The study is current in a complete state (but may be invalid) so
         // allow the user to change it to incomplete.
-        $complete = l(t('Incomplete'), 'tool/study/' . $result->iid . '/complete/0', array(
+        $complete = l(t('Started'), 'tool/study/' . $result->iid . '/complete/0', array(
           'attributes' => array(
             'class' => 'complete-link',
           ),
@@ -125,7 +125,7 @@ function myhaccp_list() {
     }
 
     // Convert status integers to a word.
-    $status = $result->status == 1 ? 'Complete' : 'Incomplete';
+    $status = $result->status == 1 ? 'Complete' : 'Started';
 
     $rows[] = array(
       'data' => array(
@@ -284,7 +284,7 @@ function myhaccp_study_finish($iid) {
   if ($study->getStatus() == 0 && $validation_status == VALID) {
     // The study is currently incomplete but valid so present a complete
     // button to the user.
-    $complete = l(t('Mark your HACCP study as complete'), 'tool/study/' . $study->getIID() . '/complete/1', array(
+    $complete = l(t("Mark your HACCP study as 'complete'"), 'tool/study/' . $study->getIID() . '/complete/1', array(
       'attributes' => array(
         'class' => 'complete-link',
       ),
@@ -294,7 +294,7 @@ function myhaccp_study_finish($iid) {
   elseif ($study->getStatus() == 1) {
     // The study is current in a complete state (but may be invalid) so
     // allow the user to change it to incomplete.
-    $complete = l(t('Mark your HACCP study as incomplete'), 'tool/study/' . $study->getIID() . '/complete/0', array(
+    $complete = l(t("Mark your HACCP study as 'started'"), 'tool/study/' . $study->getIID() . '/complete/0', array(
       'attributes' => array(
         'class' => 'complete-link',
       ),
