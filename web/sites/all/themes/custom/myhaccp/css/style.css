@@ -1919,10 +1919,10 @@ div.teaser-checkbox .form-item,
 .page-user #main-content .form-item {
   margin-bottom: 1em;
 }
-.page-user #main-content #main-content form div.description {
+.page-user #main-content form div.description {
   max-width: 75%;
 }
-.page-user #main-content #main-content form fieldset {
+.page-user #main-content form fieldset {
   border-top: 1px solid #007fb2;
 }
 .page-user #main-content input[type="text"],
@@ -2413,6 +2413,68 @@ table thead th .help-tip {
   width: 30px;
   z-index: 200;
   margin: 0;
+}
+
+.file a.file-icon {
+  background: transparent url(/modules/file/icons/text-plain.png) no-repeat left center;
+  padding: 2px 2px 2px 20px;
+}
+
+.file a.mime-application-pdf {
+  background-image: url(/modules/file/icons/application-pdf.png);
+}
+
+.file a.mime-application-octet-stream {
+  background-image: url(/modules/file/icons/application-octet-stream.png);
+}
+
+.file a.mime-application-x-executable {
+  background-image: url(/modules/file/icons/application-x-executable.png);
+}
+
+.file a.mime-audio-x-generic {
+  background-image: url(/modules/file/icons/audio-x-generic.png);
+}
+
+.file a.mime-image-x-generic,
+.file a.mime-image-jpeg {
+  background-image: url(/modules/file/icons/image-x-generic.png);
+}
+
+.file a.mime-package-x-generic {
+  background-image: url(/modules/file/icons/package-x-generic.png);
+}
+
+.file a.mime-text-html {
+  background-image: url(/modules/file/icons/text-html.png);
+}
+
+.file a.mime-text-plain {
+  background-image: url(/modules/file/icons/text-plain.png);
+}
+
+.file a.mime-text-x-generic {
+  background-image: url(/modules/file/icons/text-x-generic.png);
+}
+
+.file a.mime-text-x-script {
+  background-image: url(/modules/file/icons/text-x-script.png);
+}
+
+.file a.mime-video-x-generic {
+  background-image: url(/modules/file/icons/video-x-generic.png);
+}
+
+.file a.mime-x-office-document {
+  background-image: url(/modules/file/icons/x-office-document.png);
+}
+
+.file a.mime-x-office-presentation {
+  background-image: url(/modules/file/icons/x-office-presentation.png);
+}
+
+.file a.mime-x-office-spreadsheet {
+  background-image: url(/modules/file/icons/x-office-spreadsheet.png);
 }
 
 /**
