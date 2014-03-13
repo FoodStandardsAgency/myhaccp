@@ -13,7 +13,7 @@
 
 .studies-table {
   width: 100%;
-  max-width: 44em;
+//  max-width: 44em;
   thead {
     border-bottom: 3px solid $grey-4;
     th, th a {
@@ -32,7 +32,7 @@
   .resume-link {
     @include agile-button($style: positive, $size: small);
   }
-  .preview-link {
+  .complete-link {
     @include agile-button($size: small);
   }
   .delete-link {

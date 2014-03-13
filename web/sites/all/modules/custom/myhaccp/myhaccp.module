@@ -14,8 +14,10 @@ function myhaccp_init() {
       ctools_include($name, 'myhaccp', "mforms/$phase/$name");
     }
   }
+  // Get the current study object.
+  $study = $container['study'];
   // Initialise the study.
-  myhaccp_initialise_study();
+  myhaccp_initialise_study($study);
   ctools_include('myhaccp.form', 'myhaccp', 'includes');
 }
 
@@ -65,7 +67,7 @@ function myhaccp_menu() {
     'page callback' => 'drupal_get_form',
     'page arguments' => array('myhaccp_study_resume', 2),
     'access callback' => 'myhaccp_access',
-    'access arguments' => array('edit'),
+    'access arguments' => array('edit', 2),
     'type' => MENU_NORMAL_ITEM,
   );
   $items['tool/study/create'] = array(
@@ -79,7 +81,7 @@ function myhaccp_menu() {
     'page callback' => 'drupal_get_form',
     'page arguments' => array('myhaccp_study_delete', 2),
     'access callback' => 'myhaccp_access',
-    'access arguments' => array('delete'),
+    'access arguments' => array('delete', 2),
     'file' => 'myhaccp.pages.inc',
     'type' => MENU_NORMAL_ITEM,
   );
@@ -88,16 +90,24 @@ function myhaccp_menu() {
     'title' => 'Preview study',
     'page arguments' => array(2),
     'access callback' => 'myhaccp_access',
-    'access arguments' => array('view'),
+    'access arguments' => array('view', 2),
     'file' => 'myhaccp.pages.inc',
     'type' => MENU_NORMAL_ITEM,
   );
-  $items['tool/study/%/complete'] = array(
-    'page callback' => 'myhaccp_study_complete',
+  $items['tool/study/%/finish'] = array(
+    'page callback' => 'myhaccp_study_finish',
     'page arguments' => array(2),
     'access callback' => 'myhaccp_access',
-    'access arguments' => array('view'),
+    'access arguments' => array('view', 2),
     'file' => 'myhaccp.pages.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
+  $items['tool/study/%/complete/%'] = array(
+    'page callback' => 'myhaccp_study_complete',
+    'page arguments' => array(2, 4),
+    'access callback' => 'myhaccp_access',
+    'access arguments' => array('edit', 2),
+    'file' => 'mforms/myhaccp.myhaccp.inc',
     'type' => MENU_NORMAL_ITEM,
   );
   $items['tool/study/%/pdf'] = array(
@@ -173,23 +183,44 @@ function myhaccp_permission() {
  * @return bool
  *   Boolean determining access.
  */
-function myhaccp_access($op) {
+function myhaccp_access($op, $iid = FALSE) {
+  global $user;
   if ($op == 'create') {
     return user_access('create myhaccp study');
   }
   elseif ($op == 'delete') {
+    // Is this user the owner?
+    if (user_access('delete any myhaccp study')) {
+      return TRUE;
+    }
+    if (user_access('delete own myhaccp study') && $iid && myhaccp_user_owns_study($iid, $user)) {
+      return TRUE;
+    }
     return user_access('delete any myhaccp study') || user_access('delete own myhaccp study');
   }
   elseif ($op == 'edit') {
-    return user_access('edit any myhaccp study') || user_access('edit own myhaccp study');
+    if (user_access('edit any myhaccp study')) {
+      return TRUE;
+    }
+    if (user_access('edit own myhaccp study') && $iid && myhaccp_user_owns_study($iid, $user)) {
+      return TRUE;
+    }
   }
   elseif ($op == 'view') {
-    return user_access('view any myhaccp study') || user_access('view own myhaccp study');
+    if (user_access('view any myhaccp study')) {
+      return TRUE;
+    }
+    if (user_access('view own myhaccp study') && $iid && myhaccp_user_owns_study($iid, $user)) {
+      return TRUE;
+    }
   }
   else {
     // List haccp studies.
-    return user_access('list any myhaccp study') || user_access('list own myhaccp study');
+    if (user_access('list any myhaccp study') || user_access('list own myhaccp study')) {
+      return TRUE;
+    }
   }
+  return FALSE;
 }
 
 /**
@@ -384,12 +415,10 @@ function myhaccp_study_resume($form, &$form_state, $iid = FALSE) {
 /**
  * Initialises a study and all dependencies.
  */
-function myhaccp_initialise_study() {
+function myhaccp_initialise_study(&$study) {
   if (class_exists('Pimple')) {
     // Get the DI container.
     global $container;
-    // Get the study object.
-    $study = $container['study'];
     // Initialise the two phases.
     $preparatory = $container['phase'];
     $preparatory->setName('preparatory');
@@ -411,6 +440,9 @@ function myhaccp_initialise_study() {
       // Set the title for the stage.
       $stage->setTitle($titles[$name]);
       $stage->validator->setStage($stage);
+      // Set the IID for the stage and validator.
+      $stage->setIID($study->getIID());
+      $stage->validator->setIID($study->getIID());
       // Add the stage to the phase.
       $phase = $study->getPhase($phase);
       // Set the phase in of the stage.
@@ -536,7 +568,7 @@ function myhaccp_pager_submit($form, &$form_state) {
     // Get the current study.
     $study = $container['study'];
     $stage = $study->getStage($form_state['triggering_element']['#mforms_step']);
-    $form_state['redirect'] = 'tool/study/' . $_SESSION['iid'] . '/' . $stage->url;
+    $form_state['redirect'] = 'tool/study/' . $study->getIID() . '/' . $stage->url;
     mforms_submit($form_state['clicked_button']['#store_key'], $form, $form_state);
   }
 }
@@ -555,7 +587,7 @@ function myhaccp_continue_submit($form, &$form_state) {
     // Get the current study.
     $study = $container['study'];
     $stage = $study->getStage($form['next_step']['#value']);
-    $form_state['redirect'] = 'tool/study/' . $_SESSION['iid'] . '/' . $stage->url;
+    $form_state['redirect'] = 'tool/study/' . $study->getIID() . '/' . $stage->url;
     mforms_submit($form_state['clicked_button']['#store_key'], $form, $form_state);
   }
 }
@@ -574,7 +606,7 @@ function myhaccp_back_submit($form, &$form_state) {
     // Get the current study.
     $study = $container['study'];
     $stage = $study->getStage($form['prev_step']['#value']);
-    $form_state['redirect'] = 'tool/study/' . $_SESSION['iid'] . '/' . $stage->url;
+    $form_state['redirect'] = 'tool/study/' . $study->getIID() . '/' . $stage->url;
     mforms_submit($form_state['clicked_button']['#store_key'], $form, $form_state);
   }
 }
@@ -594,7 +626,7 @@ function myhaccp_save_submit($form, &$form_state) {
     // Get the current study.
     $study = $container['study'];
     $stage = $study->getStage($form['curr_step']['#value']);
-    $form_state['redirect'] = 'tool/study/' . $_SESSION['iid'] . '/' . $stage->url;
+    $form_state['redirect'] = 'tool/study/' . $study->getIID() . '/' . $stage->url;
     mforms_submit($form_state['clicked_button']['#store_key'], $form, $form_state);
   }
 }
@@ -962,4 +994,27 @@ function myhaccp_user_register_form_validate($form, &$form_state) {
   if (!is_null($country) && $country !== 'United Kingdom') {
     form_set_error('profile_main][field_country', 'You must be located inside the United Kingdom to register on this site and use this tool.');
   }
+}
+
+/**
+ * Given a user and an IID returns a boolean indicating ownership of a study.
+ *
+ * @param int $iid
+ *   The study ID.
+ * @param object $user
+ *   The user object to check ownership.
+ *
+ * @return bool
+ *   Boolean indicating ownership.
+ */
+function myhaccp_user_owns_study($iid, $user) {
+  $query = db_select('mforms_storage', 'm')
+    ->fields('m', array())
+    ->condition('m.uid', $user->uid)
+    ->condition('m.iid', $iid);
+  $result = $query->execute()->fetchAll();
+  if ($result) {
+    return TRUE;
+  }
+  return FALSE;
 }

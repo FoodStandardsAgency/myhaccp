@@ -146,7 +146,7 @@ function preparatory_a_validate($form, &$form_state) {
   );
 
   if ($checkboxes = array_get($form_state['values'], 'preparatory_a.a_1', FALSE)) {
-    if (in_array('Other', $checkboxes) && $checkboxes['Other'] == 'Other') {
+    if (isset($checkboxes['Other']) && $checkboxes['Other'] === 'Other') {
       $checks['preparatory_a.a_1_1'] = 'fieldIsNotEmpty';
     }
   }
