@@ -123,4 +123,166 @@ class Configuration {
       'principle_7' => 33,
     );
   }
+
+  public function getPDFSections() {
+    return array(
+      '01_management' => array(
+        'title' => 'Management commitment',
+        'validation' => array(
+          'preparatory_b',
+        ),
+        'theme' => array(
+          'preparatory_b',
+        ),
+      ),
+      '02_terms' => array(
+        'title' => 'Terms of reference',
+        'validation' => array(
+          'preparatory_c_1',
+          'preparatory_c_2',
+          'preparatory_a',
+        ),
+        'theme' => array(
+          'preparatory_c_1',
+          'preparatory_c_2',
+        ),
+        'orientation' => 'P',
+      ),
+      '03_team' => array(
+        'title' => 'The HACCP team',
+        'validation' => array(
+          'preparatory_d',
+        ),
+        'theme' => array(
+          'preparatory_d',
+        ),
+        'orientation' => 'P',
+      ),
+      '04_product' => array(
+        'title' => 'Product description and intended use',
+        'validation' => array(
+          'preparatory_e',
+          'preparatory_f',
+        ),
+        'theme' => array(
+          'preparatory_e',
+          'preparatory_f',
+        ),
+        'orientation' => 'P',
+      ),
+      '05_process' => array(
+        'title' => 'Process flow and confirmation',
+        'validation' => array(
+          'preparatory_g',
+          'preparatory_h',
+        ),
+        'theme' => array(
+          'preparatory_g',
+          'preparatory_h',
+        ),
+        'orientation' => 'P',
+      ),
+      '06_identify' => array(
+        'title' => 'Identify and list potential hazards',
+        'validation' => array(
+          'principle_1_1',
+        ),
+        'theme' => array(
+          'principle_1_1',
+        ),
+        'orientation' => 'L',
+      ),
+      '07_severity' => array(
+        'title' => 'Severity scores',
+        'validation' => array(
+          'principle_1_2',
+        ),
+        'theme' => array(
+          'principle_1_2',
+        ),
+        'orientation' => 'L',
+      ),
+      '08_control' => array(
+        'title' => 'Control Measures',
+        'validation' => array(
+          'principle_1_3',
+        ),
+        'theme' => array(
+          'principle_1_3',
+        ),
+        'orientation' => 'L',
+      ),
+      '09_ccps' => array(
+        'title' => 'CCPs for significant hazards',
+        'validation' => array(
+          'principle_2_1',
+          'principle_2_2',
+        ),
+        'theme' => array(
+          'principle_2_1',
+          'principle_2_2',
+        ),
+        'orientation' => 'L',
+      ),
+      '10_critical' => array(
+        'title' => 'Critical limits for the CCPs',
+        'validation' => array(
+          'principle_3',
+        ),
+        'theme' => array(
+          'principle_3',
+        ),
+        'orientation' => 'L',
+      ),
+      '11_plan' => array(
+        'title' => 'The HACCP Plan',
+        'validation' => array(
+          'principle_3',
+          'principle_4',
+          'principle_5',
+        ),
+        'theme' => array(
+          'principle_3',
+          'principle_4',
+          'principle_5',
+        ),
+        'orientation' => 'L',
+      ),
+      '12_verification' => array(
+        'title' => 'Verification',
+        'validation' => array(
+          'principle_6',
+        ),
+        'theme' => array(
+          'principle_6',
+        ),
+        'orientation' => 'P',
+      ),
+      '13_documentation' => array(
+        'title' => 'Documentation and record keeping',
+        'validation' => array(
+          'principle_7',
+        ),
+        'theme' => array(
+          'principle_7',
+        ),
+        'orientation' => 'P',
+      ),
+    );
+    // Determine the orientation of the pages and where page breaks occur.
+//    $breaks = array(
+//      'preparatory_c_1' => 'P',
+//      'preparatory_d' => 'P',
+//      'preparatory_e' => 'P',
+//      'preparatory_g' => 'P',
+//      'principle_1_1' => 'L',
+//      'principle_1_2' => 'L',
+//      'principle_1_3' => 'L',
+//      'principle_2_1' => 'L',
+//      'principle_3' => 'L',
+//      'principle_5' => 'L',
+//      'principle_6' => 'P',
+//      'principle_7' => 'P',
+//    );
+  }
 }

@@ -72,7 +72,9 @@ class Stage implements StageInterface {
    *   The IID of the study.
    */
   public function getIID() {
-    return $this->iid;
+    if (isset($this->iid)) {
+      return $this->iid;
+    }
   }
 
   /**
@@ -178,6 +180,26 @@ class Stage implements StageInterface {
    */
   public function setTitle($title) {
     $this->title = $title;
+  }
+
+  /**
+   * Fetches the stage data from the database.
+   *
+   * @return array|bool
+   *   The data for the stage from the database or FALSE if not found.
+   */
+  public function getData() {
+    $data = db_select('mforms_storage', 'm');
+    $data->join('mforms_storage_steps', 's', 's.iid = m.iid');
+    $data->fields('s', array('store_data'))
+      ->condition('m.iid', $this->getIID())
+      ->condition('s.store_key', $this->getName());
+    $result = $data->execute()->fetchField();
+    if ($result) {
+      $data = unserialize($result);
+      return $data;
+    }
+    return $data;
   }
 
 }
