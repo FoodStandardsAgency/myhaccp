@@ -98,7 +98,7 @@ function myhaccp_study_complete($iid, $status) {
   $valid_status = $study->getValidationStatus();
   if ($status == 0) {
     $study->setStatus(0);
-    drupal_set_message(t("You have set the completion status of the study to 'incomplete'."));
+    drupal_set_message(t("You have set the completion status of the study to 'started'."));
   }
   else {
     // The user is trying to mark this study as complete.
