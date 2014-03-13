@@ -33,15 +33,29 @@
   input[type="password"],
   select,
   textarea {
-    min-width: 14em;
+    min-width: 17em;
   }
+
+  .form-actions {
+    text-align: left;
+    input[type="submit"] {
+      margin-left: 0;
+      margin-right: 1em;
+    }
+  }
+  select {
+    width: 14em;
+  }
+
+  input[type="submit"] {
+    @include agile-button($style: positive);
+  }
+
 }
 
-// User login form
-
 // Fix for weird bug in Chrome causing animation to be applied when page loads.
-#user-login {
-  input.form-submit {
+.page-user #main-content #user-login {
+  input[type="submit"] {
     -webkit-transition: none;
     -moz-transition: none;
     -o-transition: none;
