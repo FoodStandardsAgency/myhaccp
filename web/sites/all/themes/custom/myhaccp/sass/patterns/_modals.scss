@@ -3,7 +3,7 @@
 #modalContent {
   // Override the absolute positioning of the usual ctools dialog so its fixed
   // within the viewport.
-//  position: fixed!important;
+  //  position: fixed!important;
   #modal-content {
     // Remove some of the space at the top of the embedded page.
     padding-top: 0;
@@ -22,7 +22,7 @@
 }
 
 .ui-dialog {
-  top: 4em!important;
+  top: 4em !important;
   border: 0.4em solid #222;
   font-size: 0.8em;
   line-height: 1.6em;
@@ -85,6 +85,15 @@
         }
       }
     }
+  }
+}
+
+.ui-dialog .dialog-footer {
+  border-top: 1px solid $grey-1;
+  margin-top: 1em;
+  padding: 1em 0;
+  .close-button {
+    @include agile-button($size: small);
   }
 }
 
