@@ -582,6 +582,11 @@ a:hover {
 }
 
 @media print {
+  body {
+    background-color: #FFF;
+    font-family: 'cartogothicstd';
+  }
+
   h1 {
     border-bottom: 5px solid #DDDDDD;
   }
@@ -620,11 +625,6 @@ a:hover {
   table thead:first-child tr:first-child th,
   table thead:first-child tr:first-child td {
     border-top: 0 none;
-  }
-
-  body {
-    background-color: #fafafa;
-    font-family: 'cartogothicstd';
   }
 
   div.page-break {
