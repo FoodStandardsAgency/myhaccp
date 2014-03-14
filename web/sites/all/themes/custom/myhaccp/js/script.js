@@ -12,6 +12,9 @@
         $(window).scrollTop(-95);
         event.preventDefault();
       });
+      $('footer a[href$="#close"]').click(function() {
+        $('#dialog').dialog('close');
+      });
     }
   }
 })(jQuery);
