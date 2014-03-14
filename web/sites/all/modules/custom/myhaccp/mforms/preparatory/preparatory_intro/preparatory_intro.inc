@@ -35,7 +35,7 @@ function preparatory_intro(&$form_state, &$next_step) {
 
   $form['preparatory_intro']['study_name'] = array(
     '#type' => 'textfield',
-    '#title' => t('Study name'),
+    '#title' => t('Name of your study'),
     '#help_text' => t("The study name will be shown on your output document as well as on your studies overview page and is used to tell studies apart from each other. It can be the name of your product or anything else that makes sense to you."),
     '#default_value' => array_get($values, 'preparatory_intro.study_name', array()),
   );
