@@ -1,0 +1,19 @@
+//
+// Webforms
+//
+
+.webform-client-form {
+  input[type="text"],
+  input[type="email"] {
+    width: 14em;
+  }
+  .webform-component-textarea {
+    max-width: 35em;
+  }
+  .form-actions {
+    text-align: left;
+  input[type="submit"] {
+    margin-left: 0;
+  }
+  }
+}
