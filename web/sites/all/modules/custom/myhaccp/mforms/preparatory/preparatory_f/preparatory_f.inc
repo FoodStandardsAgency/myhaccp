@@ -64,7 +64,7 @@ function preparatory_f(&$form_state, &$next_step) {
     ),
     '#title' => t('2. Is the product specifically designed for consumption by the general public?'),
     '#help_link' => 19,
-    '#help_text' => t('Select yes if your product is designed for non-vulnerable consumers.'),
+    '#help_text' => t('Only select yes if your product is not specifically designed for a particular group of consumers, such as travelers, institutional caterers etc. or for vulnerable groups.'),
     '#default_value' => array_get($values, 'preparatory_f.f_2', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
