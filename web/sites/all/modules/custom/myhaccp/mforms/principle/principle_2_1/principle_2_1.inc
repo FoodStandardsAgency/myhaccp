@@ -40,7 +40,7 @@ function principle_2_1(&$form_state, &$next_step) {
   $form['principle_2_1']['intro'] = array(
     '#prefix' => '<p class="intro">',
     '#suffix' => '</p>',
-    '#markup' => t('A CCP is a step at which control can be applied and is essential to prevent or eliminate a food safety hazard or reduce it to an acceptable level. We strongly advise using one of the following decision trees:<ul><li>Campden Decision Tree</li><li>Codex Decision Tree</li></ul>'),
+    '#markup' => t('A CCP is a step at which control can be applied and is essential to prevent or eliminate a food safety hazard or reduce it to an acceptable level. CCPs should be determined through experience and judgement; this may be aided by the use of a decision tree. We strongly advise using one of the following decision trees:<ul><li>Campden Decision Tree</li><li>Codex Decision Tree</li></ul>'),
   );
 
   $hazards = Hazards::getInstance();
@@ -62,7 +62,7 @@ function principle_2_1(&$form_state, &$next_step) {
   $form['principle_2_1']['2_1_1'] = array(
     '#type' => 'radios',
     '#title' => t('1. Are you using a decision tree?'),
-    '#help_link' => 27,
+    '#help_link' => 28,
     '#help_text' => t("A 'decision tree' is a tool that can be used to help identify a critical control point. You do not have to use a decision tree."),
     '#options' => array(
       'yes' => t('Yes'),
@@ -84,7 +84,7 @@ function principle_2_1(&$form_state, &$next_step) {
       'campden' => t('Campden'),
     ),
     '#title' => t('1a. Which decision tree are you using?'),
-    '#help_link' => 27,
+    '#help_link' => 28,
     '#help_text' => t('You can select which decision tree you wish to use to help you, but you can use one  of your own or none at all.  More information on the  decision trees can be found.'),
     '#states' => array(
       'visible' => array(
@@ -99,7 +99,7 @@ function principle_2_1(&$form_state, &$next_step) {
     ),
   );
 
-  // 3. If you are not using  either of the decision trees, please explain how you are deciding on your CCPs.
+  // 3. If you are not using either of the decision trees, please explain how you are deciding on your CCPs.
   $form['principle_2_1']['2_1_1b'] = array(
     '#type' => 'textarea',
     '#resizable' => FALSE,

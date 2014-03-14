@@ -76,7 +76,7 @@ class Configuration {
 
   public function getStageTitles() {
     return array(
-      'preparatory_intro' => 'Preparatory: Intro',
+      'preparatory_intro' => 'Preparatory: Introduction',
       'preparatory_a' => 'Preparatory Stage A: Prerequisites',
       'preparatory_b' => 'Preparatory Stage B: Obtain Management Commitment',
       'preparatory_c_1' => 'Preparatory Stage C: Define scope of the study',
@@ -87,7 +87,7 @@ class Configuration {
       'preparatory_g' => 'Preparatory Stage G: Construct a flow diagram',
       'preparatory_h' => 'Preparatory Stage H: On-site confirmation of flow diagram',
       'preparatory_review' => 'Preparatory: Review',
-      'principle_intro' => 'Principles: Intro',
+      'principle_intro' => 'Principles: Introduction',
       'principle_1_1' => 'Principle 1.1: Identify and list Potential Hazards',
       'principle_1_2' => 'Principle 1.2: Conduct a Hazard Analysis',
       'principle_1_3' => 'Principle 1.3: Specify the Control Measures for each hazard',

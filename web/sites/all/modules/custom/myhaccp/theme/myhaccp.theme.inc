@@ -25,7 +25,7 @@ function theme_myhaccp_1_2_table($variables) {
     'hazard_name' => t('Hazard'),
     'hazard_desc' => t('Hazard Description !tip !help', array(
       '!tip' => _help_tip(),
-      '!help' => '<div class="help-text">' . t("Provide a detailed description of the hazard. Think about this stage carefully. It is common to make errors here and this will lead to implications further on. By describing the hazard in more detail it will help you later when you specify the control. Be aware that there may be more than one 'descriptor' for a hazard. If you identify more than one descriptor (this is quite common) you will have to go back to <strong>Principle 1.1</strong> and add an additional hazard, this time however it should have a descriptor in brackets after it (i.e. Salmonella spp (introduction) Salmonella spp (growth).</br> !link", array(
+      '!help' => '<div class="help-text">' . t("Provide a detailed description of the hazard. Think about this stage carefully. It is common to make errors here and this will lead to implications further on. By describing the hazard in more detail, it will help you later when you specify the control. Be aware that there may be more than one 'descriptor' for a hazard. If you identify more than one descriptor (this is quite common) you should go back to <strong>Principle 1.1</strong> and add an additional hazard, this time however it should have a descriptor in brackets after it (i.e. Salmonella spp (introduction) Salmonella spp (growth)). It is important that you read the additional information.</br> !link", array(
           '!link' => myhaccp_prepare_more_link(17),
         )) . '</div>'
     )),

@@ -57,11 +57,13 @@ function myhaccp_form_process($form, &$form_state) {
   $form_state = $validator->addValidationtoFormState($form_state);
   // Get the title of the page.
   $title = drupal_get_title();
-  // Add the title in as a new markup element.
-  $form['title'] = array(
-    '#markup' => '<h1>' . $title . '</h1>',
-    '#weight' => -20,
-  );
+  if (strpos($title, 'Review') === FALSE) {
+    // Add the title in as a new markup element.
+    $form['title'] = array(
+      '#markup' => '<h1>' . $title . '</h1>',
+      '#weight' => -20,
+    );
+  }
 
   // First check for validation messages.
   if (isset($form_state['values']['validate']) && !empty($form_state['values']['validate'])) {
