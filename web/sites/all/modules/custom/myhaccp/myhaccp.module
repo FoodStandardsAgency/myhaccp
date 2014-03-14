@@ -769,7 +769,7 @@ function myhaccp_help_modal($js = FALSE, $nid = FALSE) {
 
     $contents = $menu . $node_content;
     // Add a footer close button.
-    $contents .= '<footer><a href="#close">Close guidance</a></footer>';
+    $contents .= '<footer class="dialog-footer"><a href="#close" class="close-button">Close help</a></footer>';
 
     // Return the modal with node title and rendered contents.
     $commands = array();
