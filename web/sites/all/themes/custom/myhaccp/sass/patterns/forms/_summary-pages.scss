@@ -1,0 +1,29 @@
+.page-tool-study {
+
+  a.finish,
+  a.finish:link,
+  a.finish:visited {
+    @include agile-button($style: positive);
+    margin-bottom: 2em;
+    display: inline-block;
+    float: right;
+  }
+
+  a.download,
+  a.download:link,
+  a.download:visited {
+    @include agile-button($style: positive);
+    margin-bottom: 2em;
+    display: inline-block;
+  }
+
+  a.complete-link ,
+  a.complete-link :link,
+  a.complete-link :visited {
+    @include agile-button($style: positive);
+    margin-bottom: 2em;
+    display: inline-block;
+    margin-right: 1em;
+  }
+
+}
