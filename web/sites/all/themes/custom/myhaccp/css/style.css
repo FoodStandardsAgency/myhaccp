@@ -1985,6 +1985,20 @@ div.teaser-checkbox .form-item,
   transition: none;
 }
 
+.webform-client-form input[type="text"],
+.webform-client-form input[type="email"] {
+  width: 14em;
+}
+.webform-client-form .webform-component-textarea {
+  max-width: 35em;
+}
+.webform-client-form .form-actions {
+  text-align: left;
+}
+.webform-client-form .form-actions input[type="submit"] {
+  margin-left: 0;
+}
+
 /**
  * @file
  * Styles for system messages.
