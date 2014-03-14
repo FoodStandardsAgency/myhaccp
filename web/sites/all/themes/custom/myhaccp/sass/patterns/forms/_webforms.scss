@@ -12,8 +12,9 @@
   }
   .form-actions {
     text-align: left;
-  input[type="submit"] {
-    margin-left: 0;
-  }
+    input[type="submit"] {
+      margin-left: 0;
+      @include agile-button($style: primary);
+    }
   }
 }
