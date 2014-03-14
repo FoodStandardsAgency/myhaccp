@@ -724,22 +724,28 @@ function myhaccp_help_modal($js = FALSE, $nid = FALSE) {
     drupal_goto('help/guidance');
   }
   if ($js) {
-    // Load all the help documents for the current phase.
+    // Load all the help documents.
     global $container;
     $study = $container['study'];
     $help = $container['configuration']->getHelpPages();
     $node_content = '<div class="help-content">';
+    // Iterate over the two phases.
     foreach ($study->getPhases() as $phase) {
+      // Get all the stages from the phases and loop over them.
       foreach ($phase->getStages() as $stage) {
+        // Check there is a help page for this stage.
         if (isset($help[$stage->getName()])) {
+          // Load the help node.
           $node = node_load($help[$stage->getName()]);
           if ($node) {
+            // If this is the current page's help show an active class on start.
             if ($nid == $node->nid) {
               $class = 'active';
             }
             else {
               $class = 'hidden';
             }
+            // Render the node article.
             $article = render(node_view($node, 'full'));
             // Strip the heading.
             $node_content .= str_replace('class="node', 'id="help-' . $node->nid . '" class="' . $class . ' node', $article);
@@ -774,9 +780,9 @@ function myhaccp_help_modal($js = FALSE, $nid = FALSE) {
         'center',
         'bottom',
       ),
-      'show' => 800,
+      'show' => 500,
       'hide' => 500,
-      'draggable' => false,
+      'draggable' => FALSE,
     );
     $commands[] = dialog_command_display($contents, $options);
     ajax_deliver(array('#type' => 'ajax', '#commands' => $commands));
