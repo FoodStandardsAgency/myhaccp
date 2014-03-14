@@ -17,7 +17,6 @@ Drupal.behaviors.dialog = {
           var element = Drupal.dialog;
           // Process any other behaviors on the content, and close the dialog box.
           Drupal.detachBehaviors(element);
-//          $(this).hide();
         }
       });
     });
@@ -57,7 +56,7 @@ Drupal.ajax.prototype.commands.dialog_loading = function(ajax, response, status)
 Drupal.ajax.prototype.commands.dialog_display = function(ajax, response, status) {
   var element = Drupal.dialog;
   var new_content = $('<div></div>').html(response.content);
-  element.dialog('close').html(new_content)
+  element.html(new_content)
     // Restore the dialog's default values.
     .dialog('option', 'buttons', {})
     .dialog('option', 'width', '600px')
