@@ -18,6 +18,9 @@ function myhaccp_output_pdf($iid) {
   $_SESSION['iid'] = $iid;
 
   if (!empty($study)) {
+    // Get the study name.
+    $name = $study->getName();
+    $filename = transliteration_clean_filename($name . '.pdf');
     // Load the mPDF library and start a new PDF.
     $path = libraries_get_path('mpdf');
     include_once $path . '/mpdf.php';
@@ -71,7 +74,8 @@ function myhaccp_output_pdf($iid) {
     }
 
     // Write the output and then exit.
-    $mpdf->Output();
+    $mpdf->Output($filename, 'I');
+    // Documentation for output: http://mpdf1.com/manual/index.php?tid=125
     drupal_exit('tool');
   }
 }

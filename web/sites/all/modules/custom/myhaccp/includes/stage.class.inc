@@ -189,17 +189,16 @@ class Stage implements StageInterface {
    *   The data for the stage from the database or FALSE if not found.
    */
   public function getData() {
-    $data = db_select('mforms_storage', 'm');
-    $data->join('mforms_storage_steps', 's', 's.iid = m.iid');
-    $data->fields('s', array('store_data'))
+    $query = db_select('mforms_storage', 'm');
+    $query->join('mforms_storage_steps', 's', 's.iid = m.iid');
+    $query->fields('s', array('store_data'))
       ->condition('m.iid', $this->getIID())
       ->condition('s.store_key', $this->getName());
-    $result = $data->execute()->fetchField();
+    $result = $query->execute()->fetchField();
     if ($result) {
-      $data = unserialize($result);
-      return $data;
+      return(unserialize($result));
     }
-    return $data;
+    return $result;
   }
 
 }
