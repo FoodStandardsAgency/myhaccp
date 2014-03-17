@@ -46,10 +46,19 @@ textarea {
   }
 }
 
+#validation-messages {
+  border-color: $negative;
+  border-width: 1px 1px 1px 10px;
+  border-style: solid;
+  ul.parsley-error-list {
+    padding: 0.5em;
+  }
+}
+
 // Parsley errors. They need to look like the server side errors for a seamless
 // experience.
 ul.parsley-error-list {
-  background: $negative-lighter; // Same as drupal default (feel free to change).
+  background: $negative-lighter;
   margin: 0;
   padding: 0;
   li {

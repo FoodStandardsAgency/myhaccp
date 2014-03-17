@@ -1057,6 +1057,15 @@ textarea.error:focus {
   outline-color: #b73939;
 }
 
+#validation-messages {
+  border-color: #b73939;
+  border-width: 1px 1px 1px 10px;
+  border-style: solid;
+}
+#validation-messages ul.parsley-error-list {
+  padding: 0.5em;
+}
+
 ul.parsley-error-list {
   background: #f7ebeb;
   margin: 0;
