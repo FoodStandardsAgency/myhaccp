@@ -222,13 +222,24 @@ class Study implements StudyInterface {
     }
 
     // Fallback is to get the current stage from the database.
-    $store = MformsDatabaseStore::getInstance('myhaccp');
-    $stage_name = $store->getStore('curr_step');
-    if ($stage = $this->getStage($stage_name)) {
-      // Set the stage for future checks.
-      $this->setCurrentStage($stage);
-      return $this->getCurrentStage();
+    $data = db_select('mforms_storage', 'm');
+    $data->join('mforms_storage_steps', 's', 's.iid = m.iid');
+    $data->fields('s', array('store_data'))
+      ->condition('m.iid', $this->getIID())
+      ->condition('s.store_key', 'curr_step');
+    $result = $data->execute()->fetchField();
+    if ($result) {
+      $stage_name = unserialize($result);
+      if ($stage = $this->getStage($stage_name)) {
+        // Set the stage for future checks.
+        $this->setCurrentStage($stage);
+        return $this->getCurrentStage();
+      }
     }
+
+    // Final fallback is the preparatory intro stage.
+    $this->setCurrentStage('preparatory_intro');
+    return $this->getCurrentStage();
   }
 
   /**

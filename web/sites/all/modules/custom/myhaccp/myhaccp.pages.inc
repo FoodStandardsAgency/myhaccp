@@ -254,7 +254,8 @@ function myhaccp_study_finish($iid) {
 
   // Get the current page.
   $destination = drupal_get_destination();
-
+  $complete = '';
+  
   if ($study->getStatus() == 0 && $validation_status == VALID) {
     // The study is currently incomplete but valid so present a complete
     // button to the user.

@@ -42,7 +42,7 @@ function preparatory_c_2(&$form_state, &$next_step) {
   $form['preparatory_c_2']['wrapper_title'] = array(
     '#markup' => '<div class="label">' . t('4. What hazards will the HACCP plan cover? !tip !help', array(
         '!tip' => _help_tip(),
-        '!help' => '<div class="help-text">' . t("State which hazards will be considered in the HACCP plan (i.e. Biological, Physical, Chemical, Allergenic). !link", array(
+        '!help' => '<div class="help-text">' . t("State which hazards will be considered in the HACCP plan (i.e. Biological, Physical, Chemical, Allergens). !link", array(
             '!link' => myhaccp_prepare_more_link(15),
           )) . '</div>'
     )) . '</div>',
