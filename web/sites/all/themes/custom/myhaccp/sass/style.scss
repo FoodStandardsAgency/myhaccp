@@ -28,7 +28,7 @@
 // Patterns
 @import 'patterns/mixins';
 @import 'patterns/menu-patterns';
-@import 'patterns/menu';
+@import 'patterns/navigation';
 @import 'patterns/forms/forms';
 @import 'patterns/forms/forms-navigation';
 @import 'patterns/forms/forms-user-account';
@@ -43,6 +43,11 @@
 @import 'patterns/modals';
 @import 'patterns/files';
 @import 'patterns/resources';
+
+// Tool stages
+@import 'patterns/tool/tool';
+@import 'patterns/tool/preparatory';
+@import 'patterns/tool/principles';
 
 
 // Drupal Patterns
