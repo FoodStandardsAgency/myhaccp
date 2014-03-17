@@ -740,11 +740,11 @@ header .header-region nav ul li {
   display: inline;
   margin-right: 1em;
 }
-.block-menu-block-2 ul li a {
-  color: #007fb2;
-}
 .block-menu-block-2 ul li a.active, .block-menu-block-2 ul li a.active-trail {
   color: #6cb33f;
+}
+.block-menu-block-2 ul li a.active:hover, .block-menu-block-2 ul li a.active-trail:hover {
+  color: #568f32;
 }
 
 /** Main menu (level 3) **/
@@ -765,11 +765,11 @@ header .header-region nav ul li {
   margin-right: 1em;
   margin-bottom: 0.5em;
 }
-.block-menu-block-3 ul li a {
-  color: #007fb2;
-}
 .block-menu-block-3 ul li a.active, .block-menu-block-3 ul li a.active-trail {
   color: #6cb33f;
+}
+.block-menu-block-3 ul li a.active:hover, .block-menu-block-3 ul li a.active-trail:hover {
+  color: #568f32;
 }
 
 /**
@@ -1802,11 +1802,8 @@ div.teaser-checkbox .form-item,
   background: #6cb33f;
   color: #FFF;
 }
-.pager-wrapper .pager-controls input.pager-item.current-step.visited-step {
-  color: #FFF;
-}
-.pager-wrapper .pager-controls input.pager-item.current-step.visited-step:hover {
-  color: #FFF;
+.pager-wrapper .pager-controls input.pager-item.current-step:hover {
+  background: #568f32;
 }
 .pager-wrapper .preparatory-wrapper {
   float: left;
@@ -2352,13 +2349,16 @@ header[role="banner"] .header-utility {
   color: #676767;
   font-size: 0.85em;
 }
+header[role="banner"] .header-utility a {
+  color: #676767;
+}
+header[role="banner"] .header-utility a:hover {
+  color: black;
+}
 @media all and (min-width: 860px) {
   header[role="banner"] .header-utility {
     margin-top: 0.5em;
   }
-}
-header[role="banner"] .header-utility a {
-  color: #676767;
 }
 header[role="banner"] .header-utility .form-item {
   margin-bottom: 0;
@@ -2443,6 +2443,9 @@ footer[role=contentinfo] {
 }
 .footer-inside .footer-links a {
   color: #676767;
+}
+.footer-inside .footer-links a:hover {
+  color: black;
 }
 @media all and (min-width: 860px) {
   .footer-inside .footer-links {

@@ -34,6 +34,7 @@ $text-over-base-color: #FFF;
 $accent-1: #6CB33F;
 $accent-1-lighter: mix($accent-1, #FFF, 80%);
 $accent-1-lightest: mix($accent-1, #FFF, 20%);
+$accent-1-darker: mix($accent-1, #000, 80%);
 
 // Accent 2 (FSA Light Blue).
 $accent-2: #007FB2;
