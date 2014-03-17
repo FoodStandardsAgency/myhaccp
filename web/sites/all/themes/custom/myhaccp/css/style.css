@@ -758,6 +758,9 @@ header .header-region nav ul li {
   margin-right: 1em;
   margin-bottom: 0.5em;
 }
+.block-menu-block-3 ul li a {
+  display: inline-block;
+}
 .block-menu-block-3 ul li a.active, .block-menu-block-3 ul li a.active-trail {
   color: #6cb33f;
 }
