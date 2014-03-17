@@ -61,6 +61,7 @@ function principle_6(&$form_state, &$next_step) {
     '#resizable' => FALSE,
     '#title' => t('1. Document your validation study in the space below.'),
     '#help_text' => t('Provide details of all validation studies carried out.'),
+    '#help_link' => 32,
     '#default_value' => array_get($values, "principle_6.6_1", FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
@@ -73,6 +74,7 @@ function principle_6(&$form_state, &$next_step) {
     '#resizable' => FALSE,
     '#title' => t('2. Who is responsible for ensuring the contents of the whole HACCP plan (this may include several HACCP studies) are validated?'),
     '#help_text' => t('Enter the name of the person  responsible.'),
+    '#help_link' => 32,
     '#default_value' => array_get($values, "principle_6.6_2", FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
@@ -88,6 +90,7 @@ function principle_6(&$form_state, &$next_step) {
     ),
     '#title' => t('3. Is this the same person who will formally sign off the whole HACCP plan (which may contain several HACCP studies)?'),
     '#help_text' => t('Enter the name of the person.'),
+    '#help_link' => 32,
     '#default_value' => array_get($values, "principle_6.6_3", FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
@@ -186,6 +189,7 @@ function principle_6(&$form_state, &$next_step) {
     '#resizable' => FALSE,
     '#title' => t('5. List any other verification activities carried out in your organisation.'),
     '#help_text' => t('If you carry out additional verification activities not listed above, record them here.'),
+    '#help_link' => 32,
     '#default_value' => array_get($values, "principle_6.6_5", FALSE),
     '#attributes' => array(
       'data-parsley-error-message' => t('Please list any other verification activities carried out in your organisation.'),
@@ -200,6 +204,7 @@ function principle_6(&$form_state, &$next_step) {
     ),
     '#title' => t('6. Are all verification records maintained?'),
     '#help_text' => t('You should keep verification records for a minimum of the life of a product  plus an extension period of ‘typically’ 3 months.  You must take into consideration abuse of your product and may wish to keep records for a longer period.'),
+    '#help_link' => 32,
     '#default_value' => array_get($values, "principle_6.6_6", FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
@@ -211,6 +216,7 @@ function principle_6(&$form_state, &$next_step) {
     '#type' => 'textfield',
     '#title' => t('7. How often is the whole HACCP plan formally reviewed?'),
     '#help_text' => t('Is this annually, bi-annually or more frequently?'),
+    '#help_link' => 32,
     '#default_value' => array_get($values, "principle_6.6_7", FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
@@ -222,6 +228,7 @@ function principle_6(&$form_state, &$next_step) {
     '#type' => 'textfield',
     '#title' => t('8. Who is responsible for carrying out a formal annual review?'),
     '#help_text' => t('Provide name of individual responsible.'),
+    '#help_link' => 32,
     '#default_value' => array_get($values, "principle_6.6_8", FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
@@ -253,6 +260,7 @@ function principle_6(&$form_state, &$next_step) {
       'changes_environmental' => 'Environmental changes/issues (i.e. local changes external to the food operation; climate changes)',
     ),
     '#help_text' => t('If any of the items listed occur  your HACCP plan may not be valid and your product potentially unsafe.  In such a case it would be necessary to trigger a review.'),
+    '#help_link' => 32,
     '#default_value' => array_get($values, "principle_6.6_9", array()),
   );
 
