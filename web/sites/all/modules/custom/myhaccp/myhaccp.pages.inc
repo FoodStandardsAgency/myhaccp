@@ -77,11 +77,10 @@ function myhaccp_list() {
     $validation_status = $study->getValidationStatus();
 
     // Prepare the edit link based on the current stage.
-    $current_stage = myhaccp_find_current_stage($result->iid);
-    $study_name = myhaccp_find_study_name($result->iid);
+    $current_stage = $study->getCurrentStage();
+    $study_name = $study->getName();
     if (!empty($current_stage)) {
-      $stage = $study->getStage($current_stage);
-      $stage_url = $stage->getUrl();
+      $stage_url = $current_stage->getUrl();
     }
     else {
       $stage_url = 'preparatory_a';
@@ -187,31 +186,6 @@ function myhaccp_find_current_stage($iid) {
   if ($result) {
     $data = unserialize($result);
     return $data;
-  }
-  return '';
-}
-
-/**
- * Finds a study name (if set) for a study.
- *
- * @param int $iid
- *   The IID of the study to fetch the name for.
- *
- * @return string
- *   The study name if found or an empty string.
- */
-function myhaccp_find_study_name($iid) {
-  $data = db_select('mforms_storage', 'm');
-  $data->join('mforms_storage_steps', 's', 's.iid = m.iid');
-  $data->fields('s', array('store_data'))
-    ->condition('m.iid', $iid)
-    ->condition('s.store_key', 'preparatory_intro');
-  $result = $data->execute()->fetchField();
-  if ($result) {
-    $data = unserialize($result);
-    if ($name = array_get($data, 'preparatory_intro.study_name', FALSE)) {
-      return $name;
-    }
   }
   return '';
 }

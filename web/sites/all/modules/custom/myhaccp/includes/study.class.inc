@@ -85,6 +85,43 @@ class Study implements StudyInterface {
   }
 
   /**
+   * Gets the study name.
+   *
+   * Fetches it from the db if not set locally.
+   *
+   * @return string
+   *   The name of the study.
+   */
+  public function getName() {
+    if (isset($this->name)) {
+      return $this->name;
+    }
+    else {
+      // Try to determine the name from the intro stage.
+      $intro = $this->getStage('preparatory_intro');
+      $data = $intro->getData();
+      if ($data && isset($data['preparatory_intro']['study_name'])) {
+        $this->setName($data['preparatory_intro']['study_name']);
+      }
+      else {
+        // There is no set name yet so give the study a temporary name.
+        $this->setName('Unnamed study');
+      }
+      return $this->getName();
+    }
+  }
+
+  /**
+   * Sets the study name (only in the object, not in the db).
+   *
+   * @param string $name
+   *   The study name.
+   */
+  public function setName($name) {
+    $this->name = $name;
+  }
+
+  /**
    * Adds a phase to a study.
    *
    * @param Phase $phase
