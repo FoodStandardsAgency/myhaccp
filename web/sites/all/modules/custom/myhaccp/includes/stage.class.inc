@@ -198,7 +198,7 @@ class Stage implements StageInterface {
     if ($result) {
       return(unserialize($result));
     }
-    return $result;
+    return FALSE;
   }
 
 }
