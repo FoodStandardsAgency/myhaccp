@@ -1,0 +1,38 @@
+//
+// Styling for specific Preparatory Stages in the MyHACCP web tool.
+//
+
+// Preparatory Stage A.
+#myhaccp-start-form.prep-a input#edit-save {
+  margin-left: 0;
+}
+
+// Preparatory Stage C
+.prep-c-2 .fieldset-wrapper {
+  @extend %fieldgroup-table-style;
+}
+
+// Preparatory Stage D
+.prep-d {
+  fieldset.instance .form-wrapper {
+    @extend %half-textareas;
+  }
+  .form-radios {
+    @extend %inline-radios;
+  }
+  .form-item-prep-d-team-skills {
+    margin-top: 2em;
+    .form-radios {
+      @extend %inline-radios;
+    }
+  }
+}
+
+// Prep Stage F
+
+.prep-f,
+.prep-h {
+  .form-radios {
+    @extend %inline-radios;
+  }
+}

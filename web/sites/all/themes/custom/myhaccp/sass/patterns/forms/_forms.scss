@@ -1,17 +1,16 @@
-/**
- * Forms
- */
+//
+// Forms.
+//
 
 @import 'forms-mixins';
 
-/** Variables **/
+// Variables
 
 $form_elements_background_color: #FCFCFC;
 $form_elements_outline_color: $accent-2;
 $form_elements_error_color: $negative;
 
-/** General form styling **/
-
+// General form styling
 
 // Base elements
 input[type="text"],
@@ -54,7 +53,6 @@ ul.parsley-error-list {
   margin: 0;
   padding: 0;
   li {
-    //color: #FFF;
     list-style: none;
     margin: 0;
     padding: 2px 5px;
@@ -94,7 +92,7 @@ select.form-select:focus {
 label {
   display: block;
   &.option {
-    display: inline; /** Checkboxes & Radios **/
+    display: inline; // Checkboxes & Radios
   }
 }
 
@@ -140,12 +138,10 @@ ul.tips {
   padding: 0;
  li {
     margin: 0.25em 0 0.25em 1.5em;
-    /* LTR */
   }
 }
 
-/** Checkboxes & Radios **/
-
+// Checkboxes & Radios
 .form-checkboxes .form-item label {
   display: inline;
   font-size: 1em;
@@ -156,7 +152,6 @@ ul.tips {
 }
 
 .form-item label.option {
-  //font-size: 16px;
   text-transform: none;
 }
 
@@ -178,16 +173,14 @@ td.radios {
   }
 }
 
-/** File fields **/
-
+// File fields
 .form-managed-file .form-file,
 .form-managed-file .form-submit {
   margin-left: 10px;
 }
 
 
-/* Fieldsets */
-
+// Fieldsets
 fieldset {
   border: none;
   margin: 0 0 1em 0;
@@ -198,12 +191,9 @@ fieldset {
     @include adjust-font-size-to($h3-font-size);
     color: $accent-2;
   }
-  .form-item {
-    //padding: 0 1em 0 0;
-  }
 }
 
-/** Buttons **/
+// Buttons
 
 // All submit buttons
 input[type=submit] {
@@ -252,403 +242,8 @@ input#edit-delete-all {
   color: #FFF;
 }
 
-// Other buttons
-// e.g Add another
-input#edit-submit.form-add {
-  font-size: 0.9em;
-  float: left;
-  margin-left: 0
-}
 
-.form-actions {
-  clear: both;
-  text-align: right;
-  .previous {
-    float: left;
-    margin-left: 0;
-  }
-}
-
-.add-another {
-  clear: both;
-  margin-top: 1em;
-  margin-bottom: 2em;
-  overflow: hidden;
-}
-
-
-/** Field Groups **/
-
+// Field Groups
 .field-group-wrapper {
   margin-bottom: 1em;
-}
-
-/**
- * Inline field group
- *
- * Displays elements of a field group side by side
- *
- * Example usage: PR, Step 1 Question 3 (form-pr-c.php)
- * State start and end points of the HACCP plan
- */
-
-#edit-container-prep-c-q3 {
-  @media all and (min-width: $break_med_up) {
-    .form-item {
-      margin-right: 1em;
-      float: left;
-    }
-  }
-}
-
-
-
-%fieldgroup-table-2 {
-  table {
-    width: 100%;
-  }
-  > .field-group-div {
-    border-bottom: 1px solid $accent_2;
-    overflow: hidden;
-    padding: 1.5em 0;
-  }
-  .form-item {
-    float: left;
-    margin-bottom: 1em;
-    padding-right: 2em;
-  }
-  .field-group-row {
-    clear: both;
-  }
-}
-
-.field-group-principle-1 .form-table {
-  @extend %fieldgroup-responsive-table;
-}
-
-%fieldgroup-responsive-table {
-  border-bottom: 1px solid $accent_2;
-  padding-bottom: 0em;
-  margin-bottom: 2em;
-  input[type="text"] {
-    min-width: inherit;
-  }
-
-}
-
-/** Misc styling for specific forms **/
-
-.field-group-row-wrapper {
-  clear: both;
-  > label {
-    font-weight: 500;
-  }
-}
-
-
-
-.form-principle-3 {
-  @extend %standard-form-layouts;
-}
-
-%standard-form-layouts {
-  .field-group-wrapper {
-    margin-bottom: 1em;
-  }
-  .group-radios {
-    label {
-      display: inline;
-      padding: 0.25em;
-    }
-  }
-  .field-question-set {
-    border-bottom: 1px solid $accent_2;
-    margin-bottom: 2em;
-    padding-bottom: 1em;
-  }
-}
-
-
-/** ?? **/
-
-div.teaser-checkbox .form-item,
-.form-item .form-item {
-  padding: 5px 0;
-  margin: 0;
-  border: 0;
-}
-
-#mforms-wrapper-myhaccp {
-  fieldset {
-    border-width: 0;
-    padding-bottom: 0;
-    fieldset {
-      border-width: 1px;
-      padding-bottom: 1em;
-    }
-  }
-}
-
-#myhaccp-start-form {
-  .help {
-    color: $text-lighter;
-    font-size: 0.8em;
-  }
-  input#edit-save {
-    margin-left: 30%;
-    margin-bottom: 1em;
-  }
-  input#edit-previous {
-    float: left;
-    margin-bottom: 1em;
-    margin-left: 0;
-  }
-  input#edit-continue {
-    float: right;
-    margin-bottom: 1em;
-  }
-}
-
-.group-title {
-  margin-bottom: 0.5em;
-}
-
-#container {
-  margin-bottom: 2em;
-  > fieldset {
-    margin-bottom: 1em;
-    padding-top: 0;
-  }
-  .form-controls input[type="submit"] {
-    @include agile-button();
-    margin-left: 0;
-    margin-right: 1em;
-  }
-}
-
-#instance-container {
-  margin-bottom: 2em;
-  > fieldset {
-    margin-bottom: 1em;
-  }
-  .form-controls input[type="submit"] {
-    @include agile-button();
-    margin-left: 0;
-    margin-right: 1em;
-  }
-}
-
-/**
- * Specific form styling
- */
-
-/** Preparatory Stage A **/
-
-#myhaccp-start-form.prep-a input#edit-save {
-  margin-left: 0;
-}
-
-/** Preparatory Stage C **/
-.prep-c-2 .fieldset-wrapper {
- @extend %fieldgroup-table-style;
-}
-
-
-/** Preparatory Stage D **/
-
-.prep-d {
-  fieldset.instance .form-wrapper {
-    @extend %half-textareas;
-  }
-  .form-radios {
-    @extend %inline-radios;
-  }
-  .form-item-prep-d-team-skills {
-    margin-top: 2em;
-    .form-radios {
-      @extend %inline-radios;
-    }
-  }
-}
-
-/** Prep Stage F **/
-
-.prep-f,
-.prep-h {
-  .form-radios {
-    @extend %inline-radios;
-  }
-}
-
-
-/** Principle 1, Q1 **/
-
-.p1q1-step {
-  @include clearfix;
-  .form-item {
-    float: left;
-    margin-right: 2em;
-    input.step-no {
-      width: 3em;
-      min-width: 3em;
-    }
-    @media all and (min-width: $break_med_up) {
-      input.step-name {
-        width: 20em;
-        min-width: 20em;
-      }
-    }
-    @media all and (min-width: $break_massive_up) {
-      input.step-name {
-        width: 35em;
-        min-width: 35em;
-      }
-    }
-  }
-}
-
-.principle-1-question-1 .hazards {
-  @extend %half-textareas;
-}
-
-/** Principle 1, Q2 **/
-
-.principle-1-question-2 {
-  table {
-    width: 100%;
-    // @todo refactor to be more sensible
-    // add classes
-    .form-type-textarea {
-      width: 409px;
-      textarea {
-        width: 400px;
-      }
-    }
-
-    th.severity,
-    th.likelihood,
-    th.significance {
-      max-width: 3em;
-      min-width: 120px;
-      span {
-        white-space: nowrap;
-      }
-    }
-  }
-  input[type="text"] {
-    &.severity,
-    &.likelihood,
-    &.significance {
-      min-width: 3em;
-      width: 3em;
-    }
-  }
-}
-
-.no-js {
-  .principle-1-question-2 {
-    th {
-      min-width: 150px;
-      vertical-align: top;
-    }
-  }
-}
-
-/** Principle 2 **/
-
-.principle-2-question-1-3 .form-radios {
-  @extend %inline-radios;
-}
-
-.principle-2-question-4 {
-  table td {
-    vertical-align: top;
-  }
-  td > .form-type-radios {
-      font-size: 0.9em;
-      width: 15em;
-      clear: both;
-      margin-bottom: 0.5em;
-      overflow: hidden;
-      text-align: center;
-      > label {
-        color: #888888;
-        float: left;
-      }
-    .form-radios {
-      .form-item {
-        display: inline;
-      }
-    }
-    label, input {
-      display: inline;
-      margin-right: 0.25em;
-    }
-    input {
-      vertical-align: baseline;
-    }
-  }
-  td > .form-radios {
-    @extend %inline-radios;
-  }
-}
-
-
-/** Principle 3, 4 & 5 **/
-
-.principle-3,
-.principle-4,
-.principle-5 {
-  .ccp-number .label,
-  .process-step .label,
-  .hazard .label,
-  .control-measure .label {
-    font-weight: bold;
-  }
-  .control-measure {
-    margin-bottom: 1em;
-  }
-  .form-wrapper {
-    margin-bottom: 1em;
-    border-bottom: 1px solid black;
-  }
-  .form-wrapper:last-child {
-    border-bottom: none;
-  }
-  .form-radios {
-    @extend %inline-radios;
-  }
-}
-
-/** Principle 6 **/
-
-.principle-6 {
-  .form-radios {
-    @extend %inline-radios;
-  }
-}
-
-/** Review stages **/
-.validation-stages {
-  display: table;
-  width: 100%;
-  .validation-stage {
-    width: 100%;
-    display: table-row;
-    h3 {
-      font-size: 1em;
-      width: 70%;
-      padding-right: 2em;
-      display: table-cell;
-    }
-    .validation-status {
-      width: 30%;
-      display: table-cell;
-    }
-    &.review {
-      a {
-        color: $accent-3;
-      }
-    }
-  }
 }

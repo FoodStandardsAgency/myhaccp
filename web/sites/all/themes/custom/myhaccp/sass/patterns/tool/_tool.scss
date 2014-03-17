@@ -1,0 +1,208 @@
+//
+// General styling for the MyHACCP web tool.
+//
+
+
+// Other buttons.
+// e.g Add another.
+input#edit-submit.form-add {
+  font-size: 0.9em;
+  float: left;
+  margin-left: 0
+}
+
+.form-actions {
+  clear: both;
+  text-align: right;
+  .previous {
+    float: left;
+    margin-left: 0;
+  }
+}
+
+.add-another {
+  clear: both;
+  margin-top: 1em;
+  margin-bottom: 2em;
+  overflow: hidden;
+}
+
+/**
+ * Inline field group
+ *
+ * Displays elements of a field group side by side
+ *
+ * Example usage: PR, Step 1 Question 3 (form-pr-c.php)
+ * State start and end points of the HACCP plan
+ */
+
+#edit-container-prep-c-q3 {
+  @media all and (min-width: $break_med_up) {
+    .form-item {
+      margin-right: 1em;
+      float: left;
+    }
+  }
+}
+
+
+%fieldgroup-table-2 {
+  table {
+    width: 100%;
+  }
+  > .field-group-div {
+    border-bottom: 1px solid $accent_2;
+    overflow: hidden;
+    padding: 1.5em 0;
+  }
+  .form-item {
+    float: left;
+    margin-bottom: 1em;
+    padding-right: 2em;
+  }
+  .field-group-row {
+    clear: both;
+  }
+}
+
+.field-group-principle-1 .form-table {
+  @extend %fieldgroup-responsive-table;
+}
+
+%fieldgroup-responsive-table {
+  border-bottom: 1px solid $accent_2;
+  padding-bottom: 0em;
+  margin-bottom: 2em;
+  input[type="text"] {
+    min-width: inherit;
+  }
+
+}
+
+/** Misc styling for specific forms **/
+
+.field-group-row-wrapper {
+  clear: both;
+  > label {
+    font-weight: 500;
+  }
+}
+
+
+
+.form-principle-3 {
+  @extend %standard-form-layouts;
+}
+
+%standard-form-layouts {
+  .field-group-wrapper {
+    margin-bottom: 1em;
+  }
+  .group-radios {
+    label {
+      display: inline;
+      padding: 0.25em;
+    }
+  }
+  .field-question-set {
+    border-bottom: 1px solid $accent_2;
+    margin-bottom: 2em;
+    padding-bottom: 1em;
+  }
+}
+
+
+/** ?? **/
+
+div.teaser-checkbox .form-item,
+.form-item .form-item {
+  padding: 5px 0;
+  margin: 0;
+  border: 0;
+}
+
+#mforms-wrapper-myhaccp {
+  fieldset {
+    border-width: 0;
+    padding-bottom: 0;
+    fieldset {
+      border-width: 1px;
+      padding-bottom: 1em;
+    }
+  }
+}
+
+#myhaccp-start-form {
+  .help {
+    color: $text-lighter;
+    font-size: 0.8em;
+  }
+  input#edit-save {
+    margin-left: 30%;
+    margin-bottom: 1em;
+  }
+  input#edit-previous {
+    float: left;
+    margin-bottom: 1em;
+    margin-left: 0;
+  }
+  input#edit-continue {
+    float: right;
+    margin-bottom: 1em;
+  }
+}
+
+.group-title {
+  margin-bottom: 0.5em;
+}
+
+#container {
+  margin-bottom: 2em;
+  > fieldset {
+    margin-bottom: 1em;
+    padding-top: 0;
+  }
+  .form-controls input[type="submit"] {
+    @include agile-button();
+    margin-left: 0;
+    margin-right: 1em;
+  }
+}
+
+#instance-container {
+  margin-bottom: 2em;
+  > fieldset {
+    margin-bottom: 1em;
+  }
+  .form-controls input[type="submit"] {
+    @include agile-button();
+    margin-left: 0;
+    margin-right: 1em;
+  }
+}
+
+
+/** Review stages **/
+.validation-stages {
+  display: table;
+  width: 100%;
+  .validation-stage {
+    width: 100%;
+    display: table-row;
+    h3 {
+      font-size: 1em;
+      width: 70%;
+      padding-right: 2em;
+      display: table-cell;
+    }
+    .validation-status {
+      width: 30%;
+      display: table-cell;
+    }
+    &.review {
+      a {
+        color: $accent-3;
+      }
+    }
+  }
+}

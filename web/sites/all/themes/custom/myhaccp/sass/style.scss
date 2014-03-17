@@ -44,6 +44,11 @@
 @import 'patterns/files';
 @import 'patterns/resources';
 
+// Tool stages
+@import 'patterns/tool/tool';
+@import 'patterns/tool/preparatory';
+@import 'patterns/tool/principles';
+
 
 // Drupal Patterns
 @import 'patterns/drupal/autocomplete';

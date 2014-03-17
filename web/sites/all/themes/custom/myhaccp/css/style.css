@@ -868,9 +868,6 @@ ul.tabs.secondary li a.active {
   color: #6cb33f;
 }
 
-/**
- * Forms
- */
 input:focus,
 textarea:focus,
 select:focus {
@@ -993,8 +990,6 @@ select:focus {
   width: 95%;
 }
 
-/** Variables **/
-/** General form styling **/
 input[type="text"],
 input[type="email"],
 input[type="date"],
@@ -1099,7 +1094,6 @@ label {
 }
 label.option {
   display: inline;
-  /** Checkboxes & Radios **/
 }
 
 .form-item label,
@@ -1145,10 +1139,8 @@ ul.tips {
 }
 ul.tips li {
   margin: 0.25em 0 0.25em 1.5em;
-  /* LTR */
 }
 
-/** Checkboxes & Radios **/
 .form-checkboxes .form-item label {
   display: inline;
   font-size: 1em;
@@ -1180,13 +1172,11 @@ td.radios label {
   padding: 0.25em;
 }
 
-/** File fields **/
 .form-managed-file .form-file,
 .form-managed-file .form-submit {
   margin-left: 10px;
 }
 
-/* Fieldsets */
 fieldset {
   border: none;
   margin: 0 0 1em 0;
@@ -1199,7 +1189,6 @@ fieldset legend {
   color: #007fb2;
 }
 
-/** Buttons **/
 input[type=submit] {
   margin-left: 1em;
 }
@@ -1395,335 +1384,8 @@ input#edit-delete-all:active {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
 }
 
-input#edit-submit.form-add {
-  font-size: 0.9em;
-  float: left;
-  margin-left: 0;
-}
-
-.form-actions {
-  clear: both;
-  text-align: right;
-}
-.form-actions .previous {
-  float: left;
-  margin-left: 0;
-}
-
-.add-another {
-  clear: both;
-  margin-top: 1em;
-  margin-bottom: 2em;
-  overflow: hidden;
-}
-
-/** Field Groups **/
 .field-group-wrapper {
   margin-bottom: 1em;
-}
-
-/**
- * Inline field group
- *
- * Displays elements of a field group side by side
- *
- * Example usage: PR, Step 1 Question 3 (form-pr-c.php)
- * State start and end points of the HACCP plan
- */
-@media all and (min-width: 860px) {
-  #edit-container-prep-c-q3 .form-item {
-    margin-right: 1em;
-    float: left;
-  }
-}
-
-.field-group-principle-1 .form-table {
-  border-bottom: 1px solid #007fb2;
-  padding-bottom: 0em;
-  margin-bottom: 2em;
-}
-.field-group-principle-1 .form-table input[type="text"] {
-  min-width: inherit;
-}
-
-/** Misc styling for specific forms **/
-.field-group-row-wrapper {
-  clear: both;
-}
-.field-group-row-wrapper > label {
-  font-weight: 500;
-}
-
-.form-principle-3 .field-group-wrapper {
-  margin-bottom: 1em;
-}
-.form-principle-3 .group-radios label {
-  display: inline;
-  padding: 0.25em;
-}
-.form-principle-3 .field-question-set {
-  border-bottom: 1px solid #007fb2;
-  margin-bottom: 2em;
-  padding-bottom: 1em;
-}
-
-/** ?? **/
-div.teaser-checkbox .form-item,
-.form-item .form-item {
-  padding: 5px 0;
-  margin: 0;
-  border: 0;
-}
-
-#mforms-wrapper-myhaccp fieldset {
-  border-width: 0;
-  padding-bottom: 0;
-}
-#mforms-wrapper-myhaccp fieldset fieldset {
-  border-width: 1px;
-  padding-bottom: 1em;
-}
-
-#myhaccp-start-form .help {
-  color: #676767;
-  font-size: 0.8em;
-}
-#myhaccp-start-form input#edit-save {
-  margin-left: 30%;
-  margin-bottom: 1em;
-}
-#myhaccp-start-form input#edit-previous {
-  float: left;
-  margin-bottom: 1em;
-  margin-left: 0;
-}
-#myhaccp-start-form input#edit-continue {
-  float: right;
-  margin-bottom: 1em;
-}
-
-.group-title {
-  margin-bottom: 0.5em;
-}
-
-#container {
-  margin-bottom: 2em;
-}
-#container > fieldset {
-  margin-bottom: 1em;
-  padding-top: 0;
-}
-#container .form-controls input[type="submit"] {
-  background-color: #e6e6e6;
-  color: rgba(0, 0, 0, 0.8);
-  border: 0 none transparent;
-  padding: 0.6em 1.5em 0.5em 1.5em;
-  text-decoration: none;
-  -webkit-transition: all 0.25s ease;
-  -moz-transition: all 0.25s ease;
-  -o-transition: all 0.25s ease;
-  transition: all 0.25s ease;
-  margin-left: 0;
-  margin-right: 1em;
-}
-#container .form-controls input[type="submit"]:hover, #container .form-controls input[type="submit"]:focus {
-  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
-  cursor: pointer;
-}
-#container .form-controls input[type="submit"].disabled {
-  background-image: none;
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-#container .form-controls input[type="submit"].active, #container .form-controls input[type="submit"]:active {
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
-}
-
-#instance-container {
-  margin-bottom: 2em;
-}
-#instance-container > fieldset {
-  margin-bottom: 1em;
-}
-#instance-container .form-controls input[type="submit"] {
-  background-color: #e6e6e6;
-  color: rgba(0, 0, 0, 0.8);
-  border: 0 none transparent;
-  padding: 0.6em 1.5em 0.5em 1.5em;
-  text-decoration: none;
-  -webkit-transition: all 0.25s ease;
-  -moz-transition: all 0.25s ease;
-  -o-transition: all 0.25s ease;
-  transition: all 0.25s ease;
-  margin-left: 0;
-  margin-right: 1em;
-}
-#instance-container .form-controls input[type="submit"]:hover, #instance-container .form-controls input[type="submit"]:focus {
-  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
-  cursor: pointer;
-}
-#instance-container .form-controls input[type="submit"].disabled {
-  background-image: none;
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-#instance-container .form-controls input[type="submit"].active, #instance-container .form-controls input[type="submit"]:active {
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
-}
-
-/**
- * Specific form styling
- */
-/** Preparatory Stage A **/
-#myhaccp-start-form.prep-a input#edit-save {
-  margin-left: 0;
-}
-
-/** Preparatory Stage C **/
-/** Preparatory Stage D **/
-.prep-d .form-item-prep-d-team-skills {
-  margin-top: 2em;
-}
-
-/** Prep Stage F **/
-/** Principle 1, Q1 **/
-.p1q1-step {
-  overflow: hidden;
-  *zoom: 1;
-}
-.p1q1-step .form-item {
-  float: left;
-  margin-right: 2em;
-}
-.p1q1-step .form-item input.step-no {
-  width: 3em;
-  min-width: 3em;
-}
-@media all and (min-width: 860px) {
-  .p1q1-step .form-item input.step-name {
-    width: 20em;
-    min-width: 20em;
-  }
-}
-@media all and (min-width: 1250px) {
-  .p1q1-step .form-item input.step-name {
-    width: 35em;
-    min-width: 35em;
-  }
-}
-
-/** Principle 1, Q2 **/
-.principle-1-question-2 table {
-  width: 100%;
-}
-.principle-1-question-2 table .form-type-textarea {
-  width: 409px;
-}
-.principle-1-question-2 table .form-type-textarea textarea {
-  width: 400px;
-}
-.principle-1-question-2 table th.severity,
-.principle-1-question-2 table th.likelihood,
-.principle-1-question-2 table th.significance {
-  max-width: 3em;
-  min-width: 120px;
-}
-.principle-1-question-2 table th.severity span,
-.principle-1-question-2 table th.likelihood span,
-.principle-1-question-2 table th.significance span {
-  white-space: nowrap;
-}
-.principle-1-question-2 input[type="text"].severity, .principle-1-question-2 input[type="text"].likelihood, .principle-1-question-2 input[type="text"].significance {
-  min-width: 3em;
-  width: 3em;
-}
-
-.no-js .principle-1-question-2 th {
-  min-width: 150px;
-  vertical-align: top;
-}
-
-/** Principle 2 **/
-.principle-2-question-4 table td {
-  vertical-align: top;
-}
-.principle-2-question-4 td > .form-type-radios {
-  font-size: 0.9em;
-  width: 15em;
-  clear: both;
-  margin-bottom: 0.5em;
-  overflow: hidden;
-  text-align: center;
-}
-.principle-2-question-4 td > .form-type-radios > label {
-  color: #888888;
-  float: left;
-}
-.principle-2-question-4 td > .form-type-radios .form-radios .form-item {
-  display: inline;
-}
-.principle-2-question-4 td > .form-type-radios label, .principle-2-question-4 td > .form-type-radios input {
-  display: inline;
-  margin-right: 0.25em;
-}
-.principle-2-question-4 td > .form-type-radios input {
-  vertical-align: baseline;
-}
-
-/** Principle 3, 4 & 5 **/
-.principle-3 .ccp-number .label,
-.principle-3 .process-step .label,
-.principle-3 .hazard .label,
-.principle-3 .control-measure .label,
-.principle-4 .ccp-number .label,
-.principle-4 .process-step .label,
-.principle-4 .hazard .label,
-.principle-4 .control-measure .label,
-.principle-5 .ccp-number .label,
-.principle-5 .process-step .label,
-.principle-5 .hazard .label,
-.principle-5 .control-measure .label {
-  font-weight: bold;
-}
-.principle-3 .control-measure,
-.principle-4 .control-measure,
-.principle-5 .control-measure {
-  margin-bottom: 1em;
-}
-.principle-3 .form-wrapper,
-.principle-4 .form-wrapper,
-.principle-5 .form-wrapper {
-  margin-bottom: 1em;
-  border-bottom: 1px solid black;
-}
-.principle-3 .form-wrapper:last-child,
-.principle-4 .form-wrapper:last-child,
-.principle-5 .form-wrapper:last-child {
-  border-bottom: none;
-}
-
-/** Principle 6 **/
-/** Review stages **/
-.validation-stages {
-  display: table;
-  width: 100%;
-}
-.validation-stages .validation-stage {
-  width: 100%;
-  display: table-row;
-}
-.validation-stages .validation-stage h3 {
-  font-size: 1em;
-  width: 70%;
-  padding-right: 2em;
-  display: table-cell;
-}
-.validation-stages .validation-stage .validation-status {
-  width: 30%;
-  display: table-cell;
-}
-.validation-stages .validation-stage.review a {
-  color: #f15d22;
 }
 
 /**
@@ -2716,6 +2378,320 @@ table thead th .help-tip {
 
 .view-id-resources.view-display-id-block_2 .views-row {
   margin-bottom: 1em;
+}
+
+input#edit-submit.form-add {
+  font-size: 0.9em;
+  float: left;
+  margin-left: 0;
+}
+
+.form-actions {
+  clear: both;
+  text-align: right;
+}
+.form-actions .previous {
+  float: left;
+  margin-left: 0;
+}
+
+.add-another {
+  clear: both;
+  margin-top: 1em;
+  margin-bottom: 2em;
+  overflow: hidden;
+}
+
+/**
+ * Inline field group
+ *
+ * Displays elements of a field group side by side
+ *
+ * Example usage: PR, Step 1 Question 3 (form-pr-c.php)
+ * State start and end points of the HACCP plan
+ */
+@media all and (min-width: 860px) {
+  #edit-container-prep-c-q3 .form-item {
+    margin-right: 1em;
+    float: left;
+  }
+}
+
+.field-group-principle-1 .form-table {
+  border-bottom: 1px solid #007fb2;
+  padding-bottom: 0em;
+  margin-bottom: 2em;
+}
+.field-group-principle-1 .form-table input[type="text"] {
+  min-width: inherit;
+}
+
+/** Misc styling for specific forms **/
+.field-group-row-wrapper {
+  clear: both;
+}
+.field-group-row-wrapper > label {
+  font-weight: 500;
+}
+
+.form-principle-3 .field-group-wrapper {
+  margin-bottom: 1em;
+}
+.form-principle-3 .group-radios label {
+  display: inline;
+  padding: 0.25em;
+}
+.form-principle-3 .field-question-set {
+  border-bottom: 1px solid #007fb2;
+  margin-bottom: 2em;
+  padding-bottom: 1em;
+}
+
+/** ?? **/
+div.teaser-checkbox .form-item,
+.form-item .form-item {
+  padding: 5px 0;
+  margin: 0;
+  border: 0;
+}
+
+#mforms-wrapper-myhaccp fieldset {
+  border-width: 0;
+  padding-bottom: 0;
+}
+#mforms-wrapper-myhaccp fieldset fieldset {
+  border-width: 1px;
+  padding-bottom: 1em;
+}
+
+#myhaccp-start-form .help {
+  color: #676767;
+  font-size: 0.8em;
+}
+#myhaccp-start-form input#edit-save {
+  margin-left: 30%;
+  margin-bottom: 1em;
+}
+#myhaccp-start-form input#edit-previous {
+  float: left;
+  margin-bottom: 1em;
+  margin-left: 0;
+}
+#myhaccp-start-form input#edit-continue {
+  float: right;
+  margin-bottom: 1em;
+}
+
+.group-title {
+  margin-bottom: 0.5em;
+}
+
+#container {
+  margin-bottom: 2em;
+}
+#container > fieldset {
+  margin-bottom: 1em;
+  padding-top: 0;
+}
+#container .form-controls input[type="submit"] {
+  background-color: #e6e6e6;
+  color: rgba(0, 0, 0, 0.8);
+  border: 0 none transparent;
+  padding: 0.6em 1.5em 0.5em 1.5em;
+  text-decoration: none;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  margin-left: 0;
+  margin-right: 1em;
+}
+#container .form-controls input[type="submit"]:hover, #container .form-controls input[type="submit"]:focus {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+}
+#container .form-controls input[type="submit"].disabled {
+  background-image: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+#container .form-controls input[type="submit"].active, #container .form-controls input[type="submit"]:active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
+}
+
+#instance-container {
+  margin-bottom: 2em;
+}
+#instance-container > fieldset {
+  margin-bottom: 1em;
+}
+#instance-container .form-controls input[type="submit"] {
+  background-color: #e6e6e6;
+  color: rgba(0, 0, 0, 0.8);
+  border: 0 none transparent;
+  padding: 0.6em 1.5em 0.5em 1.5em;
+  text-decoration: none;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  margin-left: 0;
+  margin-right: 1em;
+}
+#instance-container .form-controls input[type="submit"]:hover, #instance-container .form-controls input[type="submit"]:focus {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+}
+#instance-container .form-controls input[type="submit"].disabled {
+  background-image: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+#instance-container .form-controls input[type="submit"].active, #instance-container .form-controls input[type="submit"]:active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
+}
+
+/** Review stages **/
+.validation-stages {
+  display: table;
+  width: 100%;
+}
+.validation-stages .validation-stage {
+  width: 100%;
+  display: table-row;
+}
+.validation-stages .validation-stage h3 {
+  font-size: 1em;
+  width: 70%;
+  padding-right: 2em;
+  display: table-cell;
+}
+.validation-stages .validation-stage .validation-status {
+  width: 30%;
+  display: table-cell;
+}
+.validation-stages .validation-stage.review a {
+  color: #f15d22;
+}
+
+#myhaccp-start-form.prep-a input#edit-save {
+  margin-left: 0;
+}
+
+.prep-d .form-item-prep-d-team-skills {
+  margin-top: 2em;
+}
+
+.p1q1-step {
+  overflow: hidden;
+  *zoom: 1;
+}
+.p1q1-step .form-item {
+  float: left;
+  margin-right: 2em;
+}
+.p1q1-step .form-item input.step-no {
+  width: 3em;
+  min-width: 3em;
+}
+@media all and (min-width: 860px) {
+  .p1q1-step .form-item input.step-name {
+    width: 20em;
+    min-width: 20em;
+  }
+}
+@media all and (min-width: 1250px) {
+  .p1q1-step .form-item input.step-name {
+    width: 35em;
+    min-width: 35em;
+  }
+}
+
+.principle-1-question-2 table {
+  width: 100%;
+}
+.principle-1-question-2 table .form-type-textarea {
+  width: 409px;
+}
+.principle-1-question-2 table .form-type-textarea textarea {
+  width: 400px;
+}
+.principle-1-question-2 table th.severity,
+.principle-1-question-2 table th.likelihood,
+.principle-1-question-2 table th.significance {
+  max-width: 3em;
+  min-width: 120px;
+}
+.principle-1-question-2 table th.severity span,
+.principle-1-question-2 table th.likelihood span,
+.principle-1-question-2 table th.significance span {
+  white-space: nowrap;
+}
+.principle-1-question-2 input[type="text"].severity, .principle-1-question-2 input[type="text"].likelihood, .principle-1-question-2 input[type="text"].significance {
+  min-width: 3em;
+  width: 3em;
+}
+
+.no-js .principle-1-question-2 th {
+  min-width: 150px;
+  vertical-align: top;
+}
+
+.principle-2-question-4 table td {
+  vertical-align: top;
+}
+.principle-2-question-4 td > .form-type-radios {
+  font-size: 0.9em;
+  width: 15em;
+  clear: both;
+  margin-bottom: 0.5em;
+  overflow: hidden;
+  text-align: center;
+}
+.principle-2-question-4 td > .form-type-radios > label {
+  color: #888888;
+  float: left;
+}
+.principle-2-question-4 td > .form-type-radios .form-radios .form-item {
+  display: inline;
+}
+.principle-2-question-4 td > .form-type-radios label, .principle-2-question-4 td > .form-type-radios input {
+  display: inline;
+  margin-right: 0.25em;
+}
+.principle-2-question-4 td > .form-type-radios input {
+  vertical-align: baseline;
+}
+
+.principle-3 .ccp-number .label,
+.principle-3 .process-step .label,
+.principle-3 .hazard .label,
+.principle-3 .control-measure .label,
+.principle-4 .ccp-number .label,
+.principle-4 .process-step .label,
+.principle-4 .hazard .label,
+.principle-4 .control-measure .label,
+.principle-5 .ccp-number .label,
+.principle-5 .process-step .label,
+.principle-5 .hazard .label,
+.principle-5 .control-measure .label {
+  font-weight: bold;
+}
+.principle-3 .control-measure,
+.principle-4 .control-measure,
+.principle-5 .control-measure {
+  margin-bottom: 1em;
+}
+.principle-3 .form-wrapper,
+.principle-4 .form-wrapper,
+.principle-5 .form-wrapper {
+  margin-bottom: 1em;
+  border-bottom: 1px solid black;
+}
+.principle-3 .form-wrapper:last-child,
+.principle-4 .form-wrapper:last-child,
+.principle-5 .form-wrapper:last-child {
+  border-bottom: none;
 }
 
 /**
