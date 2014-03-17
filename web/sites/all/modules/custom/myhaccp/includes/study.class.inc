@@ -222,6 +222,7 @@ class Study implements StudyInterface {
     }
 
     // Fallback is to get the current stage from the database.
+    $_SESSION['iid'] = $this->getIID();
     $store = MformsDatabaseStore::getInstance('myhaccp');
     $stage_name = $store->getStore('curr_step');
     if ($stage = $this->getStage($stage_name)) {
