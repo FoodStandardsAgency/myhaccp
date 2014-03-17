@@ -20,16 +20,12 @@
   .form-radios {
     @extend %inline-radios;
   }
-  .form-item-prep-d-team-skills {
+  .form-item-preparatory-d-team-skills {
     margin-top: 2em;
-    .form-radios {
-      @extend %inline-radios;
-    }
   }
 }
 
 // Prep Stage F
-
 .prep-f,
 .prep-h {
   .form-radios {
