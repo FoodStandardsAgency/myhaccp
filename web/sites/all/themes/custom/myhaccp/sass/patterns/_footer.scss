@@ -7,8 +7,10 @@ footer[role=contentinfo] {
 .footer-inside {
   @include column();
   font-size: 0.9em;
+  padding-top: 1em;
   .gov-uk-logo {
     float: right;
+    @include border-radius(8px);
   }
   p.copyright-message {
     margin-bottom: 0;

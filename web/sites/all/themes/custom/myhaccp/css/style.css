@@ -1985,6 +1985,163 @@ div.teaser-checkbox .form-item,
   transition: none;
 }
 
+.webform-client-form input[type="text"],
+.webform-client-form input[type="email"] {
+  width: 14em;
+}
+.webform-client-form .webform-component-textarea {
+  max-width: 35em;
+}
+.webform-client-form .form-actions {
+  text-align: left;
+}
+.webform-client-form .form-actions input[type="submit"] {
+  margin-left: 0;
+  background-color: #e6e6e6;
+  color: rgba(0, 0, 0, 0.8);
+  border: 0 none transparent;
+  padding: 0.6em 1.5em 0.5em 1.5em;
+  text-decoration: none;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  background-color: #006f51;
+  color: #FFF;
+}
+.webform-client-form .form-actions input[type="submit"]:hover, .webform-client-form .form-actions input[type="submit"]:focus {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+}
+.webform-client-form .form-actions input[type="submit"].disabled {
+  background-image: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.webform-client-form .form-actions input[type="submit"].active, .webform-client-form .form-actions input[type="submit"]:active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
+}
+
+.page-tool-study a.finish,
+.page-tool-study a.finish:link,
+.page-tool-study a.finish:visited {
+  background-color: #e6e6e6;
+  color: rgba(0, 0, 0, 0.8);
+  border: 0 none transparent;
+  padding: 0.6em 1.5em 0.5em 1.5em;
+  text-decoration: none;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  background-color: #4d8f46;
+  color: #FFF;
+  margin-bottom: 2em;
+  display: inline-block;
+  float: right;
+}
+.page-tool-study a.finish:hover, .page-tool-study a.finish:focus,
+.page-tool-study a.finish:link:hover,
+.page-tool-study a.finish:link:focus,
+.page-tool-study a.finish:visited:hover,
+.page-tool-study a.finish:visited:focus {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+}
+.page-tool-study a.finish.disabled,
+.page-tool-study a.finish:link.disabled,
+.page-tool-study a.finish:visited.disabled {
+  background-image: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.page-tool-study a.finish.active, .page-tool-study a.finish:active,
+.page-tool-study a.finish:link.active,
+.page-tool-study a.finish:link:active,
+.page-tool-study a.finish:visited.active,
+.page-tool-study a.finish:visited:active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
+}
+.page-tool-study a.download,
+.page-tool-study a.download:link,
+.page-tool-study a.download:visited {
+  background-color: #e6e6e6;
+  color: rgba(0, 0, 0, 0.8);
+  border: 0 none transparent;
+  padding: 0.6em 1.5em 0.5em 1.5em;
+  text-decoration: none;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  background-color: #4d8f46;
+  color: #FFF;
+  margin-bottom: 2em;
+  display: inline-block;
+}
+.page-tool-study a.download:hover, .page-tool-study a.download:focus,
+.page-tool-study a.download:link:hover,
+.page-tool-study a.download:link:focus,
+.page-tool-study a.download:visited:hover,
+.page-tool-study a.download:visited:focus {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+}
+.page-tool-study a.download.disabled,
+.page-tool-study a.download:link.disabled,
+.page-tool-study a.download:visited.disabled {
+  background-image: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.page-tool-study a.download.active, .page-tool-study a.download:active,
+.page-tool-study a.download:link.active,
+.page-tool-study a.download:link:active,
+.page-tool-study a.download:visited.active,
+.page-tool-study a.download:visited:active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
+}
+.page-tool-study a.complete-link,
+.page-tool-study a.complete-link :link,
+.page-tool-study a.complete-link :visited {
+  background-color: #e6e6e6;
+  color: rgba(0, 0, 0, 0.8);
+  border: 0 none transparent;
+  padding: 0.6em 1.5em 0.5em 1.5em;
+  text-decoration: none;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  background-color: #4d8f46;
+  color: #FFF;
+  margin-bottom: 2em;
+  display: inline-block;
+  margin-right: 1em;
+}
+.page-tool-study a.complete-link:hover, .page-tool-study a.complete-link:focus,
+.page-tool-study a.complete-link :link:hover,
+.page-tool-study a.complete-link :link:focus,
+.page-tool-study a.complete-link :visited:hover,
+.page-tool-study a.complete-link :visited:focus {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+}
+.page-tool-study a.complete-link.disabled,
+.page-tool-study a.complete-link :link.disabled,
+.page-tool-study a.complete-link :visited.disabled {
+  background-image: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.page-tool-study a.complete-link.active, .page-tool-study a.complete-link:active,
+.page-tool-study a.complete-link :link.active,
+.page-tool-study a.complete-link :link:active,
+.page-tool-study a.complete-link :visited.active,
+.page-tool-study a.complete-link :visited:active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
+}
+
 /**
  * @file
  * Styles for system messages.
@@ -2264,9 +2421,15 @@ footer[role=contentinfo] {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   font-size: 0.9em;
+  padding-top: 1em;
 }
 .footer-inside .gov-uk-logo {
   float: right;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  border-radius: 8px;
 }
 .footer-inside p.copyright-message {
   margin-bottom: 0;
@@ -2434,6 +2597,36 @@ table thead th .help-tip {
 .ui-dialog .ui-dialog-content .help-menu ul li a.active {
   border-left: 2px solid #999999;
   background: #eeeeee;
+}
+
+.ui-dialog .dialog-footer {
+  border-top: 1px solid #eeeeee;
+  margin-top: 1em;
+  padding: 1em 0;
+}
+.ui-dialog .dialog-footer .close-button {
+  background-color: #e6e6e6;
+  color: rgba(0, 0, 0, 0.8);
+  border: 0 none transparent;
+  padding: 0.6em 1.5em 0.5em 1.5em;
+  text-decoration: none;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  font-size: 0.8em;
+}
+.ui-dialog .dialog-footer .close-button:hover, .ui-dialog .dialog-footer .close-button:focus {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+}
+.ui-dialog .dialog-footer .close-button.disabled {
+  background-image: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.ui-dialog .dialog-footer .close-button.active, .ui-dialog .dialog-footer .close-button:active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
 }
 
 .ui-widget-header {

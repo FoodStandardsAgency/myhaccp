@@ -1,4 +1,9 @@
 @media print {
+  body {
+    background-color: #FFF;
+    font-family: 'cartogothicstd';
+  }
+
   h1 {
     border-bottom: 5px solid #DDDDDD;
   }
@@ -38,10 +43,6 @@
     thead:first-child tr:first-child td {
         border-top: 0 none;
     }
-  }
-  body {
-    background-color: $page_background;
-    font-family: 'cartogothicstd';
   }
   div.page-break {
     page-break-after: always;
