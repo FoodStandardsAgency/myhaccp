@@ -81,6 +81,9 @@
               border-left: 2px solid $grey-2;
               background: $grey-1;
             }
+            &:focus {
+              outline: 0;
+            }
           }
         }
       }
