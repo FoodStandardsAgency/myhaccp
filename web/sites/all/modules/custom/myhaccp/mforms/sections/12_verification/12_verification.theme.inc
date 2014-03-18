@@ -60,7 +60,7 @@ function myhaccp_preprocess_12_verification(&$variables) {
     $content .= '</li></ul>';
   }
 
-  // Finished product
+  // Finished product.
   $activities_fp = myhaccp_prepare_checkboxes_output('principle_6', '6_4.3', $principle_6);
   if (!empty($activities_fp)) {
     $content .= '<h4>' . t('Finished product') . '</h4>';
@@ -72,7 +72,7 @@ function myhaccp_preprocess_12_verification(&$variables) {
   // Interim product.
   $activities_ip = myhaccp_prepare_checkboxes_output('principle_6', '6_4.4', $principle_6);
   if (!empty($activities_ip)) {
-    $content .= '<h4>' . t('Finished product') . '</h4>';
+    $content .= '<h4>' . t('Interim product') . '</h4>';
     $content .= '<ul><li>';
     $content .= implode('</li><li>', $activities_ip);
     $content .= '</li></ul>';
@@ -81,22 +81,22 @@ function myhaccp_preprocess_12_verification(&$variables) {
   // Other.
   $activities_other = myhaccp_prepare_checkboxes_output('principle_6', '6_4.5', $principle_6);
   if (!empty($activities_other)) {
-    $content .= '<h4>' . t('Finished product') . '</h4>';
+    $content .= '<h4>' . t('Other') . '</h4>';
     $content .= '<ul><li>';
     $content .= implode('</li><li>', $activities_other);
     $content .= '</li></ul>';
   }
 
   // Reviewing.
-  $activities_reviewing = myhaccp_prepare_checkboxes_output('principle_6', '6_4.5', $principle_6);
-  if (!empty($ia)) {
-    $content .= '<h4>' . t('Finished product') . '</h4>';
+  $activities_reviewing = myhaccp_prepare_checkboxes_output('principle_6', '6_4.6', $principle_6);
+  if (!empty($activities_reviewing)) {
+    $content .= '<h4>' . t('Reviewing') . '</h4>';
     $content .= '<ul><li>';
     $content .= implode('</li><li>', $activities_reviewing);
     $content .= '</li></ul>';
   }
 
-  // 5. Other verification activities
+  // 5. Other verification activities.
   if (!empty($principle_6['6_5'])) {
     $activities_other = explode("\r\n", trim($principle_6['6_5']));
     $content .= '<h4>' . t('Other verification activities') . '</h4>';
