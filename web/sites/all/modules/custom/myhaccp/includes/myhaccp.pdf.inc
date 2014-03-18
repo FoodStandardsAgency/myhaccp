@@ -38,6 +38,11 @@ function myhaccp_output_pdf($iid) {
 
     $sections = $configuration->getPDFSections();
 
+    // Prepare the cover page.
+    $cover = '<h1 class="study-name">' . $name . '</h1>';
+    // Write the cover to the PDF.
+    $mpdf->WriteHTML($cover, 2);
+
     // Prepare each page.
     foreach ($sections as $key => $section) {
       $output = '<section class="page">';
