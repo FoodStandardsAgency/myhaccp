@@ -45,12 +45,6 @@ function myhaccp_form_myhaccp_study_resume_alter(&$form, &$form_state) {
   $form['#attributes']['data-parsley-validate'] = '';
   // The message that says the stage has saved.
   $form['#validate'][] = 'myhaccp_saved_message';
-  // Add the validation messages container.
-  $form['validation_messages'] = array(
-    '#type' => 'container',
-    '#id' => 'validation-messages',
-    '#weight' => -10,
-  );
   $form['#process']['myhaccp'] = 'myhaccp_form_process';
 }
 
