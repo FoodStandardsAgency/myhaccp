@@ -33,16 +33,17 @@ function myhaccp_output_pdf($iid) {
     $mpdf->shrink_tables_to_fit = 1.2;
     $mpdf->WriteHTML($stylesheet, 1);
 
-    // Add page count to footer.
-    $mpdf->SetHTMLFooter('<footer class="pdf-footer">{PAGENO} / {nb}</footer>');
-
     $sections = $configuration->getPDFSections();
 
     // Prepare the cover page.
+    $mpdf->AddPage('', '', 1, '', 'on');
     $cover = '<h1 class="study-name">' . $name . '</h1>';
     // Write the cover to the PDF.
     $mpdf->WriteHTML($cover, 2);
+    $mpdf->AddPage('', '', 1, '', 'off');
 
+    // Add page count to footer.
+    $mpdf->SetHTMLFooter('<footer class="pdf-footer">{PAGENO} / {nb}</footer>');
     // Prepare each page.
     foreach ($sections as $key => $section) {
       $output = '<section class="page">';
@@ -59,7 +60,9 @@ function myhaccp_output_pdf($iid) {
       }
 
       // Get the orientation.
-      $mpdf->AddPage($section['orientation']);
+      if ($key !== '01_management') {
+        $mpdf->AddPage($section['orientation']);
+      }
 
       // Check the validation status of the needed stages.
       $statuses = array();
