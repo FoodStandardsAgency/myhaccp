@@ -85,8 +85,10 @@ Modular HACCP Plan - Typically several separate HACCP studies e.g. one on raw ma
 
     '#markup' => '<div class="label">' . t('3. State the process start and end points of the HACCP study !tip !help', array(
       '!tip' => _help_tip(15),
-      '!help' => '<div class="help-text">State where your HACCP study will begin e.g. at raw materials or goods in. State where it will end e.g. at delivery to the wholesaler, at despatch, when purchased by the consumer.</div>')) . '</div>',
-    '#help_link' => 15,
+      '!help' => '<div class="help-text">' . t("State where your HACCP study will begin e.g. at raw materials or goods in. State where it will end e.g. at delivery to the wholesaler, at despatch, when purchased by the consumer. !link", array(
+          '!link' => myhaccp_prepare_more_link(15),
+        )) . '</div>',
+    )),
   );
 
 

@@ -35,6 +35,9 @@
   .complete-link {
     @include agile-button($size: small);
   }
+  .download-link {
+    @include agile-button($size: small);
+  }
   .delete-link {
     @include agile-button($style: negative, $size: small);
   }
