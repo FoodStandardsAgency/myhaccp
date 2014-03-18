@@ -314,7 +314,6 @@ class Validator {
    */
   public function allFieldsAreEmpty() {
     // Iterate over all the form_state values.
-
     $iterator = new RecursiveArrayIterator($this->formState['values'][$this->getStage()->getName()]);
     // Prepare a new standard class so we can pass through items found from the
     // iterator.

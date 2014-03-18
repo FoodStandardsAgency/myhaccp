@@ -32,6 +32,18 @@ class Study implements StudyInterface {
   protected $phases = array();
 
   /**
+   * Tries to determine the IID from the URL.
+   */
+  public function getIIDFromURL() {
+    $url = $_GET['q'];
+    $parts = explode('/', $url);
+    if (isset($parts[2]) && $parts[0] == 'tool' && $parts[1] == 'study' && is_numeric($parts[2])) {
+      return $parts[2];
+    }
+    return FALSE;
+  }
+
+  /**
    * Returns the sessions's IID.
    *
    * @return int
