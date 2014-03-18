@@ -16,6 +16,12 @@ function myhaccp_init() {
   }
   // Get the current study object.
   $study = $container['study'];
+  // Try to set the IID based on the path. This is needed to avoid situations
+  // where the initialisation of the study and stages happens before the SESSION
+  // IID is set. The IID may get set later too.
+  if ($iid = $study->getIIDFromURL()) {
+    $study->setIID($iid);
+  }
   // Initialise the study.
   myhaccp_initialise_study($study);
   ctools_include('myhaccp.form', 'myhaccp', 'includes');
@@ -561,7 +567,7 @@ function myhaccp_pager_submit($form, &$form_state) {
   if (isset($form_state['triggering_element']['#store_key'])) {
     // Add $_POST into values as they got unset in the validation process due to
     // limit_validation_errors property of the back/step button.
-    $form_state['values'] += $_POST;
+    $form_state['values'] = array_merge($form_state['values'], $_POST);
     // Get the dependency injection container.
     global $container;
     // Get the current study.
@@ -1024,4 +1030,35 @@ function myhaccp_user_owns_study($iid, $user) {
     return TRUE;
   }
   return FALSE;
+}
+
+/**
+ * Alters the password reset form to provide prlp functionality.
+ *
+ * The password policy module doesn't integrate with prlp module so we're
+ * adding it here.
+ *
+ * @param array $form
+ *   The form to modify.
+ * @param array $form_state
+ *   The form state array.
+ */
+function myhaccp_form_user_pass_reset_alter(&$form, $form_state) {
+  // Avoid fatal errors is password policy module gets uninstalled.
+  if (module_exists('password_policy')) {
+    // For some reason this runs twice.
+    $ran = &drupal_static(__FUNCTION__);
+    if (!isset($ran)) {
+      // Modify the elements.
+      drupal_add_library('system', 'drupal.form');
+      drupal_add_js(drupal_get_path('module', 'password_policy') . '/password_policy.js', array(
+        'weight' => 20,
+      ));
+      password_policy_password_element_alter($form['account']['pass'], $form['#user']);
+      // Add the new validate and submit handlers.
+      $form['#validate'][] = 'password_policy_user_profile_form_validate';
+      $form['#submit'][] = 'password_policy_password_submit';
+      $ran = TRUE;
+    }
+  }
 }

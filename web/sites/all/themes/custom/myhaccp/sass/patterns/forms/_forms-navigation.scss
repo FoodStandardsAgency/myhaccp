@@ -46,11 +46,8 @@
         &.current-step {
           background: $accent-1;
           color: #FFF;
-          &.visited-step {
-            color: #FFF;
-            &:hover {
-              color: #FFF;
-            }
+          &:hover {
+            background: $accent-1-darker;
           }
         }
       }

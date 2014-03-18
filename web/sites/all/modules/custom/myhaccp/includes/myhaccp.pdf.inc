@@ -33,6 +33,9 @@ function myhaccp_output_pdf($iid) {
     $mpdf->shrink_tables_to_fit = 1.2;
     $mpdf->WriteHTML($stylesheet, 1);
 
+    // Add page count to footer.
+    $mpdf->SetHTMLFooter('<footer class="pdf-footer">{PAGENO} / {nb}</footer>');
+
     $sections = $configuration->getPDFSections();
 
     // Prepare each page.
@@ -69,6 +72,8 @@ function myhaccp_output_pdf($iid) {
       }
 
       $output .= '</section>';
+
+
 
       $mpdf->WriteHTML($output, 2);
     }

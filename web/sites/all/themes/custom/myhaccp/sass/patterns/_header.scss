@@ -52,11 +52,14 @@ header[role="banner"] {
     margin-bottom: 1em;
     color: $text-lighter;
     font-size: 0.85em;
-    @media all and (min-width: $break_med_up) {
-      margin-top: 0.5em;
-    }
     a {
       color: $text-lighter;
+      &:hover {
+        color: $text;
+      }
+    }
+    @media all and (min-width: $break_med_up) {
+      margin-top: 0.5em;
     }
     .form-item {
       margin-bottom: 0;

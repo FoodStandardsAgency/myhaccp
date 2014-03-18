@@ -1,0 +1,146 @@
+//
+// Styling for specific Principle Stages in the MyHACCP web tool.
+//
+
+
+// Principle 1, Q1
+.p1q1-step {
+  @include clearfix;
+  .form-item {
+    float: left;
+    margin-right: 2em;
+    input.step-no {
+      width: 3em;
+      min-width: 3em;
+    }
+    @media all and (min-width: $break_med_up) {
+      input.step-name {
+        width: 20em;
+        min-width: 20em;
+      }
+    }
+    @media all and (min-width: $break_massive_up) {
+      input.step-name {
+        width: 35em;
+        min-width: 35em;
+      }
+    }
+  }
+}
+
+.principle-1-question-1 .hazards {
+  @extend %half-textareas;
+}
+
+// Principle 1, Q2
+.principle-1-question-2 {
+  table {
+    width: 100%;
+    // @todo refactor to be more sensible
+    // add classes
+    .form-type-textarea {
+      width: 409px;
+      textarea {
+        width: 400px;
+      }
+    }
+
+    th.severity,
+    th.likelihood,
+    th.significance {
+      max-width: 3em;
+      min-width: 120px;
+      span {
+        white-space: nowrap;
+      }
+    }
+  }
+  input[type="text"] {
+    &.severity,
+    &.likelihood,
+    &.significance {
+      min-width: 3em;
+      width: 3em;
+    }
+  }
+}
+
+.no-js {
+  .principle-1-question-2 {
+    th {
+      min-width: 150px;
+      vertical-align: top;
+    }
+  }
+}
+
+// Principle 2
+.principle-2-question-1-3 .form-radios {
+  @extend %inline-radios;
+}
+
+.principle-2-question-4 {
+  table td {
+    vertical-align: top;
+  }
+  td > .form-type-radios {
+      font-size: 0.9em;
+      width: 15em;
+      clear: both;
+      margin-bottom: 0.5em;
+      overflow: hidden;
+      text-align: center;
+      > label {
+        color: #888888;
+        float: left;
+      }
+    .form-radios {
+      .form-item {
+        display: inline;
+      }
+    }
+    label, input {
+      display: inline;
+      margin-right: 0.25em;
+    }
+    input {
+      vertical-align: baseline;
+    }
+  }
+  td > .form-radios {
+    @extend %inline-radios;
+  }
+}
+
+
+// Principles 3, 4 & 5
+.principle-3,
+.principle-4,
+.principle-5 {
+  .ccp-number .label,
+  .process-step .label,
+  .hazard .label,
+  .control-measure .label {
+    font-weight: bold;
+  }
+  .control-measure {
+    margin-bottom: 1em;
+  }
+  .form-wrapper {
+    margin-bottom: 1em;
+    border-bottom: 1px solid black;
+  }
+  .form-wrapper:last-child {
+    border-bottom: none;
+  }
+  .form-radios {
+    @extend %inline-radios;
+  }
+}
+
+// Principle 6
+.principle-6 {
+  .form-radios {
+    @extend %inline-radios;
+  }
+}

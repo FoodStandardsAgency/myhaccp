@@ -58,4 +58,10 @@
       max-height: 500px;
     }
   }
+
+  footer.pdf-footer {
+    color: $text-lighter;
+    text-align: right;
+    font-size: 0.8em;
+  }
 }

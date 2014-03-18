@@ -32,6 +32,18 @@ class Study implements StudyInterface {
   protected $phases = array();
 
   /**
+   * Tries to determine the IID from the URL.
+   */
+  public function getIIDFromURL() {
+    $url = $_GET['q'];
+    $parts = explode('/', $url);
+    if (isset($parts[2]) && $parts[0] == 'tool' && $parts[1] == 'study' && is_numeric($parts[2])) {
+      return $parts[2];
+    }
+    return FALSE;
+  }
+
+  /**
    * Returns the sessions's IID.
    *
    * @return int
@@ -222,14 +234,24 @@ class Study implements StudyInterface {
     }
 
     // Fallback is to get the current stage from the database.
-    $_SESSION['iid'] = $this->getIID();
-    $store = MformsDatabaseStore::getInstance('myhaccp');
-    $stage_name = $store->getStore('curr_step');
-    if ($stage = $this->getStage($stage_name)) {
-      // Set the stage for future checks.
-      $this->setCurrentStage($stage);
-      return $this->getCurrentStage();
+    $data = db_select('mforms_storage', 'm');
+    $data->join('mforms_storage_steps', 's', 's.iid = m.iid');
+    $data->fields('s', array('store_data'))
+      ->condition('m.iid', $this->getIID())
+      ->condition('s.store_key', 'curr_step');
+    $result = $data->execute()->fetchField();
+    if ($result) {
+      $stage_name = unserialize($result);
+      if ($stage = $this->getStage($stage_name)) {
+        // Set the stage for future checks.
+        $this->setCurrentStage($stage);
+        return $this->getCurrentStage();
+      }
     }
+
+    // Final fallback is the preparatory intro stage.
+    $this->setCurrentStage('preparatory_intro');
+    return $this->getCurrentStage();
   }
 
   /**

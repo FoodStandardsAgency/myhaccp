@@ -23,6 +23,9 @@ footer[role=contentinfo] {
     padding-top: 0.5em;
     a {
       color: $text-lighter;
+      &:hover {
+        color: $text;
+      }
     }
     @media all and (min-width: $break_med_up) {
       clear: none;

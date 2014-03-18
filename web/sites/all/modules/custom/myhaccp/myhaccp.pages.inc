@@ -114,7 +114,7 @@ function myhaccp_list() {
       elseif ($study->getStatus() == 1) {
         // The study is current in a complete state (but may be invalid) so
         // allow the user to change it to incomplete.
-        $complete = l(t('Started'), 'tool/study/' . $result->iid . '/complete/0', array(
+        $complete = l(t('Active'), 'tool/study/' . $result->iid . '/complete/0', array(
           'attributes' => array(
             'class' => 'complete-link',
           ),
@@ -124,7 +124,7 @@ function myhaccp_list() {
     }
 
     // Convert status integers to a word.
-    $status = $result->status == 1 ? 'Complete' : 'Started';
+    $status = $result->status == 1 ? 'Complete' : 'Active';
 
     $rows[] = array(
       'data' => array(
@@ -254,6 +254,7 @@ function myhaccp_study_finish($iid) {
 
   // Get the current page.
   $destination = drupal_get_destination();
+  $complete = '';
 
   if ($study->getStatus() == 0 && $validation_status == VALID) {
     // The study is currently incomplete but valid so present a complete
@@ -268,7 +269,7 @@ function myhaccp_study_finish($iid) {
   elseif ($study->getStatus() == 1) {
     // The study is current in a complete state (but may be invalid) so
     // allow the user to change it to incomplete.
-    $complete = l(t("Mark your HACCP study as 'started'"), 'tool/study/' . $study->getIID() . '/complete/0', array(
+    $complete = l(t("Mark your HACCP study as 'active'"), 'tool/study/' . $study->getIID() . '/complete/0', array(
       'attributes' => array(
         'class' => 'complete-link',
       ),

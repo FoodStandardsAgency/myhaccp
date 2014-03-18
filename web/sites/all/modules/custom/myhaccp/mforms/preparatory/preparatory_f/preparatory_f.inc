@@ -149,7 +149,7 @@ function preparatory_f(&$form_state, &$next_step) {
     ),
     '#title' => t('7. Is the product specifically designed for people with allergies or intolerances?'),
     '#help_link' => 19,
-    '#help_text' => t('Does the product contain any ingredients from the list on substances or products causing f_6 or intolerances.'),
+    '#help_text' => t('Does the product contain any ingredients from the list on substances or products causing allergies or intolerances.'),
     '#default_value' => array_get($values, 'preparatory_f.f_7', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
