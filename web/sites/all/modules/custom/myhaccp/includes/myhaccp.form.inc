@@ -82,6 +82,12 @@ function myhaccp_form_process($form, &$form_state) {
     if (empty($validation)) {
       return $form;
     }
+    // Add the validation messages container.
+    $form['validation_messages'] = array(
+      '#type' => 'container',
+      '#id' => 'validation-messages',
+      '#weight' => -10,
+    );
     // Provide an intro.
     $messages = array(
       'intro' => 'The following items have errors you will need to correct:',
