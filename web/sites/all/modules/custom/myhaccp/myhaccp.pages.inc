@@ -52,6 +52,9 @@ function myhaccp_list() {
     'complete' => array(
       'data' => '',
     ),
+    'pdf' => array(
+      'data' => '',
+    ),
   );
 
   // Prepare the rows.
@@ -123,6 +126,15 @@ function myhaccp_list() {
       }
     }
 
+    // Link to download PDF.
+    $pdf = l(t('Download'), 'tool/study/' . $result->iid . '/pdf', array(
+      'attributes' => array(
+        'class' => array(
+          'download-link',
+        ),
+      ),
+    ));
+
     // Convert status integers to a word.
     $status = $result->status == 1 ? 'Complete' : 'Active';
 
@@ -135,6 +147,7 @@ function myhaccp_list() {
         'edit' => $edit,
         'delete' => $delete,
         'complete' => $complete,
+        'pdf' => $pdf,
       ),
     );
   }
