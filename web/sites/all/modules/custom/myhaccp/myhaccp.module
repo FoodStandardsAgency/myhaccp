@@ -735,6 +735,7 @@ function myhaccp_help_modal($js = FALSE, $nid = FALSE) {
     $study = $container['study'];
     $help = $container['configuration']->getHelpPages();
     $node_content = '<div class="help-content">';
+    $tab_index = 1;
     // Iterate over the two phases.
     foreach ($study->getPhases() as $phase) {
       // Get all the stages from the phases and loop over them.
@@ -758,7 +759,17 @@ function myhaccp_help_modal($js = FALSE, $nid = FALSE) {
             $node_content .= '</article>';
           }
           $phasename = $phase->getName();
-          $menu_items[$phasename][$node->nid] = '<a href="#help-' . $node->nid . '" class="' . $class . '">' . $node->title . '</a>';
+          $item = '<a href="#help-' . $node->nid . '"';
+          if ($nid == $node->nid) {
+            // Add an active class.
+            $item .= ' class="active"';
+          }
+          // Add a tabindex.
+          $item .= ' tabindex=' . $tab_index . '>';
+          $tab_index++;
+
+          $item .= $node->title . '</a>';
+          $menu_items[$phasename][$node->nid] = $item;
         }
       }
     }
