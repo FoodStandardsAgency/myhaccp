@@ -60,6 +60,16 @@ function cleanup_preprocess(&$vars, $hook) {
   if ( $hook == "html" ) {
     // =======================================| HTML |========================================
 
+    // Serialize RDF Namespaces into an RDFa 1.1 prefix attribute.
+    if ($vars['rdf_namespaces']) {
+      $prefixes = array();
+      foreach (explode("\n  ", ltrim($vars['rdf_namespaces'])) as $namespace) {
+        // Remove xlmns: and ending quote and fix prefix formatting.
+        $prefixes[] = str_replace('="', ': ', substr($namespace, 6, -1));
+      }
+      $vars['rdf_namespaces'] = ' prefix="' . implode(' ', $prefixes) . '"';
+    }
+
     //get the path for the site
     $vars['cleanup_path'] = $base_url .'/'. $path_cleanup;
 
