@@ -42,7 +42,7 @@ function myhaccp_preprocess_04_product(&$variables) {
   $variables['e_6_title'] = t('Shelf life');
   $variables['e_6'] = $preparatory_e['e_6'];
 
-  $variables['e_7_title'] = '';
+  $variables['e_7_title'] = t('Storing, handling and preparation advice');
   $variables['e_7'] = $preparatory_e['e_7'];
 
   // Name of the product.
