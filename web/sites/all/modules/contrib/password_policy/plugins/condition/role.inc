@@ -26,7 +26,7 @@ function password_policy_role_admin_form($form, &$form_state, $condition) {
     '#title' => t('Enforce policy for specific roles'),
     '#default_value' => $condition->config['roles'],
     '#description' => t('Enforce this policy only for the selected role(s). If you select no roles, the policy will be enforced for all users.'),
-    '#options' => user_roles(TRUE),
+    '#options' => user_roles(FALSE),
   );
   return $sub_form;
 }
