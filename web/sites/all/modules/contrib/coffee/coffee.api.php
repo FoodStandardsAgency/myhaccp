@@ -11,43 +11,49 @@
  */
 
 /**
- * Extend the Coffee functionallity with your own commands and items.
+ * Extend the Coffee functionallity with your own commands.
  *
- * Here's an example of how to add content to Coffee.
+ * This hook is run when the input in Coffee starts with a colon (:), it passes
+ * the keyword after the colon as parameter to the hook.
+ *
+ * You can define your own operators.
+ *
+ * @param string $op
+ *   This is the keyword used after the colon.
+ *
+ * @return array
+ *   An associative array whose keys are unique and whose values are an
+ *   associative array containing:
+ *   - title: A string used to display the title.
+ *   - path: A string used for redirection to the path.
+ *
+ *   Although there isn't a limitation of a maximum number of items to display,
+ *   please consider a maximum of 7 items or less, this because of the
+ *   usability of Coffee.
  */
-function hook_coffee_commands($op) {
-  $commands = array();
+function hook_coffee_command($op) {
 
-  // Basic example, for 1 result.
-  $commands[] = array(
-    'value' => 'Simple',
-    'label' => 'node/example',
-    // Every result should include should include a command.
-    'command' => ':simple',
-  );
+  switch ($op) {
+    // Is called when a user inputs :your operator.
+    case 'your operator':
 
-
-  // More advanced example to include a view.
-  $view = views_get_view('my_entities_view');
-
-  if ($view) {
-    $view->set_display('default');
-    $view->pre_execute();
-    $view->execute();
-  
-    if (count($view->result) > 0) {
-      foreach ($view->result as $row) {
-        $commands[] = array(
-          'value' => ltrim(url('node/' . $row->nid), '/'),
-          'label' => check_plain('Pub: ' . $row->node_title),
-          // You can also specify commands that if the user enters, this command should show.
-          'command' => ':x',
-        );
-      }
-    }
+      $return = array(
+        'item 1' => array(
+          'path' => '',
+          'title' => '',
+        ),
+        'item 2' => array(
+          'path' => '',
+          'title' => '',
+        ),
+      );
+      break;
   }
 
-  return $commands;
+  if (isset($return)) {
+    return $return;
+  }
+
 }
 
 /**

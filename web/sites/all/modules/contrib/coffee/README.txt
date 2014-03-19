@@ -2,12 +2,10 @@
 -- SUMMARY --
 
 The Coffee module helps you to navigate through the Drupal admin faster,
-inspired by Alfred and Spotlight (OS X). By default the management menu is
-included in the results. Go to the config page to select an other of multiple
-menus. 
+inspired by Alfred and Spotlight (OS X).
 
 For a full description of the module, visit the project page:
-  http://drupal.org/project/coffee
+  http://drupal.org/sandbox/michaelmol/1356930
 
 To submit bug reports and feature suggestions, or to track changes:
   http://drupal.org/project/issues/1356930
@@ -15,7 +13,7 @@ To submit bug reports and feature suggestions, or to track changes:
 
 -- REQUIREMENTS --
 
-Menu module (core).
+None.
 
 
 -- INSTALLATION --
@@ -30,10 +28,7 @@ Menu module (core).
   - access coffee
 
     Users in Roles with the "access coffee" permission can make use of the
-    Coffee module.
-
-* Configure which menus are included in the coffee results here:
-  - admin/config/user-interface/coffee
+    Coffee module. 
 
 
 -- USAGE --
@@ -51,27 +46,18 @@ keys to choose the one you were looking for.
 
 This will work for all Drupal admin pages.
 
-If the Devel module is installed it will also look for items that Devel 
-generates. For example; type 'clear' to get devel/cache/clear as result. 
-
--- UPGRADE PATH -- 
-
-If you had Coffee 1.x installed, make sure to run update.php as it will install
-a cache table for the prefetching the Coffee results. 
-
-If you have implemented the hook hook_coffee_command() make sure to rewrite it 
-to the newly hook_coffee_commands(), see coffee.api.php for an example. 
 
 -- COFFEE COMMANDS --
 
-Coffee provides default commands that you can use.
+Coffee provide a default command that you can use.
 
 :add
-Rapidly add a node of a specific content type.
+Rapidly add content of a specific content type.
+
 
 -- COFFEE HOOKS --
 
-You can define your own commands in your module with hook_coffee_commands(),
+You can define your own commands in your module with hook_coffee_command(),
 see coffee.api.php for further documentation.
 
 
@@ -80,8 +66,5 @@ see coffee.api.php for further documentation.
 Maintainer
 - Michael Mol 'michaelmol' <http://drupal.org/user/919186>
 
-Co-maintainer
-- Alli Price 'heylookalive' <http://drupal.org/user/431193>
-
-JavaScript/CSS/Less
+JavaScript/CSS
 - Maarten Verbaarschot 'maartenverbaarschot' <http://drupal.org/user/1305466>

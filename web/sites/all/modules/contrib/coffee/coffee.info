@@ -3,16 +3,9 @@ description = An administrative module to switch between admin pages real fast, 
 core = 7.x
 package = Administration
 
-files[] = coffee.admin.inc
-files[] = coffee.hooks.inc
-
-dependencies[] = menu
-
-configure = admin/config/user-interface/coffee
-
-; Information added by drupal.org packaging script on 2013-02-27
-version = "7.x-2.0"
+; Information added by drupal.org packaging script on 2012-02-01
+version = "7.x-1.0"
 core = "7.x"
 project = "coffee"
-datestamp = "1361998837"
+datestamp = "1328101860"
 
