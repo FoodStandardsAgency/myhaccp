@@ -87,12 +87,13 @@ Drupal.behaviors.trackingSettingsSummary = {
       if ($('input#edit-googleanalytics-site-search', context).is(':checked')) {
         vals.push(Drupal.t('Site search'));
       }
+      /* @todo: Features not yet supported by analytics.js
       if ($('input#edit-googleanalytics-trackadsense', context).is(':checked')) {
         vals.push(Drupal.t('AdSense ads'));
       }
       if ($('input#edit-googleanalytics-trackdoubleclick', context).is(':checked')) {
         vals.push(Drupal.t('DoubleClick data'));
-      }
+      } */
       if (!vals.length) {
         return Drupal.t('Not tracked');
       }

@@ -72,5 +72,5 @@ code textarea. These can be found on the official Google Analytics pages
 and a few examples at http://drupal.org/node/248699. Support is not
 provided for any customisations you include.
 
-To speed up page loading you may also cache the Analytics ga.js
+To speed up page loading you may also cache the Google Analytics "analytics.js"
 file locally.
