@@ -1,0 +1,30 @@
+//
+// Search
+//
+
+.page-search {
+  .item-list-pager {
+    text-align: center;
+  }
+  .pager {
+    @include strip-list;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+    li {
+      background: $base-color;
+      display: inline-block;
+      margin-right: 0.25em;
+      a,
+      &.current {
+        color: white;
+        padding: 0.25em 1em;
+        display: inline-block;
+      }
+      a:link,
+      a:visited {
+        color: white;
+      }
+    }
+  }
+}

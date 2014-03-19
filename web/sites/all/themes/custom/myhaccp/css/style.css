@@ -3305,6 +3305,35 @@ footer .footer-wrapper:after {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
 }
 
+.page-search .item-list-pager {
+  text-align: center;
+}
+.page-search .pager {
+  margin: 0;
+  padding: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1em;
+}
+.page-search .pager li {
+  list-style-type: none;
+  list-style-image: none;
+}
+.page-search .pager li {
+  background: #006f51;
+  display: inline-block;
+  margin-right: 0.25em;
+}
+.page-search .pager li a, .page-search .pager li.current {
+  color: white;
+  padding: 0.25em 1em;
+  display: inline-block;
+}
+.page-search .pager li a:link,
+.page-search .pager li a:visited {
+  color: white;
+}
+
 html,
 body {
   padding: 0;
