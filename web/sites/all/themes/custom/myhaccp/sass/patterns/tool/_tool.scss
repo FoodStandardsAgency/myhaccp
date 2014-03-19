@@ -206,3 +206,13 @@ div.teaser-checkbox .form-item,
     }
   }
 }
+
+.page-tool-study-preparatory-review,
+.page-tool-study-principle-review {
+  .review {
+    color: $accent-3;
+  }
+  .not-started {
+    color: $accent-2;
+  }
+}
