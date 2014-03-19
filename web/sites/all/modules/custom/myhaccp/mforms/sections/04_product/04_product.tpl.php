@@ -7,7 +7,6 @@
 
 <?php if(!empty($e_1)): ?>
   <h4>Ingredients</h4>
-  <span class="description">Suppliers listed in brackets.</span>
   <p><?php print $e_1; ?></p>
 <?php endif; ?>
 

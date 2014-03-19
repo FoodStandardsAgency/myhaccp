@@ -41,7 +41,7 @@ function theme_myhaccp_1_2_table($variables) {
     'likelihood' => array(
       'data' => t('Likelihood (1-3) !tip !help', array(
         '!tip' => _help_tip(),
-        '!help' => '<div class="help-text">' . t("Rate on scale of 1-3 (1=unlikely to occur but might, 3=definately will occur (at some time if it hasn’t occurred in the past). !link", array(
+        '!help' => '<div class="help-text">' . t("Rate on scale of 1-3 (1=unlikely to occur but might, 3=definitely will occur (at some time if it hasn't occurred in the past). !link", array(
             '!link' => myhaccp_prepare_more_link(17),
           )) . '</div>'
         )),

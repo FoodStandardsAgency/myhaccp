@@ -2505,6 +2505,18 @@ div.teaser-checkbox .form-item,
 .validation-stages .validation-stage.review a {
   color: #f15d22;
 }
+.validation-stages .validation-stage.review a:hover {
+  color: black;
+}
+
+.page-tool-study-preparatory-review .review,
+.page-tool-study-principle-review .review {
+  color: #f15d22;
+}
+.page-tool-study-preparatory-review .not-started,
+.page-tool-study-principle-review .not-started {
+  color: #007fb2;
+}
 
 #myhaccp-start-form.prep-a input#edit-save {
   margin-left: 0;
@@ -2593,6 +2605,9 @@ div.teaser-checkbox .form-item,
 }
 .principle-2-question-4 td > .form-type-radios input {
   vertical-align: baseline;
+}
+.principle-2-question-4 td .form-radios.ccp {
+  min-width: 7em;
 }
 
 .principle-3 .ccp-number .label,
