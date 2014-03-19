@@ -237,6 +237,7 @@ function googleanalytics_admin_settings_form($form_state) {
     '#default_value' => variable_get('googleanalytics_site_search', FALSE),
     '#disabled' => (module_exists('search') ? FALSE : TRUE),
   );
+  /* @todo: not supported, https://support.google.com/analytics/bin/answer.py?hl=en&hlrm=de&answer=2795983
   $form['tracking']['search_and_advertising']['googleanalytics_trackadsense'] = array(
     '#type' => 'checkbox',
     '#title' => t('Track AdSense ads'),
@@ -248,7 +249,7 @@ function googleanalytics_admin_settings_form($form_state) {
     '#title' => t('Track DoubleClick data'),
     '#description' => t('If checked, the alternative Google <a href="@doubleclick">DoubleClick data tracking</a> is used to enable AdWords remarketing features. If you choose this option you will need to <a href="@privacy">update your privacy policy</a>.', array('@doubleclick' => url('http://support.google.com/analytics/bin/answer.py', array('query' => array('answer' => '2444872'))), '@privacy' => url('http://support.google.com/analytics/bin/answer.py', array('query' => array('answer' => '2636405'))))),
     '#default_value' => variable_get('googleanalytics_trackdoubleclick', FALSE),
-  );
+  ); */
 
   // Privacy specific configurations.
   $form['tracking']['privacy'] = array(
@@ -269,6 +270,7 @@ function googleanalytics_admin_settings_form($form_state) {
   );
 
   // Custom variables.
+  /* @todo: Update to custom dimensions.
   $form['googleanalytics_custom_var'] = array(
     '#collapsed' => TRUE,
     '#collapsible' => TRUE,
@@ -339,7 +341,7 @@ function googleanalytics_admin_settings_form($form_state) {
     '#theme' => 'token_tree',
     '#token_types' => array('node'),
     '#dialog' => TRUE,
-  );
+  ); */
 
 
   // Advanced feature configurations.
@@ -367,6 +369,7 @@ function googleanalytics_admin_settings_form($form_state) {
     );
   }
 
+  // @todo: Update urls once they are available.
   $form['advanced']['codesnippet'] = array(
     '#type' => 'fieldset',
     '#title' => t('Custom JavaScript code'),
@@ -379,14 +382,14 @@ function googleanalytics_admin_settings_form($form_state) {
     '#title' => t('Code snippet (before)'),
     '#default_value' => variable_get('googleanalytics_codesnippet_before', ''),
     '#rows' => 5,
-    '#description' => t("Code in this textarea will be added <strong>before</strong> _gaq.push(['_trackPageview'])."),
+    '#description' => t("Code in this textarea will be added <strong>before</strong> <code>ga('send', 'pageview');</code>."),
   );
   $form['advanced']['codesnippet']['googleanalytics_codesnippet_after'] = array(
     '#type' => 'textarea',
     '#title' => t('Code snippet (after)'),
     '#default_value' => variable_get('googleanalytics_codesnippet_after', ''),
     '#rows' => 5,
-    '#description' => t("Code in this textarea will be added <strong>after</strong> _gaq.push(['_trackPageview']). This is useful if you'd like to track a site in two accounts."),
+    '#description' => t("Code in this textarea will be added <strong>after</strong> <code>ga('send', 'pageview');</code>. This is useful if you'd like to track a site in two accounts."),
   );
 
   $form['advanced']['googleanalytics_js_scope'] = array(
@@ -409,6 +412,7 @@ function googleanalytics_admin_settings_form($form_state) {
  */
 function googleanalytics_admin_settings_form_validate($form, &$form_state) {
   // Custom variables validation.
+  /* @todo: upgrade to custom dimensions
   foreach ($form_state['values']['googleanalytics_custom_var']['slots'] as $custom_var) {
     $form_state['values']['googleanalytics_custom_var']['slots'][$custom_var['slot']]['name'] = trim($custom_var['name']);
     $form_state['values']['googleanalytics_custom_var']['slots'][$custom_var['slot']]['value'] = trim($custom_var['value']);
@@ -420,7 +424,7 @@ function googleanalytics_admin_settings_form_validate($form, &$form_state) {
     elseif (!empty($custom_var['name']) && empty($custom_var['value'])) {
       form_set_error("googleanalytics_custom_var][slots][" . $custom_var['slot'] . "][value", t('The custom variable @slot-number requires a <em>Value</em> if a <em>Name</em> has been provided.', array('@slot-number' =>  $custom_var['slot'])));
     }
-  }
+  } */
 
   // Trim some text values.
   $form_state['values']['googleanalytics_account'] = trim($form_state['values']['googleanalytics_account']);
@@ -446,10 +450,10 @@ function googleanalytics_admin_settings_form_validate($form, &$form_state) {
   }
 
   // This is for the Newbie's who cannot read a text area description.
-  if (stristr($form_state['values']['googleanalytics_codesnippet_before'], 'google-analytics.com/ga.js')) {
+  if (stristr($form_state['values']['googleanalytics_codesnippet_before'], 'google-analytics.com/analytics.js')) {
     form_set_error('googleanalytics_codesnippet_before', t('Do not add the tracker code provided by Google into the javascript code snippets! This module already builds the tracker code based on your Google Analytics account number and settings.'));
   }
-  if (stristr($form_state['values']['googleanalytics_codesnippet_after'], 'google-analytics.com/ga.js')) {
+  if (stristr($form_state['values']['googleanalytics_codesnippet_after'], 'google-analytics.com/analytics.js')) {
     form_set_error('googleanalytics_codesnippet_after', t('Do not add the tracker code provided by Google into the javascript code snippets! This module already builds the tracker code based on your Google Analytics account number and settings.'));
   }
   if (preg_match('/(.*)<\/?script(.*)>(.*)/i', $form_state['values']['googleanalytics_codesnippet_before'])) {
