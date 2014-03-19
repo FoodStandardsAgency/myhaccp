@@ -719,8 +719,8 @@ header .header-region nav ul li {
 
 .block-menu-block-2 {
   border-bottom: 5px solid #eeeeee;
-  padding-bottom: 1em;
   padding-top: 1.25em;
+  padding-bottom: 0.25em;
 }
 .block-menu-block-2 ul {
   margin: 0;
@@ -731,8 +731,9 @@ header .header-region nav ul li {
   list-style-image: none;
 }
 .block-menu-block-2 ul li {
-  display: inline;
+  display: inline-block;
   margin-right: 1em;
+  margin-bottom: 0.75em;
 }
 .block-menu-block-2 ul li a.active, .block-menu-block-2 ul li a.active-trail {
   color: #6cb33f;
