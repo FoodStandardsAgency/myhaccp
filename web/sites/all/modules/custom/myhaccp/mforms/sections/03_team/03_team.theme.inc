@@ -45,14 +45,14 @@ function myhaccp_preprocess_03_team(&$variables) {
 
     // Now the table rows.
     foreach ($instances as $instance) {
+
       $role = !empty($instance['d_3']) ? $instance['d_3'] : '';
       $name = !empty($instance['d_1']) ? $instance['d_1'] : '';
+      // Add 'internal' or 'external' below name.
+      $name .= !empty($instance['d_2']) ? '<br /><em>(' . $instance['d_2'] . ')</em>' : '';
       $training = !empty($instance['wrapper']['d_4']) ? $instance['wrapper']['d_4'] : '';
       $qualifications = !empty($instance['wrapper']['d_5']) ? $instance['wrapper']['d_5'] : '';
       $experience = !empty($instance['wrapper']['d_5']) ? $instance['wrapper']['d_6'] : '';
-
-      // Generate a single item from training, experience and qualifications questions
-      // $experience = implode('<br />', array_filter($instance['wrapper']));
 
       $rows[] = array(
         array('data' => $role),

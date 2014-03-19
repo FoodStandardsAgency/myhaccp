@@ -107,6 +107,9 @@
       vertical-align: baseline;
     }
   }
+  td .form-radios.ccp {
+    min-width: 7em;
+  }
   td > .form-radios {
     @extend %inline-radios;
   }
