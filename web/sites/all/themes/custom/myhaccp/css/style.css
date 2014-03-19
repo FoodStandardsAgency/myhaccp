@@ -2238,41 +2238,77 @@ table thead th .help-tip {
   background-image: url(/modules/file/icons/x-office-spreadsheet.png);
 }
 
-.view-display-id-resources_downloads {
-  max-width: 80%;
+@media all and (min-width: 1020px) {
+  .view-display-id-resources_downloads {
+    max-width: 80%;
+  }
 }
 .view-display-id-resources_downloads .views-field-field-file-1 {
   border: 2px solid #006f51;
   overflow: hidden;
-  display: inline-block;
+  display: table;
 }
 .view-display-id-resources_downloads .views-field-field-file-1 .download-label {
-  float: left;
+  display: table-cell;
   margin-right: 1em;
   background: #006f51;
+  padding: 0.4em 0.75em;
+  vertical-align: middle;
+}
+.view-display-id-resources_downloads .views-field-field-file-1 .download-label:hover {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+}
+.view-display-id-resources_downloads .views-field-field-file-1 .download-label:link, .view-display-id-resources_downloads .views-field-field-file-1 .download-label:visited {
   color: #FFF;
-  padding: 0.25em 0.75em;
 }
 .view-display-id-resources_downloads .views-field-field-file-1 .file {
-  float: left;
+  display: table-cell;
   margin-right: 1em;
-  padding: 0.25em;
+  padding: 0.25em 0.5em;
+}
+.view-display-id-resources_downloads .views-field-field-file-1 .file a {
+  display: block;
+  word-break: break-all;
 }
 .view-display-id-resources_downloads .views-field-field-file-1 .filesize {
   padding: 0.25em 0.75em;
-  float: left;
+  display: table-cell;
   background-color: #eeeeee;
+  min-width: 5em;
+  vertical-align: middle;
 }
 .view-display-id-resources_downloads div.description {
   margin-bottom: 1em;
 }
 .view-display-id-resources_downloads .views-row {
   border-bottom: 1px solid #dddddd;
-  padding-bottom: 2em;
+  padding-bottom: 2.5em;
 }
 
 .view-id-resources.view-display-id-block_2 .views-row {
-  margin-bottom: 1em;
+  margin-bottom: 1.5em;
+  border: 2px solid #006f51;
+  overflow: hidden;
+  display: table;
+}
+.view-id-resources.view-display-id-block_2 .views-row .title {
+  display: table-cell;
+  margin-right: 1em;
+  background: #006f51;
+  padding: 0.4em 0.75em;
+  vertical-align: middle;
+}
+.view-id-resources.view-display-id-block_2 .views-row .title:hover {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+}
+.view-id-resources.view-display-id-block_2 .views-row .title:link, .view-id-resources.view-display-id-block_2 .views-row .title:visited {
+  color: #FFF;
+}
+.view-id-resources.view-display-id-block_2 .views-row .description {
+  display: table-cell;
+  margin-right: 1em;
+  padding: 0.25em 1em;
+  vertical-align: middle;
 }
 
 input#edit-submit.form-add {

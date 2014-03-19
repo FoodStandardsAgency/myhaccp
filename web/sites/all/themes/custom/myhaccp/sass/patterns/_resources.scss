@@ -6,27 +6,42 @@
 // Resource downloads view.
 .view-display-id-resources_downloads {
   $dl_colour: $base-color;
-  max-width: 80%;
+  @media all and (min-width: $break_large_up) {
+    max-width: 80%;
+  }
   .views-field-field-file-1 {
     border: 2px solid $dl_colour;
     overflow: hidden;
-    display: inline-block;
+    display: table;
     .download-label {
-      float: left;
+      display: table-cell;
       margin-right: 1em;
       background: $dl_colour;
-      color: #FFF;
-      padding: 0.25em 0.75em;
+      padding: 0.4em 0.75em;
+      vertical-align: middle;
+      &:hover {
+        background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+      }
+      &:link,
+      &:visited {
+        color: #FFF;
+      }
     }
     .file {
-      float: left;
+      display: table-cell;
       margin-right: 1em;
-      padding: 0.25em;
+      padding: 0.25em 0.5em;
+      a {
+        display: block;
+        word-break: break-all;
+      }
     }
     .filesize {
       padding: 0.25em 0.75em;
-      float: left;
+      display: table-cell;
       background-color: $grey-1;
+      min-width: 5em;
+      vertical-align: middle;
     }
   }
   div.description {
@@ -34,13 +49,37 @@
   }
   .views-row {
     border-bottom: 1px solid $grey-4;
-    padding-bottom: 2em;
+    padding-bottom: 2.5em;
   }
 }
 
 // External resources view
 .view-id-resources.view-display-id-block_2 {
+  $dl_colour: $base-color;
   .views-row {
-    margin-bottom: 1em;
+    margin-bottom: 1.5em;
+    border: 2px solid $dl_colour;
+    overflow: hidden;
+    display: table;
+    .title {
+      display: table-cell;
+      margin-right: 1em;
+      background: $dl_colour;
+      padding: 0.4em 0.75em;
+      vertical-align: middle;
+      &:hover {
+        background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+      }
+      &:link,
+      &:visited {
+        color: #FFF;
+      }
+    }
+    .description {
+      display: table-cell;
+      margin-right: 1em;
+      padding: 0.25em 1em;
+      vertical-align: middle;
+    }
   }
 }
