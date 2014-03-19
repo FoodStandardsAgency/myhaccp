@@ -2286,21 +2286,29 @@ table thead th .help-tip {
 }
 
 .view-id-resources.view-display-id-block_2 .views-row {
-  margin-bottom: 1em;
+  margin-bottom: 1.5em;
+  border: 2px solid #006f51;
+  overflow: hidden;
   display: table;
 }
-.view-id-resources.view-display-id-block_2 .views-row .title a {
+.view-id-resources.view-display-id-block_2 .views-row .title {
   display: table-cell;
   margin-right: 1em;
   background: #006f51;
   padding: 0.4em 0.75em;
   vertical-align: middle;
 }
-.view-id-resources.view-display-id-block_2 .views-row .title a:hover {
+.view-id-resources.view-display-id-block_2 .views-row .title:hover {
   background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
 }
-.view-id-resources.view-display-id-block_2 .views-row .title a:link, .view-id-resources.view-display-id-block_2 .views-row .title a:visited {
+.view-id-resources.view-display-id-block_2 .views-row .title:link, .view-id-resources.view-display-id-block_2 .views-row .title:visited {
   color: #FFF;
+}
+.view-id-resources.view-display-id-block_2 .views-row .description {
+  display: table-cell;
+  margin-right: 1em;
+  padding: 0.25em 1em;
+  vertical-align: middle;
 }
 
 input#edit-submit.form-add {

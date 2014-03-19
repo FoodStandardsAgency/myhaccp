@@ -57,9 +57,11 @@
 .view-id-resources.view-display-id-block_2 {
   $dl_colour: $base-color;
   .views-row {
-    margin-bottom: 1em;
+    margin-bottom: 1.5em;
+    border: 2px solid $dl_colour;
+    overflow: hidden;
     display: table;
-    .title a {
+    .title {
       display: table-cell;
       margin-right: 1em;
       background: $dl_colour;
@@ -74,7 +76,10 @@
       }
     }
     .description {
-
+      display: table-cell;
+      margin-right: 1em;
+      padding: 0.25em 1em;
+      vertical-align: middle;
     }
   }
 }
