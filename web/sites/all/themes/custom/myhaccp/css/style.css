@@ -2606,6 +2606,9 @@ div.teaser-checkbox .form-item,
 .principle-2-question-4 td > .form-type-radios input {
   vertical-align: baseline;
 }
+.principle-2-question-4 td .form-radios.ccp {
+  min-width: 7em;
+}
 
 .principle-3 .ccp-number .label,
 .principle-3 .process-step .label,
