@@ -117,7 +117,7 @@ function myhaccp_list() {
       elseif ($study->getStatus() == 1) {
         // The study is current in a complete state (but may be invalid) so
         // allow the user to change it to incomplete.
-        $complete = l(t('Active'), 'tool/study/' . $result->iid . '/complete/0', array(
+        $complete = l(t('Activate'), 'tool/study/' . $result->iid . '/complete/0', array(
           'attributes' => array(
             'class' => 'complete-link',
           ),
