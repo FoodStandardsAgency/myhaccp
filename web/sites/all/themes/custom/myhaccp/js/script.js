@@ -1,6 +1,11 @@
 (function ($) {
   Drupal.behaviors.modalHelp = {
     attach: function(context) {
+      $('#dialog').on('dialogopen', function() {
+        $('.ui-widget-overlay').bind('click', function() {
+          $("#dialog").dialog('close');
+        });
+      });
       $('.help-menu a').click(function(e) {
         // Get the attribute of the
         var link = $(this).attr('href');
