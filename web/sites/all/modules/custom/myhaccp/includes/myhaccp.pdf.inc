@@ -47,8 +47,8 @@ function myhaccp_output_pdf($iid) {
     // Prepare each page.
     foreach ($sections as $key => $section) {
       $output = '<section class="page">';
-      // We need to fake the page title on principle 5.
-      if ($key == 'plan') {
+      // We need to fake the page title for the plan section.
+      if ($key == '11_plan') {
         $mpdf->SetTopMargin('25');
         $mpdf->SetHTMLHeader('<h1>' . $section['title'] . '</h1>');
       }

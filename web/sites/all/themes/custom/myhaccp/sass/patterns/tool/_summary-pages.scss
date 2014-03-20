@@ -8,17 +8,17 @@
     float: right;
   }
 
-  a.download,
-  a.download:link,
-  a.download:visited {
+  a.download-link,
+  a.download-link:link,
+  a.download-link:visited {
     @include agile-button($style: positive);
     margin-bottom: 2em;
     display: inline-block;
   }
 
-  a.complete-link ,
-  a.complete-link :link,
-  a.complete-link :visited {
+  a.complete-link,
+  a.complete-link:link,
+  a.complete-link:visited {
     @include agile-button($style: positive);
     margin-bottom: 2em;
     display: inline-block;

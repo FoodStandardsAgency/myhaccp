@@ -719,8 +719,8 @@ header .header-region nav ul li {
 
 .block-menu-block-2 {
   border-bottom: 5px solid #eeeeee;
-  padding-bottom: 1em;
   padding-top: 1.25em;
+  padding-bottom: 0.25em;
 }
 .block-menu-block-2 ul {
   margin: 0;
@@ -731,8 +731,9 @@ header .header-region nav ul li {
   list-style-image: none;
 }
 .block-menu-block-2 ul li {
-  display: inline;
+  display: inline-block;
   margin-right: 1em;
+  margin-bottom: 0.75em;
 }
 .block-menu-block-2 ul li a.active, .block-menu-block-2 ul li a.active-trail {
   color: #6cb33f;
@@ -1743,18 +1744,52 @@ table thead:first-child tr:first-child td {
   border-top: 0 none;
 }
 
+article.node table p {
+  margin-top: 0;
+}
+article.node table p:last-child {
+  margin-bottom: 0;
+}
+article.node table td, article.node table th {
+  padding: 10px;
+  text-align: left;
+  border-top: 1px solid #dddddd;
+  border-left: 1px solid #dddddd;
+}
+article.node table th {
+  background-color: #eeeeee;
+}
+article.node table td:last-child,
+article.node table th:last-child {
+  border-right: 1px solid #dddddd;
+}
+article.node table tr:last-child td {
+  border-bottom: 1px solid #dddddd;
+}
+article.node table thead:first-child tr:first-child th,
+article.node table thead:first-child tr:first-child td {
+  border-top: 1px solid #dddddd;
+}
+
 table.borders td, table.borders th {
   padding: 10px;
   text-align: left;
   border-top: 1px solid #dddddd;
   border-left: 1px solid #dddddd;
 }
-table.borders td:last-child {
+table.borders th {
+  background-color: #eeeeee;
+}
+table.borders td:last-child,
+table.borders th:last-child {
   border-right: 1px solid #dddddd;
+}
+table.borders tr:last-child td {
+  border-bottom: 1px solid #dddddd;
 }
 table.borders thead:first-child tr:first-child th,
 table.borders thead:first-child tr:first-child td {
-  border-top: 0 none;
+  border-top: 1px solid #dddddd;
 }
 
 table.striped tbody tr:nth-child(2n+1) td,
@@ -2504,6 +2539,18 @@ div.teaser-checkbox .form-item,
 .validation-stages .validation-stage.review a {
   color: #f15d22;
 }
+.validation-stages .validation-stage.review a:hover {
+  color: black;
+}
+
+.page-tool-study-preparatory-review .review,
+.page-tool-study-principle-review .review {
+  color: #f15d22;
+}
+.page-tool-study-preparatory-review .not-started,
+.page-tool-study-principle-review .not-started {
+  color: #007fb2;
+}
 
 #myhaccp-start-form.prep-a input#edit-save {
   margin-left: 0;
@@ -2593,6 +2640,9 @@ div.teaser-checkbox .form-item,
 .principle-2-question-4 td > .form-type-radios input {
   vertical-align: baseline;
 }
+.principle-2-question-4 td .form-radios.ccp {
+  min-width: 7em;
+}
 
 .principle-3 .ccp-number .label,
 .principle-3 .process-step .label,
@@ -2665,9 +2715,9 @@ div.teaser-checkbox .form-item,
 .page-tool-study a.finish:visited:active {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
 }
-.page-tool-study a.download,
-.page-tool-study a.download:link,
-.page-tool-study a.download:visited {
+.page-tool-study a.download-link,
+.page-tool-study a.download-link:link,
+.page-tool-study a.download-link:visited {
   background-color: #e6e6e6;
   color: rgba(0, 0, 0, 0.8);
   border: 0 none transparent;
@@ -2682,31 +2732,31 @@ div.teaser-checkbox .form-item,
   margin-bottom: 2em;
   display: inline-block;
 }
-.page-tool-study a.download:hover, .page-tool-study a.download:focus,
-.page-tool-study a.download:link:hover,
-.page-tool-study a.download:link:focus,
-.page-tool-study a.download:visited:hover,
-.page-tool-study a.download:visited:focus {
+.page-tool-study a.download-link:hover, .page-tool-study a.download-link:focus,
+.page-tool-study a.download-link:link:hover,
+.page-tool-study a.download-link:link:focus,
+.page-tool-study a.download-link:visited:hover,
+.page-tool-study a.download-link:visited:focus {
   background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
   cursor: pointer;
 }
-.page-tool-study a.download.disabled,
-.page-tool-study a.download:link.disabled,
-.page-tool-study a.download:visited.disabled {
+.page-tool-study a.download-link.disabled,
+.page-tool-study a.download-link:link.disabled,
+.page-tool-study a.download-link:visited.disabled {
   background-image: none;
   cursor: not-allowed;
   opacity: 0.5;
 }
-.page-tool-study a.download.active, .page-tool-study a.download:active,
-.page-tool-study a.download:link.active,
-.page-tool-study a.download:link:active,
-.page-tool-study a.download:visited.active,
-.page-tool-study a.download:visited:active {
+.page-tool-study a.download-link.active, .page-tool-study a.download-link:active,
+.page-tool-study a.download-link:link.active,
+.page-tool-study a.download-link:link:active,
+.page-tool-study a.download-link:visited.active,
+.page-tool-study a.download-link:visited:active {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
 }
 .page-tool-study a.complete-link,
-.page-tool-study a.complete-link :link,
-.page-tool-study a.complete-link :visited {
+.page-tool-study a.complete-link:link,
+.page-tool-study a.complete-link:visited {
   background-color: #e6e6e6;
   color: rgba(0, 0, 0, 0.8);
   border: 0 none transparent;
@@ -2723,25 +2773,25 @@ div.teaser-checkbox .form-item,
   margin-right: 1em;
 }
 .page-tool-study a.complete-link:hover, .page-tool-study a.complete-link:focus,
-.page-tool-study a.complete-link :link:hover,
-.page-tool-study a.complete-link :link:focus,
-.page-tool-study a.complete-link :visited:hover,
-.page-tool-study a.complete-link :visited:focus {
+.page-tool-study a.complete-link:link:hover,
+.page-tool-study a.complete-link:link:focus,
+.page-tool-study a.complete-link:visited:hover,
+.page-tool-study a.complete-link:visited:focus {
   background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
   cursor: pointer;
 }
 .page-tool-study a.complete-link.disabled,
-.page-tool-study a.complete-link :link.disabled,
-.page-tool-study a.complete-link :visited.disabled {
+.page-tool-study a.complete-link:link.disabled,
+.page-tool-study a.complete-link:visited.disabled {
   background-image: none;
   cursor: not-allowed;
   opacity: 0.5;
 }
 .page-tool-study a.complete-link.active, .page-tool-study a.complete-link:active,
-.page-tool-study a.complete-link :link.active,
-.page-tool-study a.complete-link :link:active,
-.page-tool-study a.complete-link :visited.active,
-.page-tool-study a.complete-link :visited:active {
+.page-tool-study a.complete-link:link.active,
+.page-tool-study a.complete-link:link:active,
+.page-tool-study a.complete-link:visited.active,
+.page-tool-study a.complete-link:visited:active {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
 }
 
@@ -3302,6 +3352,41 @@ footer .footer-wrapper:after {
 }
 .studies-table .delete-link.active, .studies-table .delete-link:active {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
+}
+
+.page-search .item-list-pager {
+  text-align: center;
+}
+.page-search .pager {
+  margin: 0;
+  padding: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1em;
+}
+.page-search .pager li {
+  list-style-type: none;
+  list-style-image: none;
+}
+.page-search .pager li {
+  background-color: #006f51;
+  display: inline-block;
+  margin-right: 0.25em;
+}
+.page-search .pager li a, .page-search .pager li.current {
+  color: white;
+  padding: 0.25em 1em;
+  display: inline-block;
+}
+.page-search .pager li.current {
+  background-color: #328b73;
+}
+.page-search .pager li a:link,
+.page-search .pager li a:visited {
+  color: white;
+}
+.page-search .pager li a:hover {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
 }
 
 html,

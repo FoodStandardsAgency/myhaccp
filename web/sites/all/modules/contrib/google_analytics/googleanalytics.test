@@ -58,7 +58,7 @@ class GoogleAnalyticsBasicTest extends DrupalWebTestCase {
     $this->assertNoRaw($ua_code, '[testGoogleAnalyticsPageVisibility]: Tracking code is not displayed on admin page.');
     $this->drupalGet('admin/config/system/googleanalytics');
     // Checking for tracking code URI here, as $ua_code is displayed in the form.
-    $this->assertNoRaw('google-analytics.com/ga.js', '[testGoogleAnalyticsPageVisibility]: Tracking code is not displayed on admin subpage.');
+    $this->assertNoRaw('google-analytics.com/analytics.js', '[testGoogleAnalyticsPageVisibility]: Tracking code is not displayed on admin subpage.');
 
     // Test whether tracking code display is properly flipped.
     variable_set('googleanalytics_visibility_pages', 1);
@@ -66,7 +66,7 @@ class GoogleAnalyticsBasicTest extends DrupalWebTestCase {
     $this->assertRaw($ua_code, '[testGoogleAnalyticsPageVisibility]: Tracking code is displayed on admin page.');
     $this->drupalGet('admin/config/system/googleanalytics');
     // Checking for tracking code URI here, as $ua_code is displayed in the form.
-    $this->assertRaw('google-analytics.com/ga.js', '[testGoogleAnalyticsPageVisibility]: Tracking code is displayed on admin subpage.');
+    $this->assertRaw('google-analytics.com/analytics.js', '[testGoogleAnalyticsPageVisibility]: Tracking code is displayed on admin subpage.');
     $this->drupalGet('');
     $this->assertNoRaw($ua_code, '[testGoogleAnalyticsPageVisibility]: Tracking code is NOT displayed on front page.');
 
@@ -93,18 +93,18 @@ class GoogleAnalyticsBasicTest extends DrupalWebTestCase {
     variable_set('cache', 1);
     // Test whether DNT headers will fail to disable embedding of tracking code.
     $this->drupalGet('', array(), array('DNT: 1'));
-    $this->assertRaw('_gaq.push(["_trackPageview"]);', '[testGoogleAnalyticsDNTVisibility]: DNT header send from client, but page caching is enabled and tracker cannot removed.');
+    $this->assertRaw('ga("send", "pageview");', '[testGoogleAnalyticsDNTVisibility]: DNT header send from client, but page caching is enabled and tracker cannot removed.');
     // DNT works only with caching of pages for anonymous users disabled.
     variable_set('cache', 0);
     $this->drupalGet('');
-    $this->assertRaw('_gaq.push(["_trackPageview"]);', '[testGoogleAnalyticsDNTVisibility]: Tracking is enabled without DNT header.');
+    $this->assertRaw('ga("send", "pageview");', '[testGoogleAnalyticsDNTVisibility]: Tracking is enabled without DNT header.');
     // Test whether DNT header is able to remove the tracking code.
     $this->drupalGet('', array(), array('DNT: 1'));
-    $this->assertNoRaw('_gaq.push(["_trackPageview"]);', '[testGoogleAnalyticsDNTVisibility]: DNT header received from client. Tracking has been disabled by browser.');
+    $this->assertNoRaw('ga("send", "pageview");', '[testGoogleAnalyticsDNTVisibility]: DNT header received from client. Tracking has been disabled by browser.');
     // Disable DNT feature and see if tracker is still embedded.
     variable_set('googleanalytics_privacy_donottrack', 0);
     $this->drupalGet('', array(), array('DNT: 1'));
-    $this->assertRaw('_gaq.push(["_trackPageview"]);', '[testGoogleAnalyticsDNTVisibility]: DNT feature is disabled, DNT header from browser has been ignored.');
+    $this->assertRaw('ga("send", "pageview");', '[testGoogleAnalyticsDNTVisibility]: DNT feature is disabled, DNT header from browser has been ignored.');
   }
 
   function testGoogleAnalyticsTrackingCode() {
@@ -118,40 +118,34 @@ class GoogleAnalyticsBasicTest extends DrupalWebTestCase {
 
     /* Sample JS code as added to page:
     <script type="text/javascript" src="/sites/all/modules/google_analytics/googleanalytics.js?w"></script>
-    <script type="text/javascript">
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-123456-7']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
+    <script>
+    (function(q,u,i,c,k){window['GoogleAnalyticsObject']=q;
+    window[q]=window[q]||function(){(window[q].q=window[q].q||[]).push(arguments)},
+    window[q].l=1*new Date();c=i.createElement(u),k=i.getElementsByTagName(u)[0];
+    c.async=true;c.src='//www.google-analytics.com/analytics.js';
+    k.parentNode.insertBefore(c,k)})('ga','script',document);
+    ga('create', 'UA-123456-7');
+    ga('send', 'pageview');
     </script>
+    <!-- End Google Analytics -->
     */
 
     // Test whether tracking code uses latest JS.
     variable_set('googleanalytics_cache', 0);
     $this->drupalGet('');
-    $this->assertRaw('google-analytics.com/ga.js', '[testGoogleAnalyticsTrackingCode]: Latest tracking code used.');
-
-    // Test whether the alternate doubleclick library is used
-    variable_set('googleanalytics_trackdoubleclick', 1);
-    $this->drupalGet('');
-    $this->assertRaw('stats.g.doubleclick.net/dc.js', '[testGoogleAnalyticsTrackingCode]: Doubleclick tracking code used.');
+    $this->assertRaw('google-analytics.com/analytics.js', '[testGoogleAnalyticsTrackingCode]: Latest tracking code used.');
 
     // Test whether anonymize visitors IP address feature has been enabled.
     $this->drupalGet('');
-    $this->assertNoRaw('_gaq.push(["_gat._anonymizeIp"]);', '[testGoogleAnalyticsTrackingCode]: Anonymize visitors IP address not found on frontpage.');
+    $this->assertNoRaw('ga("set", "anonymizeIp", 1);', '[testGoogleAnalyticsTrackingCode]: Anonymize visitors IP address not found on frontpage.');
     // Enable anonymizing of IP addresses.
     variable_set('googleanalytics_tracker_anonymizeip', 1);
     $this->drupalGet('');
-    $this->assertRaw('_gaq.push(["_gat._anonymizeIp"]);', '[testGoogleAnalyticsTrackingCode]: Anonymize visitors IP address found on frontpage.');
+    $this->assertRaw('ga("set", "anonymizeIp", 1);', '[testGoogleAnalyticsTrackingCode]: Anonymize visitors IP address found on frontpage.');
 
     // Test whether single domain tracking is active.
     $this->drupalGet('');
-    $this->assertNoRaw('_gaq.push(["_setDomainName"', '[testGoogleAnalyticsTrackingCode]: Single domain tracking is active.');
+    $this->assertNoRaw('ga("set", "cookieDomain",', '[testGoogleAnalyticsTrackingCode]: Single domain tracking is active.');
 
     // Enable "One domain with multiple subdomains".
     variable_set('googleanalytics_domain_mode', 1);
@@ -161,30 +155,32 @@ class GoogleAnalyticsBasicTest extends DrupalWebTestCase {
     // TODO: Workaround to run tests successfully. This feature cannot tested reliable.
     global $cookie_domain;
     if (count(explode('.', $cookie_domain)) > 2 && !is_numeric(str_replace('.', '', $cookie_domain))) {
-      $this->assertRaw('_gaq.push(["_setDomainName",', '[testGoogleAnalyticsTrackingCode]: One domain with multiple subdomains is active on real host.');
+      $this->assertRaw('ga("set", "cookieDomain",', '[testGoogleAnalyticsTrackingCode]: One domain with multiple subdomains is active on real host.');
     }
     else {
       // Special cases, Localhost and IP addresses don't show '_setDomainName'.
-      $this->assertNoRaw('_gaq.push(["_setDomainName",', '[testGoogleAnalyticsTrackingCode]: One domain with multiple subdomains may be active on localhost (test result is not reliable).');
+      $this->assertNoRaw('ga("set", "cookieDomain",', '[testGoogleAnalyticsTrackingCode]: One domain with multiple subdomains may be active on localhost (test result is not reliable).');
     }
 
     // Enable "Multiple top-level domains" tracking.
     variable_set('googleanalytics_domain_mode', 2);
     variable_set('googleanalytics_cross_domains', "www.example.com\nwww.example.net");
     $this->drupalGet('');
-    $this->assertRaw('_gaq.push(["_setDomainName", "none"]);', '[testGoogleAnalyticsTrackingCode]: _setDomainName: "none" found. Cross domain tracking is active.');
-    $this->assertRaw('_gaq.push(["_setAllowLinker", true]);', '[testGoogleAnalyticsTrackingCode]: _setAllowLinker: true found. Cross domain tracking is active.');
+    $this->assertRaw('ga("set", "cookieDomain", "none");', '[testGoogleAnalyticsTrackingCode]: _setDomainName: "none" found. Cross domain tracking is active.');
+    $this->assertRaw('ga("set", "allowLinker", true);', '[testGoogleAnalyticsTrackingCode]: _setAllowLinker: true found. Cross domain tracking is active.');
     $this->assertRaw('"trackCrossDomains":["www.example.com","www.example.net"]', '[testGoogleAnalyticsTrackingCode]: Cross domain tracking with www.example.com and www.example.net is active.');
 
     // Test whether the BEFORE and AFTER code is added to the tracker.
-    variable_set('googleanalytics_codesnippet_before', '_setDetectFlash(false);');
-    variable_set('googleanalytics_codesnippet_after', '_gaq.push(["t2._setAccount", "UA-123456-3"]);_gaq.push(["t2._trackPageview"]);');
+    // @todo: review detectFlash once API docs are available.
+    variable_set('googleanalytics_codesnippet_before', 'ga("set", "detectFlash", false);');
+    variable_set('googleanalytics_codesnippet_after', 'ga("create", "UA-123456-3", {name: "newTracker"});ga("newTracker.send", "pageview");');
     $this->drupalGet('');
-    $this->assertRaw('_setDetectFlash(false);', '[testGoogleAnalyticsTrackingCode]: Before codesnippet has been found with "Flash" detection disabled.');
-    $this->assertRaw('t2._setAccount', '[testGoogleAnalyticsTrackingCode]: After codesnippet with "t2" tracker has been found.');
+    $this->assertRaw('ga("set", "detectFlash", false);', '[testGoogleAnalyticsTrackingCode]: Before codesnippet has been found with "Flash" detection disabled.');
+    $this->assertRaw('ga("create", "UA-123456-3", {name: "newTracker"});', '[testGoogleAnalyticsTrackingCode]: After codesnippet with "newTracker" tracker has been found.');
   }
 }
 
+/* @todo: upgrade to custom dimensions
 class GoogleAnalyticsCustomVariablesTest extends DrupalWebTestCase {
 
   public static function getInfo() {
@@ -251,7 +247,7 @@ class GoogleAnalyticsCustomVariablesTest extends DrupalWebTestCase {
     $this->drupalGet('');
 
     foreach ($custom_vars['slots'] as $slot) {
-      $this->assertRaw("_gaq.push(['_setCustomVar', " . $slot['slot'] . ", \"" . $slot['name'] . "\", \"" . $slot['value'] . "\", " . $slot['scope'] . "]);", '[testGoogleAnalyticsCustomVariables]: _setCustomVar ' . $slot['slot'] . ' is shown.');
+      $this->assertRaw("ga('set', 'customvar', " . $slot['slot'] . ", \"" . $slot['name'] . "\", \"" . $slot['value'] . "\", " . $slot['scope'] . ");", '[testGoogleAnalyticsCustomVariables]: _setCustomVar ' . $slot['slot'] . ' is shown.');
     }
 
     // Test whether tokens are replaced in custom variable names.
@@ -296,13 +292,13 @@ class GoogleAnalyticsCustomVariablesTest extends DrupalWebTestCase {
     $this->verbose('<pre>' . print_r($custom_vars, TRUE) . '</pre>');
 
     $this->drupalGet('');
-    $this->assertRaw("_gaq.push(['_setCustomVar', 1, \"Name: $site_slogan\", \"Value: $site_slogan\", 3]", '[testGoogleAnalyticsCustomVariables]: Tokens have been replaced in custom variable.');
-    $this->assertNoRaw("_gaq.push(['_setCustomVar', 2,", '[testGoogleAnalyticsCustomVariables]: Value with empty name is not shown.');
-    $this->assertNoRaw("_gaq.push(['_setCustomVar', 3,", '[testGoogleAnalyticsCustomVariables]: Name with empty value is not shown.');
-    $this->assertNoRaw("_gaq.push(['_setCustomVar', 4,", '[testGoogleAnalyticsCustomVariables]: Empty name and value is not shown.');
-    $this->assertNoRaw("_gaq.push(['_setCustomVar', 5,", '[testGoogleAnalyticsCustomVariables]: Empty name and value is not shown.');
+    $this->assertRaw("ga('set', 'customvar', 1, \"Name: $site_slogan\", \"Value: $site_slogan\", 3);", '[testGoogleAnalyticsCustomVariables]: Tokens have been replaced in custom variable.');
+    $this->assertNoRaw("ga('set', 'customvar', 2,", '[testGoogleAnalyticsCustomVariables]: Value with empty name is not shown.');
+    $this->assertNoRaw("ga('set', 'customvar', 3,", '[testGoogleAnalyticsCustomVariables]: Name with empty value is not shown.');
+    $this->assertNoRaw("ga('set', 'customvar', 4,", '[testGoogleAnalyticsCustomVariables]: Empty name and value is not shown.');
+    $this->assertNoRaw("ga('set', 'customvar', 5,", '[testGoogleAnalyticsCustomVariables]: Empty name and value is not shown.');
   }
-}
+} */
 
 class GoogleAnalyticsStatusMessagesTest extends DrupalWebTestCase {
 
@@ -334,8 +330,8 @@ class GoogleAnalyticsStatusMessagesTest extends DrupalWebTestCase {
     variable_set('googleanalytics_trackmessages', array('error' => 'error'));
 
     $this->drupalPost('user/login', array(), t('Log in'));
-    $this->assertRaw('_gaq.push(["_trackEvent", "Messages", "Error message", "Username field is required."]);', '[testGoogleAnalyticsStatusMessages]: _trackEvent "Username field is required." is shown.');
-    $this->assertRaw('_gaq.push(["_trackEvent", "Messages", "Error message", "Password field is required."]);', '[testGoogleAnalyticsStatusMessages]: _trackEvent "Password field is required." is shown.');
+    $this->assertRaw('ga("send", "event", "Messages", "Error message", "Username field is required.");', '[testGoogleAnalyticsStatusMessages]: Event message "Username field is required." is shown.');
+    $this->assertRaw('ga("send", "event", "Messages", "Error message", "Password field is required.");', '[testGoogleAnalyticsStatusMessages]: Event message "Password field is required." is shown.');
 
     // @todo: investigate why drupal_set_message() fails.
     //drupal_set_message('Example status message.', 'status');
@@ -343,10 +339,10 @@ class GoogleAnalyticsStatusMessagesTest extends DrupalWebTestCase {
     //drupal_set_message('Example error message.', 'error');
     //drupal_set_message('Example error <em>message</em> with html tags and <a href="http://example.com/">link</a>.', 'error');
     //$this->drupalGet('');
-    //$this->assertNoRaw('_gaq.push(["_trackEvent", "Messages", "Status message", "Example status message."]);', '[testGoogleAnalyticsStatusMessages]: Example status message is not enabled for tracking.');
-    //$this->assertNoRaw('_gaq.push(["_trackEvent", "Messages", "Warning message", "Example warning message."]);', '[testGoogleAnalyticsStatusMessages]: Example warning message is not enabled for tracking.');
-    //$this->assertRaw('_gaq.push(["_trackEvent", "Messages", "Error message", "Example error message."]);', '[testGoogleAnalyticsStatusMessages]: Example error message is shown.');
-    //$this->assertRaw('_gaq.push(["_trackEvent", "Messages", "Error message", "Example error message with html tags and link."]);', '[testGoogleAnalyticsStatusMessages]: HTML has been stripped successful from Example error message with html tags and link.');
+    //$this->assertNoRaw('ga("send", "event", "Messages", "Status message", "Example status message.");', '[testGoogleAnalyticsStatusMessages]: Example status message is not enabled for tracking.');
+    //$this->assertNoRaw('ga("send", "event", "Messages", "Warning message", "Example warning message.");', '[testGoogleAnalyticsStatusMessages]: Example warning message is not enabled for tracking.');
+    //$this->assertRaw('ga("send", "event", "Messages", "Error message", "Example error message.");', '[testGoogleAnalyticsStatusMessages]: Example error message is shown.');
+    //$this->assertRaw('ga("send", "event", "Messages", "Error message", "Example error message with html tags and link.");', '[testGoogleAnalyticsStatusMessages]: HTML has been stripped successful from Example error message with html tags and link.');
   }
 }
 

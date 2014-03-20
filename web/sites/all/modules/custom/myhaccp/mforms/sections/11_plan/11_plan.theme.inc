@@ -219,7 +219,7 @@ function _principle_5_mp($study, $h_key) {
 
     // 6. Are records of competency maintained?
     if (!empty($principle_5[$h_key]['5_6']) && $principle_5[$h_key]['5_6'] == 'yes') {
-      $content .= '<p>' . t('Records of competancy are maintained.') . '</p><br />';
+      $content .= '<p>' . t('Records of competency are maintained.') . '</p><br />';
     }
 
     return $content;

@@ -26,17 +26,37 @@
     border-top: 1px solid $grey-4;
     border-left: 1px solid $grey-4;
   }
-  td:last-child {
+  th {
+    background-color: $grey-1;
+  }
+  td:last-child,
+  th:last-child {
     border-right: 1px solid $grey-4;
   }
+  tr:last-child td {
+    border-bottom: 1px solid $grey-4;
+  }
+
   thead:first-child tr:first-child th,
   thead:first-child tr:first-child td {
-      border-top: 0 none;
+      border-top: 1px solid $grey-4;
   }
+
 }
 
 table {
   @include tables_basic;
+}
+
+article.node table {
+  p {
+    margin-top: 0;
+    // If there is only one paragraph it will be the last child.
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  @include tables_borders;
 }
 
 table.borders {
