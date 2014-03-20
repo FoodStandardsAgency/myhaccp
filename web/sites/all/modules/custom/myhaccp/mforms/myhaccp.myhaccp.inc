@@ -58,8 +58,8 @@ function myhaccp_form_myhaccp_study_resume_alter(&$form, &$form_state) {
  */
 function myhaccp_study_complete($iid, $status) {
   $study = new Study();
-  myhaccp_initialise_study($study);
   $study->setIID($iid);
+  myhaccp_initialise_study($study);
   // Get the validation status of the study.
   $valid_status = $study->getValidationStatus();
   if ($status == 0) {

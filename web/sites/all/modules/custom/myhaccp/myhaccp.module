@@ -531,6 +531,7 @@ function _help_tip($link = '#') {
     $parts = explode('#', $link);
   }
 
+
   $options = array(
     'attributes' => array(
       'class' => array(
@@ -817,6 +818,7 @@ function myhaccp_help_modal($js = FALSE, $nid = FALSE) {
 function myhaccp_prepare_more_link($nid) {
   // Add the dialog library.
   drupal_add_library('dialog', 'dialog');
+  $node = node_load($nid);
   // Prepare the options.
   $options = array(
     'html' => TRUE,
@@ -828,6 +830,7 @@ function myhaccp_prepare_more_link($nid) {
       ),
       'title' => 'Link through to further guidance on this subject.',
       'target' => '_blank',
+      'data-topic' => $node->title,
     ),
   );
   $destination = 'help/nojs/' . $nid;

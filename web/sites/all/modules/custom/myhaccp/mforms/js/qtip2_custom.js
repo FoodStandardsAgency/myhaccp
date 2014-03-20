@@ -7,19 +7,21 @@
       $('.help-tip').once().each(function() {
         // Check if there is a help-text element to render.
         var help_text = $(this).parents('.form-item, th, div.label').children('.help-text');
+        // Get the question to push to GA as an event label.
+        var question = $(this).parent().clone().children().remove().end().text();
+        // Determine the stage.
+        // Get the path elements.
+        var location = window.location.pathname;
+        var pathArray = location.split('/');
+
+        var phase = pathArray[4];
+        var stage = pathArray[5];
+        question = phase + '/' + stage + ' - ' + question;
 
         // If we have some help text then move on and add the tooltip.
         if (help_text.length > 0) {
           // Disable the usual click event on the button.
           $(this).click(false);
-
-//          // Fetch the anchor destination from the element. There may not be any
-//          // guidance in which case don't add the more info link.
-//          var href = $(this).attr('href');
-//          if (href !== '#') {
-//            var help_link = ' <a class="more-information" target="_blank" href="' + href + '">More information</a>';
-//            help_text.append(help_link);
-//          }
           // Enable the qtip on the button.
           $(this).qtip({
             content: {
@@ -43,6 +45,7 @@
             },
             show: {
               event: 'hover',
+              delay: 180,
               effect: function(offset) {
                 $(this).fadeIn(400);
               }
@@ -52,6 +55,18 @@
               fixed: true,
               effect: function(offset) {
                 $(this).fadeOut(400);
+              }
+            },
+            events: {
+              show: function(event, api) {
+                // Send an event to Google Analytics.
+                // Fetch the current question.
+                ga('send', {
+                  'hitType': 'event',
+                  'eventCategory': 'help',
+                  'eventAction': 'inline',
+                  'eventLabel': question
+                });
               }
             }
           });

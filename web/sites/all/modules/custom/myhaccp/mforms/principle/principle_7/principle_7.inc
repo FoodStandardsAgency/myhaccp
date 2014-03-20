@@ -86,7 +86,7 @@ function principle_7(&$form_state, &$next_step) {
   );
 
   $form['principle_7']['7_3'] = array(
-    '#type' => 'textfield',
+    '#type' => 'textarea',
     '#title' => t('3. How is documentation controlled (up-dates / issue number)?'),
     '#help_text' => t('For any forms, records, procedures, whether on paper or the computer do you have a system to ensure the latest issue is being used?  Provide details on how you achieve this.'),
     '#help_link' => 33,

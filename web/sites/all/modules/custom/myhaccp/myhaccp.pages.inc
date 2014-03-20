@@ -110,6 +110,8 @@ function myhaccp_list() {
         $complete = l(t('Complete'), 'tool/study/' . $result->iid . '/complete/1', array(
           'attributes' => array(
             'class' => 'complete-link',
+            'data-valid' => $validation_status,
+            'data-status' => $study->getStatus(),
           ),
           'query' => $destination,
         ));
@@ -120,6 +122,8 @@ function myhaccp_list() {
         $complete = l(t('Activate'), 'tool/study/' . $result->iid . '/complete/0', array(
           'attributes' => array(
             'class' => 'complete-link',
+            'data-valid' => $validation_status,
+            'data-status' => $study->getStatus(),
           ),
           'query' => $destination,
         ));
@@ -132,6 +136,8 @@ function myhaccp_list() {
         'class' => array(
           'download-link',
         ),
+        'data-valid' => $validation_status,
+        'data-status' => $study->getStatus(),
       ),
     ));
 
@@ -275,16 +281,20 @@ function myhaccp_study_finish($iid) {
     $complete = l(t("Mark your HACCP study as 'complete'"), 'tool/study/' . $study->getIID() . '/complete/1', array(
       'attributes' => array(
         'class' => 'complete-link',
+        'data-valid' => $validation_status,
+        'data-status' => $study->getStatus(),
       ),
       'query' => $destination,
     ));
   }
   elseif ($study->getStatus() == 1) {
-    // The study is current in a complete state (but may be invalid) so
+    // The study is currently in a complete state (but may be invalid) so
     // allow the user to change it to incomplete.
     $complete = l(t("Mark your HACCP study as 'active'"), 'tool/study/' . $study->getIID() . '/complete/0', array(
       'attributes' => array(
         'class' => 'complete-link',
+        'data-valid' => $validation_status,
+        'data-status' => $study->getStatus(),
       ),
       'query' => $destination,
     ));
@@ -294,7 +304,9 @@ function myhaccp_study_finish($iid) {
   // Offer a download link.
   $download = l($download_text, "tool/study/$iid/pdf", array(
     'attributes' => array(
-      'class' => array('download'),
+      'class' => array('download-link'),
+      'data-valid' => $validation_status,
+      'data-status' => $study->getStatus(),
     ),
   ));
 
