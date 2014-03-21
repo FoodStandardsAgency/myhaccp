@@ -9,6 +9,15 @@
   @media all and (min-width: $break_large_up) {
     max-width: 80%;
   }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+      margin: 0;
+      padding: 0;
+    }
+  }
   .views-field-field-file-1 {
     border: 2px solid $dl_colour;
     overflow: hidden;
