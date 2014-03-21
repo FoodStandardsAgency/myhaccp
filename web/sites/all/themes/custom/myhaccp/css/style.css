@@ -1983,8 +1983,8 @@ footer[role=contentinfo] {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  font-size: 0.9em;
   padding-top: 1em;
+  padding-bottom: 1em;
 }
 .footer-inside .gov-uk-logo {
   float: right;
@@ -1997,24 +1997,48 @@ footer[role=contentinfo] {
 .footer-inside p.copyright-message {
   margin-bottom: 0;
 }
-.footer-inside .footer-links {
+.footer-inside .block-menu-block-7,
+.footer-inside .block-menu-block-8 {
   clear: both;
-  max-width: 54em;
-  color: #676767;
-  font-size: 0.844em;
   padding-top: 0.5em;
 }
-.footer-inside .footer-links a {
-  color: #676767;
-}
-.footer-inside .footer-links a:hover {
-  color: black;
-}
 @media all and (min-width: 860px) {
-  .footer-inside .footer-links {
+  .footer-inside .block-menu-block-7,
+  .footer-inside .block-menu-block-8 {
     clear: none;
     padding-top: 0;
   }
+}
+.footer-inside .block-menu-block-7 ul,
+.footer-inside .block-menu-block-8 ul {
+  margin: 0;
+  padding: 0;
+}
+.footer-inside .block-menu-block-7 ul li,
+.footer-inside .block-menu-block-8 ul li {
+  list-style-type: none;
+  list-style-image: none;
+}
+.footer-inside .block-menu-block-7 ul li.leaf,
+.footer-inside .block-menu-block-8 ul li.leaf {
+  display: inline-block;
+}
+.footer-inside .block-menu-block-7 ul li:last-child a:after,
+.footer-inside .block-menu-block-8 ul li:last-child a:after {
+  content: '';
+}
+.footer-inside .block-menu-block-7 ul a,
+.footer-inside .block-menu-block-8 ul a {
+  color: #676767;
+  font-size: 0.844em;
+}
+.footer-inside .block-menu-block-7 ul a:hover,
+.footer-inside .block-menu-block-8 ul a:hover {
+  color: black;
+}
+.footer-inside .block-menu-block-7 ul a:after,
+.footer-inside .block-menu-block-8 ul a:after {
+  content: ' | ';
 }
 
 .help-tip {
