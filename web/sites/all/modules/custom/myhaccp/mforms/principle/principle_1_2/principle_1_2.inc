@@ -35,16 +35,6 @@ function principle_1_2(&$form_state, &$next_step) {
     '#suffix' => '</div>',
   );
 
-  // Show global message on this form.
-  $form['validation_messages'] = array(
-    '#type' => 'container',
-    '#id' => 'validation-messages',
-    '#weight' => -10,
-    '#attributes' => array(
-      'data-validation-stage' => 'principle_1_2',
-    ),
-  );
-
   $hazards = Hazards::getInstance();
 
   // Set an instance count so we know how many instances of the fieldsets we
