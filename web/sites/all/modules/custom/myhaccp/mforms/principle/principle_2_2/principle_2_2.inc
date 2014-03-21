@@ -119,6 +119,10 @@ function principle_2_2(&$form_state, &$next_step) {
           else {
             $num++;
           }
+          if ($q == 6) {
+            // There isn't a question 5 in codex tree so skip this loop.
+            continue;
+          }
         }
         else {
           if ($q == 3) {
