@@ -21,7 +21,6 @@ footer[role=contentinfo] {
     padding-top: 0.5em;
     @media all and (min-width: $break_med_up) {
       clear: none;
-      padding-top: 0;
     }
     ul {
       @include strip-list;
@@ -41,6 +40,11 @@ footer[role=contentinfo] {
           content: ' | ';
         }
       }
+    }
+  }
+  @media all and (min-width: $break_med_up) {
+    .block-menu-block-8 {
+      padding-top: 0;
     }
   }
 }
