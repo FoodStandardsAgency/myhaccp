@@ -2006,7 +2006,6 @@ footer[role=contentinfo] {
   .footer-inside .block-menu-block-7,
   .footer-inside .block-menu-block-8 {
     clear: none;
-    padding-top: 0;
   }
 }
 .footer-inside .block-menu-block-7 ul,
@@ -2039,6 +2038,11 @@ footer[role=contentinfo] {
 .footer-inside .block-menu-block-7 ul a:after,
 .footer-inside .block-menu-block-8 ul a:after {
   content: ' | ';
+}
+@media all and (min-width: 860px) {
+  .footer-inside .block-menu-block-8 {
+    padding-top: 0;
+  }
 }
 
 .help-tip {
