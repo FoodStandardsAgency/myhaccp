@@ -29,14 +29,28 @@ function myhaccp_preprocess_page(&$variables, $hook) {
 
   // Check if the user is logged in.
   global $user;
-  if ($user->uid) {
-    // User is logged in.
-  } else {
+  if (!$user->uid) {
     // Remove page title for login and registration pages.
     if (arg(0) == 'user') {
       drupal_set_title('');
     }
   }
+
+  // Only do this for logged in users.
+  if (!empty($user->roles) && !in_array('anonymous user', $user->roles)) {
+    // Try to load the profile.
+    $profile = profile2_load_by_user($user);
+    if ($profile && isset($profile['main'])) {
+      $wrapper = entity_metadata_wrapper('profile2', $profile['main']);
+      if ($business_type = $wrapper->field_business_type->value()) {
+        // Add some inline js code to set the dimension.
+        drupal_add_js("ga('set', 'dimension1', '" . $business_type . "');", array(
+          'scope' => 'footer',
+          'type' => 'inline',
+        ));
+      }
+    }
+  };
 }
 
 /*
