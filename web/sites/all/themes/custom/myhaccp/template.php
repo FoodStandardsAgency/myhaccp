@@ -47,7 +47,7 @@ function myhaccp_preprocess_page(&$variables, $hook) {
           $business_type = $wrapper->field_business_other->value();
         }
         // Add some inline js code to set the dimension.
-        drupal_add_js("ga('set', 'dimension1', '" . $business_type . "');", array(
+        drupal_add_js("if (typeof ga != 'undefined') { ga('set', 'dimension1', '" . $business_type . "');}", array(
           'scope' => 'footer',
           'type' => 'inline',
         ));
