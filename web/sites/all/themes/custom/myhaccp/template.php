@@ -43,6 +43,9 @@ function myhaccp_preprocess_page(&$variables, $hook) {
     if ($profile && isset($profile['main'])) {
       $wrapper = entity_metadata_wrapper('profile2', $profile['main']);
       if ($business_type = $wrapper->field_business_type->value()) {
+        if ($business_type == 'other' && $wrapper->field_business_other->value()) {
+          $business_type = $wrapper->field_business_other->value();
+        }
         // Add some inline js code to set the dimension.
         drupal_add_js("ga('set', 'dimension1', '" . $business_type . "');", array(
           'scope' => 'footer',
