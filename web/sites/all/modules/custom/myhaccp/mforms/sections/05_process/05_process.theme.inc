@@ -32,8 +32,11 @@ function myhaccp_preprocess_05_process(&$variables) {
   $variables['flow_diagram_data'] = base64_encode($image_uri);
 
   // 1. Have you completed a flow diagram?
-  if ($preparatory_g['g_1'] == TRUE) {
+  if ($preparatory_g['g_1'] == 'yes') {
     $variables['g_1'] = t('We have completed a flow diagram covering all steps in the manufacturing process of this product.');
+  }
+  else {
+    $variables['g_1'] = t('We have <strong>not</strong> completed a flow diagram covering all steps in the manufacturing process of this product.');
   }
 
   // Hard copy location.
