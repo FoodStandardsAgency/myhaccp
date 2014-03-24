@@ -107,8 +107,26 @@
 }
 
 .ui-dialog .ui-dialog-titlebar-close {
+  background-image: none;
+  background-color: black;
+  border: none;
   height: 30px;
   width: 30px;
   z-index: 200;
   margin: 0;
+  top: 25%;
+  @include border-radius(0);
+  &:hover {
+    border: none;
+    background-image: none;
+    background-color: #666666;
+  }
+  &.ui-button-icon-only .ui-icon {
+    margin-left: -9px;
+    background-image: url("../images/ui-icons_ffffff_256x240.png");
+  }
 }
+
+
+
+
