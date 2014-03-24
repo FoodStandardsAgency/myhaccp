@@ -62,13 +62,13 @@ function preparatory_f(&$form_state, &$next_step) {
       'yes' => t('Yes'),
       'no' => t('No'),
     ),
-    '#title' => t('2. Is the product specifically designed for consumption by the general public?'),
+    '#title' => t('2. Is the product suitable for consumption by the general public?'),
     '#help_link' => 19,
     '#help_text' => t('Only select yes if your product is not specifically designed for a particular group of consumers, such as travelers, institutional caterers etc. or for vulnerable groups.'),
     '#default_value' => array_get($values, 'preparatory_f.f_2', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
-      'data-parsley-error-message' => t('Please specify if the product is designed specifically for the general public.'),
+      'data-parsley-error-message' => t('Please specify if the product is suitable for the general public.'),
     ),
   );
 
@@ -79,13 +79,13 @@ function preparatory_f(&$form_state, &$next_step) {
       'yes' => t('Yes'),
       'no' => t('No'),
     ),
-    '#title' => t('3. Is the product specifically designed for the young?'),
+    '#title' => t('3. Is the product suitable for the young?'),
     '#help_link' => 19,
     '#help_text' => t('Babies are more vulnerable to choking hazards certain products are not recommended to be consumed by babies e.g. honey.'),
     '#default_value' => array_get($values, 'preparatory_f.f_3', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
-      'data-parsley-error-message' => t('Please specify if the product is designed specifically for the young.'),
+      'data-parsley-error-message' => t('Please specify if the product is suitable for the young.'),
     ),
   );
 
@@ -96,13 +96,13 @@ function preparatory_f(&$form_state, &$next_step) {
       'yes' => t('Yes'),
       'no' => t('No'),
     ),
-    '#title' => t('4. Is the product specifically designed for the elderly?'),
+    '#title' => t('4. Is the product suitable for the elderly?'),
     '#help_link' => 19,
     '#help_text' => t('Elderly people may require that food is of a smaller size than that to be consumed by non-vulnerable groups.'),
     '#default_value' => array_get($values, 'preparatory_f.f_4', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
-      'data-parsley-error-message' => t('Please specify if the product is designed specifically for the elderly.'),
+      'data-parsley-error-message' => t('Please specify if the product is suitable for the elderly.'),
     ),
   );
 
@@ -113,13 +113,13 @@ function preparatory_f(&$form_state, &$next_step) {
       'yes' => t('Yes'),
       'no' => t('No'),
     ),
-    '#title' => t('5. Is the product specifically designed for pregnant ladies?'),
+    '#title' => t('5. Is the product suitable for pregnant ladies?'),
     '#help_link' => 19,
     '#help_text' => t('Certain foods should not be consumed by pregnant ladies because they contain certain microorganisms that may cause a still birth, miscarriage or severe illness.'),
     '#default_value' => array_get($values, 'preparatory_f.f_5', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
-      'data-parsley-error-message' => t('Please specify if the product is designed specifically for pregnant ladies.'),
+      'data-parsley-error-message' => t('Please specify if the product is suitable for pregnant ladies.'),
     ),
   );
 
@@ -130,13 +130,13 @@ function preparatory_f(&$form_state, &$next_step) {
       'yes' => t('Yes'),
       'no' => t('No'),
     ),
-    '#title' => t('6. Is the product specifically designed for the immunosuppressed / immunocompromised?'),
+    '#title' => t('6. Is the product suitable for the immunosuppressed / immunocompromised?'),
     '#help_link' => 19,
     '#help_text' => t('Consider the use of low microbial diets to reduce the risk of foodborne disease.'),
     '#default_value' => array_get($values, 'preparatory_f.f_6', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
-      'data-parsley-error-message' => t('Please specify if the product is designed specifically for the immunosuppressed / immunocompromised.'),
+      'data-parsley-error-message' => t('Please specify if the product is suitable for the immunosuppressed / immunocompromised.'),
     ),
   );
 
@@ -147,7 +147,7 @@ function preparatory_f(&$form_state, &$next_step) {
       'yes' => t('Yes'),
       'no' => t('No'),
     ),
-    '#title' => t('7. Is the product specifically designed for people with allergies or intolerances?'),
+    '#title' => t('7. Is the product suitable for people with allergies or intolerances?'),
     '#help_link' => 19,
     '#help_text' => t('Does the product contain any ingredients from the list on substances or products causing allergies or intolerances.'),
     '#default_value' => array_get($values, 'preparatory_f.f_7', array()),
