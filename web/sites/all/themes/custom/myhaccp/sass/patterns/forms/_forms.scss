@@ -49,6 +49,12 @@ textarea {
   }
 }
 
+// Stop iOS from rounding the corners on these elements.
+body input[type="submit"] {
+  -webkit-appearance: none;
+  @include border-radius(0);
+}
+
 #validation-messages {
   border-color: $negative;
   border-width: 1px 1px 1px 10px;
