@@ -2319,86 +2319,145 @@ table thead th .help-tip {
   background-image: url(/modules/file/icons/x-office-spreadsheet.png);
 }
 
-@media all and (min-width: 1020px) {
-  .view-display-id-resources_downloads {
-    max-width: 80%;
-  }
+.view-display-id-resources_downloads td, .view-display-id-resources_downloads th {
+  padding: 10px;
+  text-align: left;
+  border-top: 1px solid #dddddd;
+  border-left: 1px solid #dddddd;
 }
-.view-display-id-resources_downloads ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.view-display-id-resources_downloads th {
+  background-color: #eeeeee;
 }
-.view-display-id-resources_downloads ul li {
-  margin: 0;
-  padding: 0;
+.view-display-id-resources_downloads td:last-child,
+.view-display-id-resources_downloads th:last-child {
+  border-right: 1px solid #dddddd;
 }
-.view-display-id-resources_downloads .views-field-field-file-1 {
-  border: 2px solid #006f51;
-  overflow: hidden;
+.view-display-id-resources_downloads tr:last-child td {
+  border-bottom: 1px solid #dddddd;
+}
+.view-display-id-resources_downloads thead:first-child tr:first-child th,
+.view-display-id-resources_downloads thead:first-child tr:first-child td {
+  border-top: 1px solid #dddddd;
+}
+.view-display-id-resources_downloads table {
+  width: 100%;
+}
+.view-display-id-resources_downloads td {
+  padding: 15px;
+}
+.view-display-id-resources_downloads .resource-name {
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+.view-display-id-resources_downloads .resource-download-link {
   display: table;
+  width: 100%;
+  background: #eeeeee;
+  border-left: 5px solid #6cb33f;
 }
-.view-display-id-resources_downloads .views-field-field-file-1 .download-label {
+.view-display-id-resources_downloads .resource-download-link:hover {
+  background-color: #e2e2e2;
+}
+.view-display-id-resources_downloads .resource-download-link:hover a {
+  color: #000;
+}
+.view-display-id-resources_downloads .resource-download-link .download-label {
   display: table-cell;
   margin-right: 1em;
-  background: #006f51;
   padding: 0.4em 0.75em;
   vertical-align: middle;
+  width: 5em;
 }
-.view-display-id-resources_downloads .views-field-field-file-1 .download-label:hover {
-  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+.view-display-id-resources_downloads .resource-download-link .download-label:link, .view-display-id-resources_downloads .resource-download-link .download-label:visited {
+  color: black;
 }
-.view-display-id-resources_downloads .views-field-field-file-1 .download-label:link, .view-display-id-resources_downloads .views-field-field-file-1 .download-label:visited {
-  color: #FFF;
-}
-.view-display-id-resources_downloads .views-field-field-file-1 .file {
+.view-display-id-resources_downloads .resource-download-link .file {
   display: table-cell;
   margin-right: 1em;
-  padding: 0.25em 0.5em;
+  vertical-align: middle;
 }
-.view-display-id-resources_downloads .views-field-field-file-1 .file a {
+.view-display-id-resources_downloads .resource-download-link .file a {
   display: block;
   word-break: break-all;
+  padding: 0.25em 0.5em 0.25em 20px;
 }
-.view-display-id-resources_downloads .views-field-field-file-1 .filesize {
-  padding: 0.25em 0.75em;
-  display: table-cell;
-  background-color: #eeeeee;
+.view-display-id-resources_downloads .resource-description {
+  margin-bottom: 0.5em;
+  font-size: 0.9em;
+  line-height: 1.66667em;
+}
+.view-display-id-resources_downloads .views-field-filesize {
   min-width: 5em;
-  vertical-align: middle;
 }
-.view-display-id-resources_downloads div.description {
-  margin-bottom: 1em;
+.view-display-id-resources_downloads .view-filters {
+  background-color: #eeeeee;
+  padding: 0 1em;
+  display: inline-block;
 }
-.view-display-id-resources_downloads .views-row {
-  border-bottom: 1px solid #dddddd;
-  padding-bottom: 2.5em;
+.view-display-id-resources_downloads .view-filters .views-exposed-widget label {
+  margin-bottom: 0.5em;
 }
-
-.view-id-resources.view-display-id-block_2 .views-row {
-  margin-bottom: 1.5em;
-  border: 2px solid #006f51;
-  overflow: hidden;
-  display: table;
-}
-.view-id-resources.view-display-id-block_2 .views-row .title {
-  display: table-cell;
-  margin-right: 1em;
-  background: #006f51;
-  padding: 0.4em 0.75em;
-  vertical-align: middle;
-}
-.view-id-resources.view-display-id-block_2 .views-row .title:hover {
-  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
-}
-.view-id-resources.view-display-id-block_2 .views-row .title:link, .view-id-resources.view-display-id-block_2 .views-row .title:visited {
+.view-display-id-resources_downloads .view-filters input#edit-submit {
+  background-color: #e6e6e6;
+  color: rgba(0, 0, 0, 0.8);
+  border: 0 none transparent;
+  padding: 0.6em 1.5em 0.5em 1.5em;
+  text-decoration: none;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  background-color: #4d8f46;
   color: #FFF;
 }
-.view-id-resources.view-display-id-block_2 .views-row .description {
-  display: table-cell;
-  margin-right: 1em;
-  padding: 0.25em 1em;
-  vertical-align: middle;
+.view-display-id-resources_downloads .view-filters input#edit-submit:hover, .view-display-id-resources_downloads .view-filters input#edit-submit:focus {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+}
+.view-display-id-resources_downloads .view-filters input#edit-submit.disabled {
+  background-image: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.view-display-id-resources_downloads .view-filters input#edit-submit.active, .view-display-id-resources_downloads .view-filters input#edit-submit:active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset;
+}
+
+.view-resources-2.view-id-resources_2 ul {
+  margin: 0;
+  padding: 0;
+}
+.view-resources-2.view-id-resources_2 ul li {
+  list-style-type: none;
+  list-style-image: none;
+}
+.view-resources-2.view-id-resources_2 li {
+  margin-bottom: 1.5em;
+  border-bottom: 1px solid #dddddd;
+  clear: both;
+  overflow: hidden;
+  padding-bottom: 1em;
+}
+.view-resources-2.view-id-resources_2 li .title {
+  font-size: 1em;
+  line-height: 1.5em;
+  color: black;
+  font-weight: bold;
+}
+.view-resources-2.view-id-resources_2 li .resource-description {
+  font-size: 0.9em;
+  line-height: 1.66667em;
+  margin-bottom: 0.5em;
+}
+.view-resources-2.view-id-resources_2 li .resources-external-link {
+  background: #eeeeee;
+  border-left: 5px solid #6cb33f;
+  padding: 0.25em 0.5em;
+  display: inline-block;
+}
+.view-resources-2.view-id-resources_2 li .resources-external-link span {
+  color: black;
+  margin-right: 0.5em;
 }
 
 input#edit-submit.form-add {
