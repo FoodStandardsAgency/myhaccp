@@ -47,6 +47,15 @@
   div.page-break {
     page-break-after: always;
   }
+
+  .front-page {
+    padding-top: 8em;
+    h1.study-name {
+      border-bottom: 0;
+      color: $text;
+    }
+  }
+
   .haccp-plan {
     table tr {
       page-break-inside: auto; // set this to 'auto' to allow tables to break across pages.

@@ -1012,6 +1012,12 @@ select,
 textarea {
   font-size: 1em;
   line-height: 1.5em;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
   background: #fcfcfc;
   border: 1px solid #007fb2;
   padding: 0.25em 0 0.1em 0.4em;
@@ -1056,6 +1062,15 @@ select.error:focus,
 textarea.error:focus {
   border-color: #b73939;
   outline-color: #b73939;
+}
+
+body input[type="submit"] {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
 }
 
 #validation-messages {
@@ -1440,6 +1455,12 @@ input#edit-delete-all:active {
 }
 .pager-wrapper .pager-controls input.pager-item {
   color: #007fb2;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
 }
 .pager-wrapper .pager-controls input.pager-item.needs-review {
   color: #f15d22;

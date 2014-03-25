@@ -1,0 +1,25 @@
+.ui-dialog.ui-widget {
+  border: 0.4em solid #222;
+  .ui-dialog-titlebar-close {
+    background-image: none;
+    background-color: black;
+    border: none;
+    width: 20px;
+    z-index: 200;
+    margin: 0;
+    top: 25%;
+    &:hover {
+      border: none;
+      background-image: none;
+      background-color: #666666;
+      span.ui-icon {
+        background-color: #666666;
+      }
+    }
+    span.ui-icon {
+      left: 0;
+      top: 0;
+      background-color: #000;
+    }
+  }
+}

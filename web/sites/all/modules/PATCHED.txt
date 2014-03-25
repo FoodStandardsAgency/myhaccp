@@ -5,3 +5,4 @@ password_policy 2206091     https://drupal.org/files/issues/password_policy-1-pr
 password_policy 2041717     https://drupal.org/files/issues/2041717-allow_anon-15.patch
 dialog          1508788     https://drupal.org/files/issues/dialog-missing_content_reload-1508788-10.patch
 ckeditor        1914904	    https://drupal.org/files/ckeditor-media_ie_fix-1914904-5.patch
+site_map        1529708     https://drupal.org/files/issues/site_map_ordering-1529708.patch
