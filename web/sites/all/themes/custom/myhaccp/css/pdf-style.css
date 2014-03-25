@@ -631,6 +631,14 @@ a:hover {
     page-break-after: always;
   }
 
+  .front-page {
+    padding-top: 8em;
+  }
+  .front-page h1.study-name {
+    border-bottom: 0;
+    color: black;
+  }
+
   .haccp-plan table tr {
     page-break-inside: auto;
   }

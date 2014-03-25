@@ -38,11 +38,11 @@ function myhaccp_output_pdf($iid) {
     // Prepare the cover page.
     $mpdf->AddPage('', '', 1, '', 'on');
     $date = format_date(time(), 'custom', 'd/m/Y');
-    $cover = '<h1 class="study-name">MyHACCP Study: ' . $name . '</h1>';
+    $cover = '<div class="front-page"><h1 class="study-name">MyHACCP Study: ' . $name . '</h1>';
     $cover .= '<h3 class="origin">This document was created using the MyHACCP web tool.</h3>';
     $cover .= '<p>http://myhaccp.food.gov.uk</p>';
     $cover .= '<p>Date generated: ' . $date . '</p>';
-    $cover .= '<p>Business name: </p>';
+    $cover .= '<p>Business name: </p></div>';
     // Write the cover to the PDF.
     $mpdf->WriteHTML($cover, 2);
     $mpdf->AddPage('', '', 1, '', 'off');
