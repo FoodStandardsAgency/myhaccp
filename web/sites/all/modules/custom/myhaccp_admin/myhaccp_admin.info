@@ -1,0 +1,4 @@
+name = MyHACCP Administration
+description = Admin overrides and adjustments
+core = 7.x
+package = MyHACCP

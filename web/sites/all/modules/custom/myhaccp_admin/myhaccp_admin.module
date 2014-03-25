@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * Small adjustments and changes to admin theme elements that can't be
+ * changes in the main theme.
+ */
+
+function myhaccp_admin_preprocess_page() {
+  // Activate only on admin paths.
+  if (path_is_admin(current_path())) {
+    $path = drupal_get_path('module', 'myhaccp_admin');
+    drupal_add_css($path . '/css/admin_override.css', array(
+      'weight' => 100,
+    ));
+  }
+}
