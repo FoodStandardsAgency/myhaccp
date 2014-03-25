@@ -54,8 +54,9 @@ $positive-lighter: $accent-1-lightest;
 $negative: #B73939;
 $negative-lighter: mix($negative, #FFF, 10%);
 
-// Grey 1, used for borders.
+// Grey 1, used for borders and backgrounds.
 $grey-1: #eeeeee;
+$grey-1-hover: mix($grey-1, #000, 95%);
 
 // Grey 2, used for headings.
 $grey-2: #999999;

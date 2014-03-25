@@ -2,93 +2,107 @@
 // Resources, including resources view.
 //
 
+$dl_colour: $grey-1;
+$dl_colour_hover: $grey-1-hover;
 
-// Resource downloads view.
 .view-display-id-resources_downloads {
-  $dl_colour: $base-color;
-  @media all and (min-width: $break_large_up) {
-    max-width: 80%;
+  @include tables_borders;
+  table {
+    width: 100%;
   }
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    li {
-      margin: 0;
-      padding: 0;
-    }
+  td {
+    padding: 15px;
   }
-  .views-field-field-file-1 {
-    border: 2px solid $dl_colour;
-    overflow: hidden;
+  .resource-name {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+  }
+  .resource-download-link {
     display: table;
+    width: 100%;
+    background: $dl_colour;
+    border-left: 5px solid $accent-1;
+    &:hover {
+      background-color: $dl_colour_hover;
+      a {
+        color: #000;
+      }
+    }
     .download-label {
       display: table-cell;
       margin-right: 1em;
-      background: $dl_colour;
       padding: 0.4em 0.75em;
       vertical-align: middle;
-      &:hover {
-        background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
-      }
+      width: 5em;
       &:link,
       &:visited {
-        color: #FFF;
+        color: black;
       }
     }
     .file {
       display: table-cell;
       margin-right: 1em;
-      padding: 0.25em 0.5em;
+      vertical-align: middle;
       a {
         display: block;
         word-break: break-all;
+        padding: 0.25em 0.5em 0.25em 20px;
       }
     }
-    .filesize {
-      padding: 0.25em 0.75em;
-      display: table-cell;
-      background-color: $grey-1;
-      min-width: 5em;
-      vertical-align: middle;
+  }
+  .resource-description {
+    margin-bottom: 0.5em;
+    @include adjust-font-size-to(18px);
+  }
+  .views-field-filesize {
+    min-width: 5em;
+  }
+  // Filters
+  .view-filters {
+    background-color: $grey-1;
+    padding: 0 1em;
+    display: inline-block;
+    .views-exposed-widget label {
+      margin-bottom: 0.5em;
+    }
+    input#edit-submit {
+      @include agile-button($style: positive);
     }
   }
-  div.description {
-    margin-bottom: 1em;
-  }
-  .views-row {
-    border-bottom: 1px solid $grey-4;
-    padding-bottom: 2.5em;
-  }
+
 }
 
+
+
 // External resources view
-.view-id-resources.view-display-id-block_2 {
-  $dl_colour: $base-color;
-  .views-row {
+.view-resources-2.view-id-resources_2 {
+  ul {
+    @include strip-list;
+  }
+  li {
     margin-bottom: 1.5em;
-    border: 2px solid $dl_colour;
+    border-bottom: 1px solid $grey-4;
+    clear: both;
     overflow: hidden;
-    display: table;
+    padding-bottom: 1em;
     .title {
-      display: table-cell;
-      margin-right: 1em;
-      background: $dl_colour;
-      padding: 0.4em 0.75em;
-      vertical-align: middle;
-      &:hover {
-        background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
-      }
-      &:link,
-      &:visited {
-        color: #FFF;
-      }
+      @include adjust-font-size-to(20px);
+      color: black;
+      font-weight: bold;
     }
-    .description {
-      display: table-cell;
-      margin-right: 1em;
-      padding: 0.25em 1em;
-      vertical-align: middle;
+    .resource-description {
+      @include adjust-font-size-to(18px);
+      margin-bottom: 0.5em;
+    }
+    .resources-external-link {
+      background: $dl_colour;
+      border-left: 5px solid $accent-1;
+      padding: 0.25em 0.5em;
+      display: inline-block;
+      span {
+        color: black;
+        margin-right: 0.5em;
+      }
     }
   }
 }
