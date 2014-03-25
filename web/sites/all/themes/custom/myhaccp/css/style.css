@@ -1064,6 +1064,15 @@ textarea.error:focus {
   outline-color: #b73939;
 }
 
+body input[type="submit"] {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
+}
+
 #validation-messages {
   border-color: #b73939;
   border-width: 1px 1px 1px 10px;
