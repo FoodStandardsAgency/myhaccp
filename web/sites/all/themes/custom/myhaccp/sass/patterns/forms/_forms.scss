@@ -32,7 +32,7 @@ textarea {
   @include adjust-font-size-to(20px);
   // Stop iOS from rounding the corners on these elements.
   -webkit-appearance: none;
-  -webkit-border-radius: 0;
+  @include border-radius(0);
   background: $form_elements_background_color;
   border: 1px solid $accent-2;
   padding: 0.25em 0 0.1em 0.4em;
