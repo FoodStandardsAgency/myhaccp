@@ -32,41 +32,7 @@
     </div>
   <?php endif; ?>
 
-  <?php if($front_page): ?>
-    <div class="site-map-front-page">
-      <?php print $front_page; ?>
-    </div>
-  <?php endif; ?>
-
-  <?php if($blogs): ?>
-    <div class="site-map-blogs">
-      <?php print $blogs; ?>
-    </div>
-  <?php endif; ?>
-
-  <?php if($books): ?>
-    <div class="site-map-books">
-      <?php print $books; ?>
-    </div>
-  <?php endif; ?>
-
-  <?php if($menus): ?>
-    <div class="site-map-menus">
-      <?php print $menus; ?>
-    </div>
-  <?php endif; ?>
-
-  <?php if($faq): ?>
-    <div class="site-map-faq">
-      <?php print $faq; ?>
-    </div>
-  <?php endif; ?>
-
-  <?php if($taxonomys): ?>
-    <div class="site-map-taxonomys">
-      <?php print $taxonomys; ?>
-    </div>
-  <?php endif; ?>
+  <?php print $site_map; ?>
 
   <?php if($additional): ?>
     <div class="site-map-additional">

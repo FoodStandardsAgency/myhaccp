@@ -181,30 +181,61 @@ function template_preprocess_site_map(&$variables) {
     $variables['rss_legend'] = theme('site_map_rss_legend');
   }
 
-  if (variable_get('site_map_show_front', 1)) {
-    $variables['front_page'] = _site_map_front_page();
-  }
-
   if (variable_get('site_map_show_titles', 1)) {
     $variables['show_titles'] = TRUE;
   }
 
-  if (variable_get('site_map_show_blogs', 1)) {
-    $variables['blogs'] = _site_map_blogs();
+  $variables['site_map'] = '';
+  $site_map_order = variable_get('site_map_order', array());
+  asort($site_map_order);
+
+  foreach ($site_map_order as $content => $weight) {
+    // Get type of content
+    $type = substr($content, 0, strpos($content, '_'));
+    $id = substr($content, strpos($content, '_') + 1);
+    if (empty($type)) {
+      $type = $content;
+      $id = NULL;
+    }
+
+    switch ($type) {
+      case 'front':
+        if (variable_get('site_map_show_front', 1)) {
+          $variables['site_map'] .= _site_map_front_page();
+        }
+      break;
+      case 'blogs':
+        if (variable_get('site_map_show_blogs', 1)) {
+          $variables['site_map'] .= _site_map_blogs();
+        }
+      break;
+      case 'books':
+        $books = variable_get('site_map_show_books', array());
+        if (!empty($books)) {
+          $variables['site_map'] .= _site_map_books();
+        }
+      break;
+      case 'menus':
+        $menus = variable_get('site_map_show_menus', array());
+        if (!empty($menus[$id])) {
+          $variables['site_map'] .= _site_map_menus($id);
+        }
+      break;
+      case 'faq':
+        if (variable_get('site_map_show_faq', 0)) {
+          $variables['site_map'] .= _site_map_faq();
+        }
+      break;
+      case 'vocabularies':
+        $vocabulary = taxonomy_vocabulary_load($id);
+        $vocabularies = variable_get('site_map_show_vocabularies', array());
+
+        if (!empty($vocabularies[$vocabulary->machine_name])) {
+          $variables['site_map'] .= _site_map_taxonomys($vocabulary);
+        }
+      break;
+    }
   }
-
-  // Compile the books trees.
-  $variables['books'] = _site_map_books();
-
-  // Compile the menu trees.
-  $variables['menus'] = _site_map_menus();
-
-  if (variable_get('site_map_show_faq', 0)) {
-    $variables['faq'] = _site_map_faq();
-  }
-
-  // Compile the vocabulary trees.
-  $variables['taxonomys'] = _site_map_taxonomys();
 
   // Invoke all custom modules and integrate themed HTML into the site map.
   $additional = module_invoke_all('site_map');
@@ -212,3 +243,37 @@ function template_preprocess_site_map(&$variables) {
     $variables['additional'] .= $themed_site_map_code;
   }
 }
+
+/**
+ * Returns HTML for the site map order form.
+ *
+ * Copied from the core theme_filter_admin_format_filter_order() function.
+ *
+ * @param $variables
+ *   An associative array containing:
+ *   - element: A render element representing the form.
+ *
+ * @ingroup themeable
+ */
+function theme_site_map_order($variables) {
+  $element = $variables['element'];
+
+  // Site map order (tabledrag).
+  $rows = array();
+  foreach (element_children($element, TRUE) as $name) {
+    $element[$name]['weight']['#attributes']['class'][] = 'site-map-order-weight';
+    $rows[] = array(
+      'data' => array(
+        drupal_render($element[$name]['content']),
+        drupal_render($element[$name]['weight']),
+      ),
+      'class' => array('draggable'),
+    );
+  }
+  $output = drupal_render_children($element);
+  $output .= theme('table', array('rows' => $rows, 'attributes' => array('id' => 'site-map-order')));
+  drupal_add_tabledrag('site-map-order', 'order', 'sibling', 'site-map-order-weight', NULL, NULL, TRUE);
+
+  return $output;
+}
+
