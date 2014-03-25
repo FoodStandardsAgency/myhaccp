@@ -1446,6 +1446,12 @@ input#edit-delete-all:active {
 }
 .pager-wrapper .pager-controls input.pager-item {
   color: #007fb2;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
 }
 .pager-wrapper .pager-controls input.pager-item.needs-review {
   color: #f15d22;
