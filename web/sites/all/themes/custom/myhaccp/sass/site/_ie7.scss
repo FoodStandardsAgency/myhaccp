@@ -1,48 +1,69 @@
-/**
- * IE7 Compatibility
- */
+//
+// IE7 Compatibility
+//
 
-/** Main menu not floating **/
+html.ie7 header .header-region nav {
+  margin-left: 0;
+}
+
+html.ie7 header .header-region {
+  position: relative;
+  bottom: -20px;
+}
+
+// Main menu not floating
 html.ie7 header .header-region nav ul li {
   float: left;
+  display: block;
+  margin: 0;
+  padding-right: 20px;
+}
+
+// Footer menu not floating
+html.ie7 .footer-inside .block-menu-block-7 ul li.leaf,
+html.ie7 .footer-inside .block-menu-block-8 ul li.leaf {
+  float: left;
+  margin-right: 0.5em;
+}
+
+html.ie7 .footer-inside .block-menu-block-8 {
+  clear: both;
+}
+
+// Homepage grid not recognising box-sizing: border-box
+html.ie7 .node-homepage.view-mode-full {
+  .group-left {
+    width: 48%;
+    padding-right: 2%;
+  }
+  .group-right {
+    width: 48%;
+    padding-left: 2%;
+  }
 }
 
 
-/** Homepage grid not recognising box-sizing: border-box **/
-html.ie7 .node-homepage.view-mode-full .group-left {
-  width: 48%;
-  padding-right: 2%;
+// Inside page grid not recognising box-sizing: border-box
+html.ie7 body.sidebar-second {
+  #main-content {
+    padding-left: 3%;
+    padding-right: 3%;
+    width: 60%;
+  }
+  .region-sidebar-second {
+    padding-left: 3%;
+    padding-right: 3%;
+    width: 19%;
+  }
 }
 
-html.ie7 .node-homepage.view-mode-full .group-right {
-  width: 48%;
-  padding-left: 2%;
-}
-
-
-/** Inside page grid not recognising box-sizing: border-box **/
-
-html.ie7 body.sidebar-second #main-content {
-  padding-left: 3%;
-  padding-right: 3%;
-  width: 60%;
-}
-
-html.ie7 body.sidebar-second .region-sidebar-second {
-  padding-left: 3%;
-  padding-right: 3%;
-  width: 19%;
-}
-
-/** Web Tool Pager **/
-
+// Web Tool Pager
 html.ie7 .pager-wrapper .pager-controls input {
   padding-left: 5px;
   padding-right: 5px;
 }
 
-/** Principle 1.1 **/
-
+// Principle 1.1
 html.ie7 .prep-d fieldset.instance .form-wrapper > .form-item,
 html.ie7 .principle-1-q1 .hazards > .form-item {
   width: 40%;

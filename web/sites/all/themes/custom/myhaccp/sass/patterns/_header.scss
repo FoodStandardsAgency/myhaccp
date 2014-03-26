@@ -5,7 +5,6 @@ header[role="banner"] {
   .header-inside {
     @include column();
     padding-top: 1em;
-    //overflow: hidden;
     @media all and (min-width: $break_med_up) {
       padding-top: 1.5em;
     }
