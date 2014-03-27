@@ -37,9 +37,11 @@ table {
     display: none;
   }
 }
-.no-js {
+.no-js,
+.js.ie7 {
   .help-text {
     @include adjust-font-size-to(16.884px);
+    display: block;
     font-style: italic;
     margin-bottom: 1em;
     color: $grey-3;
