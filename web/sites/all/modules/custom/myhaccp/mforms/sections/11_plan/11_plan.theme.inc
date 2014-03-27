@@ -209,7 +209,7 @@ function _principle_5_mp($study, $h_key) {
 
     // 4. Where are you going to document what you have done with the product produced during the time period that a CCP was 'out of control' (for example since the last good check)?
     if (!empty($principle_5[$h_key]['5_4'])) {
-      $content .= '<p>' . nl2br($principle_5[$h_key]['5_4']) . '</p><br />';
+      $content .= '<p>Actions for product produced when the CPP was out of control will be recorded in: ' . nl2br($principle_5[$h_key]['5_4']) . '</p><br />';
     }
 
     // 5. Are all personnel (identified in any of the steps from 1-6 for all CCP’s) trained and competent for performing the activities stated?
