@@ -48,11 +48,25 @@
     page-break-after: always;
   }
 
-  .front-page {
+  h1.study-name {
     padding-top: 8em;
-    h1.study-name {
-      border-bottom: 0;
-      color: $text;
+    border-bottom: 0;
+    color: $text;
+    margin: 0 2em 2em 2em;
+  }
+
+  p.business-name {
+    font-size: 1.7em;
+    color: $text;
+    margin-left: 2.35em;
+  }
+
+  footer.front-page {
+    margin: 0em 4.1em 0 4.1em;
+    padding-bottom: 7em;
+    .date {
+      padding-top: 1em;
+      font-size: 1.3em;
     }
   }
 
