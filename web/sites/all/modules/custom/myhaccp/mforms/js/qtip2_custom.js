@@ -1,10 +1,10 @@
-(function($) {
+(function ($) {
 
   Drupal.behaviors.qtip2_custom = {
     attach: function(context) {
       // Prepare the tooltips by iterating over each help-tip element and
       // checking for some help text.
-      $('.help-tip').once().each(function() {
+      $('.help-tip').once().each(function () {
         // Check if there is a help-text element to render.
         var help_text = $(this).parents('.form-item, th, div.label').children('.help-text');
         // Get the question to push to GA as an event label.
@@ -73,11 +73,11 @@
         }
       });
 
-      $('.more-link').click(function() {
+      $('.more-link').click(function () {
         $('div.qtip:visible').qtip('hide');
       });
 
     }
-  }
+  };
 
 })(jQuery);
