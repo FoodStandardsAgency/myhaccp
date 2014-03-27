@@ -25,7 +25,7 @@
         $('#dialog').dialog('close');
       });
     }
-  }
+  };
 
   Drupal.behaviors.customAnalytics = {
     attach: function(context) {
@@ -115,7 +115,8 @@
         });
       });
     }
-  }
+  };
+
 })(jQuery);
 
 var addToHomeConfig = {

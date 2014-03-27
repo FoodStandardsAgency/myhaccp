@@ -70,7 +70,7 @@
                     });
                   }
 
-                  return (pass);
+                  return pass;
                 },
                 priority: 2
               };
@@ -135,7 +135,7 @@
       });
 
     }
-  }
+  };
 
 
 })(jQuery);

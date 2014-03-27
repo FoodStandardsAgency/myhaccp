@@ -2093,9 +2093,11 @@ table thead th .help-tip {
   display: none;
 }
 
-.no-js .help-text {
+.no-js .help-text,
+.js.ie7 .help-text {
   font-size: 0.8442em;
   line-height: 1.77683em;
+  display: block;
   font-style: italic;
   margin-bottom: 1em;
   color: #575757;
