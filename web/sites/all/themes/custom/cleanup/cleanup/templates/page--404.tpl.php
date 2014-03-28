@@ -11,40 +11,51 @@
 <?php print $cleanup_poorthemers_helper; ?>
 
 <header role="banner">
-  <div class="siteinfo">
-    <?php if ($logo): ?>
-      <figure>
-      <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home">
-        <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-      </a>
-      </figure>
-    <?php endif; ?>
+  <div class="header-wrapper">
+    <div class="header-inside">
 
-    <?php if($site_name OR $site_slogan ): ?>
-    <hgroup>
-      <?php if($site_name): ?>
-        <h1><?php print $site_name; ?></h1>
+      <?php if ($page['header_utility']): ?>
+        <div class="header-utility">
+          <?php print render($page['header_utility']); ?>
+        </div>
       <?php endif; ?>
-      <?php if ($site_slogan): ?>
-        <h2><?php print $site_slogan; ?></h2>
+
+      <div class="site-details">
+        <?php if ($logo): ?>
+          <div class="logo">
+            <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home">
+              <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>"/>
+            </a>
+          </div>
+        <?php endif; ?>
+
+        <?php if ($site_name): ?>
+          <h1><?php print $site_name; ?></h1>
+        <?php endif; ?>
+        <?php if ($site_slogan): ?>
+          <h2><?php print $site_slogan; ?></h2>
+        <?php endif; ?>
+
+      </div>
+
+      <?php if ($page['header']): ?>
+        <div class="header-region">
+          <?php print render($page['header']); ?>
+        </div>
       <?php endif; ?>
-    </hgroup>
-    <?php endif; ?>
+
+    </div>
   </div>
 </header>
 
-
 <div class="page">
-  <div role="main" id="main-content">
+
+  <div class="main-wrapper">
 
   <article>
 
 
    <h1>Not Found</h1>
-
-    <h2>
-      These are not the nodes you are looking for
-    </h2>
 
     <p>Sorry, but the page you were trying to view does not exist.</p>
     <p>It looks like this was the result of either:</p>
@@ -53,7 +64,7 @@
       <li>an out-of-date link</li>
     </ul>
 
-    <a href="/search/">search ?</a>
+    You can try finding the content through an <a href="/search/">internal search</a> of this site, or return to the <a href="/">home page</a>.
 
     <script>
       var GOOG_FIXURL_LANG = (navigator.language || '').slice(0,2),GOOG_FIXURL_SITE = location.host;
@@ -66,5 +77,11 @@
 </div>
 
 <footer role="contentinfo">
-
+  <div class="footer-wrapper">
+    <div class="footer-inside">
+      <?php print render($page['footer']); ?>
+    </div>
+  </div>
 </footer>
+
+
