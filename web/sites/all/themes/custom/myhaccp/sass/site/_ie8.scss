@@ -1,0 +1,13 @@
+//
+// IE8 compatibility
+//
+
+html.ie8 {
+  // Footer menu links not rendering properly.
+  .footer-inside .block-menu-block-7 ul li.leaf,
+  .footer-inside .block-menu-block-8 ul li.leaf {
+   margin-right: 0.5em;
+  }
+
+}
+
