@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-  <!--[if IE 6]><html class="no-js ie6" lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>"><![endif]-->
+  <!--[if lte IE 6]><html class="no-js ie6" lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>"><![endif]-->
   <!--[if IE 7]><html class="no-js ie7" lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>"><![endif]-->
   <!--[if IE 8]><html class="no-js ie8" lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>"><![endif]-->
   <!--[if (gte IE 9)|(gt IEMobile 7)]>
