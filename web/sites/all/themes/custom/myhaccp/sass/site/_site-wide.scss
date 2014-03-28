@@ -22,3 +22,10 @@ a:visited {
 a:hover {
   color: $text;
 }
+
+// Responsive images.
+.node-page {
+  img {
+    max-width: 100%;
+  }
+}
