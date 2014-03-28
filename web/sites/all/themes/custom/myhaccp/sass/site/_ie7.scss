@@ -58,7 +58,29 @@ html.ie6 {
     }
   }
 
-  // Web Tool Pager
+  // Main menu (level 2), used in the help section not floating.
+  .block-menu-block-2 ul {
+    overflow: hidden;
+    padding-bottom: 0.5em;
+    li {
+      float: left;
+      display: block;
+    }
+  }
+
+  // Pager on search results page.
+  .page-search .pager li,
+  .page-search .pager li.current {
+    display: block;
+    float: left;
+  }
+
+  // Web Tool
+  // Web Tool pager
+  .pager-wrapper .principles-wrapper {
+    clear: both;
+    width: 100%;
+  }
   .pager-wrapper .pager-controls input {
     padding-left: 5px;
     padding-right: 5px;
@@ -71,4 +93,6 @@ html.ie6 {
     padding-left: 0;
     padding-right: 3%;
   }
+
+
 }

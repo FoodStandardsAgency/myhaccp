@@ -3717,6 +3717,28 @@ html.ie6 body.sidebar-second .region-sidebar-second {
   padding-right: 3%;
   width: 19%;
 }
+html.ie7 .block-menu-block-2 ul,
+html.ie6 .block-menu-block-2 ul {
+  overflow: hidden;
+  padding-bottom: 0.5em;
+}
+html.ie7 .block-menu-block-2 ul li,
+html.ie6 .block-menu-block-2 ul li {
+  float: left;
+  display: block;
+}
+html.ie7 .page-search .pager li,
+html.ie7 .page-search .pager li.current,
+html.ie6 .page-search .pager li,
+html.ie6 .page-search .pager li.current {
+  display: block;
+  float: left;
+}
+html.ie7 .pager-wrapper .principles-wrapper,
+html.ie6 .pager-wrapper .principles-wrapper {
+  clear: both;
+  width: 100%;
+}
 html.ie7 .pager-wrapper .pager-controls input,
 html.ie6 .pager-wrapper .pager-controls input {
   padding-left: 5px;
