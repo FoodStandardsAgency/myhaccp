@@ -38,6 +38,7 @@ table {
   }
 }
 .no-js,
+.js.ie6,
 .js.ie7 {
   .help-text {
     @include adjust-font-size-to(16.884px);
