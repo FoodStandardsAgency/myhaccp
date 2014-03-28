@@ -2094,6 +2094,7 @@ table thead th .help-tip {
 }
 
 .no-js .help-text,
+.js.ie6 .help-text,
 .js.ie7 .help-text {
   font-size: 0.8442em;
   line-height: 1.77683em;
