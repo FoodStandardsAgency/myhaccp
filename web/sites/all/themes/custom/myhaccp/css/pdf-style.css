@@ -581,6 +581,10 @@ a:hover {
   color: black;
 }
 
+.node-page img {
+  max-width: 100%;
+}
+
 @media print {
   body {
     background-color: #FFF;

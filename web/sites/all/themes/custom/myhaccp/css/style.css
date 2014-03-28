@@ -3553,6 +3553,10 @@ a:hover {
   color: black;
 }
 
+.node-page img {
+  max-width: 100%;
+}
+
 .ie6 .header-outside {
   background-color: #eeeeee;
   color: black;
