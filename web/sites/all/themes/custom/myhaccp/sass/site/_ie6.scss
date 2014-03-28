@@ -1,0 +1,117 @@
+//
+// IE6 compatibility
+//
+
+
+// Rewrite rules for header for IE6
+.ie6 {
+  .header-outside {
+    background-color: $dark-background;
+    color: $text-over-dark-background;
+    border-bottom: 5px solid $accent-1;
+  }
+
+  .header-wrapper {
+    .header-inside {
+      @include column();
+      padding-top: 1em;
+      @media all and (min-width: $break_med_up) {
+        padding-top: 1.5em;
+      }
+    }
+
+    // Styling
+    .site-details {
+      overflow: hidden;
+      width: 500px;
+      float: left;
+      .logo {
+          margin-right: 2em;
+          display: inline-block;
+          float: left;
+        }
+      h1 {
+        @include adjust-font-size-to(35px);
+        margin-top: 4px;
+        margin-bottom: 0;
+        color: $text-lighter;
+        a {
+          color: $text-lighter;
+          text-decoration: none;
+        }
+      }
+
+      @media all and (max-width: $break_med_up) {
+        h1 {
+          font-size: 1.2em;
+        }
+      }
+
+    }
+
+    .header-region nav {
+      clear: both;
+      position: relative;
+      @media all and (min-width: $break_small_up) {
+        bottom: -5px;
+        margin-top: 1em;
+      }
+    }
+
+    // Utility menu (Log in, Register etc).
+    .header-utility {
+      margin-bottom: 1em;
+      color: $text-lighter;
+      font-size: 0.85em;
+      width: 400px;
+      float: right;
+      a {
+        color: $text-lighter;
+        &:hover {
+          color: $text;
+        }
+      }
+      @media all and (min-width: $break_med_up) {
+        margin-top: 0.5em;
+      }
+      .form-item {
+        margin-bottom: 0;
+      }
+      div.block-search-form {
+        float: right;
+        margin-right: 1em;
+        .form-actions {
+          display: none;
+        }
+        input {
+          @media all and (max-width: $break_small_up) {
+            width: 100%;
+          }
+          @media all and (min-width: $break_med_up) {
+            float: right;
+            margin-left: 1em;
+            margin-right: 0;
+            max-width: 12em;
+          }
+        }
+      }
+      nav {
+        float: right;
+        ul {
+          list-style-type: none;
+          margin: 0.25em 0 0.5em 0;
+          padding: 0;
+          float: right;
+          li {
+            display: block;
+            float: left;
+            margin-right: 0.5em;
+            a.active {
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+  }
+}

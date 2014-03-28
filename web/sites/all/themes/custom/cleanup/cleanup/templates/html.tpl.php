@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+  <!--[if lte IE 6]><html class="no-js ie6 oldie" lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>"><![endif]-->
   <!--[if IE 7]><html class="no-js ie7 oldie" lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>"><![endif]-->
   <!--[if IE 8]><html class="no-js ie8 oldie" lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>"><![endif]-->
   <!--[if (gte IE 9)|(gt IEMobile 7)]>

@@ -3553,59 +3553,179 @@ a:hover {
   color: black;
 }
 
-html.ie7 header .header-region nav {
-  margin-left: 0;
+.ie6 .header-outside {
+  background-color: #eeeeee;
+  color: black;
+  border-bottom: 5px solid #6cb33f;
+}
+.ie6 .header-wrapper .header-inside {
+  width: 100%;
+  float: left;
+  padding-left: 25px;
+  padding-right: 25px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-top: 1em;
+}
+@media all and (min-width: 860px) {
+  .ie6 .header-wrapper .header-inside {
+    padding-top: 1.5em;
+  }
+}
+.ie6 .header-wrapper .site-details {
+  overflow: hidden;
+  width: 500px;
+  float: left;
+}
+.ie6 .header-wrapper .site-details .logo {
+  margin-right: 2em;
+  display: inline-block;
+  float: left;
+}
+.ie6 .header-wrapper .site-details h1 {
+  font-size: 1.75em;
+  line-height: 1.71429em;
+  margin-top: 4px;
+  margin-bottom: 0;
+  color: #676767;
+}
+.ie6 .header-wrapper .site-details h1 a {
+  color: #676767;
+  text-decoration: none;
+}
+@media all and (max-width: 860px) {
+  .ie6 .header-wrapper .site-details h1 {
+    font-size: 1.2em;
+  }
+}
+.ie6 .header-wrapper .header-region nav {
+  clear: both;
+  position: relative;
+}
+@media all and (min-width: 450px) {
+  .ie6 .header-wrapper .header-region nav {
+    bottom: -5px;
+    margin-top: 1em;
+  }
+}
+.ie6 .header-wrapper .header-utility {
+  margin-bottom: 1em;
+  color: #676767;
+  font-size: 0.85em;
+  width: 400px;
+  float: right;
+}
+.ie6 .header-wrapper .header-utility a {
+  color: #676767;
+}
+.ie6 .header-wrapper .header-utility a:hover {
+  color: black;
+}
+@media all and (min-width: 860px) {
+  .ie6 .header-wrapper .header-utility {
+    margin-top: 0.5em;
+  }
+}
+.ie6 .header-wrapper .header-utility .form-item {
+  margin-bottom: 0;
+}
+.ie6 .header-wrapper .header-utility div.block-search-form {
+  float: right;
+  margin-right: 1em;
+}
+.ie6 .header-wrapper .header-utility div.block-search-form .form-actions {
+  display: none;
+}
+@media all and (max-width: 450px) {
+  .ie6 .header-wrapper .header-utility div.block-search-form input {
+    width: 100%;
+  }
+}
+@media all and (min-width: 860px) {
+  .ie6 .header-wrapper .header-utility div.block-search-form input {
+    float: right;
+    margin-left: 1em;
+    margin-right: 0;
+    max-width: 12em;
+  }
+}
+.ie6 .header-wrapper .header-utility nav {
+  float: right;
+}
+.ie6 .header-wrapper .header-utility nav ul {
+  list-style-type: none;
+  margin: 0.25em 0 0.5em 0;
+  padding: 0;
+  float: right;
+}
+.ie6 .header-wrapper .header-utility nav ul li {
+  display: block;
+  float: left;
+  margin-right: 0.5em;
+}
+.ie6 .header-wrapper .header-utility nav ul li a.active {
+  font-weight: bold;
 }
 
-html.ie7 header .header-region {
+html.ie7 header .header-region,
+html.ie6 header .header-region {
   position: relative;
   bottom: -20px;
 }
-
-html.ie7 header .header-region nav ul li {
+html.ie7 header .header-region nav,
+html.ie6 header .header-region nav {
+  margin-left: 0;
+}
+html.ie7 header .header-region nav ul li,
+html.ie6 header .header-region nav ul li {
   float: left;
   display: block;
   margin: 0;
   padding-right: 20px;
 }
-
 html.ie7 .footer-inside .block-menu-block-7 ul li.leaf,
-html.ie7 .footer-inside .block-menu-block-8 ul li.leaf {
+html.ie7 .footer-inside .block-menu-block-8 ul li.leaf,
+html.ie6 .footer-inside .block-menu-block-7 ul li.leaf,
+html.ie6 .footer-inside .block-menu-block-8 ul li.leaf {
   float: left;
   margin-right: 0.5em;
 }
-
-html.ie7 .footer-inside .block-menu-block-8 {
+html.ie7 .footer-inside .block-menu-block-8,
+html.ie6 .footer-inside .block-menu-block-8 {
   clear: both;
 }
-
-html.ie7 .node-homepage.view-mode-full .group-left {
+html.ie7 .node-homepage.view-mode-full .group-left,
+html.ie6 .node-homepage.view-mode-full .group-left {
   width: 48%;
   padding-right: 2%;
 }
-html.ie7 .node-homepage.view-mode-full .group-right {
+html.ie7 .node-homepage.view-mode-full .group-right,
+html.ie6 .node-homepage.view-mode-full .group-right {
   width: 48%;
   padding-left: 2%;
 }
-
-html.ie7 body.sidebar-second #main-content {
+html.ie7 body.sidebar-second #main-content,
+html.ie6 body.sidebar-second #main-content {
   padding-left: 3%;
   padding-right: 3%;
   width: 60%;
 }
-html.ie7 body.sidebar-second .region-sidebar-second {
+html.ie7 body.sidebar-second .region-sidebar-second,
+html.ie6 body.sidebar-second .region-sidebar-second {
   padding-left: 3%;
   padding-right: 3%;
   width: 19%;
 }
-
-html.ie7 .pager-wrapper .pager-controls input {
+html.ie7 .pager-wrapper .pager-controls input,
+html.ie6 .pager-wrapper .pager-controls input {
   padding-left: 5px;
   padding-right: 5px;
 }
-
 html.ie7 .prep-d fieldset.instance .form-wrapper > .form-item,
-html.ie7 .principle-1-q1 .hazards > .form-item {
+html.ie7 .principle-1-q1 .hazards > .form-item,
+html.ie6 .prep-d fieldset.instance .form-wrapper > .form-item,
+html.ie6 .principle-1-q1 .hazards > .form-item {
   width: 40%;
   padding-left: 0;
   padding-right: 3%;

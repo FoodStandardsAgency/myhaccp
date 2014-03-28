@@ -4,7 +4,7 @@
 
 <?php print $cleanup_poorthemers_helper; ?>
 
-<header role="banner">
+<header class="header-outside" role="banner">
   <div class="header-wrapper">
     <div class="header-inside">
 
