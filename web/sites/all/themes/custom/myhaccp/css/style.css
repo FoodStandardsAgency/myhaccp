@@ -3610,3 +3610,8 @@ html.ie7 .principle-1-q1 .hazards > .form-item {
   padding-left: 0;
   padding-right: 3%;
 }
+
+html.ie8 .footer-inside .block-menu-block-7 ul li.leaf,
+html.ie8 .footer-inside .block-menu-block-8 ul li.leaf {
+  margin-right: 0.5em;
+}

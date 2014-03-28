@@ -4,8 +4,9 @@
     attach: function(context) {
       // Prepare the tooltips by iterating over each help-tip element and
       // checking for some help text.
-      $('html:not(.ie7, .ie6) .help-tip').once().each(function () {
-        // Check if there is a help-text element to render.
+
+      $('html:not(.ie7,.ie6) .help-tip').once().each(function () {
+      // Check if there is a help-text element to render.
         var help_text = $(this).parents('.form-item, th, div.label').children('.help-text');
         // Get the question to push to GA as an event label.
         var question = $(this).parent().clone().children().remove().end().text();
@@ -76,6 +77,9 @@
       $('.more-link').click(function () {
         $('div.qtip:visible').qtip('hide');
       });
+
+      // For IE6 we want to disable the modal dialog.
+      $('html.ie6 .more-link').unbind('click');
 
     }
   };
