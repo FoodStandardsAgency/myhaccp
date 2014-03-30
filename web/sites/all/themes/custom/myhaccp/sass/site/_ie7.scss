@@ -5,6 +5,12 @@
 html.ie7,
 html.ie6 {
 
+  // Table borders as IE does not support :last-child.
+  table {
+    border-right: 1px solid $grey-4;
+    border-bottom: 1px solid $grey-4;
+  }
+
   // Header positioning
   header .header-region {
     position: relative;
@@ -88,11 +94,27 @@ html.ie6 {
 
   // Principle 1.1
   .prep-d fieldset.instance .form-wrapper > .form-item,
-  .principle-1-q1 .hazards > .form-item {
-    width: 40%;
+  .principle-1-question-1 .hazards > .form-item {
+    width: 45%;
     padding-left: 0;
     padding-right: 3%;
   }
+  .p1q1-step .form-item input.step-name {
+    width: 20em;
+    min-width: 20em;
+  }
 
+  // Review pages
+  .validation-stages .validation-stage h3 {
+    float: left;
+    width: 60%;
+    display: block;
+  }
+
+  .validation-stages .validation-stage .validation-status {
+    float: left;
+    display: block;
+    text-align: right;
+  }
 
 }
