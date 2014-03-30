@@ -13,5 +13,8 @@
   }
   a span {
     color: $accent-2;
+    &:hover {
+      color: $text;
+    }
   }
 }

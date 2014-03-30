@@ -591,6 +591,9 @@ ul.menu li {
 .node-homepage.view-mode-full .group-right ol a span {
   color: #007fb2;
 }
+.node-homepage.view-mode-full .group-right ol a span:hover {
+  color: black;
+}
 
 /**
  * Navigation Styling
