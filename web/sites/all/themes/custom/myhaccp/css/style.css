@@ -588,6 +588,9 @@ ul.menu li {
   vertical-align: middle;
   color: black;
 }
+.node-homepage.view-mode-full .group-right ol a span {
+  color: #007fb2;
+}
 
 /**
  * Navigation Styling
