@@ -3699,6 +3699,14 @@ html.ie7 header .header-region nav,
 html.ie6 header .header-region nav {
   margin-left: 0;
 }
+html.ie7 header .header-inside,
+html.ie7 .footer-inside,
+html.ie7 #main-content,
+html.ie6 header .header-inside,
+html.ie6 .footer-inside,
+html.ie6 #main-content {
+  width: auto;
+}
 html.ie7 header .header-region nav ul li,
 html.ie6 header .header-region nav ul li {
   float: left;
