@@ -97,9 +97,19 @@ function myhaccp_list() {
       $name = $study_name;
     }
     // The resume link.
-    $edit = user_access('edit own myhaccp study') || user_access('edit any myhaccp study') ? l(t('Resume'), $edit_link, array('attributes' => array('class' => 'resume-link'))) : '';
+    $edit = user_access('edit own myhaccp study') || user_access('edit any myhaccp study') ? l(t('Resume'), $edit_link, array(
+      'attributes' => array(
+        'class' => 'resume-link',
+        'title' => t('Resume a study to add or edit your information.'),
+      )
+    )) : '';
     // The delete link.
-    $delete = user_access('delete own myhaccp study') || user_access('delete any myhaccp study') ? l(t('Delete'), 'tool/study/' . $result->iid . '/delete', array('attributes' => array('class' => 'delete-link'))) : '';
+    $delete = user_access('delete own myhaccp study') || user_access('delete any myhaccp study') ? l(t('Delete'), 'tool/study/' . $result->iid . '/delete', array(
+      'attributes' => array(
+        'class' => 'delete-link',
+        'title' => t('Delete your study.'),
+      ),
+    )) : '';
     $destination = drupal_get_destination();
     // The complete link if possible.
     $complete = '';
@@ -112,6 +122,7 @@ function myhaccp_list() {
             'class' => 'complete-link',
             'data-valid' => $validation_status,
             'data-status' => $study->getStatus(),
+            'title' => t('Mark your study as complete.'),
           ),
           'query' => $destination,
         ));
@@ -124,6 +135,7 @@ function myhaccp_list() {
             'class' => 'complete-link',
             'data-valid' => $validation_status,
             'data-status' => $study->getStatus(),
+            'title' => t('Re-activate a completed study.'),
           ),
           'query' => $destination,
         ));
