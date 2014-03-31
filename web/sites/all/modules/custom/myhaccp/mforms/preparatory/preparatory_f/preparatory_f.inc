@@ -64,7 +64,7 @@ function preparatory_f(&$form_state, &$next_step) {
     ),
     '#title' => t('2. Is the product suitable for consumption by the general public?'),
     '#help_link' => 19,
-    '#help_text' => t('Only select yes if your product is not specifically designed for a particular group of consumers, such as travelers, institutional caterers etc. or for vulnerable groups.'),
+    '#help_text' => t("If your product is intended for a particular group of consumers, such as institutional caterers, travelers, etc. or for vulnerable groups of the population (young, elderly, immunocompromised, people with allergies, pregnant ladies) select 'no' as the response to this question.  It is very important that you understand your target group, as this will help to prepare you for the section on HACCP Principles (e.g. identify and list potential hazards)."),
     '#default_value' => array_get($values, 'preparatory_f.f_2', array()),
     '#attributes' => array(
       'data-parsley-required' => 'true',
