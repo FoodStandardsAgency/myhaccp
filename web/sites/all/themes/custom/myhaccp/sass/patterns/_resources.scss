@@ -47,6 +47,7 @@ $dl_colour_hover: $grey-1-hover;
         display: block;
         word-break: break-all;
         padding: 0.25em 0.5em 0.25em 20px;
+        min-width: 12em;
       }
     }
   }
@@ -90,19 +91,20 @@ $dl_colour_hover: $grey-1-hover;
       color: black;
       font-weight: bold;
     }
-    .resource-description {
-      @include adjust-font-size-to(18px);
-      margin-bottom: 0.5em;
-    }
-    .resources-external-link {
-      background: $dl_colour;
-      border-left: 5px solid $accent-1;
-      padding: 0.25em 0.5em;
-      display: inline-block;
-      span {
-        color: black;
-        margin-right: 0.5em;
-      }
-    }
+    // @todo - this is no longer on the site itself either re-introduce or remove SASS.
+    // .resources-external-link {
+    //   background: $dl_colour;
+    //   border-left: 5px solid $accent-1;
+    //   padding: 0.25em 0.5em;
+    //   display: inline-block;
+    //   span {
+    //     color: black;
+    //     margin-right: 0.5em;
+    //   }
+    // }
+    //.description {
+    //  @include adjust-font-size-to(18px);
+    //  margin-bottom: 0.5em;
+    //}
   }
 }

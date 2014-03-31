@@ -2420,6 +2420,7 @@ table thead th .help-tip {
   display: block;
   word-break: break-all;
   padding: 0.25em 0.5em 0.25em 20px;
+  min-width: 12em;
 }
 .view-display-id-resources_downloads .resource-description {
   margin-bottom: 0.5em;
@@ -2483,21 +2484,6 @@ table thead th .help-tip {
   line-height: 1.5em;
   color: black;
   font-weight: bold;
-}
-.view-id-resources.view-display-id-resources_links li .resource-description {
-  font-size: 0.9em;
-  line-height: 1.66667em;
-  margin-bottom: 0.5em;
-}
-.view-id-resources.view-display-id-resources_links li .resources-external-link {
-  background: #eeeeee;
-  border-left: 5px solid #6cb33f;
-  padding: 0.25em 0.5em;
-  display: inline-block;
-}
-.view-id-resources.view-display-id-resources_links li .resources-external-link span {
-  color: black;
-  margin-right: 0.5em;
 }
 
 input#edit-submit.form-add {
