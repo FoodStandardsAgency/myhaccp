@@ -1,6 +1,6 @@
 .node-homepage.view-mode-full {
 
-  /** General layout **/
+  // General layout
   .group-header {
     border-bottom: 5px solid $dark-background;
   }
@@ -30,11 +30,9 @@
       width: 100%;
   }
 
-  /** Specific styling **/
-
+  // What's next?
   .group-right ol {
     @extend %big-numbered-list;
   }
-
 
 }

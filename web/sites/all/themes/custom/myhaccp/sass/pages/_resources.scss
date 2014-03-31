@@ -1,10 +1,11 @@
 //
-// Resources, including resources view.
+// Resources
 //
 
 $dl_colour: $grey-1;
 $dl_colour_hover: $grey-1-hover;
 
+// Resource downloads view.
 .view-display-id-resources_downloads {
   @include tables_borders;
   table {
