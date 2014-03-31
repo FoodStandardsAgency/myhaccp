@@ -87,10 +87,10 @@ function preparatory_g(&$form_state, &$next_step) {
       'preparatory_g_process',
     ),
     '#upload_validators' => array(
-      'file_validate_extensions' => array('jpg jpeg png pdf gif'),
+      'file_validate_extensions' => array('jpg jpeg png gif'),
     ),
     '#attributes' => array(
-      'data-parsley-error-message' => t('If a file is uploaded, it must be of type pdf, jpg, jpeg or png.'),
+      'data-parsley-error-message' => t('If a file is uploaded, it must be of type gif, jpg, jpeg or png.'),
     ),
   );
 
