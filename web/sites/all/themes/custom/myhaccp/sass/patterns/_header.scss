@@ -10,7 +10,7 @@ header[role="banner"] {
     }
   }
 
-  // Styling
+  // Logo & site name.
   .site-details {
     clear: both;
     @media all and (min-width: $break_small_up) {
@@ -41,9 +41,9 @@ header[role="banner"] {
         font-size: 1.2em;
       }
     }
-
   }
 
+  // Main menu positioning.
   .header-region nav[role="navigation"] {
     clear: both;
     position: relative;

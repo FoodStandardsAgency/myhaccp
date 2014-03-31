@@ -101,7 +101,6 @@ ul.menu {
 li.expanded,
 li.collapsed,
 li.leaf {
-  //padding: 0.2em 0.5em 0 0; /* LTR */
   margin: 0;
 }
 
@@ -132,6 +131,7 @@ nav.tabs {
   margin-bottom: 1em;
 }
 
+// Tabs level 1.
 ul.tabs.primary {
   margin-top: 2em;
   padding: 0;
@@ -151,6 +151,8 @@ ul.tabs.primary {
   }
 }
 
+
+// Tabs level 2.
 ul.tabs.secondary {
   @include strip-list;
   padding: 0.5em 0;
