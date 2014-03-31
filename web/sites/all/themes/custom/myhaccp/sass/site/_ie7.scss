@@ -20,6 +20,13 @@ html.ie6 {
     }
   }
 
+  // width: 100% causing permanent horizontal scrollbar.
+  header .header-inside,
+  .footer-inside,
+  #main-content {
+    width: auto;
+  }
+
   // Main menu not floating
   header .header-region nav ul li {
     float: left;
@@ -37,6 +44,7 @@ html.ie6 {
   .footer-inside .block-menu-block-8 {
     clear: both;
   }
+
 
   // Homepage grid not recognising box-sizing: border-box
   .node-homepage.view-mode-full {
