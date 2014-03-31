@@ -1901,7 +1901,17 @@ header[role="banner"] .header-inside {
   }
 }
 header[role="banner"] .site-details {
-  overflow: hidden;
+  clear: both;
+}
+@media all and (min-width: 450px) {
+  header[role="banner"] .site-details {
+    clear: none;
+  }
+}
+@media all and (min-width: 860px) {
+  header[role="banner"] .site-details {
+    overflow: hidden;
+  }
 }
 header[role="banner"] .site-details .logo {
   margin-right: 2em;

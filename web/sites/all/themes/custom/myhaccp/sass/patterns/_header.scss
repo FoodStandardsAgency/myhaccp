@@ -12,7 +12,14 @@ header[role="banner"] {
 
   // Styling
   .site-details {
-    overflow: hidden;
+    clear: both;
+    @media all and (min-width: $break_small_up) {
+      clear: none;
+    }
+
+    @media all and(min-width: $break_med_up) {
+      overflow: hidden;
+    }
     .logo {
         margin-right: 2em;
         display: inline-block;
