@@ -31,7 +31,6 @@ select,
 textarea {
   @include adjust-font-size-to(20px);
   // Stop iOS from rounding the corners on these elements.
-  -webkit-appearance: none;
   @include border-radius(0);
   background: $form_elements_background_color;
   border: 1px solid $accent-2;
