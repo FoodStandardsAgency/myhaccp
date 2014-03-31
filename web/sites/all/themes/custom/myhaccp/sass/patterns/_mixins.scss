@@ -11,4 +11,10 @@
     vertical-align: middle;
     color: $text;
   }
+  a span {
+    color: $accent-2;
+    &:hover {
+      color: $text;
+    }
+  }
 }

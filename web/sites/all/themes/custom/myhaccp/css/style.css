@@ -588,6 +588,12 @@ ul.menu li {
   vertical-align: middle;
   color: black;
 }
+.node-homepage.view-mode-full .group-right ol a span {
+  color: #007fb2;
+}
+.node-homepage.view-mode-full .group-right ol a span:hover {
+  color: black;
+}
 
 /**
  * Navigation Styling
@@ -2753,6 +2759,13 @@ div.teaser-checkbox .form-item,
   vertical-align: top;
 }
 
+.principle-1-question-3 .stage-fieldset table {
+  width: 100%;
+}
+
+.principle-2-question-4 table {
+  width: 100%;
+}
 .principle-2-question-4 table td {
   vertical-align: top;
 }
@@ -3672,6 +3685,11 @@ a:hover {
   font-weight: bold;
 }
 
+html.ie7 table,
+html.ie6 table {
+  border-right: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
+}
 html.ie7 header .header-region,
 html.ie6 header .header-region {
   position: relative;
@@ -3749,15 +3767,35 @@ html.ie6 .pager-wrapper .pager-controls input {
   padding-right: 5px;
 }
 html.ie7 .prep-d fieldset.instance .form-wrapper > .form-item,
-html.ie7 .principle-1-q1 .hazards > .form-item,
+html.ie7 .principle-1-question-1 .hazards > .form-item,
 html.ie6 .prep-d fieldset.instance .form-wrapper > .form-item,
-html.ie6 .principle-1-q1 .hazards > .form-item {
-  width: 40%;
+html.ie6 .principle-1-question-1 .hazards > .form-item {
+  width: 45%;
   padding-left: 0;
   padding-right: 3%;
+}
+html.ie7 .p1q1-step .form-item input.step-name,
+html.ie6 .p1q1-step .form-item input.step-name {
+  width: 20em;
+  min-width: 20em;
+}
+html.ie7 .validation-stages .validation-stage h3,
+html.ie6 .validation-stages .validation-stage h3 {
+  float: left;
+  width: 60%;
+  display: block;
+}
+html.ie7 .validation-stages .validation-stage .validation-status,
+html.ie6 .validation-stages .validation-stage .validation-status {
+  float: left;
+  display: block;
+  text-align: right;
 }
 
 html.ie8 .footer-inside .block-menu-block-7 ul li.leaf,
 html.ie8 .footer-inside .block-menu-block-8 ul li.leaf {
   margin-right: 0.5em;
+}
+html.ie8 table {
+  border-right: 1px solid #dddddd;
 }
