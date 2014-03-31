@@ -39,7 +39,7 @@ function preparatory_f(&$form_state, &$next_step) {
   $form['preparatory_f']['intro'] = array(
     '#prefix' => '<p class="intro">',
     '#suffix' => '</p>',
-    '#markup' => t('The consumer target group should be considered to include vulnerable groups.'),
+    '#markup' => t('Knowledge of your consumer target group will help you later when you identify hazards that may become significant for vulnerable consumers.'),
   );
 
   // 1. Name of the product?
