@@ -30,6 +30,13 @@ table {
   }
 }
 
+.ie6,
+.ie7 {
+  .help-tip {
+    display: none;
+  }
+}
+
 // Hide the help tip text if javascript is enabled. If javascript is disabled
 // the help text will display beneath the label.
 .js {
