@@ -24,7 +24,8 @@
 .ajax-progress {
   display: inline-block;
   .throbber {
-    background: transparent url(../../misc/throbber.gif) no-repeat 0px -18px;
+    //background: transparent url(../../misc/throbber.gif) no-repeat 0px -18px;
+    background-image: none;
     float: left;
     /* LTR */
     height: 15px;

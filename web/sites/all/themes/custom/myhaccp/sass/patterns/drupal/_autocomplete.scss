@@ -27,7 +27,8 @@
 
 /* Animated throbber */
 html.js input.form-autocomplete {
-  background-image: url(../../misc/throbber.gif);
+  //background-image: url(../../misc/throbber.gif);
+  background-image: none;
   background-position: 100% 2px; /* LTR */
   background-repeat: no-repeat;
   input.throbbing {
