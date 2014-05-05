@@ -108,3 +108,8 @@ $_max-width: 1100px;
 // Forms
 $forms_indent: 25%;
 $forms_max-width: 800px;
+
+// Compass settings
+
+// Use block instead of zoom layout hack for IE6/7 to pass validation.
+$default-has-layout-approach: block;
