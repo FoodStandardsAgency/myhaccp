@@ -2,6 +2,54 @@
 // IE 6 & 7 Compatibility
 //
 
+//
+// The following has been taken from normalize.scss
+// Avoiding the need for the star hack.
+//
+html.ie7,
+html.ie6 {
+
+  // Corrects `inline-block` display not defined in IE 8/9.
+  audio,
+  canvas,
+  video {
+    display: inline;
+    //zoom: 1; // Does not pass validation.
+  }
+
+  // Corrects alignment displayed oddly in IE 6/7.
+  legend {
+    margin-left: -7px;
+  }
+
+  // Improves appearance and consistency with IE 6/7.
+  button,
+  input,
+  select,
+  textarea {
+    vertical-align: middle;
+  }
+
+  // Removes inner spacing in IE 7 without affecting normal text inputs. Known issue: inner spacing remains in IE 6.
+  button,
+  html input[type="button"],
+  input[type="reset"],
+  input[type="submit"] {
+    overflow: visible;
+  }
+
+  // Removes excess padding in IE 7. Known issue: excess padding remains in IE 6.
+  input[type="checkbox"],
+  input[type="radio"] {
+    height: 13px;
+    width: 13px;
+  }
+
+}
+
+//
+// Custom IE 6 & 7 Compatibility
+//
 html.ie7,
 html.ie6 {
 

@@ -52,10 +52,6 @@ audio,
 canvas,
 video {
   display: inline-block;
-  @if $legacy-support-for-ie6 or $legacy-support-for-ie7 {
-    *display: inline;
-    *zoom: 1;
-  }
 }
 
 /*
@@ -326,17 +322,12 @@ legend {
   /* 1 */
   padding: 0;
   /* 2 */
-  @if $legacy-support-for-ie6 or $legacy-support-for-ie7 {
-    *margin-left: -7px;
-    /* 3 */
-  }
 }
 
 /*
  * 1. Corrects font family not being inherited in all browsers.
  * 2. Corrects font size not being inherited in all browsers.
  * 3. Addresses margins set differently in Firefox 4+, Safari 5, and Chrome
- * 4. Improves appearance and consistency with IE 6/7.
  */
 
 button,
@@ -349,12 +340,6 @@ textarea {
   /* 2 */
   margin: 0;
   /* 3 */
-  @if $legacy-support-for-ie6 or $legacy-support-for-ie7 {
-    vertical-align: baseline;
-    /* 4 */
-    *vertical-align: middle;
-    /* 4 */
-  }
 }
 
 /*
@@ -373,8 +358,6 @@ input {
  * 2. Corrects inability to style clickable `input` types in iOS.
  * 3. Improves usability and consistency of cursor style between image-type
  *    `input` and others.
- * 4. Removes inner spacing in IE 7 without affecting normal text inputs.
- *    Known issue: inner spacing remains in IE 6.
  */
 
 button,
@@ -385,10 +368,6 @@ input[type="submit"] {
   /* 2 */
   cursor: pointer;
   /* 3 */
-  @if $legacy-support-for-ie7 {
-    *overflow: visible;
-    /* 4 */
-  }
 }
 
 /*
@@ -413,12 +392,6 @@ input[type="radio"] {
   /* 1 */
   padding: 0;
   /* 2 */
-  @if $legacy-support-for-ie7 {
-    *height: 13px;
-    /* 3 */
-    *width: 13px;
-    /* 3 */
-  }
 }
 
 /*
