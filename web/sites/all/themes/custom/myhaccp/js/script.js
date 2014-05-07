@@ -10,8 +10,9 @@
       });
       // Attach a click handler for the dialog's help menu links.
       $('.help-menu a').click(function(e) {
-        // Get the attribute of the
+        // Get href attribute.
         var link = $(this).attr('href');
+        link = link.substring(link.indexOf('#'));
         $('.help-menu ul li a').removeClass("active");
         $('.help-menu a[href$="' + link + '"]').addClass("active");
         $(link).removeClass("hidden").siblings("article").addClass("hidden");

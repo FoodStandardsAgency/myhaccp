@@ -170,16 +170,14 @@ function myhaccp_list() {
     );
   }
 
-  if (!empty($rows)) {
-    $output['new'] = array(
-      '#type' => 'link',
-      '#title' => 'Start a new study',
-      '#href' => 'tool/study/create',
-      '#attributes' => array(
-        'class' => array('new-study'),
-      ),
-    );
-  }
+  $output['new'] = array(
+    '#type' => 'link',
+    '#title' => 'Start a new study',
+    '#href' => 'tool/study/create',
+    '#attributes' => array(
+      'class' => array('new-study'),
+    ),
+  );
 
   $output['table'] = array(
     '#type' => 'markup',
