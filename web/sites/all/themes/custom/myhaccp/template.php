@@ -16,16 +16,6 @@ function myhaccp_preprocess_page(&$variables, $hook) {
   if ($match) {
     $variables['title'] = FALSE;
   }
-  // Add the metatag to stop the add2home popup displaying if a user has
-  // added the site to their home screen on their device.
-  $metatags = array(
-    '#tag' => 'meta',
-    '#attributes' => array(
-      'name' => 'apple-mobile-web-app-capable',
-      'content' => 'yes',
-    ),
-  );
-  drupal_add_html_head($metatags, 'add2home');
 
   // Check if the user is logged in.
   global $user;
