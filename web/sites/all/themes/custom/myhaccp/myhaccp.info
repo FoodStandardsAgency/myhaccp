@@ -37,14 +37,12 @@ regions[highlighted] = Highlighted
 
 ;-------------- C S S -------------
 stylesheets[all][] = css/style.css
-stylesheets[screen][] = css/add2home.css
 
 ;-------------- CSS FOAD -------------
 ;stylesheets[all][] = donteverloadmeagain.css
 
 ;-------------- JS -------------
 scripts[] = js/script.js
-scripts[] = js/add2home.js
 
 ;-------------- Default cleanup Settings  -------------
 

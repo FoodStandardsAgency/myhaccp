@@ -1,14 +1,8 @@
-Place downloaded and custom themes that modify your site's appearance in this
-directory to ensure clean separation from Drupal core and to facilitate safe,
-self-contained code updates. Contributed themes from the Drupal community may
-be downloaded at http://drupal.org/project/themes.
+Theme structure:
 
-It is safe to organize themes into subdirectories and is recommended to use
-Drupal's sub-theme functionality to ensure easy maintenance and upgrades.
+/contrib - Contributed themes with no modification.
 
-In multisite configuration, themes found in this directory are available to
-all sites. Alternatively, the sites/your_site_name/themes directory pattern may
-be used to restrict themes to a specific site instance.
+/custom - Our custom themes for the project.
+/custom/cleanup - A custom fork of the Mothership base theme. Removes a lot of unwanted bloat from Drupal.
+/custom/myhaccp - A sub-theme of cleanup, provides CSS (using SASS / Compass), Javascript and theme overrides for the MyHACCP site.
 
-Refer to the "Appearance" section of the README.txt in the Drupal root
-directory for further information on theming.
