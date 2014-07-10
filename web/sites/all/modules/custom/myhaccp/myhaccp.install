@@ -139,3 +139,20 @@ function myhaccp_update_7003() {
   // Add the field.
   db_add_field('mforms_storage', 'status', $spec, $indexes);
 }
+
+/**
+ * Add an image style for the PDF embedded image.
+ */
+function myhaccp_update_7004() {
+  $style = image_style_save(array('name' => 'pdf_flow_diagram'));
+  $effect = array(
+    'name' => 'image_scale',
+    'data' => array(
+      'width' => 2048,
+      'height' => '',
+      'upscale' => FALSE,
+    ),
+    'isid' => $style['isid'],
+  );
+  image_effect_save($effect);
+}
