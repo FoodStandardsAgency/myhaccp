@@ -57,9 +57,12 @@ function myhaccp_preprocess_09_ccps(&$variables) {
   foreach ($principle_2_2['instance_table'] as $h_key => $controlled_hazard) {
     // Format Questions & Answers to Decision Tree.
     $qa = '';
-    foreach ($controlled_hazard['decision_tree'] as $q => $answer) {
-      if (!empty($answer)) {
-        $qa .= '<strong>' . $q . ':</strong> ' . ucwords($answer) . '<br />';
+    // Its entirely possible the user has no decision tree so check first.
+    if (!empty($controlled_hazard['decision_tree'])) {
+      foreach ($controlled_hazard['decision_tree'] as $q => $answer) {
+        if (!empty($answer)) {
+          $qa .= '<strong>' . $q . ':</strong> ' . ucwords($answer) . '<br />';
+        }
       }
     }
 
