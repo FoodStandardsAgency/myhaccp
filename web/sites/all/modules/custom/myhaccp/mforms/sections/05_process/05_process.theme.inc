@@ -27,9 +27,14 @@ function myhaccp_preprocess_05_process(&$variables) {
   // Flow diagram file.
   $file = file_load($preparatory_g['g_2']);
 
-  // Base 64 encode method to work with PDF.
-  $image_uri = file_get_contents($file->uri);
-  $variables['flow_diagram_data'] = base64_encode($image_uri);
+  if (empty($file)) {
+    // If the file couldn't be loaded then log a watchdog error.
+    watchdog('myhaccp', t('Whilst rendering the PDF, the flow diagram could not be loaded.'), array(), WATCHDOG_ERROR);
+  }
+
+  // Prepare an image derivative of the flow diagram image of a reasonable maximum size (2048px wide).
+  $image_url = image_style_url('pdf_flow_diagram', $file->uri);
+  $variables['flow_diagram_url'] = $image_url;
 
   // 1. Have you completed a flow diagram?
   if ($preparatory_g['g_1'] == 'yes') {
