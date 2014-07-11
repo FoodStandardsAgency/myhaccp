@@ -58,7 +58,7 @@ function myhaccp_preprocess_09_ccps(&$variables) {
     // Format Questions & Answers to Decision Tree.
     $qa = '';
     // Its entirely possible the user has no decision tree so check first.
-    if (!empty($controlled_hazard['decision_tree'])) {
+    if (isset($controlled_hazard['decision_tree']) && $controlled_hazard['decision_tree'] !== 'no') {
       foreach ($controlled_hazard['decision_tree'] as $q => $answer) {
         if (!empty($answer)) {
           $qa .= '<strong>' . $q . ':</strong> ' . ucwords($answer) . '<br />';
