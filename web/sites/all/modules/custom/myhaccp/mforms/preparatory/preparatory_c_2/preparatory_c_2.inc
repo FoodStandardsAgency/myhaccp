@@ -111,7 +111,7 @@ function preparatory_c_2(&$form_state, &$next_step) {
       'heavy_metals' => t('Heavy metals (arsenic, cadmium, lead, mercury)'),
       'micro_toxins' => t('Other microbiologically produced toxins (e.g. histamine in fish)'),
       'environmental_contaminants' => t('Environmental contaminants (e.g. dioxins)'),
-      'process_toxicants' => t('Process toxicants (e.g. acrylamide in hig temeperature processed carbohydrate rich foods)'),
+      'process_toxicants' => t('Process toxicants (e.g. acrylamide in high temperature processed carbohydrate rich foods)'),
       'adulterants' => t('Adulterants (Synthetic colours (e.g. Sudan dyes), melamine, water & sugar (e.g honey))'),
       'cleaning' => t('Cleaning & sanitising chemicals'),
       'chemical' => t('Chemical residues migrating from packaging (e.g. plasticisers, BPA)'),
