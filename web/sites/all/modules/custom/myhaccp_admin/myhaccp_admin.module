@@ -51,8 +51,14 @@ function myhaccp_admin_business_size_page() {
     // Initialise running total per type.
     $running_total_per_type = 0;
     foreach ($business_sizes as $business_size){
+
+      // Initialise variable if not already initialised, to avoid PHP notices.
+      if (!isset($running_total_per_size[$business_size])) {
+        $running_total_per_size[$business_size] = '';
+      }
+
       // Check for an object, some rows have no results.
-      if (is_object($results[$business_size])) {
+      if (isset($results[$business_size]) && is_object($results[$business_size])) {
         // Append the data to the row.
         $rows[$key][] = $results[$business_size]->count;
         // Increment running totals.
