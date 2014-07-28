@@ -6,7 +6,7 @@
 
 $plugin = array(
   'admin form callback' => 'password_policy_char_count_admin_form',
-  'constraint callback' =>  'password_policy_char_count_constraint',
+  'constraint callback' => 'password_policy_char_count_constraint',
   'message' => t('Password must have at least @char_count character(s).'),
   'prime value' => 'char_count',
   'config' => array(
@@ -33,7 +33,7 @@ function password_policy_char_count_admin_form($form, &$form_state, $constraint)
 }
 
 /**
- * Admin form callback for character count constraint.
+ * Constraint callback for character count constraint.
  */
 function password_policy_char_count_constraint($password, $account, $constraint) {
   return drupal_strlen($password) >= $constraint->config['char_count'];

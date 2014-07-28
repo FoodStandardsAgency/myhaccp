@@ -6,10 +6,11 @@
 
 $plugin = array(
   'admin form callback' => 'password_policy_username_admin_form',
-  'constraint callback' =>  'password_policy_username_constraint',
+  'constraint callback' => 'password_policy_username_constraint',
   'message' => t('Password must not contain their username.'),
+  'prime value' => 'username',
   'config' => array(
-    'enabled' => FALSE,
+    'username' => FALSE,
   ),
 );
 
@@ -24,14 +25,14 @@ function password_policy_username_admin_form($form, &$form_state, $constraint) {
   $sub_form['username_fieldset']['username'] = array(
     '#type' => 'checkbox',
     '#title' => t('Password must not contain their username.'),
-    '#default_value' => $constraint->config['enabled'],
+    '#default_value' => $constraint->config['username'],
   );
 
   return $sub_form;
 }
 
 /**
- * Admin form callback for username constraint.
+ * Constraint callback for username constraint.
  */
 function password_policy_username_constraint($password, $account, $constraint) {
   // Pass constraint if there's no name such as when this policy is used on new

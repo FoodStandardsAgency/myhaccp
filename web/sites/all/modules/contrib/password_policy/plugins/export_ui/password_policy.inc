@@ -44,6 +44,6 @@ $plugin = array(
   'form' => array(
     'settings' => 'password_policy_admin_settings',
     'validate' => 'password_policy_admin_validate',
-    'submit' =>   'password_policy_admin_submit',
+    'submit' => 'password_policy_admin_submit',
   ),
 );

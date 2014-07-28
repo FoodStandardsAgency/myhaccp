@@ -6,7 +6,7 @@
 
 $plugin = array(
   'admin form callback' => 'password_policy_role_admin_form',
-  'condition callback' =>  'password_policy_role_condition',
+  'condition callback' => 'password_policy_role_condition',
   'prime value' => 'role_char_count',
   'config' => array(
     'roles' => array(),

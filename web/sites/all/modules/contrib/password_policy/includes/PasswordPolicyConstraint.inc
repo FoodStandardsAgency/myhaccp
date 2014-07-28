@@ -12,7 +12,7 @@
 class PasswordPolicyConstraint extends PasswordPolicyItem {
   protected $pp_type = array('item', 'constraint');
 
-  function message() {
+  public function message() {
     $mes_temp = is_array($this->info['message']) ? $this->info['message'] : array($this->info['message']);
     $messages = array();
     foreach ($mes_temp as $id => $message) {
@@ -28,11 +28,11 @@ class PasswordPolicyConstraint extends PasswordPolicyItem {
     return $messages;
   }
 
-  function fail_message($password, $account) {
+  public function fail_message($password, $account) {
     return $this->message();
   }
 
-  function __construct($info, &$policy) {
+  public function __construct($info, &$policy) {
     if (isset($info['default'])) {
       $info['prime value'] = $info['name'];
       $info['config'] = array($info['name'] => $info['default']);
@@ -40,7 +40,7 @@ class PasswordPolicyConstraint extends PasswordPolicyItem {
     parent::__construct($info, $policy);
   }
 
-  function check($pass, $account) {
+  public function check($pass, $account) {
     if ($func = $this->func('constraint callback')) {
       return $func($pass, $account, $this);
     }

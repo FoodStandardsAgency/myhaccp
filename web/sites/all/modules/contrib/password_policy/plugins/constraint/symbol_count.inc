@@ -6,7 +6,7 @@
 
 $plugin = array(
   'admin form callback' => 'password_policy_symbol_count_admin_form',
-  'constraint callback' =>  'password_policy_symbol_count_constraint',
+  'constraint callback' => 'password_policy_symbol_count_constraint',
   'message' => t('Password must have at least @symbol_count symbol(s).'),
   'prime value' => 'symbol_count',
   'config' => array(
@@ -40,7 +40,7 @@ function password_policy_symbol_count_admin_form($form, &$form_state, $constrain
 }
 
 /**
- * Admin form callback for symbol count constraint.
+ * Constraint callback for symbol count constraint.
  */
 function password_policy_symbol_count_constraint($password, $account, $constraint) {
   $matches = array();

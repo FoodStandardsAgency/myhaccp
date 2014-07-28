@@ -53,8 +53,8 @@ function password_policy_expire_admin_form($form, &$form_state, $constraint) {
     '#description' => t(''),
     '#states' => array(
       'visible' => array(
-         ':input[name="expire_warning_email_sent"]' => array('empty' => FALSE),
-       ),
+        ':input[name="expire_warning_email_sent"]' => array('empty' => FALSE),
+      ),
     ),
   );
   $sub_form['expire_fieldset']['expire_warning_email_message'] = array(
@@ -64,8 +64,8 @@ function password_policy_expire_admin_form($form, &$form_state, $constraint) {
     '#description' => t(''),
     '#states' => array(
       'visible' => array(
-         ':input[name="expire_warning_email_sent"]' => array('empty' => FALSE),
-       ),
+        ':input[name="expire_warning_email_sent"]' => array('empty' => FALSE),
+      ),
     ),
   );
   $sub_form['expire_fieldset']['expire_warning_email_message_token'] = array(
@@ -75,8 +75,8 @@ function password_policy_expire_admin_form($form, &$form_state, $constraint) {
     '#click_insert' => TRUE,
     '#states' => array(
       'visible' => array(
-         ':input[name="expire_warning_email_sent"]' => array('empty' => FALSE),
-       ),
+        ':input[name="expire_warning_email_sent"]' => array('empty' => FALSE),
+      ),
     ),
   );
   return $sub_form;
@@ -111,7 +111,7 @@ function _password_policy_expire_query_users($notice_int, $policy_name) {
   $query->join($current_pw_query, 'c', 'p.created = c.created AND p.uid = c.uid');
 
   // Add negative join to remove all items that have already sent this notice.
-  // @TODO findout why we can not use arguments here
+  // @TODO findout why we cannot use arguments here
   // $query->leftJoin('password_policy_notice_history', 'nh', "nh.hid = p.hid AND nh.timeframe = '%s' AND nh.name='%s'", array($notice_int, $policy_name));
   $condition = t("nh.hid = p.hid AND nh.name='@name' AND nh.timeframe = '@timeframe'", array('@name' => $policy_name, '@timeframe' => $notice_int));
   $query->leftJoin('password_policy_notice_history', 'nh', $condition);
@@ -134,12 +134,20 @@ class PasswordPolicyExpire extends PasswordPolicyItem {
   public $pp_type = array('item', 'cron', 'init');
 
   /**
-   * PasswordPolicyExpire::init()
-   *
-   * On init we check if the user password has expired. If so,  we send them to
-   * the user edit page until they set a new password
+   * Checks on init if the user password has expired. If so, we send the user
+   * to the user edit page until they set a new password.
    */
-  function init($account) {
+  public function init($account) {
+    // If this is a command line request (Drush, etc), skip processing.
+    if (drupal_is_cli()) {
+      return FALSE;
+    }
+
+    $stop = module_invoke_all('password_policy_expire_url_exclude', $account);
+    if (!empty($stop)) {
+      return FALSE;
+    }
+
     // @TODO this should not be necessary
     password_policy_user_load(array($account->uid => $account));
     if ($account->uid == 0) {
@@ -161,12 +169,11 @@ class PasswordPolicyExpire extends PasswordPolicyItem {
     }
     // Check to see that the password has expired.
     if ($account->password_history[0]->created + $expire_int < time()) {
-      // If we are on the check ajax page or using a CLI, then skip.
-      if (($_GET['q'] != 'password_policy/check') && !drupal_is_cli()) {
+      // If we are on the check ajax page, then skip.
+      if ($_GET['q'] != 'password_policy/check') {
         $uri = "user/{$account->uid}/edit";
 
-        // If we are not on the user page lets go there, but lets remember where
-        // were where.
+        // If not on the user page, go there, but remember where we were.
         if ($_GET['q'] != $uri) {
           // If we have been here before, we do not want to override this
           // info (it might be an ajax call).
@@ -196,12 +203,10 @@ class PasswordPolicyExpire extends PasswordPolicyItem {
   }
 
   /**
-   * PasswordPolicyExpire::cron
-   *
-   * Pull all user that have expired passwords insure they are active with this policy
-   * and then notify them of there to soon be expired password
+   * Pulls all users that have expired passwords, insure they are active with
+   * this policy, and then notify them of their soon-to-be expired password.
    */
-  function cron() {
+  public function cron() {
     // Dont do anything if the policy does not require notification emails.
     if (empty($this->config['expire_warning_email_sent'])) {
       return;
@@ -213,24 +218,24 @@ class PasswordPolicyExpire extends PasswordPolicyItem {
 
     foreach ($notice_interval_strings as $notice_interval_string) {
       $notice_interval_string = trim($notice_interval_string);
-      // see if we should be subtracting from expire interval
+      // See if we should be subtracting from expire interval.
       $from_interval = drupal_substr($notice_interval_string, 0, 1) == '-';
       $notice_interval_string = ltrim($notice_interval_string, '-');
 
       // Convert notice interval to secs.
       $notice_int = password_policy_parse_interval($notice_interval_string);
 
-      // if we need to subtract from expire do so
+      // If we need to subtract from expire do so.
       $expire_interval = password_policy_parse_interval($expire_interval_string);
       $expire_int = password_policy_parse_interval($expire_interval_string);
       if ($from_interval) {
-          $notice_int = $expire_int - $notice_int;
+        $notice_int = $expire_int - $notice_int;
       }
       $candidates = _password_policy_expire_query_users($notice_int, $policy_name);
       foreach ($candidates as $candidate) {
         $account = user_load($candidate->uid);
         if ($this->policy->match($account)) {
-          $message = _password_policy_expire_notify($account, $candidate, $candidate->created+$expire_int, $this);
+          $message = _password_policy_expire_notify($account, $candidate, $candidate->created + $expire_int, $this);
           if ($message['result']) {
             watchdog('password_policy', 'Password expiration warning mailed to %username at %email.', array('%username' => $account->name, '%email' => $account->mail));
             $notice_history = (object) array(
