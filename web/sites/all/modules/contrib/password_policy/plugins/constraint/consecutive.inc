@@ -6,8 +6,8 @@
 
 $plugin = array(
   'admin form callback' => 'password_policy_consecutive_admin_form',
-  'constraint callback' =>  'password_policy_consecutive_constraint',
-  'message' => t('Password can not have @consecutive_char_count consecutive letters.'),
+  'constraint callback' => 'password_policy_consecutive_constraint',
+  'message' => t('Password cannot have @consecutive_char_count consecutive letters.'),
   'prime value' => 'consecutive_char_count',
   'config' => array(
     'consecutive_char_count' => NULL,
@@ -26,14 +26,14 @@ function password_policy_consecutive_admin_form($form, &$form_state, $constraint
     '#type' => 'textfield',
     '#title' => t('Consecutive character count'),
     '#default_value' => $constraint->config['consecutive_char_count'],
-    '#description' => t('Password can not have more than this number of identical consecutive characters.'),
+    '#description' => t('Password cannot have more than this number of identical consecutive characters.'),
   );
 
   return $sub_form;
 }
 
 /**
- * Admin form callback for consecutive character count constraint.
+ * Constraint callback for consecutive character count constraint.
  */
 function password_policy_consecutive_constraint($password, $account, $constraint) {
   $pattern = '/(.)\1{' . ($constraint->config['consecutive_char_count'] - 1) . '}/';
