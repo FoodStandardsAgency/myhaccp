@@ -22,7 +22,7 @@ function myhaccp_admin_preprocess_page() {
 function myhaccp_admin_menu() {
   $items['admin/business_size_by_type'] = array(
       'page callback' => 'myhaccp_admin_business_size_page',
-      'access arguments' => array('view site reports'),
+      'access arguments' => array('access site reports'),
   );
   return $items;
 }
