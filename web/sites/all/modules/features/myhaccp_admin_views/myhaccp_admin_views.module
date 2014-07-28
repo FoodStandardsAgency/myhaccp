@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the MyHACCP Admin Views feature.
+ */
+
+include_once 'myhaccp_admin_views.features.inc';
