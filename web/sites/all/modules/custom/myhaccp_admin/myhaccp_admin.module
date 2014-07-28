@@ -16,29 +16,134 @@ function myhaccp_admin_preprocess_page() {
   }
 }
 
-
+/**
+ * Implements hook_menu()
+ */
+function myhaccp_admin_menu() {
+  $items['admin/business_size_by_type'] = array(
+      'page callback' => 'myhaccp_admin_business_size_page',
+      'access arguments' => array('view site reports'),
+  );
+  return $items;
+}
 
 /**
- *
+ * Page callback for business size by type report.
  */
-function myhaccp_admin_init() {
-/*results = db_select('field_data_field_size', 'fs')
-          ->fields('fs')
-          ->execute()
-          ->fetchAll();
+function myhaccp_admin_business_size_page() {
 
-  foreach ($results as $result) {
+  // Get the arrays of types and sizes.
+  // @Todo: load these from the db for more resiliance?
+  $business_types = myhaccp_admin_get_business_types();
+  $business_sizes = myhaccp_admin_get_business_sizes();
 
-    $rows[] = $result;
+  // Initialize total array.
+  $running_total_per_size = array();
 
+  // Loop through types.
+  foreach ($business_types as $key => $business_type)  {
+
+    // Add business type label.
+    $rows[$key][] = $business_type;
+    // Get data.
+    $results = myhaccp_admin_get_sizes_per_business_type($business_type);
+
+    // Initialise running total per type.
+    $running_total_per_type = 0;
+    foreach ($business_sizes as $business_size){
+      // Check for an object, some rows have no results.
+      if (is_object($results[$business_size])) {
+        // Append the data to the row.
+        $rows[$key][] = $results[$business_size]->count;
+        // Increment running totals.
+        $running_total_per_type += $results[$business_size]->count;
+        $running_total_per_size[$business_size] += $results[$business_size]->count;
+      } else {
+        // No data.
+        $rows[$key][] = '0';
+      }
+    }
+    // Append total to end of row.
+    $rows[$key][] = $running_total_per_type;
   }
 
-  dpm($rows);
+  // Add label to start of $running_total_per_size array.
+  array_unshift($running_total_per_size, 'Total');
+  // Add empty cell.
+  array_push($running_total_per_size, '');
+  // Add final row for totals.
+  $rows[] = $running_total_per_size;
+  // Add empty cell to header.
+  array_unshift($business_sizes, '');
+  // Add total column.
+  array_push($business_sizes, 'Total');
 
+  drupal_set_title('MyHACCP Report: Business size by type');
 
+  // Return a themed table.
+  return theme('table', array('header'=> $business_sizes, 'rows' => $rows));
+}
 
+/**
+ * Returns an array of business types.
+ */
+function myhaccp_admin_get_business_types () {
 
-*/
+    $business_types = array(
+      'Meat processing or meat products',
+      'Dairy products or cheese production',
+      'Liquid milk and cream production',
+      'Fish and shellfish processing or products',
+      'Fruit and vegetables processing or preserving',
+      'Bakery products',
+      'Prepared meals',
+      'Sauces or condiments',
+      'Drinks manufacture or water bottling',
+      'Local authority',
+      'other',
+  );
 
+  return $business_types;
+}
+
+/**
+ * Returns an array of business sizes.
+ */
+function myhaccp_admin_get_business_sizes () {
+
+    $business_sizes = array(
+      'less than 5',
+      '5 - 10',
+      '11 - 20',
+      '21 - 30',
+      '31 - 40',
+      '41 - 50',
+      '50+',
+  );
+
+  return $business_sizes;
+}
+
+/**
+ * Query to fetch number of business of each size for a given business type.
+ */
+function myhaccp_admin_get_sizes_per_business_type($business_type) {
+
+  $query = db_select('profile', 'p');
+  $query->join('field_data_field_size', 'fs', 'p.pid=fs.entity_id');
+  $query->join('field_data_field_business_type', 'bt', 'p.pid=bt.entity_id');
+  $query->fields('fs', array('field_size_value'));
+  $query->groupBy('fs.field_size_value');
+  // Add the COUNT expression
+  $query->addExpression('COUNT(fs.field_size_value)', 'count');
+
+  $query->condition('bt.field_business_type_value', $business_type);
+  $results = $query->execute()->fetchAllAssoc('field_size_value');
+
+  foreach ($results as $key => $result) {
+    $rows[$key] = $result;
+  }
+
+  return $rows;
 
 }
