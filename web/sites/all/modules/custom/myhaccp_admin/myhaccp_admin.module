@@ -15,3 +15,30 @@ function myhaccp_admin_preprocess_page() {
     ));
   }
 }
+
+
+
+/**
+ *
+ */
+function myhaccp_admin_init() {
+/*results = db_select('field_data_field_size', 'fs')
+          ->fields('fs')
+          ->execute()
+          ->fetchAll();
+
+  foreach ($results as $result) {
+
+    $rows[] = $result;
+
+  }
+
+  dpm($rows);
+
+
+
+
+*/
+
+
+}
