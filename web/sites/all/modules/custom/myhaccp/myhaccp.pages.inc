@@ -82,9 +82,15 @@ function myhaccp_list() {
     // Prepare the edit link based on the current stage.
     $current_stage = $study->getCurrentStage();
     $study_name = $study->getName();
+    //HOTFIX: Luke 2014/08/19 - issue: https://pm.agile.coop/fsa/node/10559
     if (!empty($current_stage)) {
-      $stage_url = $current_stage->getUrl();
+      if (!is_object($current_stage)) {
+        $stage_url = 'preparatory_a';
+      } else {
+        $stage_url = $current_stage->getUrl();
+      }
     }
+    //End of hotfix
     else {
       $stage_url = 'preparatory_a';
     }
