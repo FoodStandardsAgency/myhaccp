@@ -105,14 +105,14 @@ class Study implements StudyInterface {
    *   The name of the study.
    */
   public function getName() {
-    if (isset($this->name)) {
+    if (!empty($this->name)) {
       return $this->name;
     }
     else {
       // Try to determine the name from the intro stage.
       $intro = $this->getStage('preparatory_intro');
       $data = $intro->getData();
-      if ($data && isset($data['preparatory_intro']['study_name'])) {
+      if ($data && !empty($data['preparatory_intro']['study_name'])) {
         $this->setName($data['preparatory_intro']['study_name']);
       }
       else {
@@ -250,8 +250,14 @@ class Study implements StudyInterface {
     }
 
     // Final fallback is the preparatory intro stage.
-    $this->setCurrentStage('preparatory_intro');
-    return $this->getCurrentStage();
+    if ($stage = $this->getStage('preparatory_intro')) {
+      $this->setCurrentStage($stage);
+      return $this->getCurrentStage();
+    }
+
+    // If we weren't able to get the current stage then throw
+    // an exception.
+    throw new Exception('Unable to get the current stage.');
   }
 
   /**
