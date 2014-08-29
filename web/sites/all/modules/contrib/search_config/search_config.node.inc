@@ -6,53 +6,40 @@
  */
 
 /**
- * This function implements the options to configure the default Drupal search
- * form, including type filter, field visibility, form visibility, etc.
+ * Does the string overrides unconditional on what other changes are pending for
+ * the form.
  */
-function _search_config_advanced_form(&$form, $form_state) {
-  global $user, $search_config_node_results;
-
-  // Settings
-  $settings = search_config_node_settings();
-  $fs_phrase = $settings['fields']['containing_phrase'];
-  $fs_any = $settings['fields']['containing_any'];
-  $fs_none = $settings['fields']['containing_none'];
-  $fs_types = $settings['fields']['types'];
-
-  // Return the form for super admin unchanged
-  if ($user->uid == 1 && !empty($settings['restrictions']['admin_bypass'])) {
-    return $form;
-  }
-
-  // Form elements
-  $fkeys = &$form['basic']['keys'];
-  $fkeywords = &$form['advanced']['keywords'];
-  $ftype = &$form['advanced']['type'];
-  $flang = NULL;
-  if (isset($form['advanced']['language'])) {
-    $flang = &$form['advanced']['language'];
-  }
-
-  // Do the labels first.
+function _search_config_set_string_overrides(&$form, $form_state) {
   $labels = search_config_string_overrides('labels');
-  $title_display = search_config_string_overrides('title_display');
+
   // The two submit buttons.
-  if (!empty($labels['basic_submit'])) {
+  if (isset($form['basic']['submit']) && !empty($labels['basic_submit'])) {
     $form['basic']['submit']['#value'] = t('!search_config:basic_submit', array('!search_config:basic_submit' => $labels['basic_submit']));
   }
-  if (!empty($labels['advanced_submit'])) {
+  if (isset($form['advanced']['submit']) && !empty($labels['advanced_submit'])) {
     $form['advanced']['submit']['#value'] = t('!search_config:advanced_submit', array('!search_config:advanced_submit' => $labels['advanced_submit']));
   }
 
-  $label_elements = array(
-    'basic' => &$fkeys,
-    'advanced_fieldset' => &$form['advanced'],
-    'advanced_any' => &$fkeywords['or'],
-    'advanced_phrase' => &$fkeywords['phrase'],
-    'advanced_none' => &$fkeywords['negative'],
-    'advanced_type' => &$ftype,
-    'advanced_language' => &$flang,
-  );
+  // Other form elements. Map into an array to iterate over each element.
+  $title_display = search_config_string_overrides('title_display');
+  $label_elements = array();
+  if (isset($form['basic'])) {
+    $label_elements['basic'] = &$form['basic']['keys'];
+  }
+  if (isset($form['advanced'])) {
+    $label_elements['advanced_fieldset'] = &$form['advanced'];
+    $label_elements['advanced_type'] = &$form['advanced']['type'];
+
+    $fkeywords = &$form['advanced']['keywords'];
+    $label_elements['advanced_any'] = &$fkeywords['or'];
+    $label_elements['advanced_phrase'] = &$fkeywords['phrase'];
+    $label_elements['advanced_none'] = &$fkeywords['negative'];
+
+    if (isset($form['advanced']['language'])) {
+      $label_elements['advanced_language'] = &$form['advanced']['language'];
+    }
+  }
+
   foreach ($label_elements as $key => $element) {
     if (empty($element)) {
       continue;
@@ -79,6 +66,35 @@ function _search_config_advanced_form(&$form, $form_state) {
 
       }
     }
+  }
+}
+
+/**
+ * This function implements the options to configure the default Drupal search
+ * form, including type filter, field visibility, form visibility, etc.
+ */
+function _search_config_advanced_form(&$form, $form_state) {
+  global $user, $search_config_node_results;
+
+  // Settings
+  $settings = search_config_node_settings();
+  $fs_phrase = $settings['fields']['containing_phrase'];
+  $fs_any = $settings['fields']['containing_any'];
+  $fs_none = $settings['fields']['containing_none'];
+  $fs_types = $settings['fields']['types'];
+
+  // Return the form for super admin unchanged
+  if ($user->uid == 1 && !empty($settings['restrictions']['admin_bypass'])) {
+    return $form;
+  }
+
+  // Form elements
+  $fkeys = &$form['basic']['keys'];
+  $fkeywords = &$form['advanced']['keywords'];
+  $ftype = &$form['advanced']['type'];
+  if (isset($form['advanced']['language'])) {
+    $fs_language = $settings['fields']['language'];
+    $form['advanced']['language']['#access'] = search_config_get_access($fs_language['remove'], $fs_language['roles']);
   }
 
   // Change the form fieldset.
