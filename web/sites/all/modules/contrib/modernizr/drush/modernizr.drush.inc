@@ -6,7 +6,7 @@
  */
 
 // The development version of Modernizr can be located here.
-define('MODERNIZR_DOWNLOAD_DEV', 'http://www.modernizr.com/downloads/modernizr-2.6.2.js');
+define('MODERNIZR_DOWNLOAD_DEV', 'http://modernizr.com/downloads/modernizr-latest.js');
 
 
 /**

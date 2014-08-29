@@ -276,10 +276,14 @@ function modernizr_load_data() {
       $theme_path = dirname($themes[$key]->filename) . '/';
       if (isset($themes[$key]->info['modernizr'])) {
         // Loop through Modernizr calls and assemble Load variable.
-        foreach (array_keys($themes[$key]->info['modernizr']) as $test) {
+        foreach (array_keys($themes[$key]->info['modernizr']) as $test_key => $test) {
+          // If no tests are defined, simply add them as resources for loading them unconditionally.
+          if (is_numeric($test)) {
+            $load[] = array(_modernizr_sanitize_resource($themes[$key]->info['modernizr'][$test_key], $theme_path));
+          }
           // Skip the ['tests'] variable because it is reserved for selecting
           // specific tests that Modernizr must include.
-          if ($test != 'tests') {
+          else if ($test != 'tests') {
             // All other entries inside a theme's modernizr[] settings should be scanned
             $load[$num_tests]['test'] = $test;
             foreach (array_keys($themes[$key]->info['modernizr'][$test]) as $action) {
@@ -332,12 +336,14 @@ function _modernizr_load_generate() {
 
   // Build the Modernizr.load() commands.
   if (count($testObjects)) {
-    $num_tests = 1;
-    $output .= 'Modernizr.load([';
+    $num_tests = 0;
+    $items = array();
+
     foreach ($testObjects as $load) {
-      $output .= ($num_tests > 1) ? ',' : '';
-      $output .= '{' . "\n";
-      $output .= '  test: ' . $load['test'] . ',' . "\n";
+      // If test is defined, this entry will be an object.
+      if (isset($load['test'])) {
+        $item = '{' . "\n";
+        $item .= '  test: ' . $load['test'] . ',' . "\n";
 
       // Print each action and its resources
       $actions = array('yep', 'nope', 'both', 'load');
@@ -345,22 +351,22 @@ function _modernizr_load_generate() {
         if (isset($load[$action])) {
 
           // Begin output for this action
-          $output .= '  ' . sprintf('%-4s', $action) . ': ';
+            $item .= '  ' . sprintf('%-4s', $action) . ': ';
 
           // How many resources for this action?
           if (count($load[$action]) == 1) {
             // Single resource
-            $output .= "'" . $load[$action][0] . "',\n";
+              $item .= "'" . $load[$action][0] . "',\n";
           }
           else {
             // Multiple resources
-            $output .= '[';
+              $item .= '[';
             foreach ($load[$action] as $resource) {
-              $output .= "'" . $resource . "',";
+                $item .= "'" . $resource . "',";
             }
             // Truncate last comma
-            $output = substr($output, 0, -1);
-            $output .= "],\n";
+              $item = substr($item, 0, -1);
+              $item .= "],\n";
           }
         }
       }
@@ -371,33 +377,48 @@ function _modernizr_load_generate() {
         if (isset($load[$action])) {
 
           // Begin output for this action
-          $output .= '  ' . sprintf('%-4s', $action) . ': ';
+            $item .= '  ' . sprintf('%-4s', $action) . ': ';
 
           // How many callbacks for this action?
           if (count($load[$action]) == 1) {
             // Single resource
-            $output .= $load[$action][0] . ",\n";
+              $item .= $load[$action][0] . ",\n";
           }
           else {
             // Multiple resources
-            $output .= '[';
+              $item .= '[';
             foreach ($load[$action] as $callback) {
-              $output .= $callback . ",";
+                $item .= $callback . ",";
             }
             // Truncate last comma
-            $output = substr($output, 0, -1);
-            $output .= "],\n";
+              $item = substr($item, 0, -1);
+              $item .= "],\n";
           }
         }
       }
-
-      // Truncate last comma
-      $output = substr($output, 0, -1);
-      $output .= "\n}";
+      // Truncate last comma and newline
+        $item = substr($item, 0, -2);
+        $item .= "\n}";
+        $num_tests++;
+      }
+      // No test is defined, add the resource(s) to the loader unconditionally.
+      else {
+        $resources = array();
+        foreach ($load as $resource) {
+          $resources[] = "'". $resource ."'";
+        }
+        $item = implode(",\n", $resources);
       $num_tests++;
     }
 
-    // If more than one test was registered, finish the Array notation.
+      $items[] = $item;
+    }
+
+    $output .= 'Modernizr.load(';
+    // Issue commands as array if there is more than resource to load.
+    $output .= ($num_tests > 1) ? '[' : '';
+    // Add commands.
+    $output .= implode(",\n", $items);
     // Finally, close the Modernizr.load() function parenthesis.
     $output .= ($num_tests > 1) ? ']' : '';
     $output .= ');';
@@ -432,12 +453,13 @@ function _modernizr_sanitize_callback($callback) {
  * Helper function to sanitize Modernizr.load() assets
  */
 function _modernizr_sanitize_resource($resource, $theme_path) {
-  global $base_url;
+  global $base_path, $base_url;
   $output = '';
 
-  // If a path starts with 'sites' we assume they know exactly where they're
-  // going. Otherwise, they seem like relative URLs so append theme path.
-  $output = (strpos($resource, 'sites/') !== FALSE) ? $resource : $base_url . '/' . $theme_path . $resource;
+  // If a path starts with 'sites/' or 'profiles/' we assume they know exactly
+  // where they're going. Otherwise, they seem like relative URLs so append
+  // theme path.
+  $output = (strpos($resource, 'sites/') === 0 || strpos($resource, 'profiles/') === 0) ? $base_path . $resource : $base_url . '/' . $theme_path . $resource;
 
   return $output;
 }
