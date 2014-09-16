@@ -3,12 +3,9 @@
   Preprocess
 */
 
-/*
-function NEWTHEME_preprocess_html(&$vars) {
-  //  kpr($vars['content']);
-}
-*/
-
+/**
+ * Implements hook_preprocess_page().
+ */
 function myhaccp_preprocess_page(&$variables, $hook) {
   // Get rid of the page title on form pages.
   $path = $_GET['q'];
