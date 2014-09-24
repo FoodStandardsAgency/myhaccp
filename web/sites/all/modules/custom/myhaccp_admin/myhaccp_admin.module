@@ -101,7 +101,7 @@ function myhaccp_admin_get_business_types () {
       'Liquid milk and cream production',
       'Fish and shellfish processing or products',
       'Fruit and vegetables processing or preserving',
-      'Bakery products',
+      'Confectionery products',
       'Prepared meals',
       'Sauces or condiments',
       'Drinks manufacture or water bottling',
