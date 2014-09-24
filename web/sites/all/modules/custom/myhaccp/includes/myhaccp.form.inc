@@ -91,7 +91,7 @@ function myhaccp_form_process($form, &$form_state) {
     // If there are over 20 validation messages then don't display them.
     if (count($validation) > 20) {
       $messages = array(
-        'intro' => t('This form has many items which you will need to correct.'),
+        'intro' => t('This form has items with errors which you will need to correct'),
       );
     }
     else {
