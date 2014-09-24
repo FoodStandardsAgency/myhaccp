@@ -629,10 +629,17 @@ class MediaBrowserSettingsTestCase extends MediaFileFieldTestCase {
    * Tests the media browser settings.
    */
   function testBrowserSettings() {
-    // Perform the tests with all permutations of $scheme, $type and $extension.
-    foreach (array('public', 'private') as $scheme) {
-      foreach (array('image', 'document') as $type) {
-        foreach (array('jpg', 'txt') as $extension) {
+    $settings = array(
+      'scheme' => array('public', 'private'),
+      'type' => array('image', 'document'),
+      'extension' => array('jpg', 'txt'),
+    );
+
+    // Perform the tests with unique permutations of $scheme, $type and
+    // $extension.
+    foreach ($settings['scheme'] as $scheme) {
+      foreach ($settings['type'] as $type) {
+        foreach ($settings['extension'] as $extension) {
           $file = $this->createFileEntity(array('scheme' => $scheme, 'uid' => $this->admin_user->uid, 'type' => $type, 'filemime' => media_get_extension_mimetype($extension)));
 
           $options = array(
@@ -661,10 +668,40 @@ class MediaBrowserSettingsTestCase extends MediaFileFieldTestCase {
       }
     }
 
+    // Perform the tests with none and all of the restrictions.
+    foreach (array('none', 'all') as $restrictions) {
+      $options = array(
+        'query' => array(
+          'enabledPlugins' => array(
+            'media_default--media_browser_1' => 'media_default--media_browser_1',
+          ),
+        ),
+      );
+
+      switch ($restrictions) {
+        case 'none':
+          $options['query']['schemes'] = array();
+          $options['query']['types'] = array();
+          $options['query']['file_extensions'] = array();
+          break;
+        case 'all':
+          $options['query']['schemes'] = $settings['scheme'];
+          $options['query']['types'] = $settings['type'];
+          $options['query']['file_extensions'] = implode(' ', $settings['extension']);
+          break;
+      }
+
+      // Verify that all of the files are displayed.
+      $this->drupalGet('media/browser', $options);
+      $this->assertResponse(200);
+      $files = $this->xpath('//ul[@class="media-list-thumbnails"]/li/div[@data-fid]');
+      $this->assertEqual(count($files), 8, format_string('All of the files were displayed when %restrictions of the restrictions were enabled.', array('%restrictions' => $restrictions)));
+    }
+
     // Verify that extension restrictions do not affect remote files.
     $scheme = 'dummy-remote';
-    $type = 'image';
-    $extension = 'jpg';
+    $type = 'video';
+    $extension = 'mp4';
 
     $file = $this->createFileEntity(array('scheme' => $scheme, 'uid' => $this->admin_user->uid, 'type' => $type, 'filemime' => media_get_extension_mimetype($extension)));
 
@@ -673,9 +710,9 @@ class MediaBrowserSettingsTestCase extends MediaFileFieldTestCase {
         'enabledPlugins' => array(
           'media_default--media_browser_1' => 'media_default--media_browser_1',
         ),
-        'schemes' => array($scheme),
+        'schemes' => array($scheme, 'public'), // Include a local stream wrapper in order to trigger extension restrictions.
         'types' => array($type),
-        'file_extensions' => 'txt',
+        'file_extensions' => 'fake', // Use an invalid file extension to ensure that it does not affect restrictions.
       ),
     );
 
