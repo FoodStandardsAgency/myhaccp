@@ -38,7 +38,7 @@ function file_entity_download_page($file) {
 
   $headers = array(
     'Content-Type' => mime_header_encode($file->filemime),
-    'Content-Disposition' => 'attachment; filename="' . $file->filename . '"',
+    'Content-Disposition' => 'attachment; filename="' . mime_header_encode(drupal_basename($file->uri)) . '"',
     'Content-Length' => $file->filesize,
     'Content-Transfer-Encoding' => 'binary',
     'Pragma' => 'no-cache',
@@ -52,7 +52,19 @@ function file_entity_download_page($file) {
   // Let other modules know the file is being downloaded.
   module_invoke_all('file_transfer', $file->uri, $headers);
 
-  file_transfer($file->uri, $headers);
+  if (file_entity_file_is_local($file)) {
+    // For local files, transfer the file and do not reveal the actual URL.
+    file_transfer($file->uri, $headers);
+  }
+  else {
+    // For remote files, just redirect the user to that file's actual URL.
+    $headers['Location'] = file_create_url($file->uri);
+    foreach ($headers as $name => $value) {
+      drupal_add_http_header($name, $value);
+    }
+    drupal_send_headers();
+    drupal_exit();
+  }
 }
 
 /**
@@ -68,6 +80,7 @@ function file_entity_download_page($file) {
 function file_entity_add_upload($form, &$form_state, array $options = array()) {
   $step = (isset($form_state['step']) && in_array($form_state['step'], array(1, 2, 3, 4))) ? $form_state['step'] : 1;
   $form['#step'] = $step;
+  $form['#options'] = $options;
   switch ($step) {
     case 1:
       return file_entity_add_upload_step_upload($form, $form_state, $options);
@@ -180,6 +193,16 @@ function file_entity_add_upload_step_fields($form, &$form_state, array $options 
   // Load the file and overwrite the filetype set on the previous screen.
   $file = file_load($form_state['storage']['upload']);
   $file->type = $form_state['storage']['type'];
+
+  // Let users modify the filename here.
+  $form['filename'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Name'),
+    '#default_value' => $file->filename,
+    '#required' => TRUE,
+    '#maxlength' => 255,
+    '#weight' => -10,
+  );
 
   // Add fields.
   field_attach_form('file', $file, $form, $form_state);
@@ -326,7 +349,12 @@ function file_entity_add_upload_submit($form, &$form_state) {
       else {
         // Check if we can skip step 3.
         $schemes = file_get_stream_wrappers(STREAM_WRAPPERS_WRITE_VISIBLE);
-        if (count($schemes) == 1) {
+        if (!file_entity_file_is_writeable($file)) {
+          // The file is read-only (remote) and must use its provided scheme.
+          $form['#step'] += ($trigger == 'edit-previous') ? -1 : 1;
+          $form_state['storage']['scheme'] = file_uri_scheme($file->uri);
+        }
+        elseif (count($schemes) == 1) {
           // There is only one possible stream wrapper for this file.
           // Skip the third page.
           $form['#step'] += ($trigger == 'edit-previous') ? -1 : 1;
@@ -661,6 +689,7 @@ function file_entity_edit($form, &$form_state, $file) {
     '#value' => t('Save'),
     '#weight' => 5,
     '#submit' => array('file_entity_edit_submit'),
+    '#validate' => array('file_entity_edit_validate'),
   );
   $form['actions']['delete'] = array(
     '#type' => 'submit',
@@ -732,7 +761,10 @@ function file_entity_edit_submit($form, &$form_state) {
   if (!empty($form_state['values']['replace_upload'])) {
     $replacement = $form_state['values']['replace_upload'];
     // Move file from temp to permanent home.
-    file_unmanaged_copy($replacement->uri, $file->uri, FILE_EXISTS_REPLACE);
+    if (file_unmanaged_copy($replacement->uri, $file->uri, FILE_EXISTS_REPLACE)) {
+      // @todo Add watchdog() about replaced file here?
+      file_delete($replacement);
+    }
   }
 
   // Run entity form submit handling and save the file.
