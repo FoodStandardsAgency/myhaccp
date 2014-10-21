@@ -37,7 +37,7 @@
 
       // Register buttons
       editor.addButton('linkit', {
-        title : 'Linkit',
+        title : Drupal.t('Link to content'),
         cmd : 'mceLinkit',
         image : url + '/images/linkit.png'
       });
@@ -51,7 +51,7 @@
             // Remove all options from standard contextmenu.
             m.removeAll();
             th._menu.add({
-              title : 'Linkit',
+              title : Drupal.t('Link to content'),
               cmd : 'mceLinkit',
               icon : 'linkit'
             });

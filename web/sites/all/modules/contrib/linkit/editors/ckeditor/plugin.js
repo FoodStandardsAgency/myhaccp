@@ -8,6 +8,8 @@
   CKEDITOR.plugins.add( 'linkit', {
 
     requires : [ 'link' ],
+    hidpi: true,
+    icons: 'linkit',
 
     init: function( editor ) {
 
@@ -17,9 +19,8 @@
 
       // Add Button.
       editor.ui.addButton( 'linkit', {
-        label: 'Linkit',
-        command: 'linkit',
-        icon: this.path + 'linkit.png'
+        label: Drupal.t('Link to content'),
+        command: 'linkit'
       });
 
       // Add Command.
@@ -77,9 +78,8 @@
 
         editor.addMenuItems({
           linkit: {
-            label: 'Linkit',
+            label: Drupal.t('Link to content'),
             command: 'linkit',
-            icon: this.path + 'linkit.png',
             group: 'Linkit',
             order: 0
           }

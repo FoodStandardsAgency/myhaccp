@@ -7,7 +7,7 @@
 /**
  * Reprecents a Linkit term search plugin.
  */
-class LinkitSearchPluginTaxonomy_Term extends LinkitSearchPluginEntity {
+class LinkitSearchPluginTaxonomy_term extends LinkitSearchPluginEntity {
 
   /**
    * Overrides LinkitSearchPluginEntity::__construct().

@@ -9,7 +9,7 @@ Drupal.behaviors.linkit_field = {
   attach : function(context, settings) {
     // If there is no fields, just stop here.
 
-    if (settings.linkit.fields == null) {
+    if (settings.linkit == undefined || settings.linkit.fields == null) {
       return false;
     }
 

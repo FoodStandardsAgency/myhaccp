@@ -35,6 +35,9 @@ class LinkitsearchPluginUserTestCase extends LinkitsearchPluginTestCase {
         'entity:user' => array(
           'result_description' => '',
         ),
+        'insert_plugin' => array(
+          'url_method' => LINKIT_URL_METHOD_RAW,
+        ),
       )
     ));
 

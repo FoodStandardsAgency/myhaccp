@@ -25,7 +25,7 @@ Drupal.behaviors.linkitDashboard = {
     });
 
     // Run the validation if the path field is populated directly.
-    $('#edit-linkit-path', context).keyup(function(){
+    $('#edit-linkit-path', context).bind('keyup paste input propertychange', function(){
       Drupal.linkit.requiredFieldsValidation();
     });
 
