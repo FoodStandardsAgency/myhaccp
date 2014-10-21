@@ -6,7 +6,9 @@
  */
 
 // Regular expression to determine which version of Modernizr is installed.
-define('MODERNIZR_VERSION_REGEX', '/Modernizr [v]?([\d\.]*)/');
+// The 7.x-3.x module will forever support Modernizr v2, so we are hardcoding
+// this regex to look for 2.x.x
+define('MODERNIZR_VERSION_REGEX', '/(2\.\d\.\d)/');
 
 // Regular expression to detect valid Modernizr filenames.
 define('MODERNIZR_FILENAME_REGEX', '/^modernizr[A-Za-z0-9\.-]*\.js$/');
@@ -16,32 +18,41 @@ define('MODERNIZR_FILENAME_REGEX', '/^modernizr[A-Za-z0-9\.-]*\.js$/');
 define('MODERNIZR_SCRIPT_GROUP', JS_LIBRARY - 10);
 define('MODERNIZR_SCRIPT_WEIGHT', -100);
 
-// Default drupal_add_js() settings. Used in multiple places
-global $_modernizr_js_settings;
-$_modernizr_js_settings = array(
-  'type' => 'file',
-  'scope' => 'header',
-  'group' => MODERNIZR_SCRIPT_GROUP,
-  'weight' => MODERNIZR_SCRIPT_WEIGHT,
-  'every_page' => TRUE,
-  'preprocess' => 0,
-  // This setting is not in Drupal core API. Both Omega 4.x and Aurora 2.x
-  // use this new flag in order to preserve scripts in the header in Drupal 7.
-  // If you maintain a Drupal theme you should follow suit :)
-  'force header' => TRUE,
-);
+// As of 7.x-3.3 we support footer scope, inlining, and defer.
+define('MODERNIZR_TYPE_DEFAULT', 'defer');
+define('MODERNIZR_SCOPE_DEFAULT', 'header');
 
+// Controls the display of administrative errors.
+define('MODERNIZR_QUIET_DEFAULT', FALSE);
+
+/**
+ * Default drupal_add_js settings. Used in multiple places.
+ *
+ * @return array An array of settings for drupal_add_js.
+ */
+function _modernizr_js_settings() {
+  return array(
+    'type' => (variable_get('modernizr_type', MODERNIZR_TYPE_DEFAULT) != 'inline') ? 'file' : 'inline',
+    'scope' => variable_get('modernizr_scope', MODERNIZR_SCOPE_DEFAULT),
+    'group' => MODERNIZR_SCRIPT_GROUP,
+    'weight' => MODERNIZR_SCRIPT_WEIGHT,
+    'every_page' => TRUE,
+    'preprocess' => 0,
+    'defer' => (variable_get('modernizr_type', MODERNIZR_TYPE_DEFAULT) == 'defer') ? TRUE : FALSE,
+  );
+}
 
 /**
  * Implements hook_page_build().
  *
- * We used to use hook_init(), but that loads the JA files needlessly
+ * We used to use hook_init(), but that loads the JS files needlessly
  * on AJAX requests, private file requests, etc.
  */
 function modernizr_page_build(&$page) {
-  global $_modernizr_js_settings;
+  $modernizr_js_settings = _modernizr_js_settings();
 
-  // Load Modernizr on the page by invoking our implementation of hook_libraries_info().
+  // Load Modernizr on the page by invoking our implementation of
+  // hook_libraries_info().
   //
   // We can only use this method when Libraries API 2.0 is installed. Since Libraries 1.0
   // did not contain a function called libraries_load(), we must explicitly check for a
@@ -52,10 +63,20 @@ function modernizr_page_build(&$page) {
     libraries_load('modernizr');
   }
   else {
-    // No Libraries API? Load the regular way.
+    // First, figure out if we're inlining.
+    if (in_array(variable_get('modernizr_type', MODERNIZR_TYPE_DEFAULT), array('sync', MODERNIZR_TYPE_DEFAULT))) {
+      // We are loading external script. Load file path.
+      $modernizr_file = modernizr_get_path();
+    }
+    else {
+      // We are inlining. Load contents of file instead of path.
+      $modernizr_file = file_get_contents(modernizr_get_path());
+    }
+
+    // With no Libraries API, load the regular way.
     drupal_add_js(
-      modernizr_get_path(),
-      $_modernizr_js_settings
+      $modernizr_file,
+      $modernizr_js_settings
     );
   }
 
@@ -64,7 +85,7 @@ function modernizr_page_build(&$page) {
   // to $inline_js_settings will format the output as inline JS.
   if ($output = _modernizr_load_generate()) {
 
-    $inline_js_settings = $_modernizr_js_settings;
+    $inline_js_settings = $modernizr_js_settings;
     $inline_js_settings['type'] = 'inline';
     $inline_js_settings['weight'] = MODERNIZR_SCRIPT_WEIGHT + 1;
 
@@ -94,14 +115,37 @@ function modernizr_permission() {
 function modernizr_menu() {
   $items = array();
 
-  $items['admin/config/development/modernizr'] = array(
+  // Rebuild Modernizr
+  $items['admin/config/development/modernizr/rebuild'] = array(
+    'title' => 'Rebuild Modernizr',
+    'description' => 'Queries Drupal for Modernizr dependencies and generates a custom link to the Modernizr builder.',
+    'page callback' => 'modernizr_generate_url',
+    'file' => 'modernizr.admin.inc',
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+    'access arguments' => array('administer modernizr'),
+  );
+
+  // Module settings
+  $items['admin/config/development/modernizr/settings'] = array(
     'title' => 'Modernizr settings',
+    'description' => 'Administrative settings for Modernizr module.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('modernizr_admin'),
+    'file' => 'modernizr.admin.inc',
+    'type' => MENU_LOCAL_TASK,
+    'access arguments' => array('administer modernizr'),
+  );
+
+  // Admin menu item (duplicate of "Rebuild Modernizr")
+  $items['admin/config/development/modernizr'] = array(
+    'title' => 'Modernizr',
     'description' => 'Queries Drupal for Modernizr dependencies and generates a custom link to the Modernizr builder.',
     'page callback' => 'modernizr_generate_url',
     'file' => 'modernizr.admin.inc',
     'type' => MENU_NORMAL_ITEM,
     'access arguments' => array('administer modernizr'),
   );
+
 
   return $items;
 }
@@ -112,7 +156,7 @@ function modernizr_menu() {
  * @return array
  */
 function modernizr_libraries_info() {
-  global $_modernizr_js_settings;
+  $modernizr_js_settings = _modernizr_js_settings();
   $libraries = array();
   $file_name = modernizr_get_filename();
 
@@ -127,7 +171,7 @@ function modernizr_libraries_info() {
     ),
     'files' => array(
       'js' => array(
-        $file_name => $_modernizr_js_settings,
+        $file_name => $modernizr_js_settings,
       ),
     ),
   );
@@ -158,10 +202,6 @@ function modernizr_get_path() {
     if (is_dir('sites/all/libraries/modernizr')) {
       $paths[] = 'sites/all/libraries/modernizr';
     }
-
-    // Check inside the module folder itself
-    // NOTE: this will be removed in 7.x-3.2
-    $paths[] = drupal_get_path('module', 'modernizr');
 
     // Scan directories for files
     $path = _modernizr_scan_for_library($paths);
@@ -227,8 +267,8 @@ function modernizr_get_version($reset = FALSE) {
         $matches = array();
         preg_match(MODERNIZR_VERSION_REGEX, $modernizr, $matches);
 
-        if (isset($matches[1])) {
-          $version = $matches[1];
+        if (isset($matches[0])) {
+          $version = $matches[0];
           if ($version) {
             cache_set('modernizr_version', $version);
           }
@@ -283,7 +323,7 @@ function modernizr_load_data() {
           }
           // Skip the ['tests'] variable because it is reserved for selecting
           // specific tests that Modernizr must include.
-          else if ($test != 'tests') {
+          elseif ($test != 'tests') {
             // All other entries inside a theme's modernizr[] settings should be scanned
             $load[$num_tests]['test'] = $test;
             foreach (array_keys($themes[$key]->info['modernizr'][$test]) as $action) {
@@ -332,14 +372,14 @@ function _modernizr_load_generate() {
   // it's probably best to load them first. Modules whose assets
   // truly need to be loaded first have hook_modernizr_load_alter()
   // at their disposal.
-  $testObjects = array_merge($theme, $modules);
+  $test_objects = array_merge($theme, $modules);
 
   // Build the Modernizr.load() commands.
-  if (count($testObjects)) {
+  if (count($test_objects)) {
     $num_tests = 0;
     $items = array();
 
-    foreach ($testObjects as $load) {
+    foreach ($test_objects as $load) {
       // If test is defined, this entry will be an object.
       if (isset($load['test'])) {
         $item = '{' . "\n";
@@ -405,7 +445,7 @@ function _modernizr_load_generate() {
       else {
         $resources = array();
         foreach ($load as $resource) {
-          $resources[] = "'". $resource ."'";
+          $resources[] = "'" . $resource . "'";
         }
         $item = implode(",\n", $resources);
       $num_tests++;
@@ -544,7 +584,7 @@ function _modernizr_current_build() {
     }
     else {
       // Modernizr must not be downloaded, return null.
-      return null;
+      return NULL;
     }
   }
 
@@ -684,8 +724,12 @@ function modernizr_modernizr_info() {
   $items = array();
 
   $items[] = 'cssclasses';
-  $items[] = 'printshiv';
   $items[] = 'load';
+
+  // If a site admin has chosen to require printshiv, add it to dependencies.
+  if (variable_get('modernizr_cb_printshiv', FALSE)) {
+    $items[] = 'printshiv';
+  }
 
   return $items;
 }
@@ -703,4 +747,61 @@ function modernizr_load_list($reset = FALSE) {
   }
 
   return $load;
+}
+
+/**
+ * Private function to look for missing Modernizr tests.
+ */
+function _modernizr_info_missing_tests() {
+  $requested_tests = modernizr_api_list();
+  $current_build = _modernizr_info_current_build();
+  $missing_tests = array();
+
+  if (is_null($current_build)) {
+    // There is no installed version of Modernizr. Return all tests.
+    return $requested_tests;
+  }
+
+  foreach($requested_tests as $test => $test_info) {
+    if (!isset($current_build[$test])) {
+      $missing_tests[$test] = $test_info;
+    }
+  }
+
+  return $missing_tests;
+}
+
+/**
+ * Private function that pulls all tests from the current build.
+ */
+function _modernizr_info_current_build() {
+  $tests = &drupal_static(__FUNCTION__);
+
+  if (!isset($tests)) {
+
+    $path = modernizr_get_path();
+    $path_parts = explode('/', $path);
+    $file = ($path) ? file_get_contents($path) : NULL;
+    $filename = $path_parts[count($path_parts)-1];
+    $tests = array();
+
+    // $matches holds two items: (1) the full URL (2) the args captured in the parens
+    $build_url = preg_match('/http:\/\/modernizr.com\/download\/#-(.*)/', $file, $matches);
+
+    // Turn URL args into test entries for Drupal module
+    if (isset($matches[1])) {
+      $args_and_prefix = explode(':', $matches[1]);
+      $build_args = explode('-', $args_and_prefix[0]);
+
+      foreach ($build_args as $arg) {
+        $tests[$arg] = $arg;
+      }
+    }
+    else {
+      // Modernzir must not be downloaded, return null.
+      return null;
+    }
+  }
+
+  return $tests;
 }

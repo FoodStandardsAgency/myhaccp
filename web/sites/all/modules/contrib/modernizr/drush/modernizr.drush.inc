@@ -10,7 +10,7 @@ define('MODERNIZR_DOWNLOAD_DEV', 'http://modernizr.com/downloads/modernizr-lates
 
 
 /**
- * Implementation of hook_drush_command().
+ * Implements hook_drush_command().
  *
  * In this hook, you specify which commands your
  * drush module makes available, what it does and
@@ -19,7 +19,8 @@ define('MODERNIZR_DOWNLOAD_DEV', 'http://modernizr.com/downloads/modernizr-lates
  * Notice how this structure closely resembles how
  * you define menu hooks.
  *
- * @See drush_parse_command() for a list of recognized keys.
+ * For a list of recognized keys,
+ * @see drush_parse_command()
  *
  * @return
  *   An associative array describing your command(s).
@@ -46,7 +47,7 @@ function modernizr_drush_command() {
 }
 
 /**
- * Implementation of hook_drush_help().
+ * Implements hook_drush_help().
  *
  * This function is called whenever a drush user calls
  * 'drush help <name-of-your-command>'
@@ -90,8 +91,8 @@ function _modernizr_drush_download_dev() {
 
     // Load the path
     $dir = $libraries_dir
-         ? $drush_context . '/' . $libraries_dir
-         : $drush_context . '/sites/all/libraries/modernizr';
+      ? $drush_context . '/' . $libraries_dir
+      : $drush_context . '/sites/all/libraries/modernizr';
   }
 
   // Build full path including filename
