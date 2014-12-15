@@ -38,12 +38,16 @@ It will start at <strong>@start</strong> through to <strong>@end</strong>.</p>',
     )
   );
 
+  $empty_form = array();
+  $empty_step = '';
+  $form = preparatory_c_2($empty_form, $empty_step);
+
   // Physical hazards.
   $physical_hazards = array();
   if (!empty($preparatory_c_2['physical_c_4']['physical'])) {
     foreach ($preparatory_c_2['physical_c_4']['physical'] as $key => $value) {
-      if ($key === $value) {
-        $physical_hazards[] = $value;
+      if (isset($form['preparatory_c_2']['wrapper']['physical_c_4']['physical']['#options'][$key])) {
+        $physical_hazards[] = $form['preparatory_c_2']['wrapper']['physical_c_4']['physical']['#options'][$key];
       }
     }
   }
@@ -56,8 +60,8 @@ It will start at <strong>@start</strong> through to <strong>@end</strong>.</p>',
   $chemical_hazards = array();
   if (!empty($preparatory_c_2['chemical_c_4']['chemical'])) {
     foreach ($preparatory_c_2['chemical_c_4']['chemical'] as $key => $value) {
-      if ($key === $value) {
-        $chemical_hazards[] = $value;
+      if (isset($form['preparatory_c_2']['wrapper']['chemical_c_4']['chemical']['#options'][$key])) {
+        $chemical_hazards[] = $form['preparatory_c_2']['wrapper']['chemical_c_4']['chemical']['#options'][$key];
       }
     }
   }
@@ -70,8 +74,8 @@ It will start at <strong>@start</strong> through to <strong>@end</strong>.</p>',
   $biological_hazards = array();
   if (!empty($preparatory_c_2['biological_c_4']['biological'])) {
     foreach ($preparatory_c_2['biological_c_4']['biological'] as $key => $value) {
-      if ($key === $value) {
-        $biological_hazards[] = $value;
+      if (isset($form['preparatory_c_2']['wrapper']['biological_c_4']['biological']['#options'][$key])) {
+        $biological_hazards[] = $form['preparatory_c_2']['wrapper']['biological_c_4']['biological']['#options'][$key];
       }
     }
   }
@@ -84,8 +88,8 @@ It will start at <strong>@start</strong> through to <strong>@end</strong>.</p>',
   $allergens_hazards = array();
   if (!empty($preparatory_c_2['allergens_c_4']['allergens'])) {
     foreach ($preparatory_c_2['allergens_c_4']['allergens'] as $key => $value) {
-      if ($key === $value) {
-        $allergens_hazards[] = $value;
+      if (isset($form['preparatory_c_2']['wrapper']['allergens_c_4']['allergens']['#options'][$key])) {
+        $allergens_hazards[] = $form['preparatory_c_2']['wrapper']['allergens_c_4']['allergens']['#options'][$key];
       }
     }
   }
