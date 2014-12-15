@@ -149,7 +149,7 @@ function preparatory_c_2(&$form_state, &$next_step) {
       'shigella' => t('Shigella'),
       'hepatitis' => t('Hepatitis'),
       'cryptosporidium' => t('Cryptosporidium (parasitic protozoa)'),
-      'psudomonas' => t('Psudomonas Spp.'),
+      'psudomonas' => t('Pseudomonas Spp.'),
       'hepatitis' => t('Hepatitis'),
       'norovirus' => t('Norovirus'),
       'taxoplasma' => t('Toxoplasma'),
