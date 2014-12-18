@@ -93,7 +93,7 @@ function myhaccp_output_pdf($iid) {
 
       $mpdf->WriteHTML($output, 2);
     }
-
+    
     // Write the output and then exit.
     $mpdf->Output($filename, 'I');
     // Documentation for output: http://mpdf1.com/manual/index.php?tid=125

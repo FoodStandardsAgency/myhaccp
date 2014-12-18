@@ -1,5 +1,68 @@
 <?php
 
+function preparatory_c_2_chemicals_get_options ($form_options = FALSE) {
+
+  $options = array();
+  $form_options_array = array();
+    
+  $options['mycotoxins']['form_label'] = t('Ingredient dependent Mycotoxins (e.g. deoxynivalenol in cereals; patulin in apples)');
+  $options['mycotoxins']['pdf_output'] = t('Ingredient dependent Mycotoxins');
+
+  $options['phytotoxins']['form_label'] = t('Ingredient dependent Phyto-toxins (plant-based e.g. lectins in kidney beans; cyanogenic glycosides in cassava)');
+  $options['phytotoxins']['pdf_output'] = t('Ingredient dependent Phyto-toxins');
+    
+  $options['phycotoxins']['form_label'] = t('Ingredient dependent Phyco-toxins (associated with shellfish and certain pelagic fish)');
+  $options['phycotoxins']['pdf_output'] = t('Ingredient dependent Phyco-toxins');
+  
+  $options['pesticides']['form_label'] = t('Agricultural residues: Pesticides)');
+  $options['pesticides']['pdf_output'] = t('Agricultural residues: Pesticides)');
+  
+  $options['nitrate']['form_label'] = t('Agricultural residues: Nitrate');
+  $options['nitrate']['pdf_output'] = t('Agricultural residues: Nitrate');
+  
+  $options['drugs']['form_label'] = t('Veterinary Drugs');
+  $options['drugs']['pdf_output'] = t('Veterinary Drugs');
+  
+  $options['additives']['form_label'] = t('Non-permitted additives (e.g. konjac in children’s confectionery)');
+  $options['additives']['pdf_output'] = t('Non-permitted additives');
+  
+  $options['heavy_metals']['form_label'] = t('Heavy metals (arsenic, cadmium, lead, mercury)');
+  $options['heavy_metals']['pdf_output'] = t('Heavy metals');
+  
+  $options['micro_toxins']['form_label'] = t('Other microbiologically produced toxins (e.g. histamine in fish)');
+  $options['micro_toxins']['pdf_output'] = t('Other microbiologically produced toxins');
+  
+  $options['environmental_contaminants']['form_label'] = t('Environmental contaminants (e.g. dioxins)');
+  $options['environmental_contaminants']['pdf_output'] = t('Environmental contaminants');
+  
+  $options['process_toxicants']['form_label'] = t('Process toxicants (e.g. acrylamide in high temperature processed carbohydrate rich foods)');
+  $options['process_toxicants']['pdf_output'] = t('Process toxicants');
+  
+  $options['adulterants']['form_label'] = t('Adulterants (Synthetic colours (e.g. Sudan dyes), melamine, water & sugar (e.g honey))');
+  $options['adulterants']['pdf_output'] = t('Adulterants');
+  
+  $options['cleaning']['form_label'] = t('Cleaning & sanitising chemicals');
+  $options['cleaning']['pdf_output'] = t('Cleaning & sanitising chemicals');
+  
+  $options['chemical']['form_label'] = t('Chemical residues migrating from packaging (e.g. plasticisers, BPA)');
+  $options['chemical']['pdf_output'] = t('Chemical residues migrating from packaging');
+   
+  // If we want the options array formatted for the form builder, reformat array
+  // to be appropriate for the form options array.
+  if ($form_options) {
+    foreach ($options as $key => $option) {
+      $form_options_array[$key] = $option['form_label'];
+    }
+    return $form_options_array;
+  } else {
+    return $options;
+  }
+}
+
+
+
+
+
 function preparatory_c_2(&$form_state, &$next_step) {
 
   // Define following step callback. If none set, that implies it is
@@ -97,25 +160,14 @@ function preparatory_c_2(&$form_state, &$next_step) {
     ),
   );
 
+  // Get the options
+  $chemical_c_4_options = preparatory_c_2_chemicals_get_options ($form_options = TRUE);
+  
+  
   $form['preparatory_c_2']['wrapper']['chemical_c_4']['chemical'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Chemical'),
-    '#options' => array(
-      'mycotoxins' => t('Ingredient dependent Mycotoxins (e.g. deoxynivalenol in cereals; patulin in apples)'),
-      'phytotoxins' => t('Ingredient dependent Phyto-toxins (plant-based e.g. lectins in kidney beans; cyanogenic glycosides in cassava)'),
-      'phycotoxins' => t('Ingredient dependent Phyco-toxins (associated with shellfish and certain pelagic fish)'),
-      'mycotoxins' => t('Agricultural residues: Pesticides'),
-      'nitrate' => t('Agricultural residues: Nitrate'),
-      'drugs' => t('Veterinary Drugs'),
-      'additives' => t('Non-permitted additives (e.g. konjac in children’s confectionery)'),
-      'heavy_metals' => t('Heavy metals (arsenic, cadmium, lead, mercury)'),
-      'micro_toxins' => t('Other microbiologically produced toxins (e.g. histamine in fish)'),
-      'environmental_contaminants' => t('Environmental contaminants (e.g. dioxins)'),
-      'process_toxicants' => t('Process toxicants (e.g. acrylamide in high temperature processed carbohydrate rich foods)'),
-      'adulterants' => t('Adulterants (Synthetic colours (e.g. Sudan dyes), melamine, water & sugar (e.g honey))'),
-      'cleaning' => t('Cleaning & sanitising chemicals'),
-      'chemical' => t('Chemical residues migrating from packaging (e.g. plasticisers, BPA)'),
-    ),
+    '#options' => $chemical_c_4_options,
     '#default_value' => array_get($values, 'preparatory_c_2.wrapper.chemical_c_4.chemical', array()),
   );
 

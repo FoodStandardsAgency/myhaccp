@@ -46,7 +46,8 @@ It will start at <strong>@start</strong> through to <strong>@end</strong>.</p>',
   $physical_hazards = array();
   if (!empty($preparatory_c_2['physical_c_4']['physical'])) {
     foreach ($preparatory_c_2['physical_c_4']['physical'] as $key => $value) {
-      if (isset($form['preparatory_c_2']['wrapper']['physical_c_4']['physical']['#options'][$key])) {
+      if (isset($form['preparatory_c_2']['wrapper']['physical_c_4']['physical']['#options'][$key]) && $key === $value) {
+        dpm($value);
         $physical_hazards[] = $form['preparatory_c_2']['wrapper']['physical_c_4']['physical']['#options'][$key];
       }
     }
@@ -58,13 +59,21 @@ It will start at <strong>@start</strong> through to <strong>@end</strong>.</p>',
 
   // Chemical hazards.
   $chemical_hazards = array();
+  //dpm($form);
+  $chemical_c_4_options = preparatory_c_2_chemicals_get_options ($form_options = FALSE);
+  dpm($chemical_c_4_options);
+  //dpm($form['preparatory_c_2']['wrapper']['chemical_c_4']['chemical']['#options']);
+  //dpm($preparatory_c_2['chemical_c_4']['chemical']);
   if (!empty($preparatory_c_2['chemical_c_4']['chemical'])) {
     foreach ($preparatory_c_2['chemical_c_4']['chemical'] as $key => $value) {
-      if (isset($form['preparatory_c_2']['wrapper']['chemical_c_4']['chemical']['#options'][$key])) {
-        $chemical_hazards[] = $form['preparatory_c_2']['wrapper']['chemical_c_4']['chemical']['#options'][$key];
+      if ($key === $value && isset($form['preparatory_c_2']['wrapper']['chemical_c_4']['chemical']['#options'][$key])) {
+        //$chemical_hazards[] = $form['preparatory_c_2']['wrapper']['chemical_c_4']['chemical']['#options'][$key];
+        dpm($key);
+        $chemical_hazards[] = $chemical_c_4_options[$key]['pdf_output'];
       }
     }
   }
+  dpm($chemical_hazards);
   if (array_get($preparatory_c_2, 'chemical_c_4.chemical_other', FALSE)) {
     $chemical_other = explode("\r\n", trim($preparatory_c_2['chemical_c_4']['chemical_other']));
     $chemical_hazards = array_merge($chemical_hazards, $chemical_other);
