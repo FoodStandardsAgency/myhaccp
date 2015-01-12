@@ -108,17 +108,20 @@ function preparatory_c_2_chemical_get_options ($form_options = FALSE) {
   $options = array();
   $form_options_array = array();
 
-  $options['mycotoxins']['form_label'] = t('Ingredient dependent Mycotoxins (e.g. deoxynivalenol in cereals; patulin in apples)');
-  $options['mycotoxins']['pdf_output'] = t('Ingredient dependent Mycotoxins');
+  $options['pesticides']['form_label'] = t('Agricultural residues: Pesticides');
+  $options['pesticides']['pdf_output'] = t('Agricultural residues: Pesticides');
+
+  // Commenting out as apparently no longer required
+  // See https://pm.agile.coop/fsa/node/11600
+  // and https://pm.agile.coop/fsa/system/files/myhaccp_extract.pdf
+  //$options['mycotoxins']['form_label'] = t('Ingredient dependent Mycotoxins (e.g. deoxynivalenol in cereals; patulin in apples)');
+  //$options['mycotoxins']['pdf_output'] = t('Ingredient dependent Mycotoxins');
 
   $options['phytotoxins']['form_label'] = t('Ingredient dependent Phyto-toxins (plant-based e.g. lectins in kidney beans; cyanogenic glycosides in cassava)');
   $options['phytotoxins']['pdf_output'] = t('Ingredient dependent Phyto-toxins');
 
   $options['phycotoxins']['form_label'] = t('Ingredient dependent Phyco-toxins (associated with shellfish and certain pelagic fish)');
   $options['phycotoxins']['pdf_output'] = t('Ingredient dependent Phyco-toxins');
-
-  $options['pesticides']['form_label'] = t('Agricultural residues: Pesticides');
-  $options['pesticides']['pdf_output'] = t('Agricultural residues: Pesticides');
 
   $options['nitrate']['form_label'] = t('Agricultural residues: Nitrate');
   $options['nitrate']['pdf_output'] = t('Agricultural residues: Nitrate');
@@ -261,46 +264,46 @@ function preparatory_c_2_allergens_get_options ($form_options = FALSE) {
   $form_options_array = array();
 
   $options['eggs']['form_label'] = t('Eggs and products thereof');
-  $options['eggs']['pdf_output'] = t('Eggs and products thereof');
+  $options['eggs']['pdf_output'] = t('Eggs');
 
   $options['milk']['form_label'] = t('Milk and products thereof (including lactose), except: (a) whey used for making alcoholic distillates including ethyl alcohol of agricultural origin (b) lactitol');
-  $options['milk']['pdf_output'] = t('Milk and products thereof (including lactose), except: (a) whey used for making alcoholic distillates including ethyl alcohol of agricultural origin (b) lactitol');
+  $options['milk']['pdf_output'] = t('Milk');
 
   $options['fish']['form_label'] = t('Fish and products thereof, except fish gelatine used as carrier for vitamin or carotenoid preparations; fish gelatine or Isinglass used as fining agent in beer and wine.');
-  $options['fish']['pdf_output'] = t('Fish and products thereof, except fish gelatine used as carrier for vitamin or carotenoid preparations; fish gelatine or Isinglass used as fining agent in beer and wine.');
+  $options['fish']['pdf_output'] = t('Fish');
 
   $options['sesame']['form_label'] = t('Sesame seeds and products thereof');
-  $options['sesame']['pdf_output'] = t('Sesame seeds and products thereof');
+  $options['sesame']['pdf_output'] = t('Sesame seeds');
 
   $options['crustaceans']['form_label'] = t('Crustaceans and products thereof');
-  $options['crustaceans']['pdf_output'] = t('Crustaceans and products thereof');
+  $options['crustaceans']['pdf_output'] = t('Crustaceans');
 
   $options['peanuts']['form_label'] = t('Peanuts and products thereof');
-  $options['peanuts']['pdf_output'] = t('Peanuts and products thereof');
+  $options['peanuts']['pdf_output'] = t('Peanuts');
 
   $options['cereals']['form_label'] = t('Cereals containing gluten, namely: wheat, rye, barley, oats, spelt, kamut, or their hybridised strains, and products thereof, except: (a) wheat based glucose syrups including dextrose: (b) wheat based maltodextrins; (c) glucose syrups based on barley; (d) cereals used for making alcoholic distillates including ethyl alcohol of agricultural origin.');
-  $options['cereals']['pdf_output'] = t('Cereals containing gluten, namely: wheat, rye, barley, oats, spelt, kamut, or their hybridised strains, and products thereof, except: (a) wheat based glucose syrups including dextrose: (b) wheat based maltodextrins; (c) glucose syrups based on barley; (d) cereals used for making alcoholic distillates including ethyl alcohol of agricultural origin.');
+  $options['cereals']['pdf_output'] = t('Cereals containing gluten');
 
   $options['celery']['form_label'] = t('Celery and products thereof');
-  $options['celery']['pdf_output'] = t('Celery and products thereof');
+  $options['celery']['pdf_output'] = t('Celery');
 
   $options['mustard']['form_label'] = t('Mustard and products thereof');
-  $options['mustard']['pdf_output'] = t('Mustard and products thereof');
+  $options['mustard']['pdf_output'] = t('Mustard');
 
   $options['lupin']['form_label'] = t('Lupin and products thereof');
-  $options['lupin']['pdf_output'] = t('Lupin and products thereof');
+  $options['lupin']['pdf_output'] = t('Lupin');
 
   $options['soybeans']['form_label'] = t('Soybeans and products thereof, except: (a)fully refined soybean oil and fat (b) natural mixed tocopherols (E306), natural D-alpha tocopherol, natural D-alpha tocopherol acetate, and natural D-alpha tocopherol succinate from soybean sources (c) vegetable oils derived phytosterol esters from soybean sources (d) plant stanol ester produced from vegetable oil sterols from soybean sources');
-  $options['soybeans']['pdf_output'] = t('Soybeans and products thereof, except: (a)fully refined soybean oil and fat (b) natural mixed tocopherols (E306), natural D-alpha tocopherol, natural D-alpha tocopherol acetate, and natural D-alpha tocopherol succinate from soybean sources (c) vegetable oils derived phytosterol esters from soybean sources (d) plant stanol ester produced from vegetable oil sterols from soybean sources');
+  $options['soybeans']['pdf_output'] = t('Soybeans');
 
   $options['molluscs']['form_label'] = t('Molluscs and products thereof');
-  $options['molluscs']['pdf_output'] = t('Molluscs and products thereof');
+  $options['molluscs']['pdf_output'] = t('Molluscs');
 
   $options['sulphur']['form_label'] = t('Sulphur dioxide and sulphites at concentrations of more than 10mg/kg or 10mg/litre in terms of the total SO2 which are to be calculated for products as proposed ready for consumption or as reconstituted according to the instructions of the manufacturers');
-  $options['sulphur']['pdf_output'] = t('Sulphur dioxide and sulphites at concentrations of more than 10mg/kg or 10mg/litre in terms of the total SO2 which are to be calculated for products as proposed ready for consumption or as reconstituted according to the instructions of the manufacturers');
+  $options['sulphur']['pdf_output'] = t('Sulphur dioxide and sulphites');
 
   $options['nuts']['form_label'] = t('Nuts, namely: almonds, hazelnuts,walnuts,cashewnuts, pecan nuts, Brazil nuts, pistachio nuts, macadamia or Queensland nuts and products thereof, except for nuts used for making alcoholic distillates including ethyl alcohol of agricultural origin.');
-  $options['nuts']['pdf_output'] = t('Nuts, namely: almonds, hazelnuts,walnuts,cashewnuts, pecan nuts, Brazil nuts, pistachio nuts, macadamia or Queensland nuts and products thereof, except for nuts used for making alcoholic distillates including ethyl alcohol of agricultural origin.');
+  $options['nuts']['pdf_output'] = t('Nuts');
 
   // If we want the options array formatted for the form builder, reformat array
   // to be appropriate for the form options array.
