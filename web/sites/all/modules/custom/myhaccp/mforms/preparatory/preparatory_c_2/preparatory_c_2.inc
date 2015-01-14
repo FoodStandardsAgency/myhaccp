@@ -200,6 +200,9 @@ function preparatory_c_2_biological_get_options ($form_options = FALSE) {
   $options['clortridium']['form_label'] = t('Clostridium botulinum');
   $options['clortridium']['pdf_output'] = t('Clostridium botulinum');
 
+  $options['clorstridia']['form_label'] = t('Clostridia perfringens');
+  $options['clorstridia']['pdf_output'] = t('Clostridia perfringens');
+
   $options['staphylococcus']['form_label'] = t('Staphylococcus aureus');
   $options['staphylococcus']['pdf_output'] = t('Staphylococcus aureus');
 
