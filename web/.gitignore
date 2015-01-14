@@ -5,5 +5,5 @@ sites/*/settings*.php
 sites/*/files
 sites/*/private
 
-# Ignore sourcemaps
+# Ignore map files
 *.map
