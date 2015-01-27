@@ -78,7 +78,7 @@ function preparatory_g(&$form_state, &$next_step) {
     '#type' => 'managed_file',
     '#title' => t('2. Please upload a digital copy of your flow diagram (or go to 3).'),
     '#help_link' => 20,
-    '#help_text' => t('This allows you to save your diagram on-line and will present it in the output document. Allowed file types are: pdf, jpg, jpeg and png.'),
+    '#help_text' => t('This allows you to save your diagram on-line and will present it in the output document. Allowed file types are: jpg, jpeg and png.'),
     '#default_value' => $default_file,
     '#progress_indicator' => 'bar',
     '#upload_location' => 'private://' . $user->uid,
