@@ -26,3 +26,6 @@ behat/composer.lock
 
 # mPDF cache
 web/sites/all/libraries/mpdf/ttfontdata
+
+# source maps
+.map
