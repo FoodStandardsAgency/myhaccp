@@ -93,10 +93,14 @@ function myhaccp_output_pdf($iid) {
 
       $mpdf->WriteHTML($output, 2);
     }
-    
+
     // Write the output and then exit.
     $mpdf->Output($filename, 'I');
     // Documentation for output: http://mpdf1.com/manual/index.php?tid=125
+    // Before exiting delete the temporary file that we stored in a global
+    // earlier in 05_process_theme.inc
+    global $temp_file_name;
+    unlink($temp_file_name);
     drupal_exit('tool');
   }
 }
