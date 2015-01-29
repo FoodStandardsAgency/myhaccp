@@ -20,11 +20,11 @@ $plugin = array(
 function password_policy_alpha_case_admin_form($form, &$form_state, $constraint) {
   $sub_form['alpha_case_fieldset'] = array(
     '#type' => 'fieldset',
-    '#title' => t('Case sensitivity'),
+    '#title' => t('Mixed case'),
   );
   $sub_form['alpha_case_fieldset']['alpha_case'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Case Sensitive'),
+    '#title' => t('Mixed Case'),
     '#default_value' => $constraint->config['alpha_case'],
     '#description' => t('Password will require upper and lower case letters.'),
   );

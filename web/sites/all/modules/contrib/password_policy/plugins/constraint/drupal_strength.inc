@@ -26,7 +26,18 @@ function password_policy_drupal_strength_admin_form($form, &$form_state, $constr
     '#type' => 'textfield',
     '#title' => t('Drupal strength level'),
     '#default_value' => $constraint->config['drupal_strength'],
-    '#description' => t('Password will be required to have match this level or higher. 0 - 100'),
+    '#description' => t('<p>Password will be required to have match this level or higher. 0 - 100</p>
+<p>Starting from a base of 100 points:</p>
+<ul><li>Having only 3 out of 4 of uppercase, lowercase, digit, and symbol loses 12.5 points</li>
+<li>Having only 2 out of 4 of uppercase, lowercase, digit, and symbol loses 25 points</li>
+<li>Having only 1 out of 4 of uppercase, lowercase, digit, and symbol loses 40 points</li>
+<li>Each character fewer than 6 loses 5 points, plus a 30 point penalty for being under 6 characters.</li>
+<li>Username used as password without regard to case gets exactly 5 points</li></ul>
+<p>For example:</p>
+<ul><li>Aa1! is worth 100 - 10 - 30 = 60 points</li>
+<li>ABCDefgh is worth 100 - 25 = 75 points</li>
+<li>ABcd12#$ is worth 100 points</li>
+<li>jsmith23 and JSmith23 are each worth 5 points for user jsmith23 but 75 or 87.5 points respectively for user rlee98</li></ul>'),
   );
 
   return $sub_form;
