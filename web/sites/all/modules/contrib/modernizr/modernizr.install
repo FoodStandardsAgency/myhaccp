@@ -168,3 +168,21 @@ function modernizr_update_7300() {
 
   return t("Deleted 'modernizr_serverside' variable");
 }
+
+/**
+ * Revert the introduction of 'defer' as the default method of including script.
+ */
+function modernizr_update_7301() {
+  // Setting `defer` as default was a bad idea, because:
+  //   1. The deferred script almost always gets executed after any inlined
+  //      Modernizr.load() commands.
+  //
+  // @see https://www.drupal.org/node/2252899#comment-9228009
+  //
+  //   2. Setting `defer` by default is bad for backwards-compatibility.
+  //
+  // @see https://www.drupal.org/node/2252899#comment-9383221
+  if (variable_get('modernizr_type', MODERNIZR_TYPE_DEFAULT) == 'defer') {
+    variable_set('modernizr_type', MODERNIZR_TYPE_DEFAULT);
+  }
+}

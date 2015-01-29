@@ -19,7 +19,7 @@ define('MODERNIZR_SCRIPT_GROUP', JS_LIBRARY - 10);
 define('MODERNIZR_SCRIPT_WEIGHT', -100);
 
 // As of 7.x-3.3 we support footer scope, inlining, and defer.
-define('MODERNIZR_TYPE_DEFAULT', 'defer');
+define('MODERNIZR_TYPE_DEFAULT', 'sync');
 define('MODERNIZR_SCOPE_DEFAULT', 'header');
 
 // Controls the display of administrative errors.
@@ -64,7 +64,7 @@ function modernizr_page_build(&$page) {
   }
   else {
     // First, figure out if we're inlining.
-    if (in_array(variable_get('modernizr_type', MODERNIZR_TYPE_DEFAULT), array('sync', MODERNIZR_TYPE_DEFAULT))) {
+    if (in_array(variable_get('modernizr_type', MODERNIZR_TYPE_DEFAULT), array('sync', 'defer'))) {
       // We are loading external script. Load file path.
       $modernizr_file = modernizr_get_path();
     }
@@ -227,8 +227,7 @@ function _modernizr_scan_for_library($paths) {
 }
 
 /**
- * Helper function to generate the current filename of
- * the active Modernizr library
+ * Helper function to fetch the active Modernizr library.
  */
 function modernizr_get_filename() {
   // Get the full path to the library,

@@ -92,7 +92,7 @@ function modernizr_generate_url() {
   $tests = modernizr_api_list();
 
   // Begin assembling link to re-download Modernizr
-  $link = 'http://www.modernizr.com/download/#-';
+  $link = 'http://modernizr.com/download/#-';
 
   // Pull tests that are currently set.
   $current_tests = _modernizr_current_build();
