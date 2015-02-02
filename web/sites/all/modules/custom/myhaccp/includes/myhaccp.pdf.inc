@@ -8,14 +8,15 @@ function myhaccp_output_pdf($iid) {
   global $container;
   $configuration = $container['configuration'];
 
+  // Set the session IID.
+  $_SESSION['iid'] = $iid;
+
   $study = new Study();
   $study->setIID($iid);
   myhaccp_initialise_study($study);
   // Initialise mforms so we have access to its functions. This is needed
   // when loading the forms to access the checkbox labels for example.
   myhaccp_myhaccp_mforms_init();
-  // Set the session IID.
-  $_SESSION['iid'] = $iid;
 
   if (!empty($study)) {
     // Get the study name.
@@ -100,7 +101,9 @@ function myhaccp_output_pdf($iid) {
     // Before exiting delete the temporary file that we stored in a global
     // earlier in 05_process_theme.inc
     global $temp_file_name;
-    unlink($temp_file_name);
+    if (file_exists($temp_file_name)) {
+      unlink($temp_file_name);
+    }
     drupal_exit('tool');
   }
 }
