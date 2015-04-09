@@ -217,6 +217,13 @@ input[type=submit] {
   margin-left: 1em;
 }
 
+// Cancel link in a form actions group
+.form-actions {
+  #edit-cancel {
+    padding-left: 1em;
+  }
+}
+
 // Generic buttons
 input.form-submit,
 a.button,

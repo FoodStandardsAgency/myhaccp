@@ -15,19 +15,14 @@ function myhaccp_process($element, &$form_state) {
   if (isset($form_state['values']['validate'])) {
     $validation = reset($form_state['values']['validate']);
     // Add the error class to each of the elements.
-    foreach ($validation as $target => $message) {
-      $target_parts = explode('.', $target);
-      if (!empty($element['#parents'])) {
-        // Check that the intersection of the target and the current element's
-        // parents array are the same. If they are then this is the element we
-        // want to operate on.
-        if (count(array_intersect($target_parts, $element['#parents'])) == count($target_parts)) {
-          // Set the error attribute.
-          $element['#attributes']['class']['error'] = 'error';
-          if (!empty($message) && $form_state['executed'] == TRUE && $element['#type'] !== 'radio') {
-            // Add the message inline.
-            $element['#validation_message'] = $message;
-          }
+    if (!empty($element['#parents']) && $element['#type'] !== 'hidden') {
+      $target = implode('.', $element['#parents']);
+      if (isset($validation[$target])) {
+        // Set the error attribute.
+        $element['#attributes']['class']['error'] = 'error';
+        if (!empty($message) && $form_state['executed'] == TRUE && $element['#type'] !== 'radio') {
+          // Add the message inline.
+          $element['#validation_message'] = $validation[$target];
         }
       }
     }
@@ -90,17 +85,25 @@ function myhaccp_form_process($form, &$form_state) {
     );
     // Provide an intro.
     $messages = array(
-      'intro' => 'The following items have errors you will need to correct:',
+      'intro' => t('The following items have errors you will need to correct:'),
     );
 
-    // Add any messages that aren't associated with fields, so called 'global'
-    // validation messages.
-    foreach ($validation as $target => $message) {
-      $element = array_get($form, $target, FALSE);
-      if ($element && isset($element['#title'])) {
-        $message = $element['#title'];
+    // If there are over 20 validation messages then don't display them.
+    if (count($validation) > 20) {
+      $messages = array(
+        'intro' => t('This form has items with errors which you will need to correct'),
+      );
+    }
+    else {
+      // Add any messages that aren't associated with fields, so called 'global'
+      // validation messages. These are only added if there are not too many.
+      foreach ($validation as $target => $message) {
+        $element = array_get($form, $target, FALSE);
+        if ($element && isset($element['#title'])) {
+          $message = $element['#title'];
+        }
+        $messages[$target] = $message;
       }
-      $messages[$target] = $message;
     }
     // If we already have validation messages then merge ours.
     if (isset($form['validation_messages']['#validation_message'])) {

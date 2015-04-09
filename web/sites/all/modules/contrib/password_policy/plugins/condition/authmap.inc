@@ -48,6 +48,11 @@ function password_policy_authmap_condition($account, $condition) {
     return TRUE;
   }
 
+  // Always enforce this policy for anonymous users.
+  if ($account->uid == 0) {
+    return TRUE;
+  }
+
   // Otherwise, test if user authmap intersects with any excluded
   // authentication modules.
   if ($authmaps = user_get_authmaps($account->name)) {

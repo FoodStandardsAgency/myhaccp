@@ -82,16 +82,14 @@ function myhaccp_list() {
     // Prepare the edit link based on the current stage.
     $current_stage = $study->getCurrentStage();
     $study_name = $study->getName();
-    //HOTFIX: Luke 2014/08/19 - issue: https://pm.agile.coop/fsa/node/10559
-    if (!empty($current_stage)) {
-      if (!is_object($current_stage)) {
-        $stage_url = 'preparatory_a';
-      } else {
-        $stage_url = $current_stage->getUrl();
-      }
+    // Be doubly sure we have both a stage object and that
+    // its not empty.
+    if (is_object($current_stage) && !empty($current_stage)) {
+      // Get the stage url.
+      $stage_url = $current_stage->getUrl();
     }
-    //End of hotfix
     else {
+      // Fallback to a default url.
       $stage_url = 'preparatory_a';
     }
     $edit_link = 'tool/study/' . $result->iid . '/' . $stage_url;

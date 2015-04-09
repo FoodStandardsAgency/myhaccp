@@ -146,7 +146,9 @@ function _linkit_build_profile_type_form_fields(&$form, LinkitProfile $profile) 
     '#description' => t('.'),
     '#states' => array(
       'visible' => array(
-        'input[name="profile_type"]' => array('value' => LINKIT_PROFILE_TYPE_EDITOR),
+        // While waiting for https://drupal.org/node/879580 to be commited, we
+        // have to convert the constant to a string.
+        'input[name="profile_type"]' => array('value' => (string) LINKIT_PROFILE_TYPE_EDITOR),
       ),
     ),
     '#parents' => array('data', 'text_formats'),

@@ -156,3 +156,42 @@ function myhaccp_update_7004() {
   );
   image_effect_save($effect);
 }
+
+/**
+ * Change "Bakery products" in select list to "Confectionery products"
+ */
+function myhaccp_update_7005() {
+  // Update the data table.
+  db_update('field_data_field_business_type')
+    ->fields(array(
+      'field_business_type_value' => 'Confectionery products',
+    ))
+    ->condition('field_business_type_value', 'Bakery products')
+    ->execute();
+  // Update the revisions table.
+  db_update('field_revision_field_business_type')
+    ->fields(array(
+      'field_business_type_value' => 'Confectionery products',
+    ))
+    ->condition('field_business_type_value', 'Bakery products')
+    ->execute();
+  // Alter the options.
+  $query = db_select('field_config', 'fc')
+    ->fields('fc', array(
+      'data',
+    ))
+    ->condition('fc.field_name', 'field_business_type');
+  $result = $query->execute()->fetchAll();
+  $result = unserialize($result[0]->data);
+  $keys = array_keys($result['settings']['allowed_values']);
+  $keys[array_search('Bakery products', $keys)] = 'Confectionery products';
+  $result['settings']['allowed_values'] = array_combine($keys, $result['settings']['allowed_values']);
+  $result['settings']['allowed_values']['Confectionery products'] = 'Confectionery products';
+  // Store the changed results.
+  db_update('field_config')
+    ->fields(array(
+      'data' => serialize($result),
+    ))
+    ->condition('field_name', 'field_business_type')
+    ->execute();
+}

@@ -6,12 +6,11 @@ package = Views
 
 dependencies[] = views
 
-files[] = views_fieldsets_display_extender.inc
-files[] = views_fieldsets_fieldset_field_handler.inc
+files[] = views/views_fieldsets_fieldset_field_handler.inc
 
-; Information added by Drupal.org packaging script on 2014-02-13
-version = "7.x-1.2"
+; Information added by Drupal.org packaging script on 2015-03-05
+version = "7.x-1.3"
 core = "7.x"
 project = "views_fieldsets"
-datestamp = "1392335007"
+datestamp = "1425515886"
 

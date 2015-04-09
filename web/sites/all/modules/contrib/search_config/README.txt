@@ -119,7 +119,7 @@ CONFIGURATION
 
   Since Keywords and Containing any fields are a bit confusing, even though
   these are different: the basic forms "Keywords" is AND field and the
-  "Containing any ..." ia an OR field.
+  "Containing any ..." is an OR field.
   
   So I disable the "Containing any ..." field:
     - under "Containing any of the words settings"
@@ -175,12 +175,10 @@ TODO
 Local menu tab label overrides OR find the native method of doing this
 Categories field
 Languages field
-Search result limits
 Write tests
 
 -- Maybes, depends on scale -- 
 
-Add node level exclude from search options
 Add new fields to the search form
  
 MAINTAINERS

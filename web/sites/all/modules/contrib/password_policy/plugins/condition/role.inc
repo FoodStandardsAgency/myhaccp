@@ -37,7 +37,7 @@ function password_policy_role_admin_form($form, &$form_state, $condition) {
 function password_policy_role_condition($account, $condition) {
   $roles = array_filter($condition->config['roles']);
 
-  // Always enfore this policy if no roles were selected.
+  // Always enforce this policy if no roles were selected.
   if (count($roles) == 0) {
     return TRUE;
   }

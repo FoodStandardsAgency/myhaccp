@@ -57,19 +57,6 @@ function taxonomy_access_fix_taxonomy_vocabulary_update($vocabulary) {
 }
 
 /**
- * Implements hook_preprocess_HOOK() for theme_table().
- */
-function taxonomy_access_fix_preprocess_table(&$variables) {
-  if (isset($variables['attributes']['id']) && $variables['attributes']['id'] == 'taxonomy') {
-    foreach ($variables['rows'] as $row_key => $row) {
-      if (isset($row['data'])) {
-        $variables['rows'][$row_key]['data'] = array_filter($row['data']);
-      }
-    }
-  }
-}
-
-/**
  * Implements hook_form_FORM_ID_alter() for taxonomy_overview_terms().
  *
  * @see taxonomy_overview_terms()
@@ -157,6 +144,10 @@ function taxonomy_access_fix_access($op, $vocabulary = NULL) {
     return TRUE;
   }
 
+  if ($vocabulary && is_string($vocabulary)) {
+    $vocabulary = taxonomy_vocabulary_machine_name_load($vocabulary);
+  }
+
   // Others: well, that depends.
   switch ($op) {
     case 'index':
@@ -209,4 +200,30 @@ function taxonomy_access_fix_update_role_permissions($original, $updated) {
     ->condition('permission', 'add terms in ' . $original, '=')
     ->fields(array('permission' => 'add terms in ' . $updated))
     ->execute();
+}
+
+/**
+ * Implements hook_admin_menu_map().
+ */
+function taxonomy_access_fix_admin_menu_map() {
+  if (!user_access('administer taxonomy')) {
+    $vocabularies = array();
+    foreach (taxonomy_get_vocabularies() as $vid => $vocabulary) {
+      if (taxonomy_access_fix_access('index', $vocabulary)) {
+        $vocabularies[] = $vocabulary->machine_name;
+      }
+    }
+
+    if ($vocabularies) {
+      $map = array(
+        'admin/structure/taxonomy/%taxonomy_vocabulary_machine_name' => array(
+          'parent' => 'admin/structure/taxonomy',
+          'arguments' => array(
+            array('%taxonomy_vocabulary_machine_name' => $vocabularies),
+          ),
+        ),
+      );
+      return $map;
+    }
+  }
 }

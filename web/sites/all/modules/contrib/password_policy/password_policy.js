@@ -22,8 +22,9 @@ Drupal.behaviors.passwordOverride = {
           return;
         }
         e.stopImmediatePropagation();
+        cleanUrlPrefix = Drupal.settings.passwordPolicy.cleanUrl ? '' : '?q=';
         $.post(
-          Drupal.settings.basePath + 'password_policy/check',
+          Drupal.settings.basePath + cleanUrlPrefix + Drupal.settings.pathPrefix + 'password_policy/check',
           { password: encodeURIComponent(passwordInput.val()) },
           function(data) {
             pw_status = data;
@@ -58,7 +59,6 @@ Drupal.behaviors.passwordPolicyConstraintSettingsSummary = {
   attach: function (context) {
     $('fieldset#edit-alpha-case-fieldset', context).drupalSetSummary(function (context) {
       alpha_case = $('input[name="alpha_case"]', context).is(':checked');
-      console.log(alpha_case);
       if (!alpha_case) {
         return Drupal.t('Not enforced');
       }

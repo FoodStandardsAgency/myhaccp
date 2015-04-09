@@ -102,7 +102,15 @@ class PasswordPolicy {
   }
 
   /**
-   * Checks all constraints that a password complies with the policy.
+   * Checks password versus each of the policy's active constraints.
+   *
+   * @param string $pass
+   *   Password.
+   * @param object $account
+   *   User account.
+   *
+   * @return array
+   *   Failure messages for failed constraints.
    */
   public function check($pass, $account) {
     $errors = array();
@@ -163,8 +171,26 @@ class PasswordPolicy {
   }
 
   /**
-   * Loads all constraint and condition plugins and instantiate object
-   * for each saving them in to the module.
+   * Loads all Password Policy plugins.
+   */
+  private function load_plugins() {
+    ctools_include('plugins');
+    foreach (ctools_get_plugins('password_policy', 'constraint') as $info) {
+      $this->_load_plugin($info);
+    }
+    foreach (ctools_get_plugins('password_policy', 'condition') as $info) {
+      $this->_load_plugin($info);
+    }
+    foreach (ctools_get_plugins('password_policy', 'item') as $info) {
+      $this->_load_plugin($info);
+    }
+  }
+
+  /**
+   * Loads a Password Policy plugin.
+   *
+   * @param object $info
+   *   Password Policy plugin information.
    */
   private function _load_plugin($info) {
     if (!isset($this->config[$info['name']])) {
@@ -188,21 +214,8 @@ class PasswordPolicy {
     return $this->cache[$type];
   }
 
-  private function load_plugins() {
-    ctools_include('plugins');
-    foreach (ctools_get_plugins('password_policy', 'constraint') as $info) {
-      $this->_load_plugin($info);
-    }
-    foreach (ctools_get_plugins('password_policy', 'condition') as $info) {
-      $this->_load_plugin($info);
-    }
-    foreach (ctools_get_plugins('password_policy', 'item') as $info) {
-      $this->_load_plugin($info);
-    }
-  }
-
   /**
-   * Retrieves all policies.
+   * Retrieves policy by name.
    */
   public static function policy($name) {
     ctools_include('export');

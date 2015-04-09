@@ -9,10 +9,64 @@
  * Called from search_config_form_search_admin_settings_alter().
  */
 function _search_config_form_search_admin_settings_alter(&$form, $form_state) {
-
-  $settings = search_config_node_settings();
+  // String override options.
   $string_overrides = search_config_string_overrides();
+  $form['search_config_string_overrides'] = array(
+    '#type' => 'fieldset',
+    '#theme' => 'search_config_admin_label_form',
+    '#title' => t('Labels and string overrides'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+    'labels' => array(),
+    'title_display' => array(),
+    '#tree' => TRUE,
+  );
+  $title_display_options = array(
+    'default' => t('Default'),
+    'invisible' => t('Hidden'),
+    'description' => t('Below'),
+  );
+  $slabels = array(
+    'basic' => array(t('Keywords'), t('Enter your keywords')),
+    'basic_with_keys' => array(t('Keywords (with search keys)'), t('Enter your keywords')),
+    'basic_submit' => array(t('Submit button'), t('Search')),
+    'advanced_fieldset' => array(t('Wrapping fieldset'), t('Advanced search')),
+    'advanced_fieldset_with_keys' => array(t('Wrapping fieldset (with search keys)'), t('Advanced search')),
+    'advanced_any' => array(t('Containing any ...'), t('Containing any of the words')),
+    'advanced_phrase' => array(t('Containing the phrase'), t('Containing the phrase')),
+    'advanced_none' => array(t('Containing none ...'), t('Containing none of the words')),
+    'advanced_type' => array(t('Types'), t('Only of the type(s)')),
+    'advanced_language' => array(t('Language selector'), t('Languages')),
+    'advanced_submit' => array(t('Submit button'), t('Advanced search')),
+  );
+  $form['search_config_string_overrides']['#field-labels'] = $slabels;
+  foreach ($slabels as $skey => $slabel) {
+    $form['search_config_string_overrides']['labels'] += array(
+      $skey => array(
+        '#type' => 'textfield',
+        '#title' => $slabel[0],
+        '#title_display' => 'invisible',
+        '#default_value' => $string_overrides['labels'][$skey],
+        '#description' => t('t() string: !translation' ,
+            array('%label' => $slabel[1], '!translation' => '!search_config:' . $skey)),
+        '#size' => 40,
+      ),
+    );
+    if (isset($string_overrides['title_display'][$skey])) {
+      $form['search_config_string_overrides']['title_display'] += array(
+        $skey => array(
+          '#type' => 'radios',
+          '#title' => $slabel[0],
+          '#title_display' => 'invisible',
+          '#default_value' => $string_overrides['title_display'][$skey],
+          '#options' => $title_display_options,
+        ),
+      );
+    }
+  }
 
+  // Form configuration options.
+  $settings = search_config_node_settings();
   $role_options = array_map('check_plain', user_roles());
   $form['content_node_search_config'] = array(
     '#type' => 'fieldset',
@@ -68,63 +122,10 @@ function _search_config_form_search_admin_settings_alter(&$form, $form_state) {
         )
       ),
     ),
-    'string_overrides' => array(
-      '#type' => 'fieldset',
-      '#theme' => 'search_config_admin_label_form',
-      '#title' => t('Labels and string overrides'),
-      '#collapsible' => TRUE,
-      '#collapsed' => TRUE,
-      'labels' => array(),
-      'title_display' => array(),
-    ),
     'fields' => array(
       '#type' => 'item',
     ),
   );
-
-  $title_display_options = array(
-    'default' => t('Default'),
-    'invisible' => t('Hidden'),
-    'description' => t('Below'),
-  );
-  $slabels = array(
-    'basic' => array(t('Keywords'), t('Enter your keywords')),
-    'basic_with_keys' => array(t('Keywords (with search keys)'), t('Enter your keywords')),
-    'basic_submit' => array(t('Submit button'), t('Search')),
-    'advanced_fieldset' => array(t('Wrapping fieldset'), t('Advanced search')),
-    'advanced_fieldset_with_keys' => array(t('Wrapping fieldset (with search keys)'), t('Advanced search')),
-    'advanced_any' => array(t('Containing any ...'), t('Containing any of the words')),
-    'advanced_phrase' => array(t('Containing the phrase'), t('Containing the phrase')),
-    'advanced_none' => array(t('Containing none ...'), t('Containing none of the words')),
-    'advanced_type' => array(t('Types'), t('Only of the type(s)')),
-    'advanced_language' => array(t('Language selector'), t('Languages')),
-    'advanced_submit' => array(t('Submit button'), t('Advanced search')),
-  );
-  $form['content_node_search_config']['string_overrides']['#field-labels'] = $slabels;
-  foreach ($slabels as $skey => $slabel) {
-    $form['content_node_search_config']['string_overrides']['labels'] += array(
-      $skey => array(
-        '#type' => 'textfield',
-        '#title' => $slabel[0],
-        '#title_display' => 'invisible',
-        '#default_value' => $string_overrides['labels'][$skey],
-        '#description' => t('t() string: !translation' ,
-            array('%label' => $slabel[1], '!translation' => '!search_config:' . $skey)),
-        '#size' => 40,
-      ),
-    );
-    if (isset($string_overrides['title_display'][$skey])) {
-      $form['content_node_search_config']['string_overrides']['title_display'] += array(
-        $skey => array(
-          '#type' => 'radios',
-          '#title' => $slabel[0],
-          '#title_display' => 'invisible',
-          '#default_value' => $string_overrides['title_display'][$skey],
-          '#options' => $title_display_options,
-        ),
-      );
-    }
-  }
 
   $fields = array(
     'containing_any' => t('Containing any of the words'),
@@ -132,6 +133,7 @@ function _search_config_form_search_admin_settings_alter(&$form, $form_state) {
     'containing_none' => t('Containing none of the words'),
     'types' => t('Only of the type(s)'),
     'category' => t('By category'), // @todo: Find correct field naming
+    'language' => t('Languages'),
   );
   foreach ($fields as $key => $label) {
     $form['content_node_search_config']['fields'][$key] = array(
@@ -193,6 +195,21 @@ function _search_config_form_search_admin_settings_alter(&$form, $form_state) {
   }
 
   // Provide some additional help for groupings setting.
+
+  // Restrictions and a summary of search config permissions
+  $form['content_node_search_config']['results'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Results'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+    'limit' => array(
+      '#type' => 'select',
+      '#title' => t('Pager limit'),
+      '#description' => t('This option alters the number of results per page on the search results page.'),
+      '#default_value' => $settings['results']['limit'],
+      '#options' => array(0 => t('Do not alter')) + drupal_map_assoc(array_merge(range(1, 25, 1), range(30, 100, 5), range(150, 1000, 25))),
+    ),
+  );
 
 
 // Phase three or four

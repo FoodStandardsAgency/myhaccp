@@ -29,25 +29,35 @@
 function search_config_node_settings() {
   $settings = variable_get('search_config', array());
   $settings += array(
-    'forms' => array(
-      'toggle_forms' => 0,            // Show adv if both forms are present
-      'move_keyword_search' => 0,     // Move keyword search into adv form
-      'advanced_populate' => 0,       // Try and repopulate the adv form
-      'advanced_expand' => 'default', // Control the presentation of adv form
-      // Controls all 3 'Containing...' fields.
-      'remove_containing_wrapper' => 'default',
-    ),
-    'fields' => array(
-      'containing_any' => array(),
-      'containing_phrase' => array(),
-      'containing_none' => array(),
-      'types' => array(),
-      'category' => array(),
-    ),
-    'restrictions' => array(
-      'admin_bypass' => 1,
-    ),
+    'forms' => array(),
+    'fields' => array(),
+    'restrictions' => array(),
+    'results' => array(),
   );
+
+  $settings['forms'] += array(
+    'toggle_forms' => 0,            // Show adv if both forms are present
+    'move_keyword_search' => 0,     // Move keyword search into adv form
+    'advanced_populate' => 0,       // Try and repopulate the adv form
+    'advanced_expand' => 'default', // Control the presentation of adv form
+    // Controls all 3 'Containing...' fields.
+    'remove_containing_wrapper' => 'default',
+  );
+  $settings['fields'] += array(
+    'containing_any' => array(),
+    'containing_phrase' => array(),
+    'containing_none' => array(),
+    'types' => array(),
+    'category' => array(),
+    'language' => array(),
+  );
+  $settings['results'] += array(
+    'limit' => '10',
+  );
+  $settings['restrictions'] += array(
+    'admin_bypass' => 1,
+  );
+
   foreach ($settings['fields'] as $field => $info) {
     $settings['fields'][$field] += array(
       'remove' => 0,                  // Hides the field
@@ -110,11 +120,19 @@ function search_config_string_overrides($key = NULL) {
  */
 function search_config_permission() {
   $permissions = array(
-    'search all content' => array(
-      'title' => t('Search all content'),
-      'description' => t('Allow users to search any content, overriding individual content type permissions.'),
+    'admin node search exlusions' => array(
+      'title' => t('Exclude nodes from search results'),
+      'description' => t('This allows users with this permission to flag content as not to be searched.'),
     ),
-  );
+    'search all content' => array(
+      'title' => t('Search all content types'),
+      'description' => t('Allow users to search any content, overriding content type permissions.'),
+    ),
+    'search all excluded entities' => array(
+      'title' => t('Search excluded content'),
+      'description' => t('Allow users to search any content, overriding individual content item exclusion settings.'),
+    ),
+    );
 
   foreach (search_config_content_types() as $type => $label) {
     $permissions["search $type content"] = array(
@@ -145,27 +163,37 @@ function search_config_query_node_access_alter(QueryAlterableInterface $query) {
   }
 
   if ($node && $search) {
-    if (user_access('search all content')) {
-      return;
-    }
+    if (!user_access('search all content')) {
+      $excluded_content_types = array();
+      foreach (search_config_content_types() as $type => $label) {
+        if (!user_access("search $type content")) {
+          $excluded_content_types[] = $type;
+        }
+      }
 
-    $excluded_content_types = array();
-    foreach (search_config_content_types() as $type => $label) {
-      if (!user_access("search $type content")) {
-        $excluded_content_types[] = $type;
+      // A core bug results in a DB error if we use the following: Ref: #1210072
+      // $query->condition($node . '.type', array($excluded_content_types), 'NOT IN');
+      if (!empty($excluded_content_types)) {
+        $db_and = db_and();
+        foreach ($excluded_content_types as $type) {
+          $db_and->condition($node . '.type', $type, '!=');
+        }
+        $query->condition($db_and);
       }
     }
 
-    // A core bug results in a DB error if we use the following: Ref: #1210072
-    // $query->condition($node . '.type', array($excluded_content_types), 'NOT IN');
-    if (!empty($excluded_content_types)) {
-      $db_and = db_and();
-      foreach ($excluded_content_types as $type) {
-        $db_and->condition($node . '.type', $type, '!=');
-      }
-      $query->condition($db_and);
+    if (!user_access('search all excluded entities')) {
+      // Join into the {} table to see if it is excluded.
+      $query->leftJoin('search_config_exclude', 'sc', $node .'.nid = sc.entity_id AND sc.entity_type = :type', array(':type' => 'node'));
+      $query->isNull('sc.entity_id');
     }
-    
+
+    if (get_class($query) == 'PagerDefault' || is_subclass_of($query, 'PagerDefault')) {
+      $settings = search_config_node_settings();
+      if (!empty($settings['results']['limit'])) {
+        $query->limit($settings['results']['limit']);
+      }
+    }
   }
 }
 
@@ -196,11 +224,13 @@ function search_config_node_search_result($node) {
  * Implements of hook_form_FORM_alter().
  */
 function search_config_form_search_form_alter(&$form, $form_state) {
-  // See if this is the node search form with the advanced fieldset present.
-  if (isset($form['advanced']) && isset($form['module']['#value'])
-      && $form['module']['#value'] == 'node') {
+  // Update the node search form.
+  if (isset($form['module']['#value']) && $form['module']['#value'] == 'node') {
     module_load_include('inc', 'search_config', 'search_config.node');
-    _search_config_advanced_form($form, $form_state);
+    _search_config_set_string_overrides($form, $form_state);
+    if (isset($form['advanced'])) {
+      _search_config_advanced_form($form, $form_state);
+    }
   }
 }
 
@@ -220,8 +250,7 @@ function search_config_form_search_admin_settings_alter(&$form, $form_state) {
  * Additional submit handler to save the additional fields added by the form alter.
  */
 function search_config_search_admin_settings_alter(&$form, $form_state) {
-  variable_set('search_config_string_overrides', $form_state['values']['content_node_search_config']['string_overrides']);
-  unset($form_state['values']['content_node_search_config']['string_overrides']);
+  variable_set('search_config_string_overrides', $form_state['values']['search_config_string_overrides']);
   variable_set('search_config', $form_state['values']['content_node_search_config']);
 }
 
@@ -258,4 +287,62 @@ function search_config_get_roles_by_permission($permission) {
             ->condition('permission', $permission)
             ->execute()
             ->fetchCol();
+}
+
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function search_config_form_node_form_alter(&$form, $form_state) {
+  if (!user_access('admin node search exlusions')) {
+    return;
+  }
+
+  $node = $form['#node'];
+  $default_value = 0;
+  if (!empty($node->nid)) {
+    $default_value = (int) db_query_range('SELECT 1 FROM {search_config_exclude} WHERE entity_id = :id AND entity_type = :type', 0, 1, array(':id' => $node->nid, ':type' => 'node'))->fetchField();
+  }
+  $element = array(
+    '#type' => 'checkbox',
+    '#title' => t('Exclude from search'),
+    '#default_value' => $default_value,
+  );
+
+  // Align with normal publishing options if possible.
+  if (user_access('administer nodes')) {
+    $form['options']['search_config_exclude'] = $element;
+  }
+  else {
+    $form['search_config_exclude'] = $element;
+  }
+}
+
+/**
+ * Implements hook_node_insert().
+ *
+ * Inserts the excluded flag for both node insert and update hooks.
+ */
+function search_config_node_insert($node) {
+  if (!empty($node->search_config_exclude)) {
+    $record = array(
+      'entity_type' => 'node',
+      'entity_id' => $node->nid,
+      'exclude' => 1,
+    );
+    drupal_write_record('search_config_exclude', $record);
+  }
+}
+
+/**
+ * Implements hook_node_update().
+ *
+ * Deletes any existing records and calls search_config_node_insert() to insert
+ * any required rows.
+ */
+function search_config_node_update($node) {
+  if (isset($node->search_config_exclude)) {
+    db_delete('search_config_exclude')->condition('entity_id', $node->nid)->condition('entity_type', 'node')->execute();
+    search_config_node_insert($node);
+  }
 }

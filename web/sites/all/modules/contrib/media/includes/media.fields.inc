@@ -133,6 +133,9 @@ function media_field_widget_form(&$form, &$form_state, $field, $instance, $langc
     // Set the default value.
     $element['#default_value'] = !empty($items) ? $items[0] : $defaults;
     // If there's only one field, return it as delta 0.
+    if (empty($element['#default_value']['fid'])) {
+      $element['#description'] = theme('media_upload_help', array('description' => $element['#description']));
+    }
     $elements = array($element);
   }
   else {
@@ -167,6 +170,7 @@ function media_field_widget_form(&$form, &$form_state, $field, $instance, $langc
     // field. These are added here so that they may be referenced easily through
     // a hook_form_alter().
     $elements['#file_upload_title'] = t('Attach media');
+    $elements['#file_upload_description'] = theme('media_upload_help', array('description' => ''));
   }
 
   return $elements;
@@ -357,7 +361,7 @@ function media_field_widget_submit($form, &$form_state) {
   $langcode = $element['#language'];
   $parents = $element['#field_parents'];
 
-  $submitted_values = drupal_array_get_nested_value($form_state['values'], array_slice($button['#array_parents'], 0, -2));
+  $submitted_values = drupal_array_get_nested_value($form_state['values'], array_slice($button['#parents'], 0, -2));
   foreach ($submitted_values as $delta => $submitted_value) {
     if (!$submitted_value['fid']) {
       unset($submitted_values[$delta]);
@@ -368,7 +372,7 @@ function media_field_widget_submit($form, &$form_state) {
   $submitted_values = array_values($submitted_values);
 
   // Update form_state values.
-  drupal_array_set_nested_value($form_state['values'], array_slice($button['#array_parents'], 0, -2), $submitted_values);
+  drupal_array_set_nested_value($form_state['values'], array_slice($button['#parents'], 0, -2), $submitted_values);
 
   // Update items.
   $field_state = field_form_get_state($parents, $field_name, $langcode, $form_state);
@@ -423,6 +427,7 @@ function theme_media_widget_multiple($variables) {
     );
   }
   $headers[] = t('Weight');
+  $headers[] = t('Operations');
 
   // Get our list of widgets in order (needed when the form comes back after
   // preview or failed validation).
@@ -437,6 +442,7 @@ function theme_media_widget_multiple($variables) {
     // Save the uploading row for last.
     if ($widget['#file'] == FALSE) {
       $widget['#title'] = $element['#file_upload_title'];
+      $widget['#description'] = $element['#file_upload_description'];
       continue;
     }
 
@@ -485,13 +491,7 @@ function theme_media_widget_multiple($variables) {
       $row[] = $display;
     }
     $row[] = $weight;
-
-    // Only show the operations column if the user has operations to perform.
-    if (!empty($operations)) {
-      $headers[] = t('Operations');
-      $row[] = $operations;
-    }
-
+    $row[] = $operations;
     $rows[] = array(
       'data' => $row,
       'class' => isset($widget['#attributes']['class']) ? array_merge($widget['#attributes']['class'], array('draggable')) : array('draggable'),
@@ -504,6 +504,28 @@ function theme_media_widget_multiple($variables) {
   $output = empty($rows) ? '' : theme('table', array('header' => $headers, 'rows' => $rows, 'attributes' => array('id' => $table_id)));
   $output .= drupal_render_children($element);
   return $output;
+}
+
+/**
+ * Returns HTML for help text.
+ *
+ * @param $variables
+ *   An associative array containing:
+ *   - description: The normal description for this field, specified by the
+ *     user.
+ *
+ * @ingroup themeable
+ */
+function theme_media_upload_help($variables) {
+  $description = $variables['description'];
+
+  $descriptions = array();
+
+  if (strlen($description)) {
+    $descriptions[] = $description;
+  }
+
+  return implode('<br />', $descriptions);
 }
 
 /**

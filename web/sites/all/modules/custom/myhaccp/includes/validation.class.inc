@@ -249,10 +249,10 @@ class Validator {
         // This field has failed validation and needs to have a message
         // displayed.
         $message = array_get($this->getForm(), $target . '.#attributes.data-parsley-error-message', '');
-        watchdog('MyHACCP', 'Validation error, message for field %field on stage %stage is missing', array(
-          '%field' => $target,
-          '%stage' => $stage_name,
-        ), WATCHDOG_DEBUG);
+//        watchdog('MyHACCP', 'Validation error, message for field %field on stage %stage is missing', array(
+//          '%field' => $target,
+//          '%stage' => $stage_name,
+//        ), WATCHDOG_DEBUG);
         $form_state = $this->getFormState();
         $form_state['values']['validate'][$stage_name][$target] = $message;
         $this->setFormState($form_state);

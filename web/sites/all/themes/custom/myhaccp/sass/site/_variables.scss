@@ -113,3 +113,6 @@ $forms_max-width: 800px;
 
 // Use block instead of zoom layout hack for IE6/7 to pass validation.
 $default-has-layout-approach: block;
+$browser-minimum-versions: (
+  'ie': "8"
+);

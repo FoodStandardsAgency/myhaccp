@@ -38,12 +38,18 @@ It will start at <strong>@start</strong> through to <strong>@end</strong>.</p>',
     )
   );
 
+  $empty_form = array();
+  $empty_step = '';
+  $form = preparatory_c_2($empty_form, $empty_step);
+
   // Physical hazards.
   $physical_hazards = array();
+  $physical_c_2_options = preparatory_c_2_physical_get_options ($form_options = FALSE);
   if (!empty($preparatory_c_2['physical_c_4']['physical'])) {
     foreach ($preparatory_c_2['physical_c_4']['physical'] as $key => $value) {
-      if ($key === $value) {
-        $physical_hazards[] = $value;
+      if ($key === $value && isset($form['preparatory_c_2']['wrapper']['physical_c_4']['physical']['#options'][$key])) {
+        // Append the PDF output value to the $chemical_hazards array for output in the PDF.
+        $physical_hazards[] = $physical_c_2_options[$key]['pdf_output'];
       }
     }
   }
@@ -54,10 +60,16 @@ It will start at <strong>@start</strong> through to <strong>@end</strong>.</p>',
 
   // Chemical hazards.
   $chemical_hazards = array();
+  // Load options array for /tool/study/2/preparatory/c-2 (form_options = FALSE to return the PDF output values.)
+  $chemical_c_2_options = preparatory_c_2_chemical_get_options ($form_options = FALSE);
+
+  // Only continue if the array is populated.
   if (!empty($preparatory_c_2['chemical_c_4']['chemical'])) {
+    // Loop through each $key => $value item.
     foreach ($preparatory_c_2['chemical_c_4']['chemical'] as $key => $value) {
-      if ($key === $value) {
-        $chemical_hazards[] = $value;
+      if ($key === $value && isset($form['preparatory_c_2']['wrapper']['chemical_c_4']['chemical']['#options'][$key])) {
+        // Append the PDF output value to the $chemical_hazards array for output in the PDF.
+        $chemical_hazards[] = $chemical_c_2_options[$key]['pdf_output'];
       }
     }
   }
@@ -68,10 +80,13 @@ It will start at <strong>@start</strong> through to <strong>@end</strong>.</p>',
 
   // Biological hazards.
   $biological_hazards = array();
+  // Load options array for /tool/study/2/preparatory/c-2
+  // (form_options = FALSE to return the PDF output values.)
+  $preparatory_c_2_biological_options = preparatory_c_2_biological_get_options($form_options = FALSE);
   if (!empty($preparatory_c_2['biological_c_4']['biological'])) {
     foreach ($preparatory_c_2['biological_c_4']['biological'] as $key => $value) {
-      if ($key === $value) {
-        $biological_hazards[] = $value;
+      if ($key === $value && isset($form['preparatory_c_2']['wrapper']['biological_c_4']['biological']['#options'][$key])) {
+        $biological_hazards[] = $preparatory_c_2_biological_options[$key]['pdf_output'];
       }
     }
   }
@@ -82,10 +97,13 @@ It will start at <strong>@start</strong> through to <strong>@end</strong>.</p>',
 
   // Allergens hazards.
   $allergens_hazards = array();
+  // Load options array for /tool/study/2/preparatory/c-2
+  // (form_options = FALSE to return the PDF output values.)
+  $preparatory_c_2_allergens_options = preparatory_c_2_allergens_get_options($form_options = FALSE);
   if (!empty($preparatory_c_2['allergens_c_4']['allergens'])) {
     foreach ($preparatory_c_2['allergens_c_4']['allergens'] as $key => $value) {
-      if ($key === $value) {
-        $allergens_hazards[] = $value;
+      if ($key === $value && isset($form['preparatory_c_2']['wrapper']['allergens_c_4']['allergens']['#options'][$key])) {
+        $allergens_hazards[] = $preparatory_c_2_allergens_options[$key]['pdf_output'];
       }
     }
   }

@@ -11,6 +11,7 @@ function linkit_linkit_allowed_field_types() {
   $allowed_field_types = array(
     'text',
     'text_long',
+    'text_with_summary',
     'link_field',
   );
   return $allowed_field_types;
@@ -35,6 +36,7 @@ function linkit_linkit_allowed_field_elements() {
   $allowed_elements = array(
     'textfield',
     'textarea',
+    'textarea_with_summary',
     'link_field',
   );
   return $allowed_elements;
@@ -59,6 +61,7 @@ function linkit_linkit_allowed_field_widget_types() {
   $allowed_field_widget_types = array(
     'text_textfield',
     'text_textarea',
+    'text_textarea_with_summary',
     'link_field',
   );
   return $allowed_field_widget_types;
@@ -81,6 +84,10 @@ function linkit_get_allowed_field_widget_types() {
  */
 function linkit_form_field_ui_field_edit_form_alter(&$form, &$form_state) {
   $instance = $form['#instance'];
+
+  if (isset($form['locked']) && $form['locked']) {
+    return;
+  }
 
   // Get allowed field types.
   $allowed_field_types = linkit_get_allowed_field_types();
@@ -107,7 +114,7 @@ function linkit_form_field_ui_field_edit_form_alter(&$form, &$form_state) {
       '#title' => t('Enable Linkit for this field.'),
       '#default_value' => isset($instance['settings']['linkit']['enable'])
         ? $instance['settings']['linkit']['enable'] : 0,
-      '#description' => t('Do not use this for CKeditor and TinyMCE fields.'),
+      '#description' => t('Do not use this for CKeditor and TinyMCE fields. You will have to configure this on the wysiwyg/ckeditor profile.'),
     );
 
     $profiles = linkit_profile_field_load_all();
@@ -142,7 +149,7 @@ function linkit_form_field_ui_field_edit_form_alter(&$form, &$form_state) {
       '#type' => 'textfield',
       '#title' => t('Button text that activates linkit modal.'),
       '#default_value' => isset($instance['settings']['linkit']['button_text'])
-        ? $instance['settings']['linkit']['button_text'] : 'Search',
+        ? $instance['settings']['linkit']['button_text'] : t('Search'),
     );
   }
 }
@@ -178,8 +185,14 @@ function linkit_process_field_element($element, &$form_state, &$complete_form) {
 
     // Load the profile.
     $profile = linkit_profile_load($instance['settings']['linkit']['profile']);
+    if (!$profile) {
+      return $element;
+    }
     // Load the insert plugin for the profile.
     $insert_plugin = linkit_insert_plugin_load($profile->data['insert_plugin']['plugin']);
+    if ($insert_plugin === NULL) {
+      return $element;
+    }
 
     // Set the field ID.
     $field_id = $element['#id'];

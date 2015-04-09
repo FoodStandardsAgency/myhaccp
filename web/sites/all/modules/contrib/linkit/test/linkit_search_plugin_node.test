@@ -38,6 +38,9 @@ class LinkitsearchPluginNodeTestCase extends LinkitsearchPluginTestCase {
           'group_by_bundle' => 0,
           'include_unpublished' => 0,
         ),
+        'insert_plugin' => array(
+          'url_method' => LINKIT_URL_METHOD_RAW,
+        ),
       )
     ));
   }
