@@ -52,32 +52,44 @@ function myhaccp_preprocess_04_product(&$variables) {
 
   // 2. Is the product specifically designed for consumption by the general public?
   if (!empty($preparatory_f['f_2'])) {
-    $variables['f_2'] = ($preparatory_f['f_2'] == 'yes' ? t('The product is suitable for consumption by the general public.') : '');
+    $variables['f_2'] = t('The product !isnot suitable for consumption by the general public.', array(
+      '!isnot' => $preparatory_f['f_2'] == 'yes' ? t('is') : t('is not'),
+    ));
   }
 
   // 3. Is the product specifically designed for the young?
   if (!empty($preparatory_f['f_3'])) {
-    $variables['f_3'] = ($preparatory_f['f_3'] == 'yes' ? t('The product is suitable for the young.') : '');
+    $variables['f_3'] = t('The product !isnot suitable for the young.', array(
+      '!isnot' => $preparatory_f['f_3'] == 'yes' ? t('is') : t('is not'),
+    ));
   }
 
   // 4. Is the product specifically designed for the elderly?
   if (!empty($preparatory_f['f_4'])) {
-    $variables['f_4'] = ($preparatory_f['f_4'] == 'yes' ? t('The product is suitable for the elderly.') : '');
+    $variables['f_4'] = t('The product !isnot suitable for the elderly.', array(
+      '!isnot' => $preparatory_f['f_4'] == 'yes' ? t('is') : t('is not'),
+    ));
   }
 
   // 5. Is the product specifically designed for pregnant ladies?
   if (!empty($preparatory_f['f_5'])) {
-    $variables['f_5'] = ($preparatory_f['f_5'] == 'yes' ? t('The product is suitable for pregnant ladies.') : '');
+    $variables['f_5'] = t('The product !isnot suitable for pregnant ladies.', array(
+      '!isnot' => $preparatory_f['f_5'] == 'yes' ? t('is') : t('is not'),
+    ));
   }
 
   // 6. Is the product specifically designed for the immunosuppressed / immunocompromised?
   if (!empty($preparatory_f['f_6'])) {
-    $variables['f_6'] = ($preparatory_f['f_6'] == 'yes' ? t('The product is suitable for the immunosuppressed / immunocompromised.') : '');
+    $variables['f_6'] = t('The product !isnot suitable for the immunosuppressed / immunocompromised.', array(
+      '!isnot' => $preparatory_f['f_6'] == 'yes' ? t('is') : t('is not'),
+    ));
   }
 
   // 7. Is the product specifically designed for people with allergies or intolerances?
   if (!empty($preparatory_f['f_7'])) {
-    $variables['f_7'] = ($preparatory_f['f_7'] == 'yes' ? t('The product is suitable for people with allergies or intolerances.') : '');
+    $variables['f_7'] = t('The product !isnot suitable for people with allergies or intolerances.', array(
+      '!isnot' => $preparatory_f['f_7'] == 'yes' ? t('is') : t('is not'),
+    ));
   }
 
   // 8. Detail below how you have considered the likely abuse/unintended use of the product by the consumer or purchaser.
