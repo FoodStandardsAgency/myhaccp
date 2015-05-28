@@ -67,6 +67,11 @@ function taxonomy_access_fix_form_taxonomy_overview_terms_alter(&$form, &$form_s
     return;
   }
 
+  // Wrong part of the form (ie. reset): bail out.
+  if (!isset($form['#vocabulary'])) {
+    return;
+  }
+
   $vocabulary = $form['#vocabulary'];
   $can_edit = user_access('edit terms in ' . $vocabulary->vid);
 
