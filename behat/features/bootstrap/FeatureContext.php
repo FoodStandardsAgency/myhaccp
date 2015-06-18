@@ -177,6 +177,65 @@ class FeatureContext extends Drupal\DrupalExtension\Context\DrupalContext {
     );
   }
 
+  protected function principle_2_2() {
+    return array(
+      new Step\When('I select the radio button "Yes" in row "1" "form-type-radios"'),
+      new Step\When('I select the radio button "Yes" in row "2" "form-type-radios"'),
+      new Step\When('I select the radio button "Yes" in row "1" "ccp"'),
+      new Step\When('I select the radio button "Yes" in row "2" "ccp"'),
+    );
+  }
+
+  protected function principle_3() {
+    return array(
+      new Step\When('I fill in "edit-principle-3-salmonella-spp-3-1" with "A critical limit"'),
+      new Step\When('I fill in "edit-principle-3-salmonella-spp-3-2" with "The limit was determined by a technical method"'),
+      new Step\When('I select "yes" from "principle_3[salmonella-spp][3_3]"'),
+      new Step\When('I select "yes" from "principle_3[salmonella-spp][3_4]"'),
+      new Step\When('I select "no" from "principle_3[salmonella-spp][3_5]"'),
+      new Step\When('I fill in "edit-principle-3-stones-3-1" with "Another critical limit"'),
+      new Step\When('I fill in "edit-principle-3-stones-3-2" with "The limit was determined by a simple method"'),
+      new Step\When('I select "yes" from "principle_3[stones][3_3]"'),
+      new Step\When('I select "yes" from "principle_3[stones][3_4]"'),
+      new Step\When('I select "no" from "principle_3[stones][3_5]"'),
+    );
+  }
+
+  protected function principle_4() {
+    return array(
+      new Step\When('I fill in "edit-principle-4-salmonella-spp-4-1" with "Some monitoring activities"'),
+      new Step\When('I fill in "edit-principle-4-salmonella-spp-4-2" with "Once a week"'),
+      new Step\When('I fill in "edit-principle-4-salmonella-spp-4-3" with "By a person"'),
+      new Step\When('I fill in "edit-principle-4-salmonella-spp-4-4" with "Wilma Flintstone"'),
+      new Step\When('I fill in "edit-principle-4-salmonella-spp-4-5" with "Fred Flintstone"'),
+      new Step\When('I fill in "edit-principle-4-salmonella-spp-4-6" with "Log Book A"'),
+      new Step\When('I select "no" from "principle_4[salmonella-spp][4_7]"'),
+      new Step\When('I fill in "edit-principle-4-stones-4-1" with "Some monitoring activities"'),
+      new Step\When('I fill in "edit-principle-4-stones-4-2" with "Twice a week"'),
+      new Step\When('I fill in "edit-principle-4-stones-4-3" with "By the chief"'),
+      new Step\When('I fill in "edit-principle-4-stones-4-4" with "Marcus Aurelius"'),
+      new Step\When('I fill in "edit-principle-4-stones-4-6" with "Log Book B"'),
+      new Step\When('I select "no" from "principle_4[stones][4_7]"'),
+    );
+  }
+
+  protected function principle_5() {
+    return array(
+      new Step\When('I fill in "edit-principle-5-salmonella-spp-5-1" with "Discard the item"'),
+      new Step\When('I fill in "edit-principle-5-salmonella-spp-5-2" with "Chef"'),
+      new Step\When('I fill in "edit-principle-5-salmonella-spp-5-3" with "Bad product introduced"'),
+      new Step\When('I fill in "edit-principle-5-salmonella-spp-5-4" with "On a monitoring sheet"'),
+      new Step\When('I select "yes" from "principle_5[salmonella-spp][5_5]"'),
+      new Step\When('I select "yes" from "principle_5[salmonella-spp][5_6]"'),
+      new Step\When('I fill in "edit-principle-5-stones-5-1" with "Discard the item"'),
+      new Step\When('I fill in "edit-principle-5-stones-5-2" with "Chef"'),
+      new Step\When('I fill in "edit-principle-5-stones-5-3" with "Identification mistake"'),
+      new Step\When('I fill in "edit-principle-5-stones-5-4" with "On a monitoring sheet"'),
+      new Step\When('I select "yes" from "principle_5[stones][5_5]"'),
+      new Step\When('I select "yes" from "principle_5[stones][5_6]"'),
+    );
+  }
+
   /**
    * Returns an array of all stages in order.
    *
