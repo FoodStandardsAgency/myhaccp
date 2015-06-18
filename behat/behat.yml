@@ -6,11 +6,11 @@ default:
       goutte: ~
       selenium2: ~
       zombie: ~
-      base_url: http://l.myhaccp
+      base_url: http://l.myhaccp.dev
     Drupal\DrupalExtension\Extension:
       api_driver: "drupal"
       blackbox: ~
       drush:
-        root: /vagrant_sites/l.myhaccp/web
+        root: /vagrant_sites/l.myhaccp.dev/web
       drupal:
-        drupal_root: /vagrant_sites/l.myhaccp/web
+        drupal_root: /vagrant_sites/l.myhaccp.dev/web
