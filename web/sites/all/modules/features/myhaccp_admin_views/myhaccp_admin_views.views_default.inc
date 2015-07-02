@@ -232,13 +232,6 @@ function myhaccp_admin_views_views_default_views() {
   $handler->display->display_options['filters']['field_contact_consent_value']['expose']['label'] = 'I agree to the FSA contacting me for any research or surveys related to the use of this site. (field_contact_consent)';
   $handler->display->display_options['filters']['field_contact_consent_value']['expose']['operator'] = 'field_contact_consent_value_op';
   $handler->display->display_options['filters']['field_contact_consent_value']['expose']['identifier'] = 'field_contact_consent_value';
-  $handler->display->display_options['filters']['field_contact_consent_value']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-  );
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
@@ -250,6 +243,46 @@ function myhaccp_admin_views_views_default_views() {
   $handler->display->display_options['pager']['options']['quantity'] = '9';
   $handler->display->display_options['pager']['options']['expose']['items_per_page'] = TRUE;
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options'] = '10, 50, 100, 500';
+  $handler->display->display_options['defaults']['header'] = FALSE;
+  /* Header: Global: Result summary */
+  $handler->display->display_options['header']['result']['id'] = 'result';
+  $handler->display->display_options['header']['result']['table'] = 'views';
+  $handler->display->display_options['header']['result']['field'] = 'result';
+  $handler->display->display_options['defaults']['footer'] = FALSE;
+  /* Footer: Global: Text area */
+  $handler->display->display_options['footer']['area']['id'] = 'area';
+  $handler->display->display_options['footer']['area']['table'] = 'views';
+  $handler->display->display_options['footer']['area']['field'] = 'area';
+  $handler->display->display_options['footer']['area']['content'] = 'Note that the CSV export below will only export users who have consented to be contacted.';
+  $handler->display->display_options['footer']['area']['format'] = 'full_html';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Profile: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'profile';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'main' => 'main',
+  );
+  /* Filter criterion: Profile: I agree to the FSA contacting me for any research or surveys related to the use of this site. (field_contact_consent) */
+  $handler->display->display_options['filters']['field_contact_consent_value']['id'] = 'field_contact_consent_value';
+  $handler->display->display_options['filters']['field_contact_consent_value']['table'] = 'field_data_field_contact_consent';
+  $handler->display->display_options['filters']['field_contact_consent_value']['field'] = 'field_contact_consent_value';
+  $handler->display->display_options['filters']['field_contact_consent_value']['value'] = array(
+    1 => '1',
+  );
+  $handler->display->display_options['filters']['field_contact_consent_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_contact_consent_value']['expose']['operator_id'] = 'field_contact_consent_value_op';
+  $handler->display->display_options['filters']['field_contact_consent_value']['expose']['label'] = 'User consents to contact';
+  $handler->display->display_options['filters']['field_contact_consent_value']['expose']['operator'] = 'field_contact_consent_value_op';
+  $handler->display->display_options['filters']['field_contact_consent_value']['expose']['identifier'] = 'field_contact_consent_value';
+  $handler->display->display_options['filters']['field_contact_consent_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
   $handler->display->display_options['path'] = 'admin/user-profiles';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'User Profiles';
@@ -271,11 +304,33 @@ function myhaccp_admin_views_views_default_views() {
   $handler->display->display_options['style_options']['replace_newlines'] = 0;
   $handler->display->display_options['style_options']['header'] = 1;
   $handler->display->display_options['style_options']['keep_html'] = 0;
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Profile: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'profile';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'main' => 'main',
+  );
+  /* Filter criterion: Profile: I agree to the FSA contacting me for any research or surveys related to the use of this site. (field_contact_consent) */
+  $handler->display->display_options['filters']['field_contact_consent_value']['id'] = 'field_contact_consent_value';
+  $handler->display->display_options['filters']['field_contact_consent_value']['table'] = 'field_data_field_contact_consent';
+  $handler->display->display_options['filters']['field_contact_consent_value']['field'] = 'field_contact_consent_value';
+  $handler->display->display_options['filters']['field_contact_consent_value']['value'] = array(
+    1 => '1',
+  );
+  $handler->display->display_options['filters']['field_contact_consent_value']['expose']['operator_id'] = 'field_contact_consent_value_op';
+  $handler->display->display_options['filters']['field_contact_consent_value']['expose']['label'] = 'I agree to the FSA contacting me for any research or surveys related to the use of this site. (field_contact_consent)';
+  $handler->display->display_options['filters']['field_contact_consent_value']['expose']['operator'] = 'field_contact_consent_value_op';
+  $handler->display->display_options['filters']['field_contact_consent_value']['expose']['identifier'] = 'field_contact_consent_value';
   $handler->display->display_options['path'] = 'admin/user_profiles/csv';
   $handler->display->display_options['displays'] = array(
     'page' => 'page',
     'default' => 0,
   );
+  $handler->display->display_options['use_batch'] = 'batch';
+  $handler->display->display_options['segment_size'] = '100';
   $export['user_profiles'] = $view;
 
   return $export;
