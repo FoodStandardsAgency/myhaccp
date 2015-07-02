@@ -236,6 +236,26 @@ class FeatureContext extends Drupal\DrupalExtension\Context\DrupalContext {
     );
   }
 
+  protected function principle_6() {
+    return array(
+      new Step\When('I fill in "edit-principle-6-6-1" with "Challenge testing the equipment"'),
+      new Step\When('I fill in "edit-principle-6-6-2" with "Jane Doe"'),
+      new Step\When('I select "yes" from "principle_6[6_3]"'),
+      new Step\When('I check the box "principle_6[6_4][1][ccps]"'),
+      new Step\When('I check the box "Records of monitoring"'),
+      new Step\When('I check the box "Microbiological testing"'),
+      new Step\When('I check the box "Third party certification(SOFHT, BRC)"'),
+      new Step\When('I check the box "Deviations"'),
+      new Step\When('I check the box "Product disposal"'),
+      new Step\When('I fill in "edit-principle-6-6-5" with "No additional verification activity"'),
+      new Step\When('I select the radio button "Yes" with the id "edit-principle-6-6-6-yes"'),
+      new Step\When('I fill in "edit-principle-6-6-7" with "Annually"'),
+      new Step\When('I fill in "edit-principle-6-6-8" with "Jane Doe"'),
+      new Step\When('I check the box "Change of raw material supplier"'),
+      new Step\When('I select the radio button "Yes" with the id "edit-principle-6-6-11-yes"'),
+    );
+  }
+
   /**
    * Returns an array of all stages in order.
    *
