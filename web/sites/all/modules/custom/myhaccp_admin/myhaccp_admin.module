@@ -161,7 +161,9 @@ function myhaccp_admin_get_sizes_per_business_type($business_type) {
  * Alter the consent exposed filter to display better options.
  */
 function myhaccp_admin_form_views_exposed_form_alter(&$form, $form_state) {
-  $form['field_contact_consent_value']['#options']['All'] = '- Either -';
-  $form['field_contact_consent_value']['#options'][0] = 'No';
-  $form['field_contact_consent_value']['#options'][1] = 'Yes';
+  if (isset($form['field_contact_consent_value'])) {
+    $form['field_contact_consent_value']['#options']['All'] = '- Either -';
+    $form['field_contact_consent_value']['#options'][0] = 'No';
+    $form['field_contact_consent_value']['#options'][1] = 'Yes';
+  }
 }
