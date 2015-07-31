@@ -817,16 +817,6 @@ function myhaccp_prepare_more_link($nid) {
     ),
   );
 
-  //      'title' => '',
-//      'width' => '85%',
-//      'position' => array(
-//        'center',
-//        'bottom',
-//      ),
-//      'show' => 500,
-//      'hide' => 500,
-//      'draggable' => FALSE,
-//    );
   $destination = 'help/' . $nid;
 
   // Return the link.

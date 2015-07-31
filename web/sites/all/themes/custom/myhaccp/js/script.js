@@ -3,12 +3,12 @@
     attach: function(context) {
       // Attach a click event to the dialog background so clicking it closes
       // the dialog.
-      $('#dialog').on('dialogopen', function() {
+      $('#drupal-modal').on('dialogopen', function() {
         $('.ui-widget-overlay').bind('click', function() {
-          $("#dialog").dialog('close');
+          $("#drupal-modal").dialog('close');
         });
       });
-      // Attach a click handler for the dialog's help menu links.
+      //// Attach a click handler for the dialog's help menu links.
       $('.help-menu a').click(function(e) {
         // Get href attribute.
         var link = $(this).attr('href');
@@ -19,11 +19,12 @@
         // Set the window's scroll position to 95 pixels down to avoid the
         // jump to top that is the default.
         $(window).scrollTop(-95);
+        $('#drupal-modal').scrollTop(-20);
         event.preventDefault();
       });
       // Add a click handler to close the dialog from the footer link.
       $('footer a[href$="#close"]').click(function() {
-        $('#dialog').dialog('close');
+        $('#drupal-modal').dialog('close');
       });
     }
   };
@@ -94,7 +95,7 @@
         });
       });
 
-      $('#dialog .help-menu a').click(function(e) {
+      $('#dialogopen .help-menu a').click(function(e) {
         var topic = $(this).text();
         ga('send', {
           'hitType': 'event',
@@ -106,7 +107,7 @@
       });
 
       // Send an event to GA when the help dialog is closed.
-      $('#dialog').on('dialogclose', function() {
+      $('#dialogopen').on('dialogclose', function() {
         ga('send', {
           'hitType': 'event',
           'eventCategory': 'help',
