@@ -124,12 +124,12 @@ function myhaccp_menu() {
     'file' => 'includes/myhaccp.pdf.inc',
     'type' => MENU_NORMAL_ITEM,
   );
-  $items['help/%dialog_js/%'] = array(
+  $items['help/%'] = array(
     'title' => 'Help',
-    'page arguments' => array(1, 2),
+    'page arguments' => array(1),
     'page callback' => 'myhaccp_help_modal',
     'access callback' => TRUE,
-    'type' => MENU_CALLBACK,
+    'type' => MENU_NORMAL_ITEM,
   );
   return $items;
 }
@@ -725,85 +725,66 @@ function myhaccp_prepare_values($data, &$form_state) {
  * @return string
  *   The contents of the node, that will fill the modal window.
  */
-function myhaccp_help_modal($js = FALSE, $nid = FALSE) {
+function myhaccp_help_modal($nid = FALSE) {
   if (!$nid) {
     // If no nid was provided then just forward to the help/guidance page.
     drupal_goto('help/guidance');
   }
-  if ($js) {
-    // Load all the help documents.
-    global $container;
-    $study = $container['study'];
-    $help = $container['configuration']->getHelpPages();
-    $node_content = '<div class="help-content">';
-    // Iterate over the two phases.
-    foreach ($study->getPhases() as $phase) {
-      // Get all the stages from the phases and loop over them.
-      foreach ($phase->getStages() as $stage) {
-        // Check there is a help page for this stage.
-        if (isset($help[$stage->getName()])) {
-          // Load the help node.
-          $node = node_load($help[$stage->getName()]);
-          if ($node) {
-            // If this is the current page's help show an active class on start.
-            if ($nid == $node->nid) {
-              $class = 'active';
-            }
-            else {
-              $class = 'hidden';
-            }
-            // Render the node article.
-            $article = render(node_view($node, 'full'));
-            // Strip the heading.
-            $node_content .= str_replace('class="node', 'id="help-' . $node->nid . '" class="' . $class . ' node', $article);
-            $node_content .= '</article>';
-          }
-          $phasename = $phase->getName();
-          $item = '<a href="#help-' . $node->nid . '"';
+  // Load all the help documents.
+  global $container;
+  $study = $container['study'];
+  $help = $container['configuration']->getHelpPages();
+  $node_content = '<div class="help-content">';
+  // Iterate over the two phases.
+  foreach ($study->getPhases() as $phase) {
+    // Get all the stages from the phases and loop over them.
+    foreach ($phase->getStages() as $stage) {
+      // Check there is a help page for this stage.
+      if (isset($help[$stage->getName()])) {
+        // Load the help node.
+        $node = node_load($help[$stage->getName()]);
+        if ($node) {
+          // If this is the current page's help show an active class on start.
           if ($nid == $node->nid) {
-            // Add an active class.
-            $item .= ' class="active"';
+            $class = 'active';
           }
-          $item .= '>' . $node->title . '</a>';
-          $menu_items[$phasename][$node->nid] = $item;
+          else {
+            $class = 'hidden';
+          }
+          // Render the node article.
+          $node_view = node_view($node, 'full');
+          $article = render($node_view);
+          // Strip the heading.
+          $node_content .= str_replace('class="node', 'id="help-' . $node->nid . '" class="' . $class . ' node', $article);
+          $node_content .= '</article>';
         }
+        $phasename = $phase->getName();
+        $item = '<a href="#help-' . $node->nid . '"';
+        if ($nid == $node->nid) {
+          // Add an active class.
+          $item .= ' class="active"';
+        }
+        $item .= '>' . $node->title . '</a>';
+        $menu_items[$phasename][$node->nid] = $item;
       }
     }
-    $node_content .= '</div>';
-
-    $menu_prep = $menu_items['preparatory'];
-    $menu_principle = $menu_items['principle'];
-
-    $menu_prep = implode('</li><li>', $menu_prep);
-    $menu_principle = implode('</li><li>', $menu_principle);
-
-    $menu = '<nav class="help-menu"><h2>Help topics</h2><h3>Preparatory</h3><ul class="phase"><li>' . $menu_prep . '</li></ul>';
-    $menu .= '<h3>Principles</h3><ul class="phase"><li>' . $menu_principle . '</li></ul></nav>';
-
-    $contents = $menu . $node_content;
-    // Add a footer close button.
-    $contents .= '<footer class="dialog-footer"><a href="#close" class="close-button">Close help</a></footer>';
-
-    // Return the modal with node title and rendered contents.
-    $commands = array();
-    $options = array(
-      'title' => '',
-      'width' => '85%',
-      'position' => array(
-        'center',
-        'bottom',
-      ),
-      'show' => 500,
-      'hide' => 500,
-      'draggable' => FALSE,
-    );
-    $commands[] = dialog_command_display($contents, $options);
-    ajax_deliver(array('#type' => 'ajax', '#commands' => $commands));
-    drupal_exit();
   }
+  $node_content .= '</div>';
 
-  // We don't have js so forward on to the help node.
-  drupal_goto('node/' . $nid);
+  $menu_prep = $menu_items['preparatory'];
+  $menu_principle = $menu_items['principle'];
+
+  $menu_prep = implode('</li><li>', $menu_prep);
+  $menu_principle = implode('</li><li>', $menu_principle);
+
+  $menu = '<nav class="help-menu"><h2>Help topics</h2><h3>Preparatory</h3><ul class="phase"><li>' . $menu_prep . '</li></ul>';
+  $menu .= '<h3>Principles</h3><ul class="phase"><li>' . $menu_principle . '</li></ul></nav>';
+
+  $contents = $menu . $node_content;
+  // Add a footer close button.
+  $contents .= '<footer class="dialog-footer"><a href="#close" class="close-button">Close help</a></footer>';
+
+  return array('#markup' => $contents);
 }
 
 /**
@@ -816,8 +797,9 @@ function myhaccp_help_modal($js = FALSE, $nid = FALSE) {
  *   The rendered link.
  */
 function myhaccp_prepare_more_link($nid) {
-  // Add the dialog library.
-  drupal_add_library('dialog', 'dialog');
+  // Attach the library for handling the dialog in the response.
+  drupal_add_library('dialog', 'drupal.dialog.ajax');
+
   $node = node_load($nid);
   // Prepare the options.
   $options = array(
@@ -825,15 +807,27 @@ function myhaccp_prepare_more_link($nid) {
     'attributes' => array(
       'class' => array(
         'use-ajax',
-        'use-dialog',
         'more-link',
       ),
+      'data-dialog' => 'true',
+      'data-dialog-options' => '{"width":"85%","show":"500","hide":"500","draggable":"false"}',
       'title' => 'Link through to further guidance on this subject.',
       'target' => '_blank',
       'data-topic' => $node->title,
     ),
   );
-  $destination = 'help/nojs/' . $nid;
+
+  //      'title' => '',
+//      'width' => '85%',
+//      'position' => array(
+//        'center',
+//        'bottom',
+//      ),
+//      'show' => 500,
+//      'hide' => 500,
+//      'draggable' => FALSE,
+//    );
+  $destination = 'help/' . $nid;
 
   // Return the link.
   return l(t('More information &raquo;'), $destination, $options);
