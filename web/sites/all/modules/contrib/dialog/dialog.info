@@ -1,12 +1,15 @@
-name = Dialog API
-description = Dialog window API based on jQuery UI Dialog and CTools ajax.
+name = Dialog
+description = Provides an API for opening content in an interactive overlay.
+package = Dialog
 core = 7.x
-package = User interface
-files[] = dialog.module
 
-; Information added by drupal.org packaging script on 2013-09-30
-version = "7.x-1.x-dev"
+dependencies[] = jquery_update
+
+files[] = dialog.test
+
+; Information added by Drupal.org packaging script on 2015-07-15
+version = "7.x-2.0-alpha2"
 core = "7.x"
 project = "dialog"
-datestamp = "1380569460"
+datestamp = "1436975340"
 

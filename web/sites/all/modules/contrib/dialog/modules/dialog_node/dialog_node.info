@@ -1,10 +1,10 @@
-name = Dialog User
-description = Moves various user actions into interactive overlays.
+name = Dialog Node
+description = Moves various node actions into interactive overlays.
 package = Dialog
 core = 7.x
 
 dependencies[] = dialog
-dependencies[] = user
+dependencies[] = node
 
 ; Information added by Drupal.org packaging script on 2015-07-15
 version = "7.x-2.0-alpha2"
