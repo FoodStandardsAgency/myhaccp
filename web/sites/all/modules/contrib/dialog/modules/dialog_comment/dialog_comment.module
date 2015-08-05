@@ -10,7 +10,7 @@
  */
 function dialog_comment_node_view($node, $view_mode, $langcode) {
   // Attach the library for handling the dialog in the response.
-  $node->content['#attached']['library'][] = array('dialog', 'drupal.dialog.ajax');
+  $node->content['#attached']['library'][] = array('system', 'drupal.ajax');
 }
 
 /**

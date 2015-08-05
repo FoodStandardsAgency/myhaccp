@@ -34,11 +34,7 @@ function dialog_command_close_dialog($selector = NULL, $persist = FALSE) {
  *   An array suitable for use with the ajax_render() function.
  */
 function dialog_command_close_modal_dialog($persist = FALSE) {
-  return array(
-    'command' => 'closeDialog',
-    'selector' => '#drupal-modal',
-    'persist' => $persist,
-  );
+  return dialog_command_close_dialog('#drupal-modal', $persist);
 }
 
 /**
@@ -63,6 +59,9 @@ function dialog_command_close_modal_dialog($persist = FALSE) {
  *   An array suitable for use with the ajax_render() function.
  */
 function dialog_command_open_dialog($selector, $title, $content, array $dialog_options = array(), $settings = NULL) {
+  // Add the library for handling the dialog in the response.
+  drupal_add_library('dialog', 'drupal.dialog.ajax');
+
   $dialog_options += array('title' => $title);
 
   if (is_array($content)) {
@@ -109,23 +108,7 @@ function dialog_command_open_dialog($selector, $title, $content, array $dialog_o
 function dialog_command_open_modal_dialog($title, $content, array $dialog_options = array(), $settings = NULL) {
   $dialog_options['modal'] = TRUE;
 
-  $dialog_options += array('title' => $title);
-
-  if (is_array($content)) {
-    $html = drupal_render($content);
-    $content = $html;
-  }
-
-  // For consistency ensure the modal option is set to TRUE or FALSE.
-  $dialog_options['modal'] = isset($dialog_options['modal']) && $dialog_options['modal'];
-
-  return array(
-    'command' => 'openDialog',
-    'selector' => '#drupal-modal',
-    'settings' => $settings,
-    'data' => $content,
-    'dialogOptions' => $dialog_options,
-  );
+  return dialog_command_open_dialog('#drupal-modal', $title, $content, $dialog_options, $settings);
 }
 
 /**
@@ -165,10 +148,5 @@ function dialog_command_set_dialog_option($selector, $option_name, $option_value
  *   An array suitable for use with the ajax_render() function.
  */
 function dialog_command_set_dialog_title($selector, $title) {
-  return array(
-    'command' => 'setDialogOption',
-    'selector' => $selector ? $selector : '#drupal-modal',
-    'optionName' => 'title',
-    'optionValue' => $title,
-  );
+  return dialog_command_set_dialog_option($selector, 'title', $title);
 }

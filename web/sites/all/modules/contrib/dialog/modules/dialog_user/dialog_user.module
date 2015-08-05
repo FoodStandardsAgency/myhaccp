@@ -12,7 +12,7 @@ function dialog_user_block_view_alter(&$data, $block) {
   switch ($block->delta) {
     case 'login':
       // Attach the library for handling the dialog in the response.
-      $data['content']['#attached']['library'][] = array('dialog', 'drupal.dialog.ajax');
+      $data['content']['#attached']['library'][] = array('system', 'drupal.ajax');
       break;
   }
 }

@@ -10,7 +10,7 @@
  */
 function dialog_node_form_node_admin_content_alter(&$form, &$form_state, $form_id) {
   // Attach the library for handling the dialog in the response.
-  $form['#attached']['library'][] = array('dialog', 'drupal.dialog.ajax');
+  $form['#attached']['library'][] = array('system', 'drupal.ajax');
 
   $admin_access = user_access('administer nodes');
 

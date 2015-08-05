@@ -142,7 +142,7 @@ function dialog_library() {
  * Implements hook_library_alter().
  */
 function dialog_library_alter(&$libraries, $module) {
-
+  // Replace the default implementation of misc/ajax.js.
   if ($module == 'system' && isset($libraries['drupal.ajax'])) {
     $path = 'misc/ajax.js';
     unset($libraries['drupal.ajax']['js'][$path]);
