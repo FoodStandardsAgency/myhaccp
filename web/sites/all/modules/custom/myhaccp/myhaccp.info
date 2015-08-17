@@ -11,5 +11,6 @@ files[] = includes/study.class.inc
 files[] = includes/configuration.class.inc
 files[] = includes/validation.class.inc
 files[] = includes/hazards.class.inc
+files[] = includes/business.class.inc
 dependencies[] = mforms
 dependencies[] = dialog

@@ -108,7 +108,7 @@ function myhaccp_update_7001() {
     ->fields(array(
       'link_path' => 'tool',
       'router_path' => 'tool',
-     ))
+    ))
     ->condition('link_path', 'prototype')
     ->execute();
 }
@@ -194,4 +194,39 @@ function myhaccp_update_7005() {
     ))
     ->condition('field_name', 'field_business_type')
     ->execute();
+}
+
+/**
+ * Add a business name field to the profile.
+ */
+function myhaccp_update_7006() {
+  $field = array(
+    'field_name' => 'field_business_name',
+    'type' => 'text',
+  );
+  field_create_field($field);
+
+  $instance = array(
+    'field_name' => 'field_business_name',
+    'entity_type' => 'profile2',
+    'label' => 'Business name',
+    'bundle' => 'main',
+    'required' => FALSE,
+    'settings' => array(),
+    'description' => t('Enter an optional business name. This is only used when printing your MyHACCP study on the cover sheet.'),
+    'widget' => array(
+      'type' => 'textfield',
+      'weight' => 5,
+    ),
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'type' => 'text_default',
+        'weight' => '5',
+        'settings' => array(),
+        'module' => 'text',
+      ),
+    ),
+  );
+  field_create_instance($instance);
 }

@@ -25,6 +25,8 @@ interface StudyInterface {
   public function setStatus($status);
 
   public function getStatus();
+
+  public function getOwner();
 }
 
 class Study implements StudyInterface {
@@ -355,5 +357,18 @@ class Study implements StudyInterface {
       ->condition('m.iid', $this->getIID());
     $status = $query->execute()->fetchField();
     return $status;
+  }
+
+  /**
+   * Returns the user object of the owner of the study.
+   */
+  public function getOwner() {
+    $iid = $this->getIID();
+    $uid = db_select('mforms_storage', 'ms')
+      ->fields('ms', array('uid'))
+      ->condition('ms.iid', $iid)
+      ->execute()
+      ->fetchField();
+    return user_load($uid);
   }
 }

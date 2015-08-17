@@ -12,6 +12,11 @@
     color: #555;
   }
 
+  .business-name span {
+    color: $text;
+    padding-left: 1em;
+  }
+
   span.description {
     font-style: italic;
     font-size: 0.8em;
