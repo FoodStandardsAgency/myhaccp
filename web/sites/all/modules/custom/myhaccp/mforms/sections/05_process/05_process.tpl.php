@@ -8,16 +8,6 @@
   <p class="intro"><?php print $g_1; ?></p>
 <?php endif; ?>
 
-<?php if(!empty($flow_diagram_file)) : ?>
-  <?php //print render($flow_diagram_file); ?>
-<?php endif; ?>
-
-<?php if(!empty($flow_diagram_data)) : ?>
-  <div class="flow-diagram-container">
-    <img src="data:image/gif;base64,<?php print $flow_diagram_data; ?>" />
-  </div>
-<?php endif; ?>
-
 <?php if(!empty($flow_diagram_url)) : ?>
   <div class="flow-diagram-container">
     <img src="<?php print $flow_diagram_url; ?>" />

@@ -102,6 +102,10 @@ function myhaccp_form_process($form, &$form_state) {
         if ($element && isset($element['#title'])) {
           $message = $element['#title'];
         }
+        // Cope with multiple messages on the same element.
+        if (is_array($message)) {
+          $message = implode('<br>', $message);
+        }
         $messages[$target] = $message;
       }
     }

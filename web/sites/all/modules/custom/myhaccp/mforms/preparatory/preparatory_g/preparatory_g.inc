@@ -23,7 +23,6 @@ function preparatory_g(&$form_state, &$next_step) {
   drupal_set_title($stage->title, PASS_THROUGH);
 
   // Fetch the existing file if it exists.
-  $preview = '';
   if (array_get($form_state, 'values.preparatory_g.g_2', FALSE)) {
     $default_file = array_get($form_state, 'values.preparatory_g.g_2', FALSE);
   }
@@ -88,13 +87,14 @@ function preparatory_g(&$form_state, &$next_step) {
     ),
     '#upload_validators' => array(
       'file_validate_extensions' => array('jpg jpeg png gif'),
+      'myhaccp_validate_image' => array(),
     ),
     '#attributes' => array(
       'data-parsley-error-message' => t('If a file is uploaded, it must be of type gif, jpg, jpeg or png.'),
     ),
   );
 
-  // 3. If digital please upload.
+  // 3. If you only have a hard copy, please  specify the location where it is retained and any document reference.
   $form['preparatory_g']['g_3'] = array(
     '#type' => 'textarea',
     '#title' => t('3. If you only have a hard copy, please  specify the location where it is retained and any document reference.'),
@@ -117,6 +117,8 @@ function preparatory_g(&$form_state, &$next_step) {
 function preparatory_g_validate($form, &$form_state) {
   // Get the dependency injection container.
   global $container;
+  // Prepare the messages array.
+  $messages = array();
   // Get the current study.
   $study = $container['study'];
   // Get the stage.
@@ -141,31 +143,38 @@ function preparatory_g_validate($form, &$form_state) {
   $upload = new Validation($form, $form_state, 'preparatory_g.g_2');
   $hard_copy = new Validation($form, $form_state, 'preparatory_g.g_3');
   if (!$upload->fieldIsNotEmpty() && !$hard_copy->fieldIsNotEmpty()) {
-    $messages = array(
-      'validation_messages' => array(t('Please either upload a digital copy of your flow diagram, or if you only have a hard copy please specify the location where it is retained and any document reference.')),
-    );
-    $validator->passed = FALSE;
-    $validator->setErrorMessages(($messages));
-    $form_state = $validator->getFormState();
+    $messages['validation_messages'][] = t('Please either upload a digital copy of your flow diagram, or if you only have a hard copy please specify the location where it is retained and any document reference.');
+    $validator->setStatus(FALSE);
   }
-
-  $validator->setErrorMessages();
-  $form_state = $validator->getFormState();
 
   // Make sure uploaded files are permanently stored.
   if (array_get($form_state, 'values.preparatory_g.g_2', FALSE)) {
     // Load the file via file.fid.
     $file = file_load($form_state['values']['preparatory_g']['g_2']);
-    if ($file->status != FILE_STATUS_PERMANENT) {
-      // Change status to permanent.
-      $file->status = FILE_STATUS_PERMANENT;
-      // Save.
-      file_save($file);
-      // Get the current form's IID.
-      $iid = $_SESSION['iid'];
-      file_usage_add($file, 'myhaccp', 'form', $iid);
+    // Validate whether this file is really an image. Sometimes people upload
+    // weird things renamed as images.
+    if (image_load($file->uri)) {
+      if ($file->status != FILE_STATUS_PERMANENT) {
+        // Change status to permanent.
+        $file->status = FILE_STATUS_PERMANENT;
+        // Save.
+        file_save($file);
+        // Get the current form's IID.
+        $iid = $_SESSION['iid'];
+        file_usage_add($file, 'myhaccp', 'form', $iid);
+      }
+    }
+    else {
+      $messages['validation_messages'][] = t('2. Please upload a digital copy of your flow diagram (or go to 3). There was an error processing your uploaded flow diagram. Please ensure you only upload an image file of the following formats: jpg, png, gif');
+      $validator->setStatus(FALSE);
+      $form_state['values']['preparatory_g']['g_2'] = FALSE;
+      // Pass in the modified form_state.
+      $validator->setFormState($form_state);
     }
   }
+
+  $validator->setErrorMessages($messages);
+  $form_state = $validator->getFormState();
 }
 
 /**
@@ -179,7 +188,10 @@ function preparatory_g_validate($form, &$form_state) {
  * @return array
  *   The changed element.
  */
-function preparatory_g_process(&$element) {
+function preparatory_g_process(&$element, $form_state, $form) {
+  if (!empty($form_state['input']['_triggering_element_value']) && $form_state['input']['_triggering_element_value'] == 'Remove') {
+    return $element;
+  }
   $fid = isset($element['#value']['fid']) ? $element['#value']['fid'] : 0;
   if ($fid && $element['#file']) {
     $element['filename'] = array(
