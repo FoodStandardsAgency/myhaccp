@@ -40,12 +40,14 @@
         $dialog.dialog('widget').trigger('focus');
       }
 
-      var originalClose = settings.dialog.close;
-      // Overwrite the close method to remove the dialog on closing.
-      settings.dialog.close = function (event) {
-        originalClose.apply(settings.dialog, arguments);
-        $(event.target).remove();
-      };
+      if (settings.hasOwnProperty('dialog')) {
+        var originalClose = settings.dialog.close;
+        // Overwrite the close method to remove the dialog on closing.
+        settings.dialog.close = function (event) {
+          originalClose.apply(settings.dialog, arguments);
+          $(event.target).remove();
+        };
+      }
     },
 
     /**
