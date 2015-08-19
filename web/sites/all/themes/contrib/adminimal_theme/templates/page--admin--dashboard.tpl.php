@@ -63,16 +63,16 @@
     <?php endif; ?>
 
     <div id="main-content">
-	    <?php print render($page['content']); ?>
-	  </div>
+      <?php print render($page['content']); ?>
+    </div>
 
     <?php if (isset($page['sidebar_right'])): ?>
       <div id="sidebar-right">
         <?php print render($page['sidebar_right']); ?>
       </div>
     <?php endif; ?>
-	
-	</div>
+  
+  </div>
 
 	<?php if (isset($page['content_after'])): ?>
 		<div id="content-after">
