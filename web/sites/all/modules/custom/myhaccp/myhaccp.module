@@ -1078,6 +1078,16 @@ function myhaccp_form_user_pass_reset_alter(&$form, $form_state) {
 }
 
 /**
+ * Given an IID will try to return a business name.
+ *
+ * @param int $iid
+ *   The IID of the study.
+ */
+function myhaccp_get_business_name($iid) {
+
+}
+
+/**
  * Statically cache data.
  *
  * @param $function

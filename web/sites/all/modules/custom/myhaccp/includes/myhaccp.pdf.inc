@@ -21,6 +21,14 @@ function myhaccp_output_pdf($iid) {
   if (!empty($study)) {
     // Get the study name.
     $name = $study->getName();
+    // Get the study user.
+    $user = $study->getCurrentStudyOwner();
+    // Instantiate a new business object.
+    $business = new business();
+    // Set the user.
+    $business->setUser($user);
+    // Get the business name.
+    $business_name = $business->getBusinessName();
     $filename = transliteration_clean_filename($name . '.pdf');
     // Load the mPDF library and start a new PDF.
     $path = libraries_get_path('mpdf');
@@ -40,7 +48,7 @@ function myhaccp_output_pdf($iid) {
     $mpdf->AddPage('', '', 1, '', 'on');
     $date = format_date(time(), 'custom', 'd/m/Y');
     $cover = '<h1 class="study-name">MyHACCP Study: ' . $name . '</h1>';
-    $cover .= '<p class="business-name">Business name: </p>';
+    $cover .= '<p class="business-name">Business name: <span class="business-name--title">' . $business_name . '</span></p>';
     $cover_footer = '<footer class="front-page"><h3 class="origin">This document was created using the MyHACCP web tool.</h3>';
     $cover_footer .= '<p>http://myhaccp.food.gov.uk</p>';
     $cover_footer .= '<p class="date">Date generated: ' . $date . '</p></footer>';

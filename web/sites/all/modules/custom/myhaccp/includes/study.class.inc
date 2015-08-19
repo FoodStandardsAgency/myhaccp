@@ -27,6 +27,8 @@ interface StudyInterface {
   public function getStatus();
 
   public function cloneStudy($iid);
+
+  public function getCurrentStudyOwner();
 }
 
 class Study implements StudyInterface {
@@ -363,21 +365,67 @@ class Study implements StudyInterface {
    * Clones a study.
    */
   public function cloneStudy($iid) {
-    $this->cloneMformsStorage($iid);
-    $this->cloneMformsStorageSteps($iid);
+    $record = $this->createStudy($iid);
+    $new_iid = $record['iid'];
+    $this->cloneMformsStorageSteps($iid, $new_iid);
   }
 
   /**
-   * Makes a copy of a row in mforms_storage.
+   * Creates a new study.
    *
    * @param int $iid
    *   The unique IID of the study.
    */
-  protected function cloneMformsStorage($iid) {
-
+  public function createStudy($iid) {
+    $user = $this->getCurrentStudyOwner();
+    $record = array(
+      'uid' => $user->uid,
+      'created' => time(),
+    );
+    // Write the new record.
+    drupal_write_record('mforms_storage', $record);
+    // Return the record.
+    return $record;
   }
 
-  protected function cloneMformsStorageSteps($iid) {
+  /**
+   * Copies all the rows related to the iid into new rows referencing new_iid.
+   *
+   * @param $iid
+   *   The IID of the study steps to be cloned.
+   * @param $new_iid
+   *   The IID of the new study being cloned into.
+   */
+  protected function cloneMformsStorageSteps($iid, $new_iid) {
+    
+  }
 
+  /**
+   * Returns the user object of the owner of this study.
+   *
+   * @return object
+   *   The user object representing the study owner.
+   */
+  public function getCurrentStudyOwner() {
+    $iid = $this->getIID();
+    return $this->getStudyOwner($iid);
+  }
+
+  /**
+   * Returns the user object of the owner of the given study.
+   *
+   * @param int $iid
+   *   The IID of the study of which the owner is to be fetched.
+   *
+   * @return object
+   *   The user object representing the study owner.
+   */
+  public function getStudyOwner($iid) {
+    $uid = db_select('mforms_storage', 'ms')
+      ->fields('ms', array('uid'))
+      ->condition('ms.iid', $iid)
+      ->execute()
+      ->fetchField();
+    return user_load($uid);
   }
 }
