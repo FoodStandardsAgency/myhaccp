@@ -25,32 +25,34 @@ function myhaccp_preprocess_05_process(&$variables) {
   $preparatory_h = $data['preparatory_h'];
 
   // Flow diagram file.
-  $file = file_load($preparatory_g['g_2']['fid']);
-
-  if (empty($file)) {
-    // If the file couldn't be loaded then log a watchdog error.
-    watchdog('myhaccp', t('Whilst rendering the PDF, the flow diagram could not be loaded.'), array(), WATCHDOG_ERROR);
+  if (!empty($preparatory_g['g_2'])) {
+    $file = isset($preparatory_g['g_2']['fid']) ? file_load($preparatory_g['g_2']['fid']) : file_load($preparatory_g['g_2']);
+    if (!empty($file)) {
+      // Prepare an image derivative of the flow diagram image
+      // at a reasonable maximum size (2048px wide).
+      // Due to issues with private file permissions (see case 12347) we need to
+      // make a copy of the image somewhere it can be processed as an anonymous
+      // user.
+      $image_url = drupal_realpath($file->uri);
+      $extension = pathinfo($image_url, PATHINFO_EXTENSION);
+      // Store the file name in a global so we can remove it later.
+      global $temp_file_name;
+      // Prepare a filename in the temporary directory for a copy of the file.
+      $temp_file_name = file_directory_temp() . '/' . md5($file->uri) . '.' . $extension;
+      // Output the image derivative into the temporary file location.
+      $style = image_style_load('pdf_flow_diagram');
+      $success = file_exists($temp_file_name) || image_style_create_derivative($style, $file->uri, $temp_file_name);
+      if (!$success) {
+        watchdog('myhaccp', t('There was a problem creating the image derivative for the PDF in the temp directory.'), array(), WATCHDOG_ERROR);
+      }
+      // Pass through the path to the file for the PDF processor to make use of.
+      $variables['flow_diagram_url'] = $temp_file_name;
+    }
+    else {
+      // If the file couldn't be loaded then log a watchdog error.
+      watchdog('myhaccp', t('Whilst rendering the PDF, the flow diagram could not be loaded.'), array(), WATCHDOG_ERROR);
+    }
   }
-
-  // Prepare an image derivative of the flow diagram image
-  // at a reasonable maximum size (2048px wide).
-  // Due to issues with private file permissions (see case 12347) we need to
-  // make a copy of the image somewhere it can be processed as an anonymous
-  // user.
-  $image_url = drupal_realpath($file->uri);
-  $extension = pathinfo($image_url, PATHINFO_EXTENSION);
-  // Store the file name in a global so we can remove it later.
-  global $temp_file_name;
-  // Prepare a filename in the temporary directory for a copy of the file.
-  $temp_file_name = file_directory_temp() . '/' . md5($file->uri) . '.' . $extension;
-  // Output the image derivative into the temporary file location.
-  $style = image_style_load('pdf_flow_diagram');
-  $success = file_exists($temp_file_name) || image_style_create_derivative($style, $file->uri, $temp_file_name);
-  if (!$success) {
-    watchdog('myhaccp', t('There was a problem creating the image derivative for the PDF in the temp directory.'), array(), WATCHDOG_ERROR);
-  }
-  // Pass through the path to the file for the PDF processor to make use of.
-  $variables['flow_diagram_url'] = $temp_file_name;
 
   // 1. Have you completed a flow diagram?
   if ($preparatory_g['g_1'] == 'yes') {
