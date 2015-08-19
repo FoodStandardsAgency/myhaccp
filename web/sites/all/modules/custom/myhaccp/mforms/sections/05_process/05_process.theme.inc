@@ -26,7 +26,7 @@ function myhaccp_preprocess_05_process(&$variables) {
 
   // Flow diagram file.
   if (!empty($preparatory_g['g_2'])) {
-    $file = isset($preparatory_g['g_2']['fid']) ? file_load($preparatory_g['g_2']['fid']) : file_load($preparatory_g['g_2']);
+    $file = array_key_exists($preparatory_g['g_2']['fid']) ? file_load($preparatory_g['g_2']['fid']) : file_load($preparatory_g['g_2']);
     if (!empty($file)) {
       // Prepare an image derivative of the flow diagram image
       // at a reasonable maximum size (2048px wide).
