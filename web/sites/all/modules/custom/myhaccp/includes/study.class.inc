@@ -368,6 +368,7 @@ class Study implements StudyInterface {
     $record = $this->createStudy($iid);
     $new_iid = $record['iid'];
     $this->cloneMformsStorageSteps($iid, $new_iid);
+    return $new_iid;
   }
 
   /**
@@ -377,7 +378,7 @@ class Study implements StudyInterface {
    *   The unique IID of the study.
    */
   public function createStudy($iid) {
-    $user = $this->getCurrentStudyOwner();
+    $user = $this->getStudyOwner($iid);
     $record = array(
       'uid' => $user->uid,
       'created' => time(),
@@ -397,7 +398,21 @@ class Study implements StudyInterface {
    *   The IID of the new study being cloned into.
    */
   protected function cloneMformsStorageSteps($iid, $new_iid) {
-    
+    // Fetch all the steps of the current IID.
+    $steps = db_select('mforms_storage_steps', 's')
+      ->fields('s', array('store_key', 'store_data'))
+      ->condition('s.iid', $iid)
+      ->execute()->fetchAllKeyed();
+    // Iterate over each step.
+    foreach($steps as $store_key => $store_data) {
+      $record = array(
+        'iid' => $new_iid,
+        'store_key' => $store_key,
+        'store_data' => $store_data,
+      );
+      // Store the step data against the new_iid.
+      drupal_write_record('mforms_storage_steps', $record);
+    }
   }
 
   /**

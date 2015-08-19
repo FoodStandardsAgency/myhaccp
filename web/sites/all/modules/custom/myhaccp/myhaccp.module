@@ -124,6 +124,14 @@ function myhaccp_menu() {
     'file' => 'includes/myhaccp.pdf.inc',
     'type' => MENU_NORMAL_ITEM,
   );
+  $items['tool/study/%/clone'] = array(
+    'page callback' => 'myhaccp_study_clone',
+    'page arguments' => array(2),
+    'access callback' => 'myhaccp_access',
+    'access arguments' => array('clone', 2),
+    'file' => 'includes/myhaccp.clone.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
   $items['help/%'] = array(
     'title' => 'Help',
     'page arguments' => array(1),
@@ -177,6 +185,14 @@ function myhaccp_permission() {
       'title' => t('View any myhaccp studies'),
       'description' => t('View the output of any user\'s myhaccp studies.'),
     ),
+    'clone own myhaccp study' => array(
+      'title' => t('Clone own myhaccp studies'),
+      'description' => t('Clone a user\'s own myhaccp study.'),
+    ),
+    'clone any myhaccp study' => array(
+      'title' => t('Clone any myhaccp studies'),
+      'description' => t('Clone any user\'s myhaccp study.'),
+    ),
   );
 }
 
@@ -218,6 +234,14 @@ function myhaccp_access($op, $iid = FALSE) {
       return TRUE;
     }
     if (user_access('view own myhaccp study') && $iid && myhaccp_user_owns_study($iid, $user)) {
+      return TRUE;
+    }
+  }
+  elseif ($op == 'clone') {
+    if (user_access('clone any myhaccp study')) {
+      return TRUE;
+    }
+    if (user_access('clone own myhaccp study') && $iid && myhaccp_user_owns_study($iid, $user)) {
       return TRUE;
     }
   }
