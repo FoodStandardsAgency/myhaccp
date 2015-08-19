@@ -46,13 +46,7 @@ function myhaccp_list() {
     'edit' => array(
       'data' => '',
     ),
-    'delete' => array(
-      'data' => '',
-    ),
-    'complete' => array(
-      'data' => '',
-    ),
-    'pdf' => array(
+    'options' => array(
       'data' => '',
     ),
   );
@@ -107,54 +101,74 @@ function myhaccp_list() {
         'title' => t('Resume a study to add or edit your information.'),
       )
     )) : '';
-    // The delete link.
-    $delete = user_access('delete own myhaccp study') || user_access('delete any myhaccp study') ? l(t('Delete'), 'tool/study/' . $result->iid . '/delete', array(
-      'attributes' => array(
-        'class' => 'delete-link',
-        'title' => t('Delete your study.'),
-      ),
-    )) : '';
+
+    $options = array();
     $destination = drupal_get_destination();
+
     // The complete link if possible.
-    $complete = '';
     if (user_access('edit own myhaccp study') || user_access('edit any myhaccp study')) {
       if ($study->getStatus() == 0 && $validation_status == VALID) {
         // The study is currently incomplete but valid so present a complete
         // button to the user.
-        $complete = l(t('Complete'), 'tool/study/' . $result->iid . '/complete/1', array(
+        $options[] = array(
+          'title' => t('Complete'),
+          'href' => 'tool/study/' . $result->iid . '/complete/1',
           'attributes' => array(
-            'class' => 'complete-link',
+            'class' => 'link--complete',
             'data-valid' => $validation_status,
             'data-status' => $study->getStatus(),
             'title' => t('Mark your study as complete.'),
           ),
           'query' => $destination,
-        ));
+        );
       }
       elseif ($study->getStatus() == 1) {
         // The study is current in a complete state (but may be invalid) so
         // allow the user to change it to incomplete.
-        $complete = l(t('Activate'), 'tool/study/' . $result->iid . '/complete/0', array(
+        $options[] = array(
+          'title' => t('Activate'),
+          'href' => 'tool/study/' . $result->iid . '/complete/0',
           'attributes' => array(
-            'class' => 'complete-link',
+            'class' => 'link--complete',
             'data-valid' => $validation_status,
             'data-status' => $study->getStatus(),
             'title' => t('Re-activate a completed study.'),
           ),
           'query' => $destination,
-        ));
+        );
       }
     }
 
-    // Link to download PDF.
-    $pdf = l(t('Download'), 'tool/study/' . $result->iid . '/pdf', array(
+    // Clone a study.
+    $options[] = array(
+      'title' => t('Copy/Clone'),
+      'href' => 'tool/study/' . $result->iid . '/clone',
       'attributes' => array(
-        'class' => array(
-          'download-link',
-        ),
+        'class' => 'link--clone',
         'data-valid' => $validation_status,
         'data-status' => $study->getStatus(),
       ),
+    );
+
+    // The delete link.
+    if (user_access('delete own myhaccp study') || user_access('delete any myhaccp study')) {
+      $options[] = array(
+        'title' => t('Delete'),
+        'href' => 'tool/study/' . $result->iid . '/delete',
+        'attributes' => array(
+          'class' => 'link--delete',
+          'data-valid' => $validation_status,
+          'data-status' => $study->getStatus(),
+          'title' => t('Delete your study.'),
+        ),
+      );
+    }
+
+    // Prepare the options dropdown button.
+    $options_link = theme('ctools_dropdown', array(
+      'title' => 'More options',
+      'links' => $options,
+      'class' => 'study-more-dropdown split-button',
     ));
 
     // Convert status integers to a word.
@@ -167,9 +181,7 @@ function myhaccp_list() {
         'changed' => $result->changed ? format_date($result->changed, 'short_date') : 'Not updated',
         'status' => $status,
         'edit' => $edit,
-        'delete' => $delete,
-        'complete' => $complete,
-        'pdf' => $pdf,
+        'options' => $options_link,
       ),
     );
   }

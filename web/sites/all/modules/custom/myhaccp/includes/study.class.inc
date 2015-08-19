@@ -25,6 +25,8 @@ interface StudyInterface {
   public function setStatus($status);
 
   public function getStatus();
+
+  public function cloneStudy($iid);
 }
 
 class Study implements StudyInterface {
@@ -355,5 +357,27 @@ class Study implements StudyInterface {
       ->condition('m.iid', $this->getIID());
     $status = $query->execute()->fetchField();
     return $status;
+  }
+
+  /**
+   * Clones a study.
+   */
+  public function cloneStudy($iid) {
+    $this->cloneMformsStorage($iid);
+    $this->cloneMformsStorageSteps($iid);
+  }
+
+  /**
+   * Makes a copy of a row in mforms_storage.
+   *
+   * @param int $iid
+   *   The unique IID of the study.
+   */
+  protected function cloneMformsStorage($iid) {
+
+  }
+
+  protected function cloneMformsStorageSteps($iid) {
+
   }
 }
