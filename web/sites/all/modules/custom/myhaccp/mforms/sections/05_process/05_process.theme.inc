@@ -42,11 +42,13 @@ function myhaccp_preprocess_05_process(&$variables) {
       // Output the image derivative into the temporary file location.
       $style = image_style_load('pdf_flow_diagram');
       $success = file_exists($temp_file_name) || image_style_create_derivative($style, $file->uri, $temp_file_name);
-      if (!$success) {
+      if ($success) {
+        // Pass through the path to the file for the PDF processor to make use of.
+        $variables['flow_diagram_url'] = $temp_file_name;
+      }
+      else {
         watchdog('myhaccp', t('There was a problem creating the image derivative for the PDF in the temp directory.'), array(), WATCHDOG_ERROR);
       }
-      // Pass through the path to the file for the PDF processor to make use of.
-      $variables['flow_diagram_url'] = $temp_file_name;
     }
     else {
       // If the file couldn't be loaded then log a watchdog error.
