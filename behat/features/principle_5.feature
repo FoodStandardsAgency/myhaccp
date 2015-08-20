@@ -29,7 +29,7 @@ Feature: Principle 5
     And I press the "Save this page" button
     Then I should not see an ".parsley-error-list" element
 
-  Scenario: Test validation for Principle 4
+  Scenario: Test validation for Principle 5
     Given I complete all principles up to "4"
     And I press the "Save and continue" button
     When I fill in the following:
