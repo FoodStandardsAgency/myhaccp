@@ -1,15 +1,15 @@
 <?php
 
 use Drupal\DrupalExtension\Context\DrupalContext,
-    Drupal\DrupalExtension\Event\EntityEvent;
+  Drupal\DrupalExtension\Event\EntityEvent;
 
 use Behat\Behat\Exception\PendingException,
-    Behat\Behat\Context\Step;
+  Behat\Behat\Context\Step;
 
 use Behat\Mink\Selector;
 
 use Behat\Gherkin\Node\PyStringNode,
-    Behat\Gherkin\Node\TableNode;
+  Behat\Gherkin\Node\TableNode;
 
 use Behat\Mink\Exception\ElementNotFoundException;
 
@@ -134,6 +134,7 @@ class FeatureContext extends Drupal\DrupalExtension\Context\DrupalContext {
     // Set the field's value.
     $field->setValue($value);
   }
+
 
   protected function principle_1_1() {
     return array(

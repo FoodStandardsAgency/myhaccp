@@ -10,13 +10,14 @@ default:
       selenium2: ~
       zombie: ~
       base_url: http://l.myhaccp
+      files_path: ./test_files
     Drupal\DrupalExtension\Extension:
       api_driver: "drupal"
       blackbox: ~
       drush:
-        root: /vagrant_sites/l.myhaccp.dev/web
+        root: ../web
       drupal:
-        drupal_root: /vagrant_sites/l.myhaccp.dev/web
+        drupal_root: ../web
 
 The above paths assume you'll be running this inside your vagrant box.
 If this isn't the case then adjust the paths to suit.

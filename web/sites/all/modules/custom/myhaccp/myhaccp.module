@@ -1101,6 +1101,17 @@ function myhaccp_form_user_pass_reset_alter(&$form, $form_state) {
   }
 }
 
+function myhaccp_validate_image(stdClass $file, $options = array()) {
+  $errors = array();
+
+  // Try to load the image.
+  $image = image_load($file->uri);
+  if (!$image) {
+    $errors[] = t('The file you uploaded does not appear to be a valid image file.');
+  }
+  return $errors;
+}
+
 /**
  * Given an IID will try to return a business name.
  *
