@@ -1,0 +1,11 @@
+#myhaccp-study-copy-form {
+  margin-top: 3em;
+  margin-bottom: 3em;
+  .form-actions {
+    float: none;
+    text-align: left;
+    input:first-child {
+      margin-left: 0;
+    }
+  }
+}

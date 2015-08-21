@@ -195,6 +195,15 @@ function myhaccp_list() {
     ),
   );
 
+  $output['copy'] = array(
+    '#type' => 'link',
+    '#title' => 'Copy an existing study',
+    '#href' => 'tool/study/copy',
+    '#attributes' => array(
+      'class' => array('copy-study'),
+    ),
+  );
+
   $output['table'] = array(
     '#type' => 'markup',
     '#markup' => theme('table', array(

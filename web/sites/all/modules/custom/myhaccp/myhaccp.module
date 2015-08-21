@@ -132,6 +132,14 @@ function myhaccp_menu() {
     'file' => 'includes/myhaccp.clone.inc',
     'type' => MENU_NORMAL_ITEM,
   );
+  $items['tool/study/copy'] = array(
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('myhaccp_study_copy_form'),
+    'access callback' => 'myhaccp_access',
+    'access arguments' => array('clone', 2),
+    'file' => 'includes/myhaccp.clone.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
   $items['help/%'] = array(
     'title' => 'Help',
     'page arguments' => array(1),

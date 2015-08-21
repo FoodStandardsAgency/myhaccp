@@ -82,4 +82,31 @@ class business {
     return $business_name;
   }
 
+  public function getAllStudies() {
+    $user = $this->getUser();
+    return $this->getStudies($user);
+  }
+
+  protected function getStudies($user) {
+    $studies = db_select('mforms_storage', 'ms')
+      ->fields('ms', array('iid', 'uid'))
+      ->condition('ms.uid', $user->uid)
+      ->orderBy('ms.created', 'DESC')
+      ->execute()
+      ->fetchAllKeyed(0, 1);
+    return $studies;
+  }
+
+  public function getStudiesOptionsArray($user) {
+    $studies = $this->getStudies($user);
+    $options = array();
+    foreach ($studies as $iid => $uid) {
+      $study = new Study();
+      $study->setIID($iid);
+      myhaccp_initialise_study($study);
+      $options[$iid] = $study->getName();
+    }
+    return $options;
+  }
+
 }

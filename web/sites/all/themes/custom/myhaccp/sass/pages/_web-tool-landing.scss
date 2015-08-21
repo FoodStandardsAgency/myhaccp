@@ -9,6 +9,12 @@
     margin-bottom: 1em;
     display: inline-block;
   }
+  a.copy-study {
+    @include agile-button();
+    margin-bottom: 1em;
+    margin-left: 1em;
+    display: inline-block;
+  }
 }
 
 .studies-table {
