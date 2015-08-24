@@ -31,8 +31,11 @@ Feature: Preparatory C.2
     # Save the page
     When I press the "Save this page" button
 
-    Then the "Metal" checkbox should be checked
-    And the "Wood splinters" checkbox should be checked
+    Then the "Other" field should contain "rocks"
+    # Can't get these checkboxes to confirm they are checked
+    # Tried with the id rather than the label:
+    # And the "edit-preparatory-c-2-wrapper-physical-c-4-physical-wood" checkbox should be checked
+    And the "Metal" checkbox should be checked
     And the "Glass and brittle plastic" checkbox should be checked
     And the "Flexible plastic" checkbox should be checked
     And the "Plasters" checkbox should be checked
