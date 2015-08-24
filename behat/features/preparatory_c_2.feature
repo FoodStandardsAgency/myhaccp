@@ -28,7 +28,7 @@ Feature: Preparatory C.2
     And I check "String"
     And I check "Finger nails"
     And I check "Pests"
-    And I fill in "Other" with "rocks"
+    And I fill in "edit-preparatory-c-2-wrapper-physical-c-4-physical-other" with "rocks"
 
     # Chemical checkboxes
     And I check "Agricultural residues: Pesticides"
@@ -44,6 +44,7 @@ Feature: Preparatory C.2
     And I check "Adulterants (Synthetic colours (e.g. Sudan dyes), melamine, water & sugar (e.g honey))"
     And I check "Cleaning & sanitising chemicals"
     And I check "Chemical residues migrating from packaging (e.g. plasticisers, BPA)"
+    And I fill in "edit-preparatory-c-2-wrapper-chemical-c-4-chemical-other" with "sulphur"
 
     # Biological checkboxes
     And I check "Salmonella"
@@ -60,9 +61,9 @@ Feature: Preparatory C.2
     And I check "Pseudomonas Spp."
     And I check "Norovirus"
     And I check "Toxoplasma"
+    And I fill in "edit-preparatory-c-2-wrapper-biological-c-4-biological-other" with "anthrax"
 
     # Allergens checkboxes
-
     And I check "Eggs and products thereof"
     And I check "Milk and products thereof (including lactose), except: (a) whey used for making alcoholic distillates including ethyl alcohol of agricultural origin (b) lactitol"
    And I check "Fish and products thereof, except fish gelatine used as carrier for vitamin or carotenoid preparations; fish gelatine or Isinglass used as fining agent in beer and wine."
@@ -77,6 +78,7 @@ Feature: Preparatory C.2
     And I check "Molluscs and products thereof"
     And I check "Sulphur dioxide and sulphites at concentrations of more than 10mg/kg or 10mg/litre in terms of the total SO2 which are to be calculated for products as proposed ready for consumption or as reconstituted according to the instructions of the manufacturers"
     And I check "Nuts, namely: almonds, hazelnuts,walnuts,cashewnuts, pecan nuts, Brazil nuts, pistachio nuts, macadamia or Queensland nuts and products thereof, except for nuts used for making alcoholic distillates including ethyl alcohol of agricultural origin."
+    And I fill in "edit-preparatory-c-2-wrapper-allergens-c-4-allergens-other" with "nettles"
 
     # Save the page
     When I press the "Save this page" button
@@ -99,7 +101,7 @@ Feature: Preparatory C.2
     And the "String" checkbox should be checked
     And the "Finger nails" checkbox should be checked
     And the "Pests" checkbox should be checked
-    And the "Other" field should contain "rocks"
+    And the "edit-preparatory-c-2-wrapper-physical-c-4-physical-other" field should contain "rocks"
 
     # Chemical checkboxes
     And the "Agricultural residues: Pesticides" checkbox should be checked
@@ -115,8 +117,9 @@ Feature: Preparatory C.2
     And the "Adulterants (Synthetic colours (e.g. Sudan dyes), melamine, water & sugar (e.g honey))" checkbox should be checked
     And the "Cleaning & sanitising chemicals" checkbox should be checked
     And the "Chemical residues migrating from packaging (e.g. plasticisers, BPA)" checkbox should be checked
+    And the "edit-preparatory-c-2-wrapper-chemical-c-4-chemical-other" field should contain "sulphur"
 
-# Biological checkboxes
+    # Biological checkboxes
     And the "Salmonella" checkbox should be checked
     And the "Listeria sp." checkbox should be checked
     And the "Escherichia coli" checkbox should be checked
@@ -131,9 +134,9 @@ Feature: Preparatory C.2
     And the "Pseudomonas Spp." checkbox should be checked
     And the "Norovirus" checkbox should be checked
     And the "Toxoplasma" checkbox should be checked
+    And the "edit-preparatory-c-2-wrapper-biological-c-4-biological-other" field should contain "anthrax"
 
     # Allergens checkboxes
-
     And the "Eggs and products thereof" checkbox should be checked
     And the "Milk and products thereof (including lactose), except: (a) whey used for making alcoholic distillates including ethyl alcohol of agricultural origin (b) lactitol" checkbox should be checked
    And the "Fish and products thereof, except fish gelatine used as carrier for vitamin or carotenoid preparations; fish gelatine or Isinglass used as fining agent in beer and wine." checkbox should be checked
@@ -148,4 +151,4 @@ Feature: Preparatory C.2
     And the "Molluscs and products thereof" checkbox should be checked
     And the "Sulphur dioxide and sulphites at concentrations of more than 10mg/kg or 10mg/litre in terms of the total SO2 which are to be calculated for products as proposed ready for consumption or as reconstituted according to the instructions of the manufacturers" checkbox should be checked
     And the "Nuts, namely: almonds, hazelnuts,walnuts,cashewnuts, pecan nuts, Brazil nuts, pistachio nuts, macadamia or Queensland nuts and products thereof, except for nuts used for making alcoholic distillates including ethyl alcohol of agricultural origin." checkbox should be checked
-
+    And the "edit-preparatory-c-2-wrapper-allergens-c-4-allergens-other" field should contain "nettles"
