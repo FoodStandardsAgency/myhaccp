@@ -105,6 +105,15 @@ function myhaccp_list() {
     $options = array();
     $destination = drupal_get_destination();
 
+    // Download the PDF.
+    $options[] = array(
+      'title' => t('Download'),
+      'href' => 'tool/study/' . $result->iid . '/pdf',
+      'attributes' => array(
+        'class' => 'link--download',
+      ),
+    );
+
     // The complete link if possible.
     if (user_access('edit own myhaccp study') || user_access('edit any myhaccp study')) {
       if ($study->getStatus() == 0 && $validation_status == VALID) {
