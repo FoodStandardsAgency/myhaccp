@@ -1112,11 +1112,27 @@ function myhaccp_form_user_pass_reset_alter(&$form, $form_state) {
 function myhaccp_validate_image(stdClass $file, $options = array()) {
   $errors = array();
 
+  $path = drupal_realpath($file->uri);
+
+  // First check whether this is a PDF.
+  if ($file->filemime == 'application/pdf') {
+    // Check whether the PDF starts with '%PDF'.
+    if (file_get_contents($path, FALSE, NULL, 0, 4) === '%PDF') {
+      // The characters are present at the beginning of the file so return
+      // without error.
+      return array();
+    }
+    else {
+      $errors[] = t('The file you uploaded does not appear to be a valid PDF file.');
+    }
+  }
+
   // Try to load the image.
   $image = image_load($file->uri);
   if (!$image) {
     $errors[] = t('The file you uploaded does not appear to be a valid image file.');
   }
+
   return $errors;
 }
 

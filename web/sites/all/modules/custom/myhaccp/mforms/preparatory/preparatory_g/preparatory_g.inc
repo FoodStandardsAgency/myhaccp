@@ -77,7 +77,7 @@ function preparatory_g(&$form_state, &$next_step) {
     '#type' => 'managed_file',
     '#title' => t('2. Please upload a digital copy of your flow diagram (or go to 3).'),
     '#help_link' => 20,
-    '#help_text' => t('This allows you to save your diagram on-line and will present it in the output document. Allowed file types are: jpg, jpeg and png.'),
+    '#help_text' => t('This allows you to save your diagram on-line and will present it in the output document. Allowed file types are: jpg, jpeg, png and pdf.'),
     '#default_value' => $default_file,
     '#progress_indicator' => 'bar',
     '#upload_location' => 'private://' . $user->uid,
@@ -86,11 +86,11 @@ function preparatory_g(&$form_state, &$next_step) {
       'preparatory_g_process',
     ),
     '#upload_validators' => array(
-      'file_validate_extensions' => array('jpg jpeg png gif'),
+      'file_validate_extensions' => array('jpg jpeg png gif pdf'),
       'myhaccp_validate_image' => array(),
     ),
     '#attributes' => array(
-      'data-parsley-error-message' => t('If a file is uploaded, it must be of type gif, jpg, jpeg or png.'),
+      'data-parsley-error-message' => t('If a file is uploaded, it must be of type gif, jpg, jpeg, png or pdf.'),
     ),
   );
 
@@ -152,8 +152,8 @@ function preparatory_g_validate($form, &$form_state) {
     // Load the file via file.fid.
     $file = file_load($form_state['values']['preparatory_g']['g_2']);
     // Validate whether this file is really an image. Sometimes people upload
-    // weird things renamed as images.
-    if (image_load($file->uri)) {
+    // weird things renamed as images. Also allow PDFs to be permanently saved.
+    if ($file->filemime == 'application/pdf' || image_load($file->uri)) {
       if ($file->status != FILE_STATUS_PERMANENT) {
         // Change status to permanent.
         $file->status = FILE_STATUS_PERMANENT;
@@ -165,7 +165,7 @@ function preparatory_g_validate($form, &$form_state) {
       }
     }
     else {
-      $messages['validation_messages'][] = t('2. Please upload a digital copy of your flow diagram (or go to 3). There was an error processing your uploaded flow diagram. Please ensure you only upload an image file of the following formats: jpg, png, gif');
+      $messages['validation_messages'][] = t('2. Please upload a digital copy of your flow diagram (or go to 3). There was an error processing your uploaded flow diagram. Please ensure you only upload a PDF or an image file of the following formats: jpg, png, gif');
       $validator->setStatus(FALSE);
       $form_state['values']['preparatory_g']['g_2'] = FALSE;
       // Pass in the modified form_state.
@@ -199,6 +199,13 @@ function preparatory_g_process(&$element, $form_state, $form) {
       '#markup' => theme('myhaccp_preview_diagram', array('element' => $element)) . ' ',
       '#weight' => -10,
     );
+    // Check the mimetype to determine what to show here.
+    if ($element['#file']->filemime == 'application/pdf') {
+      $element['filename']['#markup'] = theme('image', array(
+        'path' => drupal_get_path('theme', 'myhaccp') . '/images/pdf-icon.png',
+        'alt' => t('PDF icon representing an uploaded file'),
+      ));
+    }
   }
   return $element;
 }
