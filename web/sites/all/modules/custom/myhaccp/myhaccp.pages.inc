@@ -54,7 +54,7 @@ function myhaccp_list() {
   // Prepare the rows.
   $rows = array();
   // Prepare the empty text in case there aren't any rows.
-  $empty = t('You haven\'t yet started a study. Would you like to !start', array(
+  $empty = t("You haven't yet started a study. Would you like to !start", array(
     '!start' => l(t('start one now?'), 'tool/study/create'),
   ));
   // Only display this user's form instances.
@@ -149,15 +149,17 @@ function myhaccp_list() {
     }
 
     // Clone a study.
-    $options[] = array(
-      'title' => t('Copy/Clone'),
-      'href' => 'tool/study/' . $result->iid . '/clone',
-      'attributes' => array(
-        'class' => 'link--clone',
-        'data-valid' => $validation_status,
-        'data-status' => $study->getStatus(),
-      ),
-    );
+    if (user_access('clone own myhaccp study') || user_access('clone any myhaccp study')) {
+      $options[] = array(
+        'title' => t('Copy/Clone'),
+        'href' => 'tool/study/' . $result->iid . '/clone',
+        'attributes' => array(
+          'class' => 'link--clone',
+          'data-valid' => $validation_status,
+          'data-status' => $study->getStatus(),
+        ),
+      );
+    }
 
     // The delete link.
     if (user_access('delete own myhaccp study') || user_access('delete any myhaccp study')) {
@@ -204,14 +206,16 @@ function myhaccp_list() {
     ),
   );
 
-  $output['copy'] = array(
-    '#type' => 'link',
-    '#title' => 'Copy an existing study',
-    '#href' => 'tool/study/copy',
-    '#attributes' => array(
-      'class' => array('copy-study'),
-    ),
-  );
+  if (!empty($results)) {
+    $output['copy'] = array(
+      '#type' => 'link',
+      '#title' => 'Copy an existing study',
+      '#href' => 'tool/study/copy',
+      '#attributes' => array(
+        'class' => array('copy-study'),
+      ),
+    );
+  }
 
   $output['table'] = array(
     '#type' => 'markup',

@@ -136,7 +136,7 @@ function myhaccp_menu() {
     'page callback' => 'drupal_get_form',
     'page arguments' => array('myhaccp_study_copy_form'),
     'access callback' => 'myhaccp_access',
-    'access arguments' => array('clone', 2),
+    'access arguments' => array('clone'),
     'file' => 'includes/myhaccp.clone.inc',
     'type' => MENU_NORMAL_ITEM,
   );
@@ -246,10 +246,7 @@ function myhaccp_access($op, $iid = FALSE) {
     }
   }
   elseif ($op == 'clone') {
-    if (user_access('clone any myhaccp study')) {
-      return TRUE;
-    }
-    if (user_access('clone own myhaccp study') && $iid && myhaccp_user_owns_study($iid, $user)) {
+    if (user_access('clone any myhaccp study') || user_access('clone own myhaccp study')) {
       return TRUE;
     }
   }
