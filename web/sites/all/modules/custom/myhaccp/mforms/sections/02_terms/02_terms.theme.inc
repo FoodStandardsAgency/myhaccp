@@ -135,6 +135,16 @@ It will start at <strong>@start</strong> through to <strong>@end</strong>.</p>',
     $content .= '<div>' . t('<h4>Allergens</h4>') . '<ul><li>' . $allergens_hazards . '</li></ul></div>';
   }
 
+  // Add new question for c_5
+  if (isset($preparatory_c_2['c_5'])) {
+    $content .= '<div>';
+    $content .= t('<h4>The following were used in developing this HACCP plan:</h4>');
+    // @todo: check if we need to add newline to break or somesuch to format
+    // newlines.
+    $content .= $preparatory_c_2['c_5'];
+    $content .= '</div>';
+  }
+
   // Finally we have the output.
   $variables['c_4'] = $content;
 
