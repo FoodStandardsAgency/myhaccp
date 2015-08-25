@@ -136,12 +136,11 @@ It will start at <strong>@start</strong> through to <strong>@end</strong>.</p>',
   }
 
   // Add new question for c_5
-  if (isset($preparatory_c_2['c_5'])) {
+  if (isset($preparatory_c_2['c_5']['question'])) {
     $content .= '<div>';
     $content .= t('<h4>The following were used in developing this HACCP plan:</h4>');
-    // @todo: check if we need to add newline to break or somesuch to format
-    // newlines.
-    $content .= $preparatory_c_2['c_5'];
+    // @todo: check with Tanc if this nl2br() is a good approach.
+    $content .= nl2br($preparatory_c_2['c_5']['question']);
     $content .= '</div>';
   }
 
