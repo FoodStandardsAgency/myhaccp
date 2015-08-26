@@ -268,21 +268,11 @@ class Configuration {
         ),
         'orientation' => 'P',
       ),
+      'appendix_a' => array(
+        'type' => 'appendix',
+        'title' => 'Appendix A - Flow Diagram',
+        'process_function' => 'process_appendix_a',
+      ),
     );
-    // Determine the orientation of the pages and where page breaks occur.
-//    $breaks = array(
-//      'preparatory_c_1' => 'P',
-//      'preparatory_d' => 'P',
-//      'preparatory_e' => 'P',
-//      'preparatory_g' => 'P',
-//      'principle_1_1' => 'L',
-//      'principle_1_2' => 'L',
-//      'principle_1_3' => 'L',
-//      'principle_2_1' => 'L',
-//      'principle_3' => 'L',
-//      'principle_5' => 'L',
-//      'principle_6' => 'P',
-//      'principle_7' => 'P',
-//    );
   }
 }

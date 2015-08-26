@@ -8,9 +8,9 @@
   <p class="intro"><?php print $g_1; ?></p>
 <?php endif; ?>
 
-<?php if(!empty($flow_diagram_url)) : ?>
-  <div class="flow-diagram-container">
-    <img src="<?php print $flow_diagram_url; ?>" />
+<?php if(!empty($flow_diagram_text)) : ?>
+  <div class="flow-diagram-link">
+    <?php print $flow_diagram_text; ?>
   </div>
 <?php endif; ?>
 
