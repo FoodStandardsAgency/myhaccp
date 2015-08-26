@@ -1004,6 +1004,11 @@ function myhaccp_form_user_register_form_alter(&$form, $form_state) {
       ),
     ),
   );
+  // Add some introductory text to xexplain that the asterisk * means a required field.
+  $form['intro'] = array (
+      '#markup' => t('* required information. Fields marked with an asterisk (*) are required.'),
+      '#weight' => -20,
+  );
 }
 
 /**
@@ -1162,3 +1167,16 @@ function memoize($function) {
     return $results[$key];
   };
 }
+
+
+
+var_dump('hello');
+
+  // Fetch an instance info array.
+  $instance_info = field_info_instance('profile2', 'field_business_name', 'main');
+  // Change a single property in the instance definition.
+  //$instance_info['label'] = 'Business name (optional)';
+  // Write the changed definition back.
+  //field_update_instance($instance_info);
+
+  dpm($instance_info);
