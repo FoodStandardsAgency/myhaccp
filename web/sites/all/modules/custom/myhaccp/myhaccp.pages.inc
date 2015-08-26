@@ -151,7 +151,7 @@ function myhaccp_list() {
     // Clone a study.
     if (user_access('clone own myhaccp study') || user_access('clone any myhaccp study')) {
       $options[] = array(
-        'title' => t('Copy/Clone'),
+        'title' => t('Copy'),
         'href' => 'tool/study/' . $result->iid . '/clone',
         'attributes' => array(
           'class' => 'link--clone',
