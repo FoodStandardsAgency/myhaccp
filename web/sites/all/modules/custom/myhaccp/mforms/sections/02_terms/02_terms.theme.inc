@@ -135,6 +135,15 @@ It will start at <strong>@start</strong> through to <strong>@end</strong>.</p>',
     $content .= '<div>' . t('<h4>Allergens</h4>') . '<ul><li>' . $allergens_hazards . '</li></ul></div>';
   }
 
+  // Add new question for c_5
+  if (isset($preparatory_c_2['c_5']['question'])) {
+    $content .= '<div>';
+    $content .= t('<h4>The following were used in developing this HACCP plan:</h4>');
+    // @todo: check with Tanc if this nl2br() is a good approach.
+    $content .= nl2br($preparatory_c_2['c_5']['question']);
+    $content .= '</div>';
+  }
+
   // Finally we have the output.
   $variables['c_4'] = $content;
 

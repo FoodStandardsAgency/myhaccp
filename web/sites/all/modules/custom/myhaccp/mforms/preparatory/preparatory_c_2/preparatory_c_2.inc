@@ -467,6 +467,35 @@ function preparatory_c_2(&$form_state, &$next_step) {
     '#default_value' => array_get($values, 'preparatory_c_2.wrapper.allergens_c_4.allergens_other', FALSE),
   );
 
+  // Adding new option "Provide details of any documents or information that
+  // you have used in your HACCP plan.
+  // Placing this in an additional wrapper to maintain the presentation in line
+  // with the previous questions.
+  $form['preparatory_c_2']['wrapper']['c_5'] = array(
+    '#type' => 'fieldset',
+    '#tree' => TRUE,
+    '#attributes' => array(
+      'class' => array(
+        'stage-fieldset',
+      ),
+    ),
+  );
+
+  // Question definition.
+  $form['preparatory_c_2']['wrapper']['c_5']['question'] = array(
+    '#type' => 'textarea',
+    '#resizable' => FALSE,
+    '#title' => t('5. Provide details of any documents or information that you have used in your HACCP plan.'),
+    '#help_text' => t("State any documentation or sources of information used in your HACCP plan e.g.
+FSA Guidance for food business operators on Microbiological criteria for foodstuffs."),
+    // @todo - we will need to add new help text and ensure this links to the correct place.
+    '#help_link' => 15,
+    '#default_value' => array_get($values, 'preparatory_c_2.c_5_wrapper.c_5.question', FALSE),
+    '#attributes' => array(
+      'data-parsley-required' => 'false',
+    ),
+  );
+
   $form['#validate'][] = __FUNCTION__ . '_validate';
 
   return $form;
