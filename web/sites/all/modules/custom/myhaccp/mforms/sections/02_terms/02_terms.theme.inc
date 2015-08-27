@@ -135,15 +135,6 @@ It will start at <strong>@start</strong> through to <strong>@end</strong>.</p>',
     $content .= '<div>' . t('<h4>Allergens</h4>') . '<ul><li>' . $allergens_hazards . '</li></ul></div>';
   }
 
-  // Add new question for c_5
-  if (isset($preparatory_c_2['c_5']['question']) && strlen($preparatory_c_2['c_5']['question']) > 0) {
-    $content .= '<div>';
-    $content .= t('<h4>The following were used in developing this HACCP plan:</h4>');
-    // Wrapping output in nl2br() to convert newlins to <br/> tags for better presentation.
-    $content .= nl2br($preparatory_c_2['c_5']['question']);
-    $content .= '</div>';
-  }
-
   // Finally we have the output.
   $variables['c_4'] = $content;
 
@@ -157,4 +148,14 @@ It will start at <strong>@start</strong> through to <strong>@end</strong>.</p>',
   $variables['a_2_title'] = t('The location of the above documents is:');
   $variables['a_2'] = $preparatory_a['a_2'] ? $preparatory_a['a_2'] : '';
 
+  // Add new question for c_5
+  $c_5 = '';
+  if (isset($preparatory_c_2['c_5']['question']) && strlen($preparatory_c_2['c_5']['question']) > 0) {
+    $c_5 .= '<div>';
+    $c_5 .= t('<h3>The following were used in developing this HACCP plan:</h3>');
+    // Wrapping output in nl2br() to convert newlins to <br/> tags for better presentation.
+    $c_5 .= nl2br($preparatory_c_2['c_5']['question']);
+    $c_5 .= '</div>';
+  }
+  $variables['c_5'] =  $c_5;
 }
