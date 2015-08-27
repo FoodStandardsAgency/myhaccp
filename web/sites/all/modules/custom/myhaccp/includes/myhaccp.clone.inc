@@ -55,7 +55,7 @@ function myhaccp_study_copy_form($form, $form_state) {
     '#options' => $business->getStudiesOptionsArray($user),
     '#help_text' => t("When you click the submit button, the existing study you
     have chosen will be copied. You will then be taken to this new study where
-    you can enter the new study's name"),
+    you can enter the new study's name."),
   );
 
   $form['actions'] = array(
