@@ -42,8 +42,12 @@ function process_appendix_a($study, $mpdf, $section) {
     watchdog('myhaccp', t('There was a problem creating the image derivative for the PDF in the temp directory.'), array(), WATCHDOG_ERROR);
   }
   // Prepare the output.
-  $output = '<section class="page"><div class="flow-diagram-container">
+  $output = '<h1>' . $section['title'] . '</h1>';
+  $output .= '<section class="page"><div class="flow-diagram-container">
     <img src="' . $temp_file_name .'" /></div>';
+
+  $mpdf->addPagebyArray(array(
+  ));
   // Write the page output.
   $mpdf->WriteHTML($output, 2);
 }
