@@ -242,3 +242,20 @@ function myhaccp_update_7007() {
   // The administrator should have the 'any' permission.
   user_role_grant_permissions(3, array('clone any myhaccp study'));
 }
+
+/**
+ * Update the field label of field_business_name
+ * to read "Business name (optional)".
+ */
+function myhaccp_update_7008() {
+
+  // Fetch an instance info array for field_business_name.
+  $instance_info = field_info_instance('profile2', 'field_business_name', 'main');
+  // Change label in the instance definition.
+  $instance_info['label'] = 'Business name (optional)';
+  // Update the description.
+  $instance_info['description'] = "Enter a business name. This only appears on the cover sheet of your downloaded MyHACCP study.";
+  // Write the changed definition back.
+  field_update_instance($instance_info);
+
+}

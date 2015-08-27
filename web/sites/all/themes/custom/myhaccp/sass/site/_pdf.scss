@@ -1,6 +1,6 @@
 @media print {
   body {
-    background-color: #FFF;
+    background-color: transparent;
     font-family: 'cartogothicstd';
   }
 
@@ -12,7 +12,11 @@
     color: #555;
   }
 
-  .business-name span {
+  .business-name {
+    font-weight: bold;
+  }
+
+  .business-name span.business-name--title {
     color: $text;
     padding-left: 1em;
   }
@@ -82,9 +86,13 @@
   }
   .flow-diagram-container {
     text-align: center;
+    margin-top: 40px;
     img {
       max-height: 500px;
     }
+  }
+
+  .section-appendix-a {
   }
 
   footer.pdf-footer {

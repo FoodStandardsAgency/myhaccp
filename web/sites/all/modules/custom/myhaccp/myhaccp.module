@@ -1004,6 +1004,11 @@ function myhaccp_form_user_register_form_alter(&$form, $form_state) {
       ),
     ),
   );
+  // Add some introductory text to xexplain that the asterisk * means a required field.
+  $form['intro'] = array (
+      '#markup' => t('Fields marked with an asterisk (*) are required.'),
+      '#weight' => -20,
+  );
 }
 
 /**

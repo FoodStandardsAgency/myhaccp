@@ -136,10 +136,10 @@ It will start at <strong>@start</strong> through to <strong>@end</strong>.</p>',
   }
 
   // Add new question for c_5
-  if (isset($preparatory_c_2['c_5']['question'])) {
+  if (isset($preparatory_c_2['c_5']['question']) && strlen($preparatory_c_2['c_5']['question']) > 0) {
     $content .= '<div>';
     $content .= t('<h4>The following were used in developing this HACCP plan:</h4>');
-    // @todo: check with Tanc if this nl2br() is a good approach.
+    // Wrapping output in nl2br() to convert newlins to <br/> tags for better presentation.
     $content .= nl2br($preparatory_c_2['c_5']['question']);
     $content .= '</div>';
   }
