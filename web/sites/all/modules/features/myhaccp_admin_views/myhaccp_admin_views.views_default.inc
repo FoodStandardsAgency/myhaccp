@@ -350,7 +350,7 @@ function myhaccp_admin_views_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'User Profiles';
+  $handler->display->display_options['title'] = 'Users by access time';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'role';
   $handler->display->display_options['access']['role'] = array(
@@ -591,7 +591,7 @@ function myhaccp_admin_views_views_default_views() {
   );
   $handler->display->display_options['path'] = 'admin/user-access';
   $handler->display->display_options['menu']['type'] = 'normal';
-  $handler->display->display_options['menu']['title'] = 'User Profiles';
+  $handler->display->display_options['menu']['title'] = 'User by access time';
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['name'] = 'management';
   $handler->display->display_options['menu']['context'] = 0;
