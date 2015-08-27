@@ -27,3 +27,22 @@ Feature: Preparatory G
     And I press the "Upload" button
     Then I should not see "Remove"
     And I should see "The file you uploaded does not appear to be a valid image file"
+
+  Scenario: Complete Preparatory G and confirm data entry
+    Given I select the radio button "Yes" with the id "edit-preparatory-g-g-1-yes"
+    And I attach the file "file_good_1.jpg" to "edit-preparatory-g-g-2-upload"
+    And I press the "Upload" button
+
+    When I press the "Save this page" button
+
+    Then the radio button with id "edit-preparatory-g-g-1-yes" should be checked
+    And I should see "Remove"
+
+  Scenario: Complete Preparatory G validation errors
+    Given I select the radio button "Yes" with the id "edit-preparatory-g-g-1-yes"
+    And I fill in "3." with ""
+
+    When I press the "Save this page" button
+
+    Then I should see "The following items have errors you will need to correct"
+    And I should see "Please either upload a digital copy of your flow diagram, or if you only have a hard copy please specify the location where it is retained and any document reference."

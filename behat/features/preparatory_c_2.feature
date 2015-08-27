@@ -86,7 +86,7 @@ Feature: Preparatory C.2
     # Confirm the checkboxes are checked
 
     # Physical checkboxes
-    And the "Metal" checkbox should be checked
+    Then the "Metal" checkbox should be checked
     And the "Glass and brittle plastic" checkbox should be checked
     And the "Flexible plastic" checkbox should be checked
     And the "Plasters" checkbox should be checked
@@ -152,3 +152,4 @@ Feature: Preparatory C.2
     And the "Sulphur dioxide and sulphites at concentrations of more than 10mg/kg or 10mg/litre in terms of the total SO2 which are to be calculated for products as proposed ready for consumption or as reconstituted according to the instructions of the manufacturers" checkbox should be checked
     And the "Nuts, namely: almonds, hazelnuts,walnuts,cashewnuts, pecan nuts, Brazil nuts, pistachio nuts, macadamia or Queensland nuts and products thereof, except for nuts used for making alcoholic distillates including ethyl alcohol of agricultural origin." checkbox should be checked
     And the "edit-preparatory-c-2-wrapper-allergens-c-4-allergens-other" field should contain "nettles"
+

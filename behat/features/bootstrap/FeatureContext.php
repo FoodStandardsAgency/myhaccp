@@ -93,7 +93,6 @@ class FeatureContext extends Drupal\DrupalExtension\Context\DrupalContext {
     }
     $field->setValue($value);
   }
-
   /**
    * @When /^I fill row "([^"]*)" "([^"]*)" with "([^"]*)"$/
    */
@@ -112,28 +111,15 @@ class FeatureContext extends Drupal\DrupalExtension\Context\DrupalContext {
     $field->setValue($value);
   }
 
-  /**
-   * @When /^I select the radio button "([^"]*)" in row "([^"]*)" "([^"]*)"$/
-   */
-  public function iSelectTheRadioButtonInRow($label, $row, $class) {
-    $row = $this->fixStepArgument($row);
-    $class = $this->fixStepArgument($class);
-    $label = $this->fixStepArgument($label);
-    // Get the field by row and class.
-    $target = 'tr:nth-of-type(' . $row . ') td .' . $class;
-    $parent = $this->getSession()->getPage()->find('css', $target)->getParent();
-    // Now find the right input field.
-    $field = $parent->find('named', array(
-      'radio',
-      $this->getSession()->getSelectorsHandler()->xpathLiteral($label),
-    ));
-    if (NULL === $field) {
-      throw new ElementNotFoundException($this->getSession(), 'form field', 'css', $field);
+/**
+ * @Then /^the radio button with id "([^"]*)" should be checked$/
+ */
+public function theRadioButtonWithIdShouldBeChecked($sId){
+    $elementByCss = $this->getSession()->getPage()->find('css', 'input[type="radio"]:checked#'.$sId);
+    if (!$elementByCss) {
+        throw new Exception('Radio button with id ' . $sId.' is not checked');
     }
-    $value = $field->getAttribute('value');
-    // Set the field's value.
-    $field->setValue($value);
-  }
+}
 
 
   protected function principle_1_1() {
