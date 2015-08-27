@@ -12,7 +12,11 @@
     color: #555;
   }
 
-  .business-name span {
+  .business-name {
+    font-weight: bold;
+  }
+
+  .business-name span.business-name--title {
     color: $text;
     padding-left: 1em;
   }
