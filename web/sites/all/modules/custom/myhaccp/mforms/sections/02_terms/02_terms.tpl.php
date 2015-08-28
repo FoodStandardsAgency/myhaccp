@@ -16,3 +16,8 @@
 <?php print $a_1; ?>
 <h3><?php print $a_2_title ?></h3>
 <p><?php print $a_2; ?></p>
+
+<?php if ($c_5): ?>
+<?php print $c_5; ?>
+<?php endif; ?>
+

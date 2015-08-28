@@ -46,3 +46,9 @@
     @include column(5);
   }
 }
+
+
+.alert--myhaccp {
+  border: 3px solid $accent-1;
+  padding: 0 1em;
+}

@@ -490,7 +490,7 @@ function preparatory_c_2(&$form_state, &$next_step) {
 FSA Guidance for food business operators on Microbiological criteria for foodstuffs."),
     // @todo - we will need to add new help text and ensure this links to the correct place.
     '#help_link' => 15,
-    '#default_value' => array_get($values, 'preparatory_c_2.c_5_wrapper.c_5.question', FALSE),
+    '#default_value' => array_get($values, 'preparatory_c_2.wrapper.c_5.question', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'false',
     ),

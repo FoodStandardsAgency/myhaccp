@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the MyHACCP User Profiles feature.
+ */
+
+include_once 'myhaccp_user_profiles.features.inc';
