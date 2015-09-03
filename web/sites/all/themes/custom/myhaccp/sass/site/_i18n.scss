@@ -2,6 +2,9 @@
 
 #l10n-client {
   .labels {
+    .toggle {
+      text-transform: none;
+    }
     .label {
       h2 {
         font-size: 0.9em;

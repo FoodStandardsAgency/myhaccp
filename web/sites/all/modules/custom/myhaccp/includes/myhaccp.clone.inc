@@ -35,6 +35,8 @@ function myhaccp_study_clone($iid) {
 function myhaccp_study_copy_form($form, $form_state) {
   $form = array();
 
+  $form['#attributes']['class'] = array('study-copy-form');
+
   drupal_set_title(t('Copy an existing study'));
 
   $path = libraries_get_path('qtip2');

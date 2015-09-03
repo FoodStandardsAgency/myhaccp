@@ -1523,6 +1523,10 @@ input#edit-delete-all {
     .webform-client-form .form-actions input[type="submit"].active, .webform-client-form .form-actions input[type="submit"]:active {
       box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.2) inset; }
 
+.study-copy-form .form-actions #edit-submit {
+  background-color: #006F51;
+  color: #FFF; }
+
 /**
  * @file
  * Styles for system messages.
@@ -2902,6 +2906,8 @@ a:hover {
   height: auto !important;
   width: auto !important; }
 
+#l10n-client .labels .toggle {
+  text-transform: none; }
 #l10n-client .labels .label h2 {
   font-size: 0.9em;
   padding-top: 0.2em;
