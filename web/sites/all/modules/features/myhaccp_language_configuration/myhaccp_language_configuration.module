@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the MyHACCP Language Configuration feature.
+ */
+
+include_once 'myhaccp_language_configuration.features.inc';

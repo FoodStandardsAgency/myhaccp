@@ -62,7 +62,7 @@ function myhaccp_output_pdf($iid) {
     $mpdf->AddPageByArray(array(
       'resetpagenum' => 1,
       'suppress' => 'off',
-      'margin-header' => 40,
+      'margin-top' => 40,
     ));
 
     // Reset the footer.

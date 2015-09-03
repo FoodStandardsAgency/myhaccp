@@ -35,6 +35,8 @@ function myhaccp_study_clone($iid) {
 function myhaccp_study_copy_form($form, $form_state) {
   $form = array();
 
+  $form['#attributes']['class'] = array('study-copy-form');
+
   drupal_set_title(t('Copy an existing study'));
 
   $path = libraries_get_path('qtip2');
@@ -54,8 +56,7 @@ function myhaccp_study_copy_form($form, $form_state) {
     '#type' => 'select',
     '#options' => $business->getStudiesOptionsArray($user),
     '#help_text' => t("When you click the submit button, the existing study you
-    have chosen will be copied. You will then be taken to this new study where
-    you can enter the new study's name."),
+    have chosen will be copied. You will then be taken to the Preparatory Introduction stage of this new study where you can enter the new study's name."),
   );
 
   $form['actions'] = array(

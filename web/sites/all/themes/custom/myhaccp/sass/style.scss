@@ -33,6 +33,7 @@
 @import 'patterns/forms/forms-navigation';
 @import 'patterns/forms/forms-user-account';
 @import 'patterns/forms/webforms';
+@import 'patterns/forms/forms-copy-study';
 @import 'patterns/messages';
 @import 'patterns/tables';
 @import 'patterns/blocks';
@@ -62,6 +63,9 @@
 
 // Setup for this site
 @import 'site/site-wide';
+
+// i18n
+@import 'site/i18n';
 
 // Compatibility
 @import 'site/ie6';
