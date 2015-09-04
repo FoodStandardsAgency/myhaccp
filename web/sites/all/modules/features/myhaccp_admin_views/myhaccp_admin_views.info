@@ -1,5 +1,5 @@
 name = MyHACCP Admin Views
-description = Administrative views
+description = Administrative views.
 core = 7.x
 package = MyHACCP
 version = 7.x-1.0
