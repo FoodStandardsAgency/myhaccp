@@ -126,7 +126,7 @@ function myhaccp_output_pdf($iid) {
       // output.
       if (isset($section['process_function'])) {
         $function = $section['process_function'];
-        module_load_include('inc', 'myhaccp', 'mforms/sections/' . $key . '/' . $key . '.theme');
+        module_load_include('inc', 'myhaccp', 'mforms/sections/' . $key . '/' . $key);
         if (function_exists($function)) {
           $function($study, $mpdf, $section);
         }

@@ -525,6 +525,10 @@ function myhaccp_theme($existing, $type, $theme, $path) {
     $configuration = new Configuration();
     $files = $configuration->getPDFSections();
     foreach ($files as $name => $section) {
+      // Appendixes don't have theme templates and preprocessors.
+      if (isset($section['type']) && $section['type'] == 'appendix') {
+        continue;
+      }
       // Now the hook. We want to pass in the form_state data so have added the
       // data variable. This will get properly sorted by a preprocess function so
       // the template has the correct data to display.
