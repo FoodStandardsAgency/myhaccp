@@ -127,7 +127,7 @@ class Configuration {
   public function getPDFSections() {
     return array(
       '01_management' => array(
-        'title' => 'Management commitment',
+        'title' => t('Management commitment'),
         'validation' => array(
           'preparatory_b',
         ),
@@ -136,7 +136,7 @@ class Configuration {
         ),
       ),
       '02_terms' => array(
-        'title' => 'Terms of reference',
+        'title' => t('Terms of reference'),
         'validation' => array(
           'preparatory_c_1',
           'preparatory_c_2',
@@ -149,7 +149,7 @@ class Configuration {
         'orientation' => 'P',
       ),
       '03_team' => array(
-        'title' => 'The HACCP team',
+        'title' => t('The HACCP team'),
         'validation' => array(
           'preparatory_d',
         ),
@@ -159,7 +159,7 @@ class Configuration {
         'orientation' => 'P',
       ),
       '04_product' => array(
-        'title' => 'Product description and intended use',
+        'title' => t('Product description and intended use'),
         'validation' => array(
           'preparatory_e',
           'preparatory_f',
@@ -171,7 +171,7 @@ class Configuration {
         'orientation' => 'P',
       ),
       '05_process' => array(
-        'title' => 'Process flow and confirmation',
+        'title' => t('Process flow and confirmation'),
         'validation' => array(
           'preparatory_g',
           'preparatory_h',
@@ -183,7 +183,7 @@ class Configuration {
         'orientation' => 'P',
       ),
       '06_identify' => array(
-        'title' => 'Identify and list potential hazards',
+        'title' => t('Identify and list potential hazards'),
         'validation' => array(
           'principle_1_1',
         ),
@@ -193,7 +193,7 @@ class Configuration {
         'orientation' => 'L',
       ),
       '07_severity' => array(
-        'title' => 'Severity scores',
+        'title' => t('Severity scores'),
         'validation' => array(
           'principle_1_2',
         ),
@@ -203,7 +203,7 @@ class Configuration {
         'orientation' => 'L',
       ),
       '08_control' => array(
-        'title' => 'Control Measures',
+        'title' => t('Control Measures'),
         'validation' => array(
           'principle_1_3',
         ),
@@ -213,7 +213,7 @@ class Configuration {
         'orientation' => 'L',
       ),
       '09_ccps' => array(
-        'title' => 'CCPs for significant hazards',
+        'title' => t('CCPs for significant hazards'),
         'validation' => array(
           'principle_2_1',
           'principle_2_2',
@@ -225,7 +225,7 @@ class Configuration {
         'orientation' => 'L',
       ),
       '10_critical' => array(
-        'title' => 'Critical limits for the CCPs',
+        'title' => t('Critical limits for the CCPs'),
         'validation' => array(
           'principle_3',
         ),
@@ -235,7 +235,7 @@ class Configuration {
         'orientation' => 'L',
       ),
       '11_plan' => array(
-        'title' => 'The HACCP Plan',
+        'title' => t('The HACCP Plan'),
         'validation' => array(
           'principle_3',
           'principle_4',
@@ -249,7 +249,7 @@ class Configuration {
         'orientation' => 'L',
       ),
       '12_verification' => array(
-        'title' => 'Verification',
+        'title' => t('Verification'),
         'validation' => array(
           'principle_6',
         ),
@@ -259,7 +259,7 @@ class Configuration {
         'orientation' => 'P',
       ),
       '13_documentation' => array(
-        'title' => 'Documentation and record keeping',
+        'title' => t('Documentation and record keeping'),
         'validation' => array(
           'principle_7',
         ),
@@ -270,7 +270,7 @@ class Configuration {
       ),
       'appendix_a' => array(
         'type' => 'appendix',
-        'title' => 'Appendix A - Flow Diagram',
+        'title' => t('Appendix A - Flow Diagram'),
         'process_function' => 'process_appendix_a',
       ),
     );
