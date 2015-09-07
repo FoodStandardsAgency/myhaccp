@@ -50,11 +50,11 @@ function myhaccp_output_pdf($iid) {
       'suppress' => 'on',
     ));
     $date = format_date(time(), 'custom', 'd/m/Y');
-    $cover = '<h1 class="study-name">MyHACCP Study: ' . $name . '</h1>';
-    $cover .= '<p class="business-name">Business name: <span class="business-name--title">' . $business_name . '</span></p>';
-    $cover_footer = '<footer class="front-page"><h3 class="origin">This document was created using the MyHACCP web tool.</h3>';
+    $cover = '<h1 class="study-name">' . t('MyHACCP Study') . ': ' . $name . '</h1>';
+    $cover .= '<p class="business-name">' . t('Business name') . ': <span class="business-name--title">' . $business_name . '</span></p>';
+    $cover_footer = '<footer class="front-page"><h3 class="origin">' . t('This document was created using the MyHACCP web tool.') . '</h3>';
     $cover_footer .= '<p>http://myhaccp.food.gov.uk</p>';
-    $cover_footer .= '<p class="date">Date generated: ' . $date . '</p></footer>';
+    $cover_footer .= '<p class="date">' . t('Date generated') . ': ' . $date . '</p></footer>';
     $mpdf->SetHTMLFooter($cover_footer);
     // Write the cover to the PDF.
     $mpdf->WriteHTML($cover, 2);
