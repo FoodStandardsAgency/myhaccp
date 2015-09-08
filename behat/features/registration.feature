@@ -52,6 +52,7 @@ Feature: Registration
       # Then I should see "Your current password is missing or incorrect; it's required to change the Password."
       Then I should see "Password must have upper and lower case letters." in the ".error ul" element
       And I should see "Password must have at least 1 symbol(s)." in the ".error ul" element
+      And I should not see "Password must have at least 9 character(s)." in the ".error ul" element
 
 Scenario: Password authentication
 Given users:
@@ -68,3 +69,52 @@ Given users:
       # Then I should see "Your current password is missing or incorrect; it's required to change the Password."
       Then I should see "Password must have at least 1 symbol(s)." in the ".error ul" element
       And I should not see "Password must have upper and lower case letters." in the ".error ul" element
+      And I should not see "Password must have at least 9 character(s)." in the ".error ul" element
+
+Scenario: Password authentication
+Given users:
+      | name   | mail         | pass    |
+      | _bob   | _bob@foo.com | uniqueP4ss! |
+      And I am logged in as "_bob"
+      And I visit "/user"
+      And I follow "Edit"
+      And I fill in "Current password" with "uniqueP4ss!"
+      And I fill in "Password" with "!Abcdef"
+      And I fill in "Confirm password" with "!Abcdef"
+      
+      When I press the "Save" button
+      # Then I should see "Your current password is missing or incorrect; it's required to change the Password."
+      Then I should not see "Password must have at least 1 symbol(s)." in the ".error ul" element
+      And I should not see "Password must have upper and lower case letters." in the ".error ul" element
+      And I should see "Password must have at least 9 character(s)." in the ".error ul" element
+
+Scenario: Password authentication
+Given users:
+      | name   | mail         | pass    |
+      | _bob   | _bob@foo.com | uniqueP4ss! |
+      And I am logged in as "_bob"
+      And I visit "/user"
+      And I follow "Edit"
+      And I fill in "Current password" with "uniqueP4ss!"
+      And I fill in "Password" with "!Abcdefgh"
+      And I fill in "Confirm password" with "!Abcdefgh"
+      
+      When I press the "Save" button
+      # Then I should see "Your current password is missing or incorrect; it's required to change the Password."
+      Then I should not see "Password must have at least 1 symbol(s)." in the ".error ul" element
+      And I should not see "Password must have upper and lower case letters." in the ".error ul" element
+      And I should not see "Password must have at least 9 character(s)." in the ".error ul" element
+      And I should see "The changes have been saved."
+
+  Scenario: Password authentication
+Given users:
+      | name   | mail         | pass    |
+      | _bob   | _bob@foo.com | uniqueP4ss! |
+      And I am logged in as "_bob"
+      And I visit "/user"
+      And I follow "Edit"
+      And I fill in "Current password" with "uniqueP4ss!"
+      And I check the radio button "Welsh (Cymraeg)"
+
+      When I press the "Save" button
+      Then I should see "The changes have been saved."
