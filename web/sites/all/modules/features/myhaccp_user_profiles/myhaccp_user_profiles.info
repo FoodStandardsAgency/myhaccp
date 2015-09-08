@@ -1,5 +1,5 @@
 name = MyHACCP User Profiles
-description = Config for MyHACCP user profiles.
+description = Configuration for MyHACCP user profiles.
 core = 7.x
 package = MyHACCP
 version = 7.x-1.0
