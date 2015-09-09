@@ -113,6 +113,22 @@ function myhaccp_admin_views_views_default_views() {
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['context'] = 0;
   $handler->display->display_options['menu']['context_only_inline'] = 0;
+  $translatables['registrations'] = array(
+    t('Master'),
+    t('User Registrations'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Profile'),
+    t('Total user registrations in period'),
+    t('Name'),
+    t('Registration date'),
+    t('Business type'),
+    t('Page'),
+  );
   $export['registrations'] = $view;
 
   $view = new view();
@@ -336,6 +352,38 @@ function myhaccp_admin_views_views_default_views() {
   );
   $handler->display->display_options['use_batch'] = 'batch';
   $handler->display->display_options['segment_size'] = '100';
+  $translatables['user_profiles'] = array(
+    t('Master'),
+    t('User Profiles'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('User'),
+    t('Count'),
+    t('Name'),
+    t('E-mail'),
+    t('Business type'),
+    t('Business type if other'),
+    t('Size of business'),
+    t('Postcode area'),
+    t('Contact consent'),
+    t('I agree to the FSA contacting me for any research or surveys related to the use of this site. (field_contact_consent)'),
+    t('Page'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Displaying @start - @end of @total'),
+    t('Note that the CSV export below will only export users who have consented to be contacted.'),
+    t('User consents to contact'),
+    t('Data export'),
+  );
   $export['user_profiles'] = $view;
 
   $view = new view();
@@ -570,24 +618,30 @@ function myhaccp_admin_views_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'main' => 'main',
   );
-  /* Filter criterion: User: Last access */
-  $handler->display->display_options['filters']['access']['id'] = 'access';
-  $handler->display->display_options['filters']['access']['table'] = 'users';
-  $handler->display->display_options['filters']['access']['field'] = 'access';
-  $handler->display->display_options['filters']['access']['relationship'] = 'user';
-  $handler->display->display_options['filters']['access']['operator'] = '<';
-  $handler->display->display_options['filters']['access']['value']['type'] = 'offset';
-  $handler->display->display_options['filters']['access']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['access']['expose']['operator_id'] = 'access_op';
-  $handler->display->display_options['filters']['access']['expose']['label'] = 'Last access';
-  $handler->display->display_options['filters']['access']['expose']['operator'] = 'access_op';
-  $handler->display->display_options['filters']['access']['expose']['identifier'] = 'access';
-  $handler->display->display_options['filters']['access']['expose']['remember_roles'] = array(
+  /* Filter criterion: Date: Date (users) */
+  $handler->display->display_options['filters']['date_filter']['id'] = 'date_filter';
+  $handler->display->display_options['filters']['date_filter']['table'] = 'users';
+  $handler->display->display_options['filters']['date_filter']['field'] = 'date_filter';
+  $handler->display->display_options['filters']['date_filter']['relationship'] = 'user';
+  $handler->display->display_options['filters']['date_filter']['operator'] = '<';
+  $handler->display->display_options['filters']['date_filter']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['date_filter']['expose']['operator_id'] = 'date_filter_op';
+  $handler->display->display_options['filters']['date_filter']['expose']['label'] = 'Last Access';
+  $handler->display->display_options['filters']['date_filter']['expose']['description'] = 'The table will show users who last accessed the site before the date entered';
+  $handler->display->display_options['filters']['date_filter']['expose']['operator'] = 'date_filter_op';
+  $handler->display->display_options['filters']['date_filter']['expose']['identifier'] = 'date_filter';
+  $handler->display->display_options['filters']['date_filter']['expose']['remember'] = TRUE;
+  $handler->display->display_options['filters']['date_filter']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
     3 => 0,
     4 => 0,
     5 => 0,
+    6 => 0,
+  );
+  $handler->display->display_options['filters']['date_filter']['form_type'] = 'date_popup';
+  $handler->display->display_options['filters']['date_filter']['date_fields'] = array(
+    'users.access' => 'users.access',
   );
   $handler->display->display_options['path'] = 'admin/user-access';
   $handler->display->display_options['menu']['type'] = 'normal';
@@ -637,6 +691,42 @@ function myhaccp_admin_views_views_default_views() {
   );
   $handler->display->display_options['use_batch'] = 'batch';
   $handler->display->display_options['segment_size'] = '100';
+  $translatables['users_by_access_time'] = array(
+    t('Master'),
+    t('Users by access time'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('User'),
+    t('Count'),
+    t('Name'),
+    t('E-mail'),
+    t('Created date'),
+    t('Last access'),
+    t('Business type'),
+    t('Business type if other'),
+    t('Size of business'),
+    t('Postcode area'),
+    t('Contact consent'),
+    t('Last login'),
+    t('I agree to the FSA contacting me for any research or surveys related to the use of this site. (field_contact_consent)'),
+    t('Page'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Displaying @start - @end of @total'),
+    t('Note that the CSV export below will only export users who have consented to be contacted.'),
+    t('Last Access'),
+    t('The table will show users who last accessed the site before the date entered'),
+    t('Data export'),
+  );
   $export['users_by_access_time'] = $view;
 
   return $export;
