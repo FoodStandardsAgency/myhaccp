@@ -1,0 +1,33 @@
+<?php
+
+/**
+ * Implements hook_install().
+ */
+function myhaccp_language_configuration_install() {
+  variable_set('variable_module_list', array(
+    'i18n' =>
+      array (
+        0 => 'i18n_language_list',
+      ),
+    'i18n_string' =>
+      array (
+        0 => 'i18n_string_translate_langcode_en',
+        1 => 'i18n_string_allowed_formats',
+        2 => 'i18n_string_source_language',
+        3 => 'i18n_string_debug',
+      ),
+    )
+  );
+
+  variable_set('variable_realm_list_language', array(
+      0 => 'user_mail_register_admin_created_[mail_part]',
+      1 => 'user_mail_register_no_approval_required_[mail_part]',
+      2 => 'user_mail_register_pending_approval_[mail_part]',
+      3 => 'user_mail_password_reset_[mail_part]',
+      4 => 'user_mail_status_activated_[mail_part]',
+      5 => 'user_mail_status_blocked_[mail_part]',
+      6 => 'user_mail_cancel_confirm_[mail_part]',
+      7 => 'user_mail_status_canceled_[mail_part]',
+    )
+  );
+}
