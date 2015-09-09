@@ -4,6 +4,20 @@
  * Implements hook_install().
  */
 function myhaccp_language_configuration_install() {
+  myhaccp_language_configuration_set_default_variabes();
+}
+
+/**
+ * Set default variables to enable translation of user emails.
+ */
+function myhaccp_language_configuration_update_7001() {
+  myhaccp_language_configuration_set_default_variabes();
+}
+
+/**
+ * Callback to set default variables to enable translation of user emails.
+ */
+function myhaccp_language_configuration_set_default_variabes() {
   variable_set('variable_module_list', array(
     'i18n' =>
       array (
