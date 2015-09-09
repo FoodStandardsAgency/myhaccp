@@ -1,5 +1,5 @@
 name = MyHACCP Content Type: Resources Page
-description = Configuration for content type and field settings for the Guidance content type.
+description = Configuration for content type and field settings for the Resources page content type.
 core = 7.x
 package = MyHACCP
 version = 7.x-1.0
