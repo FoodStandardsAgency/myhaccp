@@ -14,7 +14,7 @@ function process_appendix_a($study, $mpdf, $section) {
 
   if (empty($file)) {
     // If the file couldn't be loaded then log a watchdog error.
-    watchdog('myhaccp', t('Whilst rendering the PDF, the flow diagram could not be loaded.'), array(), WATCHDOG_ERROR);
+    watchdog('myhaccp', 'Whilst rendering the PDF, the flow diagram could not be loaded.', array(), WATCHDOG_ERROR);
     return;
   }
 
@@ -51,7 +51,7 @@ function process_appendix_a($study, $mpdf, $section) {
   $style = $orientation == 'P' ? image_style_load('pdf_flow_diagram') : image_style_load('pdf_flow_diagram_landscape');
   $success = file_exists($temp_file_name) || image_style_create_derivative($style, $file->uri, $temp_file_name);
   if (!$success) {
-    watchdog('myhaccp', t('There was a problem creating the image derivative for the PDF in the temp directory.'), array(), WATCHDOG_ERROR);
+    watchdog('myhaccp', 'There was a problem creating the image derivative for the PDF in the temp directory.', array(), WATCHDOG_ERROR);
   }
   // Prepare the output.
   $output = '<section class="page"><div class="flow-diagram-container">
@@ -60,7 +60,7 @@ function process_appendix_a($study, $mpdf, $section) {
   $mpdf->addPagebyArray(array(
     'orientation' => $orientation,
   ));
-  
+
   // Write the page output.
   $mpdf->WriteHTML($output, 2);
 }

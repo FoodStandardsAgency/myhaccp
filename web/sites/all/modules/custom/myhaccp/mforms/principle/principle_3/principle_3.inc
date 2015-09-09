@@ -145,7 +145,7 @@ function principle_3(&$form_state, &$next_step) {
       '#default_value' => array_get($values, "principle_3.$hazard_key.3_5", array()),
       '#attributes' => array(
         'data-parsley-required' => 'true',
-        'data-parsley-error-message' => t(''),
+        'data-parsley-error-message' => t('Please indicate whether there is a target value.'),
       ),
     );
 
