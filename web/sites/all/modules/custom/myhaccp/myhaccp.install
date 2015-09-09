@@ -248,7 +248,6 @@ function myhaccp_update_7007() {
  * to read "Business name (optional)".
  */
 function myhaccp_update_7008() {
-
   // Fetch an instance info array for field_business_name.
   $instance_info = field_info_instance('profile2', 'field_business_name', 'main');
   // Change label in the instance definition.
@@ -257,5 +256,21 @@ function myhaccp_update_7008() {
   $instance_info['description'] = "Enter a business name. This only appears on the cover sheet of your downloaded MyHACCP study.";
   // Write the changed definition back.
   field_update_instance($instance_info);
+}
 
+/**
+ * Create a landscape image style for PDF output images.
+ */
+function myhaccp_update_7009() {
+  $style = image_style_save(array('name' => 'pdf_flow_diagram_landscape'));
+  $effect = array(
+    'name' => 'image_scale',
+    'data' => array(
+      'width' => 0,
+      'height' => 2048,
+      'upscale' => FALSE,
+    ),
+    'isid' => $style['isid'],
+  );
+  image_effect_save($effect);
 }

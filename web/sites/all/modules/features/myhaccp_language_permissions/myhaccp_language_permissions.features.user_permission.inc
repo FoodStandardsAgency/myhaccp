@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * myhaccp_permissions.features.user_permission.inc
+ * myhaccp_language_permissions.features.user_permission.inc
  */
 
 /**
  * Implements hook_user_default_permissions().
  */
-function myhaccp_permissions_user_default_permissions() {
+function myhaccp_language_permissions_user_default_permissions() {
   $permissions = array();
 
   // Exported permission: 'administer entity translation'.

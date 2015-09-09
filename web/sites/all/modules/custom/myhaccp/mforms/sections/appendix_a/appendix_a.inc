@@ -24,6 +24,16 @@ function process_appendix_a($study, $mpdf, $section) {
     return;
   }
 
+  // Insert a blank page with the header.
+  $mpdf->AddPageByArray(array());
+
+  $output = '<section>';
+  $output .= '<h1>' . $section['title'] . '</h1>';
+  $output .= '<p>' . t('The flow diagram begins on the next page.') . '</p>';
+  $output .= '</section>';
+
+  $mpdf->WriteHTML($output, 2);
+
   // Prepare an image derivative of the flow diagram image
   // at a reasonable maximum size (2048px wide).
   // Due to issues with private file permissions (see case 12347) we need to
@@ -36,18 +46,21 @@ function process_appendix_a($study, $mpdf, $section) {
   // Prepare a filename in the temporary directory for a copy of the file.
   $temp_file_name = file_directory_temp() . '/' . md5($file->uri) . '.' . $extension;
   // Output the image derivative into the temporary file location.
-  $style = image_style_load('pdf_flow_diagram');
+
+  $orientation = $file->metadata['width'] > $file->metadata['height'] ? 'L' : 'P';
+  $style = $orientation == 'P' ? image_style_load('pdf_flow_diagram') : image_style_load('pdf_flow_diagram_landscape');
   $success = file_exists($temp_file_name) || image_style_create_derivative($style, $file->uri, $temp_file_name);
   if (!$success) {
     watchdog('myhaccp', t('There was a problem creating the image derivative for the PDF in the temp directory.'), array(), WATCHDOG_ERROR);
   }
   // Prepare the output.
-  $output = '<h1>' . $section['title'] . '</h1>';
-  $output .= '<section class="page"><div class="flow-diagram-container">
-    <img src="' . $temp_file_name .'" /></div>';
+  $output = '<section class="page"><div class="flow-diagram-container">
+    <img src="' . $temp_file_name .'" /></div></section>';
 
   $mpdf->addPagebyArray(array(
+    'orientation' => $orientation,
   ));
+  
   // Write the page output.
   $mpdf->WriteHTML($output, 2);
 }
@@ -82,13 +95,21 @@ function prepare_pdf_merge($study, $mpdf, $section) {
   $page_count = $mpdf->SetSourceFile($pdf_url);
   $page = 1;
 
+  // Insert a blank page with the header.
+  $mpdf->AddPageByArray(array());
+
+  $output = '<section>';
+  $output .= '<h1>' . $section['title'] . '</h1>';
+  $output .= '<p>' . t('The flow diagram begins on the next page.') . '</p>';
+  $output .= '</section>';
+
+  $mpdf->WriteHTML($output, 2);
+
   // Iterate over all the pages (most likely just 1).
   while($page <= $page_count) {
 
     $output = '<section>';
-    if ($page == 1) {
-      $output .= '<h1>' . $section['title'] . '</h1>';
-    }
+
     // Import the page and make use of it.
     $template_id = $mpdf->ImportPage($page);
     $dimensions = $mpdf->getTemplateSize($template_id);
