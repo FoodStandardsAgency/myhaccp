@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the MyHACCP Content Type: Resource (download) feature.
+ */
+
+include_once 'myhaccp_content_type_resource_download.features.inc';
