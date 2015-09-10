@@ -60,6 +60,13 @@ function myhaccp_di_container() {
  * Implements hook_menu().
  */
 function myhaccp_menu() {
+  $itmes['home'] = array(
+    'title' => 'MyHACCP',
+    'page callback' => 'myhaccp_home',
+    'page arguments' => array(),
+    'file' => 'myhaccp.pages.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
   $items['tool'] = array(
     'title' => 'MyHACCP Web Tool',
     'page callback' => 'myhaccp_list',
