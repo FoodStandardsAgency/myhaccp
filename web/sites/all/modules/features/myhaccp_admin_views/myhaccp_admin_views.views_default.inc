@@ -526,13 +526,6 @@ function myhaccp_admin_views_views_default_views() {
   $handler->display->display_options['fields']['created']['table'] = 'users';
   $handler->display->display_options['fields']['created']['field'] = 'created';
   $handler->display->display_options['fields']['created']['relationship'] = 'user';
-  /* Field: User: Last access */
-  $handler->display->display_options['fields']['access']['id'] = 'access';
-  $handler->display->display_options['fields']['access']['table'] = 'users';
-  $handler->display->display_options['fields']['access']['field'] = 'access';
-  $handler->display->display_options['fields']['access']['relationship'] = 'user';
-  $handler->display->display_options['fields']['access']['date_format'] = 'html5_tools_iso8601';
-  $handler->display->display_options['fields']['access']['second_date_format'] = 'html5_tools_iso8601';
   /* Field: Profile: Business type */
   $handler->display->display_options['fields']['field_business_type']['id'] = 'field_business_type';
   $handler->display->display_options['fields']['field_business_type']['table'] = 'field_data_field_business_type';
@@ -563,6 +556,13 @@ function myhaccp_admin_views_views_default_views() {
   $handler->display->display_options['fields']['login']['relationship'] = 'user';
   $handler->display->display_options['fields']['login']['date_format'] = 'html5_tools_iso8601';
   $handler->display->display_options['fields']['login']['second_date_format'] = 'html5_tools_iso8601';
+  /* Field: User: Last access */
+  $handler->display->display_options['fields']['access']['id'] = 'access';
+  $handler->display->display_options['fields']['access']['table'] = 'users';
+  $handler->display->display_options['fields']['access']['field'] = 'access';
+  $handler->display->display_options['fields']['access']['relationship'] = 'user';
+  $handler->display->display_options['fields']['access']['date_format'] = 'html5_tools_iso8601';
+  $handler->display->display_options['fields']['access']['second_date_format'] = 'html5_tools_iso8601';
   /* Sort criterion: User: Last access */
   $handler->display->display_options['sorts']['access']['id'] = 'access';
   $handler->display->display_options['sorts']['access']['table'] = 'users';
@@ -673,17 +673,6 @@ function myhaccp_admin_views_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'main' => 'main',
   );
-  /* Filter criterion: Profile: I agree to the FSA contacting me for any research or surveys related to the use of this site. (field_contact_consent) */
-  $handler->display->display_options['filters']['field_contact_consent_value']['id'] = 'field_contact_consent_value';
-  $handler->display->display_options['filters']['field_contact_consent_value']['table'] = 'field_data_field_contact_consent';
-  $handler->display->display_options['filters']['field_contact_consent_value']['field'] = 'field_contact_consent_value';
-  $handler->display->display_options['filters']['field_contact_consent_value']['value'] = array(
-    1 => '1',
-  );
-  $handler->display->display_options['filters']['field_contact_consent_value']['expose']['operator_id'] = 'field_contact_consent_value_op';
-  $handler->display->display_options['filters']['field_contact_consent_value']['expose']['label'] = 'I agree to the FSA contacting me for any research or surveys related to the use of this site. (field_contact_consent)';
-  $handler->display->display_options['filters']['field_contact_consent_value']['expose']['operator'] = 'field_contact_consent_value_op';
-  $handler->display->display_options['filters']['field_contact_consent_value']['expose']['identifier'] = 'field_contact_consent_value';
   $handler->display->display_options['path'] = 'admin/user_access/csv';
   $handler->display->display_options['displays'] = array(
     'page' => 'page',
@@ -705,13 +694,13 @@ function myhaccp_admin_views_views_default_views() {
     t('Name'),
     t('E-mail'),
     t('Created date'),
-    t('Last access'),
     t('Business type'),
     t('Business type if other'),
     t('Size of business'),
     t('Postcode area'),
     t('Contact consent'),
     t('Last login'),
+    t('Last access'),
     t('I agree to the FSA contacting me for any research or surveys related to the use of this site. (field_contact_consent)'),
     t('Page'),
     t('Items per page'),
