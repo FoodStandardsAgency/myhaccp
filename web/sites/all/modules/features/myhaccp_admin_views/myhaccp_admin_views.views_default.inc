@@ -616,13 +616,6 @@ function myhaccp_admin_views_views_default_views() {
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
-  $handler->display->display_options['defaults']['footer'] = FALSE;
-  /* Footer: Global: Text area */
-  $handler->display->display_options['footer']['area']['id'] = 'area';
-  $handler->display->display_options['footer']['area']['table'] = 'views';
-  $handler->display->display_options['footer']['area']['field'] = 'area';
-  $handler->display->display_options['footer']['area']['content'] = 'Note that the CSV export below will only export users who have consented to be contacted.';
-  $handler->display->display_options['footer']['area']['format'] = 'full_html';
   $handler->display->display_options['path'] = 'admin/user-access';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'User by access time';
@@ -683,7 +676,6 @@ function myhaccp_admin_views_views_default_views() {
     t('next ›'),
     t('last »'),
     t('Displaying @start - @end of @total'),
-    t('Note that the CSV export below will only export users who have consented to be contacted.'),
     t('Data export'),
   );
   $export['users_by_access_time'] = $view;
