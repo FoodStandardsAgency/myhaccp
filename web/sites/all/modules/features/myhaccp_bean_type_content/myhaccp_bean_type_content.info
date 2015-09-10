@@ -3,6 +3,7 @@ description = Configuration for bean type and field settings for the Content bea
 core = 7.x
 package = MyHACCP
 version = 7.x-1.0
+dependencies[] = bean
 dependencies[] = bean_admin_ui
 dependencies[] = ctools
 dependencies[] = features
