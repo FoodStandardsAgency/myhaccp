@@ -1,28 +1,18 @@
 <?php
 /**
  * @file
- * Implements hook_form_user_register_form_alter() for registration_form().
  */
 
-// function hook_form_user_register_form_alter(&$form, &$form_state, $form_id) {
-//   $languages = language_list();
-//   $names = array();
-//   foreach ($languages as $key => $language) {
-//     $names[$key] = t($language->name);
-//   }
-//   global $language;
-
-//   $form['account']['locale']['language'] = array(
-//     '#type' => (count($names) <= 5 ? 'radios' : 'select'),
-//     '#title' => t('Language'),
-//     '#default_value' => $language->language,
-//     '#options' => $names,
-//     '#description' => t("Prefered language for you account."),
-//   );
-// }
-
-function myhaccp_language_form_user_register_form_alter(&$form, &$form_state, $form_id) {
-  // Use exactly the same access logic as the original, 
-  // without checking for the 'administer users' permission
-  $form['locale']['#access'] = ($form['#user_category'] == 'account' || ($form['#user_category'] == 'register'));
+/**
+ * Implements hook_form_alter().
+ */
+function myhaccp_language_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'user_register_form' || $form_id == 'user_profile_form') {
+    // Use exactly the same access logic as the original,
+    // without checking for the 'administer users' permission.
+    $form['locale']['#access'] = ($form['#user_category'] == 'account' || ($form['#user_category'] == 'register'));
+    $form['locale']['#type'] = 'container';
+   // $form['locale']['#weight'] = 0;
+   // $form['locale']['language']['#title'] = t('Picka Language');
+  }
 }
