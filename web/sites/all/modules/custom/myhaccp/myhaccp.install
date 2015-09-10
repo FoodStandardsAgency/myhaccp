@@ -283,47 +283,20 @@ function myhaccp_update_7010() {
 }
 
 /**
- * Copy home page content into bean blocks.
+ * Delete the home page node and content type.
  */
 function myhaccp_update_7011() {
-  $node = node_load(9);
-  $intro = field_get_items('node', $node, 'field_homepage_intro_paragraph');
-  $first = field_get_items('node', $node, 'field_homepage_first_content');
-  $second = field_get_items('node', $node, 'field_homepage_second_content');
-  // Create three new bean blocks.
-  $bean = bean_create(array('type' => 'content'));
-  $bean->label = 'Home page: introduction';
-  $bean->title = '';
-  $bean->delta = 'homepage_intro';
-  $bean->field_description = array(
-    'en' => array(array(
-      'value' => $intro[0]['value'],
-      'format' => 'full_html',
-    )),
-  );
-  $bean->save();
-  // Create three new bean blocks.
-  $bean = bean_create(array('type' => 'content'));
-  $bean->label = 'Home page: first content';
-  $bean->title = '';
-  $bean->delta = 'homepage_first';
-  $bean->field_description = array(
-    'en' => array(array(
-      'value' => $first[0]['value'],
-      'format' => 'full_html',
-    )),
-  );
-  $bean->save();
-  // Create three new bean blocks.
-  $bean = bean_create(array('type' => 'content'));
-  $bean->label = 'Home page: second content';
-  $bean->title = '';
-  $bean->delta = 'homepage_second';
-  $bean->field_description = array(
-    'en' => array(array(
-      'value' => $second[0]['value'],
-      'format' => 'full_html',
-    )),
-  );
-  $bean->save();
+  node_delete(9);
+  node_type_delete('homepage');
+  variable_del('node_preview_homepage');
+  node_types_rebuild();
+  menu_rebuild();
 }
+
+/**
+ * Enable the home page feature.
+ */
+function myhaccp_update_7012() {
+  module_enable(array('myhaccp_home_page'));
+}
+

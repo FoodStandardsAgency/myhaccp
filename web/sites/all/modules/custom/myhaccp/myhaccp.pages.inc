@@ -441,12 +441,3 @@ function myhaccp_study_delete_submit($form, &$form_state) {
   // Forward to the beginning of the form.
   drupal_goto('tool');
 }
-
-/**
- * A simple menu callback to register a home page.
- *
- * The content on the home page is handled through block (bean) placement.
- */
-function myhaccp_home() {
-  return array();
-}
