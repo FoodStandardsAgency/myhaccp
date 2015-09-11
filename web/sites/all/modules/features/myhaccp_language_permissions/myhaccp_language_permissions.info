@@ -1,4 +1,5 @@
-name = MyHACCP Permissions
+name = MyHACCP Language Permissions
+description = Translator role and associated permissions.
 core = 7.x
 package = MyHACCP
 version = 7.x-1.0

@@ -113,6 +113,22 @@ function myhaccp_admin_views_views_default_views() {
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['context'] = 0;
   $handler->display->display_options['menu']['context_only_inline'] = 0;
+  $translatables['registrations'] = array(
+    t('Master'),
+    t('User Registrations'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Profile'),
+    t('Total user registrations in period'),
+    t('Name'),
+    t('Registration date'),
+    t('Business type'),
+    t('Page'),
+  );
   $export['registrations'] = $view;
 
   $view = new view();
@@ -336,6 +352,38 @@ function myhaccp_admin_views_views_default_views() {
   );
   $handler->display->display_options['use_batch'] = 'batch';
   $handler->display->display_options['segment_size'] = '100';
+  $translatables['user_profiles'] = array(
+    t('Master'),
+    t('User Profiles'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('User'),
+    t('Count'),
+    t('Name'),
+    t('E-mail'),
+    t('Business type'),
+    t('Business type if other'),
+    t('Size of business'),
+    t('Postcode area'),
+    t('Contact consent'),
+    t('I agree to the FSA contacting me for any research or surveys related to the use of this site. (field_contact_consent)'),
+    t('Page'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Displaying @start - @end of @total'),
+    t('Note that the CSV export below will only export users who have consented to be contacted.'),
+    t('User consents to contact'),
+    t('Data export'),
+  );
   $export['user_profiles'] = $view;
 
   $view = new view();
@@ -478,13 +526,6 @@ function myhaccp_admin_views_views_default_views() {
   $handler->display->display_options['fields']['created']['table'] = 'users';
   $handler->display->display_options['fields']['created']['field'] = 'created';
   $handler->display->display_options['fields']['created']['relationship'] = 'user';
-  /* Field: User: Last access */
-  $handler->display->display_options['fields']['access']['id'] = 'access';
-  $handler->display->display_options['fields']['access']['table'] = 'users';
-  $handler->display->display_options['fields']['access']['field'] = 'access';
-  $handler->display->display_options['fields']['access']['relationship'] = 'user';
-  $handler->display->display_options['fields']['access']['date_format'] = 'html5_tools_iso8601';
-  $handler->display->display_options['fields']['access']['second_date_format'] = 'html5_tools_iso8601';
   /* Field: Profile: Business type */
   $handler->display->display_options['fields']['field_business_type']['id'] = 'field_business_type';
   $handler->display->display_options['fields']['field_business_type']['table'] = 'field_data_field_business_type';
@@ -515,6 +556,13 @@ function myhaccp_admin_views_views_default_views() {
   $handler->display->display_options['fields']['login']['relationship'] = 'user';
   $handler->display->display_options['fields']['login']['date_format'] = 'html5_tools_iso8601';
   $handler->display->display_options['fields']['login']['second_date_format'] = 'html5_tools_iso8601';
+  /* Field: User: Last access */
+  $handler->display->display_options['fields']['access']['id'] = 'access';
+  $handler->display->display_options['fields']['access']['table'] = 'users';
+  $handler->display->display_options['fields']['access']['field'] = 'access';
+  $handler->display->display_options['fields']['access']['relationship'] = 'user';
+  $handler->display->display_options['fields']['access']['date_format'] = 'html5_tools_iso8601';
+  $handler->display->display_options['fields']['access']['second_date_format'] = 'html5_tools_iso8601';
   /* Sort criterion: User: Last access */
   $handler->display->display_options['sorts']['access']['id'] = 'access';
   $handler->display->display_options['sorts']['access']['table'] = 'users';
@@ -527,17 +575,31 @@ function myhaccp_admin_views_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'main' => 'main',
   );
-  /* Filter criterion: Profile: I agree to the FSA contacting me for any research or surveys related to the use of this site. (field_contact_consent) */
-  $handler->display->display_options['filters']['field_contact_consent_value']['id'] = 'field_contact_consent_value';
-  $handler->display->display_options['filters']['field_contact_consent_value']['table'] = 'field_data_field_contact_consent';
-  $handler->display->display_options['filters']['field_contact_consent_value']['field'] = 'field_contact_consent_value';
-  $handler->display->display_options['filters']['field_contact_consent_value']['value'] = array(
-    1 => '1',
+  /* Filter criterion: Date: Date (users) */
+  $handler->display->display_options['filters']['date_filter']['id'] = 'date_filter';
+  $handler->display->display_options['filters']['date_filter']['table'] = 'users';
+  $handler->display->display_options['filters']['date_filter']['field'] = 'date_filter';
+  $handler->display->display_options['filters']['date_filter']['relationship'] = 'user';
+  $handler->display->display_options['filters']['date_filter']['operator'] = '<';
+  $handler->display->display_options['filters']['date_filter']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['date_filter']['expose']['operator_id'] = 'date_filter_op';
+  $handler->display->display_options['filters']['date_filter']['expose']['label'] = 'Last Access';
+  $handler->display->display_options['filters']['date_filter']['expose']['description'] = 'The table will show users who last accessed the site before the date entered';
+  $handler->display->display_options['filters']['date_filter']['expose']['operator'] = 'date_filter_op';
+  $handler->display->display_options['filters']['date_filter']['expose']['identifier'] = 'date_filter';
+  $handler->display->display_options['filters']['date_filter']['expose']['remember'] = TRUE;
+  $handler->display->display_options['filters']['date_filter']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
   );
-  $handler->display->display_options['filters']['field_contact_consent_value']['expose']['operator_id'] = 'field_contact_consent_value_op';
-  $handler->display->display_options['filters']['field_contact_consent_value']['expose']['label'] = 'I agree to the FSA contacting me for any research or surveys related to the use of this site. (field_contact_consent)';
-  $handler->display->display_options['filters']['field_contact_consent_value']['expose']['operator'] = 'field_contact_consent_value_op';
-  $handler->display->display_options['filters']['field_contact_consent_value']['expose']['identifier'] = 'field_contact_consent_value';
+  $handler->display->display_options['filters']['date_filter']['form_type'] = 'date_popup';
+  $handler->display->display_options['filters']['date_filter']['date_fields'] = array(
+    'users.access' => 'users.access',
+  );
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
@@ -554,41 +616,6 @@ function myhaccp_admin_views_views_default_views() {
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
-  $handler->display->display_options['defaults']['footer'] = FALSE;
-  /* Footer: Global: Text area */
-  $handler->display->display_options['footer']['area']['id'] = 'area';
-  $handler->display->display_options['footer']['area']['table'] = 'views';
-  $handler->display->display_options['footer']['area']['field'] = 'area';
-  $handler->display->display_options['footer']['area']['content'] = 'Note that the CSV export below will only export users who have consented to be contacted.';
-  $handler->display->display_options['footer']['area']['format'] = 'full_html';
-  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
-  $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Profile: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'profile';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'main' => 'main',
-  );
-  /* Filter criterion: User: Last access */
-  $handler->display->display_options['filters']['access']['id'] = 'access';
-  $handler->display->display_options['filters']['access']['table'] = 'users';
-  $handler->display->display_options['filters']['access']['field'] = 'access';
-  $handler->display->display_options['filters']['access']['relationship'] = 'user';
-  $handler->display->display_options['filters']['access']['operator'] = '<';
-  $handler->display->display_options['filters']['access']['value']['type'] = 'offset';
-  $handler->display->display_options['filters']['access']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['access']['expose']['operator_id'] = 'access_op';
-  $handler->display->display_options['filters']['access']['expose']['label'] = 'Last access';
-  $handler->display->display_options['filters']['access']['expose']['operator'] = 'access_op';
-  $handler->display->display_options['filters']['access']['expose']['identifier'] = 'access';
-  $handler->display->display_options['filters']['access']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-  );
   $handler->display->display_options['path'] = 'admin/user-access';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'User by access time';
@@ -610,26 +637,6 @@ function myhaccp_admin_views_views_default_views() {
   $handler->display->display_options['style_options']['replace_newlines'] = 0;
   $handler->display->display_options['style_options']['header'] = 1;
   $handler->display->display_options['style_options']['keep_html'] = 0;
-  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
-  $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Profile: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'profile';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'main' => 'main',
-  );
-  /* Filter criterion: Profile: I agree to the FSA contacting me for any research or surveys related to the use of this site. (field_contact_consent) */
-  $handler->display->display_options['filters']['field_contact_consent_value']['id'] = 'field_contact_consent_value';
-  $handler->display->display_options['filters']['field_contact_consent_value']['table'] = 'field_data_field_contact_consent';
-  $handler->display->display_options['filters']['field_contact_consent_value']['field'] = 'field_contact_consent_value';
-  $handler->display->display_options['filters']['field_contact_consent_value']['value'] = array(
-    1 => '1',
-  );
-  $handler->display->display_options['filters']['field_contact_consent_value']['expose']['operator_id'] = 'field_contact_consent_value_op';
-  $handler->display->display_options['filters']['field_contact_consent_value']['expose']['label'] = 'I agree to the FSA contacting me for any research or surveys related to the use of this site. (field_contact_consent)';
-  $handler->display->display_options['filters']['field_contact_consent_value']['expose']['operator'] = 'field_contact_consent_value_op';
-  $handler->display->display_options['filters']['field_contact_consent_value']['expose']['identifier'] = 'field_contact_consent_value';
   $handler->display->display_options['path'] = 'admin/user_access/csv';
   $handler->display->display_options['displays'] = array(
     'page' => 'page',
@@ -637,6 +644,40 @@ function myhaccp_admin_views_views_default_views() {
   );
   $handler->display->display_options['use_batch'] = 'batch';
   $handler->display->display_options['segment_size'] = '100';
+  $translatables['users_by_access_time'] = array(
+    t('Master'),
+    t('Users by access time'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('User'),
+    t('Count'),
+    t('Name'),
+    t('E-mail'),
+    t('Created date'),
+    t('Business type'),
+    t('Business type if other'),
+    t('Size of business'),
+    t('Postcode area'),
+    t('Contact consent'),
+    t('Last login'),
+    t('Last access'),
+    t('Last Access'),
+    t('The table will show users who last accessed the site before the date entered'),
+    t('Page'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Displaying @start - @end of @total'),
+    t('Data export'),
+  );
   $export['users_by_access_time'] = $view;
 
   return $export;

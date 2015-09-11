@@ -1,4 +1,4 @@
-name = MyHACCP Content Type : Guidance
+name = MyHACCP Content Type: Guidance
 description = Configuration for content type and field settings for the Guidance content type.
 core = 7.x
 package = MyHACCP
