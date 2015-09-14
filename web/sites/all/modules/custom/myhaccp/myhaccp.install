@@ -339,7 +339,7 @@ function myhaccp_update_7013() {
  */
 function myhaccp_update_7014() {
   module_enable(array('myhaccp_resources_page'));
-  features_revert(array('myhaccp_resources_page'));
+  features_revert_module('myhaccp_resources_page');
 }
 
 /**
@@ -386,4 +386,11 @@ function myhaccp_update_7016() {
   variable_del('simplify_nodes_resources_page');
   node_types_rebuild();
   menu_rebuild();
+}
+
+/**
+ * Enable the content type features.
+ */
+function myhaccp_update_7017() {
+  module_enable(array('myhaccp_content_type_resource_download', 'myhaccp_content_type_resource_link', 'myhaccp_content_type_basic_page'));
 }
