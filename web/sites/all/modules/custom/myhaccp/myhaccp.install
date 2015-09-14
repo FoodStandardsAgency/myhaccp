@@ -288,7 +288,19 @@ function myhaccp_update_7010() {
 function myhaccp_update_7011() {
   node_delete(9);
   node_type_delete('homepage');
+  // Delete all the homepage variables.
   variable_del('node_preview_homepage');
+  variable_del('additional_settings__active_tab_homepage');
+  variable_del('honeypot_form_homepage_node_form');
+  variable_del('menu_options_homepage');
+  variable_del('menu_parent_homepage');
+  variable_del('node_options_homepage');
+  variable_del('node_submitted_homepage');
+  variable_del('menu_options_homepage');
+  variable_del('rh_module_homepage');
+  variable_del('rh_node_override_homepage');
+  variable_del('save_continue_homepage');
+  variable_del('simplify_nodes_homepage');
   node_types_rebuild();
   menu_rebuild();
 }
@@ -300,3 +312,24 @@ function myhaccp_update_7012() {
   module_enable(array('myhaccp_home_page'));
 }
 
+/**
+ * Delete the article content type.
+ */
+function myhaccp_update_7013() {
+  node_type_delete('article');
+  // Delete all the article variables.
+  variable_del('node_preview_article');
+  variable_del('additional_settings__active_tab_article');
+  variable_del('honeypot_form_article_node_form');
+  variable_del('menu_options_article');
+  variable_del('menu_parent_article');
+  variable_del('node_options_article');
+  variable_del('node_submitted_article');
+  variable_del('menu_options_article');
+  variable_del('rh_module_article');
+  variable_del('rh_node_override_article');
+  variable_del('save_continue_article');
+  variable_del('simplify_nodes_article');
+  node_types_rebuild();
+  menu_rebuild();
+}
