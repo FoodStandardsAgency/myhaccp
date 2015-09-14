@@ -1,8 +1,8 @@
 @api
-Feature: Translate Content Types
-  In order to translate content
+Feature: Translate Page Content Type
+  In order to translate page content
   As a translator user
-  I need to be able to translate nodes of each content type
+  I need to be able to enter a translation and confirm its existence
 
   Background: Log in as a translator user
     Given I am logged in as a user with the "translator" role
