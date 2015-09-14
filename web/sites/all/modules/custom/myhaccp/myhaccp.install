@@ -333,3 +333,56 @@ function myhaccp_update_7013() {
   node_types_rebuild();
   menu_rebuild();
 }
+
+/**
+ * Enable the resources page feature.
+ */
+function myhaccp_update_7014() {
+  module_enable(array('myhaccp_resources_page'));
+}
+
+/**
+ * Delete the content block content type.
+ */
+function myhaccp_update_7015() {
+  node_delete(90);
+  node_delete(88);
+  node_type_delete('content_block');
+  // Delete all the content_block variables.
+  variable_del('node_preview_content_block');
+  variable_del('additional_settings__active_tab_content_block');
+  variable_del('honeypot_form_content_block_node_form');
+  variable_del('menu_options_content_block');
+  variable_del('menu_parent_content_block');
+  variable_del('node_options_content_block');
+  variable_del('node_submitted_content_block');
+  variable_del('menu_options_content_block');
+  variable_del('rh_module_content_block');
+  variable_del('rh_node_override_content_block');
+  variable_del('save_continue_content_block');
+  variable_del('simplify_nodes_content_block');
+  node_types_rebuild();
+  menu_rebuild();
+}
+
+/**
+ * Delete the resources page content type.
+ */
+function myhaccp_update_7016() {
+  node_type_delete('resources_page');
+  // Delete all the resources_page variables.
+  variable_del('node_preview_resources_page');
+  variable_del('additional_settings__active_tab_resources_page');
+  variable_del('honeypot_form_resources_page_node_form');
+  variable_del('menu_options_resources_page');
+  variable_del('menu_parent_resources_page');
+  variable_del('node_options_resources_page');
+  variable_del('node_submitted_resources_page');
+  variable_del('menu_options_resources_page');
+  variable_del('rh_module_resources_page');
+  variable_del('rh_node_override_resources_page');
+  variable_del('save_continue_resources_page');
+  variable_del('simplify_nodes_resources_page');
+  node_types_rebuild();
+  menu_rebuild();
+}
