@@ -279,7 +279,7 @@ function myhaccp_update_7009() {
  * Enable the bean feature.
  */
 function myhaccp_update_7010() {
-  module_enable(array('myhaccp_bean_type_content'));
+  module_enable(array('bean', 'myhaccp_bean_type_content'));
 }
 
 /**
@@ -392,5 +392,25 @@ function myhaccp_update_7016() {
  * Enable the content type features.
  */
 function myhaccp_update_7017() {
-  module_enable(array('myhaccp_content_type_resource_download', 'myhaccp_content_type_resource_link', 'myhaccp_content_type_basic_page'));
+  title_field_replacement_batch_set('node', 'page', 'title');
+  title_field_replacement_batch_set('node', 'guidance', 'title');
+  title_field_replacement_batch_set('node', 'webform', 'title');
+  title_field_replacement_batch_set('node', 'resource_download', 'title');
+  title_field_replacement_batch_set('node', 'resource_link', 'title');
+  module_enable(array(
+    'myhaccp_content_type_guidance',
+    'myhaccp_content_type_resource_download',
+    'myhaccp_content_type_resource_link',
+    'myhaccp_content_type_basic_page'
+  ));
+}
+
+/**
+ * Revert the content type features.
+ */
+function myhaccp_update_7018() {
+  features_revert_module('myhaccp_content_type_guidance');
+  features_revert_module('myhaccp_content_type_resource_download');
+  features_revert_module('myhaccp_content_type_resource_link');
+  features_revert_module('myhaccp_content_type_basic_page');
 }
