@@ -129,7 +129,7 @@ function myhaccp_field_bases_field_default_field_bases() {
       'profile2_private' => FALSE,
       'uri_scheme' => 'public',
     ),
-    'translatable' => 0,
+    'translatable' => 1,
     'type' => 'file',
   );
 
