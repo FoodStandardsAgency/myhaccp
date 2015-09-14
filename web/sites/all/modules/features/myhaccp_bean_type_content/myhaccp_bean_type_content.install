@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * Implements hook_install().
+ */
+function myhaccp_bean_type_content_install() {
+  variable_set('entity_translation_entity_types', array(
+    'node' => 'node',
+    'bean' => 'bean',
+    'taxonomy_term' => 0,
+    'file' => 0,
+    'user' => 0,
+  ));
+}
