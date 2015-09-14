@@ -276,10 +276,20 @@ function myhaccp_update_7009() {
 }
 
 /**
- * Enable the bean feature.
+ * Enable the bean feature and language features.
  */
 function myhaccp_update_7010() {
-  module_enable(array('bean', 'myhaccp_bean_type_content'));
+  module_enable(array(
+    'bean',
+    'myhaccp_bean_type_content',
+    'myhaccp_language_configuration',
+    'myhaccp_language_permissions',
+    'myhaccp_user_profiles'
+  ));
+  features_revert_module('myhaccp_bean_type_content');
+  features_revert_module('myhaccp_admin_views');
+  features_revert_module('myhaccp_language_configuration');
+  features_revert_module('myhaccp_user_profiles');
 }
 
 /**
