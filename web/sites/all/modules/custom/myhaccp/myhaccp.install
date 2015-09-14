@@ -339,6 +339,7 @@ function myhaccp_update_7013() {
  */
 function myhaccp_update_7014() {
   module_enable(array('myhaccp_resources_page'));
+  features_revert(array('myhaccp_resources_page'));
 }
 
 /**
