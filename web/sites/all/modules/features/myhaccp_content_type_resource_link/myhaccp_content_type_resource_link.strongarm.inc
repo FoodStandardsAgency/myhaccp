@@ -20,7 +20,7 @@ function myhaccp_content_type_resource_link_strongarm() {
         'custom_settings' => TRUE,
       ),
       'full' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
       'rss' => array(
         'custom_settings' => FALSE,
@@ -60,6 +60,13 @@ function myhaccp_content_type_resource_link_strongarm() {
     ),
   );
   $export['field_bundle_settings_node__resource_link'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'language_content_type_resource_link';
+  $strongarm->value = '4';
+  $export['language_content_type_resource_link'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
