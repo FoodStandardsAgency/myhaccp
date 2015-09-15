@@ -50,6 +50,26 @@ class FeatureContext extends Drupal\DrupalExtension\Context\DrupalContext {
   }
 
   /**
+   * Cleans up the most recently created user if the scenario is tagged
+   * with @registration.
+   *
+   * @AfterScenario @registration
+   */
+  public function removeLastUser($event) {
+    // Get the most recent user.
+    $user = db_select('users', 'u')
+      ->fields('u', array('access', 'uid'))
+      ->orderBy('u.uid', 'DESC')
+      ->range(0, 1)
+      ->execute()
+      ->fetchAssoc();
+    if (is_array($user) && $user['access'] == 0) {
+      // Delete the user.
+      user_delete($user['uid']);
+    }
+  }
+
+  /**
    * @When /^I complete principle "([^"]*)"$/
    */
   public function iCompletePrinciple($stage) {
@@ -165,6 +185,12 @@ class FeatureContext extends Drupal\DrupalExtension\Context\DrupalContext {
     $this->assertSession()->checkboxNotChecked($this->fixStepArgument($radio));
   }
 
+  /**
+   * @Given /^I wait for honeypot$/
+   */
+  public function iWaitForHoneypot() {
+    sleep(5);
+  }
 
   protected function principle_1_1() {
     return array(
