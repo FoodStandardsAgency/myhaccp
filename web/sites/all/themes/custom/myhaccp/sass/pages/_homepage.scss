@@ -1,37 +1,32 @@
-.node-homepage.view-mode-full {
+.front {
 
-  // General layout
-  .group-header {
+  .block-bean-homepage-intro {
     border-bottom: 5px solid $dark-background;
+    h2.title {
+      font-size: 1.35em;
+    }
   }
 
-  .group-left,
-  .group-right {
+  .block-bean-homepage-first {
     width: 100%;
   }
 
- @media (min-width: $break_sm_up) {
-    .group-left {
+  .block-bean-homepage-second {
+    width: 100%;
+  }
+
+  @media (min-width: $break_sm_up) {
+    .block-bean-homepage-first {
       @include column-split(half, first);
     }
 
-    .group-right {
+    .block-bean-homepage-second {
       @include column-split(half, false, last);
     }
   }
 
-  > .group-footer {
-      clear: both;
-  }
-
-  &.group-one-column > .group-left,
-  &.group-one-column > .group-right {
-      float: none;
-      width: 100%;
-  }
-
   // What's next?
-  .group-right ol {
+  .block-bean-homepage-second ol {
     @extend %big-numbered-list;
   }
 

@@ -179,3 +179,18 @@ function myhaccp_admin_system_info_alter(&$info, $file, $type) {
     unset($info['features']);
   }
 }
+
+/**
+ * Implements hook_init()
+ *
+ * Let realms be overriden by query string parameters on
+ * the admin/config/people/accounts page.
+ */
+function myhaccp_admin_init() {
+  if (arg(0) == 'admin' && (arg(2) == 'people' || arg(3) == 'accounts') && ($params = variable_realm_params()) && user_access('administer users')) {
+    foreach ($params as $realm_name => $realm_key) {
+      variable_realm_switch($realm_name, $realm_key, FALSE);
+    }
+    variable_realm_rebuild();
+  }
+}

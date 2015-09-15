@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the MyHACCP Content Type: Resource (link) feature.
+ */
+
+include_once 'myhaccp_content_type_resource_link.features.inc';
