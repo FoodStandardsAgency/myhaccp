@@ -114,35 +114,56 @@ class FeatureContext extends Drupal\DrupalExtension\Context\DrupalContext {
   /**
    * @When /^I select the radio button "([^"]*)" in row "([^"]*)" "([^"]*)"$/
    */
-   public function iSelectTheRadioButtonInRow($label, $row, $class) {
-     $row = $this->fixStepArgument($row);
-     $class = $this->fixStepArgument($class);
-     $label = $this->fixStepArgument($label);
-     // Get the field by row and class.
-     $target = 'tr:nth-of-type(' . $row . ') td .' . $class;
-     $parent = $this->getSession()->getPage()->find('css', $target)->getParent();
-     // Now find the right input field.
-     $field = $parent->find('named', array(
-       'radio',
-       $this->getSession()->getSelectorsHandler()->xpathLiteral($label),
-     ));
-     if (NULL === $field) {
-       throw new ElementNotFoundException($this->getSession(), 'form field', 'css', $field);
-     }
-     $value = $field->getAttribute('value');
-     // Set the field's value.
-     $field->setValue($value);
-   }
+  public function iSelectTheRadioButtonInRow($label, $row, $class) {
+    $row = $this->fixStepArgument($row);
+    $class = $this->fixStepArgument($class);
+    $label = $this->fixStepArgument($label);
+    // Get the field by row and class.
+    $target = 'tr:nth-of-type(' . $row . ') td .' . $class;
+    $parent = $this->getSession()->getPage()->find('css', $target)->getParent();
+    // Now find the right input field.
+    $field = $parent->find('named', array(
+      'radio',
+      $this->getSession()->getSelectorsHandler()->xpathLiteral($label),
+    ));
+    if (NULL === $field) {
+      throw new ElementNotFoundException($this->getSession(), 'form field', 'css', $field);
+    }
+    $value = $field->getAttribute('value');
+    // Set the field's value.
+    $field->setValue($value);
+  }
 
-/**
- * @Then /^the radio button with id "([^"]*)" should be checked$/
- */
-public function theRadioButtonWithIdShouldBeChecked($sId){
+  /**
+   * @Then /^the radio button with id "([^"]*)" should be checked$/
+   */
+  public function theRadioButtonWithIdShouldBeChecked($sId){
     $elementByCss = $this->getSession()->getPage()->find('css', 'input[type="radio"]:checked#'.$sId);
     if (!$elementByCss) {
-        throw new Exception('Radio button with id ' . $sId.' is not checked');
+      throw new Exception('Radio button with id ' . $sId.' is not checked');
     }
-}
+  }
+
+  /**
+   * Checks that radio button with specified in|name|label|value is selected.
+   *
+   * @Then /^the "(?P<radio>(?:[^"]|\\")*)" radio button should be selected$/
+   * @Then /^the radio button "(?P<radio>(?:[^"]|\\")*)" (?:is|should be) selected$/
+   */
+  public function assertRadioButtonSelected($radio) {
+    $this->assertSession()->checkboxChecked($this->fixStepArgument($radio));
+  }
+
+  /**
+   * Checks that radio button with specified in|name|label|value is unselected.
+   *
+   * @Then /^the "(?P<radio>(?:[^"]|\\")*)" radio button should not be selected$/
+   * @Then /^the radio button "(?P<radio>(?:[^"]|\\")*)" should (?:be unselected|not be selected)$/
+   * @Then /^the radio button "(?P<radio>(?:[^"]|\\")*)" is (?:unselected|not selected)$/
+   */
+  public function assertRadioButtonNotChecked($radio) {
+    $this->assertSession()->checkboxNotChecked($this->fixStepArgument($radio));
+  }
 
 
   protected function principle_1_1() {
