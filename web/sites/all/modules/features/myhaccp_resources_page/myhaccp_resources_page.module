@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the MyHACCP Resources page feature.
+ */
+
+include_once 'myhaccp_resources_page.features.inc';

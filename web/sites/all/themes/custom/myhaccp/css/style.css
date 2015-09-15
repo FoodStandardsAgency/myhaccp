@@ -372,7 +372,6 @@ figure {
  * Address differences between Firefox and other browsers.
  */
 hr {
-  -moz-box-sizing: content-box;
   box-sizing: content-box;
   height: 0; }
 
@@ -497,7 +496,6 @@ input {
  */
 input[type="checkbox"],
 input[type="radio"] {
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   /* 1 */
   padding: 0;
@@ -524,7 +522,6 @@ input[type="number"]::-webkit-outer-spin-button {
 input[type="search"] {
   -webkit-appearance: textfield;
   /* 1 */
-  -moz-box-sizing: content-box;
   box-sizing: content-box;
   /* 2 */
   /**
@@ -611,20 +608,20 @@ ul.menu {
     list-style-type: none;
     list-style-image: none; }
 
-.node-homepage.view-mode-full .group-right ol {
+.front .block-bean-homepage-second ol {
   font-size: 2em;
   color: #89c265;
   margin-top: 0;
   padding-left: 50px; }
-  .node-homepage.view-mode-full .group-right ol li {
+  .front .block-bean-homepage-second ol li {
     margin-bottom: 0.25em; }
-  .node-homepage.view-mode-full .group-right ol span {
+  .front .block-bean-homepage-second ol span {
     font-size: 0.5em;
     vertical-align: middle;
     color: #000000; }
-  .node-homepage.view-mode-full .group-right ol a span {
+  .front .block-bean-homepage-second ol a span {
     color: #007FB2; }
-    .node-homepage.view-mode-full .group-right ol a span:hover {
+    .front .block-bean-homepage-second ol a span:hover {
       color: #000000; }
 
 /**
@@ -938,7 +935,6 @@ select:focus {
         float: left;
         padding-left: 25px;
         padding-right: 25px;
-        -moz-box-sizing: border-box;
         box-sizing: border-box; } }
   .prep-d fieldset.instance .form-wrapper textarea, .principle-1-question-1 .hazards textarea {
     width: 95%; }
@@ -1660,7 +1656,6 @@ table.striped tbody tr:nth-child(2n+1) th {
     float: left;
     padding-left: 25px;
     padding-right: 25px;
-    -moz-box-sizing: border-box;
     box-sizing: border-box; } }
 @media (min-width: 1020px) {
   .agile-blocks-aside {
@@ -1668,7 +1663,6 @@ table.striped tbody tr:nth-child(2n+1) th {
     float: left;
     padding-left: 25px;
     padding-right: 25px;
-    -moz-box-sizing: border-box;
     box-sizing: border-box; } }
 
 .alert--myhaccp {
@@ -1684,7 +1678,6 @@ header[role="banner"] {
     float: left;
     padding-left: 25px;
     padding-right: 25px;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
     padding-top: 1em; }
     @media all and (min-width: 860px) {
@@ -1775,7 +1768,6 @@ footer[role=contentinfo] {
   float: left;
   padding-left: 25px;
   padding-right: 25px;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding-top: 1em;
   padding-bottom: 1em; }
@@ -2436,29 +2428,25 @@ html.js input.throbbing {
   background-position: 100% -7px !important;
   /* LTR */ }
 
-.node-homepage.view-mode-full .group-header {
+.front .block-bean-homepage-intro {
   border-bottom: 5px solid #EEEEEE; }
-.node-homepage.view-mode-full .group-left,
-.node-homepage.view-mode-full .group-right {
+  .front .block-bean-homepage-intro h2.title {
+    font-size: 1.35em; }
+.front .block-bean-homepage-first {
+  width: 100%; }
+.front .block-bean-homepage-second {
   width: 100%; }
 @media (min-width: 640px) {
-  .node-homepage.view-mode-full .group-left {
+  .front .block-bean-homepage-first {
     width: 50%;
     float: left;
     padding-right: 25px;
-    -moz-box-sizing: border-box;
     box-sizing: border-box; }
-  .node-homepage.view-mode-full .group-right {
+  .front .block-bean-homepage-second {
     width: 50%;
     float: left;
     padding-left: 25px;
-    -moz-box-sizing: border-box;
     box-sizing: border-box; } }
-.node-homepage.view-mode-full > .group-footer {
-  clear: both; }
-.node-homepage.view-mode-full.group-one-column > .group-left, .node-homepage.view-mode-full.group-one-column > .group-right {
-  float: none;
-  width: 100%; }
 
 .header-wrapper,
 .main-wrapper,
@@ -2489,7 +2477,6 @@ footer .footer-wrapper {
   float: left;
   padding-left: 25px;
   padding-right: 25px;
-  -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
 #main-content,
@@ -2499,7 +2486,6 @@ footer .footer-wrapper {
   float: left;
   padding-left: 25px;
   padding-right: 25px;
-  -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
 @media all and (min-width: 860px) {
@@ -2508,14 +2494,12 @@ footer .footer-wrapper {
     float: right;
     padding-left: 25px;
     padding-right: 25px;
-    -moz-box-sizing: border-box;
     box-sizing: border-box; }
   body.sidebar-second #main-content {
     width: 75%;
     float: left;
     padding-left: 25px;
     padding-right: 25px;
-    -moz-box-sizing: border-box;
     box-sizing: border-box; } }
 @media (min-width: 860px) {
   .page-tool table.studies-table {
@@ -2961,7 +2945,6 @@ a:hover {
   float: left;
   padding-left: 25px;
   padding-right: 25px;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding-top: 1em; }
   @media all and (min-width: 860px) {

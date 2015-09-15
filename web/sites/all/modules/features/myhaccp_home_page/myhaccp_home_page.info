@@ -1,0 +1,12 @@
+name = MyHACCP Home page
+description = Contains the context for the home page layout.
+core = 7.x
+package = MyHACCP
+version = 7.x-1.0
+dependencies[] = bean
+dependencies[] = context
+dependencies[] = ctools
+features[context][] = homepage_blocks
+features[ctools][] = context:context:3
+features[features_api][] = api:2
+project path = sites/all/modules/features
