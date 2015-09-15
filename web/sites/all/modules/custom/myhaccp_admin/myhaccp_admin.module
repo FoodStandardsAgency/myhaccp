@@ -167,3 +167,30 @@ function myhaccp_admin_form_views_exposed_form_alter(&$form, $form_state) {
     $form['field_contact_consent_value']['#options'][1] = 'Yes';
   }
 }
+
+/**
+ * Implements hook_system_info_alter()
+ */
+function myhaccp_admin_system_info_alter(&$info, $file, $type) {
+  // Remove the date_migration_example module from the features page as it
+  // displays a unmet dependency "migrate (Missing)" and confuses the features
+  // page.
+  if ($type == 'module' && $file->name == 'date_migrate_example') {
+    unset($info['features']);
+  }
+}
+
+/**
+ * Implements hook_init()
+ *
+ * Let realms be overriden by query string parameters on
+ * the admin/config/people/accounts page.
+ */
+function myhaccp_admin_init() {
+  if (arg(0) == 'admin' && (arg(2) == 'people' || arg(3) == 'accounts') && ($params = variable_realm_params()) && user_access('administer users')) {
+    foreach ($params as $realm_name => $realm_key) {
+      variable_realm_switch($realm_name, $realm_key, FALSE);
+    }
+    variable_realm_rebuild();
+  }
+}

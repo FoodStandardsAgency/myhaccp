@@ -5,6 +5,7 @@
  */
 function myhaccp_language_configuration_install() {
   myhaccp_language_configuration_set_default_variabes();
+  myhaccp_language_configuration_enable_menu_translation();
 }
 
 /**
@@ -12,6 +13,14 @@ function myhaccp_language_configuration_install() {
  */
 function myhaccp_language_configuration_update_7001() {
   myhaccp_language_configuration_set_default_variabes();
+
+}
+
+/**
+ * Set default variables to enable translation of user emails.
+ */
+function myhaccp_language_configuration_update_7002() {
+  myhaccp_language_configuration_enable_menu_translation();
 }
 
 /**
@@ -44,4 +53,21 @@ function myhaccp_language_configuration_set_default_variabes() {
       7 => 'user_mail_status_canceled_[mail_part]',
     )
   );
+}
+
+/**
+ * Update the menus to use i18n_mode 5.
+ */
+function myhaccp_language_configuration_enable_menu_translation() {
+  $menus = array(
+    'main-menu',
+    'menu-footer-links-external',
+    'menu-footer-links-internal',
+  );
+  foreach ($menus as $menu_name) {
+    db_update('menu_custom')
+      ->fields(array('i18n_mode' => 5))
+      ->condition('menu_name', $menu_name)
+      ->execute();
+  }
 }

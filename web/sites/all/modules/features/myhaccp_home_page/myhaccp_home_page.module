@@ -1,0 +1,43 @@
+<?php
+/**
+ * @file
+ * Code for the MyHACCP Home page feature.
+ */
+
+include_once 'myhaccp_home_page.features.inc';
+
+/**
+ * Implements hook_menu().
+ */
+function myhaccp_home_page_menu() {
+  $items = array();
+
+  $items['home'] = array(
+    'title' => 'MyHACCP',
+    'access callback' => TRUE,
+    'page callback' => 'myhaccp_home_page_render',
+    'page arguments' => array(),
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  return $items;
+}
+
+/**
+ * Menu callback which returns an empty render array.
+ *
+ * Context is used to position blocks on this page.
+ */
+function myhaccp_home_page_render() {
+  drupal_set_title('MyHACCP');
+  return array();
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function myhaccp_home_page_preprocess_html(&$variables) {
+  if (drupal_is_front_page()) {
+    $variables['head_title'] = 'MyHACCP | Helping you produce safe food';
+  }
+}
