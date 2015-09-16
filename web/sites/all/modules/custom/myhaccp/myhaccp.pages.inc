@@ -5,13 +5,15 @@
  */
 function myhaccp_list() {
 
-  drupal_set_title('MyHACCP Web Tool');
+  drupal_set_title(t('MyHACCP Web Tool'));
 
   $node = node_load(44);
 
   if ($node) {
     $node->title = NULL;
     $node_view = node_view($node, 'full');
+    // Remove the node_title field as this is handled by the page.
+    unset($node_view['title_field']);
     $output['intro'] = array(
       '#type' => 'markup',
       '#markup' => drupal_render($node_view),
