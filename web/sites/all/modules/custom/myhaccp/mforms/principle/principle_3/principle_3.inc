@@ -104,8 +104,8 @@ function principle_3(&$form_state, &$next_step) {
     $form['principle_3'][$hazard_key]['3_3'] = array(
       '#type' => 'radios',
       '#options' => array(
-        'yes' => t('Yes'),
-        'no' => t('No'),
+        'yes' => t('Yes, the critical limit is appropriate to control the specific hazard'),
+        'no' => t('No, the critical limit is appropriate to control the specific hazard'),
       ),
       '#title' => t('3. Is the critical limit appropriate to control the specific hazard?'),
       '#help_text' => t('Will the critical limit you have set prevent, reduce or eliminate the hazard identified?'),
@@ -120,8 +120,8 @@ function principle_3(&$form_state, &$next_step) {
     $form['principle_3'][$hazard_key]['3_4'] = array(
       '#type' => 'radios',
       '#options' => array(
-        'yes' => t('Yes'),
-        'no' => t('No'),
+        'yes' => t('Yes, the critical limit is measurable or observable in real time?'),
+        'no' => t('No, the critical limit is measurable or observable in real time?'),
       ),
       '#title' => t('4. Is the critical limit measurable or observable in real time?'),
       '#help_text' => t('Measurable examples include things like pH, aw, brix, psi and observable examples include boiling, colour change, steaming, size reduction.'),
