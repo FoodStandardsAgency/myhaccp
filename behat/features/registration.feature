@@ -10,7 +10,7 @@ Feature: Registration
     And I should see the link "Register"
 
   @registration
-  Scenario: Ensure the registration fields are storing data
+  Scenario: Ensure a user can submit the registration form successfully
     Given I am on the homepage
     And I am an anonymous user
     And I visit "/user/register"
@@ -26,7 +26,7 @@ Feature: Registration
     Then I should not see an ".error" element
     And I should see "Further instructions have been sent to your e-mail address."
 
-  Scenario: Ensure the registration fields are storing data
+  Scenario: Confirm a user cannot register with the same name
     Given users:
       | name       | mail             | pass    |
       | uniquename | unique@email.com | uniqueP4ss! |
@@ -38,37 +38,12 @@ Feature: Registration
     And I fill in "Postcode area" with "OX"
     And I select "Prepared meals" from "Business type"
     And I check "I agree to the MyHACCP terms and conditions."
-    And I wait for 5 seconds
+    And I wait for honeypot
     When I press the "Create new account" button
     Then I should see "The name uniquename is already taken."
     And I should see "The e-mail address unique@email.com is already registered. Have you forgotten your password?"
     And I should see an ".error" element
     And I should not see "Further instructions have been sent to your e-mail address."
-
-  Scenario: Ensure the registration fields are storing data
-    Given I am on the homepage
-    And I am logged in as a user with the "administrator" role
-    And I visit "/admin/people"
-    And I fill in "E-mail" with "unique@email.com"
-    When I press the "Apply" button
-    Then I should not see "No users available."
-
-# Scenario: Ensure the registration fields are storing data
-#     Given I am on the homepage
-#     And I am logged in as a user with the "administrator" role
-#     And I visit "/admin/people"
-#     And I fill in "E-mail" with "unique@email.com"
-#     And I press the "Apply" button
-#     And I should not see "No users available."
-#     When I follow "Cancel account"
-#     And I select the radio button "Delete the account and its content."
-#     And I press the "Cancel account" button
-#     Then I should see "Cancelling account"
-#     When I visit "/admin/people"
-#     And I fill in "E-mail" with "unique@email.com"
-#     And I press the "Apply" button
-#     Then I should see "No users available."
-
 
   Scenario: Password authentication
     Given users:
