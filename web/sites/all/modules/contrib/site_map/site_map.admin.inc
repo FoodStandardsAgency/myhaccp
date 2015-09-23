@@ -37,12 +37,14 @@ function site_map_admin_settings_form() {
     '#type' => 'fieldset',
     '#title' => t('Site map content'),
   );
+  $site_map_ordering = array();
   $form['site_map_content']['site_map_show_front'] = array(
     '#type' => 'checkbox',
     '#title' => t('Show front page'),
     '#default_value' => variable_get('site_map_show_front', 1),
     '#description' => t('When enabled, this option will include the front page in the site map.'),
   );
+  $site_map_ordering['front'] = t('Front page');
   $form['site_map_content']['site_map_show_titles'] = array(
     '#type' => 'checkbox',
     '#title' => t('Show titles'),
@@ -56,6 +58,7 @@ function site_map_admin_settings_form() {
       '#default_value' => variable_get('site_map_show_blogs', 1),
       '#description' => t('When enabled, this option will show the 10 most active blog authors.'),
     );
+    $site_map_ordering['blogs'] = t('Active blog authors');
   }
   if (module_exists('book')) {
     $book_options = array();
@@ -75,11 +78,13 @@ function site_map_admin_settings_form() {
       '#default_value' => variable_get('site_map_books_expanded', 1),
       '#description' => t('When enabled, this option will show all children pages for each book.'),
     );
+    $site_map_ordering['books'] = t('Books');
   }
 
-  $menu_options = array();
   $menu_options = menu_get_menus();
-
+  foreach ($menu_options as $menu_id => $menu_title) {
+    $site_map_ordering['menus_' . $menu_id] = $menu_title;
+  }
   $form['site_map_content']['site_map_show_menus'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Menus to include in the site map'),
@@ -101,11 +106,13 @@ function site_map_admin_settings_form() {
       '#default_value' => variable_get('site_map_show_faq', 0),
       '#description' => t('When enabled, this option will include the content from the FAQ module in the site map.'),
     );
+    $site_map_ordering['faq'] = t('FAQ content');
   }
   $vocab_options = array();
   if (module_exists('taxonomy')) {
     foreach (taxonomy_get_vocabularies() as $vocabulary) {
       $vocab_options[$vocabulary->machine_name] = $vocabulary->name;
+      $site_map_ordering['vocabularies_' . $vocabulary->machine_name] = $vocabulary->name;
     }
   }
   $form['site_map_content']['site_map_show_vocabularies'] = array(
@@ -115,6 +122,29 @@ function site_map_admin_settings_form() {
     '#options' => $vocab_options,
     '#multiple' => TRUE,
   );
+  $form['site_map_content']['site_map_order'] = array(
+    '#type' => 'item',
+    '#title' => t('Site map order'),
+    '#theme' => 'site_map_order',
+  );
+  $site_map_order_defaults = variable_get('site_map_order', array());
+  foreach ($site_map_ordering as $content_id => $content_title) {
+    $form['site_map_content']['site_map_order'][$content_id] = array(
+      'content' => array(
+        '#markup' => $content_title,
+      ),
+      'weight' => array(
+        '#type' => 'weight',
+        '#title' => t('Weight for @title', array('@title' => $content_title)),
+        '#title_display' => 'invisible',
+        '#delta' => 50,
+        '#default_value' => isset($site_map_order_defaults[$content_id]) ? $site_map_order_defaults[$content_id] : -50,
+        '#parents' => array('site_map_order', $content_id),
+      ),
+      '#weight' => isset($site_map_order_defaults[$content_id]) ? $site_map_order_defaults[$content_id] : -50,
+    );
+  }
+  $form['#attached']['js'][] = drupal_get_path('module', 'site_map') . '/site_map.admin.js';
 
   $form['site_map_taxonomy_options'] = array(
     '#type' => 'fieldset',

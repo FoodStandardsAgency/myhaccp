@@ -64,6 +64,10 @@ function site_map_theme() {
       'variables' => array(),
       'file' => 'site_map.theme.inc',
     ),
+    'site_map_order' => array(
+      'render element' => 'element',
+      'file' => 'site_map.theme.inc',
+    ),
   );
 }
 
@@ -463,52 +467,43 @@ function _site_map_books() {
  * @return string
  *   Returns HTML string of site map for menus.
  */
-function _site_map_menus() {
+function _site_map_menus($mid) {
   $output = '';
+  $class = array();
   $options = array();
 
-  // Get the list of menus we'll be displaying.
-  $mids = array_filter(variable_get('site_map_show_menus', array()));
+  if (!empty($mid)) {
+    $menu = menu_load($mid);
+    // Use menu_tree_all_data to retrieve the expanded tree.
+    $tree = menu_tree_all_data($mid);
+    if (module_exists('i18n_menu')) {
+      $tree = i18n_menu_localize_tree($tree, $GLOBALS['language']->language);
+    }
 
-  // Allow other modules to alter it.
-  drupal_alter('site_map_menu_list', $mids);
+    // Add an alter hook so that other modules can manipulate the
+    // menu tree prior to rendering.
+    $alter_mid = preg_replace('/[^a-z0-9_]+/', '_', $mid);
+    drupal_alter(array('site_map_menu_tree', 'site_map_menu_tree_' . $alter_mid), $tree, $menu);
 
-  // Iterate through each menu to render it.
-  if (!empty($mids)) {
-    foreach ($mids as $mid) {
-      $class = array();
-      $menu = menu_load($mid);
-      // Use menu_tree_all_data to retrieve the expanded tree.
-      $tree = menu_tree_all_data($mid);
-      if (module_exists('i18n_menu')) {
-        $tree = i18n_menu_localize_tree($tree, $GLOBALS['language']->language);
+    $menu_display = _site_map_menu_tree_output($tree);
+    $menu_html = drupal_render($menu_display);
+    if (!empty($menu_html)) {
+      $title = t($menu['title']);
+      if (module_exists('i18n_string')) {
+        $m_array = array('menu', 'menu', $menu['menu_name'], 'title');
+        $title = i18n_string_plain($m_array, $title);
       }
+      _site_map_set_option($options, 'site_map_show_titles', 1, 1, 'show_titles', TRUE);
 
-      // Add an alter hook so that other modules can manipulate the
-      // menu tree prior to rendering.
-      $alter_mid = preg_replace('/[^a-z0-9_]+/', '_', $mid);
-      drupal_alter(array('site_map_menu_tree', 'site_map_menu_tree_' . $alter_mid), $tree, $menu);
-
-      $menu_display = _site_map_menu_tree_output($tree);
-      $menu_html = drupal_render($menu_display);
-      if (!empty($menu_html)) {
-        $title = t($menu['title']);
-        if (module_exists('i18n_string')) {
-          $m_array = array('menu', 'menu', $menu['menu_name'], 'title');
-          $title = i18n_string_plain($m_array, $title);
-        }
-        _site_map_set_option($options, 'site_map_show_titles', 1, 1, 'show_titles', TRUE);
-
-        $class[] = 'site-map-box-menu';
-        $class[] = 'site-map-box-menu-' . $mid;
-        $attributes = array('class' => $class);
-        $output .= theme('site_map_box', array(
-          'title' => $title,
-          'content' => $menu_html,
-          'attributes' => $attributes,
-          'options' => $options,
-        ));
-      }
+      $class[] = 'site-map-box-menu';
+      $class[] = 'site-map-box-menu-' . $mid;
+      $attributes = array('class' => $class);
+      $output .= theme('site_map_box', array(
+        'title' => $title,
+        'content' => $menu_html,
+        'attributes' => $attributes,
+        'options' => $options,
+      ));
     }
   }
 
@@ -549,21 +544,17 @@ function _site_map_faq() {
  * @return string
  *   Returns HTML string of site map for taxonomies.
  */
-function _site_map_taxonomys() {
+function _site_map_taxonomys($voc) {
   $output = '';
   $options = array();
-  $vnames = array_filter(variable_get('site_map_show_vocabularies', array()));
 
-  if (module_exists('taxonomy') && !empty($vnames)) {
-    $result = db_query('SELECT vid, name, description FROM {taxonomy_vocabulary} WHERE machine_name IN (:vnames) ORDER BY weight ASC, name', array(':vnames' => $vnames));
-    foreach ($result as $voc) {
-      if (module_exists('i18n_taxonomy')) {
-        $voc->name = i18n_taxonomy_vocabulary_name($voc, $GLOBALS['language']->language);
-      }
-      $output .= _site_map_taxonomy_tree($voc->vid, $voc->name, $voc->description);
+  if (module_exists('taxonomy') && !empty($voc)) {
+    if (module_exists('i18n_taxonomy')) {
+      $voc->name = i18n_taxonomy_vocabulary_name($voc, $GLOBALS['language']->language);
     }
-    _site_map_set_option($options, 'site_map_show_titles', 1, 1, 'show_titles', TRUE);
 
+    $output .= _site_map_taxonomy_tree($voc->vid, $voc->name, $voc->description);
+    _site_map_set_option($options, 'site_map_show_titles', 1, 1, 'show_titles', TRUE);
   }
 
   return $output;
