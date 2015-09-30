@@ -65,8 +65,8 @@ function principle_2_1(&$form_state, &$next_step) {
     '#help_link' => 28,
     '#help_text' => t("A 'decision tree' is a tool that can be used to help identify a critical control point. You do not have to use a decision tree."),
     '#options' => array(
-      'yes' => t('Yes'),
-      'no' => t('No'),
+      'yes' => t('Yes', array(), array('context' => 'Are you using a decision tree?')),
+      'no' => t('No', array(), array('context' => 'Are you using a decision tree?')),
     ),
     '#default_value' => array_get($values, 'principle_2_1.2_1_1', array()),
     '#attributes' => array(
