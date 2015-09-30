@@ -5,9 +5,9 @@ version = VERSION
 core = 7.x
 hidden = TRUE
 
-; Information added by Drupal.org packaging script on 2015-08-04
-version = "7.x-2.0-alpha4"
+; Information added by Drupal.org packaging script on 2015-09-15
+version = "7.x-2.0-alpha5"
 core = "7.x"
 project = "dialog"
-datestamp = "1438711153"
+datestamp = "1442351145"
 

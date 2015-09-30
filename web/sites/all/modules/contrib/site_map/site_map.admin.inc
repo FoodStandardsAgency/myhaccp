@@ -14,8 +14,14 @@ function site_map_admin_settings_form() {
   $form['site_map_page_title'] = array(
     '#type' => 'textfield',
     '#title' => t('Page title'),
-    '#default_value' => variable_get('site_map_page_title', t('Site map')),
-    '#description' => t('Page title that will be used on the <a href="@link">site map page</a>.', array('@link' => url('sitemap'))),
+    '#default_value' => variable_get('site_map_page_title', FALSE),
+    '#description' => t(
+      'Page title that will be used on the <a href="@link">site map page</a>. Leave blank for the default "Site map" in English. It will be available for translation in the <a href="@translation">translation interface</a> (after loading the site map page in another language) unless you override it here. After changing it, it will be necessary to wait for all caches to clear, or they will have to be cleared manually.',
+      array(
+        '@link' => url('sitemap'),
+        '@translation' => url('admin/config/regional/translate/translate'),
+      )
+    ),
   );
   // Field to set site map message.
   $site_map_message = variable_get('site_map_message', array('value' => '', 'format' => NULL));
@@ -74,7 +80,7 @@ function site_map_admin_settings_form() {
     );
     $site_map_ordering['books'] = t('Books');
   }
-  $menu_options = array();
+
   $menu_options = menu_get_menus();
   foreach ($menu_options as $menu_id => $menu_title) {
     $site_map_ordering['menus_' . $menu_id] = $menu_title;
@@ -106,7 +112,7 @@ function site_map_admin_settings_form() {
   if (module_exists('taxonomy')) {
     foreach (taxonomy_get_vocabularies() as $vocabulary) {
       $vocab_options[$vocabulary->machine_name] = $vocabulary->name;
-      $site_map_ordering['vocabularies_' . $vocabulary->vid] = $vocabulary->name;
+      $site_map_ordering['vocabularies_' . $vocabulary->machine_name] = $vocabulary->name;
     }
   }
   $form['site_map_content']['site_map_show_vocabularies'] = array(
@@ -132,10 +138,10 @@ function site_map_admin_settings_form() {
         '#title' => t('Weight for @title', array('@title' => $content_title)),
         '#title_display' => 'invisible',
         '#delta' => 50,
-        '#default_value' => $site_map_order_defaults[$content_id],
+        '#default_value' => isset($site_map_order_defaults[$content_id]) ? $site_map_order_defaults[$content_id] : -50,
         '#parents' => array('site_map_order', $content_id),
       ),
-      '#weight' => $site_map_order_defaults[$content_id],
+      '#weight' => isset($site_map_order_defaults[$content_id]) ? $site_map_order_defaults[$content_id] : -50,
     );
   }
   $form['#attached']['js'][] = drupal_get_path('module', 'site_map') . '/site_map.admin.js';
