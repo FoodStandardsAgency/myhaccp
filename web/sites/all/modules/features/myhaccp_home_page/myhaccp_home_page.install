@@ -28,7 +28,7 @@ If your food production processes are simple, as in most retail outlets such as 
 
   // Create three new bean blocks.
   $bean = bean_create(array('type' => 'content'));
-  $bean->label = 'Home page: introduction';
+  $bean->label = 'Home page: Introduction';
   $bean->title = 'Helping you produce safe food';
   $bean->delta = 'homepage_intro';
   $bean->field_description = array(
@@ -42,7 +42,7 @@ If your food production processes are simple, as in most retail outlets such as 
   $bean->save();
 
   $bean = bean_create(array('type' => 'content'));
-  $bean->label = 'Home page: first content';
+  $bean->label = 'Home page: First content';
   $bean->title = '';
   $bean->delta = 'homepage_first';
   $bean->field_description = array(
@@ -56,7 +56,7 @@ If your food production processes are simple, as in most retail outlets such as 
   $bean->save();
 
   $bean = bean_create(array('type' => 'content'));
-  $bean->label = 'Home page: second content';
+  $bean->label = 'Home page: Second content';
   $bean->title = '';
   $bean->delta = 'homepage_second';
   $bean->field_description = array(

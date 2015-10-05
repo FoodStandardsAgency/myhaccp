@@ -47,8 +47,13 @@
   }
 }
 
-
 .alert--myhaccp {
+  margin-top: 2em;
   border: 3px solid $accent-1;
   padding: 0 1em;
+}
+
+.closeblock-button {
+  cursor: pointer;
+  margin-right: -0.5em;
 }
