@@ -5,3 +5,18 @@
  */
 
 include_once 'myhaccp_resources_page.features.inc';
+
+/**
+ * Implements hook_views_pre_render().
+ *
+ * Allows the word 'Download' to be translated.
+ *
+ * @param object $view
+ *   The view object to operate on.
+ */
+function myhaccp_resources_page_views_pre_render(&$view) {
+  $download = t('Download');
+  $text = &$view->field['field_file']->options['alter']['text'];
+  // Replace the static word 'Download' with the translated word.
+  $text = str_replace('Download', $download, $text);
+}
