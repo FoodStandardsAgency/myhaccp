@@ -14,8 +14,8 @@ function myhaccp_pdf_download_context_default_contexts() {
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
   $context->name = 'myhaccp_pdf_link';
-  $context->description = 'Adds the pdf links block to the help pages';
-  $context->tag = '';
+  $context->description = 'Adds the pdf links block to the help pages.';
+  $context->tag = 'Block';
   $context->conditions = array(
     'path' => array(
       'values' => array(
@@ -39,7 +39,8 @@ function myhaccp_pdf_download_context_default_contexts() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Adds the pdf links block to the help pages');
+  t('Adds the pdf links block to the help pages.');
+  t('Block');
   $export['myhaccp_pdf_link'] = $context;
 
   return $export;

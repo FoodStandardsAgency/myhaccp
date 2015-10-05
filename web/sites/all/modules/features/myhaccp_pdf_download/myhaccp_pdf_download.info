@@ -1,5 +1,5 @@
-name = MyHaccp PDF Download
-description = Allows PDF downloads on the help pages
+name = MyHACCP PDF Download
+description = Allows PDF downloads on the help pages.
 core = 7.x
 package = MyHACCP
 version = 7.x-1.0
