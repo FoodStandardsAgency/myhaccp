@@ -23,7 +23,6 @@ Feature: Translate Page Content Type
     And I follow "add"
     And for "Title" I enter "[Welsh] MyHACCP test page"
     And for "Body" I enter "[Welsh] Body field"
-    And I press "Cadw"
-#    Then show last response
+    And I press "Arbed"
     Then I should see "[Welsh] MyHACCP test page"
     And I should see "[Welsh] Body field"
