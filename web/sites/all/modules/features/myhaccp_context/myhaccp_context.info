@@ -5,6 +5,7 @@ package = MyHACCP
 version = 7.x-1.0
 dependencies[] = bean
 dependencies[] = context
+dependencies[] = context_condition_theme
 dependencies[] = ctools
 dependencies[] = masquerade
 dependencies[] = menu_block

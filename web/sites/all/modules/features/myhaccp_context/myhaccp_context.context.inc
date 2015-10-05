@@ -30,7 +30,7 @@ function myhaccp_context_context_default_contexts() {
           'module' => 'menu_block',
           'delta' => '4',
           'region' => 'content',
-          'weight' => '-10',
+          'weight' => '10',
         ),
       ),
     ),
