@@ -30,19 +30,19 @@ function myhaccp_list() {
   // Prepare the table header.
   $header = array(
     'name' => array(
-      'data' => 'Study name',
+      'data' => t('Study name'),
     ),
     'created' => array(
-      'data' => 'Created on',
+      'data' => t('Created on'),
       'field' => 'm.created',
       'sort' => 'asc',
     ),
     'changed' => array(
-      'data' => 'Last updated',
+      'data' => t('Last updated'),
       'field' => 'm.changed',
     ),
     'status' => array(
-      'data' => 'Status',
+      'data' => t('Status'),
       'field' => 'm.status',
     ),
     'edit' => array(
@@ -179,19 +179,19 @@ function myhaccp_list() {
 
     // Prepare the options dropdown button.
     $options_link = theme('ctools_dropdown', array(
-      'title' => 'More options',
+      'title' => t('More options'),
       'links' => $options,
       'class' => 'study-more-dropdown split-button',
     ));
 
     // Convert status integers to a word.
-    $status = $result->status == 1 ? 'Complete' : 'Active';
+    $status = $result->status == 1 ? t('Complete') : t('Active');
 
     $rows[] = array(
       'data' => array(
         'name' => $name,
         'created' => format_date($result->created, 'short_date'),
-        'changed' => $result->changed ? format_date($result->changed, 'short_date') : 'Not updated',
+        'changed' => $result->changed ? format_date($result->changed, 'short_date') : t('Not updated'),
         'status' => $status,
         'edit' => $edit,
         'options' => $options_link,
@@ -201,7 +201,7 @@ function myhaccp_list() {
 
   $output['new'] = array(
     '#type' => 'link',
-    '#title' => 'Start a new study',
+    '#title' => t('Start a new study'),
     '#href' => 'tool/study/create',
     '#attributes' => array(
       'class' => array('new-study'),
@@ -211,7 +211,7 @@ function myhaccp_list() {
   if (!empty($results)) {
     $output['copy'] = array(
       '#type' => 'link',
-      '#title' => 'Copy an existing study',
+      '#title' => t('Copy an existing study'),
       '#href' => 'tool/study/copy',
       '#attributes' => array(
         'class' => array('copy-study'),
@@ -285,16 +285,16 @@ function myhaccp_study_preview($iid) {
         $output .= theme($stage, array('data' => $data));
       }
       // Force the title to be set here.
-      drupal_set_title('Study preview');
+      drupal_set_title(t('Study preview'));
       return $output;
     }
     else {
-      drupal_set_message('The requested study does not exist or has no data.', 'error');
+      drupal_set_message(t('The requested study does not exist or has no data.'), 'error');
       return '';
     }
   }
   else {
-    drupal_set_message('A study ID is required to preview a study.', 'error');
+    drupal_set_message(t('A study ID is required to preview a study.'), 'error');
     return '';
   }
 }
@@ -421,12 +421,12 @@ function myhaccp_study_delete_submit($form, &$form_state) {
 
   if ($result) {
     if (($result[0] !== $user->uid && !user_access('delete any myhaccp study')) || !user_access('delete own myhaccp study')) {
-      drupal_set_message('You don\'t have access to edit this study', 'error');
+      drupal_set_message(t("You don't have access to edit this study"), 'error');
       drupal_goto('tool');
     }
   }
   else {
-    drupal_set_message('This study cannot be found.');
+    drupal_set_message(t('This study cannot be found.'));
   }
 
   // Delete all the associated form stages in mforms_storage_steps.

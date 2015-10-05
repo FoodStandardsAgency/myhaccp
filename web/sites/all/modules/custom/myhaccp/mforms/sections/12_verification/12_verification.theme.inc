@@ -30,11 +30,11 @@ function myhaccp_preprocess_12_verification(&$variables) {
   // 3. Is this the same person who will formally sign off the whole HACCP plan (which may contain several HACCP studies)?
   // 3a. Who will formally sign off the HACCP plan?
   if (!empty($principle_6['6_3']) && $principle_6['6_3'] == 'no') {
-    $variables['p_6_2'] = '<p><strong>' . nl2br($principle_6['6_2']) . '</strong>' . t(' is responsible for ensuring the contents of the HACCP plan are validated.') . '</p>';
-    $variables['p_6_3'] = '<p><strong>' . $principle_6['6_3a'] . '</strong>' . t(' will formally sign off the HACCP plan.') . '</p>';
+    $variables['p_6_2'] = '<p><strong>' . nl2br($principle_6['6_2']) . '</strong> ' . t('is responsible for ensuring the contents of the HACCP plan are validated.') . '</p>';
+    $variables['p_6_3'] = '<p><strong>' . $principle_6['6_3a'] . '</strong> ' . t('will formally sign off the HACCP plan.') . '</p>';
   }
   elseif (!empty($principle_6['6_3']) && $principle_6['6_3'] == 'yes') {
-    $variables['p_6_2'] = '<p><strong>' . nl2br($principle_6['6_2']) . '</strong>' . t(' is responsible for ensuring the contents of the HACCP plan are validated and will  also formally sign off the HACCP plan.') . '</p>';
+    $variables['p_6_2'] = '<p><strong>' . nl2br($principle_6['6_2']) . '</strong> ' . t('is responsible for ensuring the contents of the HACCP plan are validated and will  also formally sign off the HACCP plan.') . '</p>';
   }
 
   $variables['p_6_4_title'] = t('The following verification activities are undertaken:');

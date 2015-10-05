@@ -271,7 +271,7 @@ function myhaccp_myhaccp_mforms_init() {
   $controls = MyHACCPMultiStepControls::getInstance($store, $steps, array(
     'preparatory_intro' => array(
       'stage' => 'preparatory',
-      'value' => 'Intro',
+      'value' => t('Intro'),
       'weight' => 0,
     ),
     'preparatory_a' => array(
@@ -321,12 +321,12 @@ function myhaccp_myhaccp_mforms_init() {
     ),
     'preparatory_review' => array(
       'stage' => 'preparatory',
-      'value' => 'Review',
+      'value' => t('Review'),
       'weight' => 10,
     ),
     'principle_intro' => array(
       'stage' => 'principles',
-      'value' => 'Intro',
+      'value' => t('Intro'),
       'weight' => 11,
     ),
     'principle_1_1' => array(
@@ -381,7 +381,7 @@ function myhaccp_myhaccp_mforms_init() {
     ),
     'principle_review' => array(
       'stage' => 'principles',
-      'value' => 'Review',
+      'value' => t('Review'),
       'weight' => 22,
     ),
   ));
@@ -431,13 +431,13 @@ function myhaccp_study_resume($form, &$form_state, $iid = FALSE) {
       $_SESSION['iid'] = $iid;
     }
     else {
-      drupal_set_message('You do not have permission to edit this user\'s form', 'error');
+      drupal_set_message(t("You do not have permission to edit this user's form"), 'error');
       drupal_access_denied();
     }
   }
   else {
     // If there is no current session open then return to the tool.
-    drupal_set_message('Please edit an existing form or create a new one.');
+    drupal_set_message(t('Please edit an existing form or create a new one.'));
     drupal_goto('tool');
   }
   // Return the form.
@@ -589,7 +589,7 @@ function _help_tip($link = '#') {
  */
 function myhaccp_saved_message($form, &$form_state) {
   if (isset($form_state['clicked_button']) && $form_state['clicked_button']['#value'] == 'Save this page') {
-    drupal_set_message('Study saved', 'status', FALSE);
+    drupal_set_message(t('Study saved'), 'status', FALSE);
   }
 }
 

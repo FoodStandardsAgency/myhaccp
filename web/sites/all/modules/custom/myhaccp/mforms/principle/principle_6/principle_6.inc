@@ -114,7 +114,7 @@ function principle_6(&$form_state, &$next_step) {
 
   $form['principle_6']['6_4'] = array(
     '#type' => 'container',
-    '#prefix' => '<div class="label">4. What verification activities do you carry out? Mark all those that apply.</div>',
+    '#prefix' => '<div class="label">' . t('4. What verification activities do you carry out? Mark all those that apply.') . '</div>',
   );
 
   $form['principle_6']['6_4']['1'] = array(

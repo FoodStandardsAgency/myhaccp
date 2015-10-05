@@ -94,7 +94,7 @@ Modular HACCP Plan - Typically several separate HACCP studies e.g. one on raw ma
 
   $form['preparatory_c_1']['c_3']['start'] = array(
     '#type' => 'textfield',
-    '#title' => t('It will start at '),
+    '#title' => t('It will start at') . ' ',
     '#default_value' => array_get($values, 'preparatory_c_1.c_3.start', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
@@ -104,7 +104,7 @@ Modular HACCP Plan - Typically several separate HACCP studies e.g. one on raw ma
 
   $form['preparatory_c_1']['c_3']['end'] = array(
     '#type' => 'textfield',
-    '#title' => t('Through to '),
+    '#title' => t('Through to') . ' ',
     '#default_value' => array_get($values, 'preparatory_c_1.c_3.end', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',

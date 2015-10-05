@@ -1,6 +1,8 @@
 <?php
 
 /**
+ * Returns keyed array of form labels for C 2 Physical.
+ *
  * Helper function to return keyed array of form labels or PDF labels allowing
  * us to render different text in the output PDF document than is rendered when
  * selecting options within the form.
@@ -18,7 +20,7 @@
  *        $key['form_label'] => form label,
  *        $key['pdf_output'] => output for PDF doc.
  */
-function preparatory_c_2_physical_get_options ($form_options = FALSE) {
+function preparatory_c_2_physical_get_options($form_options = FALSE) {
 
   $options = array();
   $form_options_array = array();
@@ -86,12 +88,13 @@ function preparatory_c_2_physical_get_options ($form_options = FALSE) {
 
 
 /**
+ * Returns keyed array of form labels for C 2 Chemical.
+ *
  * Helper function to return keyed array of form labels or PDF labels allowing
  * us to render different text in the output PDF document than is rendered when
  * selecting options within the form.
  *
  * This function returns an array for preparatory C2 Q4 (Chemical hazards).
- *
  *
  * @param bool $form_options
  *   A boolean to indicate if we want the options to be in a format expected
@@ -103,7 +106,7 @@ function preparatory_c_2_physical_get_options ($form_options = FALSE) {
  *        $key['form_label'] => form label,
  *        $key['pdf_output'] => output for PDF doc.
  */
-function preparatory_c_2_chemical_get_options ($form_options = FALSE) {
+function preparatory_c_2_chemical_get_options($form_options = FALSE) {
 
   $options = array();
   $form_options_array = array();
@@ -166,12 +169,13 @@ function preparatory_c_2_chemical_get_options ($form_options = FALSE) {
 }
 
 /**
+ * Returns keyed array of form labels for C 2 Biological.
+ *
  * Helper function to return keyed array of form labels or PDF labels allowing
  * us to render different text in the output PDF document than is rendered when
  * selecting options within the form.
  *
  * This function returns an array for preparatory C2 Q4 (Biological hazzards).
- *
  *
  * @param bool $form_options
  *   A boolean to indicate if we want the options to be in a format expected
@@ -183,7 +187,7 @@ function preparatory_c_2_chemical_get_options ($form_options = FALSE) {
  *        $key['form_label'] => form label,
  *        $key['pdf_output'] => output for PDF doc.
  */
-function preparatory_c_2_biological_get_options ($form_options = FALSE) {
+function preparatory_c_2_biological_get_options($form_options = FALSE) {
 
   $options = array();
   $form_options_array = array();
@@ -245,6 +249,8 @@ function preparatory_c_2_biological_get_options ($form_options = FALSE) {
   }
 }
 /**
+ * Returns keyed array of form labels for C 2 Allergens.
+ *
  * Helper function to return keyed array of form labels or PDF labels allowing
  * us to render different text in the output PDF document than is rendered when
  * selecting options within the form.
@@ -261,7 +267,7 @@ function preparatory_c_2_biological_get_options ($form_options = FALSE) {
  *        $key['form_label'] => form label,
  *        $key['pdf_output'] => output for PDF doc.
  */
-function preparatory_c_2_allergens_get_options ($form_options = FALSE) {
+function preparatory_c_2_allergens_get_options($form_options = FALSE) {
 
   $options = array();
   $form_options_array = array();
@@ -371,7 +377,6 @@ function preparatory_c_2(&$form_state, &$next_step) {
   );
 
   // Physical hazards.
-
   $form['preparatory_c_2']['wrapper']['physical_c_4'] = array(
     '#type' => 'container',
     '#attributes' => array(

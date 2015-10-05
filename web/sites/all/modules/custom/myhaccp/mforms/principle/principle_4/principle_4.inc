@@ -48,7 +48,7 @@ function principle_4(&$form_state, &$next_step) {
 
   // Ensure there are hazards over the threshold.
   if ($hazards->countHazardsOverThreshold() == 0) {
-    drupal_set_message('You have no significant hazards so you cannot continue', 'error');
+    drupal_set_message(t('You have no significant hazards so you cannot continue'), 'error');
     return $form;
   }
 
@@ -61,7 +61,7 @@ function principle_4(&$form_state, &$next_step) {
   // Bail out here with a message if there are no instances of the fieldsets
   // filled out correctly in the previous screen.
   if ($instance_count == 0) {
-    drupal_set_message('You have no critical control points so you cannot continue');
+    drupal_set_message(t('You have no critical control points so you cannot continue'));
     return $form;
   }
 

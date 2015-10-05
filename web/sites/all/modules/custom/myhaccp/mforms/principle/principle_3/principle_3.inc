@@ -30,7 +30,7 @@ function principle_3(&$form_state, &$next_step) {
 
   // Ensure there are hazards over the threshold.
   if ($hazards->countHazardsOverThreshold() == 0) {
-    drupal_set_message('You have no significant hazards so you cannot continue', 'error');
+    drupal_set_message(t('You have no significant hazards so you cannot continue'), 'error');
     return $form;
   }
 
@@ -42,7 +42,7 @@ function principle_3(&$form_state, &$next_step) {
   // Bail out here with a message if there are no instances of the fieldsets
   // filled out correctly in the previous screen.
   if ($instance_count == 0) {
-    drupal_set_message('You have no critical control points so you cannot continue');
+    drupal_set_message(t('You have no critical control points so you cannot continue'));
     return $form;
   }
 
@@ -61,7 +61,7 @@ function principle_3(&$form_state, &$next_step) {
   $form['principle_3']['intro'] = array(
     '#prefix' => '<p class="intro">',
     '#suffix' => '</p>',
-    '#markup' => t('A critical limit is the maximum or minimum value for the control measure at a CCP to prevent, eliminate or reduce the hazard to an acceptable level.  It separates acceptable (safe) from unacceptable (unsafe) product.'),
+    '#markup' => t('A critical limit is the maximum or minimum value for the control measure at a CCP to prevent, eliminate or reduce the hazard to an acceptable level. It separates acceptable (safe) from unacceptable (unsafe) product.'),
   );
 
   // Build out the instances.
@@ -79,7 +79,7 @@ function principle_3(&$form_state, &$next_step) {
     $form['principle_3'][$hazard_key]['3_1'] = array(
       '#type' => 'textfield',
       '#title' => t('1. What is the critical limit for this critical control point (what separates safe from potentially unsafe product)?'),
-      '#help_text' => t('The critical limit  is a value that separates acceptable from unacceptable e.g. 72 degrees Celsius (can we put this in units please) below this temperature the product is unacceptable above this limit it is considered acceptable.'),
+      '#help_text' => t('The critical limit is a value that separates acceptable from unacceptable e.g. 72 degrees Celsius (can we put this in units please) below this temperature the product is unacceptable above this limit it is considered acceptable.'),
       '#help_link' => 29,
       '#default_value' => array_get($values, "principle_3.$hazard_key.3_1", FALSE),
       '#attributes' => array(

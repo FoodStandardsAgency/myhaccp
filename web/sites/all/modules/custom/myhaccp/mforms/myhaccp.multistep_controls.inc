@@ -86,7 +86,7 @@ class MyHACCPMultiStepControls extends MformsControls {
     );
     $form_controls['steps_btns_wrapper']['preparatory']['pager_controls'] = array(
       '#type' => 'container',
-      '#prefix' => '<h3>' . t('Preparatory: ') . '</h3>',
+      '#prefix' => '<h3>' . t('Preparatory:') . ' </h3>',
       '#attributes' => array(
         'class' => array('pager-controls'),
       ),
@@ -100,7 +100,7 @@ class MyHACCPMultiStepControls extends MformsControls {
     );
     $form_controls['steps_btns_wrapper']['principles']['pager_controls'] = array(
       '#type' => 'container',
-      '#prefix' => '<h3>' . t('Principles: ') . '</h3>',
+      '#prefix' => '<h3>' . t('Principles:') . ' </h3>',
       '#attributes' => array(
         'class' => array('pager-controls'),
       ),

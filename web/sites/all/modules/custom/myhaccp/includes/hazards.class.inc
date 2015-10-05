@@ -307,12 +307,12 @@ class Hazard {
   }
 
   public function getHeader() {
-    $ccp_number_text = '<div class="ccp-number"><span class="label">Critical Control Point (CCP) Number:</span> ' . $this->ccpNo . '</div>';
+    $ccp_number_text = '<div class="ccp-number"><span class="label">' . t('Critical Control Point (CCP) Number') . ':</span> ' . $this->ccpNo . '</div>';
     // Prepare the text.
-    $process_step_text = '<div class="process-step"><span class="label">Process Step:</span> ' . '(' . $this->step->no . ') ' . $this->step->name . '</div>';
+    $process_step_text = '<div class="process-step"><span class="label">' . t('Process Step') . ':</span> ' . '(' . $this->step->no . ') ' . $this->step->name . '</div>';
     // The hazard text.
-    $hazard_text = '<div class="hazard"><span class="label">Hazard:</span> ' . $this->name . '<div class="hazard-description">' . nl2br($this->description) . '</div></div>';
-    $control_text = '<div class="control-measure"><span class="label">Control Measure:</span> ' . nl2br($this->controlMeasure) . '</div>';
+    $hazard_text = '<div class="hazard"><span class="label">' . t('Hazard') . ':</span> ' . $this->name . '<div class="hazard-description">' . nl2br($this->description) . '</div></div>';
+    $control_text = '<div class="control-measure"><span class="label">' . t('Control Measure') . ':</span> ' . nl2br($this->controlMeasure) . '</div>';
 
     // Prepare the form segments to return.
     $form['header'] = array(

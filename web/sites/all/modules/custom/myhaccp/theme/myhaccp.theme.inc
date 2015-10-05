@@ -92,7 +92,7 @@ function theme_myhaccp_1_3_table($variables) {
     'control_measure' => array(
       'data' => t('Control Measure !tip !help', array(
         '!tip' => _help_tip(27),
-        '!help' => '<div class="help-text">For each significant hazard state the control measure (an action and/or activity that is required to prevent, eliminate or reduce the occurrence of the hazard to an acceptable level). ' . myhaccp_prepare_more_link(27) . '</div>'
+        '!help' => '<div class="help-text">' . t('For each significant hazard state the control measure (an action and/or activity that is required to prevent, eliminate or reduce the occurrence of the hazard to an acceptable level).') . myhaccp_prepare_more_link(27) . '</div>'
       )),
       'class' => array('control-measure'),
     ),
@@ -151,14 +151,14 @@ function theme_myhaccp_2_2_table($variables) {
     'decision_tree' => array(
       'data' => t('Decision Tree Q\'s !tip !help', array(
         '!tip' => _help_tip(28),
-         '!help' => '<div class="help-text">Be very careful to answer the questions correctly.' . myhaccp_prepare_more_link(28) . '</div>'
+         '!help' => '<div class="help-text">' . t('Be very careful to answer the questions correctly.') . myhaccp_prepare_more_link(28) . '</div>'
       )),
       'class' => array('decision-tree'),
     ),
     'ccp' => array(
       'data' => t('CCP? !tip !help', array(
         '!tip' => _help_tip(28),
-        '!help' => '<div class="help-text">Providing you have answered  the  questions to the decision tree correctly , and entered the answers  into the system  correctly this will show whether the control of the hazard is regarded as a critical control point or not according to Campden or Codex.</div>'
+        '!help' => '<div class="help-text">' . t('Providing you have answered the questions to the decision tree correctly, and entered the answers into the system correctly this will show whether the control of the hazard is regarded as a critical control point or not according to Campden or Codex.') . '</div>'
       )),
       'class' => array('ccp'),
     ),

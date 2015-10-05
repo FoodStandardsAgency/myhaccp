@@ -194,7 +194,7 @@ function preparatory_d(&$form_state, &$next_step) {
 
   $form['preparatory_d']['team_no_skills'] = array(
     '#type' => 'textarea',
-    '#title' => 'Please explain why you have answered no to this question and how you propose to address this issue.',
+    '#title' => t('Please explain why you have answered no to this question and how you propose to address this issue.'),
     '#default_value' => array_get($values, 'preparatory_d.team_no_skills', FALSE),
     '#weight' => 11,
     '#attributes' => array(
