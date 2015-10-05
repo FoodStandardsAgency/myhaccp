@@ -465,3 +465,11 @@ function myhaccp_update_7021() {
     ->condition('theme', 'myhaccp')
     ->execute();
 }
+
+/**
+ * Enable the Context feature to position all blocks again.
+ */
+function myhaccp_update_7022() {
+  module_enable(array('myhaccp_context'));
+  features_revert_module('myhaccp_context');
+}
