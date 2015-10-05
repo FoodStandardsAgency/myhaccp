@@ -3,3 +3,4 @@ Module name     Issue       Patch
 mforms          2209213     https://drupal.org/files/issues/mforms-move_rebuild-2209213-1.patch
 ckeditor        1914904	    https://drupal.org/files/ckeditor-media_ie_fix-1914904-5.patch
 site_map        1529708     https://drupal.org/files/issues/site_map_ordering-1529708.patch
+closeblock      2381919     https://www.drupal.org/files/issues/make_the_buttons-2381047-7.patch

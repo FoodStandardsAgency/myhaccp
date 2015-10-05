@@ -3,28 +3,28 @@
   Drupal.behaviors.closeblock = {
 
     attach: function (context, settings) {
-      
+
       if (settings.closeblock == undefined) {
         return;
       }
-      
+
       $.each(settings.closeblock, function(id, info) {
         $('#'+ id  + ':not(.closeblock-processed)', context).addClass('closeblock-processed').each(function() {
           var
             $block = $(this);
-            
+
           if (info.closed) {
             $block.hide();
             return;
           }
-          
+
           var
-            $close_buttton = $('<span />').addClass('closeblock-button').html('close'),
-            $close_contaier = $('<div />').addClass('closeblock').append($close_buttton);
-          
-          $block.prepend($close_contaier);
-          
-          $close_buttton.click(function() {
+            $close_button = $('<span />').addClass('closeblock-button').html(Drupal.t('close')),
+            $close_container = $('<div />').addClass('closeblock').append($close_button);
+
+          $block.prepend($close_container);
+
+          $close_button.click(function() {
             if (info.type) {
               $block[info.type](info.speed);
             }
@@ -32,16 +32,23 @@
               $block.hide();
             }
             if (info.save) {
-              var
-               _path = Drupal.settings.basePath + ['closeblock', info.module, info.delta].join('/');
-              $.post(_path);
+              var element_settings = {
+                url: Drupal.settings.basePath + ['closeblock', info.module, info.delta].join('/'),
+                selector: '#' + id + ' .closeblock-button',
+                event: 'click',
+                progress: { type: 'none' },
+                submit: {
+                  hide: 1
+                }
+              };
+              var ajax = new Drupal.ajax(false, $close_button, element_settings);
             }
           });
         });
       });
-      
+
     }
 
   };
-  
+
 })(jQuery);
