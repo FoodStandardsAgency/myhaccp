@@ -30,6 +30,7 @@ function myhaccp_user_profiles_field_default_field_instances() {
     'label' => 'Business name (optional)',
     'required' => FALSE,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -64,6 +65,7 @@ function myhaccp_user_profiles_field_default_field_instances() {
     'label' => 'Business type (other)',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -99,6 +101,7 @@ function myhaccp_user_profiles_field_default_field_instances() {
     'label' => 'Business type',
     'required' => 1,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -134,6 +137,7 @@ function myhaccp_user_profiles_field_default_field_instances() {
     'label' => 'I agree to the FSA contacting me for any research or surveys related to the use of this site.',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -168,6 +172,7 @@ function myhaccp_user_profiles_field_default_field_instances() {
     'label' => 'Country',
     'required' => 1,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -200,6 +205,7 @@ function myhaccp_user_profiles_field_default_field_instances() {
     'label' => 'Postcode area',
     'required' => 1,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'linkit' => array(
         'button_text' => 'Search',
         'enable' => 0,
@@ -240,6 +246,7 @@ function myhaccp_user_profiles_field_default_field_instances() {
     'label' => 'Size of business',
     'required' => 1,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -282,6 +289,7 @@ function myhaccp_user_profiles_field_default_field_instances() {
     'label' => 'I agree to the <a href="/myhaccp-terms-and-conditions">MyHACCP terms and conditions</a>.',
     'required' => 1,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
