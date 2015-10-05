@@ -15,6 +15,9 @@ include_once 'myhaccp_resources_page.features.inc';
  *   The view object to operate on.
  */
 function myhaccp_resources_page_views_pre_render(&$view) {
+  if ($view->current_display != 'resources_downloads') {
+    return;
+  }
   $download = t('Download');
   $text = &$view->field['field_file']->options['alter']['text'];
   // Replace the static word 'Download' with the translated word.
