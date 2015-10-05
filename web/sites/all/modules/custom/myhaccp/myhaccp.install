@@ -435,3 +435,33 @@ function myhaccp_update_7019() {
   features_revert_module('myhaccp_content_type_resource_link');
   features_revert_module('myhaccp_content_type_basic_page');
 }
+
+/**
+ * Converts the footer block into a bean.
+ */
+function myhaccp_update_7020() {
+  $bean = bean_create(array('type' => 'content'));
+  $bean->label = 'Footer: GOV.UK info';
+  $bean->title = '';
+  $bean->delta = 'footer_gov';
+  $bean->field_description = array(
+    'en' => array(
+      0 => array(
+        'value' => '<p class="copyright-message"><a href="https://www.gov.uk"><img alt="GOV.UK logo" class="gov-uk-logo" src="/sites/all/themes/custom/myhaccp/images/gov-uk.jpg"></a>&copy; Crown Copyright</p>',
+        'format' => 'full_html',
+      ),
+    ),
+  );
+  $bean->save();
+}
+
+/**
+ * Removes all blocks in favour of context module.
+ */
+function myhaccp_update_7021() {
+  // Disable all blocks.
+  db_update('block')
+    ->fields(array('status' => 0))
+    ->condition('theme', 'myhaccp')
+    ->execute();
+}
