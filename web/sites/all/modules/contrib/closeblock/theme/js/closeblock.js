@@ -32,16 +32,10 @@
               $block.hide();
             }
             if (info.save) {
-              var element_settings = {
-                url: Drupal.settings.basePath + ['closeblock', info.module, info.delta].join('/'),
-                selector: '#' + id + ' .closeblock-button',
-                event: 'click',
-                progress: { type: 'none' },
-                submit: {
-                  hide: 1
-                }
-              };
-              var ajax = new Drupal.ajax(false, $close_button, element_settings);
+              $.ajax({
+                type: 'POST',
+                url: Drupal.settings.basePath + ['closeblock', info.module, info.delta].join('/')
+              });
             }
           });
         });
