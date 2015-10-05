@@ -15,7 +15,7 @@ function myhaccp_language_configuration_context_default_contexts() {
   $context->api_version = 3;
   $context->name = 'myhaccp_language_blocks';
   $context->description = 'Positions language blocks.';
-  $context->tag = '';
+  $context->tag = 'Block';
   $context->conditions = array(
     'sitewide' => array(
       'values' => array(
@@ -39,6 +39,7 @@ function myhaccp_language_configuration_context_default_contexts() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Block');
   t('Positions language blocks.');
   $export['myhaccp_language_blocks'] = $context;
 
