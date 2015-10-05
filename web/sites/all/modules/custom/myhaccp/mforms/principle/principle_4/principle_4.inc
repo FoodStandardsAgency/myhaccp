@@ -152,8 +152,8 @@ function principle_4(&$form_state, &$next_step) {
     $form['principle_4'][$hazard_key]['4_7'] = array(
       '#type' => 'radios',
       '#options' => array(
-        'yes' => t('Yes'),
-        'no' => t('No'),
+        'yes' => t('Yes', array(), array('context' => 'Will the monitoring records be checked and signed off by anyone?')),
+        'no' => t('No', array(), array('context' => 'Will the monitoring records be checked and signed off by anyone?')),
       ),
       '#title' => t('7. Will the monitoring records be checked and signed off by anyone?'),
       '#default_value' => array_get($values, "principle_4.$hazard_key.4_7", FALSE),

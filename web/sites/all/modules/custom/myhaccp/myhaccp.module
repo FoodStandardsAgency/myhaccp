@@ -844,7 +844,7 @@ function myhaccp_prepare_more_link($nid) {
       ),
       'data-dialog' => 'true',
       'data-dialog-options' => '{"width":"85%","show":"500","hide":"500","draggable":"false"}',
-      'title' => 'Link through to further guidance on this subject.',
+      'title' => t('Link through to further guidance on this subject.'),
       'target' => '_blank',
       'data-topic' => $node->title,
     ),

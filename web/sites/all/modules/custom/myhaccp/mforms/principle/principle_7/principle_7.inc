@@ -111,8 +111,8 @@ function principle_7(&$form_state, &$next_step) {
     '#type' => 'radios',
     '#title' => t('5. Are the records accessible, accurate and up to date?'),
     '#options' => array(
-      'yes' => t('Yes'),
-      'no' => t('No'),
+      'yes' => t('Yes', array(), array('context' => 'Are the records accessible, accurate and up to date?')),
+      'no' => t('No', array(), array('context' => 'Are the records accessible, accurate and up to date?')),
     ),
     '#default_value' => array_get($values, "principle_7.7_5", FALSE),
     '#attributes' => array(

@@ -57,8 +57,8 @@ function preparatory_g(&$form_state, &$next_step) {
   $form['preparatory_g']['g_1'] = array(
     '#type' => 'radios',
     '#options' => array(
-      'yes' => t('Yes'),
-      'no' => t('No'),
+      'yes' => t('Yes', array(), array('context' => 'Have you completed a flow diagram?')),
+      'no' => t('No', array(), array('context' => 'Have you completed a flow diagram?')),
     ),
     '#title' => t('1. Have you completed a flow diagram?'),
     '#help_link' => 20,

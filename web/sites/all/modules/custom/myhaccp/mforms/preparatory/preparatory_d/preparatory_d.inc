@@ -179,8 +179,8 @@ function preparatory_d(&$form_state, &$next_step) {
     '#type' => 'radios',
     '#weight' => 10,
     '#options' => array(
-      'Yes' => t('Yes'),
-      'No' => t('No'),
+      'Yes' => t('Yes', array(), array('context' => 'Do you consider the team to have sufficient skills?')),
+      'No' => t('No', array(), array('context' => 'Do you consider the team to have sufficient skills?')),
     ),
     '#title' => t('Do you consider the team to have sufficient skills (scientific/technical knowledge and HACCP expertise) to ensure the HACCP study will be effective?'),
     '#help_link' => 21,

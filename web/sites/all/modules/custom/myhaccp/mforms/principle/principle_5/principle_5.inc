@@ -132,8 +132,8 @@ function principle_5(&$form_state, &$next_step) {
     $form['principle_5'][$hazard_key]['5_5'] = array(
       '#type' => 'radios',
       '#options' => array(
-        'yes' => t('Yes'),
-        'no' => t('No'),
+        'yes' => t('Yes', array(), array('context' => 'Are all personnel trained and competent for performing the activities stated?')),
+        'no' => t('No', array(), array('context' => 'Are all personnel trained and competent for performing the activities stated?')),
       ),
       '#title' => t('5. Are all personnel (identified in any of the steps from 1-6 for all CCP’s) trained and competent for performing the activities stated?'),
       '#default_value' => array_get($values, "principle_5.$hazard_key.5_5", FALSE),
@@ -148,8 +148,8 @@ function principle_5(&$form_state, &$next_step) {
     $form['principle_5'][$hazard_key]['5_6'] = array(
       '#type' => 'radios',
       '#options' => array(
-        'yes' => t('Yes'),
-        'no' => t('No'),
+        'yes' => t('Yes', array(), array('context' => 'Are records of competency maintained?')),
+        'no' => t('No', array(), array('context' => 'Are records of competency maintained?')),
       ),
       '#title' => t('6. Are records of competency maintained?'),
       '#help_text' => t("The competencies of staff should be reviewed. It may be necessary to train staff, refresh their training, provide on-the-job experience, records of which should be kept to reflect that staff are capable of performing the task they are undertaking"),

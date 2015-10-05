@@ -137,9 +137,9 @@ function principle_2_2(&$form_state, &$next_step) {
         $form['principle_2_2']['instance_table'][$hazard_key]['decision_tree'][$id] = array(
           '#type' => 'radios',
           '#options' => array(
-            'yes' => t('Yes'),
-            'no' => t('No'),
-            'n/a' => t('N/A'),
+            'yes' => t('Yes', array(), array('context' => 'Decision tree')),
+            'no' => t('No', array(), array('context' => 'Decision tree')),
+            'n/a' => t('N/A', array(), array('context' => 'Decision tree')),
           ),
           '#title' => $id,
           '#default_value' => array_get($values, "principle_2_2.instance_table.$hazard_key.decision_tree.$id", array()),
@@ -148,7 +148,7 @@ function principle_2_2(&$form_state, &$next_step) {
               'question-' . $id,
             ),
             'data-parsley-required' => 'true',
-            'data-parsley-error-message' => t('Please indicate \'Yes\', \'No\' or \'N/A\' for this question in the decision tree.'),
+            'data-parsley-error-message' => t("Please indicate 'Yes', 'No' or 'N/A' for this question in the decision tree."),
           ),
         );
       }
@@ -164,8 +164,8 @@ function principle_2_2(&$form_state, &$next_step) {
     $form['principle_2_2']['instance_table'][$hazard_key]['ccp'] = array(
       '#type' => 'radios',
       '#options' => array(
-        'yes' => t('Yes'),
-        'no' => t('No'),
+        'yes' => t('Yes', array(), array('context' => 'CCP')),
+        'no' => t('No', array(), array('context' => 'CCP')),
       ),
       '#default_value' => array_get($values, "principle_2_2.instance_table.$hazard_key.ccp", array()),
       '#attributes' => array(
