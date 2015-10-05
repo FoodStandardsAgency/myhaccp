@@ -30,7 +30,7 @@ function myhaccp_pdf_download_context_default_contexts() {
           'module' => 'print_ui',
           'delta' => 'print-links',
           'region' => 'content',
-          'weight' => '10',
+          'weight' => '20',
         ),
       ),
     ),
