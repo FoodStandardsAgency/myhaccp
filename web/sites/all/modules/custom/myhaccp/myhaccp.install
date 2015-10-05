@@ -537,3 +537,67 @@ function myhaccp_update_7025() {
     ->condition('delta', 'alert_notice')
     ->execute();
 }
+
+/**
+ * Convert preparatory and principle intro and review blocks into beans.
+ */
+function myhaccp_update_7026() {
+  // Prepare a list of the blocks we want to convert.
+  $blocks = array(
+    2 => array(
+      'delta' => 'preparatory_review_intro',
+      'label' => 'Preparatory stages review intro',
+    ),
+    3 => array(
+      'delta' => 'preparatory_review_main',
+      'label' => 'Preparatory stages review main',
+    ),
+    4 => array(
+      'delta' => 'principle_review_intro',
+      'label' => 'Principle stages review intro',
+    ),
+    5 => array(
+      'delta' => 'principle_review_main',
+      'label' => 'Principle stages review main',
+    ),
+  );
+  // Iterate over the blocks.
+  foreach ($blocks as $bid => $block_info) {
+    $block = block_custom_block_get($bid);
+    $content = $block['body'];
+    // Create the bean.
+    $bean = bean_create(array('type' => 'content'));
+    $bean->label = $block_info['label'];
+    $bean->title = '';
+    $bean->delta = $block_info['delta'];
+    $bean->field_description = array(
+      'en' => array(
+        0 => array(
+          'value' => $content,
+          'format' => 'full_html',
+        ),
+      ),
+    );
+    $bean->save();
+  }
+}
+
+/**
+ * Deletes unused blocks.
+ */
+function myhaccp_update_7027() {
+  $deltas = array(1, 2, 3, 4, 5, 6);
+  foreach ($deltas as $delta) {
+    db_delete('block_custom')
+      ->condition('bid', $delta)
+      ->execute();
+    db_delete('block')
+      ->condition('module', 'block')
+      ->condition('delta', $delta)
+      ->execute();
+    db_delete('block_role')
+      ->condition('module', 'block')
+      ->condition('delta', $delta)
+      ->execute();
+  }
+}
