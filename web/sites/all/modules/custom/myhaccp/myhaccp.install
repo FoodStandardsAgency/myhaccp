@@ -279,6 +279,7 @@ function myhaccp_update_7009() {
  * Enable the bean module.
  */
 function myhaccp_update_7010() {
+  module_load_include('inc', 'bean', 'includes/bean.core');
   module_enable(array('bean'));
   cache_clear_all();
 }
@@ -287,11 +288,14 @@ function myhaccp_update_7010() {
  * Enable the bean feature and language features.
  */
 function myhaccp_update_7011() {
+  module_enable(array('myhaccp_language_permissions', 'myhaccp_pdf_download'));
+  features_revert_module('myhaccp_language_permissions');
+  require_once DRUPAL_ROOT . '/includes/locale.inc';
   module_enable(array(
     'myhaccp_language_configuration',
-    'myhaccp_language_permissions',
     'myhaccp_user_profiles'
   ));
+  features_revert_module('myhaccp_language_configuration');
   features_revert_module('myhaccp_admin_views');
   features_revert_module('myhaccp_language_configuration');
   features_revert_module('myhaccp_user_profiles');
@@ -499,9 +503,9 @@ function myhaccp_update_7023() {
  * Update the close block variables.
  */
 function myhaccp_update_7024() {
-  $settings = array (
+  $settings = array(
     'block-bean-alert-notice' =>
-      array (
+      array(
         'closeblock_active' => 1,
         'closeblock_custom' => 0,
         'closeblock_type' => '2',
@@ -641,7 +645,148 @@ function myhaccp_update_7029() {
   }
 }
 
+/**
+ * Inserts the Welsh language as features doesn't seem to want to do it.
+ */
 function myhaccp_update_7030() {
-  features_revert_module('myhaccp_language_configuration');
-  features_revert_module('myhaccp_user_profiles');
+  require_once DRUPAL_ROOT . '/includes/locale.inc';
+  features_revert_module('myhaccp_language_permissions');
+  locale_add_language('cy',
+    'Welsh',
+    'Cymraeg',
+    LANGUAGE_LTR,
+    '',
+    'cy',
+    TRUE,
+    FALSE);
+  // Additional params, locale_add_language does not implement.
+  db_update('languages')
+    ->fields(array(
+      'plurals' => 4,
+      'formula' => '(($n==1)?(0):(($n==2)?(1):((($n!=8)&&($n!=11))?(2):3)))',
+      'weight' => 0,
+    ))
+    ->condition('language', 'cy')
+    ->execute();
+  variable_set('entity_translation_hide_translation_links_guidance', 0);
+  variable_set('entity_translation_node_metadata_guidance', "0");
+  variable_set('entity_translation_revision_enabled', TRUE);
+  variable_set('language_default', (object) array(
+    'language' => 'en',
+    'name' => 'English',
+    'native' => 'English',
+    'direction' => 0,
+    'enabled' => 1,
+    'plurals' => 0,
+    'formula' => '',
+    'domain' => '',
+    'prefix' => '',
+    'weight' => 0,
+    'javascript' => '',
+  ));
+  variable_set('language_negotiation_language', array(
+    'locale-url' =>
+      array(
+        'callbacks' =>
+          array(
+            'language' => 'locale_language_from_url',
+            'switcher' => 'locale_language_switcher_url',
+            'url_rewrite' => 'locale_language_url_rewrite_url',
+          ),
+        'file' => 'includes/locale.inc',
+      ),
+    'locale-user' =>
+      array(
+        'callbacks' =>
+          array(
+            'language' => 'locale_language_from_user',
+          ),
+        'file' => 'includes/locale.inc',
+      ),
+    'language-default' =>
+      array(
+        'callbacks' =>
+          array(
+            'language' => 'language_from_default',
+          ),
+      ),
+  ));
+  variable_set('language_negotiation_language_content', array(
+    'locale-url' =>
+      array(
+        'callbacks' =>
+          array(
+            'language' => 'locale_language_from_url',
+            'switcher' => 'locale_language_switcher_url',
+            'url_rewrite' => 'locale_language_url_rewrite_url',
+          ),
+        'file' => 'includes/locale.inc',
+      ),
+    'locale-user' =>
+      array(
+        'callbacks' =>
+          array(
+            'language' => 'locale_language_from_user',
+          ),
+        'file' => 'includes/locale.inc',
+      ),
+    'locale-interface' =>
+      array(
+        'callbacks' =>
+          array(
+            'language' => 'locale_language_from_interface',
+          ),
+        'file' => 'includes/locale.inc',
+      ),
+    'language-default' =>
+      array(
+        'callbacks' =>
+          array(
+            'language' => 'language_from_default',
+          ),
+      ),
+  ));
+  variable_set('language_negotiation_language_url', array(
+    'locale-url' =>
+      array(
+        'callbacks' =>
+          array(
+            'language' => 'locale_language_from_url',
+            'switcher' => 'locale_language_switcher_url',
+            'url_rewrite' => 'locale_language_url_rewrite_url',
+          ),
+        'file' => 'includes/locale.inc',
+      ),
+    'locale-url-fallback' =>
+      array(
+        'callbacks' =>
+          array(
+            'language' => 'locale_language_url_fallback',
+          ),
+        'file' => 'includes/locale.inc',
+      ),
+  ));
+}
+
+/**
+ * Import the Welsh language PO files into the system.
+ */
+function myhaccp_update_7031() {
+  // Refresh all the strings in the menu.
+  module_load_include('inc', 'i18n_string', 'i18n_string.admin');
+  i18n_string_refresh_group('menu');
+
+  // Import the menu translations.
+  $path = DRUPAL_ROOT . '/sites/all/translations/';
+  $file = new stdClass();
+  $file->filename = 'menu.cy.po';
+  $file->uri = $path . $file->filename;
+  _locale_import_po($file, 'cy', LOCALE_IMPORT_OVERWRITE, 'menu');
+
+  // Import the interface translations.
+  $path = DRUPAL_ROOT . '/sites/all/translations/';
+  $file = new stdClass();
+  $file->filename = 'interface.cy.po';
+  $file->uri = $path . $file->filename;
+  _locale_import_po($file, 'cy', LOCALE_IMPORT_OVERWRITE, 'default');
 }
