@@ -601,3 +601,17 @@ function myhaccp_update_7027() {
       ->execute();
   }
 }
+
+/**
+ * Update all the menu links in the main menu so they are translatable.
+ */
+function myhaccp_update_7028() {
+  $items = db_select('menu_links')
+    ->fields('menu_links', array('mlid', 'link_title'))
+    ->condition('menu_links.menu_name', 'main-menu')
+    ->execute()->fetchAllKeyed();
+  foreach ($items as $mlid => $item) {
+    $menu_item = menu_link_load($mlid);
+    i18n_menu_menu_link_update($menu_item);
+  }
+}
