@@ -530,6 +530,7 @@ function myhaccp_update_7024() {
  * Add the css to the bean alert notice block.
  */
 function myhaccp_update_7025() {
+  module_enable(array('block_class'));
   $class = 'alert--myhaccp';
   db_update('block')
     ->fields(array('css_class' => $class))
@@ -611,7 +612,36 @@ function myhaccp_update_7028() {
     ->condition('menu_links.menu_name', 'main-menu')
     ->execute()->fetchAllKeyed();
   foreach ($items as $mlid => $item) {
-    $menu_item = menu_link_load($mlid);
-    i18n_menu_menu_link_update($menu_item);
+    $item = menu_link_load($mlid);
+    $options = $item['options'];
+    $options['alter'] = TRUE;
+    db_update('menu_links')
+      ->fields(array('options' => serialize($options), 'customized' => 1))
+      ->condition('mlid', $mlid)
+      ->execute();
   }
+}
+
+/**
+ * Update all the menu links in the footer menus so they are translatable.
+ */
+function myhaccp_update_7029() {
+  $items = db_select('menu_links')
+    ->fields('menu_links', array('mlid', 'link_title'))
+    ->condition('menu_links.menu_name', 'menu-footer-links%', 'LIKE')
+    ->execute()->fetchAllKeyed();
+  foreach ($items as $mlid => $item) {
+    $item = menu_link_load($mlid);
+    $options = $item['options'];
+    $options['alter'] = TRUE;
+    db_update('menu_links')
+      ->fields(array('options' => serialize($options), 'customized' => 1))
+      ->condition('mlid', $mlid)
+      ->execute();
+  }
+}
+
+function myhaccp_update_7030() {
+  features_revert_module('myhaccp_language_configuration');
+  features_revert_module('myhaccp_user_profiles');
 }
