@@ -9,7 +9,10 @@
  * Implements hook_install().
  */
 function myhaccp_notices_install() {
-  $content = '<p>Notice: update released 15/09/2015, for more information please read the <a href="/node/102">release notes here</a>.</p>';
+  // Make sure the myhaccp_bean_type_notice module is installed.
+  module_enable(array('myhaccp_bean_type_notice'));
+  // Revert the feature.
+  features_revert_module('myhaccp_bean_type_notice');
   // Create the bean.
   $bean = bean_create(array('type' => 'notice'));
   $bean->label = 'Temporary Alert Notice';
@@ -18,7 +21,7 @@ function myhaccp_notices_install() {
   $bean->field_description = array(
     'en' => array(
       0 => array(
-        'value' => $content,
+        'value' => '<p>Notice: update released 08/10/2015, for more information please read the <a href="/node/102">release notes here</a>.</p>',
         'format' => 'full_html',
       ),
     ),
@@ -26,18 +29,12 @@ function myhaccp_notices_install() {
   $bean->save();
 
   $settings = array(
-    'block-bean-alert-notice' =>
+    'notice' =>
       array(
-        'closeblock_active' => 1,
-        'closeblock_custom' => 0,
-        'closeblock_type' => '2',
-        'closeblock_speed' => '500',
-        'closeblock_save' => 1,
-        'closeblock_count' => '1',
-        'closeblock_frequency' => '',
-        'module' => 'bean',
-        'delta' => 'alert_notice',
+        'close_bean_active' => 1,
+        'close_bean_type' => '2',
+        'close_bean_speed' => '300',
       ),
   );
-  variable_set('closeblock', $settings);
+  variable_set('close_bean_settings', $settings);
 }
