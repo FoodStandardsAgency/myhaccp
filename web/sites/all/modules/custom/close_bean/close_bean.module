@@ -26,6 +26,18 @@ function close_bean_menu() {
 }
 
 /**
+ * Implements hook_permission().
+ */
+function close_bean_permission() {
+  return array(
+    'close bean' => array(
+      'title' => t('Close bean'),
+      'description' => t('Allow the user to close bean blocks.')
+    ),
+  );
+}
+
+/**
  * Implements hook_form_FORM_ID_alter().
  */
 function close_bean_form_bean_admin_ui_type_form_alter(&$form, &$form_state) {
