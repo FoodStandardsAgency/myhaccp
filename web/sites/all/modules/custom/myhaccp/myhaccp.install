@@ -484,7 +484,7 @@ function myhaccp_update_7022() {
 function myhaccp_update_7023() {
   $content = '<p>Notice: update released 15/09/2015, for more information please read the <a href="/node/102">release notes here</a>.</p>';
   // Create the bean.
-  $bean = bean_create(array('type' => 'content'));
+  $bean = bean_create(array('type' => 'notice'));
   $bean->label = 'Temporary Alert Notice';
   $bean->title = '';
   $bean->delta = 'alert_notice';
