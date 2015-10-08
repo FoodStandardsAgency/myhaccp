@@ -745,12 +745,12 @@ function myhaccp_update_7031() {
   $file = new stdClass();
   $file->filename = 'menu.cy.po';
   $file->uri = $path . $file->filename;
-  _locale_import_po($file, 'cy', LOCALE_IMPORT_OVERWRITE, 'menu');
+  _locale_import_po($file, 'cy', LOCALE_IMPORT_KEEP, 'menu');
 
   // Import the interface translations.
   $path = DRUPAL_ROOT . '/sites/all/translations/';
   $file = new stdClass();
   $file->filename = 'interface.cy.po';
   $file->uri = $path . $file->filename;
-  _locale_import_po($file, 'cy', LOCALE_IMPORT_OVERWRITE, 'default');
+  _locale_import_po($file, 'cy', LOCALE_IMPORT_KEEP, 'default');
 }
