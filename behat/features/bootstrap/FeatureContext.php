@@ -23,7 +23,7 @@ class FeatureContext extends Drupal\DrupalExtension\Context\DrupalContext {
    */
   public function setup() {
     // Deal with basic auth on the testing server.
-    if ($_SERVER['HTTP_HOST'] == 'myhaccp.agile.coop'
+    if ($_SERVER['HTTP_HOST'] == 'test.myhaccp.agile.coop'
         or $_SERVER['HTTP_HOST'] == 'master.myhaccp.agile.coop'
         or $_SERVER['HTTP_HOST'] == 'develop.myhaccp.agile.coop') {
       $this->getSession()->setBasicAuth('agile', 'collective');

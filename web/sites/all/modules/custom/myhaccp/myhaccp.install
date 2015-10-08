@@ -754,3 +754,11 @@ function myhaccp_update_7031() {
   $file->uri = $path . $file->filename;
   _locale_import_po($file, 'cy', LOCALE_IMPORT_KEEP, 'default');
 }
+
+/**
+ * Enable the MyHACCP Languade module to allow language selection at registration. 
+ */
+function myhaccp_update_7032() {
+  // Enable the myhaccp_language module.
+  module_enable(array('myhaccp_language'));
+}
