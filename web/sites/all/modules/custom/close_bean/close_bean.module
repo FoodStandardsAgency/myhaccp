@@ -1,0 +1,234 @@
+<?php
+
+/**
+ * @file
+ * Close beans
+ */
+
+define('CLOSE_BEAN_ACTIVE', 0);
+define('CLOSE_BEAN_TYPE', 2);
+define('CLOSE_BEAN_SPEED', 500);
+
+/**
+ * Implements hook_menu().
+ */
+function close_bean_menu() {
+  $items = array();
+
+  $items['closebean/%'] = array(
+    'title' => 'Close Bean',
+    'page callback' => 'close_bean_ajax_callback',
+    'page arguments' => array(1),
+    'access arguments' => array('close bean'),
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function close_bean_form_bean_admin_ui_type_form_alter(&$form, &$form_state) {
+  $bean_type = isset($form['bean_type']) ? $form['bean_type']['#value']->type : 'default';
+  $settings = variable_get('close_bean_settings', array());
+  $form['#submit'][] = 'close_bean_type_form_submit';
+
+  $form['close_bean'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Close bean'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+    '#weight' => 10,
+  );
+
+  $default_settings = close_bean_default_settings();
+  $settings = $bean_type != 'default' && isset($settings[$bean_type]) ? $settings[$bean_type] : $default_settings;
+
+  $form['close_bean']['close_bean_active'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Use close button'),
+    '#default_value' => $settings['close_bean_active'],
+    '#description' => t('Whether the close bean functionality is active for this bean type.'),
+  );
+
+  $form['close_bean']['close_bean_type'] = array(
+    '#type' => 'radios',
+    '#title' => t('Block close behavior'),
+    '#options' => array(1 => t('None.'), 2 => t('Slide Up.'), 3 => t('Fade Out')),
+    '#default_value' => $settings['close_bean_type'],
+  );
+
+  $form['close_bean']['close_bean_speed'] = array(
+    '#type' => 'select',
+    '#title' => t('Animation speed'),
+    '#options' => drupal_map_assoc(array('50', '100', '200', '300', '400', '500', '700', '1000', '1300')),
+    '#description' => t('The animation speed in milliseconds.'),
+    '#default_value' => $settings['close_bean_speed'],
+  );
+}
+
+/**
+ * Form submit handler for close_bean_form_bean_admin_ui_type_form_alter().
+ *
+ * @see close_bean_form_bean_admin_ui_type_form_alter()
+ */
+function close_bean_type_form_submit($form, &$form_state) {
+  $default_settings = close_bean_default_settings();
+
+  $bean_type = $form_state['values']['name'];
+
+  foreach ($default_settings as $key => &$value) {
+    if (isset($form_state['values'][$key])) {
+      $value = $form_state['values'][$key];
+    }
+  }
+
+  $settings[$bean_type] = $default_settings;
+  variable_set('close_bean_settings', $settings);
+}
+
+/**
+ * Implements hook_block_view_alter().
+ */
+function close_bean_block_view_alter(&$data, $block) {
+  close_bean_javascript_settings($data, $block);
+}
+
+/**
+ * Write block settings to Drupal.settings.close_bean
+ */
+function close_bean_javascript_settings(&$data, $block) {
+  if (empty($data['content']) || !is_array($data['content']) || !isset($data['content']['bean'])) {
+    return;
+  }
+  if (!user_access('close bean')) {
+    return;
+  }
+  $beans = $data['content']['bean'];
+  $bean = reset($beans);
+  $settings = variable_get('close_bean_settings', array());
+  $bean_type = $bean['#bundle'];
+  if (!isset($settings[$bean_type])) {
+    return;
+  }
+  $params = (array) $block;
+
+  if (empty($settings[$bean_type]['close_bean_active'])) {
+    return;
+  }
+
+  global $user;
+  $user->uid;
+  $delta = $params['delta'];
+  $closed = close_bean_closing_info_get($user->uid, $delta);
+
+  if ($closed) {
+    $data = array();
+    return;
+  }
+
+  $types = array(1 => '', 2 => 'slideUp', 3 => 'fadeOut');
+
+  drupal_add_js(array('close_bean' => array(
+    $delta => array(
+      'closed' => $closed,
+      'speed' => $settings[$bean_type]['close_bean_speed'],
+      'type' => $types[$settings[$bean_type]['close_bean_type']],
+      'delta' => $delta,
+    )
+  )), array('type' => 'setting', 'scope' => JS_DEFAULT));
+
+  $path = drupal_get_path('module', 'close_bean');
+
+  drupal_add_js($path .'/js/close_bean.js');
+  drupal_add_css($path .'/css/close_bean.css');
+}
+
+/**
+ * Default theme's settings
+ */
+function close_bean_default_settings() {
+  $defaults = array(
+    'close_bean_active' => CLOSE_BEAN_ACTIVE,
+    'close_bean_type' => CLOSE_BEAN_TYPE,
+    'close_bean_speed' => CLOSE_BEAN_SPEED,
+  );
+  return $defaults;
+}
+
+/**
+ * Determines whether a bean has been closed.
+ *
+ * @param int $uid
+ *   The user id to check against.
+ * @param string $delta
+ *   The bean delta.
+ *
+ * @return bool
+ *   Whether an entry in the db was found for this user and delta.
+ */
+function close_bean_closing_info_get($uid, $delta) {
+  $params = array(
+    'uid' => $uid,
+    'delta' => $delta,
+  );
+  $result = close_bean_db_load($params);
+  return !empty($result);
+}
+
+/**
+ * Set info.
+ */
+function close_bean_closing_info_set($uid, $delta) {
+  $info = close_bean_closing_info_get($uid, $delta);
+
+  $params = array(
+    'uid' => $uid,
+    'delta' => $delta,
+    'count' => 1,
+    'timestamp' => time(),
+  );
+
+  if ($info) {
+    $params['count'] = $info['delta']['count'] + 1;
+    drupal_write_record('close_bean', $params, array('delta', 'uid'));
+  }
+  else {
+    drupal_write_record('close_bean', $params);
+  }
+}
+
+/**
+ * Load the saved information from the db.
+ */
+function close_bean_db_load($params) {
+  $query = db_select('close_bean')
+    ->fields('close_bean');
+
+  foreach ($params as $param => $value) {
+    $query->condition($param, $value);
+  }
+
+  $result = $query->execute();
+  $result = $result->fetchAll();
+
+  return $result;
+}
+
+/**
+ * Implements hook_preprocess_block().
+ */
+function close_bean_preprocess_block(&$variables) {
+  if ($variables['block']->module == 'bean') {
+    // Add the bean delta as a class so the close bean js can function.
+    $variables['classes_array'][] = $variables['block']->delta;
+  }
+}
+
+/**
+ * Ajax callback function.
+ */
+function close_bean_ajax_callback($delta) {
+  global $user;
+  close_bean_closing_info_set($user->uid, $delta);
+}

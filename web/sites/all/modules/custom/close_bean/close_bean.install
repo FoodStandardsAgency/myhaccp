@@ -1,0 +1,50 @@
+<?php
+
+/**
+ * @file
+ * Install hooks for close bean.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function close_bean_schema() {
+  $schema['close_bean'] = array(
+    'description' => 'Stores bean closing information',
+    'fields' => array(
+      'delta' => array(
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+        'default' => '0',
+        'description' => 'The bean delta (Unique ID)',
+      ),
+      'uid' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => "User's {users}.uid",
+      ),
+      'count' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Count of closes',
+      ),
+      'timestamp' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Timestamp for when user closed the bean',
+      ),
+    ),
+    'unique keys' => array(
+      'tmdu' => array('delta', 'uid'),
+    ),
+    'indexes' => array(
+      'list' => array('uid'),
+    ),
+  );
+
+  return $schema;
+}
