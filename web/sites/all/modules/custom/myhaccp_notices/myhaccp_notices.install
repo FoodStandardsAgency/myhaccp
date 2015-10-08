@@ -32,7 +32,7 @@ function myhaccp_notices_install() {
     'notice' =>
       array(
         'close_bean_active' => 1,
-        'close_bean_type' => '2',
+        'close_bean_type' => '3',
         'close_bean_speed' => '300',
       ),
   );
