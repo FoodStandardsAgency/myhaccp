@@ -8,13 +8,10 @@
         return;
       }
 
-      console.log(settings.close_bean);
-
       $.each(settings.close_bean, function(delta, info) {
         $('.' + delta  + ':not(.close-bean-processed)', context).addClass('close-bean-processed').each(function() {
           var $block = $(this);
 
-          console.log(info);
           if (info.closed) {
             $block.hide();
             return;
