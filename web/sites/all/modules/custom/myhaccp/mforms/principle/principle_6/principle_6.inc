@@ -121,10 +121,10 @@ function principle_6(&$form_state, &$next_step) {
     '#type' => 'checkboxes',
     '#title' => t('Internal audits of'),
     '#options' => array(
-      'ccps' => 'Critical Control Points',
-      'prerequisites' => 'Prerequisites',
-      'records' => 'Records of monitoring',
-      'corrective' => 'Corrective actions',
+      'ccps' => t('Critical Control Points'),
+      'prerequisites' => t('Prerequisites'),
+      'records' => t('Records of monitoring'),
+      'corrective' => t('Corrective actions'),
     ),
     '#default_value' => array_get($values, "principle_6.6_4.1", array()),
   );
@@ -133,7 +133,7 @@ function principle_6(&$form_state, &$next_step) {
     '#type' => 'checkboxes',
     '#title' => t('External auditing programmes'),
     '#options' => array(
-      'supplier' => 'Supplier audits'
+      'supplier' => t('Supplier audits')
     ),
     '#default_value' => array_get($values, "principle_6.6_4.2", array()),
   );
@@ -142,8 +142,8 @@ function principle_6(&$form_state, &$next_step) {
     '#type' => 'checkboxes',
     '#title' => t('Finished product'),
     '#options' => array(
-      'microbial' => 'Microbiological testing',
-      'chemical' => 'Chemical testing',
+      'microbial' => t('Microbiological testing'),
+      'chemical' => t('Chemical testing'),
     ),
     '#default_value' => array_get($values, "principle_6.6_4.3", array()),
   );
@@ -152,8 +152,8 @@ function principle_6(&$form_state, &$next_step) {
     '#type' => 'checkboxes',
     '#title' => t('Interim product'),
     '#options' => array(
-      'microbial' => 'Microbiological testing',
-      'chemical' => 'Chemical testing',
+      'microbial' => t('Microbiological testing'),
+      'chemical' => t('Chemical testing'),
     ),
     '#default_value' => array_get($values, "principle_6.6_4.4", array()),
   );
@@ -162,11 +162,11 @@ function principle_6(&$form_state, &$next_step) {
     '#type' => 'checkboxes',
     '#title' => t('Other'),
     '#options' => array(
-      'monitoring' => 'Environmental monitoring of production area',
-      'findings' => 'Addressing the findings of customer and third party audits',
-      'third_party' => 'Third party certification(SOFHT, BRC)',
-      'trending' => 'Trending and analysing customer complaints',
-      'buy' => 'Product buy - back(buying your product from end point in market place and sampling and testing it for unexpected safety problems',
+      'monitoring' => t('Environmental monitoring of production area'),
+      'findings' => t('Addressing the findings of customer and third party audits'),
+      'third_party' => t('Third party certification(SOFHT, BRC)'),
+      'trending' => t('Trending and analysing customer complaints'),
+      'buy' => t('Product buy - back(buying your product from end point in market place and sampling and testing it for unexpected safety problems'),
     ),
     '#default_value' => array_get($values, "principle_6.6_4.5", array()),
   );
@@ -175,11 +175,11 @@ function principle_6(&$form_state, &$next_step) {
     '#type' => 'checkboxes',
     '#title' => t('Reviewing'),
     '#options' => array(
-      'deviations' => 'Deviations',
-      'corrective' => 'Corrective actions',
-      'disposal' => 'Product disposal',
-      'rework' => 'Rework',
-      'trending' => 'Trending of monitoring results',
+      'deviations' => t('Deviations'),
+      'corrective' => t('Corrective actions'),
+      'disposal' => t('Product disposal'),
+      'rework' => t('Rework'),
+      'trending' => t('Trending of monitoring results'),
     ),
     '#default_value' => array_get($values, "principle_6.6_4.6", array()),
   );
