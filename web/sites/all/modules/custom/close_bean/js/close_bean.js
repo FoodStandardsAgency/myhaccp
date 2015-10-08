@@ -23,6 +23,7 @@
           $block.prepend($close_container);
 
           $close_button.click(function() {
+            $(this).hide();
             if (info.type) {
               $block[info.type](info.speed);
             }
