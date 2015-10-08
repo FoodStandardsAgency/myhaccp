@@ -1,4 +1,4 @@
-name = MyHACCP Bean Type: notice
+name = MyHACCP Bean Type: Notice
 description = Configuration for bean type and field settings for the Notice bean type.
 core = 7.x
 package = MyHACCP
