@@ -479,55 +479,11 @@ function myhaccp_update_7022() {
 }
 
 /**
- * Create a bean block for the update notice.
+ * Enable the notices module to place an alert notice on the tool page.
  */
 function myhaccp_update_7023() {
-  $content = '<p>Notice: update released 15/09/2015, for more information please read the <a href="/node/102">release notes here</a>.</p>';
-  // Create the bean.
-  $bean = bean_create(array('type' => 'notice'));
-  $bean->label = 'Temporary Alert Notice';
-  $bean->title = '';
-  $bean->delta = 'alert_notice';
-  $bean->field_description = array(
-    'en' => array(
-      0 => array(
-        'value' => $content,
-        'format' => 'full_html',
-      ),
-    ),
-  );
-  $bean->save();
-}
-
-/**
- * Update the close block variables.
- */
-function myhaccp_update_7024() {
-  $settings = array(
-    'block-bean-alert-notice' =>
-      array(
-        'closeblock_active' => 1,
-        'closeblock_custom' => 0,
-        'closeblock_type' => '2',
-        'closeblock_speed' => '500',
-        'closeblock_save' => 1,
-        'closeblock_count' => '1',
-        'closeblock_frequency' => '',
-        'module' => 'bean',
-        'delta' => 'alert_notice',
-      ),
-  );
-  variable_set('closeblock', $settings);
-
-  // Load the current variables.
-  $theme_settings = variable_get('theme_myhaccp_settings');
-  $theme_settings['closeblock_type'] = '3';
-  $theme_settings['closeblock_speed'] = '300';
-  $theme_settings['closeblock_save'] = 1;
-  $theme_settings['closeblock_count'] = '1';
-  $theme_settings['closeblock_frequency'] = '';
-  // Store the updated settings.
-  variable_set('theme_myhaccp_settings', $theme_settings);
+  module_enable(array('myhaccp_notices'));
+  features_revert_module('myhaccp_context');
 }
 
 /**
@@ -538,8 +494,8 @@ function myhaccp_update_7025() {
   $class = 'alert--myhaccp';
   db_update('block')
     ->fields(array('css_class' => $class))
-    ->condition('module', 'bean')
-    ->condition('delta', 'alert_notice')
+    ->condition('module', 'myhaccp_notices')
+    ->condition('delta', 'notice')
     ->execute();
 }
 
