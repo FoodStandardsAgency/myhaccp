@@ -311,7 +311,6 @@ function myhaccp_study_preview($iid) {
 function myhaccp_study_finish($iid) {
   // Load the node with the text to show.
   $node = node_load(39);
-  drupal_set_title($node->title);
   $node->title = NULL;
   $node_output = node_view($node, 'full');
 
