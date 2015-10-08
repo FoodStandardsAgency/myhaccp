@@ -1,0 +1,43 @@
+<?php
+
+/**
+ * @file
+ * Install functions for the myhaccp notices module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function myhaccp_notices_install() {
+  $content = '<p>Notice: update released 15/09/2015, for more information please read the <a href="/node/102">release notes here</a>.</p>';
+  // Create the bean.
+  $bean = bean_create(array('type' => 'notice'));
+  $bean->label = 'Temporary Alert Notice';
+  $bean->title = '';
+  $bean->delta = 'alert_notice';
+  $bean->field_description = array(
+    'en' => array(
+      0 => array(
+        'value' => $content,
+        'format' => 'full_html',
+      ),
+    ),
+  );
+  $bean->save();
+
+  $settings = array(
+    'block-bean-alert-notice' =>
+      array(
+        'closeblock_active' => 1,
+        'closeblock_custom' => 0,
+        'closeblock_type' => '2',
+        'closeblock_speed' => '500',
+        'closeblock_save' => 1,
+        'closeblock_count' => '1',
+        'closeblock_frequency' => '',
+        'module' => 'bean',
+        'delta' => 'alert_notice',
+      ),
+  );
+  variable_set('closeblock', $settings);
+}
