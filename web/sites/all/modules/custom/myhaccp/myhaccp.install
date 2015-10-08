@@ -607,14 +607,22 @@ function myhaccp_update_7029() {
 function myhaccp_update_7030() {
   require_once DRUPAL_ROOT . '/includes/locale.inc';
   features_revert_module('myhaccp_language_permissions');
-  locale_add_language('cy',
-    'Welsh',
-    'Cymraeg',
-    LANGUAGE_LTR,
-    '',
-    'cy',
-    TRUE,
-    FALSE);
+  // Check whether the language is already set up. This is so staging can be
+  // updated.
+  $exists = db_select('languages')
+    ->condition('language', 'cy')
+    ->fields('languages', array('language'))
+    ->execute()->fetchCol();
+  if (empty($exists)) {
+    locale_add_language('cy',
+      'Welsh',
+      'Cymraeg',
+      LANGUAGE_LTR,
+      '',
+      'cy',
+      TRUE,
+      FALSE);
+  }
   // Additional params, locale_add_language does not implement.
   db_update('languages')
     ->fields(array(
