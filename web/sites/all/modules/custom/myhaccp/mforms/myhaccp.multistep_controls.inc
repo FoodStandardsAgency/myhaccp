@@ -243,7 +243,7 @@ class MyHACCPMultiStepControls extends MformsControls {
       );
 
       $form_controls['form_save_wrapper']['message'] = array(
-        '#markup' => '<div class="help">Navigating within the tool will save your progress. If you are leaving the tool entirely you can </div>',
+        '#markup' => '<div class="help">' . t('Navigating within the tool will save your progress. If you are leaving the tool entirely you can') . ' </div>',
         '#weight' => 10,
       );
     }
