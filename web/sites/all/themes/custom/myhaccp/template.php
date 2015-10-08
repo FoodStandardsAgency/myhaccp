@@ -413,15 +413,3 @@ function myhaccp_menu_link($variables) {
   $output = l($element['#title'], $element['#href'], $element['#localized_options']);
   return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
 }
-
-/**
- * Implements hook_preprocess_block().
- */
-function myhaccp_preprocess_block(&$variables) {
-  if ($variables['block']->delta != 'alert_notice') {
-    return;
-  }
-
-  // Add the required id to make the closeblock work.
-  $variables['attributes_array']['id'] = $variables['block_html_id'];
-}
