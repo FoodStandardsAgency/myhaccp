@@ -63,6 +63,16 @@ class FeatureContext extends Drupal\DrupalExtension\Context\DrupalContext {
   }
 
   /**
+   * @When print Drupal messages
+   *
+   * Helper function which prints any found Drupal messages.
+   */
+  public function printDrupalMessages() {
+    $element = $this->getSession()->getPage()->find('xpath', $this->getSession()->getSelectorsHandler()->selectorToXpath('css', '.messages'));
+    echo ($element->getHtml());
+  }
+
+  /**
    * Cleans up the most recently created user if the scenario is tagged
    * with @registration.
    *
