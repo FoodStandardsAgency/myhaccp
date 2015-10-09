@@ -30,7 +30,7 @@ function myhaccp_language_configuration_context_default_contexts() {
           'module' => 'locale',
           'delta' => 'language',
           'region' => 'header_utility',
-          'weight' => '-10',
+          'weight' => '20',
         ),
       ),
     ),
