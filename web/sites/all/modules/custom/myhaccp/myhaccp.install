@@ -756,7 +756,7 @@ function myhaccp_update_7031() {
 }
 
 /**
- * Enable the MyHACCP Languade module to allow language selection at registration. 
+ * Enable the MyHACCP Language module to allow language selection at registration.
  */
 function myhaccp_update_7032() {
   // Enable the myhaccp_language module.
