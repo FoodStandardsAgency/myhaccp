@@ -48,8 +48,8 @@ function myhaccp_preprocess_03_team(&$variables) {
       // The first instance will always be the HACCP lead so provide the
       // the text.
       if ($key === 0) {
-        $instance['d_2'] = 'internal';
-        $instance['d_3'] = 'HACCP lead';
+        $instance['d_2'] = t('internal');
+        $instance['d_3'] = t('HACCP lead');
       }
 
       $role = !empty($instance['d_3']) ? $instance['d_3'] : '';

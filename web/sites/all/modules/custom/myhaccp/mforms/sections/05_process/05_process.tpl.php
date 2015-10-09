@@ -15,11 +15,11 @@
 <?php endif; ?>
 
 <?php if (!empty($g_3)): ?>
-  <h3>A copy of our flow diagram can be obtained from the following location:</h3>
+  <h3><?php print t('A copy of our flow diagram can be obtained from the following location') ?>:</h3>
   <?php print $g_3; ?>
 <?php endif; ?>
 
-<h2>On-site confirmation of flow diagram</h2>
+<h2><?php print t('On-site confirmation of flow diagram'); ?></h2>
 
 <?php if (!empty($h_1)) : ?>
   <p><?php print $h_1; ?></p>

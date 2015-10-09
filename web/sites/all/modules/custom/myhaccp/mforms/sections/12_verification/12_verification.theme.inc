@@ -136,7 +136,7 @@ function myhaccp_preprocess_12_verification(&$variables) {
 
   // 10. List any other mechanisms which are in place to automatically 'trigger' a review.
   if (!empty($principle_6['6_10'])) {
-    $variables['p_6_10'] = '<p><strong>Other mechanisms that will automatically trigger a review:</strong> ' . $principle_6['6_10'] . '</p>';
+    $variables['p_6_10'] = '<p><strong>' . t('Other mechanisms that will automatically trigger a review') . ':</strong> ' . $principle_6['6_10'] . '</p>';
   }
 
   // 11. Are all records from reviews documented, brought to the attention of senior management (for companies where this is appropriate) and used to keep the HACCP plan up-to-date?
