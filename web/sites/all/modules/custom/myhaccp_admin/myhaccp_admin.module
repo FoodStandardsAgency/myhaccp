@@ -2,6 +2,8 @@
 
 /**
  * @file
+ * Custom reports and other administration functionality.
+ *
  * Small adjustments and changes to admin theme elements that can't be
  * changed in the main theme. Also contains other admin related code like
  * custom reports.
