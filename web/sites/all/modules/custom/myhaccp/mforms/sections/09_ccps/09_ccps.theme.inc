@@ -60,15 +60,27 @@ function myhaccp_preprocess_09_ccps(&$variables) {
     // Its entirely possible the user has no decision tree so check first.
     if (isset($controlled_hazard['decision_tree']) && $controlled_hazard['decision_tree'] !== 'no') {
       foreach ($controlled_hazard['decision_tree'] as $q => $answer) {
+        switch ($answer) {
+          case 'yes':
+            $answer = t('Yes');
+            break;
+
+          case 'no':
+            $answer = t('No');
+            break;
+
+          default:
+            $answer = t('N/A');
+        }
         if (!empty($answer)) {
-          $qa .= '<strong>' . $q . ':</strong> ' . ucwords($answer) . '<br />';
+          $qa .= '<strong>' . $q . ':</strong> ' . $answer . '<br />';
         }
       }
     }
 
     // Uppercase CCP answer.
     if (!empty($controlled_hazard['ccp'])) {
-      $ccp = ucwords($controlled_hazard['ccp']);
+      $ccp = $controlled_hazard['ccp'] == 'yes' ? t('Yes') : t('No');
     }
 
     $rows[] = array(

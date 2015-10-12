@@ -51,9 +51,9 @@ function myhaccp_preprocess_10_critical(&$variables) {
         // How was the critical limit determined?
         array('data' => nl2br($ccp_hazard['3_2'])),
         // Will the critical limit control the specific hazard?
-        array('data' => ucwords($ccp_hazard['3_3'])),
+        array('data' => $ccp_hazard['3_3'] == 'yes' ? t('Yes') : t('No')),
         // Can the critical limit be measured or observed in real time?
-        array('data' => ucwords($ccp_hazard['3_4']))
+        array('data' => $ccp_hazard['3_4'] == 'yes' ? t('Yes') : t('No'))
       );
     }
   }
