@@ -78,7 +78,7 @@ class business {
    */
   protected function getBusinessNameFromProfile($profile) {
     $wrapper = entity_metadata_wrapper('profile2', $profile);
-    $business_name = $wrapper->field_business_name->value();
+    $business_name = isset($wrapper->field_business_name) ? $wrapper->field_business_name->value() : '';
     return $business_name;
   }
 
