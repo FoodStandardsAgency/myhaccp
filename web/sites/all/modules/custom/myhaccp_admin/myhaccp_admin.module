@@ -21,9 +21,11 @@ function myhaccp_admin_preprocess_page() {
  * Implements hook_menu()
  */
 function myhaccp_admin_menu() {
-  $items['admin/business_size_by_type'] = array(
-      'page callback' => 'myhaccp_admin_business_size_page',
-      'access arguments' => array('access site reports'),
+  $items['admin/reports/business_size_by_type'] = array(
+    'title' => 'Business size by type',
+    'page callback' => 'myhaccp_admin_business_size_page',
+    'access arguments' => array('access site reports'),
+    'type' => MENU_NORMAL_ITEM,
   );
   return $items;
 }
@@ -96,18 +98,18 @@ function myhaccp_admin_business_size_page() {
  */
 function myhaccp_admin_get_business_types () {
 
-    $business_types = array(
-      'Meat processing or meat products',
-      'Dairy products or cheese production',
-      'Liquid milk and cream production',
-      'Fish and shellfish processing or products',
-      'Fruit and vegetables processing or preserving',
-      'Confectionery products',
-      'Prepared meals',
-      'Sauces or condiments',
-      'Drinks manufacture or water bottling',
-      'Local authority',
-      'other',
+  $business_types = array(
+    'Meat processing or meat products',
+    'Dairy products or cheese production',
+    'Liquid milk and cream production',
+    'Fish and shellfish processing or products',
+    'Fruit and vegetables processing or preserving',
+    'Confectionery products',
+    'Prepared meals',
+    'Sauces or condiments',
+    'Drinks manufacture or water bottling',
+    'Local authority',
+    'other',
   );
 
   return $business_types;
@@ -118,14 +120,14 @@ function myhaccp_admin_get_business_types () {
  */
 function myhaccp_admin_get_business_sizes () {
 
-    $business_sizes = array(
-      'less than 5',
-      '5 - 10',
-      '11 - 20',
-      '21 - 30',
-      '31 - 40',
-      '41 - 50',
-      '50+',
+  $business_sizes = array(
+    'less than 5',
+    '5 - 10',
+    '11 - 20',
+    '21 - 30',
+    '31 - 40',
+    '41 - 50',
+    '50+',
   );
 
   return $business_sizes;
