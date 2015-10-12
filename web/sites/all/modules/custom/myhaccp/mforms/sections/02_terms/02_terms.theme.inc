@@ -31,7 +31,7 @@ function myhaccp_preprocess_02_terms(&$variables) {
   $variables['c_intro'] = t('<p>This <strong>@c_1</strong> HACCP plan covers:<br><strong>@c_2</strong></p><p>
 It will start at <strong>@start</strong> through to <strong>@end</strong>.</p>',
     array(
-      '@c_1' => $preparatory_c_1['c_1'],
+      '@c_1' => $preparatory_c_1['c_1'] == 'modular' ? t('Modular') : t('Linear'),
       '@c_2' => $preparatory_c_1['c_2'],
       '@start' => $preparatory_c_1['c_3']['start'],
       '@end' => $preparatory_c_1['c_3']['end'],
