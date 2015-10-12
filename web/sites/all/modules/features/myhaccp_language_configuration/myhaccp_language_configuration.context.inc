@@ -17,9 +17,9 @@ function myhaccp_language_configuration_context_default_contexts() {
   $context->description = 'Positions language blocks.';
   $context->tag = 'Block';
   $context->conditions = array(
-    'sitewide' => array(
+    'theme' => array(
       'values' => array(
-        1 => 1,
+        'myhaccp_theme' => 'myhaccp_theme',
       ),
     ),
   );

@@ -22,6 +22,11 @@ function myhaccp_context_context_default_contexts() {
         'tool' => 'tool',
       ),
     ),
+    'theme' => array(
+      'values' => array(
+        'myhaccp_theme' => 'myhaccp_theme',
+      ),
+    ),
   );
   $context->reactions = array(
     'block' => array(
@@ -35,7 +40,7 @@ function myhaccp_context_context_default_contexts() {
       ),
     ),
   );
-  $context->condition_mode = 0;
+  $context->condition_mode = 1;
 
   // Translatables
   // Included for use with string extractors like potx.
@@ -63,7 +68,7 @@ function myhaccp_context_context_default_contexts() {
           'module' => 'menu_block',
           'delta' => '4',
           'region' => 'content',
-          'weight' => '10',
+          'weight' => '-1',
         ),
       ),
     ),
@@ -151,7 +156,7 @@ function myhaccp_context_context_default_contexts() {
   $context->conditions = array(
     'theme' => array(
       'values' => array(
-        'myhaccp' => 'myhaccp',
+        'myhaccp_theme' => 'myhaccp_theme',
       ),
     ),
   );

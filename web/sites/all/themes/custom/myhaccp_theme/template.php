@@ -6,7 +6,7 @@
 /**
  * Implements hook_preprocess_page().
  */
-function myhaccp_preprocess_page(&$variables, $hook) {
+function myhaccp_theme_preprocess_page(&$variables, $hook) {
   // Get rid of the page title on form pages.
   $path = $_GET['q'];
   $match = preg_match('/tool\/study\/.+?\/.+?\/.+?/', $path);
@@ -163,7 +163,7 @@ function NEWTHEME_form_alter(&$form, &$form_state, $form_id) {
  * @return string
  *   The rendered HTML.
  */
-function myhaccp_form_element_label($variables) {
+function myhaccp_theme_form_element_label($variables) {
   $element = $variables['element'];
   // This is also used in the installer, pre-database setup.
   $t = get_t();
@@ -271,7 +271,7 @@ function myhaccp_form_element_label($variables) {
  * @return string
  *   The rendered HTML
  */
-function myhaccp_form_element($variables) {
+function myhaccp_theme_form_element($variables) {
   $element = &$variables['element'];
 
   // This function is invoked as theme wrapper, but the rendered form element
@@ -345,7 +345,7 @@ function myhaccp_form_element($variables) {
 /**
  * Override of cleanup_container().
  */
-function myhaccp_container($variables) {
+function myhaccp_theme_container($variables) {
   $element = $variables['element'];
 
   // Special handling for form elements.
@@ -386,7 +386,7 @@ function myhaccp_container($variables) {
  * Adds destination parameter to the login link so that logged out users get
  * redirected to their destination after a 403 error.
  */
-function myhaccp_menu_link($variables) {
+function myhaccp_theme_menu_link($variables) {
 
   $element = $variables['element'];
   $sub_menu = '';

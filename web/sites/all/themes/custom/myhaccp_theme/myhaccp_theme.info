@@ -1,5 +1,5 @@
-name = My HACCP
-description = A sub theme for the My HACCP site
+name = MyHACCP
+description = A sub theme for the MyHACCP site
 screenshot = screenshot.png
 engine = phptemplate
 core = 7.x
