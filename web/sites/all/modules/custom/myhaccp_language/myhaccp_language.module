@@ -1,6 +1,7 @@
 <?php
 /**
  * @file
+ * Language related code.
  */
 
 /**
@@ -12,7 +13,5 @@ function myhaccp_language_form_alter(&$form, &$form_state, $form_id) {
     // without checking for the 'administer users' permission.
     $form['locale']['#access'] = ($form['#user_category'] == 'account' || ($form['#user_category'] == 'register'));
     $form['locale']['#type'] = 'container';
-   // $form['locale']['#weight'] = 0;
-   // $form['locale']['language']['#title'] = t('Picka Language');
   }
 }
