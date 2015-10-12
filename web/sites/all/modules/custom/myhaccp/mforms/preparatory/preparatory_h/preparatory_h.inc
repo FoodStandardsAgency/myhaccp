@@ -59,8 +59,8 @@ function preparatory_h(&$form_state, &$next_step) {
   $form['preparatory_h']['h_2'] = array(
     '#type' => 'radios',
     '#options' => array(
-      'yes' => t('Yes'),
-      'no' => t('No'),
+      'yes' => t('Yes', array(), array('context' => 'Is every process step identified on the flow diagram?')),
+      'no' => t('No', array(), array('context' => 'Is every process step identified on the flow diagram?')),
     ),
     '#title' => t('2. Is every process step identified on the flow diagram?'),
     '#help_link' => 22,
