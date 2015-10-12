@@ -60,7 +60,7 @@ It will start at <strong>@start</strong> through to <strong>@end</strong>.</p>',
 
   // Chemical hazards.
   $chemical_hazards = array();
-  // Load options array for /tool/study/2/preparatory/c-2 (form_options = FALSE to return the PDF output values.)
+  // Load options array for /tool/study/2/preparatory/c-2 (form_options = FALSE to return the PDF output values).
   $chemical_c_2_options = preparatory_c_2_chemical_get_options ($form_options = FALSE);
 
   // Only continue if the array is populated.
@@ -81,7 +81,7 @@ It will start at <strong>@start</strong> through to <strong>@end</strong>.</p>',
   // Biological hazards.
   $biological_hazards = array();
   // Load options array for /tool/study/2/preparatory/c-2
-  // (form_options = FALSE to return the PDF output values.)
+  // (form_options = FALSE to return the PDF output values).
   $preparatory_c_2_biological_options = preparatory_c_2_biological_get_options($form_options = FALSE);
   if (!empty($preparatory_c_2['biological_c_4']['biological'])) {
     foreach ($preparatory_c_2['biological_c_4']['biological'] as $key => $value) {
@@ -98,7 +98,7 @@ It will start at <strong>@start</strong> through to <strong>@end</strong>.</p>',
   // Allergens hazards.
   $allergens_hazards = array();
   // Load options array for /tool/study/2/preparatory/c-2
-  // (form_options = FALSE to return the PDF output values.)
+  // (form_options = FALSE to return the PDF output values).
   $preparatory_c_2_allergens_options = preparatory_c_2_allergens_get_options($form_options = FALSE);
   if (!empty($preparatory_c_2['allergens_c_4']['allergens'])) {
     foreach ($preparatory_c_2['allergens_c_4']['allergens'] as $key => $value) {
@@ -112,7 +112,7 @@ It will start at <strong>@start</strong> through to <strong>@end</strong>.</p>',
     $allergens_hazards = array_merge($allergens_hazards, $allergens_other);
   }
 
-  // c_4
+  // Question c_4.
   $variables['c_4_title'] = t('The HACCP plan will cover final product safety and will look at the following hazards:');
 
   if (!empty($physical_hazards)) {
@@ -141,14 +141,14 @@ It will start at <strong>@start</strong> through to <strong>@end</strong>.</p>',
   // Iterate over the checkboxes fetching their labels.
   $names = myhaccp_prepare_checkboxes_output('preparatory_a', 'a_1', $preparatory_a);
 
-  // a_1
+  // Question a_1.
   $variables['a_1_title'] = t('The company has in place a number of effective prerequisite programmes, including:');
   $variables['a_1'] = !empty($names) ? '<ul><li>' . implode('</li><li>', $names) . '</li></ul>' : '';
-  // a_2
+  // Question a_2.
   $variables['a_2_title'] = t('The location of the above documents is:');
   $variables['a_2'] = $preparatory_a['a_2'] ? $preparatory_a['a_2'] : '';
 
-  // Add new question for c_5
+  // Add new question for c_5.
   $c_5 = '';
   if (isset($preparatory_c_2['c_5']['question']) && strlen($preparatory_c_2['c_5']['question']) > 0) {
     $c_5 .= '<div>';

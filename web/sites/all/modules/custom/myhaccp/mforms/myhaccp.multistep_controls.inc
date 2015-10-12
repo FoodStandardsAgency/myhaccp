@@ -3,13 +3,13 @@
 /**
  * @file
  * Single class that is an implementation of controls.
+ *
  * This implementation provides advanced controls for multistep form
  * where each step gets own button.
  */
 
 /**
- * Provides functionality for forms with more than two steps where you
- * can navigate between individual steps.
+ * Provides navigation functionality for forms.
  */
 class MyHACCPMultiStepControls extends MformsControls {
 
@@ -37,6 +37,9 @@ class MyHACCPMultiStepControls extends MformsControls {
   protected $steps_label;
 
 
+  /**
+   * Gets a singleton instance.
+   */
   public static function getInstance(MformsIstore $store, MformsSteps $steps, $steps_definition = NULL) {
     if (empty(self::$instances[$store->getKey()])) {
       $class = get_called_class();
@@ -46,6 +49,14 @@ class MyHACCPMultiStepControls extends MformsControls {
     return self::$instances[$store->getKey()];
   }
 
+  /**
+   * Constructor method.
+   *
+   * @param \MformsIstore $store
+   * @param \MformsSteps $steps
+   * @param array $steps_definition
+   *   Array of step definitions.
+   */
   protected function __construct(MformsIstore $store, MformsSteps $steps, $steps_definition) {
     $this->store = $store;
     $this->steps = $steps;
@@ -59,6 +70,9 @@ class MyHACCPMultiStepControls extends MformsControls {
     $this->label_delete = t('Reset');
   }
 
+  /**
+   * Gets the controls for the form.
+   */
   function getControls($form) {
     $form_controls = array();
 
@@ -251,11 +265,23 @@ class MyHACCPMultiStepControls extends MformsControls {
     return $form_controls;
   }
 
+  /**
+   * Submits the form on clicked actions.
+   */
   function doSubmitOnClickedAction() {
     $step_definition = $this->steps_definition[$this->steps->getCurr()];
     return isset($step_definition['submit']) ? $step_definition['submit'] : FALSE;
   }
 
+  /**
+   * Determines whether the stage is a review or intro stage.
+   *
+   * @param string $id
+   *   The stage id.
+   *
+   * @return bool
+   *   Boolean indicating whether the stage is a review or intro or not.
+   */
   function reviewOrIntro($id) {
     if (strpos($id, 'review') || strpos($id, 'intro')) {
       return TRUE;
@@ -355,4 +381,5 @@ class MyHACCPMultiStepControls extends MformsControls {
   function getStepsLabel() {
     return $this->steps_label;
   }
+
 }

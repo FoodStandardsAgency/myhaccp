@@ -283,19 +283,8 @@ function principle_1_1_validate($form, &$form_state) {
     }
   }
 
-//
-//    if (!$evidence->fieldIsNotEmpty() && !$support->fieldIsNotEmpty()) {
-//      $messages = array(
-//        'validation_messages' => array(t('Please choose at least one option in question 1 or add some content in question 2.')),
-//      );
-//      $validator->passed = FALSE;
-//      $validator->setErrorMessages(($messages));
-//    }
-
-
   $validator->setErrorMessages((array('validation_messages' => $messages)));
   $form_state = $validator->getFormState();
-
 }
 
 /**

@@ -55,7 +55,7 @@ function process_appendix_a($study, $mpdf, $section) {
   }
   // Prepare the output.
   $output = '<section class="page"><div class="flow-diagram-container">
-    <img src="' . $temp_file_name .'" /></div></section>';
+    <img src="' . $temp_file_name . '" /></div></section>';
 
   $mpdf->addPagebyArray(array(
     'orientation' => $orientation,
@@ -106,7 +106,7 @@ function prepare_pdf_merge($study, $mpdf, $section) {
   $mpdf->WriteHTML($output, 2);
 
   // Iterate over all the pages (most likely just 1).
-  while($page <= $page_count) {
+  while ($page <= $page_count) {
 
     $output = '<section>';
 

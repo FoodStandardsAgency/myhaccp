@@ -80,7 +80,8 @@ function preparatory_c_2_physical_get_options($form_options = FALSE) {
       $form_options_array[$key] = $option['form_label'];
     }
     return $form_options_array;
-  } else {
+  }
+  else {
     return $options;
   }
 }
@@ -163,7 +164,8 @@ function preparatory_c_2_chemical_get_options($form_options = FALSE) {
       $form_options_array[$key] = $option['form_label'];
     }
     return $form_options_array;
-  } else {
+  }
+  else {
     return $options;
   }
 }
@@ -244,7 +246,8 @@ function preparatory_c_2_biological_get_options($form_options = FALSE) {
       $form_options_array[$key] = $option['form_label'];
     }
     return $form_options_array;
-  } else {
+  }
+  else {
     return $options;
   }
 }
@@ -321,7 +324,8 @@ function preparatory_c_2_allergens_get_options($form_options = FALSE) {
       $form_options_array[$key] = $option['form_label'];
     }
     return $form_options_array;
-  } else {
+  }
+  else {
     return $options;
   }
 }
