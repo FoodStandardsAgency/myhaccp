@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Process functions for the main form.
+ */
+
+/**
  * Callback: Process form elements to add errors.
  *
  * Checks the form state's storage array element for a validate entry and then
@@ -43,9 +48,9 @@ function myhaccp_process($element, &$form_state) {
  */
 function myhaccp_form_process($form, &$form_state) {
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Check that an element has triggered the form build.
   $stage = $study->getCurrentStage();
   $validator = $stage->getValidator();

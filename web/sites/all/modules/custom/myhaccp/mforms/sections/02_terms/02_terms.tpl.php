@@ -3,7 +3,7 @@
  * @file
  * Stage output template.
  *
- * Note: continues from previous c_1 so no title needed and no opening section tag
+ * Note: continues from previous c_1 so no title needed and no opening section tag.
  */
 ?>
 <?php if (!empty($c_intro)) : ?>

@@ -15,8 +15,8 @@
  *   The IID of the study being cloned.
  */
 function myhaccp_study_clone($iid) {
-  global $container;
-  $study = $container['study'];
+  global $_myhaccp_container;
+  $study = $_myhaccp_container['study'];
   $new_iid = $study->cloneStudy($iid);
   $study->setCurrentStudy($new_iid);
   drupal_set_message(t('The study has been copied successfully. You are now on the Preparatory Introduction stage of your new study. Please name your new study.'));
@@ -48,7 +48,7 @@ function myhaccp_study_copy_form($form, $form_state) {
 
   global $user;
 
-  $business = new business();
+  $business = new Business();
   $business->setUser($user);
 
   $form['studies'] = array(
@@ -83,6 +83,9 @@ function myhaccp_study_copy_form($form, $form_state) {
   return $form;
 }
 
+/**
+ * Submit handler for cloning the form.
+ */
 function myhaccp_study_copy_form_submit($form, $form_state) {
   switch ($form_state['values']['op']) {
     case 'Submit':

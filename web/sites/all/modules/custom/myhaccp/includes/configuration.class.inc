@@ -1,9 +1,20 @@
 <?php
 
+/**
+ * @file
+ * A configuration class with definitions for various options.
+ *
+ * This class is called by various other classes and is used to provide
+ * defined configuration in the form of keyed arrays.
+ */
+
 define('NOT_STARTED', 0);
 define('INVALID', 1);
 define('VALID', 2);
 
+/**
+ * Class Configuration.
+ */
 class Configuration {
 
   /**
@@ -17,6 +28,13 @@ class Configuration {
     return $this->getMachineNames();
   }
 
+  /**
+   * Relates stages with phases.
+   *
+   * @return array
+   *   An array keyed by the stage machine name with the value representing
+   *   the phase the stage belongs to.
+   */
   public function getMachineNames() {
     $names = array(
       'preparatory_intro' => 'preparatory',
@@ -46,6 +64,13 @@ class Configuration {
     return $names;
   }
 
+  /**
+   * Relates stage machine names to urls.
+   *
+   * @return array
+   *   An array keyed by stage machine name with the value representing the
+   *   url the stage can be found at.
+   */
   public function getStageUrls() {
     return array(
       'preparatory_intro' => 'preparatory/introduction',
@@ -74,6 +99,13 @@ class Configuration {
     );
   }
 
+  /**
+   * Relates stage machine names to stage titles.
+   *
+   * @return array
+   *   An array keyed by stage machine name with the value representing the
+   *   stage title.
+   */
   public function getStageTitles() {
     return array(
       'preparatory_intro' => t('Preparatory: Introduction'),
@@ -102,6 +134,13 @@ class Configuration {
     );
   }
 
+  /**
+   * Relates stage machine names to help node IDs.
+   *
+   * @return array
+   *   An array keyed by stage machine name with the value representing the
+   *   node ID of the related help page.
+   */
   public function getHelpPages() {
     return array(
       'preparatory_a' => 13,
@@ -124,6 +163,15 @@ class Configuration {
     );
   }
 
+  /**
+   * Returns configuration for the PDF section output.
+   *
+   * @return array
+   *   An array keyed by the PDF section machine name with sub elements
+   *   representing the title, which validation needs to pass for the section
+   *   to be shown and which theme function is used to provide the output
+   *   variables for the template file.
+   */
   public function getPDFSections() {
     return array(
       '01_management' => array(

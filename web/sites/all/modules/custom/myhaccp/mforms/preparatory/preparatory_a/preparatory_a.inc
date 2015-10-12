@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * @file
+ * Preparatory A stage form and validation handler.
+ */
+
+/**
+ * Preparatory A.
+ */
 function preparatory_a(&$form_state, &$next_step) {
   // Define following step callback. If none set, that implies it is
   // the last step.
@@ -14,9 +22,9 @@ function preparatory_a(&$form_state, &$next_step) {
   $values = myhaccp_prepare_values($data, $form_state);
 
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   drupal_set_title($stage->title, PASS_THROUGH);
@@ -126,9 +134,9 @@ function preparatory_a(&$form_state, &$next_step) {
  */
 function preparatory_a_validate($form, &$form_state) {
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   $validator = $stage->getValidator();

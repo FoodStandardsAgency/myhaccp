@@ -1,6 +1,14 @@
 <?php
 
-class business {
+/**
+ * @file
+ * Methods to help with businesses.
+ */
+
+/**
+ * Class Business.
+ */
+class Business {
 
   /**
    * Setter function to store the user.
@@ -82,11 +90,17 @@ class business {
     return $business_name;
   }
 
+  /**
+   * Gets all the studies this user has.
+   */
   public function getAllStudies() {
     $user = $this->getUser();
     return $this->getStudies($user);
   }
 
+  /**
+   * Retrieves studies for a given user.
+   */
   protected function getStudies($user) {
     $studies = db_select('mforms_storage', 'ms')
       ->fields('ms', array('iid', 'uid'))
@@ -97,6 +111,9 @@ class business {
     return $studies;
   }
 
+  /**
+   * Returns a list of studies for a user as an options array.
+   */
   public function getStudiesOptionsArray($user) {
     $studies = $this->getStudies($user);
     $options = array();

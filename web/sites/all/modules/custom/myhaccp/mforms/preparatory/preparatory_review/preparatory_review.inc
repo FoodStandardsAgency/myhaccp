@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * @file
+ * Preparatory Review stage.
+ */
+
+/**
+ * Preparatory Review.
+ */
 function preparatory_review(&$form_state, &$next_step) {
 
   // Define following step callback. If none set, that implies it is
@@ -7,9 +15,9 @@ function preparatory_review(&$form_state, &$next_step) {
   $next_step = 'principle_1_question_1';
 
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   $stage = $study->getCurrentStage();
 
   // Set the page title.

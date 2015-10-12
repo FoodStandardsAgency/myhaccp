@@ -1,12 +1,17 @@
 <?php
 
 /**
+ * @file
+ * Handles the output of a study as a PDF.
+ */
+
+/**
  * Outputs a study as a PDF.
  */
 function myhaccp_output_pdf($iid) {
   // Get the dependency injection container.
-  global $container;
-  $configuration = $container['configuration'];
+  global $_myhaccp_container;
+  $configuration = $_myhaccp_container['configuration'];
 
   // Set the session IID.
   $_SESSION['iid'] = $iid;
@@ -23,8 +28,8 @@ function myhaccp_output_pdf($iid) {
     $name = $study->getName();
     // Get the study user.
     $user = $study->getCurrentStudyOwner();
-    // Instantiate a new business object.
-    $business = new business();
+    // Instantiate a new B  usiness object.
+    $business = new Business();
     // Set the user.
     $business->setUser($user);
     // Get the business name.
@@ -138,9 +143,9 @@ function myhaccp_output_pdf($iid) {
     // Documentation for output: http://mpdf1.com/manual/index.php?tid=125
     // Before exiting delete the temporary file that we stored in a global
     // earlier in 05_process_theme.inc
-    global $temp_file_name;
-    if (file_exists($temp_file_name)) {
-      unlink($temp_file_name);
+    global $_myhaccp_temp_file_name;
+    if (file_exists($_myhaccp_temp_file_name)) {
+      unlink($_myhaccp_temp_file_name);
     }
     drupal_exit('tool');
   }

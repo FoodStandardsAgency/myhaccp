@@ -2,13 +2,13 @@
 
 /**
  * @file
- * Theme function for this stage.
+ * Theme function for stage 2.
  *
  * Prepares the passed form_state data and processes it for output.
  */
 
 /**
- * Implements hook_preprocess_preparatory_c_1().
+ * Implements hook_preprocess_02_terms().
  *
  * Prepare the form_state data for presentation in the template file.
  *
@@ -44,7 +44,7 @@ It will start at <strong>@start</strong> through to <strong>@end</strong>.</p>',
 
   // Physical hazards.
   $physical_hazards = array();
-  $physical_c_2_options = preparatory_c_2_physical_get_options ($form_options = FALSE);
+  $physical_c_2_options = preparatory_c_2_physical_get_options($form_options = FALSE);
   if (!empty($preparatory_c_2['physical_c_4']['physical'])) {
     foreach ($preparatory_c_2['physical_c_4']['physical'] as $key => $value) {
       if ($key === $value && isset($form['preparatory_c_2']['wrapper']['physical_c_4']['physical']['#options'][$key])) {
@@ -61,7 +61,7 @@ It will start at <strong>@start</strong> through to <strong>@end</strong>.</p>',
   // Chemical hazards.
   $chemical_hazards = array();
   // Load options array for /tool/study/2/preparatory/c-2 (form_options = FALSE to return the PDF output values).
-  $chemical_c_2_options = preparatory_c_2_chemical_get_options ($form_options = FALSE);
+  $chemical_c_2_options = preparatory_c_2_chemical_get_options($form_options = FALSE);
 
   // Only continue if the array is populated.
   if (!empty($preparatory_c_2['chemical_c_4']['chemical'])) {
@@ -157,5 +157,5 @@ It will start at <strong>@start</strong> through to <strong>@end</strong>.</p>',
     $c_5 .= nl2br($preparatory_c_2['c_5']['question']);
     $c_5 .= '</div>';
   }
-  $variables['c_5'] =  $c_5;
+  $variables['c_5'] = $c_5;
 }

@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Handles phases of the form.
+ */
+
 interface PhaseInterface {
 
   public function getName();

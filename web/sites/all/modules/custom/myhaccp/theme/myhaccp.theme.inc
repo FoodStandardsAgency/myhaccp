@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Theme functions for the MyHACCP form.
+ */
+
+/**
  * Theme function to render the fields in a table.
  *
  * Principle 1 Question 1.

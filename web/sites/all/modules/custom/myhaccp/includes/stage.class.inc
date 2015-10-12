@@ -1,6 +1,13 @@
 <?php
 
+/**
+ * @file
+ * Handles the stages.
+ */
 
+/**
+ * Interface StageInterface.
+ */
 interface StageInterface {
 
   public function getName();
@@ -30,10 +37,11 @@ interface StageInterface {
   public function getIID();
 
   public function setIID($iid);
-
-
 }
 
+/**
+ * Class Stage.
+ */
 class Stage implements StageInterface {
 
   /**
@@ -196,7 +204,7 @@ class Stage implements StageInterface {
       ->condition('s.store_key', $this->getName());
     $result = $query->execute()->fetchField();
     if ($result) {
-      return(unserialize($result));
+      return (unserialize($result));
     }
     return FALSE;
   }

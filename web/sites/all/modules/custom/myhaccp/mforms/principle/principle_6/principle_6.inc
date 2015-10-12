@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Principle 6 stage form and validation handler.
+ */
+
+/**
  * Principle 6.
  */
 function principle_6(&$form_state, &$next_step) {
@@ -16,9 +21,9 @@ function principle_6(&$form_state, &$next_step) {
   $values = myhaccp_prepare_values($data, $form_state);
 
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   drupal_set_title($stage->title, PASS_THROUGH);
@@ -298,9 +303,9 @@ function principle_6(&$form_state, &$next_step) {
  */
 function principle_6_validate($form, &$form_state) {
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   $validator = $stage->getValidator();

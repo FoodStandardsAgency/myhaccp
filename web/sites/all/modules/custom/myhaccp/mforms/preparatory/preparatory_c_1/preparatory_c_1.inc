@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * @file
+ * Preparatory C 1 stage form and validation handler.
+ */
+
+/**
+ * Preparatory C 1.
+ */
 function preparatory_c_1(&$form_state, &$next_step) {
 
   // Define following step callback. If none set, that implies it is
@@ -15,9 +23,9 @@ function preparatory_c_1(&$form_state, &$next_step) {
   $values = myhaccp_prepare_values($data, $form_state);
 
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   drupal_set_title($stage->title, PASS_THROUGH);
@@ -122,9 +130,9 @@ Modular HACCP Plan - Typically several separate HACCP studies e.g. one on raw ma
  */
 function preparatory_c_1_validate($form, &$form_state) {
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   $validator = $stage->getValidator();

@@ -2,13 +2,13 @@
 
 /**
  * @file
- * Theme function for this stage.
+ * Theme function for stage 5.
  *
  * Prepares the passed form_state data and processes it for output.
  */
 
 /**
- * Implements hook_preprocess_preparatory_g().
+ * Implements hook_preprocess_05_process().
  *
  * Prepare the form_state data for presentation in the template file.
  *

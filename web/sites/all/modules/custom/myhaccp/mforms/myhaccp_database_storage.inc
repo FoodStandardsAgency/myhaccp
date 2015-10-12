@@ -2,8 +2,9 @@
 
 /**
  * @file
- * mforms based storage class which writes the form_state to the database for
- * completely persistent storage.
+ * Storage class for mforms.
+ *
+ * Writes the form_state to the database for persistent storage.
  */
 
 /**
@@ -95,9 +96,9 @@ class MformsDatabaseStore implements MformsIstore {
    * Gets the stored record for the given key.
    */
   public function getStore($key) {
-    global $container;
-    $study = $container['study'];
-    $configuration = $container['configuration'];
+    global $_myhaccp_container;
+    $study = $_myhaccp_container['study'];
+    $configuration = $_myhaccp_container['configuration'];
 
     // The step names (functions) are only stored in the db once submitted but
     // we want to be able to jump around between steps so need them declared
@@ -133,14 +134,23 @@ class MformsDatabaseStore implements MformsIstore {
     return NULL;
   }
 
+  /**
+   * Clears the store key from the session variable.
+   */
   function clearStore() {
     $_SESSION[$this->store_key] = NULL;
   }
 
+  /**
+   * Sets the form state.
+   */
   function setFormState(array &$form_state) {
     $this->form_state = $form_state;
   }
 
+  /**
+   * Gets the form state.
+   */
   function getFormState() {
     return $this->form_state;
   }

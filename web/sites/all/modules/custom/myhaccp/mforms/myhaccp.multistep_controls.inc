@@ -73,7 +73,7 @@ class MyHACCPMultiStepControls extends MformsControls {
   /**
    * Gets the controls for the form.
    */
-  function getControls($form) {
+  public function getControls($form) {
     $form_controls = array();
 
     if ($this->isSingleStep()) {
@@ -121,9 +121,9 @@ class MyHACCPMultiStepControls extends MformsControls {
     );
 
     // Get the dependency injection container.
-    global $container;
+    global $_myhaccp_container;
     // Get the current study.
-    $study = $container['study'];
+    $study = $_myhaccp_container['study'];
 
     // Iterate through all the form steps and display them one after another.
     foreach ($this->steps_definition as $id => $definition) {
@@ -219,7 +219,6 @@ class MyHACCPMultiStepControls extends MformsControls {
         '#type' => 'submit',
         '#value' => $this->label_back,
         '#weight' => 10,
-        '#attributes' => $this->attributes_back,
         '#store_key' => $this->store->getKey(),
         '#mforms_step' => $this->steps->getPrev(),
         '#submit' => array('myhaccp_back_submit'),
@@ -268,7 +267,7 @@ class MyHACCPMultiStepControls extends MformsControls {
   /**
    * Submits the form on clicked actions.
    */
-  function doSubmitOnClickedAction() {
+  public function doSubmitOnClickedAction() {
     $step_definition = $this->steps_definition[$this->steps->getCurr()];
     return isset($step_definition['submit']) ? $step_definition['submit'] : FALSE;
   }
@@ -282,7 +281,7 @@ class MyHACCPMultiStepControls extends MformsControls {
    * @return bool
    *   Boolean indicating whether the stage is a review or intro or not.
    */
-  function reviewOrIntro($id) {
+  public function reviewOrIntro($id) {
     if (strpos($id, 'review') || strpos($id, 'intro')) {
       return TRUE;
     }
@@ -301,7 +300,7 @@ class MyHACCPMultiStepControls extends MformsControls {
    * @param array $delete
    *   Delete/reset button attributes.
    */
-  function setControlsAttributes($back, $continue, $submit, $delete) {
+  public function setControlsAttributes($back, $continue, $submit, $delete) {
     if (is_array($back)) {
       $this->attributes_back = $back;
     }
@@ -328,7 +327,7 @@ class MyHACCPMultiStepControls extends MformsControls {
    * @param string $delete
    *   Delete/reset button label.
    */
-  function setControlsLabels($back, $continue, $submit, $delete) {
+  public function setControlsLabels($back, $continue, $submit, $delete) {
     if ($back != NULL && trim($back) != "") {
       $this->label_back = $back;
     }
@@ -355,7 +354,7 @@ class MyHACCPMultiStepControls extends MformsControls {
    * @param int $delete
    *   Delete/reset button weight.
    */
-  function setControlsWeights($back, $continue, $submit, $delete) {
+  public function setControlsWeights($back, $continue, $submit, $delete) {
     $this->weight_back = $back;
     $this->weight_continue = $continue;
     $this->weight_submit = $submit;
@@ -368,7 +367,7 @@ class MyHACCPMultiStepControls extends MformsControls {
    * @param string $steps_label
    *   Label text.
    */
-  function setStepsLabel($steps_label) {
+  public function setStepsLabel($steps_label) {
     $this->steps_label = $steps_label;
   }
 
@@ -378,7 +377,7 @@ class MyHACCPMultiStepControls extends MformsControls {
    * @return string
    *   Label text.
    */
-  function getStepsLabel() {
+  public function getStepsLabel() {
     return $this->steps_label;
   }
 

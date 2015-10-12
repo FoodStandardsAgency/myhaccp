@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Handles display of some supporting pages for MyHACCP forms.
+ */
+
+/**
  * Menu callback which presents a table of forms to edit.
  */
 function myhaccp_list() {
@@ -269,9 +274,9 @@ function myhaccp_study_preview($iid) {
     $_SESSION['iid'] = $iid;
     myhaccp_myhaccp_mforms_init();
     // Get the dependency injection container.
-    global $container;
+    global $_myhaccp_container;
     // Get the current study.
-    $configuration = $container['configuration'];
+    $configuration = $_myhaccp_container['configuration'];
     $keys = array_keys($configuration->getMachineNames());
     // Check this study is valid.
     $study = myhaccp_study_get_stages_data($keys, $iid);

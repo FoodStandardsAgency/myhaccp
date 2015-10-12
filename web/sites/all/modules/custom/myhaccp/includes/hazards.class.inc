@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * CCP and hazard information class.
@@ -289,6 +290,9 @@ class Hazards {
 
 }
 
+/**
+ * Class Hazard.
+ */
 class Hazard {
 
   public $name;
@@ -306,6 +310,9 @@ class Hazard {
     $this->step = new Step();
   }
 
+  /**
+   * Returns the header.
+   */
   public function getHeader() {
     $ccp_number_text = '<div class="ccp-number"><span class="label">' . t('Critical Control Point (CCP) Number') . ':</span> ' . $this->ccpNo . '</div>';
     // Prepare the text.
@@ -345,6 +352,9 @@ class Hazard {
 
 }
 
+/**
+ * Class Step.
+ */
 class Step {
 
   public $key;

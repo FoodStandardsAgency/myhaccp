@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Preparatory C 2 stage form and validation handler.
+ */
+
+/**
  * Returns keyed array of form labels for C 2 Physical.
  *
  * Helper function to return keyed array of form labels or PDF labels allowing
@@ -85,8 +90,6 @@ function preparatory_c_2_physical_get_options($form_options = FALSE) {
     return $options;
   }
 }
-
-
 
 /**
  * Returns keyed array of form labels for C 2 Chemical.
@@ -330,7 +333,9 @@ function preparatory_c_2_allergens_get_options($form_options = FALSE) {
   }
 }
 
-
+/**
+ * Preparatory C 2.
+ */
 function preparatory_c_2(&$form_state, &$next_step) {
 
   // Define following step callback. If none set, that implies it is
@@ -346,9 +351,9 @@ function preparatory_c_2(&$form_state, &$next_step) {
   $values = myhaccp_prepare_values($data, $form_state);
 
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   drupal_set_title($stage->title, PASS_THROUGH);
@@ -389,7 +394,7 @@ function preparatory_c_2(&$form_state, &$next_step) {
   );
 
   // Get the physical options array from the helper function.
-  $preparatory_c_2_physical_options = preparatory_c_2_physical_get_options ($form_options = TRUE);
+  $preparatory_c_2_physical_options = preparatory_c_2_physical_get_options($form_options = TRUE);
 
   $form['preparatory_c_2']['wrapper']['physical_c_4']['physical'] = array(
     '#type' => 'checkboxes',
@@ -414,7 +419,7 @@ function preparatory_c_2(&$form_state, &$next_step) {
   );
 
   // Get the options
-  $preparatory_c_2_chemical_options = preparatory_c_2_chemical_get_options ($form_options = TRUE);
+  $preparatory_c_2_chemical_options = preparatory_c_2_chemical_get_options($form_options = TRUE);
 
   $form['preparatory_c_2']['wrapper']['chemical_c_4']['chemical'] = array(
     '#type' => 'checkboxes',
@@ -462,7 +467,7 @@ function preparatory_c_2(&$form_state, &$next_step) {
       'id' => 'allergens',
     ),
   );
-  $preparatory_c_2_allergens_options = preparatory_c_2_allergens_get_options ($form_options = TRUE);
+  $preparatory_c_2_allergens_options = preparatory_c_2_allergens_get_options($form_options = TRUE);
   $form['preparatory_c_2']['wrapper']['allergens_c_4']['allergens'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Allergens'),
@@ -515,9 +520,9 @@ FSA Guidance for food business operators on Microbiological criteria for foodstu
  */
 function preparatory_c_2_validate($form, &$form_state) {
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   $validator = $stage->getValidator();

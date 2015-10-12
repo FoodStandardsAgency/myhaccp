@@ -1,11 +1,19 @@
 <?php
 
+/**
+ * @file
+ * Principles review stage.
+ */
+
+/**
+ * Principles review.
+ */
 function principle_review(&$form_state, &$next_step) {
 
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   $stage = $study->getCurrentStage();
 
   // Set the page title.

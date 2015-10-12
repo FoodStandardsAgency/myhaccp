@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * @file
+ * Handles the MyHACCP study.
+ */
+
+/**
+ * Interface StudyInterface.
+ */
 interface StudyInterface {
 
   public function getCurrentStudy();
@@ -31,6 +39,9 @@ interface StudyInterface {
   public function getCurrentStudyOwner();
 }
 
+/**
+ * Class Study.
+ */
 class Study implements StudyInterface {
 
   protected $phases = array();
@@ -163,6 +174,9 @@ class Study implements StudyInterface {
     return FALSE;
   }
 
+  /**
+   * Gets the phases.
+   */
   public function getPhases() {
     return $this->phases;
   }
@@ -187,7 +201,6 @@ class Study implements StudyInterface {
       }
     }
     return FALSE;
-//    throw new Exception('Stage not found for url' . $phase . '/' . $url);
   }
 
   /**
@@ -404,7 +417,7 @@ class Study implements StudyInterface {
       ->condition('s.iid', $iid)
       ->execute()->fetchAllKeyed();
     // Iterate over each step.
-    foreach($steps as $store_key => $store_data) {
+    foreach ($steps as $store_key => $store_data) {
       $record = array(
         'iid' => $new_iid,
         'store_key' => $store_key,

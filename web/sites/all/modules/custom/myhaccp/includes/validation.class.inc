@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Validation handler class.
@@ -48,18 +49,30 @@ class Validator {
     return $this->formState;
   }
 
+  /**
+   * Sets the given stage.
+   */
   public function setStage(Stage $stage) {
     $this->stage = $stage;
   }
 
+  /**
+   * Gets the form.
+   */
   public function getForm() {
     return $this->form;
   }
 
+  /**
+   * Sets the form.
+   */
   public function setForm($form) {
     $this->form = $form;
   }
 
+  /**
+   * Gets the stage.
+   */
   public function getStage() {
     return $this->stage;
   }
@@ -158,10 +171,16 @@ class Validator {
     return $data;
   }
 
+  /**
+   * Sets the result.
+   */
   public function setResult($target, $result) {
     $this->results[$target] = $result;
   }
 
+  /**
+   * Gets the result.
+   */
   public function getResult($target) {
     return isset($this->results[$target]) ? $this->results[$target] : FALSE;
   }
