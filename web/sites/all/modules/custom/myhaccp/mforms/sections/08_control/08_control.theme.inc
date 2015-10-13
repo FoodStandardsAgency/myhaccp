@@ -8,7 +8,7 @@
  */
 
 /**
- * Implements hook_preprocess_08_control().
+ * Preprocess function for 08_control.
  *
  * Prepare the form_state data for presentation in the template file.
  *
@@ -31,7 +31,7 @@ function myhaccp_preprocess_08_control(&$variables) {
     array('data' => t('Step Name.')),
     array('data' => t('Hazard')),
     array('data' => t('Hazard Description')),
-    array('data' => t('Control Measures'))
+    array('data' => t('Control Measures')),
   );
 
   // Generate table row for each hazard.
@@ -47,10 +47,8 @@ function myhaccp_preprocess_08_control(&$variables) {
         array('data' => $hazards->hazards[$h_key]->name),
         // Hazard Description.
         array('data' => nl2br($hazards->hazards[$h_key]->description)),
-        // Significance.
-        // array('data' => $hazards->hazards[$h_key]->significance),
         // Control Measure.
-        array('data' => nl2br($hazards->hazards[$h_key]->controlMeasure))
+        array('data' => nl2br($hazards->hazards[$h_key]->controlMeasure)),
       );
     }
   }

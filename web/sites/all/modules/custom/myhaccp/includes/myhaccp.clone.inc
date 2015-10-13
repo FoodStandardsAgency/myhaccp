@@ -65,7 +65,7 @@ function myhaccp_study_copy_form($form, $form_state) {
       'class' => array(
         'form-actions',
         'form-wrapper',
-        'container-inline'
+        'container-inline',
       )
     ),
   );

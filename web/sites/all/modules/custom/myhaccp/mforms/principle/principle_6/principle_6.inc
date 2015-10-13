@@ -140,7 +140,7 @@ function principle_6(&$form_state, &$next_step) {
     '#type' => 'checkboxes',
     '#title' => t('External auditing programmes'),
     '#options' => array(
-      'supplier' => t('Supplier audits')
+      'supplier' => t('Supplier audits'),
     ),
     '#default_value' => array_get($values, "principle_6.6_4.2", array()),
   );

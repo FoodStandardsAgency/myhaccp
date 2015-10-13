@@ -8,7 +8,7 @@
  */
 
 /**
- * Implements hook_preprocess_07_severity().
+ * Preprocess function for 07_severity.
  *
  * Prepare the form_state data for presentation in the template file.
  *
@@ -31,7 +31,7 @@ function myhaccp_preprocess_07_severity(&$variables) {
     array('data' => t('Hazard Description')),
     array('data' => t('Severity')),
     array('data' => t('Likelihood')),
-    array('data' => t('Significance'))
+    array('data' => t('Significance')),
   );
 
   // Generate table for each step.

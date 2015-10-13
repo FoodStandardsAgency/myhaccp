@@ -8,7 +8,7 @@
  */
 
 /**
- * Implements hook_preprocess_02_terms().
+ * Preprocess function for 02_terms.
  *
  * Prepare the form_state data for presentation in the template file.
  *

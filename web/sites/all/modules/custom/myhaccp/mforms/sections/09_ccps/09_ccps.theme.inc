@@ -8,7 +8,7 @@
  */
 
 /**
- * Implements hook_preprocess_09_ccps().
+ * Preprocess function for 09_ccps.
  *
  * Prepare the form_state data for presentation in the template file.
  *
@@ -50,7 +50,7 @@ function myhaccp_preprocess_09_ccps(&$variables) {
     array('data' => t('Hazard')),
     array('data' => t('Control Measures')),
     array('data' => t('Decision Tree')),
-    array('data' => t('CCP?'))
+    array('data' => t('CCP?')),
   );
 
   // Generate table row for each hazard.
@@ -93,7 +93,7 @@ function myhaccp_preprocess_09_ccps(&$variables) {
       // Decision Tree question answers.
       array('data' => $qa),
       // CCP?
-      array('data' => $ccp)
+      array('data' => $ccp),
     );
   }
 

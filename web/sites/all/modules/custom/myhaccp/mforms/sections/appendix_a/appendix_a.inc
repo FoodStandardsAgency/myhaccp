@@ -62,7 +62,6 @@ function process_appendix_a(Study $study, $mpdf, $section) {
   // Prepare a filename in the temporary directory for a copy of the file.
   $_myhaccp_temp_file_name = file_directory_temp() . '/' . md5($file->uri) . '.' . $extension;
   // Output the image derivative into the temporary file location.
-
   $orientation = $file->metadata['width'] > $file->metadata['height'] ? 'L' : 'P';
   $style = $orientation == 'P' ? image_style_load('pdf_flow_diagram') : image_style_load('pdf_flow_diagram_landscape');
   $success = file_exists($_myhaccp_temp_file_name) || image_style_create_derivative($style, $file->uri, $_myhaccp_temp_file_name);

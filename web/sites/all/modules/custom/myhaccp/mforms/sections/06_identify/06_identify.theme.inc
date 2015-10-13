@@ -8,7 +8,7 @@
  */
 
 /**
- * Implements hook_preprocess_06_identify().
+ * Preprocess function for 06_identify.
  *
  * Prepare the form_state data for presentation in the template file.
  *
@@ -39,7 +39,7 @@ function myhaccp_preprocess_06_identify(&$variables) {
     array('data' => t('Biological')),
     array('data' => t('Chemical')),
     array('data' => t('Physical')),
-    array('data' => t('Allergens'))
+    array('data' => t('Allergens')),
   );
 
   // Now the table rows.
@@ -64,7 +64,7 @@ function myhaccp_preprocess_06_identify(&$variables) {
         // Physical.
         array('data' => $physical),
         // Allergens.
-        array('data' => $allergens)
+        array('data' => $allergens),
       );
     }
   }

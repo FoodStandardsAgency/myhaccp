@@ -8,7 +8,7 @@
  */
 
 /**
- * Implements hook_preprocess_10_critical().
+ * Preprocess function for 10_critical.
  *
  * Prepare the form_state data for presentation in the template file.
  *
@@ -32,7 +32,7 @@ function myhaccp_preprocess_10_critical(&$variables) {
     array('data' => t('Critical limit')),
     array('data' => t('How was the critical limit determined?')),
     array('data' => t('Will the critical limit control the specific hazard?')),
-    array('data' => t('Can the critical limit be measured or observed in real time?'))
+    array('data' => t('Can the critical limit be measured or observed in real time?')),
   );
 
   // Generate table row for each hazard.
@@ -53,13 +53,13 @@ function myhaccp_preprocess_10_critical(&$variables) {
         // Will the critical limit control the specific hazard?
         array(
           'data' => $ccp_hazard['3_3'] == 'yes' ? t('Yes', array(), array(
-            'context' => 'Will the critical limit control the specific hazard?'
+            'context' => 'Will the critical limit control the specific hazard?',
           )) : t('No', array(), array(
-            'context' => 'Will the critical limit control the specific hazard?'
-          ))
+            'context' => 'Will the critical limit control the specific hazard?',
+          )),
         ),
         // Can the critical limit be measured or observed in real time?
-        array('data' => $ccp_hazard['3_4'] == 'yes' ? t('Yes') : t('No'))
+        array('data' => $ccp_hazard['3_4'] == 'yes' ? t('Yes') : t('No')),
       );
     }
   }

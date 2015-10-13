@@ -8,7 +8,7 @@
  */
 
 /**
- * Implements hook_preprocess_05_process().
+ * Preprocess function for 05_process.
  *
  * Prepare the form_state data for presentation in the template file.
  *

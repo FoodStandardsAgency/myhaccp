@@ -8,7 +8,7 @@
  */
 
 /**
- * Implements hook_preprocess_preparatory_c_1().
+ * Preprocess function for preparatory_c_1.
  *
  * Prepare the form_state data for presentation in the template file.
  *

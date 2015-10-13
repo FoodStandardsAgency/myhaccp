@@ -8,7 +8,7 @@
  */
 
 /**
- * Implements hook_preprocess_13_documentation().
+ * Preprocess function for 13_documentation.
  *
  * Prepare the form_state data for presentation in the template file.
  *

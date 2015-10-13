@@ -8,7 +8,7 @@
  */
 
 /**
- * Implements hook_preprocess_04_product().
+ * Preprocess function for 04_product.
  *
  * Prepare the form_state data for presentation in the template file.
  *

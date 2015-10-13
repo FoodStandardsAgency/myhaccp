@@ -377,7 +377,7 @@ function preparatory_c_2(&$form_state, &$next_step) {
         '!tip' => _help_tip(),
         '!help' => '<div class="help-text">' . t("State which hazards will be considered in the HACCP plan (i.e. Biological, Physical, Chemical, Allergens). !link", array(
             '!link' => myhaccp_prepare_more_link(15),
-          )) . '</div>'
+          )) . '</div>',
     )) . '</div>',
 
   );
@@ -407,7 +407,6 @@ function preparatory_c_2(&$form_state, &$next_step) {
   );
 
   // Chemical.
-
   $form['preparatory_c_2']['wrapper']['chemical_c_4'] = array(
     '#type' => 'container',
     '#attributes' => array(
@@ -432,7 +431,6 @@ function preparatory_c_2(&$form_state, &$next_step) {
   );
 
   // Biological.
-
   $form['preparatory_c_2']['wrapper']['biological_c_4'] = array(
     '#type' => 'container',
     '#attributes' => array(
@@ -457,7 +455,6 @@ function preparatory_c_2(&$form_state, &$next_step) {
   );
 
   // Allergens.
-
   $form['preparatory_c_2']['wrapper']['allergens_c_4'] = array(
     '#type' => 'container',
     '#attributes' => array(

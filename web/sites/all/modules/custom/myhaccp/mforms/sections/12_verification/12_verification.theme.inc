@@ -8,7 +8,7 @@
  */
 
 /**
- * Implements hook_preprocess_principle_12_verification().
+ * Preprocess function for principle_12_verification.
  *
  * Prepare the form_state data for presentation in the template file.
  *

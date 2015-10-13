@@ -8,7 +8,7 @@
  */
 
 /**
- * Implements hook_preprocess_03_team().
+ * Preprocess function for 03_team.
  *
  * Prepare the form_state data for presentation in the template file.
  *
@@ -40,7 +40,7 @@ function myhaccp_preprocess_03_team(&$variables) {
       array('data' => t('Name')),
       array('data' => t('Training')),
       array('data' => t('Qualifications')),
-      array('data' => t('Experience'))
+      array('data' => t('Experience')),
     );
 
     // Now the table rows.
@@ -68,7 +68,7 @@ function myhaccp_preprocess_03_team(&$variables) {
         array('data' => $name),
         array('data' => $training),
         array('data' => $qualifications),
-        array('data' => $experience)
+        array('data' => $experience),
       );
     }
 

@@ -8,7 +8,7 @@
  */
 
 /**
- * Implements hook_preprocess_01_management().
+ * Preprocess function for 01_management.
  *
  * Prepare the form_state data for presentation in the template file.
  *

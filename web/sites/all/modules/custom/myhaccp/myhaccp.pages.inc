@@ -27,7 +27,7 @@ function myhaccp_list() {
   else {
     $output['intro'] = array(
       '#type' => 'markup',
-      '#markup' => t('Welcome to the MyHACCP Web Tool, from here you can start new studies and resume studies you have previously started. While using the Web Tool to undertake a Study you will find help available through help icons, which can be clicked on to reveal specific help for that question.')
+      '#markup' => t('Welcome to the MyHACCP Web Tool, from here you can start new studies and resume studies you have previously started. While using the Web Tool to undertake a Study you will find help available through help icons, which can be clicked on to reveal specific help for that question.'),
     );
   }
 
@@ -106,7 +106,7 @@ function myhaccp_list() {
       'attributes' => array(
         'class' => 'resume-link',
         'title' => t('Resume a study to add or edit your information.'),
-      )
+      ),
     )) : '';
 
     $options = array();

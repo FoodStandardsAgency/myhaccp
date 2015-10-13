@@ -282,7 +282,6 @@ function preparatory_d_validate($form, &$form_state) {
   for ($i = 0; $i < $form_state['num_instances']; $i++) {
     // In each instance, check whether some of the fields have been filled in,
     // if they have then check they have all been filled in.
-
     // Checks is an array with the key being the element being targeted (in dot
     // notation) and the value being the callback to use to check whether the
     // field is empty.

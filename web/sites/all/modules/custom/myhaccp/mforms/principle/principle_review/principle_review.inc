@@ -89,7 +89,7 @@ function principle_review(&$form_state, &$next_step) {
     '#markup' => l(t('Finish study'), 'tool/study/' . $study->getIID() . '/finish', array(
       'attributes' => array(
         'class' => array('finish'),
-      )
+      ),
     )),
   );
 

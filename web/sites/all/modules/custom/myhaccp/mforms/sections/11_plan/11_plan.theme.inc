@@ -8,7 +8,7 @@
  */
 
 /**
- * Implements hook_preprocess_11_plan().
+ * Preprocess function for 11_plan.
  *
  * Prepare the form_state data for presentation in the template file.
  *
@@ -33,7 +33,7 @@ function myhaccp_preprocess_11_plan(&$variables) {
     array('data' => t('Control measure')),
     array('data' => t('Critical limit')),
     array('data' => t('Monitoring procedures')),
-    array('data' => t('Corrective action'))
+    array('data' => t('Corrective action')),
   );
 
   foreach ($hazards->hazards as $h_key => $hazard) {
@@ -61,7 +61,7 @@ function myhaccp_preprocess_11_plan(&$variables) {
         // Monitoring procedures.
         array('data' => $monitoring_procedures),
         // Corrective action.
-        array('data' => $corrective_action)
+        array('data' => $corrective_action),
       );
     }
   }
@@ -69,7 +69,7 @@ function myhaccp_preprocess_11_plan(&$variables) {
   // Generate the table through a theme function.
   $variables['p_5_table'] = theme('table', array(
     'header' => $header,
-    'rows' => $rows
+    'rows' => $rows,
   ));
 
 }
