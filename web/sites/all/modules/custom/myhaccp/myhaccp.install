@@ -910,7 +910,7 @@ function myhaccp_update_7033() {
  */
 function myhaccp_update_7034() {
   $bean = bean_load_delta('footer_gov');
-  $bean->field_description['en'][0]['value'] = str_replace('/custom/myhaccp/', '/custom/myhaccp_theme/',$bean->field_description['en'][0]['value']);
+  $bean->field_description['en'][0]['value'] = str_replace('/custom/myhaccp/', '/custom/myhaccp_theme/', $bean->field_description['en'][0]['value']);
   $bean->save();
 }
 
@@ -919,4 +919,15 @@ function myhaccp_update_7034() {
  */
 function myhaccp_update_7035() {
   features_revert_module('myhaccp_context');
+}
+
+/**
+ * Remove old theme entries from database.
+ */
+function myhaccp_update_7036() {
+  db_delete('system')
+    ->condition('filename', 'sites/all/themes/custom/myhaccp/myhaccp.info')
+    ->condition('name', 'myhaccp')
+    ->execute();
+  variable_delete('theme_myhaccp_settings');
 }
