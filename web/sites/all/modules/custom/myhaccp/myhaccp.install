@@ -240,6 +240,7 @@ function myhaccp_update_7006() {
  * Add the clone permission for authenticated users.
  */
 function myhaccp_update_7007() {
+  module_enable(array('myhaccp'));
   // The authenticated role should have the 'own' permission.
   user_role_grant_permissions(2, array('clone own myhaccp study'));
   // The site manager should have the 'any' permission.
