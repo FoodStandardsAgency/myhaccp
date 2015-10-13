@@ -17,6 +17,8 @@
  *   to display.
  */
 function myhaccp_preprocess_05_process(&$variables) {
+  // @ignore comment_comment_eg:function
+
   // This section is made up of data from two stages.
   $study = $variables['study'];
   $data = $study->getStage('preparatory_g')->getData();

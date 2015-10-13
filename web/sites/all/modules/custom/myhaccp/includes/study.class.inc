@@ -5,6 +5,8 @@
  * Handles the MyHACCP study.
  */
 
+// @ignore comment_comment_see:file
+
 /**
  * Interface StudyInterface.
  */

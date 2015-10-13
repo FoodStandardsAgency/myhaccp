@@ -306,6 +306,7 @@ class Validator {
       $this->setFormState($form_state);
     }
     if (isset($_POST['validate'])) {
+      // @ignore security_17
       unset($_POST['validate']);
     }
 

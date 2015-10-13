@@ -5,6 +5,8 @@
  * CCP and hazard information class.
  */
 
+
+
 /**
  * Class hazards.
  *

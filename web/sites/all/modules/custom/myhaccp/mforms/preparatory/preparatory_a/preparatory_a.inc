@@ -111,6 +111,7 @@ function preparatory_a(&$form_state, &$next_step) {
     ),
   );
 
+  // @ignore comment_comment_eg:function
   $form['preparatory_a']['a_2'] = array(
     '#type' => 'textarea',
     '#resizable' => FALSE,

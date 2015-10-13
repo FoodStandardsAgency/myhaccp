@@ -9,6 +9,7 @@
  * Preparatory C 1.
  */
 function preparatory_c_1(&$form_state, &$next_step) {
+  // @ignore comment_comment_eg:function
 
   // Define following step callback. If none set, that implies it is
   // the last step.

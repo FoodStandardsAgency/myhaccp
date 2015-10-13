@@ -10,6 +10,8 @@
  * Below is the file created by Fabien Potencier.
  */
 
+// @ignore comment_docblock_comment:file
+
 /*
  * This file is part of Pimple.
  *

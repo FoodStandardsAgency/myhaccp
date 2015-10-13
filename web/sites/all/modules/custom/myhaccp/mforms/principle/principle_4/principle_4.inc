@@ -9,6 +9,8 @@
  * Principle 4.
  */
 function principle_4(&$form_state, &$next_step) {
+  // @ignore comment_comment_eg:function
+
   // Define following step callback. If none set, that implies it is
   // the last step.
   $next_step = 'principle_5';

@@ -1,3 +1,8 @@
+/**
+ * @file
+ * Activates and handles parselyjs errors on Drupal forms.
+ */
+
 (function($) {
 
   Drupal.behaviors.parsley_custom = {
