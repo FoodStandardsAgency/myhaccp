@@ -6,7 +6,7 @@
  */
 
 /**
- * Class validator
+ * Class validator.
  *
  * A stage validation used to validate multiple elements and set or clear
  * messages.
@@ -27,6 +27,7 @@ class Validator {
    * Sets the IID of the study.
    *
    * @param int $iid
+   *   The IID to store.
    */
   public function setIID($iid) {
     $this->iid = $iid;
@@ -214,7 +215,6 @@ class Validator {
    * @param string|array $methods
    *   The method to be used. Must exist in validation class. If a string will
    *   be converted to an array for iteration.
-   *
    * @param string $target
    *   The element array target in dot notation.
    *
@@ -380,7 +380,7 @@ class Validator {
 }
 
 /**
- * Class validation
+ * Class validation.
  *
  * A single validation element to be tested for validity.
  */
@@ -465,6 +465,7 @@ class Validation {
    *   TRUE if option 'no' is not chosen, FALSE if it has been chosen.
    *
    * @throws Exception
+   *   Only radio types are allowed.
    */
   public function radioIsNotNo() {
     if ($this->type != 'radios') {
