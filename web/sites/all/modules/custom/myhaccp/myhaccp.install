@@ -904,3 +904,12 @@ function myhaccp_update_7033() {
   theme_enable(array('myhaccp_theme'));
   drupal_theme_rebuild();
 }
+
+/**
+ * Change the footer gov.uk image location for the new theme name.
+ */
+function myhaccp_update_7034() {
+  $bean = bean_load_delta('footer_gov');
+  $bean->field_description['en'][0]['value'] = str_replace('/custom/myhaccp/', '/custom/myhaccp_theme/',$bean->field_description['en'][0]['value']);
+  $bean->save();
+}
