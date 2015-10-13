@@ -913,3 +913,10 @@ function myhaccp_update_7034() {
   $bean->field_description['en'][0]['value'] = str_replace('/custom/myhaccp/', '/custom/myhaccp_theme/',$bean->field_description['en'][0]['value']);
   $bean->save();
 }
+
+/**
+ * Revert the context feature.
+ */
+function myhaccp_update_7035() {
+  features_revert_module('myhaccp_context');
+}
