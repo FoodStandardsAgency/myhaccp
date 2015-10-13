@@ -57,6 +57,8 @@ interface StudyInterface {
    *   The stage name to find the stage for.
    *
    * @throws Exception
+   *   Message explaining the stage could not be found.
+   *
    * @return Stage
    *   The stage if found.
    */
@@ -66,6 +68,8 @@ interface StudyInterface {
    * Gets the current stage.
    *
    * @throws exception
+   *   Exception if the stage could not be retrieved.
+   *
    * @return Stage
    *   The stage to be returned.
    */
@@ -90,7 +94,10 @@ interface StudyInterface {
    * Sets the completion status of the study.
    *
    * @param int $status
+   *   The status integer to be set.
+   *
    * @throws exception
+   *   Only integer values are allowed.
    */
   public function setValidationStatus($status);
 
@@ -99,7 +106,9 @@ interface StudyInterface {
    *
    * @param int $status
    *   The integer to store, 0 for incomplete, 1 for complete.
+   *
    * @throws exception
+   *   Only integer values are allowed.
    */
   public function setStatus($status);
 
@@ -176,6 +185,7 @@ class Study implements StudyInterface {
    * Sets the IID of the study.
    *
    * @param int $iid
+   *   The study ID being used.
    */
   public function setIID($iid) {
     $this->iid = $iid;
@@ -275,7 +285,6 @@ class Study implements StudyInterface {
    * @param string $url
    *   The stage part of the url.
    *
-   * @throws Exception
    * @return Stage stage
    *   Returns the stage if found.
    */
@@ -296,6 +305,8 @@ class Study implements StudyInterface {
    *   The stage name to find the stage for.
    *
    * @throws Exception
+   *   Message explaining the stage could not be found.
+   *
    * @return Stage
    *   The stage if found.
    */
@@ -315,6 +326,8 @@ class Study implements StudyInterface {
    * Gets the current stage.
    *
    * @throws exception
+   *   Exception if the stage could not be retrieved.
+   *
    * @return Stage
    *   The stage to be returned.
    */
@@ -419,7 +432,10 @@ class Study implements StudyInterface {
    * Sets the completion status of the study.
    *
    * @param int $status
+   *   The status integer to be set.
+   *
    * @throws exception
+   *   Only integer values are allowed.
    */
   public function setValidationStatus($status) {
     if (!is_int($status)) {
@@ -433,7 +449,9 @@ class Study implements StudyInterface {
    *
    * @param int $status
    *   The integer to store, 0 for incomplete, 1 for complete.
+   *
    * @throws exception
+   *   Only integer values are allowed.
    */
   public function setStatus($status) {
     if (!is_int($status)) {
@@ -462,6 +480,12 @@ class Study implements StudyInterface {
 
   /**
    * Clones a study.
+   *
+   * @param int $iid
+   *   The IID of the study to clone.
+   *
+   * @return mixed
+   *   The IID of the cloned (new) study.
    */
   public function cloneStudy($iid) {
     $record = $this->createStudy($iid);
@@ -475,6 +499,9 @@ class Study implements StudyInterface {
    *
    * @param int $iid
    *   The unique IID of the study.
+   *
+   * @return array
+   *   The record written to the database.
    */
   public function createStudy($iid) {
     $user = $this->getStudyOwner($iid);
@@ -542,4 +569,5 @@ class Study implements StudyInterface {
       ->fetchField();
     return user_load($uid);
   }
+
 }

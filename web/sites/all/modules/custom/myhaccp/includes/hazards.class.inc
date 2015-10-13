@@ -227,10 +227,7 @@ class Hazards {
   }
 
   /**
-   * Gets all hazards which are a CCP.
-   *
-   * @return array
-   *   Returns all CCP items.
+   * Stores CCP values.
    */
   public function populateCCPs() {
     $data = mforms_get_vals('myhaccp', 'principle_2_2');

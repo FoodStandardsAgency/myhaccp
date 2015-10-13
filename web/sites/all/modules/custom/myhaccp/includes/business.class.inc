@@ -69,6 +69,7 @@ class Business {
    * Local method for fetching a user profile from a user object.
    *
    * @return array|bool|mixed
+   *   Returns the profile or an empty array if not found.
    */
   protected function getUserProfile() {
     $profile = profile2_load_by_user($this->user->uid);

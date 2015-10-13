@@ -142,7 +142,7 @@ function myhaccp_output_pdf($iid) {
     $mpdf->Output($filename, 'I');
     // Documentation for output: http://mpdf1.com/manual/index.php?tid=125
     // Before exiting delete the temporary file that we stored in a global
-    // earlier in 05_process_theme.inc
+    // earlier in 05_process_theme.inc.
     global $_myhaccp_temp_file_name;
     if (file_exists($_myhaccp_temp_file_name)) {
       unlink($_myhaccp_temp_file_name);
