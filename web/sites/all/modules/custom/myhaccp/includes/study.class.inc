@@ -10,32 +10,118 @@
  */
 interface StudyInterface {
 
+  /**
+   * Returns the sessions's IID.
+   *
+   * @return int
+   *   Returns the session iid or sends the user to their study overview page.
+   */
   public function getCurrentStudy();
 
+  /**
+   * Sets the IID for the session.
+   *
+   * @param int $iid
+   *   The study ID being used.
+   */
   public function setCurrentStudy($iid);
 
+  /**
+   * Adds a phase to a study.
+   *
+   * @param Phase $phase
+   *   The phase added.
+   */
   public function addPhase(Phase $phase);
 
+  /**
+   * Returns a phase object.
+   *
+   * @param string $phase
+   *   The name of the phase.
+   *
+   * @return Phase|bool
+   *   The phase object or FALSE if not found.
+   */
   public function getPhase($phase);
 
+  /**
+   * Gets the phases.
+   */
   public function getPhases();
 
+  /**
+   * Gets a specific stage.
+   *
+   * @param string $name
+   *   The stage name to find the stage for.
+   *
+   * @throws Exception
+   * @return Stage
+   *   The stage if found.
+   */
   public function getStage($name);
 
+  /**
+   * Gets the current stage.
+   *
+   * @throws exception
+   * @return Stage
+   *   The stage to be returned.
+   */
   public function getCurrentStage();
 
+  /**
+   * Sets the current stage the user is on.
+   *
+   * @param Stage $stage
+   *   The stage to set.
+   *
+   * @see MformsDatabaseStore::getStore()
+   */
   public function setCurrentStage($stage);
 
+  /**
+   * Gets the completion status of the study.
+   */
   public function getValidationStatus();
 
+  /**
+   * Sets the completion status of the study.
+   *
+   * @param int $status
+   * @throws exception
+   */
   public function setValidationStatus($status);
 
+  /**
+   * Sets the status of the study in the database.
+   *
+   * @param int $status
+   *   The integer to store, 0 for incomplete, 1 for complete.
+   * @throws exception
+   */
   public function setStatus($status);
 
+  /**
+   * Gets the current status of the study from the database.
+   *
+   * @return int
+   *   The status integer (0 for incomplete, 1 for complete).
+   */
   public function getStatus();
 
+  /**
+   * Clones a study.
+   */
   public function cloneStudy($iid);
 
+  /**
+   * Returns the user object of the owner of this study.
+   *
+   * @return object
+   *   The user object representing the study owner.
+   */
   public function getCurrentStudyOwner();
 }
 
