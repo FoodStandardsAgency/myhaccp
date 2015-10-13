@@ -20,4 +20,3 @@
 <?php if ($c_5): ?>
 <?php print $c_5; ?>
 <?php endif; ?>
-

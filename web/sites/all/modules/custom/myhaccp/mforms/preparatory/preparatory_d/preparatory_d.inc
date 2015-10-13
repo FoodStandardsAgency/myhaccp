@@ -181,7 +181,6 @@ function preparatory_d(&$form_state, &$next_step) {
   $form['preparatory_d']['instance_0']['d_1']['#attributes']['data-parsley-error-message'] = t('Please add the name of the HACCP lead for the business.');
   $form['preparatory_d']['instance_0']['d_1']['#help_text'] = t("State the person's name.");
 
-
   // Do you consider the team to have sufficient skills?
   $form['preparatory_d']['team_skills'] = array(
     '#type' => 'radios',

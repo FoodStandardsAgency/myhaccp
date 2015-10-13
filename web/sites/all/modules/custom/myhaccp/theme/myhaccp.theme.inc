@@ -134,8 +134,6 @@ function theme_myhaccp_2_2_table($variables) {
     $rows[] = $row;
   }
 
-
-
   // Build the table, with a row per hazard.
   // The table has 3 columns.
   $header = array(

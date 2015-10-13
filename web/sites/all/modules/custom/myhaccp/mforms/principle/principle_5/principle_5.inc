@@ -215,4 +215,3 @@ function principle_5_validate($form, &$form_state) {
   $form_state = $validator->getFormState();
 
 }
-

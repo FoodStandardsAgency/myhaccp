@@ -99,7 +99,6 @@ Modular HACCP Plan - Typically several separate HACCP studies e.g. one on raw ma
     )),
   );
 
-
   $form['preparatory_c_1']['c_3']['start'] = array(
     '#type' => 'textfield',
     '#title' => t('It will start at') . ' ',

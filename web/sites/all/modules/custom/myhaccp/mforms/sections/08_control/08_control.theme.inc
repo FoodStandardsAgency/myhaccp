@@ -31,7 +31,6 @@ function myhaccp_preprocess_08_control(&$variables) {
     array('data' => t('Step Name.')),
     array('data' => t('Hazard')),
     array('data' => t('Hazard Description')),
-    // array('data' => t('Significance (S x L)')),
     array('data' => t('Control Measures'))
   );
 

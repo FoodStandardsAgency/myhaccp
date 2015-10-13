@@ -12,10 +12,11 @@
  *
  * Prepare the form_state data for presentation in the template file.
  *
- * @param array $variables
- *   Form state data to process into variables for the template to display.
+ * @param Study $study
+ *   The study object.
+ * @param $mpdf
  */
-function process_appendix_a($study, $mpdf, $section) {
+function process_appendix_a(Study $study, $mpdf, $section) {
   $data = $study->getStage('preparatory_g')->getData();
   $preparatory_g = $data['preparatory_g'];
 

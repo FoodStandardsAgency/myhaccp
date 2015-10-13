@@ -14,10 +14,10 @@
  *
  * This function returns an array for preparatory C2 Q4 (Physical hazards).
  *
- *
  * @param bool $form_options
  *   A boolean to indicate if we want the options to be in a format expected
  *   by Drupal's Form API for checkbox options.
+ *
  * @return array
  *   Array of lables with:
  *     ($form_options = TRUE) $key => form label
@@ -103,6 +103,7 @@ function preparatory_c_2_physical_get_options($form_options = FALSE) {
  * @param bool $form_options
  *   A boolean to indicate if we want the options to be in a format expected
  *   by Drupal's Form API for checkbox options.
+ *
  * @return array
  *   Array of lables with:
  *     ($form_options = TRUE) $key => form label
@@ -117,12 +118,6 @@ function preparatory_c_2_chemical_get_options($form_options = FALSE) {
 
   $options['pesticides']['form_label'] = t('Agricultural residues: Pesticides');
   $options['pesticides']['pdf_output'] = t('Agricultural residues: Pesticides');
-
-  // Commenting out as apparently no longer required
-  // See https://pm.agile.coop/fsa/node/11600
-  // and https://pm.agile.coop/fsa/system/files/myhaccp_extract.pdf
-  //$options['mycotoxins']['form_label'] = t('Ingredient dependent Mycotoxins (e.g. deoxynivalenol in cereals; patulin in apples)');
-  //$options['mycotoxins']['pdf_output'] = t('Ingredient dependent Mycotoxins');
 
   $options['phytotoxins']['form_label'] = t('Ingredient dependent Phyto-toxins (plant-based e.g. lectins in kidney beans; cyanogenic glycosides in cassava)');
   $options['phytotoxins']['pdf_output'] = t('Ingredient dependent Phyto-toxins');
@@ -185,6 +180,7 @@ function preparatory_c_2_chemical_get_options($form_options = FALSE) {
  * @param bool $form_options
  *   A boolean to indicate if we want the options to be in a format expected
  *   by Drupal's Form API for checkbox options.
+ *
  * @return array
  *   Array of lables with:
  *     ($form_options = TRUE) $key => form label
@@ -266,6 +262,7 @@ function preparatory_c_2_biological_get_options($form_options = FALSE) {
  * @param bool $form_options
  *   A boolean to indicate if we want the options to be in a format expected
  *   by Drupal's Form API for checkbox options.
+ *
  * @return array
  *   Array of lables with:
  *     ($form_options = TRUE) $key => form label

@@ -243,4 +243,3 @@ function principle_2_2_validate($form, &$form_state) {
   $form_state = $validator->getFormState();
 
 }
-

@@ -23,7 +23,7 @@ function myhaccp_preprocess_01_management(&$variables) {
   // Iterate over the checkboxes fetching their labels.
   $names = myhaccp_prepare_checkboxes_output('preparatory_b', 'b_1', $preparatory_b);
 
-  // b_1 Logic: IF 'I am the management and can confirm that I am committed.'  is selected:
+  // b_1 Logic: IF 'I am the management and can confirm that I am committed.' is selected.
   if (in_array('N/A - I am the management and can confirm that I am committed.', $names)) {
     $variables['b_1_title'] = t('I am the management and can confirm that I am committed to food safety management based on HACCP.');
     // Don't show any of the checkboxes output.

@@ -39,7 +39,7 @@ function myhaccp_preprocess_12_verification(&$variables) {
 
   $variables['p_6_4_title'] = t('The following verification activities are undertaken:');
 
-  // 4. Verification activities
+  // 4. Verification activities.
   $content = '';
 
   // Internal audits.

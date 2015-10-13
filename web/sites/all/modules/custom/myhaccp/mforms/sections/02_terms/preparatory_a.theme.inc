@@ -21,7 +21,7 @@ function myhaccp_preprocess_preparatory_a(&$variables) {
 }
 
 /**
- * Pull data in from Preparatory Stage A (Prerequisites)
+ * Pull data in from Preparatory Stage A (Prerequisites).
  *
  * @return array $variables
  *   Data to pass into the template

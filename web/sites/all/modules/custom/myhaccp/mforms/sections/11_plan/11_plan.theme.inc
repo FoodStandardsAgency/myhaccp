@@ -85,7 +85,7 @@ function myhaccp_preprocess_11_plan(&$variables) {
  * @return string
  *   The prepared HTML output.
  */
-function _principle_3_cl($study, $h_key) {
+function _principle_3_cl(Study $study, $h_key) {
   $data = $study->getStage('principle_3')->getData();
   $principle_3 = $data['principle_3'];
 
@@ -121,7 +121,7 @@ function _principle_3_cl($study, $h_key) {
  * @return string
  *   The prepared HTML output.
  */
-function _principle_4_m($study, $h_key) {
+function _principle_4_m(Study $study, $h_key) {
   $data = $study->getStage('principle_4')->getData();
   $principle_4 = $data['principle_4'];
 
@@ -185,7 +185,7 @@ function _principle_4_m($study, $h_key) {
  * @return string
  *   The prepared HTML output.
  */
-function _principle_5_mp($study, $h_key) {
+function _principle_5_mp(Study $study, $h_key) {
   $data = $study->getStage('principle_5')->getData();
   $principle_5 = $data['principle_5'];
 

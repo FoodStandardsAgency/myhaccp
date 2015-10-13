@@ -83,7 +83,7 @@ interface StudyInterface {
    *
    * @see MformsDatabaseStore::getStore()
    */
-  public function setCurrentStage($stage);
+  public function setCurrentStage(Stage $stage);
 
   /**
    * Gets the completion status of the study.
@@ -384,7 +384,7 @@ class Study implements StudyInterface {
    *
    * @see MformsDatabaseStore::getStore()
    */
-  public function setCurrentStage($stage) {
+  public function setCurrentStage(Stage $stage) {
     $this->currentStage = $stage;
   }
 

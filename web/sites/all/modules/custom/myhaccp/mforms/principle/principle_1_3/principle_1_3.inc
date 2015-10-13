@@ -142,4 +142,3 @@ function principle_1_3_validate($form, &$form_state) {
   $validator->setErrorMessages();
   $form_state = $validator->getFormState();
 }
-

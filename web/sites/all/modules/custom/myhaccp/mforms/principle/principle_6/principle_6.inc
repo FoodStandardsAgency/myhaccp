@@ -342,4 +342,3 @@ function principle_6_validate($form, &$form_state) {
   $validator->setErrorMessages();
   $form_state = $validator->getFormState();
 }
-

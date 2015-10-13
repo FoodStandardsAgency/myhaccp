@@ -81,7 +81,6 @@ function principle_review(&$form_state, &$next_step) {
     '#markup' => $intro_output . $message_output,
   );
 
-
   $form['principle_review']['node'] = array(
     '#markup' => $main_output,
   );
