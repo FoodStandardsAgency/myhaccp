@@ -37,4 +37,21 @@ function myhaccp_notices_install() {
       ),
   );
   variable_set('close_bean_settings', $settings);
+
+  // Grant the close bean permission to all the authenticated roles.
+  user_role_grant_permissions(2, array('close bean'));
+  user_role_grant_permissions(4, array('close bean'));
+  user_role_grant_permissions(5, array('close bean'));
+  user_role_grant_permissions(6, array('close bean'));
+}
+
+/**
+ * Adds permissions for authenticated user to close the block.
+ */
+function myhaccp_notices_update_7000() {
+  // Grant the close bean permission to all the authenticated roles.
+  user_role_grant_permissions(2, array('close bean'));
+  user_role_grant_permissions(4, array('close bean'));
+  user_role_grant_permissions(5, array('close bean'));
+  user_role_grant_permissions(6, array('close bean'));
 }
