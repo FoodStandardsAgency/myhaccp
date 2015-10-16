@@ -17,7 +17,7 @@ function myhaccp_language_configuration_update_7001() {
 }
 
 /**
- * Set default variables to enable translation of user emails.
+ * Update i18n_mode for menus.
  */
 function myhaccp_language_configuration_update_7002() {
   myhaccp_language_configuration_enable_menu_translation();
@@ -61,6 +61,7 @@ function myhaccp_language_configuration_set_default_variabes() {
 function myhaccp_language_configuration_enable_menu_translation() {
   $menus = array(
     'main-menu',
+    'user-menu',
     'menu-footer-links-external',
     'menu-footer-links-internal',
   );
