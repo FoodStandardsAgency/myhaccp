@@ -931,3 +931,29 @@ function myhaccp_update_7036() {
     ->execute();
   variable_delete('theme_myhaccp_settings');
 }
+
+/**
+ * Make absolutely sure the myhaccp module is enabled after the theme change.
+ */
+function myhaccp_update_7037() {
+  module_enable(array('myhaccp'));
+}
+
+/**
+ * Update all the menu links in the user menu so they are translatable.
+ */
+function myhaccp_update_7038() {
+  $items = db_select('menu_links')
+    ->fields('menu_links', array('mlid', 'link_title'))
+    ->condition('menu_links.menu_name', 'user-menu')
+    ->execute()->fetchAllKeyed();
+  foreach ($items as $mlid => $item) {
+    $item = menu_link_load($mlid);
+    $options = $item['options'];
+    $options['alter'] = TRUE;
+    db_update('menu_links')
+      ->fields(array('options' => serialize($options), 'customized' => 1))
+      ->condition('mlid', $mlid)
+      ->execute();
+  }
+}
