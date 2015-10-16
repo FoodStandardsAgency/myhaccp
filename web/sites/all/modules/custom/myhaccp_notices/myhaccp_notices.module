@@ -35,7 +35,7 @@ function myhaccp_notices_block_view($delta = '') {
         if ($rendered) {
           $render_array = $rendered['bean_' . $bean->delta]->content;
           $block['subject'] = '';
-          $block['content'] = '<div class="' . $bean->delta . '">' . render($render_array) . '</div>';
+          $block['content'] = '<div class="' . $bean->delta . ' notice-block">' . render($render_array) . '</div>';
         }
       }
       break;
