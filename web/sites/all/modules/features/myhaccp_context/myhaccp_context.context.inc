@@ -27,6 +27,11 @@ function myhaccp_context_context_default_contexts() {
         'myhaccp_theme' => 'myhaccp_theme',
       ),
     ),
+    'user' => array(
+      'values' => array(
+        'authenticated user' => 'authenticated user',
+      ),
+    ),
   );
   $context->reactions = array(
     'block' => array(
