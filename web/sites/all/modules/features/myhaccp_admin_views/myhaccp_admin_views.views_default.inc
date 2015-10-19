@@ -415,13 +415,13 @@ function myhaccp_admin_views_views_default_views() {
     'name' => 'name',
     'mail' => 'mail',
     'created' => 'created',
-    'access' => 'access',
     'field_business_type' => 'field_business_type',
     'field_business_other' => 'field_business_other',
     'field_size' => 'field_size',
     'field_postcode' => 'field_postcode',
     'field_contact_consent' => 'field_contact_consent',
     'login' => 'login',
+    'access' => 'access',
   );
   $handler->display->display_options['style_options']['default'] = 'access';
   $handler->display->display_options['style_options']['info'] = array(
@@ -445,13 +445,6 @@ function myhaccp_admin_views_views_default_views() {
       'empty_column' => 0,
     ),
     'created' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'access' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
@@ -494,7 +487,14 @@ function myhaccp_admin_views_views_default_views() {
       'empty_column' => 0,
     ),
     'login' => array(
-      'sortable' => 0,
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'access' => array(
+      'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
@@ -526,6 +526,8 @@ function myhaccp_admin_views_views_default_views() {
   $handler->display->display_options['fields']['created']['table'] = 'users';
   $handler->display->display_options['fields']['created']['field'] = 'created';
   $handler->display->display_options['fields']['created']['relationship'] = 'user';
+  $handler->display->display_options['fields']['created']['date_format'] = 'short_date';
+  $handler->display->display_options['fields']['created']['second_date_format'] = 'html5_tools_iso8601';
   /* Field: Profile: Business type */
   $handler->display->display_options['fields']['field_business_type']['id'] = 'field_business_type';
   $handler->display->display_options['fields']['field_business_type']['table'] = 'field_data_field_business_type';
@@ -554,13 +556,14 @@ function myhaccp_admin_views_views_default_views() {
   $handler->display->display_options['fields']['login']['table'] = 'users';
   $handler->display->display_options['fields']['login']['field'] = 'login';
   $handler->display->display_options['fields']['login']['relationship'] = 'user';
-  $handler->display->display_options['fields']['login']['date_format'] = 'html5_tools_iso8601';
+  $handler->display->display_options['fields']['login']['date_format'] = 'short_date';
   $handler->display->display_options['fields']['login']['second_date_format'] = 'html5_tools_iso8601';
   /* Field: User: Last access */
   $handler->display->display_options['fields']['access']['id'] = 'access';
   $handler->display->display_options['fields']['access']['table'] = 'users';
   $handler->display->display_options['fields']['access']['field'] = 'access';
   $handler->display->display_options['fields']['access']['relationship'] = 'user';
+  $handler->display->display_options['fields']['access']['exclude'] = TRUE;
   $handler->display->display_options['fields']['access']['date_format'] = 'html5_tools_iso8601';
   $handler->display->display_options['fields']['access']['second_date_format'] = 'html5_tools_iso8601';
   /* Sort criterion: User: Last access */
