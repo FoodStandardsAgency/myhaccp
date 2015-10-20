@@ -19,10 +19,17 @@
 
 .studies-table {
   width: 100%;
+  table-layout: fixed;
   thead {
     border-bottom: 3px solid $grey-4;
     th, th a {
       color: $base-color;
+    }
+    th:first-child {
+      width: 12em;
+    }
+    th:last-child {
+      width: 8em;
     }
   }
   tbody {
@@ -87,6 +94,8 @@ html {
             background-color: #a0a0a0;
           }
         }
+
+
       }
     }
     .ctools-dropdown-container {
@@ -112,6 +121,29 @@ html {
         width: auto;
         &:hover {
           background: #ddd;
+        }
+      }
+    }
+  }
+}
+
+// Modifications for Welsh language where words are longer.
+html.js,
+html {
+  .i18n-cy {
+    .studies-table {
+      thead {
+        th:last-child {
+          width: 8.5em;
+        }
+      }
+    }
+    div.ctools-dropdown.study-more-dropdown {
+      .ctools-dropdown-link-wrapper {
+        a {
+          padding-right: 2.2em;
+          padding-left: 0.5em;
+          min-width: 12em;
         }
       }
     }
