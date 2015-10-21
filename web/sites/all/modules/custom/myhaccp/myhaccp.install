@@ -967,3 +967,11 @@ function myhaccp_update_7039() {
   variable_set('pathauto_i18n_default_node_page', TRUE);
   variable_set('pathauto_node_guidance_cy_pattern', 'cymorth/canllawiau/[node:title]');
 }
+
+/**
+ * Update pathauto language settings.
+ */
+function myhaccp_update_7040() {
+  module_enable(array('myhaccp_content_type_webform'));
+  features_revert_module('myhaccp_content_type_webform');
+}
