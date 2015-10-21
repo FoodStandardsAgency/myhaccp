@@ -965,5 +965,5 @@ function myhaccp_update_7039() {
   module_enable(array('pathauto_i18n', 'pathauto_i18n_node'));
   variable_set('pathauto_i18n_default_node_guidance', TRUE);
   variable_set('pathauto_i18n_default_node_page', TRUE);
-  variable_set('pathauto_node_guidance_cy_pattern', 'help/guidance/[node:title]');
+  variable_set('pathauto_node_guidance_cy_pattern', 'cymorth/canllawiau/[node:title]');
 }
