@@ -61,3 +61,10 @@
 .close-bean-button {
   cursor: pointer;
 }
+
+// The PDF print link block.
+.block-print-ui-print-links {
+  padding-top: 1em;
+  margin-top: 1em;
+  border-top: 1px solid $grey-1;
+}
