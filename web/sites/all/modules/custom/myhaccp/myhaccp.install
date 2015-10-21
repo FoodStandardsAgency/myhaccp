@@ -969,7 +969,7 @@ function myhaccp_update_7039() {
 }
 
 /**
- * Update pathauto language settings.
+ * Install the webform feature.
  */
 function myhaccp_update_7040() {
   module_enable(array('myhaccp_content_type_webform'));
