@@ -1,16 +1,23 @@
 <?php
 
 /**
+ * @file
+ * Preparatory C 2 stage form and validation handler.
+ */
+
+/**
+ * Returns keyed array of form labels for C 2 Physical.
+ *
  * Helper function to return keyed array of form labels or PDF labels allowing
  * us to render different text in the output PDF document than is rendered when
  * selecting options within the form.
  *
  * This function returns an array for preparatory C2 Q4 (Physical hazards).
  *
- *
  * @param bool $form_options
  *   A boolean to indicate if we want the options to be in a format expected
  *   by Drupal's Form API for checkbox options.
+ *
  * @return array
  *   Array of lables with:
  *     ($form_options = TRUE) $key => form label
@@ -18,8 +25,8 @@
  *        $key['form_label'] => form label,
  *        $key['pdf_output'] => output for PDF doc.
  */
-function preparatory_c_2_physical_get_options ($form_options = FALSE) {
-
+function preparatory_c_2_physical_get_options($form_options = FALSE) {
+  // @ignore comment_comment_eg:function
   $options = array();
   $form_options_array = array();
 
@@ -78,24 +85,25 @@ function preparatory_c_2_physical_get_options ($form_options = FALSE) {
       $form_options_array[$key] = $option['form_label'];
     }
     return $form_options_array;
-  } else {
+  }
+  else {
     return $options;
   }
 }
 
-
-
 /**
+ * Returns keyed array of form labels for C 2 Chemical.
+ *
  * Helper function to return keyed array of form labels or PDF labels allowing
  * us to render different text in the output PDF document than is rendered when
  * selecting options within the form.
  *
  * This function returns an array for preparatory C2 Q4 (Chemical hazards).
  *
- *
  * @param bool $form_options
  *   A boolean to indicate if we want the options to be in a format expected
  *   by Drupal's Form API for checkbox options.
+ *
  * @return array
  *   Array of lables with:
  *     ($form_options = TRUE) $key => form label
@@ -103,19 +111,13 @@ function preparatory_c_2_physical_get_options ($form_options = FALSE) {
  *        $key['form_label'] => form label,
  *        $key['pdf_output'] => output for PDF doc.
  */
-function preparatory_c_2_chemical_get_options ($form_options = FALSE) {
-
+function preparatory_c_2_chemical_get_options($form_options = FALSE) {
+  // @ignore comment_comment_eg:function
   $options = array();
   $form_options_array = array();
 
   $options['pesticides']['form_label'] = t('Agricultural residues: Pesticides');
   $options['pesticides']['pdf_output'] = t('Agricultural residues: Pesticides');
-
-  // Commenting out as apparently no longer required
-  // See https://pm.agile.coop/fsa/node/11600
-  // and https://pm.agile.coop/fsa/system/files/myhaccp_extract.pdf
-  //$options['mycotoxins']['form_label'] = t('Ingredient dependent Mycotoxins (e.g. deoxynivalenol in cereals; patulin in apples)');
-  //$options['mycotoxins']['pdf_output'] = t('Ingredient dependent Mycotoxins');
 
   $options['phytotoxins']['form_label'] = t('Ingredient dependent Phyto-toxins (plant-based e.g. lectins in kidney beans; cyanogenic glycosides in cassava)');
   $options['phytotoxins']['pdf_output'] = t('Ingredient dependent Phyto-toxins');
@@ -160,22 +162,25 @@ function preparatory_c_2_chemical_get_options ($form_options = FALSE) {
       $form_options_array[$key] = $option['form_label'];
     }
     return $form_options_array;
-  } else {
+  }
+  else {
     return $options;
   }
 }
 
 /**
+ * Returns keyed array of form labels for C 2 Biological.
+ *
  * Helper function to return keyed array of form labels or PDF labels allowing
  * us to render different text in the output PDF document than is rendered when
  * selecting options within the form.
  *
  * This function returns an array for preparatory C2 Q4 (Biological hazzards).
  *
- *
  * @param bool $form_options
  *   A boolean to indicate if we want the options to be in a format expected
  *   by Drupal's Form API for checkbox options.
+ *
  * @return array
  *   Array of lables with:
  *     ($form_options = TRUE) $key => form label
@@ -183,8 +188,8 @@ function preparatory_c_2_chemical_get_options ($form_options = FALSE) {
  *        $key['form_label'] => form label,
  *        $key['pdf_output'] => output for PDF doc.
  */
-function preparatory_c_2_biological_get_options ($form_options = FALSE) {
-
+function preparatory_c_2_biological_get_options($form_options = FALSE) {
+  // @ignore comment_comment_eg:function
   $options = array();
   $form_options_array = array();
 
@@ -240,11 +245,14 @@ function preparatory_c_2_biological_get_options ($form_options = FALSE) {
       $form_options_array[$key] = $option['form_label'];
     }
     return $form_options_array;
-  } else {
+  }
+  else {
     return $options;
   }
 }
 /**
+ * Returns keyed array of form labels for C 2 Allergens.
+ *
  * Helper function to return keyed array of form labels or PDF labels allowing
  * us to render different text in the output PDF document than is rendered when
  * selecting options within the form.
@@ -254,6 +262,7 @@ function preparatory_c_2_biological_get_options ($form_options = FALSE) {
  * @param bool $form_options
  *   A boolean to indicate if we want the options to be in a format expected
  *   by Drupal's Form API for checkbox options.
+ *
  * @return array
  *   Array of lables with:
  *     ($form_options = TRUE) $key => form label
@@ -261,8 +270,8 @@ function preparatory_c_2_biological_get_options ($form_options = FALSE) {
  *        $key['form_label'] => form label,
  *        $key['pdf_output'] => output for PDF doc.
  */
-function preparatory_c_2_allergens_get_options ($form_options = FALSE) {
-
+function preparatory_c_2_allergens_get_options($form_options = FALSE) {
+  // @ignore comment_comment_eg:function
   $options = array();
   $form_options_array = array();
 
@@ -315,12 +324,15 @@ function preparatory_c_2_allergens_get_options ($form_options = FALSE) {
       $form_options_array[$key] = $option['form_label'];
     }
     return $form_options_array;
-  } else {
+  }
+  else {
     return $options;
   }
 }
 
-
+/**
+ * Preparatory C 2.
+ */
 function preparatory_c_2(&$form_state, &$next_step) {
 
   // Define following step callback. If none set, that implies it is
@@ -336,9 +348,9 @@ function preparatory_c_2(&$form_state, &$next_step) {
   $values = myhaccp_prepare_values($data, $form_state);
 
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   drupal_set_title($stage->title, PASS_THROUGH);
@@ -365,13 +377,12 @@ function preparatory_c_2(&$form_state, &$next_step) {
         '!tip' => _help_tip(),
         '!help' => '<div class="help-text">' . t("State which hazards will be considered in the HACCP plan (i.e. Biological, Physical, Chemical, Allergens). !link", array(
             '!link' => myhaccp_prepare_more_link(15),
-          )) . '</div>'
+          )) . '</div>',
     )) . '</div>',
 
   );
 
   // Physical hazards.
-
   $form['preparatory_c_2']['wrapper']['physical_c_4'] = array(
     '#type' => 'container',
     '#attributes' => array(
@@ -380,7 +391,7 @@ function preparatory_c_2(&$form_state, &$next_step) {
   );
 
   // Get the physical options array from the helper function.
-  $preparatory_c_2_physical_options = preparatory_c_2_physical_get_options ($form_options = TRUE);
+  $preparatory_c_2_physical_options = preparatory_c_2_physical_get_options($form_options = TRUE);
 
   $form['preparatory_c_2']['wrapper']['physical_c_4']['physical'] = array(
     '#type' => 'checkboxes',
@@ -396,7 +407,6 @@ function preparatory_c_2(&$form_state, &$next_step) {
   );
 
   // Chemical.
-
   $form['preparatory_c_2']['wrapper']['chemical_c_4'] = array(
     '#type' => 'container',
     '#attributes' => array(
@@ -405,7 +415,7 @@ function preparatory_c_2(&$form_state, &$next_step) {
   );
 
   // Get the options
-  $preparatory_c_2_chemical_options = preparatory_c_2_chemical_get_options ($form_options = TRUE);
+  $preparatory_c_2_chemical_options = preparatory_c_2_chemical_get_options($form_options = TRUE);
 
   $form['preparatory_c_2']['wrapper']['chemical_c_4']['chemical'] = array(
     '#type' => 'checkboxes',
@@ -421,7 +431,6 @@ function preparatory_c_2(&$form_state, &$next_step) {
   );
 
   // Biological.
-
   $form['preparatory_c_2']['wrapper']['biological_c_4'] = array(
     '#type' => 'container',
     '#attributes' => array(
@@ -446,14 +455,13 @@ function preparatory_c_2(&$form_state, &$next_step) {
   );
 
   // Allergens.
-
   $form['preparatory_c_2']['wrapper']['allergens_c_4'] = array(
     '#type' => 'container',
     '#attributes' => array(
       'id' => 'allergens',
     ),
   );
-  $preparatory_c_2_allergens_options = preparatory_c_2_allergens_get_options ($form_options = TRUE);
+  $preparatory_c_2_allergens_options = preparatory_c_2_allergens_get_options($form_options = TRUE);
   $form['preparatory_c_2']['wrapper']['allergens_c_4']['allergens'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Allergens'),
@@ -467,6 +475,35 @@ function preparatory_c_2(&$form_state, &$next_step) {
     '#default_value' => array_get($values, 'preparatory_c_2.wrapper.allergens_c_4.allergens_other', FALSE),
   );
 
+  // Adding new option "Provide details of any documents or information that
+  // you have used in your HACCP plan.
+  // Placing this in an additional wrapper to maintain the presentation in line
+  // with the previous questions.
+  $form['preparatory_c_2']['wrapper']['c_5'] = array(
+    '#type' => 'fieldset',
+    '#tree' => TRUE,
+    '#attributes' => array(
+      'class' => array(
+        'stage-fieldset',
+      ),
+    ),
+  );
+
+  // Question definition.
+  $form['preparatory_c_2']['wrapper']['c_5']['question'] = array(
+    '#type' => 'textarea',
+    '#resizable' => FALSE,
+    '#title' => t('5. Provide details of any documents or information that you have used in your HACCP plan.'),
+    '#help_text' => t("State any documentation or sources of information used in your HACCP plan e.g.
+FSA Guidance for food business operators on Microbiological criteria for foodstuffs."),
+    // @todo - we will need to add new help text and ensure this links to the correct place.
+    '#help_link' => 15,
+    '#default_value' => array_get($values, 'preparatory_c_2.wrapper.c_5.question', FALSE),
+    '#attributes' => array(
+      'data-parsley-required' => 'false',
+    ),
+  );
+
   $form['#validate'][] = __FUNCTION__ . '_validate';
 
   return $form;
@@ -477,9 +514,9 @@ function preparatory_c_2(&$form_state, &$next_step) {
  */
 function preparatory_c_2_validate($form, &$form_state) {
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   $validator = $stage->getValidator();

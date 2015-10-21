@@ -1,0 +1,8 @@
+name = MyHACCP information notices
+description = Displays a closeable notice on the MyHACCP Tool page
+package = MyHACCP
+core = 7.x
+version = 7.x-1.x
+
+dependencies[] = myhaccp_bean_type_notice
+dependencies[] = close_bean

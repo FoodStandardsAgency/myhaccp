@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the MyHACCP Bean Type: Content feature.
+ */
+
+include_once 'myhaccp_bean_type_content.features.inc';

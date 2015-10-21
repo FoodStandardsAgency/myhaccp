@@ -1,0 +1,5 @@
+name = Close Bean
+description = Closeable Beans (Block Entities)
+core = 7.x
+dependencies[] = bean
+package = Bean

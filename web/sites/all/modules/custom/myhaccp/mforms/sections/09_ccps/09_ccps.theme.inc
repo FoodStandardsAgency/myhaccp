@@ -2,13 +2,13 @@
 
 /**
  * @file
- * Theme function for this stage.
+ * Theme function for stage 9.
  *
  * Prepares the passed form_state data and processes it for output.
  */
 
 /**
- * Implements hook_preprocess_principle_2_1().
+ * Preprocess function for 09_ccps.
  *
  * Prepare the form_state data for presentation in the template file.
  *
@@ -50,7 +50,7 @@ function myhaccp_preprocess_09_ccps(&$variables) {
     array('data' => t('Hazard')),
     array('data' => t('Control Measures')),
     array('data' => t('Decision Tree')),
-    array('data' => t('CCP?'))
+    array('data' => t('CCP?')),
   );
 
   // Generate table row for each hazard.
@@ -60,15 +60,27 @@ function myhaccp_preprocess_09_ccps(&$variables) {
     // Its entirely possible the user has no decision tree so check first.
     if (isset($controlled_hazard['decision_tree']) && $controlled_hazard['decision_tree'] !== 'no') {
       foreach ($controlled_hazard['decision_tree'] as $q => $answer) {
+        switch ($answer) {
+          case 'yes':
+            $answer = t('Yes');
+            break;
+
+          case 'no':
+            $answer = t('No');
+            break;
+
+          default:
+            $answer = t('N/A');
+        }
         if (!empty($answer)) {
-          $qa .= '<strong>' . $q . ':</strong> ' . ucwords($answer) . '<br />';
+          $qa .= '<strong>' . $q . ':</strong> ' . $answer . '<br />';
         }
       }
     }
 
     // Uppercase CCP answer.
     if (!empty($controlled_hazard['ccp'])) {
-      $ccp = ucwords($controlled_hazard['ccp']);
+      $ccp = $controlled_hazard['ccp'] == 'yes' ? t('Yes') : t('No');
     }
 
     $rows[] = array(
@@ -81,7 +93,7 @@ function myhaccp_preprocess_09_ccps(&$variables) {
       // Decision Tree question answers.
       array('data' => $qa),
       // CCP?
-      array('data' => $ccp)
+      array('data' => $ccp),
     );
   }
 

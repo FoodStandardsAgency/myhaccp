@@ -1,9 +1,16 @@
 <?php
 
 /**
+ * @file
+ * Principle 3 stage form and validation handler.
+ */
+
+/**
  * Principle 3.
  */
 function principle_3(&$form_state, &$next_step) {
+  // @ignore comment_comment_eg:function
+
   // Define following step callback. If none set, that implies it is
   // the last step.
   $next_step = 'principle_4';
@@ -16,9 +23,9 @@ function principle_3(&$form_state, &$next_step) {
   $values = myhaccp_prepare_values($data, $form_state);
 
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   drupal_set_title($stage->title, PASS_THROUGH);
@@ -30,7 +37,7 @@ function principle_3(&$form_state, &$next_step) {
 
   // Ensure there are hazards over the threshold.
   if ($hazards->countHazardsOverThreshold() == 0) {
-    drupal_set_message('You have no significant hazards so you cannot continue', 'error');
+    drupal_set_message(t('You have no significant hazards so you cannot continue'), 'error');
     return $form;
   }
 
@@ -42,7 +49,7 @@ function principle_3(&$form_state, &$next_step) {
   // Bail out here with a message if there are no instances of the fieldsets
   // filled out correctly in the previous screen.
   if ($instance_count == 0) {
-    drupal_set_message('You have no critical control points so you cannot continue');
+    drupal_set_message(t('You have no critical control points so you cannot continue'));
     return $form;
   }
 
@@ -61,7 +68,7 @@ function principle_3(&$form_state, &$next_step) {
   $form['principle_3']['intro'] = array(
     '#prefix' => '<p class="intro">',
     '#suffix' => '</p>',
-    '#markup' => t('A critical limit is the maximum or minimum value for the control measure at a CCP to prevent, eliminate or reduce the hazard to an acceptable level.  It separates acceptable (safe) from unacceptable (unsafe) product.'),
+    '#markup' => t('A critical limit is the maximum or minimum value for the control measure at a CCP to prevent, eliminate or reduce the hazard to an acceptable level. It separates acceptable (safe) from unacceptable (unsafe) product.'),
   );
 
   // Build out the instances.
@@ -79,7 +86,7 @@ function principle_3(&$form_state, &$next_step) {
     $form['principle_3'][$hazard_key]['3_1'] = array(
       '#type' => 'textfield',
       '#title' => t('1. What is the critical limit for this critical control point (what separates safe from potentially unsafe product)?'),
-      '#help_text' => t('The critical limit  is a value that separates acceptable from unacceptable e.g. 72 degrees Celsius (can we put this in units please) below this temperature the product is unacceptable above this limit it is considered acceptable.'),
+      '#help_text' => t('The critical limit is a value that separates acceptable from unacceptable e.g. 72 degrees Celsius (can we put this in units please) below this temperature the product is unacceptable above this limit it is considered acceptable.'),
       '#help_link' => 29,
       '#default_value' => array_get($values, "principle_3.$hazard_key.3_1", FALSE),
       '#attributes' => array(
@@ -104,8 +111,8 @@ function principle_3(&$form_state, &$next_step) {
     $form['principle_3'][$hazard_key]['3_3'] = array(
       '#type' => 'radios',
       '#options' => array(
-        'yes' => t('Yes'),
-        'no' => t('No'),
+        'yes' => t('Yes', array(), array('context' => 'Is the critical limit appropriate to control the specific hazard?')),
+        'no' => t('No', array(), array('context' => 'Is the critical limit appropriate to control the specific hazard?')),
       ),
       '#title' => t('3. Is the critical limit appropriate to control the specific hazard?'),
       '#help_text' => t('Will the critical limit you have set prevent, reduce or eliminate the hazard identified?'),
@@ -120,8 +127,8 @@ function principle_3(&$form_state, &$next_step) {
     $form['principle_3'][$hazard_key]['3_4'] = array(
       '#type' => 'radios',
       '#options' => array(
-        'yes' => t('Yes'),
-        'no' => t('No'),
+        'yes' => t('Yes', array(), array('context' => 'Is the critical limit measurable or observable in real time?')),
+        'no' => t('No', array(), array('context' => 'Is the critical limit measurable or observable in real time?')),
       ),
       '#title' => t('4. Is the critical limit measurable or observable in real time?'),
       '#help_text' => t('Measurable examples include things like pH, aw, brix, psi and observable examples include boiling, colour change, steaming, size reduction.'),
@@ -136,8 +143,8 @@ function principle_3(&$form_state, &$next_step) {
     $form['principle_3'][$hazard_key]['3_5'] = array(
       '#type' => 'radios',
       '#options' => array(
-        'yes' => t('Yes'),
-        'no' => t('No'),
+        'yes' => t('Yes', array(), array('context' => 'Is there a target value?')),
+        'no' => t('No', array(), array('context' => 'Is there a target value?')),
       ),
       '#title' => t('5. Is there a target value?'),
       '#help_text' => t('This is more stringent than a critical limit but allows a business to gain control before a critical limit is breached.'),
@@ -145,7 +152,7 @@ function principle_3(&$form_state, &$next_step) {
       '#default_value' => array_get($values, "principle_3.$hazard_key.3_5", array()),
       '#attributes' => array(
         'data-parsley-required' => 'true',
-        'data-parsley-error-message' => t(''),
+        'data-parsley-error-message' => t('Please indicate whether there is a target value.'),
       ),
     );
 
@@ -196,9 +203,9 @@ function principle_3(&$form_state, &$next_step) {
  */
 function principle_3_validate($form, &$form_state) {
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   $validator = $stage->getValidator();
@@ -253,4 +260,3 @@ function principle_3_validate($form, &$form_state) {
   $validator->setErrorMessages();
   $form_state = $validator->getFormState();
 }
-

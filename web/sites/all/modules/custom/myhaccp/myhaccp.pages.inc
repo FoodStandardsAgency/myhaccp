@@ -1,17 +1,24 @@
 <?php
 
 /**
+ * @file
+ * Handles display of some supporting pages for MyHACCP forms.
+ */
+
+/**
  * Menu callback which presents a table of forms to edit.
  */
 function myhaccp_list() {
 
-  drupal_set_title('MyHACCP Web Tool');
+  drupal_set_title(t('MyHACCP Web Tool'));
 
   $node = node_load(44);
 
   if ($node) {
     $node->title = NULL;
     $node_view = node_view($node, 'full');
+    // Remove the node_title field as this is handled by the page.
+    unset($node_view['title_field']);
     $output['intro'] = array(
       '#type' => 'markup',
       '#markup' => drupal_render($node_view),
@@ -20,7 +27,7 @@ function myhaccp_list() {
   else {
     $output['intro'] = array(
       '#type' => 'markup',
-      '#markup' => t('Welcome to the MyHACCP Web Tool, from here you can start new studies and resume studies you have previously started. While using the Web Tool to undertake a Study you will find help available through help icons, which can be clicked on to reveal specific help for that question.')
+      '#markup' => t('Welcome to the MyHACCP Web Tool, from here you can start new studies and resume studies you have previously started. While using the Web Tool to undertake a Study you will find help available through help icons, which can be clicked on to reveal specific help for that question.'),
     );
   }
 
@@ -28,31 +35,25 @@ function myhaccp_list() {
   // Prepare the table header.
   $header = array(
     'name' => array(
-      'data' => 'Study name',
+      'data' => t('Study name'),
     ),
     'created' => array(
-      'data' => 'Created on',
+      'data' => t('Created on'),
       'field' => 'm.created',
       'sort' => 'asc',
     ),
     'changed' => array(
-      'data' => 'Last updated',
+      'data' => t('Last updated'),
       'field' => 'm.changed',
     ),
     'status' => array(
-      'data' => 'Status',
+      'data' => t('Status'),
       'field' => 'm.status',
     ),
     'edit' => array(
       'data' => '',
     ),
-    'delete' => array(
-      'data' => '',
-    ),
-    'complete' => array(
-      'data' => '',
-    ),
-    'pdf' => array(
+    'options' => array(
       'data' => '',
     ),
   );
@@ -60,7 +61,7 @@ function myhaccp_list() {
   // Prepare the rows.
   $rows = array();
   // Prepare the empty text in case there aren't any rows.
-  $empty = t('You haven\'t yet started a study. Would you like to !start', array(
+  $empty = t("You haven't yet started a study. Would you like to !start", array(
     '!start' => l(t('start one now?'), 'tool/study/create'),
   ));
   // Only display this user's form instances.
@@ -105,83 +106,123 @@ function myhaccp_list() {
       'attributes' => array(
         'class' => 'resume-link',
         'title' => t('Resume a study to add or edit your information.'),
-      )
-    )) : '';
-    // The delete link.
-    $delete = user_access('delete own myhaccp study') || user_access('delete any myhaccp study') ? l(t('Delete'), 'tool/study/' . $result->iid . '/delete', array(
-      'attributes' => array(
-        'class' => 'delete-link',
-        'title' => t('Delete your study.'),
       ),
     )) : '';
+
+    $options = array();
     $destination = drupal_get_destination();
+
+    // Download the PDF.
+    $options[] = array(
+      'title' => t('Download'),
+      'href' => 'tool/study/' . $result->iid . '/pdf',
+      'attributes' => array(
+        'class' => 'link--download',
+      ),
+    );
+
     // The complete link if possible.
-    $complete = '';
     if (user_access('edit own myhaccp study') || user_access('edit any myhaccp study')) {
       if ($study->getStatus() == 0 && $validation_status == VALID) {
         // The study is currently incomplete but valid so present a complete
         // button to the user.
-        $complete = l(t('Complete'), 'tool/study/' . $result->iid . '/complete/1', array(
+        $options[] = array(
+          'title' => t('Complete'),
+          'href' => 'tool/study/' . $result->iid . '/complete/1',
           'attributes' => array(
-            'class' => 'complete-link',
+            'class' => 'link--complete',
             'data-valid' => $validation_status,
             'data-status' => $study->getStatus(),
             'title' => t('Mark your study as complete.'),
           ),
           'query' => $destination,
-        ));
+        );
       }
       elseif ($study->getStatus() == 1) {
         // The study is current in a complete state (but may be invalid) so
         // allow the user to change it to incomplete.
-        $complete = l(t('Activate'), 'tool/study/' . $result->iid . '/complete/0', array(
+        $options[] = array(
+          'title' => t('Activate'),
+          'href' => 'tool/study/' . $result->iid . '/complete/0',
           'attributes' => array(
-            'class' => 'complete-link',
+            'class' => 'link--complete',
             'data-valid' => $validation_status,
             'data-status' => $study->getStatus(),
             'title' => t('Re-activate a completed study.'),
           ),
           'query' => $destination,
-        ));
+        );
       }
     }
 
-    // Link to download PDF.
-    $pdf = l(t('Download'), 'tool/study/' . $result->iid . '/pdf', array(
-      'attributes' => array(
-        'class' => array(
-          'download-link',
+    // Clone a study.
+    if (user_access('clone own myhaccp study') || user_access('clone any myhaccp study')) {
+      $options[] = array(
+        'title' => t('Copy'),
+        'href' => 'tool/study/' . $result->iid . '/clone',
+        'attributes' => array(
+          'class' => 'link--clone',
+          'data-valid' => $validation_status,
+          'data-status' => $study->getStatus(),
         ),
-        'data-valid' => $validation_status,
-        'data-status' => $study->getStatus(),
-      ),
+      );
+    }
+
+    // The delete link.
+    if (user_access('delete own myhaccp study') || user_access('delete any myhaccp study')) {
+      $options[] = array(
+        'title' => t('Delete'),
+        'href' => 'tool/study/' . $result->iid . '/delete',
+        'attributes' => array(
+          'class' => 'link--delete',
+          'data-valid' => $validation_status,
+          'data-status' => $study->getStatus(),
+          'title' => t('Delete your study.'),
+        ),
+      );
+    }
+
+    // Prepare the options dropdown button.
+    $options_link = theme('ctools_dropdown', array(
+      'title' => t('More options'),
+      'links' => $options,
+      'class' => 'study-more-dropdown split-button',
     ));
 
     // Convert status integers to a word.
-    $status = $result->status == 1 ? 'Complete' : 'Active';
+    $status = $result->status == 1 ? t('Complete') : t('Active');
 
     $rows[] = array(
       'data' => array(
         'name' => $name,
         'created' => format_date($result->created, 'short_date'),
-        'changed' => $result->changed ? format_date($result->changed, 'short_date') : 'Not updated',
+        'changed' => $result->changed ? format_date($result->changed, 'short_date') : t('Not updated'),
         'status' => $status,
         'edit' => $edit,
-        'delete' => $delete,
-        'complete' => $complete,
-        'pdf' => $pdf,
+        'options' => $options_link,
       ),
     );
   }
 
   $output['new'] = array(
     '#type' => 'link',
-    '#title' => 'Start a new study',
+    '#title' => t('Start a new study'),
     '#href' => 'tool/study/create',
     '#attributes' => array(
       'class' => array('new-study'),
     ),
   );
+
+  if (!empty($results)) {
+    $output['copy'] = array(
+      '#type' => 'link',
+      '#title' => t('Copy an existing study'),
+      '#href' => 'tool/study/copy',
+      '#attributes' => array(
+        'class' => array('copy-study'),
+      ),
+    );
+  }
 
   $output['table'] = array(
     '#type' => 'markup',
@@ -233,9 +274,9 @@ function myhaccp_study_preview($iid) {
     $_SESSION['iid'] = $iid;
     myhaccp_myhaccp_mforms_init();
     // Get the dependency injection container.
-    global $container;
+    global $_myhaccp_container;
     // Get the current study.
-    $configuration = $container['configuration'];
+    $configuration = $_myhaccp_container['configuration'];
     $keys = array_keys($configuration->getMachineNames());
     // Check this study is valid.
     $study = myhaccp_study_get_stages_data($keys, $iid);
@@ -249,16 +290,16 @@ function myhaccp_study_preview($iid) {
         $output .= theme($stage, array('data' => $data));
       }
       // Force the title to be set here.
-      drupal_set_title('Study preview');
+      drupal_set_title(t('Study preview'));
       return $output;
     }
     else {
-      drupal_set_message('The requested study does not exist or has no data.', 'error');
+      drupal_set_message(t('The requested study does not exist or has no data.'), 'error');
       return '';
     }
   }
   else {
-    drupal_set_message('A study ID is required to preview a study.', 'error');
+    drupal_set_message(t('A study ID is required to preview a study.'), 'error');
     return '';
   }
 }
@@ -275,7 +316,6 @@ function myhaccp_study_preview($iid) {
 function myhaccp_study_finish($iid) {
   // Load the node with the text to show.
   $node = node_load(39);
-  drupal_set_title($node->title);
   $node->title = NULL;
   $node_output = node_view($node, 'full');
 
@@ -385,12 +425,12 @@ function myhaccp_study_delete_submit($form, &$form_state) {
 
   if ($result) {
     if (($result[0] !== $user->uid && !user_access('delete any myhaccp study')) || !user_access('delete own myhaccp study')) {
-      drupal_set_message('You don\'t have access to edit this study', 'error');
+      drupal_set_message(t("You don't have access to edit this study"), 'error');
       drupal_goto('tool');
     }
   }
   else {
-    drupal_set_message('This study cannot be found.');
+    drupal_set_message(t('This study cannot be found.'));
   }
 
   // Delete all the associated form stages in mforms_storage_steps.

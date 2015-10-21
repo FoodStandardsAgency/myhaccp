@@ -1,21 +1,26 @@
 <?php
 
 /**
+ * @file
+ * Function essential to setting up and running the MyHACCP form.
+ */
+
+/**
  * Implements hook_init().
  */
 function myhaccp_init() {
   // Add some protection to ensure the class is loaded.
   if (class_exists('Pimple')) {
     myhaccp_di_container();
-    global $container;
-    $files = $container['configuration']->getFiles();
+    global $_myhaccp_container;
+    $files = $_myhaccp_container['configuration']->getFiles();
     // Declare all of the stages (steps) forms.
     foreach ($files as $name => $phase) {
       ctools_include($name, 'myhaccp', "mforms/$phase/$name");
     }
   }
   // Get the current study object.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Try to set the IID based on the path. This is needed to avoid situations
   // where the initialisation of the study and stages happens before the SESSION
   // IID is set. The IID may get set later too.
@@ -34,22 +39,22 @@ function myhaccp_init() {
  */
 function myhaccp_di_container() {
   // Store this as a global.
-  global $container;
-  $container = new Pimple();
-  $container['configuration'] = function($c) {
+  global $_myhaccp_container;
+  $_myhaccp_container = new Pimple();
+  $_myhaccp_container['configuration'] = function($c) {
     return new Configuration();
   };
-  $container['validator'] = $container->factory(function($c) {
+  $_myhaccp_container['validator'] = $_myhaccp_container->factory(function($c) {
     return new Validator();
   });
-  $container['study'] = function($c) {
+  $_myhaccp_container['study'] = function($c) {
     return new Study();
   };
-  $container['phase'] = $container->factory(function($c) {
+  $_myhaccp_container['phase'] = $_myhaccp_container->factory(function($c) {
     $phase = new Phase();
     return $phase;
   });
-  $container['stage'] = $container->factory(function($c) {
+  $_myhaccp_container['stage'] = $_myhaccp_container->factory(function($c) {
     $stage = new Stage();
     $stage->setValidator($c['validator']);
     return $stage;
@@ -124,6 +129,22 @@ function myhaccp_menu() {
     'file' => 'includes/myhaccp.pdf.inc',
     'type' => MENU_NORMAL_ITEM,
   );
+  $items['tool/study/%/clone'] = array(
+    'page callback' => 'myhaccp_study_clone',
+    'page arguments' => array(2),
+    'access callback' => 'myhaccp_access',
+    'access arguments' => array('clone', 2),
+    'file' => 'includes/myhaccp.clone.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
+  $items['tool/study/copy'] = array(
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('myhaccp_study_copy_form'),
+    'access callback' => 'myhaccp_access',
+    'access arguments' => array('clone'),
+    'file' => 'includes/myhaccp.clone.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
   $items['help/%'] = array(
     'title' => 'Help',
     'page arguments' => array(1),
@@ -177,6 +198,14 @@ function myhaccp_permission() {
       'title' => t('View any myhaccp studies'),
       'description' => t('View the output of any user\'s myhaccp studies.'),
     ),
+    'clone own myhaccp study' => array(
+      'title' => t('Clone own myhaccp studies'),
+      'description' => t('Clone a user\'s own myhaccp study.'),
+    ),
+    'clone any myhaccp study' => array(
+      'title' => t('Clone any myhaccp studies'),
+      'description' => t('Clone any user\'s myhaccp study.'),
+    ),
   );
 }
 
@@ -221,6 +250,11 @@ function myhaccp_access($op, $iid = FALSE) {
       return TRUE;
     }
   }
+  elseif ($op == 'clone') {
+    if (user_access('clone any myhaccp study') || user_access('clone own myhaccp study')) {
+      return TRUE;
+    }
+  }
   else {
     // List haccp studies.
     if (user_access('list any myhaccp study') || user_access('list own myhaccp study')) {
@@ -242,7 +276,7 @@ function myhaccp_myhaccp_mforms_init() {
   $controls = MyHACCPMultiStepControls::getInstance($store, $steps, array(
     'preparatory_intro' => array(
       'stage' => 'preparatory',
-      'value' => 'Intro',
+      'value' => t('Intro'),
       'weight' => 0,
     ),
     'preparatory_a' => array(
@@ -292,12 +326,12 @@ function myhaccp_myhaccp_mforms_init() {
     ),
     'preparatory_review' => array(
       'stage' => 'preparatory',
-      'value' => 'Review',
+      'value' => t('Review'),
       'weight' => 10,
     ),
     'principle_intro' => array(
       'stage' => 'principles',
-      'value' => 'Intro',
+      'value' => t('Intro'),
       'weight' => 11,
     ),
     'principle_1_1' => array(
@@ -352,7 +386,7 @@ function myhaccp_myhaccp_mforms_init() {
     ),
     'principle_review' => array(
       'stage' => 'principles',
-      'value' => 'Review',
+      'value' => t('Review'),
       'weight' => 22,
     ),
   ));
@@ -402,19 +436,19 @@ function myhaccp_study_resume($form, &$form_state, $iid = FALSE) {
       $_SESSION['iid'] = $iid;
     }
     else {
-      drupal_set_message('You do not have permission to edit this user\'s form', 'error');
+      drupal_set_message(t("You do not have permission to edit this user's form"), 'error');
       drupal_access_denied();
     }
   }
   else {
     // If there is no current session open then return to the tool.
-    drupal_set_message('Please edit an existing form or create a new one.');
+    drupal_set_message(t('Please edit an existing form or create a new one.'));
     drupal_goto('tool');
   }
   // Return the form.
   // Add the IID to the study object.
-  global $container;
-  $study = $container['study'];
+  global $_myhaccp_container;
+  $study = $_myhaccp_container['study'];
   $study->setCurrentStudy($iid);
   return mforms_build('myhaccp', 'preparatory_intro', $form_state);
 }
@@ -427,21 +461,21 @@ function myhaccp_study_resume($form, &$form_state, $iid = FALSE) {
 function myhaccp_initialise_study(&$study) {
   if (class_exists('Pimple')) {
     // Get the DI container.
-    global $container;
+    global $_myhaccp_container;
     // Initialise the two phases.
-    $preparatory = $container['phase'];
+    $preparatory = $_myhaccp_container['phase'];
     $preparatory->setName('preparatory');
-    $principles = $container['phase'];
+    $principles = $_myhaccp_container['phase'];
     $principles->setName('principle');
     // Add the phases to the study.
     $study->addPhase($preparatory);
     $study->addPhase($principles);
     // Initialise all the stages and add to the correct phase.
-    $configuration = $container['configuration'];
+    $configuration = $_myhaccp_container['configuration'];
     $urls = $configuration->getStageUrls();
     $titles = $configuration->getStageTitles();
     foreach ($configuration->getMachineNames() as $name => $phase) {
-      $stage = $container['stage'];
+      $stage = $_myhaccp_container['stage'];
       // Set the machine name for the stage.
       $stage->setName($name);
       // Set the url for the stage.
@@ -496,6 +530,10 @@ function myhaccp_theme($existing, $type, $theme, $path) {
     $configuration = new Configuration();
     $files = $configuration->getPDFSections();
     foreach ($files as $name => $section) {
+      // Appendixes don't have theme templates and preprocessors.
+      if (isset($section['type']) && $section['type'] == 'appendix') {
+        continue;
+      }
       // Now the hook. We want to pass in the form_state data so have added the
       // data variable. This will get properly sorted by a preprocess function so
       // the template has the correct data to display.
@@ -556,7 +594,7 @@ function _help_tip($link = '#') {
  */
 function myhaccp_saved_message($form, &$form_state) {
   if (isset($form_state['clicked_button']) && $form_state['clicked_button']['#value'] == 'Save this page') {
-    drupal_set_message('Study saved', 'status', FALSE);
+    drupal_set_message(t('Study saved'), 'status', FALSE);
   }
 }
 
@@ -570,9 +608,9 @@ function myhaccp_pager_submit($form, &$form_state) {
     // limit_validation_errors property of the back/step button.
     $form_state['values'] = array_merge($form_state['values'], $_POST);
     // Get the dependency injection container.
-    global $container;
+    global $_myhaccp_container;
     // Get the current study.
-    $study = $container['study'];
+    $study = $_myhaccp_container['study'];
     $stage = $study->getStage($form_state['triggering_element']['#mforms_step']);
     $form_state['redirect'] = 'tool/study/' . $study->getIID() . '/' . $stage->url;
     mforms_submit($form_state['clicked_button']['#store_key'], $form, $form_state);
@@ -589,9 +627,9 @@ function myhaccp_continue_submit($form, &$form_state) {
     // limit_validation_errors property of the back/step button.
     $form_state['values'] += $_POST;
     // Get the dependency injection container.
-    global $container;
+    global $_myhaccp_container;
     // Get the current study.
-    $study = $container['study'];
+    $study = $_myhaccp_container['study'];
     $stage = $study->getStage($form['next_step']['#value']);
     $form_state['redirect'] = 'tool/study/' . $study->getIID() . '/' . $stage->url;
     mforms_submit($form_state['clicked_button']['#store_key'], $form, $form_state);
@@ -608,9 +646,9 @@ function myhaccp_back_submit($form, &$form_state) {
     // limit_validation_errors property of the back/step button.
     $form_state['values'] += $_POST;
     // Get the dependency injection container.
-    global $container;
+    global $_myhaccp_container;
     // Get the current study.
-    $study = $container['study'];
+    $study = $_myhaccp_container['study'];
     $stage = $study->getStage($form['prev_step']['#value']);
     $form_state['redirect'] = 'tool/study/' . $study->getIID() . '/' . $stage->url;
     mforms_submit($form_state['clicked_button']['#store_key'], $form, $form_state);
@@ -628,9 +666,9 @@ function myhaccp_save_submit($form, &$form_state) {
     $form_state['values'] += $_POST;
     $form_state['rebuild'] = TRUE;
     // Get the dependency injection container.
-    global $container;
+    global $_myhaccp_container;
     // Get the current study.
-    $study = $container['study'];
+    $study = $_myhaccp_container['study'];
     $stage = $study->getStage($form['curr_step']['#value']);
     $form_state['redirect'] = 'tool/study/' . $study->getIID() . '/' . $stage->url;
     mforms_submit($form_state['clicked_button']['#store_key'], $form, $form_state);
@@ -731,9 +769,9 @@ function myhaccp_help_modal($nid = FALSE) {
     drupal_goto('help/guidance');
   }
   // Load all the help documents.
-  global $container;
-  $study = $container['study'];
-  $help = $container['configuration']->getHelpPages();
+  global $_myhaccp_container;
+  $study = $_myhaccp_container['study'];
+  $help = $_myhaccp_container['configuration']->getHelpPages();
   $node_content = '<div class="help-content">';
   // Iterate over the two phases.
   foreach ($study->getPhases() as $phase) {
@@ -811,7 +849,7 @@ function myhaccp_prepare_more_link($nid) {
       ),
       'data-dialog' => 'true',
       'data-dialog-options' => '{"width":"85%","show":"500","hide":"500","draggable":"false"}',
-      'title' => 'Link through to further guidance on this subject.',
+      'title' => t('Link through to further guidance on this subject.'),
       'target' => '_blank',
       'data-topic' => $node->title,
     ),
@@ -975,6 +1013,11 @@ function myhaccp_form_user_register_form_alter(&$form, $form_state) {
       ),
     ),
   );
+  // Add some introductory text to explain that the asterisk * means a required field.
+  $form['intro'] = array(
+    '#markup' => t('Fields marked with an asterisk (*) are required.'),
+    '#weight' => -20,
+  );
 }
 
 /**
@@ -1058,7 +1101,7 @@ function myhaccp_user_owns_study($iid, $user) {
  *   The form state array.
  */
 function myhaccp_form_user_pass_reset_alter(&$form, $form_state) {
-  // Avoid fatal errors is password policy module gets uninstalled.
+  // Avoid fatal errors if password policy module gets uninstalled.
   if (module_exists('password_policy')) {
     // For some reason this runs twice.
     $ran = &drupal_static(__FUNCTION__);
@@ -1077,33 +1120,32 @@ function myhaccp_form_user_pass_reset_alter(&$form, $form_state) {
   }
 }
 
+/**
+ * Given a file will validate the image as either a PDF or an image.
+ */
 function myhaccp_validate_image(stdClass $file, $options = array()) {
   $errors = array();
+
+  $path = drupal_realpath($file->uri);
+
+  // First check whether this is a PDF.
+  if ($file->filemime == 'application/pdf') {
+    // Check whether the PDF starts with '%PDF'.
+    if (file_get_contents($path, FALSE, NULL, 0, 4) === '%PDF') {
+      // The characters are present at the beginning of the file so return
+      // without error.
+      return array();
+    }
+    else {
+      $errors[] = t('The file you uploaded does not appear to be a valid PDF file.');
+    }
+  }
 
   // Try to load the image.
   $image = image_load($file->uri);
   if (!$image) {
     $errors[] = t('The file you uploaded does not appear to be a valid image file.');
   }
-  return $errors;
-}
 
-/**
- * Statically cache data.
- *
- * @param $function
- * @return callable
- *
- * @see http://www.palantir.net/presentations/phptek14-functional-php/#/10/3
- */
-function memoize($function) {
-  return function() use ($function) {
-    static $results = array();
-    $args = func_get_args();
-    $key = serialize($args);
-    if (empty($results[$key])) {
-      $results[$key] = call_user_func_array($function, $args);
-    }
-    return $results[$key];
-  };
+  return $errors;
 }

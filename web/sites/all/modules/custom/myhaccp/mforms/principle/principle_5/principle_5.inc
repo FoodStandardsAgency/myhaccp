@@ -1,9 +1,16 @@
 <?php
 
 /**
+ * @file
+ * Principle 5 stage form and validation handler.
+ */
+
+/**
  * Principle 5.
  */
 function principle_5(&$form_state, &$next_step) {
+  // @ignore comment_comment_eg:function
+
   // Define following step callback. If none set, that implies it is
   // the last step.
   $next_step = 'principle_6';
@@ -16,9 +23,9 @@ function principle_5(&$form_state, &$next_step) {
   $values = myhaccp_prepare_values($data, $form_state);
 
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   drupal_set_title($stage->title, PASS_THROUGH);
@@ -48,7 +55,7 @@ function principle_5(&$form_state, &$next_step) {
 
   // Ensure there are hazards over the threshold.
   if ($hazards->countHazardsOverThreshold() == 0) {
-    drupal_set_message('You have no significant hazards so you cannot continue', 'error');
+    drupal_set_message(t('You have no significant hazards so you cannot continue'), 'error');
     return $form;
   }
 
@@ -61,7 +68,7 @@ function principle_5(&$form_state, &$next_step) {
   // Bail out here with a message if there are no instances of the fieldsets
   // filled out correctly in the previous screen.
   if ($instance_count == 0) {
-    drupal_set_message('You have no critical control points so you cannot continue');
+    drupal_set_message(t('You have no critical control points so you cannot continue'));
     return $form;
   }
 
@@ -108,7 +115,7 @@ function principle_5(&$form_state, &$next_step) {
       '#resizable' => FALSE,
       '#title' => t('3. What happens to the product created during the period that a CCP was out of control? Detail any variation in handling this product that relates to, a parameter, eg degree of control lost.'),
       '#default_value' => array_get($values, "principle_5.$hazard_key.5_3", FALSE),
-      '#help_text' => t("Describe what will happen to the affected product?  E.g. will the product be disposed of ?  If so, how? Please provide all details. "),
+      '#help_text' => t("Describe what will happen to the affected product? E.g. will the product be disposed of ? If so, how? Please provide all details."),
       '#help_link' => 31,
       '#attributes' => array(
         'data-parsley-required' => 'true',
@@ -132,8 +139,8 @@ function principle_5(&$form_state, &$next_step) {
     $form['principle_5'][$hazard_key]['5_5'] = array(
       '#type' => 'radios',
       '#options' => array(
-        'yes' => t('Yes'),
-        'no' => t('No'),
+        'yes' => t('Yes', array(), array('context' => 'Are all personnel trained and competent for performing the activities stated?')),
+        'no' => t('No', array(), array('context' => 'Are all personnel trained and competent for performing the activities stated?')),
       ),
       '#title' => t('5. Are all personnel (identified in any of the steps from 1-6 for all CCP’s) trained and competent for performing the activities stated?'),
       '#default_value' => array_get($values, "principle_5.$hazard_key.5_5", FALSE),
@@ -148,8 +155,8 @@ function principle_5(&$form_state, &$next_step) {
     $form['principle_5'][$hazard_key]['5_6'] = array(
       '#type' => 'radios',
       '#options' => array(
-        'yes' => t('Yes'),
-        'no' => t('No'),
+        'yes' => t('Yes', array(), array('context' => 'Are records of competency maintained?')),
+        'no' => t('No', array(), array('context' => 'Are records of competency maintained?')),
       ),
       '#title' => t('6. Are records of competency maintained?'),
       '#help_text' => t("The competencies of staff should be reviewed. It may be necessary to train staff, refresh their training, provide on-the-job experience, records of which should be kept to reflect that staff are capable of performing the task they are undertaking"),
@@ -175,9 +182,9 @@ function principle_5(&$form_state, &$next_step) {
  */
 function principle_5_validate($form, &$form_state) {
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   $validator = $stage->getValidator();
@@ -210,4 +217,3 @@ function principle_5_validate($form, &$form_state) {
   $form_state = $validator->getFormState();
 
 }
-

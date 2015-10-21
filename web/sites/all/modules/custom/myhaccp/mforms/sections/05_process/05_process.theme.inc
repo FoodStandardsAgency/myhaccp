@@ -2,13 +2,13 @@
 
 /**
  * @file
- * Theme function for this stage.
+ * Theme function for stage 5.
  *
  * Prepares the passed form_state data and processes it for output.
  */
 
 /**
- * Implements hook_preprocess_preparatory_g().
+ * Preprocess function for 05_process.
  *
  * Prepare the form_state data for presentation in the template file.
  *
@@ -17,6 +17,8 @@
  *   to display.
  */
 function myhaccp_preprocess_05_process(&$variables) {
+  // @ignore comment_comment_eg:function
+
   // This section is made up of data from two stages.
   $study = $variables['study'];
   $data = $study->getStage('preparatory_g')->getData();
@@ -28,31 +30,7 @@ function myhaccp_preprocess_05_process(&$variables) {
   if (!empty($preparatory_g['g_2'])) {
     $file = is_array($preparatory_g['g_2']) && array_key_exists('fid', $preparatory_g['g_2']) ? file_load($preparatory_g['g_2']['fid']) : file_load($preparatory_g['g_2']);
     if (!empty($file)) {
-      // Prepare an image derivative of the flow diagram image
-      // at a reasonable maximum size (2048px wide).
-      // Due to issues with private file permissions (see case 12347) we need to
-      // make a copy of the image somewhere it can be processed as an anonymous
-      // user.
-      $image_url = drupal_realpath($file->uri);
-      $extension = pathinfo($image_url, PATHINFO_EXTENSION);
-      // Store the file name in a global so we can remove it later.
-      global $temp_file_name;
-      // Prepare a filename in the temporary directory for a copy of the file.
-      $temp_file_name = file_directory_temp() . '/' . md5($file->uri) . '.' . $extension;
-      // Output the image derivative into the temporary file location.
-      $style = image_style_load('pdf_flow_diagram');
-      $success = file_exists($temp_file_name) || image_style_create_derivative($style, $file->uri, $temp_file_name);
-      if ($success) {
-        // Pass through the path to the file for the PDF processor to make use of.
-        $variables['flow_diagram_url'] = $temp_file_name;
-      }
-      else {
-        watchdog('myhaccp', t('There was a problem creating the image derivative for the PDF in the temp directory.'), array(), WATCHDOG_ERROR);
-      }
-    }
-    else {
-      // If the file couldn't be loaded then log a watchdog error.
-      watchdog('myhaccp', t('Whilst rendering the PDF, the flow diagram could not be loaded.'), array(), WATCHDOG_ERROR);
+      $variables['flow_diagram_text'] = t('See Appendix A for the flow diagram.');
     }
   }
 

@@ -1,7 +1,12 @@
 <?php
 
 /**
- * Principle 2, Question (part) 4.
+ * @file
+ * Principle 2 part 2 form and validation handler.
+ */
+
+/**
+ * Principle 2 part 2.
  */
 function principle_2_2(&$form_state, &$next_step) {
   // Define following step callback. If none set, that implies it is
@@ -16,9 +21,9 @@ function principle_2_2(&$form_state, &$next_step) {
   $values = myhaccp_prepare_values($data, $form_state);
 
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   drupal_set_title($stage->title, PASS_THROUGH);
@@ -49,13 +54,13 @@ function principle_2_2(&$form_state, &$next_step) {
 
   if ($hazards->countHazards() == 0) {
     // There were no hazards.
-    drupal_set_message('You must add at least a step number and step name in step 1.1 as well as at least a hazard for the step. Please return to 1.1', 'error', FALSE);
+    drupal_set_message(t('You must add at least a step number and step name in step 1.1 as well as at least a hazard for the step. Please return to 1.1'), 'error', FALSE);
     return $form;
   }
 
   // Ensure there are hazards over the threshold.
   if ($hazards->countHazardsOverThreshold() == 0) {
-    drupal_set_message('You have no significant hazards so you cannot continue', 'error', FALSE);
+    drupal_set_message(t('You have no significant hazards so you cannot continue'), 'error', FALSE);
     return $form;
   }
 
@@ -137,9 +142,9 @@ function principle_2_2(&$form_state, &$next_step) {
         $form['principle_2_2']['instance_table'][$hazard_key]['decision_tree'][$id] = array(
           '#type' => 'radios',
           '#options' => array(
-            'yes' => t('Yes'),
-            'no' => t('No'),
-            'n/a' => t('N/A'),
+            'yes' => t('Yes', array(), array('context' => 'Decision tree')),
+            'no' => t('No', array(), array('context' => 'Decision tree')),
+            'n/a' => t('N/A', array(), array('context' => 'Decision tree')),
           ),
           '#title' => $id,
           '#default_value' => array_get($values, "principle_2_2.instance_table.$hazard_key.decision_tree.$id", array()),
@@ -148,7 +153,7 @@ function principle_2_2(&$form_state, &$next_step) {
               'question-' . $id,
             ),
             'data-parsley-required' => 'true',
-            'data-parsley-error-message' => t('Please indicate \'Yes\', \'No\' or \'N/A\' for this question in the decision tree.'),
+            'data-parsley-error-message' => t("Please indicate 'Yes', 'No' or 'N/A' for this question in the decision tree."),
           ),
         );
       }
@@ -164,8 +169,8 @@ function principle_2_2(&$form_state, &$next_step) {
     $form['principle_2_2']['instance_table'][$hazard_key]['ccp'] = array(
       '#type' => 'radios',
       '#options' => array(
-        'yes' => t('Yes'),
-        'no' => t('No'),
+        'yes' => t('Yes', array(), array('context' => 'CCP')),
+        'no' => t('No', array(), array('context' => 'CCP')),
       ),
       '#default_value' => array_get($values, "principle_2_2.instance_table.$hazard_key.ccp", array()),
       '#attributes' => array(
@@ -189,9 +194,9 @@ function principle_2_2(&$form_state, &$next_step) {
  */
 function principle_2_2_validate($form, &$form_state) {
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   $validator = $stage->getValidator();
@@ -238,4 +243,3 @@ function principle_2_2_validate($form, &$form_state) {
   $form_state = $validator->getFormState();
 
 }
-

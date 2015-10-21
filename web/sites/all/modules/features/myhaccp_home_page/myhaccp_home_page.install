@@ -1,0 +1,74 @@
+<?php
+
+/**
+ * @file
+ * Install functions for the home page.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function myhaccp_home_page_install() {
+  $intro = '<p>MyHACCP is a free web tool that will guide you through the process of developing a food safety management system based on Hazard Analysis and Critical Control Point (HACCP) principles as required by EU Food Hygiene rules.</p>
+<p>The MyHACCP Tool will be able to produce a food safety management system that shows how your business identifies and controls any hazards that may occur in the food you manufacture. You will find a range of resources to assist you with completing the tool and with understanding implementation of HACCP principles more generally in the Help section.</p>';
+
+  $first = '<h2>Who is this site for?</h2>
+<p>MyHACCP is aimed at small food manufacturing businesses in the UK, although businesses in other food sectors may find it useful. This is likely to include businesses with fifty or fewer employees. Access to the tool is not available to food businesses outside the UK.</p>
+<p>&nbsp;</p>
+<p><em>Note:</em><br />
+If your food production processes are simple, as in most retail outlets such as restaurants, cafes and sandwich bars for example – you are likely to find that the Food Standards Agency’s Safer Food Better Business (SFBB) pack provides a simpler approach that may meet your needs.</p>';
+
+  $second = '<h2>What next?</h2>
+<ol>
+	<li><a href="/user/register"><span>Sign up for an account</span></a></li>
+	<li><span>Start the MyHACCP process at the beginning or at any point – you can come back and finish it at any time</span></li>
+	<li><span>Complete the MyHACCP process&nbsp; - you can preview what the&nbsp;output will look like at any stage</span></li>
+	<li><span>Print or download the completed food safety management system documents for your records</span></li>
+</ol>';
+
+  // Create three new bean blocks.
+  $bean = bean_create(array('type' => 'content'));
+  $bean->label = 'Home page: Introduction';
+  $bean->title = 'Helping you produce safe food';
+  $bean->delta = 'homepage_intro';
+  $bean->field_description = array(
+    'en' => array(
+      0 => array(
+        'value' => $intro,
+        'format' => 'full_html',
+      ),
+    ),
+  );
+  $bean->save();
+
+  $bean = bean_create(array('type' => 'content'));
+  $bean->label = 'Home page: First content';
+  $bean->title = '';
+  $bean->delta = 'homepage_first';
+  $bean->field_description = array(
+    'en' => array(
+      0 => array(
+        'value' => $first,
+        'format' => 'full_html',
+      ),
+    ),
+  );
+  $bean->save();
+
+  $bean = bean_create(array('type' => 'content'));
+  $bean->label = 'Home page: Second content';
+  $bean->title = '';
+  $bean->delta = 'homepage_second';
+  $bean->field_description = array(
+    'en' => array(
+      0 => array(
+        'value' => $second,
+        'format' => 'full_html',
+      ),
+    ),
+  );
+  $bean->save();
+
+  // Set the home page variable.
+  variable_set('site_frontpage', 'home');
+}

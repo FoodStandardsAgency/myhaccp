@@ -1,11 +1,12 @@
 <?php
+
 /**
  * @file
  * Validation handler class.
  */
 
 /**
- * Class validator
+ * Class validator.
  *
  * A stage validation used to validate multiple elements and set or clear
  * messages.
@@ -26,6 +27,7 @@ class Validator {
    * Sets the IID of the study.
    *
    * @param int $iid
+   *   The IID to store.
    */
   public function setIID($iid) {
     $this->iid = $iid;
@@ -48,18 +50,30 @@ class Validator {
     return $this->formState;
   }
 
+  /**
+   * Sets the given stage.
+   */
   public function setStage(Stage $stage) {
     $this->stage = $stage;
   }
 
+  /**
+   * Gets the form.
+   */
   public function getForm() {
     return $this->form;
   }
 
+  /**
+   * Sets the form.
+   */
   public function setForm($form) {
     $this->form = $form;
   }
 
+  /**
+   * Gets the stage.
+   */
   public function getStage() {
     return $this->stage;
   }
@@ -158,10 +172,16 @@ class Validator {
     return $data;
   }
 
+  /**
+   * Sets the result.
+   */
   public function setResult($target, $result) {
     $this->results[$target] = $result;
   }
 
+  /**
+   * Gets the result.
+   */
   public function getResult($target) {
     return isset($this->results[$target]) ? $this->results[$target] : FALSE;
   }
@@ -195,7 +215,6 @@ class Validator {
    * @param string|array $methods
    *   The method to be used. Must exist in validation class. If a string will
    *   be converted to an array for iteration.
-   *
    * @param string $target
    *   The element array target in dot notation.
    *
@@ -214,7 +233,7 @@ class Validator {
       $valid[] = $validation->$method();
     }
     // Check all results of validation on this target. If any of them are FALSE
-    // then add a FALSE entry to results and set the status to FALSE;
+    // then add a FALSE entry to results and set the status to FALSE.
     if (in_array(FALSE, $valid)) {
       $this->setStatus(INVALID);
       $this->setResult($target, INVALID);
@@ -249,10 +268,6 @@ class Validator {
         // This field has failed validation and needs to have a message
         // displayed.
         $message = array_get($this->getForm(), $target . '.#attributes.data-parsley-error-message', '');
-//        watchdog('MyHACCP', 'Validation error, message for field %field on stage %stage is missing', array(
-//          '%field' => $target,
-//          '%stage' => $stage_name,
-//        ), WATCHDOG_DEBUG);
         $form_state = $this->getFormState();
         $form_state['values']['validate'][$stage_name][$target] = $message;
         $this->setFormState($form_state);
@@ -291,6 +306,7 @@ class Validator {
       $this->setFormState($form_state);
     }
     if (isset($_POST['validate'])) {
+      // @ignore security_17
       unset($_POST['validate']);
     }
 
@@ -365,7 +381,7 @@ class Validator {
 }
 
 /**
- * Class validation
+ * Class validation.
  *
  * A single validation element to be tested for validity.
  */
@@ -450,6 +466,7 @@ class Validation {
    *   TRUE if option 'no' is not chosen, FALSE if it has been chosen.
    *
    * @throws Exception
+   *   Only radio types are allowed.
    */
   public function radioIsNotNo() {
     if ($this->type != 'radios') {

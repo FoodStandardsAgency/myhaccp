@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Theme functions for the MyHACCP form.
+ */
+
+/**
  * Theme function to render the fields in a table.
  *
  * Principle 1 Question 1.
@@ -25,16 +30,16 @@ function theme_myhaccp_1_2_table($variables) {
     'hazard_name' => t('Hazard'),
     'hazard_desc' => t('Hazard Description !tip !help', array(
       '!tip' => _help_tip(),
-      '!help' => '<div class="help-text">' . t("Provide a detailed description of the hazard. Think about this stage carefully. It is common to make errors here and this will lead to implications further on. By describing the hazard in more detail, it will help you later when you specify the control. Be aware that there may be more than one 'descriptor' for a hazard. If you identify more than one descriptor (this is quite common) you should go back to <strong>Principle 1.1</strong> and add an additional hazard, this time however it should have a descriptor in brackets after it (i.e. Salmonella spp (introduction) Salmonella spp (growth)). It is important that you read the additional information.<br/> !link", array(
+      '!help' => '<div class="help-text">' . t("Provide a detailed description of the hazard. Think about this stage carefully. It is common to make errors here and this will lead to implications further on. By describing the hazard in more detail, it will help you later when you specify the control. Be aware that there may be more than one 'descriptor' for a hazard. If you identify more than one descriptor (this is quite common) you should go back to <strong>Principle 1.1</strong> and add an additional hazard, this time however it should have a descriptor in brackets after it (i.e. Salmonella spp (introduction) Salmonella spp (growth)). It is important that you read the additional information.<br> !link", array(
           '!link' => myhaccp_prepare_more_link(17),
-        )) . '</div>'
+        )) . '</div>',
     )),
     'severity' => array(
       'data' => t('Severity (1-3) !tip !help', array(
         '!tip' => _help_tip(),
         '!help' => '<div class="help-text">' . t("Rate on scale of 1 - 3 (1 = minor, 3 = long-term illness leading to death or death). !link", array(
           '!link' => myhaccp_prepare_more_link(17),
-        )) . '</div>'
+        )) . '</div>',
         )),
       'class' => array('severity'),
     ),
@@ -43,7 +48,7 @@ function theme_myhaccp_1_2_table($variables) {
         '!tip' => _help_tip(),
         '!help' => '<div class="help-text">' . t("Rate on scale of 1-3 (1=unlikely to occur but might, 3=definitely will occur (at some time if it hasn't occurred in the past). !link", array(
             '!link' => myhaccp_prepare_more_link(17),
-          )) . '</div>'
+          )) . '</div>',
         )),
       'class' => array('likelihood'),
     ),
@@ -52,7 +57,7 @@ function theme_myhaccp_1_2_table($variables) {
         '!tip' => _help_tip(),
         '!help' => '<div class="help-text">' . t("Severity score multiplied by likelihood score. !link", array(
             '!link' => myhaccp_prepare_more_link(17),
-          )) . '</div>'
+          )) . '</div>',
         )),
       'class' => array('significance'),
     ),
@@ -92,7 +97,7 @@ function theme_myhaccp_1_3_table($variables) {
     'control_measure' => array(
       'data' => t('Control Measure !tip !help', array(
         '!tip' => _help_tip(27),
-        '!help' => '<div class="help-text">For each significant hazard state the control measure (an action and/or activity that is required to prevent, eliminate or reduce the occurrence of the hazard to an acceptable level). ' . myhaccp_prepare_more_link(27) . '</div>'
+        '!help' => '<div class="help-text">' . t('For each significant hazard state the control measure (an action and/or activity that is required to prevent, eliminate or reduce the occurrence of the hazard to an acceptable level).') . myhaccp_prepare_more_link(27) . '</div>',
       )),
       'class' => array('control-measure'),
     ),
@@ -129,8 +134,6 @@ function theme_myhaccp_2_2_table($variables) {
     $rows[] = $row;
   }
 
-
-
   // Build the table, with a row per hazard.
   // The table has 3 columns.
   $header = array(
@@ -151,14 +154,14 @@ function theme_myhaccp_2_2_table($variables) {
     'decision_tree' => array(
       'data' => t('Decision Tree Q\'s !tip !help', array(
         '!tip' => _help_tip(28),
-         '!help' => '<div class="help-text">Be very careful to answer the questions correctly.' . myhaccp_prepare_more_link(28) . '</div>'
+         '!help' => '<div class="help-text">' . t('Be very careful to answer the questions correctly.') . myhaccp_prepare_more_link(28) . '</div>',
       )),
       'class' => array('decision-tree'),
     ),
     'ccp' => array(
       'data' => t('CCP? !tip !help', array(
         '!tip' => _help_tip(28),
-        '!help' => '<div class="help-text">Providing you have answered  the  questions to the decision tree correctly , and entered the answers  into the system  correctly this will show whether the control of the hazard is regarded as a critical control point or not according to Campden or Codex.</div>'
+        '!help' => '<div class="help-text">' . t('Providing you have answered the questions to the decision tree correctly, and entered the answers into the system correctly this will show whether the control of the hazard is regarded as a critical control point or not according to Campden or Codex.') . '</div>',
       )),
       'class' => array('ccp'),
     ),

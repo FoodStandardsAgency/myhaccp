@@ -1,0 +1,44 @@
+<?php
+
+/**
+ * @file
+ * Install functions for the resources page.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function myhaccp_resources_page_install() {
+  $links = '<p>This section contains links to information on external websites, that you may find useful. The Food Standards Agency has no responsibility for the content of external sites.</p>';
+
+  $downloads = '<p>This section contains a range of useful reference material on HACCP in general, examples of completed templates and model documents that can be downloaded and modified for own use.</p>';
+
+  // Create two new bean blocks.
+  $bean = bean_create(array('type' => 'content'));
+  $bean->label = 'Resources page: Links';
+  $bean->title = '';
+  $bean->delta = 'resources_links';
+  $bean->field_description = array(
+    'en' => array(
+      0 => array(
+        'value' => $links,
+        'format' => 'full_html',
+      ),
+    ),
+  );
+  $bean->save();
+
+  $bean = bean_create(array('type' => 'content'));
+  $bean->label = 'Resources page: Downloads';
+  $bean->title = '';
+  $bean->delta = 'resources_downloads';
+  $bean->field_description = array(
+    'en' => array(
+      0 => array(
+        'value' => $downloads,
+        'format' => 'full_html',
+      ),
+    ),
+  );
+  $bean->save();
+}

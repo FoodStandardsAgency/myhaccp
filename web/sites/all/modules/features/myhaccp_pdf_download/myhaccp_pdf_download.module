@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the MyHaccp PDF Download feature.
+ */
+
+include_once 'myhaccp_pdf_download.features.inc';

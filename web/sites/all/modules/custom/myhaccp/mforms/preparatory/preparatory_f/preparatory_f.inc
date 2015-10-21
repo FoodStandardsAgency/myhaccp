@@ -1,6 +1,15 @@
 <?php
 
+/**
+ * @file
+ * Preparatory F stage form and validation handler.
+ */
+
+/**
+ * Preparatory F.
+ */
 function preparatory_f(&$form_state, &$next_step) {
+  // @ignore comment_comment_eg:function
 
   // Define following step callback. If none set, that implies it is
   // the last step.
@@ -15,9 +24,9 @@ function preparatory_f(&$form_state, &$next_step) {
   $values = myhaccp_prepare_values($data, $form_state);
 
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   drupal_set_title($stage->title, PASS_THROUGH);
@@ -59,8 +68,8 @@ function preparatory_f(&$form_state, &$next_step) {
   $form['preparatory_f']['f_2'] = array(
     '#type' => 'radios',
     '#options' => array(
-      'yes' => t('Yes'),
-      'no' => t('No'),
+      'yes' => t('Yes', array(), array('context' => 'Is the product suitable for consumption by the general public?')),
+      'no' => t('No', array(), array('context' => 'Is the product suitable for consumption by the general public?')),
     ),
     '#title' => t('2. Is the product suitable for consumption by the general public?'),
     '#help_link' => 19,
@@ -76,8 +85,8 @@ function preparatory_f(&$form_state, &$next_step) {
   $form['preparatory_f']['f_3'] = array(
     '#type' => 'radios',
     '#options' => array(
-      'yes' => t('Yes'),
-      'no' => t('No'),
+      'yes' => t('Yes', array(), array('context' => 'Is the product suitable for the young?')),
+      'no' => t('No', array(), array('context' => 'Is the product suitable for the young?')),
     ),
     '#title' => t('3. Is the product suitable for the young?'),
     '#help_link' => 19,
@@ -93,8 +102,8 @@ function preparatory_f(&$form_state, &$next_step) {
   $form['preparatory_f']['f_4'] = array(
     '#type' => 'radios',
     '#options' => array(
-      'yes' => t('Yes'),
-      'no' => t('No'),
+      'yes' => t('Yes', array(), array('context' => 'Is the product suitable for the elderly?')),
+      'no' => t('No', array(), array('context' => 'Is the product suitable for the elderly?')),
     ),
     '#title' => t('4. Is the product suitable for the elderly?'),
     '#help_link' => 19,
@@ -110,8 +119,8 @@ function preparatory_f(&$form_state, &$next_step) {
   $form['preparatory_f']['f_5'] = array(
     '#type' => 'radios',
     '#options' => array(
-      'yes' => t('Yes'),
-      'no' => t('No'),
+      'yes' => t('Yes', array(), array('context' => 'Is the product suitable for pregnant ladies?')),
+      'no' => t('No', array(), array('context' => 'Is the product suitable for pregnant ladies?')),
     ),
     '#title' => t('5. Is the product suitable for pregnant ladies?'),
     '#help_link' => 19,
@@ -127,8 +136,8 @@ function preparatory_f(&$form_state, &$next_step) {
   $form['preparatory_f']['f_6'] = array(
     '#type' => 'radios',
     '#options' => array(
-      'yes' => t('Yes'),
-      'no' => t('No'),
+      'yes' => t('Yes', array(), array('context' => 'Is the product suitable for the immunosuppressed / immunocompromised?')),
+      'no' => t('No', array(), array('context' => 'Is the product suitable for the immunosuppressed / immunocompromised?')),
     ),
     '#title' => t('6. Is the product suitable for the immunosuppressed / immunocompromised?'),
     '#help_link' => 19,
@@ -144,8 +153,8 @@ function preparatory_f(&$form_state, &$next_step) {
   $form['preparatory_f']['f_7'] = array(
     '#type' => 'radios',
     '#options' => array(
-      'yes' => t('Yes'),
-      'no' => t('No'),
+      'yes' => t('Yes', array(), array('context' => 'Is the product suitable for people with allergies or intolerances?')),
+      'no' => t('No', array(), array('context' => 'Is the product suitable for people with allergies or intolerances?')),
     ),
     '#title' => t('7. Is the product suitable for people with allergies or intolerances?'),
     '#help_link' => 19,
@@ -181,9 +190,9 @@ function preparatory_f(&$form_state, &$next_step) {
  */
 function preparatory_f_validate($form, &$form_state) {
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   $validator = $stage->getValidator();

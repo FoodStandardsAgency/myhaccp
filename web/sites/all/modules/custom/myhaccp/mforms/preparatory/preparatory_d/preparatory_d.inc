@@ -1,6 +1,15 @@
 <?php
 
+/**
+ * @file
+ * Preparatory D stage form and validation handler.
+ */
+
+/**
+ * Preparatory D.
+ */
 function preparatory_d(&$form_state, &$next_step) {
+  // @ignore comment_comment_eg:function
 
   // Define following step callback. If none set, that implies it is
   // the last step.
@@ -15,9 +24,9 @@ function preparatory_d(&$form_state, &$next_step) {
   $values = myhaccp_prepare_values($data, $form_state);
 
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   drupal_set_title($stage->title, PASS_THROUGH);
@@ -173,14 +182,13 @@ function preparatory_d(&$form_state, &$next_step) {
   $form['preparatory_d']['instance_0']['d_1']['#attributes']['data-parsley-error-message'] = t('Please add the name of the HACCP lead for the business.');
   $form['preparatory_d']['instance_0']['d_1']['#help_text'] = t("State the person's name.");
 
-
   // Do you consider the team to have sufficient skills?
   $form['preparatory_d']['team_skills'] = array(
     '#type' => 'radios',
     '#weight' => 10,
     '#options' => array(
-      'Yes' => t('Yes'),
-      'No' => t('No'),
+      'Yes' => t('Yes', array(), array('context' => 'Do you consider the team to have sufficient skills?')),
+      'No' => t('No', array(), array('context' => 'Do you consider the team to have sufficient skills?')),
     ),
     '#title' => t('Do you consider the team to have sufficient skills (scientific/technical knowledge and HACCP expertise) to ensure the HACCP study will be effective?'),
     '#help_link' => 21,
@@ -194,7 +202,7 @@ function preparatory_d(&$form_state, &$next_step) {
 
   $form['preparatory_d']['team_no_skills'] = array(
     '#type' => 'textarea',
-    '#title' => 'Please explain why you have answered no to this question and how you propose to address this issue.',
+    '#title' => t('Please explain why you have answered no to this question and how you propose to address this issue.'),
     '#default_value' => array_get($values, 'preparatory_d.team_no_skills', FALSE),
     '#weight' => 11,
     '#attributes' => array(
@@ -253,9 +261,9 @@ function preparatory_d(&$form_state, &$next_step) {
  */
 function preparatory_d_validate($form, &$form_state) {
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   $validator = $stage->getValidator();
@@ -274,7 +282,6 @@ function preparatory_d_validate($form, &$form_state) {
   for ($i = 0; $i < $form_state['num_instances']; $i++) {
     // In each instance, check whether some of the fields have been filled in,
     // if they have then check they have all been filled in.
-
     // Checks is an array with the key being the element being targeted (in dot
     // notation) and the value being the callback to use to check whether the
     // field is empty.

@@ -2,13 +2,13 @@
 
 /**
  * @file
- * Theme function for this stage.
+ * Theme function for stage 3.
  *
  * Prepares the passed form_state data and processes it for output.
  */
 
 /**
- * Implements hook_preprocess_preparatory_d().
+ * Preprocess function for 03_team.
  *
  * Prepare the form_state data for presentation in the template file.
  *
@@ -40,7 +40,7 @@ function myhaccp_preprocess_03_team(&$variables) {
       array('data' => t('Name')),
       array('data' => t('Training')),
       array('data' => t('Qualifications')),
-      array('data' => t('Experience'))
+      array('data' => t('Experience')),
     );
 
     // Now the table rows.
@@ -48,14 +48,17 @@ function myhaccp_preprocess_03_team(&$variables) {
       // The first instance will always be the HACCP lead so provide the
       // the text.
       if ($key === 0) {
-        $instance['d_2'] = 'internal';
-        $instance['d_3'] = 'HACCP lead';
+        $instance['d_2'] = t('internal');
+        $instance['d_3'] = t('HACCP lead');
       }
 
       $role = !empty($instance['d_3']) ? $instance['d_3'] : '';
       $name = !empty($instance['d_1']) ? $instance['d_1'] : '';
       // Add 'internal' or 'external' below name.
-      $name .= !empty($instance['d_2']) ? '<br /><em>(' . $instance['d_2'] . ')</em>' : '';
+      if (!empty($instance['d_2'])) {
+        $internal_external = $instance['d_2'] == 'internal' ? t('Internal') : t('External');
+        $name .= '<br /><em>(' . $internal_external . ')</em>';
+      }
       $training = !empty($instance['wrapper']['d_4']) ? $instance['wrapper']['d_4'] : '';
       $qualifications = !empty($instance['wrapper']['d_5']) ? $instance['wrapper']['d_5'] : '';
       $experience = !empty($instance['wrapper']['d_5']) ? $instance['wrapper']['d_6'] : '';
@@ -65,7 +68,7 @@ function myhaccp_preprocess_03_team(&$variables) {
         array('data' => $name),
         array('data' => $training),
         array('data' => $qualifications),
-        array('data' => $experience)
+        array('data' => $experience),
       );
     }
 

@@ -1,0 +1,74 @@
+/***
+ * This is a 'base partial'
+ *
+ * Drupal files to nuke:
+ * - system.base.css
+ * - system.menus.css
+ * - system.messages.css
+ * - system.theme.css
+ *
+ */
+
+// Site variables
+@import 'site/fonts';
+@import 'site/variables';
+
+// Compass plugins
+@import "compass/typography/vertical_rhythm";
+@import "compass/support";
+@import "compass/css3";
+
+// Agile Patterns libraries
+@import 'lib/agilebuttons';
+@import 'lib/type';
+@import 'lib/normalize';
+@import 'lib/agilegrid';
+@import 'lib/classy';
+
+// Patterns
+@import 'patterns/mixins';
+@import 'patterns/menu-patterns';
+@import 'patterns/navigation';
+@import 'patterns/forms/forms';
+@import 'patterns/forms/forms-navigation';
+@import 'patterns/forms/forms-user-account';
+@import 'patterns/forms/webforms';
+@import 'patterns/forms/forms-copy-study';
+@import 'patterns/messages';
+@import 'patterns/tables';
+@import 'patterns/blocks';
+@import 'patterns/header';
+@import 'patterns/footer';
+@import 'patterns/help-tips';
+@import 'patterns/modals';
+@import 'patterns/files';
+
+
+// Tool stages
+@import 'patterns/tool/tool';
+@import 'patterns/tool/preparatory';
+@import 'patterns/tool/principles';
+@import 'patterns/tool/summary-pages';
+@import 'patterns/tool/copy-form';
+
+// Drupal Patterns
+@import 'patterns/drupal/autocomplete';
+
+// Pages
+@import 'pages/homepage';
+@import 'pages/site-wide';
+@import 'pages/web-tool-landing';
+@import 'pages/search-results';
+@import 'pages/resources';
+
+// Setup for this site
+@import 'site/site-wide';
+
+// i18n
+@import 'site/i18n';
+
+// Compatibility
+@import 'site/ie6';
+@import 'site/ie7';
+@import 'site/ie8';
+

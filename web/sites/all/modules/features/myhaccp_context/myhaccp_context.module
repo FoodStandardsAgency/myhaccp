@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the MyHACCP Context feature.
+ */
+
+include_once 'myhaccp_context.features.inc';

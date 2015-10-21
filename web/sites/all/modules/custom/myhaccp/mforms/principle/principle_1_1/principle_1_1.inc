@@ -1,7 +1,12 @@
 <?php
 
 /**
- * Principle 1, Question 1.
+ * @file
+ * Principle 1 question 1 form and validation handler.
+ */
+
+/**
+ * Principle 1 question 1.
  */
 function principle_1_1(&$form_state, &$next_step) {
   // Define following step callback. If none set, that implies it is
@@ -17,9 +22,9 @@ function principle_1_1(&$form_state, &$next_step) {
   $values = myhaccp_prepare_values($data, $form_state);
 
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   drupal_set_title($stage->title, PASS_THROUGH);
@@ -126,7 +131,7 @@ function principle_1_1(&$form_state, &$next_step) {
       '#resizable' => FALSE,
       '#title' => t('Biological'),
       '#help_link' => 16,
-      '#help_text' => t('List all biological hazards with each hazard on a new line, e.g.<br/>Salmonella spp.<br/>Listeria spp.<br/>Norovirus<br/>'),
+      '#help_text' => t('List all biological hazards with each hazard on a new line, e.g.<br>Salmonella spp.<br>Listeria spp.<br>Norovirus<br>'),
       '#default_value' => array_get($values, "principle_1_1.instance_$i.hazards_wrapper.biological", FALSE),
     );
     // Chemical.
@@ -136,7 +141,7 @@ function principle_1_1(&$form_state, &$next_step) {
       '#resizable' => FALSE,
       '#title' => t('Chemical'),
       '#help_link' => 16,
-      '#help_text' => t('List all chemical hazards with each hazard on a new line, e.g.<br/>nitrate<br/>patulin<br/>cadmium<br/>'),
+      '#help_text' => t('List all chemical hazards with each hazard on a new line, e.g.<br>nitrate<br>patulin<br>cadmium<br>'),
       '#default_value' => array_get($values, "principle_1_1.instance_$i.hazards_wrapper.chemical", FALSE),
     );
     // Physical.
@@ -146,7 +151,7 @@ function principle_1_1(&$form_state, &$next_step) {
       '#resizable' => FALSE,
       '#title' => t('Physical'),
       '#help_link' => 16,
-      '#help_text' => t('List all physical hazards, with each hazard on a new line, e.g.<br/>stones<br/>metal<br/>wood<br/>'),
+      '#help_text' => t('List all physical hazards, with each hazard on a new line, e.g.<br>stones<br>metal<br>wood<br>'),
       '#default_value' => array_get($values, "principle_1_1.instance_$i.hazards_wrapper.physical", FALSE),
     );
     // Allergens.
@@ -156,7 +161,7 @@ function principle_1_1(&$form_state, &$next_step) {
       '#resizable' => FALSE,
       '#title' => t('Allergens'),
       '#help_link' => 16,
-      '#help_text' => t('List all substances or products that cause allergies or intolerances, with each hazard on a new line, e.g.<br/>celery<br/>sesame seeds<br/>egg<br/>'),
+      '#help_text' => t('List all substances or products that cause allergies or intolerances, with each hazard on a new line, e.g.<br>celery<br>sesame seeds<br>egg<br>'),
       '#default_value' => array_get($values, "principle_1_1.instance_$i.hazards_wrapper.allergens", FALSE),
     );
   }
@@ -207,9 +212,9 @@ function principle_1_1(&$form_state, &$next_step) {
  */
 function principle_1_1_validate($form, &$form_state) {
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   $validator = $stage->getValidator();
@@ -283,19 +288,8 @@ function principle_1_1_validate($form, &$form_state) {
     }
   }
 
-//
-//    if (!$evidence->fieldIsNotEmpty() && !$support->fieldIsNotEmpty()) {
-//      $messages = array(
-//        'validation_messages' => array(t('Please choose at least one option in question 1 or add some content in question 2.')),
-//      );
-//      $validator->passed = FALSE;
-//      $validator->setErrorMessages(($messages));
-//    }
-
-
   $validator->setErrorMessages((array('validation_messages' => $messages)));
   $form_state = $validator->getFormState();
-
 }
 
 /**

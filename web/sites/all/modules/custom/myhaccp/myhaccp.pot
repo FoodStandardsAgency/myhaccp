@@ -1,0 +1,2697 @@
+# $Id$
+#
+# LANGUAGE translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  sites/all/modules/custom/myhaccp/myhaccp.pages.inc: n/a
+#  sites/all/modules/custom/myhaccp/myhaccp.module: n/a
+#  sites/all/modules/custom/myhaccp/myhaccp.install: n/a
+#  sites/all/modules/custom/myhaccp/myhaccp.info: n/a
+#  sites/all/modules/custom/myhaccp/includes/configuration.class.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/sections/08_control/08_control.theme.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/sections/09_ccps/09_ccps.theme.inc: n/a
+#  sites/all/modules/custom/myhaccp/includes/myhaccp.clone.inc: n/a
+#  sites/all/modules/custom/myhaccp/includes/myhaccp.form.inc: n/a
+#  sites/all/modules/custom/myhaccp/includes/myhaccp.pdf.inc: n/a
+#  sites/all/modules/custom/myhaccp/includes/study.class.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/myhaccp.multistep_controls.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/myhaccp.myhaccp.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/sections/04_product/04_product.theme.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/sections/12_verification/12_verification.theme.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_b/preparatory_b.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_1/preparatory_c_1.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/principle/principle_2_1/principle_2_1.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/principle/principle_1_1/principle_1_1.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/sections/06_identify/06_identify.theme.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/principle/principle_5/principle_5.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/sections/03_team/03_team.theme.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_f/preparatory_f.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_g/preparatory_g.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_h/preparatory_h.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/principle/principle_2_2/principle_2_2.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/principle/principle_3/principle_3.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/principle/principle_4/principle_4.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/principle/principle_7/principle_7.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_e/preparatory_e.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_intro/preparatory_intro.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_review/preparatory_review.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/principle/principle_review/principle_review.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/sections/11_plan/11_plan.theme.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/principle/principle_1_2/principle_1_2.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/principle/principle_1_3/principle_1_3.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/sections/01_management/01_management.theme.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/sections/02_terms/02_terms.theme.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/sections/02_terms/preparatory_c_1.theme.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/sections/02_terms/preparatory_a.theme.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/sections/05_process/05_process.theme.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/sections/10_critical/10_critical.theme.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/sections/07_severity/07_severity.theme.inc: n/a
+#  sites/all/modules/custom/myhaccp/theme/myhaccp.theme.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/sections/13_documentation/13_documentation.theme.inc: n/a
+#  sites/all/modules/custom/myhaccp/mforms/sections/appendix_a/appendix_a.inc: n/a
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2015-09-07 12:17+0100\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: sites/all/modules/custom/myhaccp/myhaccp.pages.inc:23
+msgid "Welcome to the MyHACCP Web Tool, from here you can start new studies and resume studies you have previously started. While using the Web Tool to undertake a Study you will find help available through help icons, which can be clicked on to reveal specific help for that question."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.pages.inc:57
+msgid "You haven't yet started a study. Would you like to !start"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.pages.inc:58
+msgid "start one now?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.pages.inc:98
+msgid "Resume"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.pages.inc:101
+msgid "Resume a study to add or edit your information."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.pages.inc:110
+msgid "Download"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.pages.inc:123
+msgid "Complete"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.pages.inc:129
+msgid "Mark your study as complete."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.pages.inc:138
+msgid "Activate"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.pages.inc:144
+msgid "Re-activate a completed study."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.pages.inc:154
+msgid "Copy"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.pages.inc:167;403
+msgid "Delete"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.pages.inc:173
+msgid "Delete your study."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.pages.inc:329
+msgid "Mark your HACCP study as 'complete'"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.pages.inc:341
+msgid "Mark your HACCP study as 'active'"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.pages.inc:351
+msgid "Download your HACCP study"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.pages.inc:351
+msgid "Download your incomplete HACCP study"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.pages.inc:377
+msgid "Create PDF"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.pages.inc:403
+msgid "Are you sure you want to delete this study?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.pages.inc:403
+msgid "This action cannot be undone."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.pages.inc:403
+msgid "Cancel"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.pages.inc:440
+msgid "The study has been deleted."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.module:161
+msgid "Create myhaccp studies"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.module:162
+msgid "Allow this role to create new myhaccp studies."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.module:165
+msgid "Edit own myhaccp studies"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.module:166
+msgid "Edit a user's own myhaccp studies."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.module:169
+msgid "Edit any myhaccp studies"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.module:170
+msgid "Edit any user's myhaccp studies."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.module:173
+msgid "Delete own myhaccp studies"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.module:174
+msgid "Delete a user's own myhaccp studies."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.module:177
+msgid "Delete any myhaccp studies"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.module:178
+msgid "Delete any user's myhaccp studies."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.module:181
+msgid "List own myhaccp studies"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.module:182
+msgid "List a user's own myhaccp studies."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.module:185
+msgid "List any myhaccp studies"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.module:186
+msgid "List any user's myhaccp studies."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.module:189
+msgid "View own myhaccp studies"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.module:190
+msgid "View the output of a user's own myhaccp studies."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.module:193
+msgid "View any myhaccp studies"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.module:194
+msgid "View the output of any user's myhaccp studies."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.module:197
+msgid "Clone own myhaccp studies"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.module:198
+msgid "Clone a user's own myhaccp study."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.module:201
+msgid "Clone any myhaccp studies"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.module:202
+msgid "Clone any user's myhaccp study."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.module:582
+msgid "?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.module:856
+msgid "More information &raquo;"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.module:1013
+msgid "Fields marked with an asterisk (*) are required."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.module:1132
+msgid "The file you uploaded does not appear to be a valid PDF file."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.module:1139
+msgid "The file you uploaded does not appear to be a valid image file."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.module:64
+msgid "MyHACCP Web Tool"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.module:96
+msgid "Preview study"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.module:144
+msgid "Help"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.install:216
+msgid "Enter an optional business name. This is only used when printing your MyHACCP study on the cover sheet."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.info:0
+msgid "MyHACCP Form"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.info:0
+msgid "A basic prototype module for testing and building forms."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/myhaccp.info:0
+msgid "MyHACCP"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:79
+msgid "Preparatory: Introduction"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:80
+msgid "Preparatory Stage A: Prerequisites"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:81
+msgid "Preparatory Stage B: Obtain Management Commitment"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:82
+msgid "Preparatory Stage C: Define scope of the study"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:83
+msgid "Preparatory Stage C: Define scope of the study (Continued)"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:84
+msgid "Preparatory Stage D: Select the HACCP team"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:85
+msgid "Preparatory Stage E: Describe the product"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:86
+msgid "Preparatory Stage F: Identify intended use of the product"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:87
+msgid "Preparatory Stage G: Construct a flow diagram"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:88
+msgid "Preparatory Stage H: On-site confirmation of flow diagram"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:89
+msgid "Preparatory: Review"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:90
+msgid "Principles: Introduction"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:91
+msgid "Principle 1.1: Identify and list Potential Hazards"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:92
+msgid "Principle 1.2: Conduct a Hazard Analysis"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:93
+msgid "Principle 1.3: Specify the Control Measures for each hazard"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:94
+msgid "Principle 2.1: Determine the Critical Control Points (CCPs)"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:95
+msgid "Principle 2.2: Determine the Critical Control Points (CCPs) (Continued)"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:96
+msgid "Principle 3: Establish the Critical Limits"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:97
+msgid "Principle 4: Establish a Monitoring System for each CCP"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:98
+msgid "Principle 5: Establish a Corrective Action plan"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:99
+msgid "Principle 6: Verification"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:100
+msgid "Principle 7: Establish Documentation and Record Keeping"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:101
+msgid "Principles: Review"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:130
+msgid "Management commitment"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:139
+msgid "Terms of reference"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:152
+msgid "The HACCP team"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:162
+msgid "Product description and intended use"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:174
+msgid "Process flow and confirmation"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:186
+msgid "Identify and list potential hazards"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:196
+msgid "Severity scores"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:206 sites/all/modules/custom/myhaccp/mforms/sections/08_control/08_control.theme.inc:35 sites/all/modules/custom/myhaccp/mforms/sections/09_ccps/09_ccps.theme.inc:51
+msgid "Control Measures"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:216
+msgid "CCPs for significant hazards"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:228
+msgid "Critical limits for the CCPs"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:238
+msgid "The HACCP Plan"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:252
+msgid "Verification"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:262
+msgid "Documentation and record keeping"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/configuration.class.inc:273
+msgid "Appendix A - Flow Diagram"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/myhaccp.clone.inc:22
+msgid "The study has been copied successfully. You are now on the Preparatory Introduction stage of your new study. Please name your new study."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/myhaccp.clone.inc:40
+msgid "Copy an existing study"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/myhaccp.clone.inc:55
+msgid "Please choose an existing study to copy"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/myhaccp.clone.inc:58
+msgid "When you click the submit button, the existing study you\n    have chosen will be copied. You will then be taken to the Preparatory Introduction stage of this new study where you can enter the new study's name."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/myhaccp.form.inc:88
+msgid "The following items have errors you will need to correct:"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/myhaccp.form.inc:94
+msgid "This form has items with errors which you will need to correct"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/myhaccp.pdf.inc:53
+msgid "MyHACCP Study"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/myhaccp.pdf.inc:54
+msgid "Business name"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/myhaccp.pdf.inc:55
+msgid "This document was created using the MyHACCP web tool."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/myhaccp.pdf.inc:57
+msgid "Date generated"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/myhaccp.pdf.inc:110
+msgid "One or more stages that contribute to this section do not pass validation, so the content for this section cannot be displayed."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/myhaccp.pdf.inc:110
+msgid "Please return to your HACCP study review pages to find and correct the problem."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/includes/study.class.inc:212
+msgid "Stage %stage not found. This could mean the stage used to exist but no longer exists."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/myhaccp.multistep_controls.inc:55
+msgid "Save and continue"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/myhaccp.multistep_controls.inc:56
+msgid "Previous"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/myhaccp.multistep_controls.inc:57
+msgid "Save this page"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/myhaccp.multistep_controls.inc:58
+msgid "Submit"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/myhaccp.multistep_controls.inc:59
+msgid "Reset"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/myhaccp.multistep_controls.inc:89
+msgid "Preparatory: "
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/myhaccp.multistep_controls.inc:103
+msgid "Principles: "
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/myhaccp.multistep_controls.inc:199
+msgid "Continue"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/myhaccp.myhaccp.inc:67
+msgid "You have set the completion status of the study to 'active'."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/myhaccp.myhaccp.inc:72
+msgid "As there are incomplete stages of the study you are unable to mark it as complete yet. Please resume the study and use the review pages to determine which stages need work to complete."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/myhaccp.myhaccp.inc:76
+msgid "You have set the completion status of the study to 'complete'."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:41
+msgid "Prior to the application of HACCP based food safety controls you should consider the prerequisite food hygiene requirements for your business."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:46
+msgid "1. Select the boxes where you can demonstrate that you have control of the prerequisites."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:48
+msgid "These are 'pre-requirements' to the application and implementation of a HACCP system, to demonstrate you have control they should be well established, fully operational (including records) and verified."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:50
+msgid "Supplier approval"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:51 sites/all/modules/custom/myhaccp/mforms/sections/04_product/04_product.theme.inc:36
+msgid "Packaging"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:52
+msgid "Incoming material specifications"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:53
+msgid "Finished product specification"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:54
+msgid "Training (incl. training needs analysis, job descriptions)"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:55
+msgid "Contract services (i.e. waste/laundry)"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:56
+msgid "Pest Control"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:57
+msgid "Glass and plastic management"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:58
+msgid "Calibration"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:59
+msgid "Standard Operating Procedures (SOPs)"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:60
+msgid "Distribution"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:61
+msgid "Product recall"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:62
+msgid "Document control"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:63
+msgid "Audit schedule (incl. HACCP/internal audits)"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:64
+msgid "Customer complaints"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:65
+msgid "Tracking non-conformances"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:66
+msgid "Microbiological control"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:67
+msgid "Preventative maintenance"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:68
+msgid "Traceability"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:69
+msgid "Utilities (air, water, energy)"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:70
+msgid "Equipment suitability, cleaning and maintenance"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:71
+msgid "Measures to prevent cross-contamination"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:72
+msgid "Cleaning and sanitising"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:73
+msgid "Personnel hygiene and employee facilities"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:74
+msgid "Rework"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:75
+msgid "Warehousing"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:76
+msgid "Product information / consumer awareness"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:77
+msgid "Food defence incl. Biovigilance and bioterrorism"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:78
+msgid "Contamination control"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:79
+msgid "Return to work"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:80 sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:394;419;444;466 sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:163 sites/all/modules/custom/myhaccp/mforms/sections/12_verification/12_verification.theme.inc:84
+msgid "Other"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:86
+msgid "Please choose at least one option from the prerequisites field."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:93
+msgid "1a. Please specify any other prerequisites."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:102
+msgid "You have selected other, please specify any other prerequisites."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:109
+msgid "2. Please specify the location of the above documents."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:110
+msgid "State where you have stored the information.  You may wish to specify a manual e.g. manual of prerequisites,  where information on these is filed e.g. all documents filed under prerequisites, cabinet 1 or reference a particular document e.g.  PRP 01."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_a/preparatory_a.inc:115
+msgid "Enter the location of your documents."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_b/preparatory_b.inc:42
+msgid "You need to provide details of support by management to an ongoing HACCP study."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_b/preparatory_b.inc:47
+msgid "1. What documented evidence do you have to show the support of the food business operator or senior management to the food safety management system based on HACCP principles?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_b/preparatory_b.inc:49
+msgid "Where in your company could you look for evidence to demonstrate that senior management are engaged and dedicated to the development of an ongoing HACCP study."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_b/preparatory_b.inc:51
+msgid "N/A - I am the management and can confirm that I am committed."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_b/preparatory_b.inc:52
+msgid "A Food Safety Policy has been drawn up and signed by management."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_b/preparatory_b.inc:53
+msgid "Senior management document, support and communicate their food safety policies."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_b/preparatory_b.inc:54
+msgid "Minutes of HACCP team meetings."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_b/preparatory_b.inc:55
+msgid "Senior management support the work of the HACCP team."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_b/preparatory_b.inc:56
+msgid "Resources identified by the HACCP team are made available as required to develop, implement and maintain the HACCP system."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_b/preparatory_b.inc:57
+msgid "Training takes place for HACCP studies."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_b/preparatory_b.inc:63;77;111
+msgid "Please choose at least one option in question 1 or add some content in question 2."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_b/preparatory_b.inc:71
+msgid "2. Provide details of anything else that shows management commitment to the HACCP based food safety management system."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_b/preparatory_b.inc:73
+msgid "State anything else that would demonstrate you have management commitment."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_1/preparatory_c_1.inc:42
+msgid "This is a summary of what the HACCP study will cover. It should be clearly defined to help  focus development of HACCP based controls on key areas."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_1/preparatory_c_1.inc:48
+msgid "1. What type of HACCP plan are you producing?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_1/preparatory_c_1.inc:50
+msgid "Linear HACCP Plan - Typically one study that covers raw materials right through to despatch (usually for simple systems).\nModular HACCP Plan - Typically several separate HACCP studies e.g. one on raw materials, one for each production line or product produced and one for despatch of the product (usually for complex systems/large variety of products)."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_1/preparatory_c_1.inc:53 sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:87 sites/all/modules/custom/myhaccp/mforms/principle/principle_2_1/principle_2_1.inc:82
+msgid "-- Please select --"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_1/preparatory_c_1.inc:54
+msgid "Linear"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_1/preparatory_c_1.inc:55
+msgid "Modular"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_1/preparatory_c_1.inc:60
+msgid "Please select the type of HACCP plan you are producing."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_1/preparatory_c_1.inc:69
+msgid "2. State the type of product you are producing and briefly how it is going to be packed:"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_1/preparatory_c_1.inc:71
+msgid "State the products you are making (those covered in the HACCP plan) and how they are packaged e.g. vacuum packed, gas flushed, flexible pouches."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_1/preparatory_c_1.inc:75
+msgid "Please state the type of product you are producing and how it will be packed."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_1/preparatory_c_1.inc:86
+msgid "3. State the process start and end points of the HACCP study !tip !help"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_1/preparatory_c_1.inc:88
+msgid "State where your HACCP study will begin e.g. at raw materials or goods in. State where it will end e.g. at delivery to the wholesaler, at despatch, when purchased by the consumer. !link"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_1/preparatory_c_1.inc:97
+msgid "It will start at "
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_1/preparatory_c_1.inc:101
+msgid "Please state the process start."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_1/preparatory_c_1.inc:107
+msgid "Through to "
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_1/preparatory_c_1.inc:111
+msgid "Please state the process end."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:26;27
+msgid "Metal"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:29;30
+msgid "Wood splinters"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:32;33
+msgid "Glass and brittle plastic"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:35;36
+msgid "Flexible plastic"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:38;39
+msgid "Plasters"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:41;42
+msgid "Stones"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:44;45
+msgid "Shell"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:47;48
+msgid "Fruit stones"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:50;51
+msgid "Insects"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:53;54
+msgid "Paper/board"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:56;57
+msgid "Hair"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:59;60
+msgid "Bones"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:62;63
+msgid "Feathers"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:65;66
+msgid "String"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:68;69
+msgid "Finger nails"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:71;72
+msgid "Pests"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:111;112
+msgid "Agricultural residues: Pesticides"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:120
+msgid "Ingredient dependent Phyto-toxins (plant-based e.g. lectins in kidney beans; cyanogenic glycosides in cassava)"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:121
+msgid "Ingredient dependent Phyto-toxins"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:123
+msgid "Ingredient dependent Phyco-toxins (associated with shellfish and certain pelagic fish)"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:124
+msgid "Ingredient dependent Phyco-toxins"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:126;127
+msgid "Agricultural residues: Nitrate"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:129;130
+msgid "Veterinary Drugs"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:132
+msgid "Non-permitted additives (e.g. konjac in children’s confectionery)"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:133
+msgid "Non-permitted additives"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:135
+msgid "Heavy metals (arsenic, cadmium, lead, mercury)"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:136
+msgid "Heavy metals"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:138
+msgid "Other microbiologically produced toxins (e.g. histamine in fish)"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:139
+msgid "Other microbiologically produced toxins"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:141
+msgid "Environmental contaminants (e.g. dioxins)"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:142
+msgid "Environmental contaminants"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:144
+msgid "Process toxicants (e.g. acrylamide in high temperature processed carbohydrate rich foods)"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:145
+msgid "Process toxicants"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:147
+msgid "Adulterants (Synthetic colours (e.g. Sudan dyes), melamine, water & sugar (e.g honey))"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:148
+msgid "Adulterants"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:150;151
+msgid "Cleaning & sanitising chemicals"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:153
+msgid "Chemical residues migrating from packaging (e.g. plasticisers, BPA)"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:154
+msgid "Chemical residues migrating from packaging"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:191;192
+msgid "Salmonella"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:194;195
+msgid "Listeria sp."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:197;198
+msgid "Escherichia coli"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:200;201
+msgid "Clostridium botulinum"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:203;204
+msgid "Clostridia perfringens"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:206;207
+msgid "Staphylococcus aureus"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:209;210
+msgid "Bacillus spp."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:212;213
+msgid "Campylobacter"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:215;216
+msgid "Shigella"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:218;219
+msgid "Hepatitis"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:221;222
+msgid "Cryptosporidium (parasitic protozoa)"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:224;225
+msgid "Pseudomonas Spp."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:227;228
+msgid "Norovirus"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:233;234
+msgid "Toxoplasma"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:269
+msgid "Eggs and products thereof"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:270
+msgid "Eggs"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:272
+msgid "Milk and products thereof (including lactose), except: (a) whey used for making alcoholic distillates including ethyl alcohol of agricultural origin (b) lactitol"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:273
+msgid "Milk"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:275
+msgid "Fish and products thereof, except fish gelatine used as carrier for vitamin or carotenoid preparations; fish gelatine or Isinglass used as fining agent in beer and wine."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:276
+msgid "Fish"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:278
+msgid "Sesame seeds and products thereof"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:279
+msgid "Sesame seeds"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:281
+msgid "Crustaceans and products thereof"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:282
+msgid "Crustaceans"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:284
+msgid "Peanuts and products thereof"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:285
+msgid "Peanuts"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:287
+msgid "Cereals containing gluten, namely: wheat, rye, barley, oats, spelt, kamut, or their hybridised strains, and products thereof, except: (a) wheat based glucose syrups including dextrose: (b) wheat based maltodextrins; (c) glucose syrups based on barley; (d) cereals used for making alcoholic distillates including ethyl alcohol of agricultural origin."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:288
+msgid "Cereals containing gluten"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:290
+msgid "Celery and products thereof"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:291
+msgid "Celery"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:293
+msgid "Mustard and products thereof"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:294
+msgid "Mustard"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:296
+msgid "Lupin and products thereof"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:297
+msgid "Lupin"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:299
+msgid "Soybeans and products thereof, except: (a)fully refined soybean oil and fat (b) natural mixed tocopherols (E306), natural D-alpha tocopherol, natural D-alpha tocopherol acetate, and natural D-alpha tocopherol succinate from soybean sources (c) vegetable oils derived phytosterol esters from soybean sources (d) plant stanol ester produced from vegetable oil sterols from soybean sources"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:300
+msgid "Soybeans"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:302
+msgid "Molluscs and products thereof"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:303
+msgid "Molluscs"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:305
+msgid "Sulphur dioxide and sulphites at concentrations of more than 10mg/kg or 10mg/litre in terms of the total SO2 which are to be calculated for products as proposed ready for consumption or as reconstituted according to the instructions of the manufacturers"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:306
+msgid "Sulphur dioxide and sulphites"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:308
+msgid "Nuts, namely: almonds, hazelnuts,walnuts,cashewnuts, pecan nuts, Brazil nuts, pistachio nuts, macadamia or Queensland nuts and products thereof, except for nuts used for making alcoholic distillates including ethyl alcohol of agricultural origin."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:309
+msgid "Nuts"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:364
+msgid "4. What hazards will the HACCP plan cover? !tip !help"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:366
+msgid "State which hazards will be considered in the HACCP plan (i.e. Biological, Physical, Chemical, Allergens). !link"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:387 sites/all/modules/custom/myhaccp/mforms/principle/principle_1_1/principle_1_1.inc:147 sites/all/modules/custom/myhaccp/mforms/sections/06_identify/06_identify.theme.inc:42
+msgid "Physical"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:412 sites/all/modules/custom/myhaccp/mforms/principle/principle_1_1/principle_1_1.inc:137 sites/all/modules/custom/myhaccp/mforms/sections/06_identify/06_identify.theme.inc:41
+msgid "Chemical"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:437 sites/all/modules/custom/myhaccp/mforms/principle/principle_1_1/principle_1_1.inc:127 sites/all/modules/custom/myhaccp/mforms/sections/06_identify/06_identify.theme.inc:40
+msgid "Biological"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:459 sites/all/modules/custom/myhaccp/mforms/principle/principle_1_1/principle_1_1.inc:157 sites/all/modules/custom/myhaccp/mforms/sections/06_identify/06_identify.theme.inc:43
+msgid "Allergens"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:488
+msgid "5. Provide details of any documents or information that you have used in your HACCP plan."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_c_2/preparatory_c_2.inc:489
+msgid "State any documentation or sources of information used in your HACCP plan e.g.\nFSA Guidance for food business operators on Microbiological criteria for foodstuffs."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:39
+msgid "A HACCP study will require the collection and evaluation of technical data. Those responsible for this should possess the necessary skills and experience."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:73
+msgid "Name of HACCP team member:"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:76;174 sites/all/modules/custom/myhaccp/mforms/principle/principle_5/principle_5.inc:158
+msgid "State the person's name."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:78
+msgid "Please add the name of the HACCP team member."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:88
+msgid "Internal"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:89
+msgid "External"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:94
+msgid "Please indicate if this person is internal (works at the company) or external (eg an external consultant)."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:96
+msgid "Is this person Internal or External to the company?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:98
+msgid "State if the person is an employee of the company (internal) or not (external)."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:106
+msgid "What is the role of this individual in the HACCP team?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:108
+msgid "For example, QA Manager to provide technical expertise, Consultant to provide knowledge of HACCP and expertise from a chemical and biological hazard perspective."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:111
+msgid "Please add the role of the individual."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:125
+msgid "Relevant training"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:127
+msgid "What training has this person undertaken that is specific to the support they can provide e.g HACCP (state level), Food safety (state level), Internal auditing."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:130
+msgid "Please add any relevant training or enter \"none\"."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:139 sites/all/modules/custom/myhaccp/mforms/sections/03_team/03_team.theme.inc:42
+msgid "Qualifications"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:141
+msgid "Provide details of their qualifications e.g. BSc Biochemistry, CIEH Intermediate food safety, MSc  Food Science, Management and Hygiene."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:144
+msgid "Please add any relevant qualifications or enter \"none\"."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:153
+msgid "Relevant experience"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:155
+msgid "Detail only that experience that is applicable to their involvement with the HACCP study e.g. 1 year as a chemical hazard scientist, 2 years working with the customer complaints team."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:158
+msgid "Please add any relevant experience or enter \"none\"."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:166
+msgid "HACCP Lead"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:168
+msgid "The first person identified here should be the HACCP Lead, so this field is pre-completed to read 'HACCP Lead'."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:171
+msgid "The HACCP Lead should be an employee of the company, so this option is pre-selected to be 'Internal'."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:172
+msgid "Name of HACCP lead for the business:"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:173
+msgid "Please add the name of the HACCP lead for the business."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:182 sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_f/preparatory_f.inc:62;79;96;113;130;147 sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_g/preparatory_g.inc:60 sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_h/preparatory_h.inc:62;80;98;115;133 sites/all/modules/custom/myhaccp/mforms/principle/principle_2_1/principle_2_1.inc:68 sites/all/modules/custom/myhaccp/mforms/principle/principle_2_2/principle_2_2.inc:140;167 sites/all/modules/custom/myhaccp/mforms/principle/principle_3/principle_3.inc:107;123;139 sites/all/modules/custom/myhaccp/mforms/principle/principle_4/principle_4.inc:155 sites/all/modules/custom/myhaccp/mforms/principle/principle_5/principle_5.inc:135;151 sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:88;202;280 sites/all/modules/custom/myhaccp/mforms/principle/principle_7/principle_7.inc:114
+msgid "Yes"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:183 sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_f/preparatory_f.inc:63;80;97;114;131;148 sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_g/preparatory_g.inc:61 sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_h/preparatory_h.inc:63;81;99;116;134 sites/all/modules/custom/myhaccp/mforms/principle/principle_2_1/principle_2_1.inc:69 sites/all/modules/custom/myhaccp/mforms/principle/principle_2_2/principle_2_2.inc:141;168 sites/all/modules/custom/myhaccp/mforms/principle/principle_3/principle_3.inc:108;124;140 sites/all/modules/custom/myhaccp/mforms/principle/principle_4/principle_4.inc:156 sites/all/modules/custom/myhaccp/mforms/principle/principle_5/principle_5.inc:136;152 sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:89;203;281 sites/all/modules/custom/myhaccp/mforms/principle/principle_7/principle_7.inc:115
+msgid "No"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:185
+msgid "Do you consider the team to have sufficient skills (scientific/technical knowledge and HACCP expertise) to ensure the HACCP study will be effective?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:187
+msgid "In your opinion as leader of the HACCP team, state whether you consider that you have the necessary skills to enable an effective HACCP study to be carried out and maintained on an ongoing basis?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:190
+msgid "Please indicate whether you consider the team to have sufficient skills."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:201
+msgid "Please explain how you propose to address the team's insufficient skills."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:221
+msgid "Add another team member"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_d/preparatory_d.inc:235
+msgid "Remove one"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_e/preparatory_e.inc:42
+msgid "This requires a full description of the product. This will help understanding of the presented hazards with the product/process and on what it relies on for safety."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_e/preparatory_e.inc:48
+msgid "1. List all the ingredients and the name of the supplier for each one."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_e/preparatory_e.inc:50
+msgid "A full description of the finished product  or intermediate product (depending what your HACCP study covers should be provided.  This should include every ingredient that is used in the product and the supplier."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_e/preparatory_e.inc:55
+msgid "Please list all the ingredients and the supplier for each."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_e/preparatory_e.inc:62
+msgid "2. State the physical properties of the product (a<sub>w</sub>,pH,emulsion)."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_e/preparatory_e.inc:64
+msgid "E.g. a<sub>w</sub> 0.93, pH 4.5."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_e/preparatory_e.inc:69
+msgid "Please state the physical properties of the product."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_e/preparatory_e.inc:76
+msgid "3. Describe how the product is processed and/or other preservation methods used."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_e/preparatory_e.inc:78
+msgid "Has the product been sterilised, pasteurised, smoked?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_e/preparatory_e.inc:83
+msgid "Please describe how the product has been processed."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_e/preparatory_e.inc:90
+msgid "4. Describe how the product is packed and the packaging materials."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_e/preparatory_e.inc:92
+msgid "e.g. Is it packed into glass bottles, flexible pouches, aseptically packed?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_e/preparatory_e.inc:97
+msgid "Please describe how the product was packed and the packaging materials."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_e/preparatory_e.inc:104
+msgid "5. How is the product going to be stored and distributed?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_e/preparatory_e.inc:108
+msgid "e.g. Is it to be stored frozen , ambient or chilled? Is it to be distributed frozen, ambient or chilled."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_e/preparatory_e.inc:111
+msgid "Please describe how the product is going to be stored and distributed."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_e/preparatory_e.inc:118
+msgid "6. What is the shelf-life of the product?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_e/preparatory_e.inc:120
+msgid "Under the  prescribed conditions what is the use by date or best before date e.g. Use By 3 months from date of purchase or best before  4 months from date of manufacture."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_e/preparatory_e.inc:125
+msgid "Please state the shelf-life of the product."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_e/preparatory_e.inc:132
+msgid "7. State what your advice is to the purchaser for storing, handling and preparing the product."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_e/preparatory_e.inc:134
+msgid "e.g. store in a cool place away from direct light, defrost thoroughly before cooking, cook for 15 minutes at 220°C."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_e/preparatory_e.inc:139
+msgid "Please state how the product is to be stored and handling and storage instructions."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_f/preparatory_f.inc:42
+msgid "Knowledge of your consumer target group will help you later when you identify hazards that may become significant for vulnerable consumers."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_f/preparatory_f.inc:48
+msgid "1. What is the name of the product(s)?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_f/preparatory_f.inc:50
+msgid "Specify the product name."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_f/preparatory_f.inc:54
+msgid "Please specify the name of the product."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_f/preparatory_f.inc:65
+msgid "2. Is the product suitable for consumption by the general public?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_f/preparatory_f.inc:67
+msgid "If your product is intended for a particular group of consumers, such as institutional caterers, travelers, etc. or for vulnerable groups of the population (young, elderly, immunocompromised, people with allergies, pregnant ladies) select 'no' as the response to this question.  It is very important that you understand your target group, as this will help to prepare you for the section on HACCP Principles (e.g. identify and list potential hazards)."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_f/preparatory_f.inc:71
+msgid "Please specify if the product is suitable for the general public."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_f/preparatory_f.inc:82
+msgid "3. Is the product suitable for the young?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_f/preparatory_f.inc:84
+msgid "Babies are more vulnerable to choking hazards certain products are not recommended to be consumed by babies e.g. honey."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_f/preparatory_f.inc:88
+msgid "Please specify if the product is suitable for the young."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_f/preparatory_f.inc:99
+msgid "4. Is the product suitable for the elderly?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_f/preparatory_f.inc:101
+msgid "Elderly people may require that food is of a smaller size than that to be consumed by non-vulnerable groups."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_f/preparatory_f.inc:105
+msgid "Please specify if the product is suitable for the elderly."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_f/preparatory_f.inc:116
+msgid "5. Is the product suitable for pregnant ladies?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_f/preparatory_f.inc:118
+msgid "Certain foods should not be consumed by pregnant ladies because they contain certain microorganisms that may cause a still birth, miscarriage or severe illness."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_f/preparatory_f.inc:122
+msgid "Please specify if the product is suitable for pregnant ladies."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_f/preparatory_f.inc:133
+msgid "6. Is the product suitable for the immunosuppressed / immunocompromised?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_f/preparatory_f.inc:135
+msgid "Consider the use of low microbial diets to reduce the risk of foodborne disease."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_f/preparatory_f.inc:139
+msgid "Please specify if the product is suitable for the immunosuppressed / immunocompromised."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_f/preparatory_f.inc:150
+msgid "7. Is the product suitable for people with allergies or intolerances?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_f/preparatory_f.inc:152
+msgid "Does the product contain any ingredients from the list on substances or products causing allergies or intolerances."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_f/preparatory_f.inc:156
+msgid "Please specify if the product is suitable for people with allergies or intolerances."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_f/preparatory_f.inc:163
+msgid "8. Detail below how you have considered the likely abuse/unintended use of the product by the consumer or purchaser."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_f/preparatory_f.inc:165
+msgid "e.g. It could be possible that a very young child may be fed this product despite it being aimed at those over 36 months."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_f/preparatory_f.inc:170
+msgid "Please specify how how you have considered the likely abuse / unintended use of the product by the consumer."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_g/preparatory_g.inc:53
+msgid "A process flow diagram shows all the steps involved in the process outlined in the scope  of  the study."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_g/preparatory_g.inc:63
+msgid "1. Have you completed a flow diagram?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_g/preparatory_g.inc:65
+msgid "This is a diagram showing <strong>all process steps</strong> in the manufacture of a product or the processing of a product."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_g/preparatory_g.inc:69
+msgid "It is strongly advised that you complete a flow diagram covering all steps in your manufacturing process before proceeding."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_g/preparatory_g.inc:78
+msgid "2. Please upload a digital copy of your flow diagram (or go to 3)."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_g/preparatory_g.inc:80
+msgid "This allows you to save your diagram on-line and will present it in the output document. Allowed file types are: jpg, jpeg, png and pdf."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_g/preparatory_g.inc:93
+msgid "If a file is uploaded, it must be of type gif, jpg, jpeg, png or pdf."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_g/preparatory_g.inc:100
+msgid "3. If you only have a hard copy, please  specify the location where it is retained and any document reference."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_g/preparatory_g.inc:102
+msgid "State where you can find the copy, e.g. HACCP file or filing cabinet under HACCP."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_g/preparatory_g.inc:105
+msgid "If you only have a hard copy, please specify the location where it is retained and any document reference."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_g/preparatory_g.inc:146
+msgid "Please either upload a digital copy of your flow diagram, or if you only have a hard copy please specify the location where it is retained and any document reference."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_g/preparatory_g.inc:168
+msgid "2. Please upload a digital copy of your flow diagram (or go to 3). There was an error processing your uploaded flow diagram. Please ensure you only upload a PDF or an image file of the following formats: jpg, png, gif"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_g/preparatory_g.inc:206
+msgid "PDF icon representing an uploaded file"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_h/preparatory_h.inc:42
+msgid "The process flow diagram must be checked to verify that it is correct and shows all the steps involved in the process as outlined in the scope of study (Preparatory Stage C)."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_h/preparatory_h.inc:48
+msgid "1. Name of person(s) confirming flow diagram is correct:"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_h/preparatory_h.inc:50
+msgid "Name of person with overall responsibility for confirming it is correct and up-to-date."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_h/preparatory_h.inc:54
+msgid "Please confirm the name of person(s) confirming flow diagram is correct."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_h/preparatory_h.inc:65
+msgid "2. Is every process step identified on the flow diagram?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_h/preparatory_h.inc:67
+msgid "It is <strong>vital</strong> that every step is identified. This is a key stage.  Steps are often overlooked. If this occurs the potential to compromise food safety significantly increases. It is strongly recommended that you read the guidance notes on this."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_h/preparatory_h.inc:71
+msgid "The quality of your risk analysis will depend on identifying every process step in your flow diagram."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_h/preparatory_h.inc:83
+msgid "3. Is the flow diagram an accurate representation of the process from start to finish?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_h/preparatory_h.inc:85
+msgid "Is the flow (shown by use of arrows) correct? Does the diagram go right from the start to the end of the process?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_h/preparatory_h.inc:89
+msgid "The quality of your risk analysis will depend on an accurate representation of the process from start to finish."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_h/preparatory_h.inc:101
+msgid "4. Is the process flow diagram correct for all shifts (e.g. days, nights and weekend)?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_h/preparatory_h.inc:103
+msgid "Does the process flow change at all depending on which shift is working?  Someone (preferably not on the shift) should check that this is the case for all shifts."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_h/preparatory_h.inc:107
+msgid "The quality of your risk analysis will depend on the process flow diagram being correct for all variations in shifts (e.g. days, nights and weekend)."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_h/preparatory_h.inc:118
+msgid "5. Is the flow diagram correct during all seasonal variations?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_h/preparatory_h.inc:120
+msgid "Consider high, standard and low  production times?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_h/preparatory_h.inc:124
+msgid "The quality of your risk analysis will depend on the flow diagram being correct during all seasonal variations."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_h/preparatory_h.inc:136
+msgid "6. Has the HACCP lead signed off and dated the flow diagram as being correct?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_h/preparatory_h.inc:138
+msgid "The HACCP lead should do this as they have ultimate responsibility to ensure the whole process has been captured."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_h/preparatory_h.inc:142
+msgid "Please confirm if the HACCP lead has signed off and dated the flow diagram as being correct."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_h/preparatory_h.inc:150
+msgid "7. Please state who in your organisation is responsible for making changes to the flow diagram and storing out of date versions."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_h/preparatory_h.inc:152
+msgid "The flow diagram must be up-to-date at all times. Any member of the HACCP team can request a change to the process flow diagram, but one person should be responsible for making the change and storing out of date versions. For larger companies systems should be in place to ensure that a future planned or unplanned change to the process (equipment, product etc) will trigger a change to the flow diagram."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_h/preparatory_h.inc:156
+msgid "Please confirm the name of at least one person in your organisation who is responsible for making changes to the flow diagram and storing out of date versions."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_intro/preparatory_intro.inc:44
+msgid "Name of your study"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_intro/preparatory_intro.inc:45
+msgid "The study name will be shown on your output document as well as on your studies overview page and is used to tell studies apart from each other. It can be the name of your product or anything else that makes sense to you."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_intro/preparatory_intro.inc:48
+msgid "Please name your study."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_review/preparatory_review.inc:37 sites/all/modules/custom/myhaccp/mforms/principle/principle_review/principle_review.inc:33
+msgid "OK"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_review/preparatory_review.inc:42 sites/all/modules/custom/myhaccp/mforms/principle/principle_review/principle_review.inc:38
+msgid "Needs review"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/preparatory/preparatory_review/preparatory_review.inc:47 sites/all/modules/custom/myhaccp/mforms/principle/principle_review/principle_review.inc:43
+msgid "Not started"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_1_1/principle_1_1.inc:42
+msgid "Potential hazards include all hazards (biological, chemical, physical and allergens) that may be reasonably expected to occur at a particular process step."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_1_1/principle_1_1.inc:76
+msgid "Enter the process step number and name."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_1_1/principle_1_1.inc:83 sites/all/modules/custom/myhaccp/mforms/sections/11_plan/11_plan.theme.inc:31
+msgid "Step no."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_1_1/principle_1_1.inc:85
+msgid "Number of process step."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_1_1/principle_1_1.inc:90
+msgid "Please add a step number."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_1_1/principle_1_1.inc:98
+msgid "Step name"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_1_1/principle_1_1.inc:100
+msgid "Name of process step."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_1_1/principle_1_1.inc:104
+msgid "Please add a step name."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_1_1/principle_1_1.inc:119
+msgid "List all potential hazards that may be reasonably expected to occur at this process step. In the text boxes below, please list each hazard on a new line."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_1_1/principle_1_1.inc:129
+msgid "List all biological hazards with each hazard on a new line, e.g.<br/>Salmonella spp.<br/>Listeria spp.<br/>Norovirus<br/>"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_1_1/principle_1_1.inc:139
+msgid "List all chemical hazards with each hazard on a new line, e.g.<br/>nitrate<br/>patulin<br/>cadmium<br/>"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_1_1/principle_1_1.inc:149
+msgid "List all physical hazards, with each hazard on a new line, e.g.<br/>stones<br/>metal<br/>wood<br/>"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_1_1/principle_1_1.inc:159
+msgid "List all substances or products that cause allergies or intolerances, with each hazard on a new line, e.g.<br/>celery<br/>sesame seeds<br/>egg<br/>"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_1_1/principle_1_1.inc:175
+msgid "Add another step"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_1_1/principle_1_1.inc:189
+msgid "Remove a step"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_1_1/principle_1_1.inc:263
+msgid "Please add at least one hazard."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_1_1/principle_1_1.inc:280
+msgid "Steps must have a step number and a step name."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_1_2/principle_1_2.inc:63
+msgid "An assessment of the hazards identified is carried out to determine which hazards are of such a nature that their prevention, elimination or reduction to acceptable levels is essential to the production of safe food."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_1_2/principle_1_2.inc:71
+msgid "Process Step !step_no: !step_name"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_1_2/principle_1_2.inc:80
+msgid "For each hazard conduct a hazard analysis, giving it a score for severity of hazard and likelihood of hazard."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_1_2/principle_1_2.inc:107
+msgid "Please add a description."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_1_2/principle_1_2.inc:121
+msgid "Please add a severity between 1 and 3."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_1_2/principle_1_2.inc:135
+msgid "Please add a likelihood between 1 and 3."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_1_2/principle_1_2.inc:149
+msgid "Please add a significance between 1 and 9."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_1_2/principle_1_2.inc:164
+msgid "Determine the threshold, above which you consider the hazard to be 'significant':"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_1_2/principle_1_2.inc:165
+msgid "Please enter a number above which we will consider the hazard to be significant."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_1_2/principle_1_2.inc:175
+msgid "Please add a threshold value between 1 and 9."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_1_3/principle_1_3.inc:62
+msgid "Control measures are actions and/or activities that are taken to prevent, eliminate or reduce the occurrence of a hazard."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_1_3/principle_1_3.inc:91
+msgid "For each significant hazard, please specify the control measure."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_1_3/principle_1_3.inc:95
+msgid "Please add a control measure."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_2_1/principle_2_1.inc:43
+msgid "A CCP is a step at which control can be applied and is essential to prevent or eliminate a food safety hazard or reduce it to an acceptable level. CCPs should be determined through experience and judgement; this may be aided by the use of a decision tree. We strongly advise using one of the following decision trees:<ul><li>Campden Decision Tree</li><li>Codex Decision Tree</li></ul>"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_2_1/principle_2_1.inc:64
+msgid "1. Are you using a decision tree?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_2_1/principle_2_1.inc:66
+msgid "A 'decision tree' is a tool that can be used to help identify a critical control point. You do not have to use a decision tree."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_2_1/principle_2_1.inc:74
+msgid "Please confirm whether you are using a decision tree."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_2_1/principle_2_1.inc:83
+msgid "Codex"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_2_1/principle_2_1.inc:84
+msgid "Campden"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_2_1/principle_2_1.inc:86
+msgid "1a. Which decision tree are you using?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_2_1/principle_2_1.inc:88
+msgid "You can select which decision tree you wish to use to help you, but you can use one  of your own or none at all.  More information on the  decision trees can be found."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_2_1/principle_2_1.inc:98
+msgid "Please select a decision tree, or none if you are not using one."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_2_1/principle_2_1.inc:106
+msgid "1b. Please explain how you are deciding on your CCPs. !tip"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_2_1/principle_2_1.inc:117
+msgid "Please state how you are deciding your on your Critical Control Points."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_2_2/principle_2_2.inc:77
+msgid "For each significant hazard you will need apply your chosen decision making process to identify if this step is a CCP."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_2_2/principle_2_2.inc:142
+msgid "N/A"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_2_2/principle_2_2.inc:151
+msgid "Please indicate 'Yes', 'No' or 'N/A' for this question in the decision tree."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_2_2/principle_2_2.inc:176
+msgid "Please indicate whether this process step is a critical control point."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_3/principle_3.inc:64
+msgid "A critical limit is the maximum or minimum value for the control measure at a CCP to prevent, eliminate or reduce the hazard to an acceptable level.  It separates acceptable (safe) from unacceptable (unsafe) product."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_3/principle_3.inc:81
+msgid "1. What is the critical limit for this critical control point (what separates safe from potentially unsafe product)?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_3/principle_3.inc:82
+msgid "The critical limit  is a value that separates acceptable from unacceptable e.g. 72 degrees Celsius (can we put this in units please) below this temperature the product is unacceptable above this limit it is considered acceptable."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_3/principle_3.inc:87
+msgid "Please specify the critical limit for this critical control point."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_3/principle_3.inc:94
+msgid "2. Provide details of how the critical limit was determined."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_3/principle_3.inc:95
+msgid "Have you used legislation, industry guides, historical data?  List details of all resources used to arrive at the critical limit."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_3/principle_3.inc:100
+msgid "Please provide details of how the critical limit was determined."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_3/principle_3.inc:110
+msgid "3. Is the critical limit appropriate to control the specific hazard?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_3/principle_3.inc:111
+msgid "Will the critical limit you have set prevent, reduce or eliminate the hazard identified?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_3/principle_3.inc:116
+msgid "It is essential that the critical limit is appropriate to control the specific hazard."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_3/principle_3.inc:126
+msgid "4. Is the critical limit measurable or observable in real time?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_3/principle_3.inc:127
+msgid "Measurable examples include things like pH, aw, brix, psi and observable examples include boiling, colour change, steaming, size reduction."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_3/principle_3.inc:132
+msgid "It is essential that critical limit is measurable or observable in real time."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_3/principle_3.inc:142
+msgid "5. Is there a target value?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_3/principle_3.inc:143
+msgid "This is more stringent than a critical limit but allows a business to gain control before a critical limit is breached."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_3/principle_3.inc:148
+msgid "Please indicate whether there is a target value."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_3/principle_3.inc:154
+msgid "5a. If yes, what is the target value?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_3/principle_3.inc:155
+msgid "State the target value e.g.  74 degrees Celsius where the critical limit  is  72 degrees Celsius."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_3/principle_3.inc:165
+msgid "Please specify the target value."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_3/principle_3.inc:171
+msgid "5b. Please specify any tolerances"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_3/principle_3.inc:172
+msgid "This is the value between the critical limit and the target value."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_3/principle_3.inc:182
+msgid "Please specify the tolerance."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_4/principle_4.inc:44
+msgid "Monitoring is the act of conducting a planned sequence of observations or measurements of control parameters to assess whether a CCP is under control."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_4/principle_4.inc:83
+msgid "1. What monitoring activities are going to take place at this CCP?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_4/principle_4.inc:85
+msgid "Monitoring activities are  observations or measurements that must be able to detect loss of control at a CCP."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_4/principle_4.inc:89
+msgid "Please state what monitoring activities are going to take place at this CCP."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_4/principle_4.inc:96
+msgid "2. Specify how frequently the monitoring activities are to be carried out."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_4/principle_4.inc:98
+msgid "e.g. every 20 minutes, ½ hourly, continually."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_4/principle_4.inc:102
+msgid "Please specify  how frequently the monitoring activities are to be carried out."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_4/principle_4.inc:109
+msgid "3. Define how the monitoring activities are carried out."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_4/principle_4.inc:111
+msgid "Specify how the monitoring activity is going to be performed."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_4/principle_4.inc:115
+msgid "Please define how the monitoring activities are carried out."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_4/principle_4.inc:122
+msgid "4. Who is responsible for monitoring actions at this CCP?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_4/principle_4.inc:124
+msgid "Name or individual/s authorised to carry out this task.  They must be trained and competent in being able to carry out this task."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_4/principle_4.inc:128
+msgid "Please state who is responsible for monitoring actions at this CCP."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_4/principle_4.inc:134
+msgid "5. Please state the name and job title of the deputy if applicable:"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_4/principle_4.inc:136
+msgid "Will anyone else carry out this monitoring activity in the absence of the main person responsible.  The deputy must be trained and competent to be able to perform the task."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_4/principle_4.inc:142
+msgid "6. Where are the results of monitoring recorded?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_4/principle_4.inc:144
+msgid "E.g. Is this in a specific log book, if so does it have a reference number or name?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_4/principle_4.inc:148
+msgid "Please state where the results of monitoring are recorded."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_4/principle_4.inc:158
+msgid "7. Will the monitoring records be checked and signed off by anyone?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_4/principle_4.inc:160
+msgid "It is good practice to get someone who is trained and competent to check monitoring records and sign them off.  This is typically someone different to the person carrying out  the monitoring activity.  Signing them off would indicate that all records are within tolerance or if not, appropriate action has been taken."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_4/principle_4.inc:164
+msgid "Please state if the monitoring records are to be checked and signed off by anyone."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_4/principle_4.inc:170
+msgid "7a. Who will check the records?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_4/principle_4.inc:172
+msgid "Name of person who is competent and trained t check records are completed as expected."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_4/principle_4.inc:180
+msgid "Please state who will check the records."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_4/principle_4.inc:186
+msgid "7b. How frequently will they check the records?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_4/principle_4.inc:188
+msgid "E.g. daily."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_4/principle_4.inc:196
+msgid "Please state how frequently the records will be checked."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_5/principle_5.inc:44
+msgid "Document any action to be taken when monitoring results show that a CCP has deviated from the critical limit (indicating a loss of control)."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_5/principle_5.inc:83
+msgid "1. Corrective action to be taken."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_5/principle_5.inc:85
+msgid "Provide details of what should be done in the event of failure to meet a critical limit."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_5/principle_5.inc:89
+msgid "Please state the action to be taken at this CCP."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_5/principle_5.inc:96
+msgid "2. Detail personnel who have the authority to take the stated corrective action."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_5/principle_5.inc:98
+msgid "Provide names. These people should be trained and competent in the activities that they are to perform when something has failed to meet a critical limit."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_5/principle_5.inc:102
+msgid "Please detail the personnel who have the authority to take the stated corrective action."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_5/principle_5.inc:109
+msgid "3. What happens to the product created during the period that a CCP was out of control? Detail any variation in handling this product that relates to, a parameter, eg degree of control lost."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_5/principle_5.inc:111
+msgid "Describe what will happen to the affected product?  E.g. will the product be disposed of ?  If so, how? Please provide all details. "
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_5/principle_5.inc:115
+msgid "Please detail what happens to the product created during the period that a CCP was out of control."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_5/principle_5.inc:122
+msgid "4. Where are you going to document what you have done with the product produced during the time period that a CCP was 'out of control' (for example since the last good check)?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_5/principle_5.inc:124
+msgid "Where will this information be recorded?  E.g. on a monitoring sheet, on a corrective action note, do you hold a specific file where this information is recorded?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_5/principle_5.inc:128
+msgid "Please detail where you will document what you have done with the product produced during the time period that a CCP was 'out of control'."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_5/principle_5.inc:138
+msgid "5. Are all personnel (identified in any of the steps from 1-6 for all CCP’s) trained and competent for performing the activities stated?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_5/principle_5.inc:140
+msgid "Is their training specific to the tasks they are expected to carry out?  Is it up-to-date."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_5/principle_5.inc:144
+msgid "All personnel engaged in any of the activities mentioned should have received appropriate training for the task undertaken. Records of training should be available."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_5/principle_5.inc:154
+msgid "6. Are records of competency maintained?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_5/principle_5.inc:155
+msgid "The competencies of staff should be reviewed. It may be necessary to train staff, refresh their training, provide on-the-job experience, records of which should be kept to reflect that staff are capable of performing the task they are undertaking"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_5/principle_5.inc:161
+msgid "It is essential that all verification records are maintained."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:55
+msgid "Verification is the principle which confirms that the HACCP plan, if followed, will produce safe food. First you need to validate the HACCP system to ensure that it is fit for purpose and effectively controls the hazards you identified. This is to be carried out prior to implementation and before the product is placed on the market."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:62
+msgid "1. Document your validation study in the space below."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:63
+msgid "Provide details of all validation studies carried out."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:68
+msgid "Please add documentation of your validation study."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:75
+msgid "2. Who is responsible for ensuring the contents of the whole HACCP plan (this may include several HACCP studies) are validated?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:76
+msgid "Enter the name of the person  responsible."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:81;106
+msgid "Please state who is responsible for ensuring the contents of the HACCP plan are validated."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:91
+msgid "3. Is this the same person who will formally sign off the whole HACCP plan (which may contain several HACCP studies)?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:92
+msgid "Enter the name of the person."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:97
+msgid "Please indicate if this is the same person who will formally sign off the HACCP plan."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:103
+msgid "3a. Who will formally sign off the HACCP plan?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:122 sites/all/modules/custom/myhaccp/mforms/sections/12_verification/12_verification.theme.inc:48
+msgid "Internal audits of"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:134 sites/all/modules/custom/myhaccp/mforms/sections/12_verification/12_verification.theme.inc:57
+msgid "External auditing programmes"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:143 sites/all/modules/custom/myhaccp/mforms/sections/12_verification/12_verification.theme.inc:66
+msgid "Finished product"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:153 sites/all/modules/custom/myhaccp/mforms/sections/12_verification/12_verification.theme.inc:75
+msgid "Interim product"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:176 sites/all/modules/custom/myhaccp/mforms/sections/12_verification/12_verification.theme.inc:93
+msgid "Reviewing"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:190
+msgid "5. List any other verification activities carried out in your organisation."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:191
+msgid "If you carry out additional verification activities not listed above, record them here."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:195
+msgid "Please list any other verification activities carried out in your organisation."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:205
+msgid "6. Are all verification records maintained?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:206
+msgid "You should keep verification records for a minimum of the life of a product  plus an extension period of ‘typically’ 3 months.  You must take into consideration abuse of your product and may wish to keep records for a longer period."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:211
+msgid "Please confirm that all verification records are maintained."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:217
+msgid "7. How often is the whole HACCP plan formally reviewed?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:218
+msgid "Is this annually, bi-annually or more frequently?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:223
+msgid "Please detail how often the HACCP system is formally reviewed."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:229
+msgid "8. Who is responsible for carrying out a formal annual review?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:230
+msgid "Provide name of individual responsible."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:235
+msgid "Please state who is responsible for carrying out a formal annual review."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:241
+msgid "9. Mark any of the following 'triggers' that will initiate a review in your organisation:"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:262
+msgid "If any of the items listed occur  your HACCP plan may not be valid and your product potentially unsafe.  In such a case it would be necessary to trigger a review."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:269
+msgid "10. List any other mechanisms which are in place to automatically 'trigger' a review."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:272
+msgid "Please list any other mechanisms which are in place to automatically ‘trigger’ a review."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:278
+msgid "11. Are all records from reviews documented, brought to the attention of senior management (for companies where this is appropriate)  and used to keep the HACCP plan up-to-date?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_6/principle_6.inc:286
+msgid "Please specify if all records from reviews documented, brought to the attention of senior management (for companies where this is appropriate) and used to keep the HACCP plan up-to-date."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_7/principle_7.inc:44
+msgid "Efficient and accurate record keeping is essential to the application of a HACCP system."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_7/principle_7.inc:50
+msgid "1. Select all forms of documentation relating to this HACCP study that your business retains."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_7/principle_7.inc:68
+msgid "Do you keep hold of any of the following documents?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_7/principle_7.inc:73
+msgid "Please choose at least one option."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_7/principle_7.inc:82
+msgid "2. Provide details of any other supporting information (i.e. anything else covered in your HACCP plan) that is retained."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_7/principle_7.inc:84
+msgid "Is there anything else (other documents) covering HACCP  that you keep hold of?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_7/principle_7.inc:90
+msgid "3. How is documentation controlled (up-dates / issue number)?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_7/principle_7.inc:91
+msgid "For any forms, records, procedures, whether on paper or the computer do you have a system to ensure the latest issue is being used?  Provide details on how you achieve this."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_7/principle_7.inc:95
+msgid "Please detail how your documentation is controlled."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_7/principle_7.inc:101
+msgid "4. What is the maximum length of time that you retain this information for?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_7/principle_7.inc:102
+msgid "State the time period typically this is a minimum of the shelf-life plus an ‘additional period’.  The additional period  must take into consideration abuse of your product and you  may wish to keep records for a much longer period of time."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_7/principle_7.inc:106
+msgid "Please specify the maximum length of time that you retain this information for."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_7/principle_7.inc:112
+msgid "5. Are the records accessible, accurate and up to date?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_7/principle_7.inc:120
+msgid "Please confirm that your records are accessible, accurate and up to date."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/principle/principle_review/principle_review.inc:82
+msgid "Finish study"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/01_management/01_management.theme.inc:28
+msgid "I am the management and can confirm that I am committed to food safety management based on HACCP."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/01_management/01_management.theme.inc:33
+msgid "The following evidence shows the support of senior management to food safety management based on HACCP:"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/01_management/01_management.theme.inc:37
+msgid "Other evidence of management commitment"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/02_terms/02_terms.theme.inc:31 sites/all/modules/custom/myhaccp/mforms/sections/02_terms/preparatory_c_1.theme.inc:23
+msgid "<p>This <strong>@c_1</strong> HACCP plan covers:<br/><strong>@c_2</strong></p><p>\nIt will start at <strong>@start</strong> through to <strong>@end</strong>.</p>"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/02_terms/02_terms.theme.inc:116
+msgid "The HACCP plan will cover final product safety and will look at the following hazards:"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/02_terms/02_terms.theme.inc:120
+msgid "<h4>Physical</h4>"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/02_terms/02_terms.theme.inc:125
+msgid "<h4>Chemical</h4>"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/02_terms/02_terms.theme.inc:130
+msgid "<h4>Biological</h4>"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/02_terms/02_terms.theme.inc:135
+msgid "<h4>Allergens</h4>"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/02_terms/02_terms.theme.inc:145 sites/all/modules/custom/myhaccp/mforms/sections/02_terms/preparatory_a.theme.inc:41
+msgid "The company has in place a number of effective prerequisite programmes, including:"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/02_terms/02_terms.theme.inc:148 sites/all/modules/custom/myhaccp/mforms/sections/02_terms/preparatory_a.theme.inc:44
+msgid "The location of the above documents is:"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/02_terms/02_terms.theme.inc:155
+msgid "<h3>The following were used in developing this HACCP plan:</h3>"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/03_team/03_team.theme.inc:39
+msgid "Role"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/03_team/03_team.theme.inc:40
+msgid "Name"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/03_team/03_team.theme.inc:41
+msgid "Training"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/03_team/03_team.theme.inc:43
+msgid "Experience"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/03_team/03_team.theme.inc:78
+msgid "We confirm that the team have sufficient skills (scientific/technical knowledge and HACCP expertise) to ensure that the HACCP study will be effective."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/03_team/03_team.theme.inc:81
+msgid "The team do not have sufficient skills (scientific/technical knowledge and HACCP expertise) to ensure that the HACCP study will be effective. We plan to address this issue in the following way:"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/04_product/04_product.theme.inc:27
+msgid "Ingredients"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/04_product/04_product.theme.inc:30
+msgid "Physical properties"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/04_product/04_product.theme.inc:33
+msgid "Processing"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/04_product/04_product.theme.inc:39
+msgid "Storage"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/04_product/04_product.theme.inc:42
+msgid "Shelf life of product"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/04_product/04_product.theme.inc:45
+msgid "Storing, handling and preparation advice"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/04_product/04_product.theme.inc:55
+msgid "The product !isnot suitable for consumption by the general public."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/04_product/04_product.theme.inc:56;63;70;77;84;91
+msgid "is"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/04_product/04_product.theme.inc:56;63;70;77;84;91
+msgid "is not"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/04_product/04_product.theme.inc:62
+msgid "The product !isnot suitable for the young."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/04_product/04_product.theme.inc:69
+msgid "The product !isnot suitable for the elderly."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/04_product/04_product.theme.inc:76
+msgid "The product !isnot suitable for pregnant ladies."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/04_product/04_product.theme.inc:83
+msgid "The product !isnot suitable for the immunosuppressed / immunocompromised."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/04_product/04_product.theme.inc:90
+msgid "The product !isnot suitable for people with allergies or intolerances."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/04_product/04_product.theme.inc:97
+msgid "We have considered the likely abuse / unintended use of the product by the consumer in the following ways:"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/05_process/05_process.theme.inc:31
+msgid "See Appendix A for the flow diagram."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/05_process/05_process.theme.inc:37
+msgid "We have completed a flow diagram covering all steps in the manufacturing process of this product."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/05_process/05_process.theme.inc:40
+msgid "We have <strong>not</strong> completed a flow diagram covering all steps in the manufacturing process of this product."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/05_process/05_process.theme.inc:50
+msgid "has confirmed that our flow diagram is correct."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/05_process/05_process.theme.inc:55
+msgid "Every process step is identified in our flow diagram."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/05_process/05_process.theme.inc:63
+msgid "The flow diagram is an accurate representation of the process from start to finish."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/05_process/05_process.theme.inc:71
+msgid "The flow diagram is correct for all shifts (e.g. days, nights and weekend)."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/05_process/05_process.theme.inc:79
+msgid "The flow diagram is correct during all seasonal variations."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/05_process/05_process.theme.inc:87
+msgid "The HACCP lead has signed off and dated the flow diagram as being correct."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/05_process/05_process.theme.inc:97
+msgid "The following members of our organisation are responsible for making changes to the flow diagram and storing out of date versions:"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/06_identify/06_identify.theme.inc:38 sites/all/modules/custom/myhaccp/mforms/sections/08_control/08_control.theme.inc:30 sites/all/modules/custom/myhaccp/mforms/sections/09_ccps/09_ccps.theme.inc:49 sites/all/modules/custom/myhaccp/mforms/sections/10_critical/10_critical.theme.inc:29
+msgid "Step No."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/06_identify/06_identify.theme.inc:39
+msgid "Step Name"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/07_severity/07_severity.theme.inc:30 sites/all/modules/custom/myhaccp/mforms/sections/08_control/08_control.theme.inc:32 sites/all/modules/custom/myhaccp/mforms/sections/09_ccps/09_ccps.theme.inc:50 sites/all/modules/custom/myhaccp/mforms/sections/10_critical/10_critical.theme.inc:31 sites/all/modules/custom/myhaccp/mforms/sections/11_plan/11_plan.theme.inc:32 sites/all/modules/custom/myhaccp/theme/myhaccp.theme.inc:25;89;142
+msgid "Hazard"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/07_severity/07_severity.theme.inc:31 sites/all/modules/custom/myhaccp/mforms/sections/08_control/08_control.theme.inc:33
+msgid "Hazard Description"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/07_severity/07_severity.theme.inc:32
+msgid "Severity"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/07_severity/07_severity.theme.inc:33
+msgid "Likelihood"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/07_severity/07_severity.theme.inc:34
+msgid "Significance"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/07_severity/07_severity.theme.inc:76
+msgid "The threshold, above which we consider the hazard to be 'significant' is: <strong>"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/08_control/08_control.theme.inc:31 sites/all/modules/custom/myhaccp/mforms/sections/10_critical/10_critical.theme.inc:30
+msgid "Step Name."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/09_ccps/09_ccps.theme.inc:32
+msgid "For this study we are not using a decision tree. We are deciding on our CCPS in the following ways:<br />"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/09_ccps/09_ccps.theme.inc:38
+msgid "For this study, we are using the <strong>Codex</strong> decision tree."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/09_ccps/09_ccps.theme.inc:41
+msgid "For this study, we are using the <strong>Campden</strong> decision tree."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/09_ccps/09_ccps.theme.inc:52
+msgid "Decision Tree"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/09_ccps/09_ccps.theme.inc:53
+msgid "CCP?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/10_critical/10_critical.theme.inc:32 sites/all/modules/custom/myhaccp/mforms/sections/11_plan/11_plan.theme.inc:34
+msgid "Critical limit"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/10_critical/10_critical.theme.inc:33
+msgid "How was the critical limit determined?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/10_critical/10_critical.theme.inc:34
+msgid "Will the critical limit control the specific hazard?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/10_critical/10_critical.theme.inc:35
+msgid "Can the critical limit be measured or observed in real time?"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/11_plan/11_plan.theme.inc:30
+msgid "Process step"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/11_plan/11_plan.theme.inc:33
+msgid "Control measure"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/11_plan/11_plan.theme.inc:35
+msgid "Monitoring procedures"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/11_plan/11_plan.theme.inc:36
+msgid "Corrective action"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/11_plan/11_plan.theme.inc:217
+msgid "All personnel are trained and competent for performing the activities stated."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/11_plan/11_plan.theme.inc:222
+msgid "Records of competency are maintained."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/12_verification/12_verification.theme.inc:33
+msgid " is responsible for ensuring the contents of the HACCP plan are validated."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/12_verification/12_verification.theme.inc:34
+msgid " will formally sign off the HACCP plan."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/12_verification/12_verification.theme.inc:37
+msgid " is responsible for ensuring the contents of the HACCP plan are validated and will  also formally sign off the HACCP plan."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/12_verification/12_verification.theme.inc:40
+msgid "The following verification activities are undertaken:"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/12_verification/12_verification.theme.inc:102
+msgid "Other verification activities"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/12_verification/12_verification.theme.inc:113
+msgid "All verification records are maintained"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/12_verification/12_verification.theme.inc:118
+msgid "The HACCP system is formally reviewed <strong>"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/12_verification/12_verification.theme.inc:123
+msgid "</strong> is responsible for carrying out a formal annual review."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/12_verification/12_verification.theme.inc:130
+msgid "The following triggers will initiate a review in the organisation:"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/12_verification/12_verification.theme.inc:144
+msgid "All records from reviews are documented, brought to the attention of senior management and used to keep the HACCP plan up-to-date."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/13_documentation/13_documentation.theme.inc:28
+msgid "Documentation relating to this HACCP study that the business retains:"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/13_documentation/13_documentation.theme.inc:37
+msgid "Other supporting information that is retained"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/13_documentation/13_documentation.theme.inc:43
+msgid "Documentation control"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/13_documentation/13_documentation.theme.inc:49
+msgid "The maximum length of time we retain this information for is "
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/13_documentation/13_documentation.theme.inc:55
+msgid "All records are accessible, accurate and up to date."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/appendix_a/appendix_a.inc:32;103
+msgid "The flow diagram begins on the next page."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/appendix_a/appendix_a.inc:17;54
+msgid "myhaccp"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/appendix_a/appendix_a.inc:17
+msgid "Whilst rendering the PDF, the flow diagram could not be loaded."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/mforms/sections/appendix_a/appendix_a.inc:54
+msgid "There was a problem creating the image derivative for the PDF in the temp directory."
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/theme/myhaccp.theme.inc:26
+msgid "Hazard Description !tip !help"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/theme/myhaccp.theme.inc:28
+msgid "Provide a detailed description of the hazard. Think about this stage carefully. It is common to make errors here and this will lead to implications further on. By describing the hazard in more detail, it will help you later when you specify the control. Be aware that there may be more than one 'descriptor' for a hazard. If you identify more than one descriptor (this is quite common) you should go back to <strong>Principle 1.1</strong> and add an additional hazard, this time however it should have a descriptor in brackets after it (i.e. Salmonella spp (introduction) Salmonella spp (growth)). It is important that you read the additional information.<br/> !link"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/theme/myhaccp.theme.inc:33
+msgid "Severity (1-3) !tip !help"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/theme/myhaccp.theme.inc:35
+msgid "Rate on scale of 1 - 3 (1 = minor, 3 = long-term illness leading to death or death). !link"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/theme/myhaccp.theme.inc:42
+msgid "Likelihood (1-3) !tip !help"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/theme/myhaccp.theme.inc:44
+msgid "Rate on scale of 1-3 (1=unlikely to occur but might, 3=definitely will occur (at some time if it hasn't occurred in the past). !link"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/theme/myhaccp.theme.inc:51
+msgid "Significance <span>(S x L)</span> !tip !help"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/theme/myhaccp.theme.inc:53
+msgid "Severity score multiplied by likelihood score. !link"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/theme/myhaccp.theme.inc:85;138
+msgid "Process Step"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/theme/myhaccp.theme.inc:93
+msgid "Control Measure !tip !help"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/theme/myhaccp.theme.inc:146
+msgid "Control Measure"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/theme/myhaccp.theme.inc:152
+msgid "Decision Tree Q's !tip !help"
+msgstr ""
+
+#: sites/all/modules/custom/myhaccp/theme/myhaccp.theme.inc:159
+msgid "CCP? !tip !help"
+msgstr ""
+

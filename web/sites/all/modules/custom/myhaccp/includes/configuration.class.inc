@@ -1,9 +1,20 @@
 <?php
 
+/**
+ * @file
+ * A configuration class with definitions for various options.
+ *
+ * This class is called by various other classes and is used to provide
+ * defined configuration in the form of keyed arrays.
+ */
+
 define('NOT_STARTED', 0);
 define('INVALID', 1);
 define('VALID', 2);
 
+/**
+ * Class Configuration.
+ */
 class Configuration {
 
   /**
@@ -17,6 +28,13 @@ class Configuration {
     return $this->getMachineNames();
   }
 
+  /**
+   * Relates stages with phases.
+   *
+   * @return array
+   *   An array keyed by the stage machine name with the value representing
+   *   the phase the stage belongs to.
+   */
   public function getMachineNames() {
     $names = array(
       'preparatory_intro' => 'preparatory',
@@ -46,6 +64,13 @@ class Configuration {
     return $names;
   }
 
+  /**
+   * Relates stage machine names to urls.
+   *
+   * @return array
+   *   An array keyed by stage machine name with the value representing the
+   *   url the stage can be found at.
+   */
   public function getStageUrls() {
     return array(
       'preparatory_intro' => 'preparatory/introduction',
@@ -74,34 +99,48 @@ class Configuration {
     );
   }
 
+  /**
+   * Relates stage machine names to stage titles.
+   *
+   * @return array
+   *   An array keyed by stage machine name with the value representing the
+   *   stage title.
+   */
   public function getStageTitles() {
     return array(
-      'preparatory_intro' => 'Preparatory: Introduction',
-      'preparatory_a' => 'Preparatory Stage A: Prerequisites',
-      'preparatory_b' => 'Preparatory Stage B: Obtain Management Commitment',
-      'preparatory_c_1' => 'Preparatory Stage C: Define scope of the study',
-      'preparatory_c_2' => 'Preparatory Stage C: Define scope of the study (Continued)',
-      'preparatory_d' => 'Preparatory Stage D: Select the HACCP team',
-      'preparatory_e' => 'Preparatory Stage E: Describe the product',
-      'preparatory_f' => 'Preparatory Stage F: Identify intended use of the product',
-      'preparatory_g' => 'Preparatory Stage G: Construct a flow diagram',
-      'preparatory_h' => 'Preparatory Stage H: On-site confirmation of flow diagram',
-      'preparatory_review' => 'Preparatory: Review',
-      'principle_intro' => 'Principles: Introduction',
-      'principle_1_1' => 'Principle 1.1: Identify and list Potential Hazards',
-      'principle_1_2' => 'Principle 1.2: Conduct a Hazard Analysis',
-      'principle_1_3' => 'Principle 1.3: Specify the Control Measures for each hazard',
-      'principle_2_1' => 'Principle 2.1: Determine the Critical Control Points (CCPs)',
-      'principle_2_2' => 'Principle 2.2: Determine the Critical Control Points (CCPs) (Continued)',
-      'principle_3' => 'Principle 3: Establish the Critical Limits',
-      'principle_4' => 'Principle 4: Establish a Monitoring System for each CCP',
-      'principle_5' => 'Principle 5: Establish a Corrective Action plan',
-      'principle_6' => 'Principle 6: Verification',
-      'principle_7' => 'Principle 7: Establish Documentation and Record Keeping',
-      'principle_review' => 'Principles: Review',
+      'preparatory_intro' => t('Preparatory: Introduction'),
+      'preparatory_a' => t('Preparatory Stage A: Prerequisites'),
+      'preparatory_b' => t('Preparatory Stage B: Obtain Management Commitment'),
+      'preparatory_c_1' => t('Preparatory Stage C: Define scope of the study'),
+      'preparatory_c_2' => t('Preparatory Stage C: Define scope of the study (Continued)'),
+      'preparatory_d' => t('Preparatory Stage D: Select the HACCP team'),
+      'preparatory_e' => t('Preparatory Stage E: Describe the product'),
+      'preparatory_f' => t('Preparatory Stage F: Identify intended use of the product'),
+      'preparatory_g' => t('Preparatory Stage G: Construct a flow diagram'),
+      'preparatory_h' => t('Preparatory Stage H: On-site confirmation of flow diagram'),
+      'preparatory_review' => t('Preparatory: Review'),
+      'principle_intro' => t('Principles: Introduction'),
+      'principle_1_1' => t('Principle 1.1: Identify and list Potential Hazards'),
+      'principle_1_2' => t('Principle 1.2: Conduct a Hazard Analysis'),
+      'principle_1_3' => t('Principle 1.3: Specify the Control Measures for each hazard'),
+      'principle_2_1' => t('Principle 2.1: Determine the Critical Control Points (CCPs)'),
+      'principle_2_2' => t('Principle 2.2: Determine the Critical Control Points (CCPs) (Continued)'),
+      'principle_3' => t('Principle 3: Establish the Critical Limits'),
+      'principle_4' => t('Principle 4: Establish a Monitoring System for each CCP'),
+      'principle_5' => t('Principle 5: Establish a Corrective Action plan'),
+      'principle_6' => t('Principle 6: Verification'),
+      'principle_7' => t('Principle 7: Establish Documentation and Record Keeping'),
+      'principle_review' => t('Principles: Review'),
     );
   }
 
+  /**
+   * Relates stage machine names to help node IDs.
+   *
+   * @return array
+   *   An array keyed by stage machine name with the value representing the
+   *   node ID of the related help page.
+   */
   public function getHelpPages() {
     return array(
       'preparatory_a' => 13,
@@ -124,10 +163,19 @@ class Configuration {
     );
   }
 
+  /**
+   * Returns configuration for the PDF section output.
+   *
+   * @return array
+   *   An array keyed by the PDF section machine name with sub elements
+   *   representing the title, which validation needs to pass for the section
+   *   to be shown and which theme function is used to provide the output
+   *   variables for the template file.
+   */
   public function getPDFSections() {
     return array(
       '01_management' => array(
-        'title' => 'Management commitment',
+        'title' => t('Management commitment'),
         'validation' => array(
           'preparatory_b',
         ),
@@ -136,7 +184,7 @@ class Configuration {
         ),
       ),
       '02_terms' => array(
-        'title' => 'Terms of reference',
+        'title' => t('Terms of reference'),
         'validation' => array(
           'preparatory_c_1',
           'preparatory_c_2',
@@ -149,7 +197,7 @@ class Configuration {
         'orientation' => 'P',
       ),
       '03_team' => array(
-        'title' => 'The HACCP team',
+        'title' => t('The HACCP team'),
         'validation' => array(
           'preparatory_d',
         ),
@@ -159,7 +207,7 @@ class Configuration {
         'orientation' => 'P',
       ),
       '04_product' => array(
-        'title' => 'Product description and intended use',
+        'title' => t('Product description and intended use'),
         'validation' => array(
           'preparatory_e',
           'preparatory_f',
@@ -171,7 +219,7 @@ class Configuration {
         'orientation' => 'P',
       ),
       '05_process' => array(
-        'title' => 'Process flow and confirmation',
+        'title' => t('Process flow and confirmation'),
         'validation' => array(
           'preparatory_g',
           'preparatory_h',
@@ -183,7 +231,7 @@ class Configuration {
         'orientation' => 'P',
       ),
       '06_identify' => array(
-        'title' => 'Identify and list potential hazards',
+        'title' => t('Identify and list potential hazards'),
         'validation' => array(
           'principle_1_1',
         ),
@@ -193,7 +241,7 @@ class Configuration {
         'orientation' => 'L',
       ),
       '07_severity' => array(
-        'title' => 'Severity scores',
+        'title' => t('Severity scores'),
         'validation' => array(
           'principle_1_2',
         ),
@@ -203,7 +251,7 @@ class Configuration {
         'orientation' => 'L',
       ),
       '08_control' => array(
-        'title' => 'Control Measures',
+        'title' => t('Control Measures'),
         'validation' => array(
           'principle_1_3',
         ),
@@ -213,7 +261,7 @@ class Configuration {
         'orientation' => 'L',
       ),
       '09_ccps' => array(
-        'title' => 'CCPs for significant hazards',
+        'title' => t('CCPs for significant hazards'),
         'validation' => array(
           'principle_2_1',
           'principle_2_2',
@@ -225,7 +273,7 @@ class Configuration {
         'orientation' => 'L',
       ),
       '10_critical' => array(
-        'title' => 'Critical limits for the CCPs',
+        'title' => t('Critical limits for the CCPs'),
         'validation' => array(
           'principle_3',
         ),
@@ -235,7 +283,7 @@ class Configuration {
         'orientation' => 'L',
       ),
       '11_plan' => array(
-        'title' => 'The HACCP Plan',
+        'title' => t('The HACCP Plan'),
         'validation' => array(
           'principle_3',
           'principle_4',
@@ -249,7 +297,7 @@ class Configuration {
         'orientation' => 'L',
       ),
       '12_verification' => array(
-        'title' => 'Verification',
+        'title' => t('Verification'),
         'validation' => array(
           'principle_6',
         ),
@@ -259,7 +307,7 @@ class Configuration {
         'orientation' => 'P',
       ),
       '13_documentation' => array(
-        'title' => 'Documentation and record keeping',
+        'title' => t('Documentation and record keeping'),
         'validation' => array(
           'principle_7',
         ),
@@ -268,21 +316,12 @@ class Configuration {
         ),
         'orientation' => 'P',
       ),
+      'appendix_a' => array(
+        'type' => 'appendix',
+        'title' => t('Appendix A - Flow Diagram'),
+        'process_function' => 'process_appendix_a',
+      ),
     );
-    // Determine the orientation of the pages and where page breaks occur.
-//    $breaks = array(
-//      'preparatory_c_1' => 'P',
-//      'preparatory_d' => 'P',
-//      'preparatory_e' => 'P',
-//      'preparatory_g' => 'P',
-//      'principle_1_1' => 'L',
-//      'principle_1_2' => 'L',
-//      'principle_1_3' => 'L',
-//      'principle_2_1' => 'L',
-//      'principle_3' => 'L',
-//      'principle_5' => 'L',
-//      'principle_6' => 'P',
-//      'principle_7' => 'P',
-//    );
   }
+
 }

@@ -22,11 +22,11 @@ class FeatureContext extends Drupal\DrupalExtension\Context\DrupalContext {
    * @BeforeScenario
    */
   public function setup() {
-    // Deal with basic auth on the testing server.
-    if ($_SERVER['HTTP_HOST'] == 'myhaccp.agile.coop'
-        or $_SERVER['HTTP_HOST'] == 'master.myhaccp.agile.coop'
-        or $_SERVER['HTTP_HOST'] == 'develop.myhaccp.agile.coop') {
-      $this->getSession()->setBasicAuth('agile', 'collective');
+    if (isset($_SERVER['HTTP_HOST'])) {
+      // Deal with basic auth on the testing server.
+      if ($_SERVER['HTTP_HOST'] == 'test.myhaccp.agile.coop' || $_SERVER['HTTP_HOST'] == 'master.myhaccp.agile.coop' || $_SERVER['HTTP_HOST'] == 'develop.myhaccp.agile.coop') {
+        $this->getSession()->setBasicAuth('agile', 'collective');
+      }
     }
   }
 
@@ -59,6 +59,36 @@ class FeatureContext extends Drupal\DrupalExtension\Context\DrupalContext {
           ->condition('iid', $iid)
           ->execute();
       }
+    }
+  }
+
+  /**
+   * @When print Drupal messages
+   *
+   * Helper function which prints any found Drupal messages.
+   */
+  public function printDrupalMessages() {
+    $element = $this->getSession()->getPage()->find('xpath', $this->getSession()->getSelectorsHandler()->selectorToXpath('css', '.messages'));
+    echo ($element->getHtml());
+  }
+
+  /**
+   * Cleans up the most recently created user if the scenario is tagged
+   * with @registration.
+   *
+   * @AfterScenario @registration
+   */
+  public function removeLastUser($event) {
+    // Get the most recent user.
+    $user = db_select('users', 'u')
+      ->fields('u', array('access', 'uid'))
+      ->orderBy('u.uid', 'DESC')
+      ->range(0, 1)
+      ->execute()
+      ->fetchAssoc();
+    if (is_array($user) && $user['access'] == 0) {
+      // Delete the user.
+      user_delete($user['uid']);
     }
   }
 
@@ -106,7 +136,6 @@ class FeatureContext extends Drupal\DrupalExtension\Context\DrupalContext {
     }
     $field->setValue($value);
   }
-
   /**
    * @When /^I fill row "([^"]*)" "([^"]*)" with "([^"]*)"$/
    */
@@ -148,6 +177,43 @@ class FeatureContext extends Drupal\DrupalExtension\Context\DrupalContext {
     $field->setValue($value);
   }
 
+  /**
+   * @Then /^the radio button with id "([^"]*)" should be checked$/
+   */
+  public function theRadioButtonWithIdShouldBeChecked($sId){
+    $elementByCss = $this->getSession()->getPage()->find('css', 'input[type="radio"]:checked#'.$sId);
+    if (!$elementByCss) {
+      throw new Exception('Radio button with id ' . $sId.' is not checked');
+    }
+  }
+
+  /**
+   * Checks that radio button with specified in|name|label|value is selected.
+   *
+   * @Then /^the "(?P<radio>(?:[^"]|\\")*)" radio button should be selected$/
+   * @Then /^the radio button "(?P<radio>(?:[^"]|\\")*)" (?:is|should be) selected$/
+   */
+  public function assertRadioButtonSelected($radio) {
+    $this->assertSession()->checkboxChecked($this->fixStepArgument($radio));
+  }
+
+  /**
+   * Checks that radio button with specified in|name|label|value is unselected.
+   *
+   * @Then /^the "(?P<radio>(?:[^"]|\\")*)" radio button should not be selected$/
+   * @Then /^the radio button "(?P<radio>(?:[^"]|\\")*)" should (?:be unselected|not be selected)$/
+   * @Then /^the radio button "(?P<radio>(?:[^"]|\\")*)" is (?:unselected|not selected)$/
+   */
+  public function assertRadioButtonNotChecked($radio) {
+    $this->assertSession()->checkboxNotChecked($this->fixStepArgument($radio));
+  }
+
+  /**
+   * @Given /^I wait for honeypot$/
+   */
+  public function iWaitForHoneypot() {
+    sleep(5);
+  }
 
   protected function principle_1_1() {
     return array(

@@ -1,5 +1,17 @@
 <?php
 
+/**
+ * @file
+ * The dependency injection container.
+ *
+ * This was introduced as a bit of an experiment for the MyHACCP form. Its not
+ * really a great idea but its used now so pulling it out might prove difficult.
+ *
+ * Below is the file created by Fabien Potencier.
+ */
+
+// @ignore comment_docblock_comment:file
+
 /*
  * This file is part of Pimple.
  *
@@ -73,7 +85,7 @@ class Pimple implements ArrayAccess {
     }
 
     $this->values[$id] = $value;
-    $this->keys[$id] = true;
+    $this->keys[$id] = TRUE;
   }
 
   /**
@@ -103,7 +115,7 @@ class Pimple implements ArrayAccess {
       return $this->values[$id]($this);
     }
 
-    $this->frozen[$id] = true;
+    $this->frozen[$id] = TRUE;
     $this->raw[$id] = $this->values[$id];
 
     return $this->values[$id] = $this->values[$id]($this);

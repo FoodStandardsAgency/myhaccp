@@ -1,0 +1,71 @@
+// Used for configuring the UI of the translation interface.
+
+#l10n-client {
+  .labels {
+    .toggle {
+      text-transform: none;
+    }
+    .label {
+      h2 {
+        font-size: 0.9em;
+        padding-top: 0.2em;
+        padding-bottom: 0;
+        color: #ffffff;
+        font-weight: normal;
+        text-transform: none;
+      }
+      &.strings {
+        width: 25.5%;
+      }
+      &.source {
+        width: 36%;
+      }
+      &.translation {
+        h2 {
+          padding-left: 3%;
+        }
+      }
+    }
+  }
+  .form-submit {
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    &.edit-save {
+      background-color: $positive;
+      color: #FFF;
+      margin-left: 0;
+      margin-right: 0.5em;
+    }
+    &.edit-copy {
+      margin-left: 0.5em;
+      margin-right: 0.5em;
+    }
+    &.edit-clear {
+      margin-left: 0.5em;
+      margin-right: 0;
+    }
+  }
+  .translation {
+    > form {
+      padding-top: 1em;
+    }
+  }
+  #l10n-client-search-form {
+    background-color: #f0f0f0;
+    .form-item-search {
+      width: 80%;
+      float: left;
+      input {
+        width: auto;
+      }
+    }
+    #l10n-client-search-filter-clear {
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 0.4em;
+      margin-top: 0;
+      height: 1.95em;
+      border: 1px solid #aaaaaa;
+    }
+  }
+}

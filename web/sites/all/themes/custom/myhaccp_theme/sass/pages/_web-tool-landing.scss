@@ -1,0 +1,151 @@
+.page-tool {
+  @media (min-width: $break_med_up) {
+    table.studies-table {
+      min-width: 40em;
+    }
+  }
+  a.new-study {
+    @include agile-button($style: primary);
+    margin-bottom: 1em;
+    display: inline-block;
+  }
+  a.copy-study {
+    @include agile-button();
+    margin-bottom: 1em;
+    margin-left: 1em;
+    display: inline-block;
+  }
+}
+
+.studies-table {
+  width: 100%;
+  table-layout: fixed;
+  thead {
+    border-bottom: 3px solid $grey-4;
+    th, th a {
+      color: $base-color;
+    }
+    th:first-child {
+      width: 12em;
+    }
+    th:last-child {
+      width: 8em;
+    }
+  }
+  tbody {
+    td {
+      padding: 0.5em;
+    }
+    td:last-child {
+      padding-right: 0;
+    }
+  }
+
+  .resume-link {
+    @include agile-button($style: positive, $size: small);
+  }
+  .complete-link {
+    @include agile-button($size: small);
+  }
+  .download-link {
+    @include agile-button($size: small);
+  }
+  .delete-link {
+    @include agile-button($style: negative, $size: small);
+  }
+  .clone-link {
+    @include agile-button($size: small);
+  }
+}
+
+// More options dropdown on the study page.
+html.js,
+html {
+  div.ctools-dropdown.study-more-dropdown {
+    .ctools-dropdown-link-wrapper {
+      a {
+        background: none;
+        @include agile-button($size: small);
+        position: relative;
+        padding-right: 3em;
+        &:after {
+          content: ' ';
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 10px 5px 0 5px;
+          border-color: #fff transparent transparent transparent;
+          position: absolute;
+          right: 11px;
+          top: 13px;
+        }
+        &:before {
+          content: ' ';
+          position: absolute;
+          right: 0px;
+          top: 0px;
+          width: 32px;
+          height: 2.21em;
+          background-color: #aaa;
+          background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.1));
+        }
+        &:hover {
+          &:before {
+            background-color: #a0a0a0;
+          }
+        }
+
+
+      }
+    }
+    .ctools-dropdown-container {
+      width: 8.2em;
+      border: 1px solid #ddd;
+      background-color: #eee;
+      border-top: 0;
+      margin-top: 2px;
+      li {
+        border-bottom: 1px solid #e0e0e0;
+        &.first {
+          a {
+            padding-top: 0.25em;
+          }
+        }
+        &.last {
+          border-bottom: none;
+        }
+      }
+      a {
+        font-size: 0.8em;
+        padding-left: 1.4em;
+        width: auto;
+        &:hover {
+          background: #ddd;
+        }
+      }
+    }
+  }
+}
+
+// Modifications for Welsh language where words are longer.
+html.js,
+html {
+  .i18n-cy {
+    .studies-table {
+      thead {
+        th:last-child {
+          width: 8.5em;
+        }
+      }
+    }
+    div.ctools-dropdown.study-more-dropdown {
+      .ctools-dropdown-link-wrapper {
+        a {
+          padding-right: 2.2em;
+          padding-left: 0.5em;
+          min-width: 12em;
+        }
+      }
+    }
+  }
+}

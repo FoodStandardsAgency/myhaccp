@@ -1,3 +1,8 @@
+/**
+ * @file
+ * qtip2 based tooltips.
+ */
+
 (function ($) {
 
   Drupal.behaviors.qtip2_custom = {
