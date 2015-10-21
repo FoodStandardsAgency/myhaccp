@@ -12,5 +12,4 @@ Feature: Language switcher in header
   Scenario: As a Welsh person I want to change the language to Welsh
     Given I am on the homepage
     And I follow "Cymraeg"
-    Then I should not see "MyHACCP is aimed at small food manufacturing businesses in the UK"
-    And I should see "Mae MyHACCP wedi’i hanelu at fusnesau gweithgynhyrchu bwyd bach yn y Deyrnas Unedig"
+    Then I should be on "/cy"
