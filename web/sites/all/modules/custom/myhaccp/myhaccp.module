@@ -1101,7 +1101,7 @@ function myhaccp_user_owns_study($iid, $user) {
  *   The form state array.
  */
 function myhaccp_form_user_pass_reset_alter(&$form, $form_state) {
-  // Avoid fatal errors is password policy module gets uninstalled.
+  // Avoid fatal errors if password policy module gets uninstalled.
   if (module_exists('password_policy')) {
     // For some reason this runs twice.
     $ran = &drupal_static(__FUNCTION__);
@@ -1148,34 +1148,4 @@ function myhaccp_validate_image(stdClass $file, $options = array()) {
   }
 
   return $errors;
-}
-
-/**
- * Given an IID will try to return a business name.
- *
- * @param int $iid
- *   The IID of the study.
- */
-function myhaccp_get_business_name($iid) {
-
-}
-
-/**
- * Statically cache data.
- *
- * @param $function
- * @return callable
- *
- * @see http://www.palantir.net/presentations/phptek14-functional-php/#/10/3
- */
-function memoize($function) {
-  return function() use($function) {
-    static $results = array();
-    $args = func_get_args();
-    $key = serialize($args);
-    if (empty($results[$key])) {
-      $results[$key] = call_user_func_array($function, $args);
-    }
-    return $results[$key];
-  };
 }
