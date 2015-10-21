@@ -975,3 +975,12 @@ function myhaccp_update_7040() {
   module_enable(array('myhaccp_content_type_webform'));
   features_revert_module('myhaccp_content_type_webform');
 }
+
+/**
+ * Fix the favicon path.
+ */
+function myhaccp_update_7041() {
+  $theme_settings = variable_get('theme_myhaccp_theme_settings', array());
+  $theme_settings['favicon_path'] = 'sites/all/themes/custom/myhaccp_theme/favicon.ico';
+  variable_set('theme_myhaccp_theme_settings', $theme_settings);
+}
