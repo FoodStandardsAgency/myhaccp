@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-10-06 18:30+0100\n"
-"PO-Revision-Date: 2015-10-06 18:30+0100\n"
+"POT-Creation-Date: 2015-10-21 10:57+0100\n"
+"PO-Revision-Date: 2015-10-21 10:57+0100\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -33,16 +33,6 @@ msgctxt "item:368:title"
 msgid "Top search phrases"
 msgstr ""
 
-#: menu:item:376:title
-msgctxt "item:376:title"
-msgid "Log in"
-msgstr ""
-
-#: menu:item:429:title
-msgctxt "item:429:title"
-msgid "Preparatory Stage A: Prerequisite food hygiene requirements"
-msgstr ""
-
 #: menu:item:42:description
 msgctxt "item:42:description"
 msgid "Overview of fields on all entity types."
@@ -51,81 +41,6 @@ msgstr ""
 #: menu:item:42:title
 msgctxt "item:42:title"
 msgid "Field list"
-msgstr ""
-
-#: menu:item:439:title
-msgctxt "item:439:title"
-msgid "Preparatory Stage B: Obtain Management Commitment"
-msgstr ""
-
-#: menu:item:440:title
-msgctxt "item:440:title"
-msgid "Preparatory Stage C: Scope of the study"
-msgstr ""
-
-#: menu:item:441:title
-msgctxt "item:441:title"
-msgid "Principle 1.1: Identify and list potential hazards"
-msgstr ""
-
-#: menu:item:442:title
-msgctxt "item:442:title"
-msgid "Principle 1.2: Conduct a hazard analysis"
-msgstr ""
-
-#: menu:item:443:title
-msgctxt "item:443:title"
-msgid "Preparatory Stage E: Describe the product"
-msgstr ""
-
-#: menu:item:444:title
-msgctxt "item:444:title"
-msgid "Preparatory Stage F: Identify intended use of the product"
-msgstr ""
-
-#: menu:item:445:title
-msgctxt "item:445:title"
-msgid "Preparatory Stage G: Construct a flow diagram"
-msgstr ""
-
-#: menu:item:453:title
-msgctxt "item:453:title"
-msgid "Preparatory Stage H: Confirmation of flow diagram"
-msgstr ""
-
-#: menu:item:458:title
-msgctxt "item:458:title"
-msgid "Principle 1.3: Specify the control measures for each hazard"
-msgstr ""
-
-#: menu:item:459:title
-msgctxt "item:459:title"
-msgid "Principle 2: Determine the Critical Control Points (CCPs)"
-msgstr ""
-
-#: menu:item:479:title
-msgctxt "item:479:title"
-msgid "Principle 3: Establish the Critical Limits"
-msgstr ""
-
-#: menu:item:480:title
-msgctxt "item:480:title"
-msgid "Principle 4: Establish a Monitoring System"
-msgstr ""
-
-#: menu:item:481:title
-msgctxt "item:481:title"
-msgid "Principle 5: Establish a Corrective Action Plan"
-msgstr ""
-
-#: menu:item:482:title
-msgctxt "item:482:title"
-msgid "Principle 6: Verification"
-msgstr ""
-
-#: menu:item:483:title
-msgctxt "item:483:title"
-msgid "Principle 7: Establish documentation and record keeping"
 msgstr ""
 
 #: menu:item:50:description
@@ -170,9 +85,14 @@ msgctxt "item:59:title"
 msgid "Top 'page not found' errors"
 msgstr ""
 
-#: menu:item:775:title
-msgctxt "item:775:title"
-msgid "Supported browsers"
+#: menu:item:778:title
+msgctxt "item:778:title"
+msgid "Downloads"
+msgstr ""
+
+#: menu:item:779:title
+msgctxt "item:779:title"
+msgid "External links"
 msgstr ""
 
 #: menu:item:782:title
@@ -188,6 +108,11 @@ msgstr ""
 #: menu:item:793:description
 msgctxt "item:793:description"
 msgid "Tabulated report on business size vy type"
+msgstr ""
+
+#: menu:item:837:title
+msgctxt "item:837:title"
+msgid "User by access time"
 msgstr ""
 
 #: menu:menu:devel:description
@@ -292,25 +217,110 @@ msgctxt "item:375:title"
 msgid "Register"
 msgstr "Cofrestru"
 
+#: menu:item:376:title
+msgctxt "item:376:title"
+msgid "Log in"
+msgstr "Mewngofnodi"
+
 #: menu:item:391:title
 msgctxt "item:391:title"
 msgid "Help"
 msgstr "Cymorth"
 
+#: menu:item:429:title
+msgctxt "item:429:title"
+msgid "Preparatory Stage A: Prerequisite food hygiene requirements"
+msgstr "Preparatory Stage A: Prerequisite food hygiene requirements"
+
+#: menu:item:439:title
+msgctxt "item:439:title"
+msgid "Preparatory Stage B: Obtain Management Commitment"
+msgstr "Preparatory Stage B: Obtain Management Commitment"
+
+#: menu:item:440:title
+msgctxt "item:440:title"
+msgid "Preparatory Stage C: Scope of the study"
+msgstr "Preparatory Stage C: Scope of the study"
+
+#: menu:item:441:title
+msgctxt "item:441:title"
+msgid "Principle 1.1: Identify and list potential hazards"
+msgstr "Principle 1.1: Identify and list potential hazards"
+
+#: menu:item:442:title
+msgctxt "item:442:title"
+msgid "Principle 1.2: Conduct a hazard analysis"
+msgstr "Principle 1.2: Conduct a hazard analysis"
+
+#: menu:item:443:title
+msgctxt "item:443:title"
+msgid "Preparatory Stage E: Describe the product"
+msgstr "Preparatory Stage E: Describe the product"
+
+#: menu:item:444:title
+msgctxt "item:444:title"
+msgid "Preparatory Stage F: Identify intended use of the product"
+msgstr "Preparatory Stage F: Identify intended use of the product"
+
+#: menu:item:445:title
+msgctxt "item:445:title"
+msgid "Preparatory Stage G: Construct a flow diagram"
+msgstr "Cam Paratoi G: Creu diagram llif"
+
 #: menu:item:452:title
 msgctxt "item:452:title"
 msgid "Preparatory Stage D: Select the HACCP team"
-msgstr "Cam Paratoi D: Dewis y tîm HACCP"
+msgstr "Preparatory Stage D: Select the HACCP team"
+
+#: menu:item:453:title
+msgctxt "item:453:title"
+msgid "Preparatory Stage H: Confirmation of flow diagram"
+msgstr "Preparatory Stage H: Confirmation of flow diagram"
 
 #: menu:item:456:title
 msgctxt "item:456:title"
 msgid "HACCP Principles"
-msgstr "Egwyddorion HACCP"
+msgstr "Egwyddorion"
 
 #: menu:item:457:title
 msgctxt "item:457:title"
 msgid "Preparatory Stages"
 msgstr "Camau Paratoi"
+
+#: menu:item:458:title
+msgctxt "item:458:title"
+msgid "Principle 1.3: Specify the control measures for each hazard"
+msgstr "Principle 1.3: Specify the control measures for each hazard"
+
+#: menu:item:459:title
+msgctxt "item:459:title"
+msgid "Principle 2: Determine the Critical Control Points (CCPs)"
+msgstr "Principle 2: Determine the Critical Control Points (CCPs)"
+
+#: menu:item:479:title
+msgctxt "item:479:title"
+msgid "Principle 3: Establish the Critical Limits"
+msgstr "Principle 3: Establish the Critical Limits"
+
+#: menu:item:480:title
+msgctxt "item:480:title"
+msgid "Principle 4: Establish a Monitoring System"
+msgstr "Principle 4: Establish a Monitoring System"
+
+#: menu:item:481:title
+msgctxt "item:481:title"
+msgid "Principle 5: Establish a Corrective Action Plan"
+msgstr "Principle 5: Establish a Corrective Action Plan"
+
+#: menu:item:482:title
+msgctxt "item:482:title"
+msgid "Principle 6: Verification"
+msgstr "Principle 6: Verification"
+
+#: menu:item:483:title
+msgctxt "item:483:title"
+msgid "Principle 7: Establish documentation and record keeping"
+msgstr "Principle 7: Establish documentation and record keeping"
 
 #: menu:item:529:title
 msgctxt "item:529:title"
@@ -320,7 +330,7 @@ msgstr "Geirfa"
 #: menu:item:566:title
 msgctxt "item:566:title"
 msgid "Introduction to MyHACCP"
-msgstr "Cyflwyniad i MyHACCP"
+msgstr "Cyflwyniad"
 
 #: menu:item:580:title
 msgctxt "item:580:title"
@@ -340,7 +350,7 @@ msgstr "Cwestiynau cyffredin"
 #: menu:item:760:description
 msgctxt "item:760:description"
 msgid "Help and guidance for the MyHACCP tool"
-msgstr "Cymorth a chanllawiau ar gyfer yr adnodd MyHACCP"
+msgstr "Cymorth a chanllawiau ar gyfer defnyddio MyHACCP"
 
 #: menu:item:760:title
 msgctxt "item:760:title"
@@ -396,6 +406,11 @@ msgstr "Polisïau'r wefan"
 msgctxt "item:771:title"
 msgid "Feedback"
 msgstr "Adborth"
+
+#: menu:item:775:title
+msgctxt "item:775:title"
+msgid "Supported browsers"
+msgstr "Porwyr priodol"
 
 #: menu:item:777:title
 msgctxt "item:777:title"

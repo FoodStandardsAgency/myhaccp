@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-10-08 11:15+0100\n"
-"PO-Revision-Date: 2015-10-08 11:15+0100\n"
+"POT-Creation-Date: 2015-10-21 10:56+0100\n"
+"PO-Revision-Date: 2015-10-21 10:56+0100\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -7877,10 +7877,6 @@ msgid "Not in menu"
 msgstr ""
 
 #: /cy/tool/study/8765/preparatory/c-1
-msgid "Please state the process start."
-msgstr ""
-
-#: /cy/tool/study/8765/preparatory/c-1
 msgid "Please state the process end."
 msgstr ""
 
@@ -8551,10 +8547,6 @@ msgid "Text group"
 msgstr ""
 
 #: /cy/admin/config/regional/translate/translate
-msgid "Context"
-msgstr ""
-
-#: /cy/admin/config/regional/translate/translate
 msgid "delete"
 msgstr ""
 
@@ -8637,11 +8629,11 @@ msgstr ""
 msgid "Default state"
 msgstr ""
 
-#: /cy/user/1/edit; sites/all/modules/contrib/ds/modules/ds_extras/js/ds_extras.admin.js
+#: /cy/user/1/edit; sites/all/modules/contrib/ds/modules/ds_extras/js/ds_extras.admin.js; modules/filter/filter.admin.js
 msgid "Enabled"
 msgstr ""
 
-#: /cy/user/1/edit; sites/all/modules/contrib/ds/modules/ds_extras/js/ds_extras.admin.js
+#: /cy/user/1/edit; sites/all/modules/contrib/ds/modules/ds_extras/js/ds_extras.admin.js; modules/filter/filter.admin.js
 msgid "Disabled"
 msgstr ""
 
@@ -11996,10 +11988,6 @@ msgid "Day of week"
 msgstr ""
 
 #: /cy/admin/config/people/accounts
-msgid "Theme"
-msgstr ""
-
-#: /cy/admin/config/people/accounts
 msgid "Time zone"
 msgstr ""
 
@@ -12998,295 +12986,219 @@ msgstr ""
 msgid "Link through to further guidance on this subject."
 msgstr ""
 
-#: /cy/tool/study/8770/preparatory/d
-msgctxt "Do you consider the team to have sufficient skills?"
-msgid "Yes"
+#: sites/all/modules/custom/close_bean/js/close_bean.js
+msgid "Close"
 msgstr ""
 
-#: /cy/tool/study/8770/preparatory/d
-msgctxt "Do you consider the team to have sufficient skills?"
-msgid "No"
+#: sites/all/modules/contrib/module_filter/js/update_status.js
+msgid "Ignored from settings"
 msgstr ""
 
-#: /cy/tool/study/8770/pdf
+#: /cy/tool/study/8770/principle/5
 msgid ""
-"is responsible for ensuring the contents of the HACCP plan are "
-"validated."
+"Describe what will happen to the affected product? E.g. will the "
+"product be disposed of ? If so, how? Please provide all details."
 msgstr ""
 
-#: /cy/tool/study/8770/pdf
-msgid "will formally sign off the HACCP plan."
+#: /cy/block/preparatory_review_intro/edit/add/en/cy?destination=tool/study/8770/preparatory/review
+msgid "Edit @type: @title"
 msgstr ""
 
-#: /cy/tool/study/8770/pdf
-msgctxt ""
-"Is this the same person who will formally sign off the whole HACCP "
-"plan?"
-msgid "Yes"
+#: /cy/block/preparatory_review_intro/edit/add/en/cy?destination=tool/study/8770/preparatory/review
+msgid "Name that displays in the admin interface"
 msgstr ""
 
-#: /cy/tool/study/8770/pdf
-msgctxt ""
-"Is this the same person who will formally sign off the whole HACCP "
-"plan?"
-msgid "No"
-msgstr ""
-
-#: /cy/tool/study/8770/pdf
-msgctxt "Are all verification records maintained?"
-msgid "Yes"
-msgstr ""
-
-#: /cy/tool/study/8770/pdf
-msgctxt "Are all verification records maintained?"
-msgid "No"
-msgstr ""
-
-#: /cy/tool/study/8770/pdf
-msgid "Technological advances in production"
-msgstr ""
-
-#: /cy/tool/study/8770/pdf
-msgid "New controls that become available"
-msgstr ""
-
-#: /cy/tool/study/8770/pdf
-msgid "Change in raw material/ingredients/product formulation/packaging"
-msgstr ""
-
-#: /cy/tool/study/8770/pdf
-msgid "Change of raw material supplier"
-msgstr ""
-
-#: /cy/tool/study/8770/pdf
+#: /cy/block/preparatory_review_intro/edit/add/en/cy?destination=tool/study/8770/preparatory/review
 msgid ""
-"Change in processing system (e.g. changes in method of preservation "
-"– such as addition of preservatives, water activity changes, going "
-"from a sterilisation to a pasteurisation activity)"
+"The Title of the block. The &lt;em&gt;, &lt;strong&gt;, &lt;i&gt; and "
+"&lt;b&gt; HTML tags are allowed, all others will be filtered out."
+msgstr ""
+
+#: /cy/block/preparatory_review_intro/edit/add/en/cy?destination=tool/study/8770/preparatory/review
+msgid "Set Revision as default"
+msgstr ""
+
+#: /cy/block/preparatory_review_intro/edit/add/en/cy?destination=tool/study/8770/preparatory/review
+msgid "MyHACCP: Most recent notice"
+msgstr ""
+
+#: /cy/block/preparatory_review_main/translate?destination=tool/study/8770/preparatory/review
+msgid "Displays the most recent published notice block"
+msgstr ""
+
+#: /cy/block/preparatory_review_main/translate?destination=tool/study/8770/preparatory/review
+msgid "Positions the help library block."
+msgstr ""
+
+#: /cy/block/preparatory_review_main/translate?destination=tool/study/8770/preparatory/review
+msgid "Positions the Preparatory Stages menu for the help pages."
+msgstr ""
+
+#: /cy/block/preparatory_review_main/translate?destination=tool/study/8770/preparatory/review
+msgid "Positions the Principles Stages menu for the help pages."
+msgstr ""
+
+#: /cy/block/preparatory_review_main/translate?destination=tool/study/8770/preparatory/review
+msgid "Positions blocks for the MyHACCP theme."
+msgstr ""
+
+#: /cy/block/preparatory_review_main/translate?destination=tool/study/8770/preparatory/review
+msgid "Adds the pdf links block to the help pages."
 msgstr ""
 
 #: /cy/tool/study/8770/pdf
-msgid "Changes in layout and environment of the factory"
+msgid "internal"
 msgstr ""
 
-#: /cy/tool/study/8770/pdf
+#: /cy/admin/config/regional/translate/translate
+msgid "Close bean"
+msgstr ""
+
+#: /cy/admin/config/regional/translate/translate
+msgid "Allow the user to close bean blocks."
+msgstr ""
+
+#: /cy/linkit/autocomplete/linkit_default?s=cymorth
+msgid "Linkit autocomplete response function"
+msgstr ""
+
+#: /cy/linkit/autocomplete/linkit_default?s=http%3A%2F%2Fstaging.myhaccp.food.gov.uk%2Fcy%2Fnode%2F6
+msgid "This page does not exist or you do not have access to it."
+msgstr ""
+
+#: /cy/tool/study/1119/principle/1-3
 msgid ""
-"Modification to process equipment (e.g. new equipment, modification of "
-"existing equipment)"
+"You must add at least a step number and step name in step 1.1 as well "
+"as at least a hazard for the step. Please return to 1.1"
 msgstr ""
 
-#: /cy/tool/study/8770/pdf
+#: /cy/admin/config
 msgid ""
-"Changes in cleaning and disinfection programme (i.e. a change to any "
-"supporting prerequisite programme)"
+"The medium date format type has been set to @value. You may find it "
+"helpful to add new format types like Date, Time, Month, or Year, with "
+"appropriate formats, at <a href=\"@regional_date_time\">Date and "
+"time</a> settings."
 msgstr ""
 
-#: /cy/tool/study/8770/pdf
+#: /cy/admin/config
+msgctxt "Long month name"
+msgid "October"
+msgstr ""
+
+#: /cy/admin/config
 msgid ""
-"Failures in the system, e.g. corrective actions or the need for "
-"product recall/withdrawal"
+"Page title that will be used on the <a href=\"@link\">site map "
+"page</a>. It should only be set to override the translatable built-in "
+"\"Site map\" title. Note: If you set something here, the title will no "
+"longer be translatable."
 msgstr ""
 
-#: /cy/tool/study/8770/pdf
-msgid "Changes in the storage and distribution systems"
+#: /cy/admin/config
+msgid "The site map provides an overview of all website content."
 msgstr ""
 
-#: /cy/tool/study/8770/pdf
-msgid "Changes in staff levels and/or responsibilities"
+#: /cy/admin/config
+msgid "Menus to include in the site map"
 msgstr ""
 
-#: /cy/tool/study/8770/pdf
-msgid "Anticipated change in use of product by customer/consumer"
-msgstr ""
-
-#: /cy/tool/study/8770/pdf
+#: /cy/admin/config
 msgid ""
-"Receipt of information from the market place indicating a health risk "
-"associated with the product"
+"Menus to include that will be used on the <a href=\"@link\">site map "
+"page</a>."
 msgstr ""
 
-#: /cy/tool/study/8770/pdf
-msgid "Emergence of foodborne pathogens with public health significance"
+#: /cy/admin/config
+msgid "@count[2] days"
 msgstr ""
 
-#: /cy/tool/study/8770/pdf
-msgid "Changes in legislation"
+#: /cy/general-user-guide-myhaccp-web-tool
+msgid "The requested page \"@path\" could not be found."
 msgstr ""
 
-#: /cy/tool/study/8770/pdf
+#: /cy/contact-us
+msgid "Form components"
+msgstr ""
+
+#: /cy/contact-us
+msgid "Form settings"
+msgstr ""
+
+#: /cy/contact-us
+msgid "Results"
+msgstr ""
+
+#: /cy/contact-us
+msgid "Submissions"
+msgstr ""
+
+#: /cy/contact-us
+msgid "Analysis"
+msgstr ""
+
+#: /cy/node/49/webform-results
+msgid "#"
+msgstr ""
+
+#: /cy/node/49/webform-results
+msgid "IP Address"
+msgstr ""
+
+#: /cy/node/49/webform-results
+msgid "not verified"
+msgstr ""
+
+#: /cy/node/49/webform-results
+msgid "Show !count results per page."
+msgstr ""
+
+#: /cy/node/49/webform-results
+msgid "@total results total."
+msgstr ""
+
+#: /cy/node/49/webform
+msgid "Mandatory"
+msgstr ""
+
+#: /cy/node/49/webform
+msgid "New component name"
+msgstr ""
+
+#: /cy/tool
+msgid "Business size by type"
+msgstr ""
+
+#: /cy/tool/study/6/pdf
+msgctxt "Will the critical limit control the specific hazard?"
+msgid "Yes"
+msgstr ""
+
+#: /cy/admin/config/regional/translate
 msgid ""
-"New scientific/technical knowledge (e.g. new information on hazards "
-"and control measures)"
+"There are updates available for your version of Drupal. To ensure the "
+"proper functioning of your site, you should update as soon as "
+"possible."
 msgstr ""
 
-#: /cy/tool/study/8770/pdf
-msgid "Unexpected use of product by the consumer"
+#: /cy/admin/config/regional/translate
+msgid "(version @version available)"
 msgstr ""
 
-#: /cy/tool/study/8770/pdf
-msgid ""
-"Environmental changes/issues (i.e. local changes external to the food "
-"operation; climate changes)"
-msgstr ""
-
-#: /cy/tool/study/8770/pdf
-msgctxt "Are all records from reviews documented?"
+#: /cy/tool/study/8770/preparatory/h
+msgctxt "Is every process step identified on the flow diagram?"
 msgid "Yes"
 msgstr ""
 
-#: /cy/tool/study/8770/pdf
-msgctxt "Are all records from reviews documented?"
+#: /cy/tool/study/8770/preparatory/h
+msgctxt "Is every process step identified on the flow diagram?"
 msgid "No"
 msgstr ""
 
-#: /cy/tool/study/8770/pdf
-msgctxt "Are the records accessible, accurate and up to date?"
-msgid "Yes"
+#: /cy/block/footer_gov/edit?destination=home
+msgid "Edit the view mode of the Bean"
 msgstr ""
 
-#: /cy/tool/study/8770/pdf
-msgctxt "Are the records accessible, accurate and up to date?"
-msgid "No"
-msgstr ""
-
-#: /cy/tool/study/8770/pdf
-msgid "The maximum length of time we retain this information for is"
-msgstr ""
-
-#: /cy/tool/study/8772/pdf
-msgid ""
-"is responsible for ensuring the contents of the HACCP plan are "
-"validated and will  also formally sign off the HACCP plan."
-msgstr ""
-
-#: /cy/tool/study/8770/principle/1-3
-msgid ""
-"For each significant hazard state the control measure (an action "
-"and/or activity that is required to prevent, eliminate or reduce the "
-"occurrence of the hazard to an acceptable level)."
-msgstr ""
-
-#: /cy/tool/study/8770/principle/2-2
-msgctxt "Decision tree"
-msgid "Yes"
-msgstr ""
-
-#: /cy/tool/study/8770/principle/2-2
-msgctxt "Decision tree"
-msgid "No"
-msgstr ""
-
-#: /cy/tool/study/8770/principle/2-2
-msgctxt "Decision tree"
-msgid "N/A"
-msgstr ""
-
-#: /cy/tool/study/8770/principle/2-2
-msgctxt "CCP"
-msgid "Yes"
-msgstr ""
-
-#: /cy/tool/study/8770/principle/2-2
-msgctxt "CCP"
-msgid "No"
-msgstr ""
-
-#: /cy/tool/study/8770/principle/3
-msgid ""
-"A critical limit is the maximum or minimum value for the control "
-"measure at a CCP to prevent, eliminate or reduce the hazard to an "
-"acceptable level. It separates acceptable (safe) from unacceptable "
-"(unsafe) product."
-msgstr ""
-
-#: /cy/tool/study/8770/principle/3
-msgctxt "Is the critical limit appropriate to control the specific hazard?"
-msgid "Yes"
-msgstr ""
-
-#: /cy/tool/study/8770/principle/3
-msgctxt "Is the critical limit appropriate to control the specific hazard?"
-msgid "No"
-msgstr ""
-
-#: /cy/tool/study/8770/principle/3
-msgctxt "Is the critical limit measurable or observable in real time?"
-msgid "Yes"
-msgstr ""
-
-#: /cy/tool/study/8770/principle/3
-msgctxt "Is the critical limit measurable or observable in real time?"
-msgid "No"
-msgstr ""
-
-#: /cy/tool/study/8770/principle/3
-msgctxt "Is there a target value?"
-msgid "Yes"
-msgstr ""
-
-#: /cy/tool/study/8770/principle/3
-msgctxt "Is there a target value?"
-msgid "No"
-msgstr ""
-
-#: /cy/tool/study/8770/preparatory/f
-msgctxt "Is the product suitable for consumption by the general public?"
-msgid "Yes"
-msgstr ""
-
-#: /cy/tool/study/8770/preparatory/f
-msgctxt "Is the product suitable for consumption by the general public?"
-msgid "No"
-msgstr ""
-
-#: /cy/tool/study/8770/preparatory/f
-msgctxt "Is the product suitable for the young?"
-msgid "Yes"
-msgstr ""
-
-#: /cy/tool/study/8770/preparatory/f
-msgctxt "Is the product suitable for the young?"
-msgid "No"
-msgstr ""
-
-#: /cy/tool/study/8770/preparatory/f
-msgctxt "Is the product suitable for the elderly?"
-msgid "Yes"
-msgstr ""
-
-#: /cy/tool/study/8770/preparatory/f
-msgctxt "Is the product suitable for the elderly?"
-msgid "No"
-msgstr ""
-
-#: /cy/tool/study/8770/preparatory/f
-msgctxt "Is the product suitable for pregnant ladies?"
-msgid "Yes"
-msgstr ""
-
-#: /cy/tool/study/8770/preparatory/f
-msgctxt "Is the product suitable for pregnant ladies?"
-msgid "No"
-msgstr ""
-
-#: /cy/tool/study/8770/preparatory/f
-msgctxt "Is the product suitable for the immunosuppressed / immunocompromised?"
-msgid "Yes"
-msgstr ""
-
-#: /cy/tool/study/8770/preparatory/f
-msgctxt "Is the product suitable for the immunosuppressed / immunocompromised?"
-msgid "No"
-msgstr ""
-
-#: /cy/tool/study/8770/preparatory/f
-msgctxt "Is the product suitable for people with allergies or intolerances?"
-msgid "Yes"
-msgstr ""
-
-#: /cy/tool/study/8770/preparatory/f
-msgctxt "Is the product suitable for people with allergies or intolerances?"
-msgid "No"
+#: /cy/block/footer_gov/edit?destination=home
+msgid "Delete Block"
 msgstr ""
 
 #: sites/all/modules/contrib/l10n_client/l10n_client.js; sites/all/modules/contrib/dialog/misc/ajax.js
@@ -13787,8 +13699,8 @@ msgid ""
 "You need to provide details of support by management to an ongoing "
 "HACCP study."
 msgstr ""
-"Mae angen i chi gynnyws gwybodaeth am y gefnogaeth mae rheolwyr yn ei "
-"rhoi i astudiaeth HACCP gyfredol."
+"Mae angen i chi gynnyws gwybodaeth am  ymrwymiad y rheolwyr i "
+"astudiaeth HACCP barhaus."
 
 msgid ""
 "1. What documented evidence do you have to show the support of the "
@@ -13806,7 +13718,7 @@ msgid ""
 msgstr ""
 "Ble yn eich cwmni allech chi edrych am dystiolaeth i ddangos bod "
 "uwch-reolwyr wedi ymrwymo i'r broses o ddatblygu astudiaeth HACCP "
-"gyfredol?"
+"barhaus?"
 
 msgid "N/A - I am the management and can confirm that I am committed."
 msgstr ""
@@ -13941,10 +13853,10 @@ msgid ""
 "clearly defined to help  focus development of HACCP based controls on "
 "key areas."
 msgstr ""
-"Dyma grynodeb o'r hyn y bydd yr astudiaeth HACCP yn ei chynnwys. "
-"Dylai'r astudiaeth gael ei diffinio'n glir er mwyn sicrhau bod "
-"rheolaethau sy'n seiliedig ar HACCP yn cael eu datblygu mewn meysydd "
-"allweddol."
+"Crynodeb o’r hyn y bydd yr astudiaeth HACCP yn ei drafod. Dylech "
+"ddiffinio hyd a lled yr astudiaeth yn glir i helpu’r rheini sy’n "
+"creu’r rheolaethau sy’n seiliedig ar egwyddorion HACCP i "
+"ganolbwyntio ar feysydd allweddol."
 
 msgid "1. What type of HACCP plan are you producing?"
 msgstr "1. Pa fath o gynllun HACCP ydych chi'n ei gynhyrchu?"
@@ -13957,12 +13869,14 @@ msgid ""
 "one for despatch of the product (usually for complex systems/large "
 "variety of products)."
 msgstr ""
-"Cynllun HACCP llinellol – Un astudiaeth sy'n cwmpasu deunyddiau crau "
-"hyd at gyfnod anfon y cynnyrch (ar gyfer systemau syml fel arfer). "
-"Cynllun HACCP modiwlar – Sawl astudiaeth HACCP ar wahân e.e. un ar "
-"gyfer deunyddiau crau, un ar gyfer pob llinell cynhyrchu neu gynnyrch "
-"sy'n cael ei gynhyrchu ac un ar gyfer anfon y cynnyrch (ar gyfer "
-"systemau cymhleth/amrywiaeth eang o gynhyrchion fel arfer)."
+"Cynllun HACCP llinellol – Un astudiaeth sydd fel arfer yn estyn "
+"o’r deunyddiau crai hyd at ddosbarthu’r cynnyrch (ar gyfer "
+"systemau syml fel arfer). Cynllun HACCP modiwlar – fel arfer yn "
+"cynnwys sawl astudiaeth HACCP ar wahân e.e. un astudiaeth ynghylch "
+"deunyddiau crai, un astudiaeth ynghylch pob llinell gynhyrchu neu bob "
+"cynnyrch sy’n cael ei gynhyrchu, ac un astudiaeth ynghylch "
+"dosbarthu’r cynnyrch (fe’i defnyddir ar gyfer systemau mwy "
+"cymhleth / amrywiaeth eang o gynhyrchion fel rheol)."
 
 msgid "-- Please select --"
 msgstr "-- Dewiswch --"
@@ -13989,7 +13903,7 @@ msgid ""
 "pouches."
 msgstr ""
 "Nodwch y cynhyrchion yr ydych chi'n eu cynhyrchu (y rheiny sy'n cael "
-"eu cynnwys yn y cynllun HACCP) a sut y maent yn cael eu pecynnu e.e. "
+"eu trafod yn y cynllun HACCP) a sut y maent yn cael eu pecynnu e.e. "
 "pecynnu dan wactod, pecynnu drwy addasu'r atmosffer, pecynnau hyblyg."
 
 msgid ""
@@ -14004,11 +13918,11 @@ msgid ""
 "in. State where it will end e.g. at delivery to the wholesaler, at "
 "despatch, when purchased by the consumer. !link"
 msgstr ""
-"Nodwch ble y bydd eich astudiaeth HACCP yn dechrau e.e. deunyddiau "
-"crau neu pan fydd nwyddau'n dod i mewn. Nodwch ble y bydd yn gorffen "
-"e.e. pan fydd y cynnyrch yn cyrraedd y cyfanwerthwr, pan fydd y "
-"cynnyrch yn cael ei anfon, pan fydd y cynnyrch yn cael ei brynu gan y "
-"defnyddiwr. !link"
+"Nodwch ymhle fydd yr astudiaeth yn dechrau  e.e. pan fyddwch yn derbyn "
+"deunyddiau crai a chynhwysion. Nodwch ymhle fydd yr astudiaeth yn "
+"gorffen e.e. pan fydd y cynnyrch yn cyrraedd y cyfanwerthwr, pan fydd "
+"y cynnyrch yn cael ei ddosbarthu, pan fydd y cynnyrch yn cael ei brynu "
+"gan y defnyddiwr. !link"
 
 msgid ""
 "3. State the process start and end points of the HACCP study !tip "
@@ -14016,7 +13930,11 @@ msgid ""
 msgstr "3. Nodwch bwyntiau dechrau a gorffen yr astudiaeth HACCP. !tip !help"
 
 msgid "It will start at "
-msgstr "Pwynt dechrau"
+msgstr "Bydd yn dechrau"
+
+#: /cy/tool/study/8765/preparatory/c-1
+msgid "Please state the process start."
+msgstr "Nodwch bwynt dechrau'r broses."
 
 msgid "Through to "
 msgstr "Pwynt gorffen"
@@ -14026,13 +13944,13 @@ msgid ""
 "and shows all the steps involved in the process as outlined in the "
 "scope of study (Preparatory Stage C)."
 msgstr ""
-"Mae'n rhaid gwirio diagram llif y broses er mwyn sicrhau ei fod yn "
-"gywir ac yn dangos holl gamau'r broses a nodwyd yng nghwmpas yr "
-"astudiaeth (Cam Paratoi C)."
+"Rhaid gwirio'r diagram llif er mwyn sicrhau ei fod yn gywir ac yn "
+"cynnwys yr holl gamau sy'n rhan o'r broses fel y'i hamlinellwyd yng "
+"nghwmpas yr astudiaeth (Cam Paratoi C)."
 
 msgid "1. Name of person(s) confirming flow diagram is correct:"
 msgstr ""
-"1. Enw'r unigolyn/unigolion sy'n cadarnhau bod y diagram llif yn "
+"1. Enw'r unigolyn/unigolion sydd wedi cadarnhau bod y diagram llif yn "
 "gywir:"
 
 msgid ""
@@ -14050,13 +13968,15 @@ msgstr ""
 "gywir."
 
 msgid "Yes"
-msgstr "Ydw"
+msgstr "Ydy"
 
 msgid "No"
-msgstr "Nac ydw"
+msgstr "Nac ydy"
 
 msgid "2. Is every process step identified on the flow diagram?"
-msgstr "2. Ydy'r holl gamau yn y broses wedi'u nodi ar y diagram llif?"
+msgstr ""
+"2. Ydy'r holl gamau sy'n rhan o'r broses wedi'u cynnwys yn y diagram "
+"llif?"
 
 msgid ""
 "It is <strong>vital</strong> that every step is identified. This is a "
@@ -14064,7 +13984,7 @@ msgid ""
 "to compromise food safety significantly increases. It is strongly "
 "recommended that you read the guidance notes on this."
 msgstr ""
-"Mae'n <strong>hanfodol bwysig</strong> bod pob cam yn cael ei nodi. "
+"Mae'n <strong>hanfodol bwysig</strong> bod pob cam yn cael ei gynnwys. "
 "Mae hyn yn gam allweddol. Mae camau'n cael eu hanghofio'n aml. Os bydd "
 "hyn yn digwydd, gallai diogelwch bwyd gael ei beryglu i raddau "
 "sylweddol. Argymhellir yn gryf eich bod yn darllen y canllawiau ar "
@@ -14196,9 +14116,9 @@ msgid ""
 "data. Those responsible for this should possess the necessary skills "
 "and experience."
 msgstr ""
-"Bydd angen casglu a gwerthuso data technegol fel rhan o astudiaeth "
-"HACCP. Dylai'r rheiny sy'n gyfrifol am yr astudiaeth feddu ar y "
-"sgiliau a'r profiad angenrheidiol."
+"Bydd angen casglu a gwerthuso data technegol fel rhan o’r gwaith o "
+"gynnal astudiaeth HACCP. Dylai’r unigolion sy’n gyfrifol feddu ar "
+"y sgiliau a’r profiad angenrheidiol."
 
 msgid "Name of HACCP team member:"
 msgstr "Enw'r aelod o'r tîm HACCP:"
@@ -14363,7 +14283,7 @@ msgstr ""
 "nghwmpas yr astudiaeth."
 
 msgid "1. Have you completed a flow diagram?"
-msgstr "1. Ydych chi wedi cwblhau diagram llif?"
+msgstr "1. Ydych chi wedi creu diagram llif?"
 
 msgid ""
 "This is a diagram showing <strong>all process steps</strong> in the "
@@ -14377,8 +14297,9 @@ msgid ""
 "It is strongly advised that you complete a flow diagram covering all "
 "steps in your manufacturing process before proceeding."
 msgstr ""
-"Argymhellir yn gryf eich bod yn cwblhau diagram llif sy'n cynnwys holl "
-"gamau eich proses weithgynhyrchu cyn mynd i'r cam nesaf."
+"Argymhellir yn gryf eich bod yn creu diagram llif sy'n cynnwys yr holl "
+"gamau yn eich proses o weithgynhyrchu'r cynnyrch cyn mynd i'r cam "
+"nesaf."
 
 msgid "2. Please upload a digital copy of your flow diagram (or go to 3)."
 msgstr "2. Lanlwythwch gopi digidol o'ch diagram llif (neu ewch i 3)."
@@ -14402,8 +14323,8 @@ msgid ""
 "State where you can find the copy, e.g. HACCP file or filing cabinet "
 "under HACCP."
 msgstr ""
-"Nodwch ble y gallwch ddod o hyd i'r ddogfen, e.e. ffeil HACCP neu "
-"gabinet ffeilio o dan HACCP."
+"Nodwch ymhle y gallwch ddod o hyd i'r ddogfen, e.e. ffeil HACCP neu "
+"gabinet ffeilio o dan \"HACCP\"."
 
 msgid "Upload"
 msgstr "Lanlwytho"
@@ -14417,6 +14338,10 @@ msgstr "Dewis ffeil"
 
 msgid "String"
 msgstr "Llinynnau"
+
+#: /cy/admin/config/regional/translate/translate
+msgid "Context"
+msgstr "Cyd-destun"
 
 #: /cy/admin/config/regional/translate/translate
 msgid "« first"
@@ -14520,7 +14445,7 @@ msgid ""
 "The following evidence shows the support of senior management to food "
 "safety management based on HACCP:"
 msgstr ""
-"Mae'r dystiolaeth ganlynol yn dangos cefnogaeth uwch-reolwyr i system "
+"Mae'r dystiolaeth ganlynol yn dangos ymrwymiad uwch-reolwyr i system "
 "rheoli diogelwch bwyd sy'n seiliedig ar HACCP."
 
 #: /cy/tool/study/2/pdf
@@ -14535,8 +14460,8 @@ msgid ""
 "<strong>@end</strong>.</p>"
 msgstr ""
 "<p>Mae'r cynllun HACCP <strong>@c_1</strong> hwn yn "
-"cynnwys:<br><strong>@c_2</strong></p><p> Pwynt dechrau: "
-"<strong>@start</strong>. Pwynt gorffen: <strong>@end</strong>.</p>"
+"trafod:<br><strong>@c_2</strong></p><p> Bydd yn dechrau  "
+"<strong>@start</strong> ac yn gorffen <strong>@end</strong>.</p>"
 
 msgid ""
 "State which hazards will be considered in the HACCP plan (i.e. "
@@ -14546,7 +14471,7 @@ msgstr ""
 "biolegol, ffisegol, cemegol, alergenau). !link"
 
 msgid "4. What hazards will the HACCP plan cover? !tip !help"
-msgstr "4. Pa beryglon fydd yn cael eu cynnwys yn y cynllun HACCP? !tip !help"
+msgstr "4. Pa beryglon fydd yn cael eu trafod yn y cynllun HACCP? !tip !help"
 
 msgid "Metal"
 msgstr "Metel"
@@ -14894,7 +14819,7 @@ msgid ""
 "FSA Guidance for food business operators on Microbiological criteria "
 "for foodstuffs."
 msgstr ""
-"Nodwch unrhyw ddogfennaeth neu ffynonellau gwybodaeth a ddefnyddir yn "
+"Nodwch unrhyw ddogfennau neu ffynonellau gwybodaeth a ddefnyddir yn "
 "eich cynllun HACCP e.e. Canllawiau'r ASB i weithredwyr busnesau bwyd "
 "ar feini prawf microbiolegol ar gyfer bwyd anifeiliaid."
 
@@ -14927,15 +14852,15 @@ msgid ""
 "should consider the prerequisite food hygiene requirements for your "
 "business."
 msgstr ""
-"Cyn rhoi rheolaethau diogelwch bwyd sy'n seiliedig ar HACCP ar waith, "
-"dylech ystyried y gofynion hylendid bwyd hanfodol ar gyfer eich "
-"busnes."
+"Cyn i chi roi rheolaethau diogelwch bwyd sy’n seiliedig ar "
+"egwyddorion HACCP ar waith, dylech ystyried y gofynion hylendid bwyd "
+"sy’n hanfodol ar gyfer eich busnes chi."
 
 msgid ""
 "1. Select the boxes where you can demonstrate that you have control of "
 "the prerequisites."
 msgstr ""
-"1. Ticiwch y blychau lle gallwch ddangos eich bod yn rheoli'r elfennau "
+"1. Ticiwch y blychau lle gallwch ddangos eich bod yn rheoli'r gofynion "
 "hanfodol."
 
 msgid ""
@@ -14944,8 +14869,9 @@ msgid ""
 "established, fully operational (including records) and verified."
 msgstr ""
 "Mae'r rhain yn 'rhag-ofynion' i'r broses o weithredu system HACCP. Er "
-"mwyn dangos eich bod yn rheoli'r elfennau hyn, dylent fod wedi'u hen "
-"sefydlu, yn gwbl weithredol (gan gynnwys cofnodion) ac wedi'u gwirio."
+"mwyn dangos bod gennych reolaeth, dylent fod wedi ennill eu plwyf, yn "
+"cael eu gweithredu'n llwyr (gan gynnwys cofnodion) ac yn cael eu "
+"gwirio."
 
 msgid "Supplier approval"
 msgstr "Cymeradwyo cyflenwyr"
@@ -14974,7 +14900,7 @@ msgid "Glass and plastic management"
 msgstr "Rheoli gwydr a phlastig"
 
 msgid "Calibration"
-msgstr "Graddnodi (calibration)"
+msgstr "Graddnodi (<em>calibration</em>)"
 
 msgid "Standard Operating Procedures (SOPs)"
 msgstr "Trefniadau Gweithredu Safonol"
@@ -15041,13 +14967,13 @@ msgstr "Dychwelyd i'r gwaith"
 
 #: /cy/tool/study/2/pdf
 msgid "Please choose at least one option from the prerequisites field."
-msgstr "Dewiswch o leiaf un opsiwn o'r maes 'elfennau hanfodol'."
+msgstr "Dewiswch o leiaf un opsiwn o'r maes \"Gofynion hanfodol\"."
 
 msgid "1a. Please specify any other prerequisites."
-msgstr "1a. Nodwch unrhyw elfennau hanfodol eraill."
+msgstr "1a. Nodwch unrhyw ofynion hanfodol eraill."
 
 msgid "You have selected other, please specify any other prerequisites."
-msgstr "Rydych wedi dewis 'Arall'. Nodwch unrhyw elfennau hanfodol eraill."
+msgstr "Rydych wedi dewis \"Arall\". Nodwch unrhyw ofynion hanfodol eraill."
 
 msgid "2. Please specify the location of the above documents."
 msgstr "2. Nodwch leoliad y dogfennau uchod."
@@ -15059,9 +14985,10 @@ msgid ""
 "reference a particular document e.g.  PRP 01."
 msgstr ""
 "Nodwch ble yr ydych wedi storio'r wybodaeth. Gallwch nodi llawlyfr "
-"e.e. llawlyfr o elfennau hanfodol, lle y mae gwybodaeth am y rhain yn "
-"cael ei ffeilio e.e. holl ddogfennau'n cael eu ffeilio o dan elfennau "
-"hanfodol, cabinet 1 neu roi cyfeirnod dogfen benodol e.e. PRP 01."
+"e.e. llawlyfr o ofynion hanfodol, lle y mae gwybodaeth am y rhain yn "
+"cael ei ffeilio e.e. holl ddogfennau'n cael eu ffeilio o dan "
+"\"gofynion hanfodol\", cabinet 1 neu roi cyfeirnod dogfen benodol e.e. "
+"PRP 01."
 
 msgid "Enter the location of your documents."
 msgstr "Nodwch leoliad eich dogfennau."
@@ -15071,7 +14998,7 @@ msgid ""
 "The company has in place a number of effective prerequisite "
 "programmes, including:"
 msgstr ""
-"Mae'r cwmni yn rheoli nifer o elfennau hanfodol yn effeithiol, gan "
+"Mae'r cwmni yn rheoli nifer o ofynion hanfodol yn effeithiol, gan "
 "gynnwys:"
 
 #: /cy/tool/study/2/pdf
@@ -15177,8 +15104,8 @@ msgid ""
 "We have <strong>not</strong> completed a flow diagram covering all "
 "steps in the manufacturing process of this product."
 msgstr ""
-"<strong>Nid</strong> ydym wedi cwblhau diagram llif sy'n cynnwys pob "
-"cam o'r broses gweithgynhyrchu'r cynnyrch hwn."
+"<strong>Nid</strong> ydym wedi creu diagram llif sy'n cynnwys pob cam "
+"yn y broses o weithgynhyrchu'r cynnyrch hwn."
 
 #: /cy/tool/study/2/pdf
 msgid "has confirmed that our flow diagram is correct."
@@ -15186,7 +15113,7 @@ msgstr "sy'n cadarnhau bod ein diagram llif yn gywir."
 
 #: /cy/tool/study/2/pdf
 msgid "Every process step is identified in our flow diagram."
-msgstr "Mae pob cam yn y broses wedi'i nodi ar ein diagram llif."
+msgstr "Mae pob cam yn y broses wedi'i gynnwys yn ein diagram llif."
 
 #: /cy/tool/study/2/pdf
 msgid ""
@@ -15250,15 +15177,15 @@ msgstr "Tebygolrwydd"
 
 #: /cy/tool/study/2/pdf
 msgid "Significance"
-msgstr "Arwyddocâd"
+msgstr "Pa mor sylweddol yw'r perygl"
 
 #: /cy/tool/study/2/pdf
 msgid ""
 "The threshold, above which we consider the hazard to be 'significant' "
 "is: <strong>"
 msgstr ""
-"Y lefel lle y bydd unrhyw beth sy'n uwch na'r trothwy hwn yn cael ei "
-"ystyried i fod yn berygl 'arwyddocaol': <strong>"
+"Bydd unrhyw berygl â sgôr uwchlaw'r sgôr drothwy hon yn berygl "
+"sylweddol: <strong>"
 
 #: /cy/tool/study/2/pdf
 msgid "Step Name."
@@ -15322,7 +15249,7 @@ msgid ""
 "All personnel are trained and competent for performing the activities "
 "stated."
 msgstr ""
-"Mae'r holl staff yn gymwys ac wedi'u hyfforddi i gynnal y "
+"Mae'r holl staff yn gymwys ac wedi cael hyfforddiant i gynnal y "
 "gweithgareddau a nodwyd."
 
 #: /cy/tool/study/2/pdf
@@ -15348,12 +15275,12 @@ msgid ""
 "the hazards you identified. This is to be carried out prior to "
 "implementation and before the product is placed on the market."
 msgstr ""
-"Gwirio yw'r egwyddor sy'n cadarnhau y bydd y cynllun HACCP, os yw'n "
-"cael ei ddilyn, yn cynhyrchu bwyd diogel. Yn gyntaf, mae angen i chi "
-"ddilysu'r system HACCP er mwyn sicrhau ei bod yn addas at y diben ac "
-"yn rheoli'r peryglon a nodwyd yn effeithiol. Mae angen dilysu'r system "
-"cyn ei rhoi ar waith a chyn i unrhyw gynhyrchion gael eu rhoi ar y "
-"farchnad."
+"Gwirio yw’r egwyddor sy’n cadarnhau y byddwch yn cynhyrchu bwyd "
+"diogel ar gyfer y cwsmer terfynol os caiff y cynllun HACCP ei ddilyn. "
+"Yn gyntaf, mae angen i chi ddilysu'r system HACCP er mwyn sicrhau ei "
+"bod yn addas at y diben ac yn rheoli'r peryglon a nodwyd yn "
+"effeithiol. Mae angen dilysu'r system cyn ei rhoi ar waith a chyn i "
+"unrhyw gynhyrchion gael eu rhoi ar y farchnad."
 
 msgid "1. Document your validation study in the space below."
 msgstr "1. Ewch ati i gofnodi eich astudiaeth ddilysu yn y gofod isod."
@@ -15512,9 +15439,9 @@ msgid ""
 "of senior management (for companies where this is appropriate)  and "
 "used to keep the HACCP plan up-to-date?"
 msgstr ""
-"11. Ydy'r holl gofnodion o adolygiadau yn cael eu dogfennu, yn cael eu "
-"dwyn at sylw uwch-reolwyr (ar gyfer cwmnïau lle bo hyn yn briodol) "
-"a'u defnyddio i gadw'r cynllun HACCP yn gyfoes?"
+"11. Ydy'r holl adolygiadau'n cael eu cofnodi, yn cael eu dwyn at sylw "
+"uwch-reolwyr (ar gyfer cwmnïau lle bo hyn yn briodol) a'u defnyddio i "
+"gadw'r cynllun HACCP yn gyfoes?"
 
 #: /cy/tool/study/2/pdf
 msgid ""
@@ -15551,23 +15478,22 @@ msgid ""
 "All records from reviews are documented, brought to the attention of "
 "senior management and used to keep the HACCP plan up-to-date."
 msgstr ""
-"Mae'r holl gofnodion o adolygiadau'n cael eu dogfennu, yn cael eu dwyn "
-"at sylw uwch-reolwyr ac yn cael eu defnyddio i gadw'r cynllun HACCP yn "
-"gyfoes."
+"Mae'r holl adolygiadau'n cael eu cofnodi, yn cael eu dwyn at sylw "
+"uwch-reolwyr ac yn cael eu defnyddio i gadw'r cynllun HACCP yn gyfoes."
 
 msgid ""
 "Efficient and accurate record keeping is essential to the application "
 "of a HACCP system."
 msgstr ""
-"Mae cadw cofnodion mewn modd effeithiol a chywir yn hanfodol wrth roi "
+"Mae’n hollbwysig cadw cofnodion effeithlon a chywir er mwyn rhoi’r "
 "system HACCP ar waith."
 
 msgid ""
 "1. Select all forms of documentation relating to this HACCP study that "
 "your business retains."
 msgstr ""
-"1. Dewiswch bob math o ddogfen sy'n ymwneud â'r astudiaeth HACCP hon "
-"ac sy'n cael ei gadw gan eich busnes."
+"1. Ticiwch bob math o ddogfen a gedwir gennych sy'n ymwneud â'r "
+"astudiaeth HACCP hon."
 
 msgid "Do you keep hold of any of the following documents?"
 msgstr "Ydych chi'n cadw unrhyw un o'r dogfennau canlynol?"
@@ -15590,7 +15516,7 @@ msgstr "Ydych chi'n cadw unrhyw beth arall (dogfennau eraill) am HACCP?"
 
 msgid "3. How is documentation controlled (up-dates / issue number)?"
 msgstr ""
-"3. Sut y mae dogfennaeth yn cael ei rheoli (diweddariadau/rhif y "
+"3. Sut y mae dogfennau'n yn cael eu rheoli (diweddariadau/rhif y "
 "cyhoeddiad)?"
 
 msgid ""
@@ -15609,7 +15535,7 @@ msgstr "Disgrifiwch sut yr ydych chi'n rheoli eich dogfennaeth."
 msgid ""
 "4. What is the maximum length of time that you retain this information "
 "for?"
-msgstr "4. Beth yw'r cyfnod hiraf yr ydych chi'n cadw'r wybodaeth hon?"
+msgstr "4. Am ba hyd fyddwch chi'n cadw'r wybodaeth hon?"
 
 msgid ""
 "State the time period typically this is a minimum of the shelf-life "
@@ -15617,22 +15543,19 @@ msgid ""
 "into consideration abuse of your product and you  may wish to keep "
 "records for a much longer period of time."
 msgstr ""
-"Nodwch am faint o amser yr ydych chi'n cadw'r wybodaeth. Fel arfer, "
-"mae'r wybodaeth yn cael ei chadw am o leiaf oes y cynnyrch, a chyfnod "
+"Nodwch am ba hyd fyddwch chi'n cadw'r wybodaeth. Fel arfer, mae'r "
+"wybodaeth yn cael ei chadw am o leiaf oes y cynnyrch, a chyfnod "
 "ychwanegol. Mae'n rhaid i'r cyfnod ychwanegol gymryd camddefnydd o'r "
 "cynnyrch i ystyriaeth, ac mae'n bosibl y byddwch am gadw cofnodion am "
 "gyfnod hirach."
 
-#: /cy/tool/study/2/pdf
 msgid ""
 "Please specify the maximum length of time that you retain this "
 "information for."
-msgstr "Nodwch y cyfnod hiraf yr ydych chi'n cadw'r wybodaeth hon."
+msgstr "Nodwch am ba hyd fyddwch chi'n cadw'r wybodaeth hon."
 
 msgid "5. Are the records accessible, accurate and up to date?"
-msgstr ""
-"5. Oes modd cael at y cofnodion? Ydy'r cofnodion yn gywir ac yn "
-"gyfoes?"
+msgstr "5. Ydy'r cofnodion yn gywir, yn gyfoes ac ar gael i staff?"
 
 #: /cy/tool/study/2/pdf
 msgid ""
@@ -15645,8 +15568,8 @@ msgstr ""
 #: /cy/tool/study/2/pdf
 msgid "Documentation relating to this HACCP study that the business retains:"
 msgstr ""
-"Mae'r busnes yn cadw'r ddogfennaeth ganlynol sy'n ymwneud â'r "
-"astudiaeth HACCP hon:"
+"Mae'r busnes yn cadw'r dogfennau canlynol sy'n ymwneud â'r astudiaeth "
+"HACCP hon:"
 
 #: /cy/tool/study/2/pdf
 msgid "Other supporting information that is retained"
@@ -15654,7 +15577,7 @@ msgstr "Gwybodaeth ategol arall sy'n cael ei chadw"
 
 #: /cy/tool/study/2/pdf
 msgid "Documentation control"
-msgstr "Rheoli dogfennaeth"
+msgstr "Rheoli dogfennau"
 
 #: /cy/tool/study/2/pdf
 msgid "The maximum length of time we retain this information for is "
@@ -15662,7 +15585,7 @@ msgstr "Y cyfnod hiraf yr ydym yn cadw'r wybodaeth hon: "
 
 #: /cy/tool/study/2/pdf
 msgid "All records are accessible, accurate and up to date."
-msgstr "Mae modd cael at yr holl gofnodion. Maent yn gywir ac yn gyfoes."
+msgstr "Mae'r holl gofnodion yn gywir, yn gyfoes ac ar gael i staff."
 
 msgid "Cancel"
 msgstr "Canslo"
@@ -15676,15 +15599,14 @@ msgstr "Angen adolygu"
 msgid "Not started"
 msgstr "Heb ddechrau"
 
-#: /cy/tool/study/1119/principle/1-1
 msgid ""
 "Potential hazards include all hazards (biological, chemical, physical "
 "and allergens) that may be reasonably expected to occur at a "
 "particular process step."
 msgstr ""
-"Mae peryglon posibl yn cynnwys unrhyw beryglon (biolegol, cemegol, "
-"ffisegol ac alergenau) y gellir disgwyl yn rhesymol y gallant ddigwydd "
-"ar gam penodol o'r broses."
+"Mae peryglon posibl yn cynnwys pob perygl (peryglon biolegol, cemegol "
+"a ffisegol ac alergenau) y mae’n rhesymol disgwyl iddynt ddigwydd "
+"mewn cam penodol yn y broses."
 
 msgid "Enter the process step number and name."
 msgstr "Rhowch rif ac enw'r cam paratoi."
@@ -15709,9 +15631,9 @@ msgid ""
 "this process step. In the text boxes below, please list each hazard on "
 "a new line."
 msgstr ""
-"Rhestrwch yr holl beryglon posibl y gellir disgwyl yn rhesymol y "
-"gallant ddigwydd yn ystod y cam hwn o'r broses. Yn y blwch isod, "
-"rhestrwch bob perygl ar linell newydd."
+"Rhestrwch yr holl beryglon posibl y mae'n rhesymol disgwyl iddynt "
+"ddigwydd yn ystod y cam hwn o'r broses. Yn y blwch isod, rhestrwch bob "
+"perygl ar linell newydd."
 
 msgid ""
 "List all biological hazards with each hazard on a new line, "
@@ -15761,12 +15683,12 @@ msgid ""
 "trees:<ul><li>Campden Decision Tree</li><li>Codex Decision "
 "Tree</li></ul>"
 msgstr ""
-"Mae Pwynt Rheoli Critigol yn gam lle gellir rhoi mesur rheoli ar waith "
-"ac mae'n hanfodol i atal neu gael gwared ar berygl diogelwch bwyd neu "
-"leihau'r perygl i lefel dderbyniol. Dylid pennu Pwyntiau Rheoli "
-"Critigol yn seiliedig ar brofiad a barn. Mae modd gwneud hyn drwy "
-"ddefnyddio coeden benderfynu. Rydym yn cynghori'n gryf eich bod yn "
-"defnyddio un o'r canlynol:<ul><li>Coeden Benderfynu "
+"Cam lle gellir rhoi mesur rheoli ar waith yw Pwynt Rheoli Critigol, ac "
+"mae’n hanfodol i atal neu i ddileu perygl diogelwch bwyd neu i "
+"leihau’r perygl i lefel dderbyniol. Dylech bennu’r Pwyntiau Rheoli "
+"Critigol ar sail eich profiad a’ch barn. Gallech ddefnyddio coeden "
+"benderfynu i’ch helpu i wneud hynny. Rydym yn cynghori'n gryf eich "
+"bod yn defnyddio un o'r canlynol:<ul><li>Coeden Benderfynu "
 "Campden</li><li>Coeden Benderfynu Codex</li></ul>"
 
 msgid "Finish study"
@@ -15785,9 +15707,9 @@ msgid ""
 "understanding of the presented hazards with the product/process and on "
 "what it relies on for safety."
 msgstr ""
-"Mae angen disgrifiad llawn o'r cynnyrch yn yr adran hon. Bydd hyn yn "
-"hybu dealltwriaeth o'r peryglon sy'n codi gyda'r cynnyrch/yn y broses "
-"a beth mae'n dibynnu arno i fod yn ddiogel."
+"Yma, mae angen rhoi disgrifiad llawn o’r cynnyrch. Bydd hyn yn eich "
+"helpu i ddeall y peryglon sydd ynghlwm wrth y cynnyrch/y broses a’r "
+"hyn yr ydych yn dibynnu arno i sicrhau bod y cynnyrch yn ddiogel."
 
 msgid "1. List all the ingredients and the name of the supplier for each one."
 msgstr "1. Rhestrwch bob cynhwysyn ac enw'r cyflenwr ar gyfer pob un."
@@ -15859,9 +15781,9 @@ msgid ""
 "e.g. Is it to be stored frozen , ambient or chilled? Is it to be "
 "distributed frozen, ambient or chilled."
 msgstr ""
-"e.e. fydd yn cael ei storio wedi'i rewi, ei oeri neu ar dymheredd "
+"e.e. fydd yn cael ei storio wedi'i rewi, ei oeri neu ar dymheredd yr "
 "ystafell? Fydd yn cael ei ddosbarthu wedi'i rewi, ei oeri neu ar "
-"dymheredd ystafell?"
+"dymheredd yr ystafell?"
 
 msgid "Please describe how the product is going to be stored and distributed."
 msgstr "Disgrifiwch sut y bydd y cynnych yn cael ei storio a'i ddosbarthu."
@@ -15874,9 +15796,9 @@ msgid ""
 "before date e.g. Use By 3 months from date of purchase or best before  "
 "4 months from date of manufacture."
 msgstr ""
-"O dan yr amodau rhagnodedig, beth yw'r dyddiad 'defnyddio erbyn' neu'r "
-"dyddiad 'ar ei orau cyn'? e.e. defnyddio erbyn 3 mis o ddyddiad "
-"prynu'r cynnyrch, neu ar ei orau cyn 4 mis o ddyddiad "
+"O dan yr amodau a amlinellwyd, beth yw'r dyddiad \"defnyddio erbyn\" "
+"neu'r dyddiad \"ar ei orau cyn\"? e.e. defnyddio erbyn 3 mis o "
+"ddyddiad prynu'r cynnyrch, neu ar ei orau cyn 4 mis o ddyddiad "
 "gweithgynhyrchu'r cynnyrch."
 
 msgid "Please state the shelf-life of the product."
@@ -15901,8 +15823,8 @@ msgid ""
 "identify hazards that may become significant for vulnerable consumers."
 msgstr ""
 "Bydd gwybodaeth am y defnyddwyr yr ydych yn ceisio eu targedu yn eich "
-"helpu yn hwyrach pan fyddwch yn nodi peryglon a allai beryglu "
-"defnyddwyr sy'n agored i niwed."
+"helpu yn hwyrach pan fyddwch yn nodi peryglon a allai fod yn "
+"berthnasol i ddefnyddwyr sy'n agored i niwed."
 
 msgid "1. What is the name of the product(s)?"
 msgstr "1. Beth yw enw'r cynnyrch/cynhyrchion?"
@@ -15928,12 +15850,12 @@ msgid ""
 "(e.g. identify and list potential hazards)."
 msgstr ""
 "Os yw'r cynnyrch ar gyfer grŵp penodol o ddefnyddwyr, megis arlwywyr "
-"sefydliadol, teithwyr ac ati, neu ar gyfer grwpiau o'r boblogaeth sy'n "
-"agored i niwed (plant ifanc, yr henoed, pobl sydd ag imiwnedd gwan, "
-"pobl sydd ag alergeddau, menywod beichiog), atebwch 'Nac ydy' i'r "
-"cwestiwn hwn. Mae'n bwysig iawn eich bod yn deall y grŵp yr ydych yn "
-"ceisio ei dargedu, gan y bydd hyn yn eich paratoi ar gyfer yr adran ar "
-"Egwyddorion HACCP (e.e. nodi a rhestru peryglon posibl)."
+"mewn sefydliadau, teithwyr ac ati, neu ar gyfer grwpiau o'r boblogaeth "
+"sy'n agored i niwed (plant ifanc, yr henoed, pobl sydd ag imiwnedd "
+"gwan, y rhai sy'n dioddef alergedd, menywod beichiog), atebwch \"Nac "
+"ydy\" i'r cwestiwn hwn. Mae'n bwysig iawn eich bod yn deall y grŵp yr "
+"ydych yn ceisio ei dargedu, gan y bydd hyn yn eich paratoi ar gyfer yr "
+"adran ar Egwyddorion HACCP (e.e. \"Pennu a rhestru peryglon posibl\")."
 
 msgid "Please specify if the product is suitable for the general public."
 msgstr ""
@@ -16071,9 +15993,9 @@ msgid ""
 "or reduction to acceptable levels is essential to the production of "
 "safe food."
 msgstr ""
-"Caiff asesiad o'r peryglon a nodwyd ei gynnal i bennu pa beryglon sy'n "
-"hanfodol eu hatal, dileu neu leihau i lefelau derbyniol er mwyn "
-"cynhyrchu bwyd diogel."
+"Caiff asesiad o'r peryglon a bennwyd ei gyflawni i bennu pa beryglon y "
+"mae'n hanfodol eu hatal, dileu neu'u lleihau i lefelau derbyniol i "
+"gynhyrchu bwyd diogel."
 
 msgid "Process Step !step_no: !step_name"
 msgstr "Cam !step_no yn y broses: !step_name"
@@ -16095,24 +16017,24 @@ msgid "Please add a likelihood between 1 and 3."
 msgstr "Rhowch sgôr rhwng 1 a 3 ar gyfer tebygolrwydd."
 
 msgid "Please add a significance between 1 and 9."
-msgstr "Rhowch sgôr rhwng 1 a 9 ar gyfer arwyddocâd."
+msgstr "Rhowch sgôr rhwng 1 a 9 i nodi pa mor sylweddol yw'r perygl."
 
 msgid ""
 "Determine the threshold, above which you consider the hazard to be "
 "'significant':"
 msgstr ""
-"Pennwch lefel lle y bydd unrhyw beth sy'n uwch na'r trothwy hwn yn "
-"cael ei ystyried i fod yn berygl 'arwyddocaol'."
+"Pennwch sgôr drothwy. Bydd unrhyw berygl â sgôr uwchlaw'r sgôr "
+"drothwy'n berygl sylweddol."
 
 msgid ""
 "Please enter a number above which we will consider the hazard to be "
 "significant."
 msgstr ""
-"Rhowch rif lle y bydd unrhyw beth sy'n uwch na'r rhif hwn yn cael ei "
-"ystyried i fod yn berygl 'arwyddocaol'."
+"Rhowch sgôr lle y bydd unrhyw berygl â sgôr uwchlaw'r sgôr hon yn "
+"berygl sylweddol."
 
 msgid "Please add a threshold value between 1 and 9."
-msgstr "Rhowch rif rhwng 1 a 9 ar gyfer y trothwy."
+msgstr "Pennwch sgôr drothwy rhwng 1 a 9."
 
 msgid ""
 "Provide a detailed description of the hazard. Think about this stage "
@@ -16145,8 +16067,8 @@ msgid ""
 "Rate on scale of 1 - 3 (1 = minor, 3 = long-term illness leading to "
 "death or death). !link"
 msgstr ""
-"Rhowch sgôr o 1 i 3 (1 = dibwys, 3 = salwch hirdymor sy'n arwain at "
-"farwolaeth, neu farwolaeth). !link"
+"Rhowch sgôr o 1 i 3 (1 = dibwys, 3 = gallai'r defnyddiwr farw neu "
+"ddioddef salwch hirdymor a fyddai'n arwain at farwolaeth). !link"
 
 msgid "Severity (1-3) !tip !help"
 msgstr "Difrifoldeb (1-3) !tip !help"
@@ -16156,9 +16078,9 @@ msgid ""
 "Rate on scale of 1-3 (1=unlikely to occur but might, 3=definitely will "
 "occur (at some time if it hasn't occurred in the past). !link"
 msgstr ""
-"Rhowch sgôr o 1 i 3 (1 = anhebygol o ddigwydd, ond gall ddigwydd o "
-"bosibl, 3 = bydd yn digwydd yn bendant (ar ryw adeg os nad yw wedi "
-"digwydd yn y gorffennol). !link"
+"Rhowch sgôr o 1 i 3 (1 = nid yw’n debygol o ddigwydd, ond fe allai "
+"ddigwydd, 3 = mae’r perygl yn sicr o ddigwydd (bydd yn digwydd "
+"rywbryd neu mae wedi digwydd yn y gorffennol). !link"
 
 #: /cy/tool/study/1119/principle/1-2
 msgid "Likelihood (1-3) !tip !help"
@@ -16170,7 +16092,7 @@ msgstr "Sgôr ddifrifoldeb wedi'i lluosi â'r sgôr debygolrwydd. !link"
 
 #: /cy/tool/study/1119/principle/1-2
 msgid "Significance <span>(S x L)</span> !tip !help"
-msgstr "Arwyddocâd <span>(D x T)</span> !tip !help"
+msgstr "Pa mor sylweddol yw'r perygl <span>(D x T)</span> !tip !help"
 
 msgid ""
 "Control measures are actions and/or activities that are taken to "
@@ -16180,7 +16102,7 @@ msgstr ""
 "tebygolrwydd y bydd perygl yn digwydd."
 
 msgid "For each significant hazard, please specify the control measure."
-msgstr "Ar gyfer pob perygl arwyddocaol, nodwch y mesur rheoli."
+msgstr "Ar gyfer pob perygl sylweddol, nodwch y mesur rheoli."
 
 msgid "Please add a control measure."
 msgstr "Ychwanegwch fesur rheoli."
@@ -16199,7 +16121,7 @@ msgid ""
 "critical control point. You do not have to use a decision tree."
 msgstr ""
 "Mae 'coeden benderfynu' yn ddiagram sy'n cael ei ddefnyddio i helpu i "
-"nodi pwyntiau rheoli critigol. Nid oes rhaid i chi ddefnyddio coeden "
+"bennu Pwyntiau Rheoli Critigol. Nid oes rhaid i chi ddefnyddio coeden "
 "benderfynu."
 
 #: /cy/tool/study/1119/principle/2-1
@@ -16245,9 +16167,9 @@ msgid ""
 "For each significant hazard you will need apply your chosen decision "
 "making process to identify if this step is a CCP."
 msgstr ""
-"Ar gyfer pob perygl arwyddocaol, bydd yn rhaid i chi rhoi'r broses yr "
-"ydych wedi'i dewis i wneud penderfyniadau ar waith er mwyn nodi os "
-"yw'r cam yn Bwynt Rheoli Critigol."
+"Ar gyfer pob perygl sylweddol, bydd yn rhaid i chi rhoi'r broses "
+"benderfynu yr ydych wedi'i dewis ar waith er mwyn pennu os yw'r cam yn "
+"Bwynt Rheoli Critigol."
 
 msgid "N/A"
 msgstr "Ddim yn berthnasol"
@@ -16288,16 +16210,16 @@ msgid "Preparatory: Introduction"
 msgstr "Camau Paratoi: Cyflwyniad"
 
 msgid "Preparatory Stage A: Prerequisites"
-msgstr "Cam Paratoi A: Elfennau hanfodol"
+msgstr "Cam Paratoi A: Gofynion hylendid bwyd hanfodol"
 
 msgid "Preparatory Stage B: Obtain Management Commitment"
-msgstr "Cam Paratoi B: Ymrwymiad rheolwyr"
+msgstr "Cam Paratoi B: Cael ymrwymiad gan y rheolwyr"
 
 msgid "Preparatory Stage C: Define scope of the study"
 msgstr "Cam Paratoi C: Diffinio cwmpas yr astudiaeth"
 
 msgid "Preparatory Stage C: Define scope of the study (Continued)"
-msgstr "Cam Paratoi C: Diffinio cwmpas yr astudiaeth (Parhau)"
+msgstr "Cam Paratoi C: Diffinio cwmpas yr astudiaeth (Parhad)"
 
 msgid "Preparatory Stage D: Select the HACCP team"
 msgstr "Cam Paratoi D: Dewis y tîm HACCP"
@@ -16306,7 +16228,7 @@ msgid "Preparatory Stage E: Describe the product"
 msgstr "Cam Paratoi E: Disgrifio'r cynnyrch"
 
 msgid "Preparatory Stage F: Identify intended use of the product"
-msgstr "Cam Paratoi F: Nodi defnydd arfaethedig y cynnyrch"
+msgstr "Cam Paratoi F: Pennu defnydd arfaethedig y cynnyrch"
 
 msgid "Preparatory Stage G: Construct a flow diagram"
 msgstr "Cam Paratoi G: Llunio diagram llif"
@@ -16321,38 +16243,36 @@ msgid "Principles: Introduction"
 msgstr "Egwyddorion: Cyflwyniad"
 
 msgid "Principle 1.1: Identify and list Potential Hazards"
-msgstr "Egwyddor 1.1: Nodi a rhestru peryglon posibl"
+msgstr "Egwyddor 1.1: Pennu a rhestru peryglon posibl"
 
 msgid "Principle 1.2: Conduct a Hazard Analysis"
-msgstr "Egwyddor 1.2: Dadansoddi peryglon"
+msgstr "Egwyddor 1.2: Dadansoddi'r peryglon"
 
 msgid "Principle 1.3: Specify the Control Measures for each hazard"
-msgstr "Egwyddor 1.3: Nodi'r mesurau rheoli ar gyfer pob perygl"
+msgstr "Egwyddor 1.3: Pennu'r mesurau rheoli ar gyfer pob perygl"
 
 msgid "Principle 2.1: Determine the Critical Control Points (CCPs)"
-msgstr "Egwyddor 2.1: Pennu Pwyntiau Rheoli Critigol"
+msgstr "Egwyddor 2.1: Pennu'r Pwyntiau Rheoli Critigol"
 
 msgid ""
 "Principle 2.2: Determine the Critical Control Points (CCPs) "
 "(Continued)"
-msgstr "Egwyddor 2.2: Pennu Pwyntiau Rheoli Critigol (Parhau)"
+msgstr "Egwyddor 2.2: Pennu'r Pwyntiau Rheoli Critigol (Parhad)"
 
 msgid "Principle 3: Establish the Critical Limits"
-msgstr "Egwyddor 3: Pennu'r Terfynau Critigol"
+msgstr "Egwyddor 3: Pennu'r terfynau critigol"
 
 msgid "Principle 4: Establish a Monitoring System for each CCP"
-msgstr ""
-"Egwyddor 4: Penderfynu ar System Fonitro ar gyfer pob Pwynt Rheoli "
-"Critigol"
+msgstr "Egwyddor 4: Llunio system fonitro ar gyfer pob Pwynt Rheoli Critigol"
 
 msgid "Principle 5: Establish a Corrective Action plan"
-msgstr "Egwyddor 5: Penderfynu ar Gynllun o Gamau Unioni"
+msgstr "Egwyddor 5: Llunio cynllun camau unioni"
 
 msgid "Principle 6: Verification"
 msgstr "Egwyddor 6: Gwirio"
 
 msgid "Principle 7: Establish Documentation and Record Keeping"
-msgstr "Egwyddor 7: Penderfynu ar Broses o Gadw Cofnodion a Dogfennaeth"
+msgstr "Egwyddor 7: Cadw dogfennau a chofnodion"
 
 msgid "Principles: Review"
 msgstr "Egwyddorion: Adolygu"
@@ -16383,7 +16303,7 @@ msgstr "Cadarnhau'r broses a llif y broses"
 
 #: /cy/admin_menu/flush-cache?token=eIE1MtTxkCYglpw_Qr4kB9d9FMq45CeV_zwkzvNQ2Ys&destination=admin/user-access
 msgid "Identify and list potential hazards"
-msgstr "Nodi a rhestru peryglon posibl"
+msgstr "Pennu a rhestru peryglon posibl"
 
 #: /cy/admin_menu/flush-cache?token=eIE1MtTxkCYglpw_Qr4kB9d9FMq45CeV_zwkzvNQ2Ys&destination=admin/user-access
 msgid "Severity scores"
@@ -16391,7 +16311,7 @@ msgstr "Sgoriau difrifoldeb"
 
 #: /cy/admin_menu/flush-cache?token=eIE1MtTxkCYglpw_Qr4kB9d9FMq45CeV_zwkzvNQ2Ys&destination=admin/user-access
 msgid "CCPs for significant hazards"
-msgstr "Pwyntiau Rheoli Critigol ar gyfer peryglon arwyddocaol"
+msgstr "Pwyntiau Rheoli Critigol ar gyfer peryglon sylweddol"
 
 #: /cy/admin_menu/flush-cache?token=eIE1MtTxkCYglpw_Qr4kB9d9FMq45CeV_zwkzvNQ2Ys&destination=admin/user-access
 msgid "Critical limits for the CCPs"
@@ -16407,7 +16327,7 @@ msgstr "Gwirio"
 
 #: /cy/admin_menu/flush-cache?token=eIE1MtTxkCYglpw_Qr4kB9d9FMq45CeV_zwkzvNQ2Ys&destination=admin/user-access
 msgid "Documentation and record keeping"
-msgstr "Proses cadw cofnodion a dogfennaeth"
+msgstr "Cadw dogfennau a chofnodion"
 
 #: /cy/admin_menu/flush-cache?token=eIE1MtTxkCYglpw_Qr4kB9d9FMq45CeV_zwkzvNQ2Ys&destination=admin/user-access
 msgid "Appendix A - Flow Diagram"
@@ -16444,8 +16364,8 @@ msgid ""
 "1. What is the critical limit for this critical control point (what "
 "separates safe from potentially unsafe product)?"
 msgstr ""
-"1. Beth yw'r terfyn critigol ar gyfer y pwynt rheoli critigol hwn (sut "
-"mae gwahaniaethu rhwng cynnyrch diogel a chynnyrch a allai fod yn "
+"1. Beth yw'r terfyn critigol ar gyfer y Pwynt Rheoli Critigol hwn (sut "
+"mae gwahanu cynnyrch diogel oddi wrth cynnyrch a allai fod yn "
 "anniogel)?"
 
 msgid ""
@@ -16481,7 +16401,7 @@ msgid ""
 "hazard identified?"
 msgstr ""
 "Fydd y terfyn critigol sydd wedi'i bennu yn atal, lleihau neu'n "
-"dileu'r perygl a nodwyd?"
+"dileu'r perygl a bennwyd?"
 
 msgid ""
 "It is essential that the critical limit is appropriate to control the "
@@ -16511,17 +16431,17 @@ msgstr ""
 "amser real."
 
 msgid "5. Is there a target value?"
-msgstr "5. Oes gwerth targed?"
+msgstr "5. Oes lefel darged?"
 
 msgid ""
 "This is more stringent than a critical limit but allows a business to "
 "gain control before a critical limit is breached."
 msgstr ""
-"Mae gwerth targed yn fwy llym na therfyn critigol, ond mae'n caniatáu "
+"Mae lefel darged yn fwy llym na therfyn critigol, ond mae'n caniatáu "
 "i fusnes gael y sefyllfa dan reolaeth cyn torri terfyn critigol."
 
 msgid "5a. If yes, what is the target value?"
-msgstr "5a. Os mai 'oes' yw eich ateb, beth yw'r gwerth targed?"
+msgstr "5a. Os mai 'oes' yw eich ateb, beth yw'r lefel darged?"
 
 msgid "5b. Please specify any tolerances"
 msgstr "5b. Nodwch unrhyw oddefiannau."
@@ -16531,9 +16451,9 @@ msgid ""
 "or measurements of control parameters to assess whether a CCP is under "
 "control."
 msgstr ""
-"Monitro yw'r weithred o gynnal dilyniant penodedig o arsylwadau neu "
-"fesuriadau o baramedrau rheoli i asesu p'un a yw pwynt rheoli critigol "
-"dan reolaeth."
+"Y weithred o gynnal dilyniant penodedig o arsylwadau neu fesuriadau o "
+"baramedrau rheoli i asesu p’un a yw Pwynt Rheoli Critigol dan "
+"reolaeth yw monitro."
 
 msgid "1. What monitoring activities are going to take place at this CCP?"
 msgstr ""
@@ -16544,8 +16464,8 @@ msgid ""
 "Monitoring activities are  observations or measurements that must be "
 "able to detect loss of control at a CCP."
 msgstr ""
-"Arsylwadau neu fesuriadau yw gweithgareddau monitro, ac mae'n rhaid "
-"iddynt allu nodi pan nad yw'r pwynt rheoli critigol dan reolaeth."
+"Arsylwadau neu fesuriadau yw gweithgareddau monitro, a rhaid bod modd "
+"iddynt ganfod eich bod wedi colli rheolaeth ar Bwynt Rheoli Critigol."
 
 #: /cy/tool/study/1119/principle/4
 msgid ""
@@ -16589,7 +16509,7 @@ msgid ""
 "trained and competent in being able to carry out this task."
 msgstr ""
 "Enw'r unigolyn/unigolion sydd â'r awdurdod i gyflawni'r dasg hon. "
-"Mae'n rhaid i'r unigolyn fod yn gymwys ac wedi'i hyfforddi i "
+"Mae'n rhaid i'r unigolyn fod yn gymwys ac wedi cael hyfforddiant i "
 "gyflawni'r dasg hon."
 
 #: /cy/tool/study/1119/principle/4
@@ -16636,9 +16556,9 @@ msgid ""
 "Signing them off would indicate that all records are within tolerance "
 "or if not, appropriate action has been taken."
 msgstr ""
-"Mae'n arfer da i gael rhywun sy'n gymwys ac wedi'i hyfforddi i wirio "
-"cofnodion monitro a'u cymeradwyo. Fel arfer, mae'r unigolyn hwn yn "
-"wahanol i'r unigolyn sy'n cynnal y gweithgaredd monitro. Byddai "
+"Mae'n arfer da i gael rhywun sy'n gymwys ac wedi cael hyfforddiant i "
+"wirio cofnodion monitro a'u cymeradwyo. Fel arfer, mae'r unigolyn hwn "
+"yn wahanol i'r unigolyn sy'n cynnal y gweithgaredd monitro. Byddai "
 "cymeradwyo'r cofnodion yn dangos bod yr holl gofnodion o fewn lefelau "
 "goddefiant neu os nad ydynt, bod camau priodol wedi'u cymryd."
 
@@ -16657,8 +16577,8 @@ msgid ""
 "Name of person who is competent and trained t check records are "
 "completed as expected."
 msgstr ""
-"Enw'r unigolyn sy'n gymwys ac wedi'i hyfforddi i wirio bod cofnodion "
-"yn cael eu cwblhau yn ôl y disgwyl."
+"Enw'r unigolyn sy'n gymwys ac wedi cael hyfforddiant i wirio bod "
+"cofnodion yn cael eu cwblhau yn ôl y disgwyl."
 
 msgid "7b. How frequently will they check the records?"
 msgstr "7b. Pa mor aml y bydd yr unigolyn hwn yn gwirio'r cofnodion?"
@@ -16675,9 +16595,9 @@ msgid ""
 "CCP has deviated from the critical limit (indicating a loss of "
 "control)."
 msgstr ""
-"Ewch ati i gofnodi unrhyw gamau i'w cymryd pan fydd canlyniadau "
-"monitro yn dangos bod pwynt rheoli critgol wedi mynd yn groes i'r "
-"terfyn critigol (sy'n dangos colli rheolaeth)."
+"Dylech gofnodi unrhyw gamau i’w cymryd pan fydd y canlyniadau "
+"monitro’n dangos bod Pwynt Rheoli Critigol wedi gwyro oddi wrth y "
+"terfyn critigol (gan ddangos eich bod wedi colli rheolaeth)."
 
 msgid "1. Corrective action to be taken."
 msgstr "1. Camau unioni i'w cymryd."
@@ -16686,8 +16606,8 @@ msgid ""
 "Provide details of what should be done in the event of failure to meet "
 "a critical limit."
 msgstr ""
-"Nodwch yr hyn y dylid ei wneud os na fydd terfyn critigol yn cael ei "
-"fodloni."
+"Nodwch ba gamau unioni y dylid eu cymryd os na fydd terfyn critigol yn "
+"cael ei fodloni."
 
 #: /cy/tool/study/1119/principle/5
 msgid "Please state the action to be taken at this CCP."
@@ -16703,9 +16623,9 @@ msgid ""
 "activities that they are to perform when something has failed to meet "
 "a critical limit."
 msgstr ""
-"Rhowch enwau. Dylai'r unigolion hyn fod yn gymwys ac wedi'u hyfforddi "
-"yn y gweithgareddau y bydd gofyn iddynt eu cyflawni os na fydd terfyn "
-"critigol yn cael ei fodloni."
+"Rhowch enwau. Dylai'r unigolion hyn fod yn gymwys ac wedi cael "
+"hyfforddiant yn y camau y bydd gofyn iddynt eu cymryd os na fydd "
+"terfyn critigol yn cael ei fodloni."
 
 #: /cy/tool/study/1119/principle/5
 msgid ""
@@ -16745,7 +16665,7 @@ msgid ""
 msgstr ""
 "4. Ble fyddwch chi'n cofnodi'r hyn yr ydych wedi'i wneud â'r cynnyrch "
 "a gynhyrchwyd yn y cyfnod pan nad oedd y Pwynt Rheoli Critigol dan "
-"reolaeth (e.e. ers cynnal y gwiriad trylwyr olaf)?"
+"reolaeth (e.e. ers y prawf monitro da diwethaf)?"
 
 msgid ""
 "Where will this information be recorded?  E.g. on a monitoring sheet, "
@@ -16770,14 +16690,14 @@ msgid ""
 "CCP’s) trained and competent for performing the activities stated?"
 msgstr ""
 "5. Ydy'r holl staff (a nodwyd yn unrhyw un o'r camau o 1 i 6 ar gyfer "
-"pob Pwynt Rheoli Critigol) yn gymwys ac wedi'u hyfforddi i gynnal y "
-"gweithgareddau a nodwyd?"
+"pob Pwynt Rheoli Critigol) yn gymwys ac wedi cael hyfforddiant i "
+"gynnal y gweithgareddau a nodwyd?"
 
 msgid ""
 "Is their training specific to the tasks they are expected to carry "
 "out?  Is it up-to-date."
 msgstr ""
-"Ydy'r hyfforddiant a roddwyd yn benodol i'r tasgau y mae disgwyl "
+"Ydy'r hyfforddiant a roddwyd yn berthnasol i'r tasgau y mae disgwyl "
 "iddynt eu cyflawni? Ydy'r hyfforddiant yn gyfoes?"
 
 #: /cy/tool/study/1119/principle/5
@@ -16787,7 +16707,7 @@ msgid ""
 "training should be available."
 msgstr ""
 "Dylai'r holl staff sy'n cynnal unrhyw un o'r gweithgareddau a nodwyd "
-"fod wedi cael eu hyfforddi'n briodol i gynnal y dasg. Dylai cofnodion "
+"fod wedi cael hyfforddiant priodol i gynnal y dasg. Dylai cofnodion "
 "hyfforddiant fod ar gael."
 
 msgid "6. Are records of competency maintained?"
@@ -16795,6 +16715,10 @@ msgstr "6. Ydy cofnodion cymhwysedd yn cael eu cynnal?"
 
 msgid "It is essential that all verification records are maintained."
 msgstr "Mae'n hanfodol bod yr holl gofnodion dilysu yn cael eu cynnal."
+
+#: /cy/admin/config/people/accounts
+msgid "Theme"
+msgstr "Thema"
 
 #: /cy/tool/study/1119/principle/3
 msgid "Please indicate whether there is a target value."
@@ -16843,8 +16767,8 @@ msgid ""
 "Please return to your HACCP study review pages to find and correct the "
 "problem."
 msgstr ""
-"Ewch yn ôl i'r tudalennau adolygu ar gyfer eich astudiaeth HACCP er "
-"mwyn dod o hyd i'r broblem â'i chywiro."
+"Ewch yn ôl i'r tudalennau \"Adolygu\" ar gyfer eich astudiaeth HACCP "
+"er mwyn dod o hyd i'r broblem â'i chywiro."
 
 #: /cy/printpdf/help/guidance/egwyddorion-haccp
 msgid "Published on %site_name"
@@ -16940,7 +16864,7 @@ msgid ""
 "We have completed a flow diagram covering all steps in the "
 "manufacturing process of this product."
 msgstr ""
-"Rydym wedi cwblhau diagram llif sy'n cynnwys holl gamau'r broses "
+"Rydym wedi creu diagram llif sy'n cynnwys yr holl gamau yn y broses o "
 "weithgynhyrchu'r cynnyrch hwn."
 
 #: /cy/tool/study/8772/pdf
@@ -16984,10 +16908,10 @@ msgid "Review"
 msgstr "Adolygu"
 
 msgid "It will start at"
-msgstr "Bydd yn dechrau ar"
+msgstr "Bydd yn dechrau"
 
 msgid "Through to"
-msgstr "Hyd at"
+msgstr "ac yn gorffen"
 
 msgid "Preparatory:"
 msgstr "Cam Paratoi:"
@@ -16995,17 +16919,49 @@ msgstr "Cam Paratoi:"
 msgid "Principles:"
 msgstr "Egwyddor:"
 
+msgctxt "Do you consider the team to have sufficient skills?"
+msgid "Yes"
+msgstr "Oes"
+
+msgctxt "Do you consider the team to have sufficient skills?"
+msgid "No"
+msgstr "Nac oes"
+
 msgid ""
 "Please explain why you have answered no to this question and how you "
 "propose to address this issue."
 msgstr ""
-"Esboniwch pam yr ydych wedi ateb 'Na' i'r cwestiwn hwn a sut yr ydych "
-"yn bwriadu mynd i'r afael â'r mater."
+"Esboniwch pam yr ydych wedi ateb 'Nac oes' i'r cwestiwn hwn a sut yr "
+"ydych yn bwriadu mynd i'r afael â'r mater."
 
 #: /cy/tool/study/8770/pdf
 msgctxt "is/is not"
 msgid "is not"
 msgstr "Nid yw'r"
+
+#: /cy/tool/study/8770/pdf
+msgid ""
+"is responsible for ensuring the contents of the HACCP plan are "
+"validated."
+msgstr ""
+"sy'n gyfrifol am sicrhau bod cynnwys y cynllun HACCP yn cael ei "
+"ddilysu."
+
+#: /cy/tool/study/8770/pdf
+msgid "will formally sign off the HACCP plan."
+msgstr "fydd yn cymeradwyo'r cynllun HACCP yn ffurfiol."
+
+msgctxt ""
+"Is this the same person who will formally sign off the whole HACCP "
+"plan?"
+msgid "Yes"
+msgstr "Bydd"
+
+msgctxt ""
+"Is this the same person who will formally sign off the whole HACCP "
+"plan?"
+msgid "No"
+msgstr "Na fydd"
 
 msgid ""
 "4. What verification activities do you carry out? Mark all those that "
@@ -17014,10 +16970,161 @@ msgstr ""
 "4. Pa gamau gwirio yr ydych chi'n eu cynnal? Ticiwch bob blwch sy'n "
 "berthnasol."
 
+msgctxt "Are all verification records maintained?"
+msgid "Yes"
+msgstr "Ydynt"
+
+msgctxt "Are all verification records maintained?"
+msgid "No"
+msgstr "Nac ydynt"
+
+msgid "Technological advances in production"
+msgstr "Datblygiadau technolegol mewn cynhyrchu"
+
+msgid "New controls that become available"
+msgstr "Rheolaethau newydd sydd ar gael"
+
+msgid "Change in raw material/ingredients/product formulation/packaging"
+msgstr ""
+"Newid deunyddiau crai/cynhwysion/sut mae'r cynnyrch yn cael ei "
+"greu/deunydd pecynnu"
+
+msgid "Change of raw material supplier"
+msgstr "Newid cyflenwr deunyddiau crai"
+
+msgid ""
+"Change in processing system (e.g. changes in method of preservation "
+"– such as addition of preservatives, water activity changes, going "
+"from a sterilisation to a pasteurisation activity)"
+msgstr ""
+"Newid system brosesu (e.e. newid dulliau cadw, megis ychwanegu "
+"cyffeithyddion, newidiadau i weithgarwch dŵr, newid o weithgarwch "
+"sterileiddio i weithgarwch pasteureiddio)"
+
+msgid "Changes in layout and environment of the factory"
+msgstr "Newidiadau i gynllun ac amgylchedd y ffatri"
+
+msgid ""
+"Modification to process equipment (e.g. new equipment, modification of "
+"existing equipment)"
+msgstr "Newid offer prosesu (e.e. offer newydd, newid offer presennol)"
+
+msgid ""
+"Changes in cleaning and disinfection programme (i.e. a change to any "
+"supporting prerequisite programme)"
+msgstr ""
+"Newid rhaglen glanhau a diheintio (h.y. newid i unrhyw raglen hanfodol "
+"ac ategol)"
+
+msgid ""
+"Failures in the system, e.g. corrective actions or the need for "
+"product recall/withdrawal"
+msgstr ""
+"System wedi methu e.e. camau unioni neu'r angen i alw/tynnu cynnyrch "
+"yn ôl"
+
+msgid "Changes in the storage and distribution systems"
+msgstr "Newidiadau i'r systemau storio a dosbarthu"
+
+msgid "Changes in staff levels and/or responsibilities"
+msgstr "Newidiadau i gyfrifoldebau a/neu lefelau staff"
+
+msgid "Anticipated change in use of product by customer/consumer"
+msgstr "Newid disgwyliedig yn nefnydd cynnyrch gan gwsmeriaid/defnyddwyr"
+
+msgid ""
+"Receipt of information from the market place indicating a health risk "
+"associated with the product"
+msgstr ""
+"Gwybodaeth yn dod i law o'r farchnad sy'n dangos bod risg iechyd yn "
+"gysylltiedig â'r cynnyrch"
+
+msgid "Emergence of foodborne pathogens with public health significance"
+msgstr ""
+"Pathogen newydd a gludir gan fwyd yn dod i'r amlwg, sy'n arwyddocaol o "
+"ran iechyd y cyhoedd"
+
+msgid "Changes in legislation"
+msgstr "Newidiadau i'r ddeddfwriaeth"
+
+msgid ""
+"New scientific/technical knowledge (e.g. new information on hazards "
+"and control measures)"
+msgstr ""
+"Gwybodaeth wyddonol/technegol newydd (e.e. gwybodaeth newydd am "
+"beryglon a mesurau rheoli)"
+
+msgid "Unexpected use of product by the consumer"
+msgstr "Defnyddwyr yn defnyddio'r cynnyrch mewn ffordd annisgwyl"
+
+msgid ""
+"Environmental changes/issues (i.e. local changes external to the food "
+"operation; climate changes)"
+msgstr ""
+"Newidiadau/materion amgylcheddol (h.y. newidiadau lleol y tu allan i'r "
+"gweithred bwyd, newidiadau yn yr hinsawdd)"
+
+msgctxt "Are all records from reviews documented?"
+msgid "Yes"
+msgstr "Ydynt"
+
+msgctxt "Are all records from reviews documented?"
+msgid "No"
+msgstr "Nac ydynt"
+
+msgctxt "Are the records accessible, accurate and up to date?"
+msgid "Yes"
+msgstr "Ydynt"
+
+msgctxt "Are the records accessible, accurate and up to date?"
+msgid "No"
+msgstr "Nac ydynt"
+
+#: /cy/tool/study/8770/pdf
+msgid "The maximum length of time we retain this information for is"
+msgstr "Y cyfnod hiraf yr ydym yn cadw'r wybodaeth hon:"
+
 #: /cy/tool/study/8772/pdf
 msgctxt "is/is not"
 msgid "is"
 msgstr "Mae'r"
+
+#: /cy/tool/study/8772/pdf
+msgid ""
+"is responsible for ensuring the contents of the HACCP plan are "
+"validated and will  also formally sign off the HACCP plan."
+msgstr ""
+"sy'n gyfrifol am sicrhau bod cynnwys y cynllun HACCP yn cael ei "
+"ddilysu. Bydd hefyd yn cymeradwyo'r cynllun HACCP yn ffurfiol."
+
+msgid ""
+"For each significant hazard state the control measure (an action "
+"and/or activity that is required to prevent, eliminate or reduce the "
+"occurrence of the hazard to an acceptable level)."
+msgstr ""
+"Ar gyfer pob perygl sylweddol, nodwch y mesur rheoli (cam a/neu "
+"weithgarwch i atal neu i ddileu perygl neu i'w leihau i lefel "
+"dderbyniol)."
+
+msgctxt "Decision tree"
+msgid "Yes"
+msgstr "Ydy"
+
+msgctxt "Decision tree"
+msgid "No"
+msgstr "Nac ydy"
+
+msgctxt "Decision tree"
+msgid "N/A"
+msgstr "Dd/B"
+
+msgctxt "CCP"
+msgid "Yes"
+msgstr "Ydy"
+
+msgctxt "CCP"
+msgid "No"
+msgstr "Nac ydy"
 
 #: /cy/tool/study/8770/principle/2-2
 msgid "Be very careful to answer the questions correctly."
@@ -17031,8 +17138,19 @@ msgid ""
 msgstr ""
 "Os ydych chi wedi ateb y cwestiynau yn y goeden benderfynu yn gywir, "
 "ac wedi rhoi'r atebion i mewn i'r system yn gywir, bydd hyn yn dangos "
-"p'un a yw'r camau i reoli'r perygl yn cael eu hystyried yn bwynt "
-"rheoli critigol ai peidio yn ôl Campden neu Codex."
+"p'un a yw'r camau i reoli'r perygl yn cael eu hystyried yn Bwyntiau "
+"Rheoli Critigol ai peidio yn ôl Campden neu Codex."
+
+msgid ""
+"A critical limit is the maximum or minimum value for the control "
+"measure at a CCP to prevent, eliminate or reduce the hazard to an "
+"acceptable level. It separates acceptable (safe) from unacceptable "
+"(unsafe) product."
+msgstr ""
+"Uchafswm neu isafswm y mesur rheoli ar Bwynt Rheoli Critigol er mwyn "
+"atal, dileu neu leihau perygl i lefel dderbyniol yw terfyn critigol. "
+"Mae’n gwahanu cynnyrch derbyniol (diogel) oddi wrth gynnyrch "
+"annerbyniol (anniogel)."
 
 msgid "Critical Control Point (CCP) Number"
 msgstr "Rhif y Pwynt Rheoli Critigol"
@@ -17043,11 +17161,408 @@ msgid ""
 "below this temperature the product is unacceptable above this limit it "
 "is considered acceptable."
 msgstr ""
-"Gwerth sy'n gwahaniaethu rhwng derbyniol ac annerbyniol yw terfyn "
-"critigol e.e. caiff cynnyrch ei ystyried yn annerbyniol ar dymheredd "
-"sy'n is na 72°C, a chaiff cynnyrch ei ystyried yn dderbyniol ar "
-"dymheredd sy'n uwch na hynny."
+"Gwerth sy'n gwahanu derbyniol oddi wrth annerbyniol yw terfyn critigol "
+"e.e. caiff cynnyrch ei ystyried yn annerbyniol ar dymheredd sy'n is na "
+"72°C, a chaiff cynnyrch ei ystyried yn dderbyniol ar dymheredd sy'n "
+"uwch na hynny."
+
+msgctxt "Is the critical limit appropriate to control the specific hazard?"
+msgid "Yes"
+msgstr "Ydy"
+
+msgctxt "Is the critical limit appropriate to control the specific hazard?"
+msgid "No"
+msgstr "Nac ydy"
+
+msgctxt "Is the critical limit measurable or observable in real time?"
+msgid "Yes"
+msgstr "Ydy"
+
+msgctxt "Is the critical limit measurable or observable in real time?"
+msgid "No"
+msgstr "Nac ydy"
+
+msgctxt "Is there a target value?"
+msgid "Yes"
+msgstr "Oes"
+
+msgctxt "Is there a target value?"
+msgid "No"
+msgstr "Nac oes"
+
+msgctxt "Is the product suitable for consumption by the general public?"
+msgid "Yes"
+msgstr "Ydy"
+
+msgctxt "Is the product suitable for consumption by the general public?"
+msgid "No"
+msgstr "Nac ydy"
+
+msgctxt "Is the product suitable for the young?"
+msgid "Yes"
+msgstr "Ydy"
+
+msgctxt "Is the product suitable for the young?"
+msgid "No"
+msgstr "Nac ydy"
+
+msgctxt "Is the product suitable for the elderly?"
+msgid "Yes"
+msgstr "Ydy"
+
+msgctxt "Is the product suitable for the elderly?"
+msgid "No"
+msgstr "Nac ydy"
+
+msgctxt "Is the product suitable for pregnant ladies?"
+msgid "Yes"
+msgstr "Ydy"
+
+msgctxt "Is the product suitable for pregnant ladies?"
+msgid "No"
+msgstr "Nac ydy"
+
+msgctxt "Is the product suitable for the immunosuppressed / immunocompromised?"
+msgid "Yes"
+msgstr "Ydy"
+
+msgctxt "Is the product suitable for the immunosuppressed / immunocompromised?"
+msgid "No"
+msgstr "Nac ydy"
+
+msgctxt "Is the product suitable for people with allergies or intolerances?"
+msgid "Yes"
+msgstr "Ydy"
+
+msgctxt "Is the product suitable for people with allergies or intolerances?"
+msgid "No"
+msgstr "Nac ydy"
 
 msgid "Not updated"
 msgstr "Heb ei diweddaru"
+
+#: /cy/tool/study/8770/preparatory/a
+msgid ""
+"Navigating within the tool will save your progress. If you are leaving "
+"the tool entirely you can"
+msgstr ""
+"Bydd clicio ar unrhyw fotwm o fewn yr astudiaeth yn arbed eich gwaith. "
+"Os hoffech ddod yn ôl i'r astudiaeth hon yn hwyrach, gallwch"
+
+msgctxt "Have you completed a flow diagram?"
+msgid "Yes"
+msgstr "Ydw"
+
+msgctxt "Have you completed a flow diagram?"
+msgid "No"
+msgstr "Nac ydw"
+
+#: /cy/tool/study/8770/principle/1-1
+msgid ""
+"List all biological hazards with each hazard on a new line, "
+"e.g.<br>Salmonella spp.<br>Listeria spp.<br>Norovirus<br>"
+msgstr ""
+"Rhestrwch bob perygl biolegol, gyda phob perygl ar linell newydd, e.e. "
+"<br>Salmonela spp.<br>Listeria spp.<br>Norofeirws<br>"
+
+#: /cy/tool/study/8770/principle/1-1
+msgid ""
+"List all chemical hazards with each hazard on a new line, "
+"e.g.<br>nitrate<br>patulin<br>cadmium<br>"
+msgstr ""
+"Rhestrwch bob perygl cemegol, gyda phob perygl ar linell newydd, "
+"e.e.<br>nitrad<br>patulin<br>cadmiwm<br>"
+
+#: /cy/tool/study/8770/principle/1-1
+msgid ""
+"List all physical hazards, with each hazard on a new line, "
+"e.g.<br>stones<br>metal<br>wood<br>"
+msgstr ""
+"Rhestrwch bob perygl ffisegol, gyda phob perygl ar linell newydd, e.e. "
+"<br>cerrig<br>metel<br>pren<br>"
+
+#: /cy/tool/study/8770/principle/1-1
+msgid ""
+"List all substances or products that cause allergies or intolerances, "
+"with each hazard on a new line, e.g.<br>celery<br>sesame "
+"seeds<br>egg<br>"
+msgstr ""
+"Rhestrwch bob sylwedd neu gynnyrch sy'n achosi alergeddau neu "
+"anoddefiadau, gyda phob perygl ar linell newydd, "
+"e.e.<br>seleri<br>hadau sesame<br>wyau<br>"
+
+#: /cy/tool/study/8770/principle/1-2
+msgid ""
+"Provide a detailed description of the hazard. Think about this stage "
+"carefully. It is common to make errors here and this will lead to "
+"implications further on. By describing the hazard in more detail, it "
+"will help you later when you specify the control. Be aware that there "
+"may be more than one 'descriptor' for a hazard. If you identify more "
+"than one descriptor (this is quite common) you should go back to "
+"<strong>Principle 1.1</strong> and add an additional hazard, this time "
+"however it should have a descriptor in brackets after it (i.e. "
+"Salmonella spp (introduction) Salmonella spp (growth)). It is "
+"important that you read the additional information.<br> !link"
+msgstr ""
+"Rhowch ddisgrifiad manwl o'r perygl. Meddyliwch am y cam hwn yn "
+"ofalus. Mae'n gyffredin i wneud camgymeriadau yma, a bydd hyn yn "
+"arwain at oblygiadau'n hwyrach. Bydd disgrifio'r perygl yn fanylach yn "
+"eich helpu i bennu'r mesur rheoli'n hwyrach. Mae'n bosibl y bydd mwy "
+"nag un disgrifiad ar gyfer perygl. Os ydych yn rhoi mwy nag un "
+"disgrifiad (mae hyn yn eithaf cyffredin) dylech fynd yn ôl i "
+"<strong>Egwyddor 1.1</strong> ac ychwanegu perygl ychwanegol. Y tro "
+"hwn, dylai'r perygl gael disgrifiad mewn cromfachau ar ei ôl (h.y. "
+"Salmonela spp (cyflwyno) Salmonela spp (cynyddu)). Mae'n bwysig eich "
+"bod yn darllen yr wybodaeth ychwanegol.<br> !link"
+
+msgctxt "Are you using a decision tree?"
+msgid "Yes"
+msgstr "Ydw"
+
+msgctxt "Are you using a decision tree?"
+msgid "No"
+msgstr "Nac ydw"
+
+msgctxt "Will the monitoring records be checked and signed off by anyone?"
+msgid "Yes"
+msgstr "Byddant"
+
+msgctxt "Will the monitoring records be checked and signed off by anyone?"
+msgid "No"
+msgstr "Na fyddant"
+
+msgctxt ""
+"Are all personnel trained and competent for performing the activities "
+"stated?"
+msgid "Yes"
+msgstr "Ydynt"
+
+msgctxt ""
+"Are all personnel trained and competent for performing the activities "
+"stated?"
+msgid "No"
+msgstr "Nac ydynt"
+
+msgctxt "Are records of competency maintained?"
+msgid "Yes"
+msgstr "Ydynt"
+
+msgctxt "Are records of competency maintained?"
+msgid "No"
+msgstr "Nac ydynt"
+
+msgid "Critical Control Points"
+msgstr "Pwyntiau Rheoli Critigol"
+
+msgid "Prerequisites"
+msgstr "Gofynion hanfodol"
+
+msgid "Records of monitoring"
+msgstr "Cofnodion o waith monitro"
+
+#: /cy/tool/study/8770/principle/6
+msgid "Corrective actions"
+msgstr "Camau unioni"
+
+msgid "Supplier audits"
+msgstr "Archwilio cyflenwyr"
+
+msgid "Microbiological testing"
+msgstr "Profion microbiolegol"
+
+msgid "Chemical testing"
+msgstr "Profion cemegol"
+
+msgid "Environmental monitoring of production area"
+msgstr "Monitro ardaloedd cynhyrchu yn amgylcheddol"
+
+msgid "Addressing the findings of customer and third party audits"
+msgstr ""
+"Mynd i'r afael â chanfyddiadau archwiliadau gan gwsmeriaid a thrydydd "
+"partïon"
+
+msgid "Third party certification(SOFHT, BRC)"
+msgstr "Ardystio trydydd partïon (SOFHT, BRC)"
+
+msgid "Trending and analysing customer complaints"
+msgstr "Tueddu a dadansoddi cwynion cwsmeriaid"
+
+msgid ""
+"Product buy - back(buying your product from end point in market place "
+"and sampling and testing it for unexpected safety problems"
+msgstr ""
+"Adbrynu cynhyrchion (prynu eich cynnyrch o'r pwynt terfynol ar y "
+"farchnad, a'i samplu a'i brofi am broblemau diogelwch annisgwyl)"
+
+msgid "Deviations"
+msgstr "Gwyriadau"
+
+msgid "Product disposal"
+msgstr "Cael gwared ar gynhyrchion"
+
+msgid "Trending of monitoring results"
+msgstr "Tueddu canlyniadau monitro"
+
+msgid "Scope of the study"
+msgstr "Cwmpas yr astudiaeth"
+
+msgid "Reference to prerequisite programmes"
+msgstr "Dogfennau sy'n cyfeirio at raglenni hanfodol"
+
+msgid ""
+"HACCP team members with details of their role, experience, training "
+"and qualifications"
+msgstr ""
+"Aelodau'r tîm HACCP gyda manylion eu rôlau, cyfrifoldebau, "
+"hyfforddiant a chymwysterau"
+
+msgid "Product description"
+msgstr "Disgrifiad o'r cynnyrch"
+
+msgid "Intended use of the product"
+msgstr "Defnydd arfaethedig y cynnyrch"
+
+msgid "Flow diagram, and the confirmation that it is correct"
+msgstr "Diagram llif, a chadarnhad ei fod yn gywir"
+
+msgid ""
+"Relevant hazards (as determined from the hazard analysis) and control "
+"measures"
+msgstr ""
+"Peryglon perthnasol (a bennwyd drwy ddadansoddi peryglon) a mesurau "
+"rheoli"
+
+msgid "Details of all CCP’s that have been determined"
+msgstr "Manylion yr holl Pwyntiau Rheoli Critigol a bennwyd"
+
+msgid "Evidence of how CCP’s were determined"
+msgstr "Tystiolaeth o'r ffordd y cafodd Pwyntiau Rheoli Critigol eu pennu"
+
+msgid ""
+"The critical limits at the CCP’s, with targets and tolerances where "
+"relevant"
+msgstr ""
+"Y terfynau critigol ar y Pwyntiau Rheoli Critigol, gyda thargedau a "
+"lefelau goddefiant lle bo'n berthnasol"
+
+msgid "The monitoring plan for each CCP"
+msgstr "Y cynllun monitro ar gyfer pob Pwynt Rheoli Critigol"
+
+msgid "The corrective action plan for each CCP"
+msgstr "Y cynllun o gamau unioni ar gyfer pob Pwynt Rheoli Critigol"
+
+msgid "Details and date(s) of validation activities"
+msgstr "Manylion a dyddiad(au) unrhyw weithgareddau dilysu"
+
+msgid ""
+"Details of verification activities, including the programme for "
+"scheduled review and a list of factors that should initiate a review"
+msgstr ""
+"Gwybodaeth am weithgareddau dilysu, gan gynnwys y rhaglen ar gyfer "
+"adolygiad wedi'i drefnu a rhestr o ffactorau a ddylai sbarduno "
+"adolygiad"
+
+msgid "Reference to relevant procedures/work instructions and record forms"
+msgstr ""
+"Dogfennau sy'n cyfeirio at weithdrefnau/cyfarwyddiadau gweithio a "
+"ffurflenni cofnodi"
+
+#: /cy/tool/study/8770/pdf
+msgid ""
+"<p>This <strong>@c_1</strong> HACCP plan "
+"covers:<br><strong>@c_2</strong></p><p>\n"
+"It will start at <strong>@start</strong> through to "
+"<strong>@end</strong>.</p>"
+msgstr ""
+"<p>Mae'r cynllun HACCP <strong>@c_1</strong> hwn yn "
+"cynnwys:<br><strong>@c_2</strong></p><p> Bydd yn dechrau "
+"<strong>@start</strong> ac yn gorffen <strong>@end</strong>.</p>"
+
+#: /cy/tool/study/8770/pdf
+msgid "HACCP lead"
+msgstr "Arweinydd HACCP"
+
+#: /cy/tool/study/8770/pdf
+msgid "Intended Use"
+msgstr "Defnydd arfaethedig"
+
+#: /cy/tool/study/8770/pdf
+msgid "Name of the product"
+msgstr "Enw'r cynnyrch"
+
+#: /cy/tool/study/8770/pdf
+msgid "A copy of our flow diagram can be obtained from the following location"
+msgstr "Mae copi o'r diagram llif ar gael o'r lleoliad canlynol"
+
+#: /cy/tool/study/8770/pdf
+msgid "On-site confirmation of flow diagram"
+msgstr "Cadarnhau'r diagram llif ar y safle"
+
+#: /cy/tool/study/8770/pdf
+msgid "The following critical limits have been established for the CCPs."
+msgstr ""
+"Mae'r terfynau critigol canlynol wedi'u pennu ar gyfer y Pwyntiau "
+"Rheoli Critigol."
+
+#: /cy/tool/study/8770/pdf
+msgid "Monitoring activity frequency"
+msgstr "Amlder unrhyw weithgareddau monitro"
+
+#: /cy/tool/study/8770/pdf
+msgid "How the monitoring activities are carried out"
+msgstr "Sut mae'r gweithgareddau monitro yn cael eu cynnal"
+
+#: /cy/tool/study/8770/pdf
+msgid ""
+"The following people are responsible for monitoring actions at this "
+"CCP"
+msgstr ""
+"Mae'r unigolion canlynol yn gyfrifol am fonitro camau gweithredu ar y "
+"Pwynt Rheoli Critigol hwn"
+
+#: /cy/tool/study/8770/pdf
+msgid "The deputy is"
+msgstr "Y dirprwy yw"
+
+#: /cy/tool/study/8770/pdf
+msgid "The results of monitoring are recorded"
+msgstr "Mae canlyniadau gwaith monitro yn cael eu cofnodi"
+
+#: /cy/tool/study/8770/pdf
+msgid "Monitoring records will be checked and signed off by"
+msgstr "Bydd cofnodion monitro yn cael eu gwirio a'u cymeradwyo gan"
+
+#: /cy/tool/study/8770/pdf
+msgid "at the frequency of"
+msgstr "yn unol â'r cyfnodau hyn"
+
+#: /cy/tool/study/8770/pdf
+msgid "Corrective action to be taken"
+msgstr "Camau unioni i'w cymryd"
+
+#: /cy/tool/study/8770/pdf
+msgid "Personnel who have the authority to take the stated corrective action"
+msgstr "Staff sydd â'r awdurdod i gymryd y camau unioni a nodwyd"
+
+#: /cy/tool/study/8770/pdf
+msgid ""
+"Actions for product produced when the CPP was out of control will be "
+"recorded in"
+msgstr ""
+"Bydd y camau i'w cymryd ar gynnyrch a gynhyrchwyd pan nad oedd y Pwynt "
+"Rheoli Critigol dan reolaeth yn cael eu cofnodi"
+
+#: /cy/tool/study/8770/pdf
+msgid "Other mechanisms that will automatically trigger a review"
+msgstr "Mecanweithiau eraill a fydd yn sbarduno adolygiad yn awtomatig"
+
+#: /cy/tool/study/8770/pdf
+msgid "Validation study"
+msgstr "Astudiaeth ddilysu"
+
+#: /cy/tool/study/8772/pdf
+msgid "Monitoring records will not be checked and signed off by anyone."
+msgstr ""
+"Ni fydd cofnodion monitro yn cael eu gwirio na'u cymerawyo gan unrhyw "
+"un."
 
