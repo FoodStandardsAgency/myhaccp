@@ -62,7 +62,7 @@ function myhaccp_context_context_default_contexts() {
   $context->conditions = array(
     'path' => array(
       'values' => array(
-        'help/guidance' => 'help/guidance',
+        'node/6' => 'node/6',
       ),
     ),
   );
@@ -73,7 +73,7 @@ function myhaccp_context_context_default_contexts() {
           'module' => 'menu_block',
           'delta' => '4',
           'region' => 'content',
-          'weight' => '-1',
+          'weight' => '1',
         ),
       ),
     ),
@@ -95,7 +95,7 @@ function myhaccp_context_context_default_contexts() {
   $context->conditions = array(
     'path' => array(
       'values' => array(
-        'help/guidance/preparatory-stages' => 'help/guidance/preparatory-stages',
+        'node/26' => 'node/26',
       ),
     ),
   );
@@ -106,7 +106,7 @@ function myhaccp_context_context_default_contexts() {
           'module' => 'menu_block',
           'delta' => '5',
           'region' => 'content',
-          'weight' => '-10',
+          'weight' => '1',
         ),
       ),
     ),
@@ -128,7 +128,7 @@ function myhaccp_context_context_default_contexts() {
   $context->conditions = array(
     'path' => array(
       'values' => array(
-        'help/guidance/principles' => 'help/guidance/principles',
+        'node/25' => 'node/25',
       ),
     ),
   );
@@ -139,7 +139,7 @@ function myhaccp_context_context_default_contexts() {
           'module' => 'menu_block',
           'delta' => '6',
           'region' => 'content',
-          'weight' => '-10',
+          'weight' => '1',
         ),
       ),
     ),
