@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-10-21 10:56+0100\n"
-"PO-Revision-Date: 2015-10-21 10:56+0100\n"
+"POT-Creation-Date: 2015-10-21 13:59+0100\n"
+"PO-Revision-Date: 2015-10-21 13:59+0100\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -4737,10 +4737,6 @@ msgstr ""
 
 #: /cy
 msgid "The date of the last access to the node's PDF version."
-msgstr ""
-
-#: /cy
-msgid "Global"
 msgstr ""
 
 #: /cy
@@ -13201,6 +13197,304 @@ msgstr ""
 msgid "Delete Block"
 msgstr ""
 
+#: /cy/node/102/edit/add/en/cy
+msgid "Generate automatic URL alias for all languages"
+msgstr ""
+
+#: /cy/node/102/edit/add/en/cy
+msgid "Allows you to generate aliases for all available languages."
+msgstr ""
+
+#: /cy/node/102/edit/add/en/cy
+msgid ""
+"URL alias for \"Language neutral\" <strong>won't be created</strong>, "
+"because you use automatic alias."
+msgstr ""
+
+#: /cy/node/102/edit/add/en/cy
+msgid ""
+"URL alias for \"Language neutral\" <strong>will be created</strong>, "
+"because you use custom alias."
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "'%name' block"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "Block title"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid ""
+"Override the default title for the block. Use <em>!placeholder</em> to "
+"display no title, or leave blank to use the default block title."
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "Display"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "Basic options"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "Advanced options"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "Block title as link"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid ""
+"Make the default block title a link to that menu item. An overridden "
+"block title will not be a link."
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "Administrative title"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid ""
+"This title will be used administratively to identify this block. If "
+"blank, the regular title will be used."
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid ""
+"The preferred menus used by <em>&lt;the menu selected by the "
+"page&gt;</em> can be customized on the <a href=\"!url\">Menu block "
+"settings page</a>."
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "Starting level"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "1st level (primary)"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "2nd level (secondary)"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "3rd level (tertiary)"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "4th level"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "5th level"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "6th level"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "7th level"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "8th level"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "9th level"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid ""
+"Blocks that start with the 1st level will always be visible. Blocks "
+"that start with the 2nd level or deeper will only be visible when the "
+"trail to the active menu item passes though the block’s starting "
+"level."
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "Make the starting level follow the active menu item."
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid ""
+"If the active menu item is deeper than the level specified above, the "
+"starting level will follow the active menu item. Otherwise, the "
+"starting level of the tree will remain fixed."
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "Starting level will be"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "Active menu item"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "Children of active menu item"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid ""
+"When following the active menu item, specify if the starting level "
+"should be the active menu item or its children."
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "Maximum depth"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "Unlimited"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "From the starting level, specify the maximum depth of the menu tree."
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid ""
+"Make the maximum depth relative to the starting level while following "
+"the active menu item."
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "<strong>Expand all children</strong> of this tree."
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "<strong>Sort</strong> menu tree by the active menu item’s trail."
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid ""
+"Sort each item in the active trail to the top of its level. When used "
+"on a deep or wide menu tree, the active menu item’s children will be "
+"easier to see when the page is reloaded."
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "Fixed parent item"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid ""
+"Alter the “starting level” and “maximum depth” options to be "
+"relative to the fixed parent item. The tree of links will only contain "
+"children of the selected menu item."
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "Region settings"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "Specify in which themes and regions this block is displayed."
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "!theme (administration theme)"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "!theme (default theme)"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "Visibility settings"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "All pages except those listed"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "Only the listed pages"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid ""
+"Specify pages by using their paths. Enter one path per line. The '*' "
+"character is a wildcard. Example paths are %blog for the blog page and "
+"%blog-wildcard for every personal blog. %front is the front page."
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "Show block on specific pages"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "Show block for specific roles"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid ""
+"Show this block only for the selected role(s). If you select no roles, "
+"the block will be visible to all users."
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "Customizable per user"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "Customizable, visible by default"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "Customizable, hidden by default"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid ""
+"Allow individual users to customize the visibility of this block in "
+"their account settings."
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "Save block"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "Show block for specific content types"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid ""
+"Show this block only on pages that display content of the given "
+"type(s). If you select no types, there will be no type-specific "
+"limitation."
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "This field supports tokens."
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid "Delete block"
+msgstr ""
+
+#: /cy/admin/structure/block/manage/menu_block/4/configure?destination=node/6
+msgid ""
+"To learn more about configuring menu blocks, see <a href=\"!url\">menu "
+"block’s detailed help</a>."
+msgstr ""
+
+#: /cy/contact-us
+msgid "You have already submitted this form."
+msgstr ""
+
+#: /cy/contact-us
+msgid "<a href=\"!url\">View your previous submissions</a>."
+msgstr ""
+
 #: sites/all/modules/contrib/l10n_client/l10n_client.js; sites/all/modules/contrib/dialog/misc/ajax.js
 msgid "Please wait..."
 msgstr "Arhoswch ..."
@@ -13417,6 +13711,10 @@ msgstr "Llun"
 #: /cy
 msgid "Blocked"
 msgstr "Wedi'i rwystro"
+
+#: /cy
+msgid "Global"
+msgstr "Eang"
 
 msgid "Home"
 msgstr "Hafan"
@@ -16365,7 +16663,7 @@ msgid ""
 "separates safe from potentially unsafe product)?"
 msgstr ""
 "1. Beth yw'r terfyn critigol ar gyfer y Pwynt Rheoli Critigol hwn (sut "
-"mae gwahanu cynnyrch diogel oddi wrth cynnyrch a allai fod yn "
+"mae gwahanu cynnyrch diogel oddi wrth gynnyrch a allai fod yn "
 "anniogel)?"
 
 msgid ""

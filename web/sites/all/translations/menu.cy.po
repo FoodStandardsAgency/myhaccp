@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-10-21 10:57+0100\n"
-"PO-Revision-Date: 2015-10-21 10:57+0100\n"
+"POT-Creation-Date: 2015-10-21 14:01+0100\n"
+"PO-Revision-Date: 2015-10-21 14:01+0100\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -420,7 +420,7 @@ msgstr "Adnoddau"
 #: menu:item:780:title
 msgctxt "item:780:title"
 msgid "MyHACCP Terms and Conditions"
-msgstr "Telerau ac Amodau MyHACCP"
+msgstr "MyHACCP Terms and Conditions"
 
 #: menu:item:793:title
 msgctxt "item:793:title"
@@ -430,5 +430,5 @@ msgstr "Maint y busnes yn ôl math"
 #: menu:item:849:title
 msgctxt "item:849:title"
 msgid "Updates"
-msgstr "Diweddariadau"
+msgstr "Updates"
 
