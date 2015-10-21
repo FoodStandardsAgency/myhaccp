@@ -20,6 +20,8 @@ function myhaccp_pdf_download_context_default_contexts() {
     'path' => array(
       'values' => array(
         'help/*' => 'help/*',
+        'cymorth/*' => 'cymorth/*',
+        'node/92' => 'node/92',
       ),
     ),
   );
