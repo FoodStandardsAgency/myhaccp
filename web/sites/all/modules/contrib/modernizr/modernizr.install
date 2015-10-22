@@ -145,6 +145,23 @@ function modernizr_requirements($phase) {
 }
 
 /**
+ * Set module weight.
+ */
+function modernizr_set_module_weight() {
+  db_update('system')
+    ->fields(array('weight' => 10))
+    ->condition('name', 'modernizr', '=')
+    ->execute();
+}
+
+/**
+ * Implements hook_install().
+ */
+function modernizr_install() {
+  modernizr_set_module_weight();
+}
+
+/**
  * Implements hook_uninstall().
  */
 function modernizr_uninstall() {
@@ -158,6 +175,7 @@ function modernizr_uninstall() {
 
   // Delete custom build options.
   variable_del('modernizr_cb_printshiv');
+  variable_del('modernizr_cb_load');
 }
 
 /**
@@ -185,4 +203,20 @@ function modernizr_update_7301() {
   if (variable_get('modernizr_type', MODERNIZR_TYPE_DEFAULT) == 'defer') {
     variable_set('modernizr_type', MODERNIZR_TYPE_DEFAULT);
   }
+}
+
+/**
+ * Increase module weight to override other modules library definitions.
+ */
+function modernizr_update_7302() {
+  modernizr_set_module_weight();
+  return t('Increased Modernizr module weight.');
+}
+
+/**
+ * Automatically enable yepnope.js for backwards compatibility.
+ */
+function modernizr_update_7303() {
+  variable_set('modernizr_cb_load', 1);
+  return t('Enabled yepnope.js for backwards compatibility.');
 }
