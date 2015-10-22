@@ -31,14 +31,18 @@
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0;
+    background: #6b6b6b;
+    color: #fff;
+    padding: 15px 49px 15px 15px;
   }
   .ui-dialog-title {
     margin-top: -8px;
   }
   .ui-dialog-content {
     padding: 0 1em;
-    overflow-y: hidden;
-    overflow-x: hidden;
+    position: static;
+    //overflow-y: hidden;
+    //overflow-x: hidden;
   }
   &.ui-corner-all {
     @include border-radius(0);
@@ -47,7 +51,7 @@
     padding: 0 1em;
     .help-content {
       width: 72%;
-      article {
+      .node {
         padding-right: 2em;
         padding-top: 0.5em;
         padding-left: 1em;
@@ -139,6 +143,11 @@
   }
 }
 
+.ui-dialog .ui-widget-content.ui-dialog-content {
+  background: #ffffff;
+  overflow: auto;
+  padding: 1em;
+}
 
 
 

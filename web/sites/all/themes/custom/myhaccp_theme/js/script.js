@@ -7,24 +7,24 @@
         $('.ui-widget-overlay').bind('click', function() {
           $("#drupal-modal").dialog('close');
         });
-      });
-      //// Attach a click handler for the dialog's help menu links.
-      $('.help-menu a').click(function(e) {
-        // Get href attribute.
-        var link = $(this).attr('href');
-        link = link.substring(link.indexOf('#'));
-        $('.help-menu ul li a').removeClass("active");
-        $('.help-menu a[href$="' + link + '"]').addClass("active");
-        $(link).removeClass("hidden").siblings("article").addClass("hidden");
-        // Set the window's scroll position to 95 pixels down to avoid the
-        // jump to top that is the default.
-        $(window).scrollTop(-95);
-        $('#drupal-modal').scrollTop(-20);
-        event.preventDefault();
-      });
-      // Add a click handler to close the dialog from the footer link.
-      $('footer a[href$="#close"]').click(function() {
-        $('#drupal-modal').dialog('close');
+
+        // Attach a click handler for the dialog's help menu links.
+        $('.help-menu a').click(function(e) {
+          // Get href attribute.
+          var link = $(this).attr('href');
+          link = link.substring(link.indexOf('#'));
+          $('.help-menu ul li a').removeClass("active");
+          $('.help-menu a[href$="' + link + '"]').addClass("active");
+          $(link).removeClass("hidden").siblings(".node").addClass("hidden");
+          // Set the window's scroll position to 95 pixels down to avoid the
+          // jump to top that is the default.
+          $(window).scrollTop(-95);
+          $('#drupal-modal').scrollTop(-20);
+        });
+        // Add a click handler to close the dialog from the footer link.
+        $('footer a[href$="#close"]').click(function() {
+          $('#drupal-modal').dialog('close');
+        });
       });
     }
   };

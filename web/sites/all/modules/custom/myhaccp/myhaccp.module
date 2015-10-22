@@ -793,8 +793,8 @@ function myhaccp_help_modal($nid = FALSE) {
           $node_view = node_view($node, 'full');
           $article = render($node_view);
           // Strip the heading.
-          $node_content .= str_replace('class="node', 'id="help-' . $node->nid . '" class="' . $class . ' node', $article);
-          $node_content .= '</article>';
+          $node_content .= preg_replace('/class="(.+?node.+?)"/', 'id="help-' . $node->nid . '" class="' . $class . ' $1"', $article, 1);
+//          $node_content .= '</article>';
         }
         $phasename = $phase->getName();
         $item = '<a href="#help-' . $node->nid . '"';
