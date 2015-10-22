@@ -37,6 +37,20 @@ function prlp_admin_settings($form) {
     '#description' => t("List of form sub-keys under 'account' key (e.g. 'mail', 'name' etc.) that should be hidden on password reset landing page. Put one per line."),
     '#default_value' => variable_get('prlp_hidden_account_fields', PRLP_HIDDEN_ACCOUNT_FIELDS_DEFAULT),
   );
+  // Confirmation Message For New Users.
+  $form['prlp']['prlp_confirmation_message_new_users'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Confirmation Message For New Users'),
+    '#description' => t('Confirmation message that will be shown to new users after they set their password.'),
+    '#default_value' => variable_get('prlp_confirmation_message_new_users', t('Thank you for setting your password, the registration process has completed.')),
+  );
+  // Confirmation Message For Existing Users.
+  $form['prlp']['prlp_confirmation_message_existing_users'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Confirmation Message For Existing Users'),
+    '#description' => t('Confirmation message that will be shown to existing users after they changed their password.'),
+    '#default_value' => variable_get('prlp_confirmation_message_existing_users', t('Your new password has been saved.')),
+  );
   $form = system_settings_form($form);
   $form['actions']['reset'] = array(
     '#type' => 'submit',
