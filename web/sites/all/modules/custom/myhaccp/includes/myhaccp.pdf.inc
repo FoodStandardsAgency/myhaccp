@@ -40,7 +40,7 @@ function myhaccp_output_pdf($iid) {
     include_once $path . '/mpdf.php';
     $mpdf = new mPDF('', 'A4');
     // Get the stylesheets involved.
-    $style_path = drupal_get_path('theme', 'myhaccp');
+    $style_path = drupal_get_path('theme', 'myhaccp_theme');
     $stylesheet = file_get_contents($style_path . '/css/pdf-style.css');
     $mpdf->list_indent_first_level = 1;
     // These could be used to help with tables not breaking across pages.

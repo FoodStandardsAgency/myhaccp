@@ -211,7 +211,7 @@ function preparatory_g_process(&$element, $form_state, $form) {
     // Check the mimetype to determine what to show here.
     if ($element['#file']->filemime == 'application/pdf') {
       $element['filename']['#markup'] = theme('image', array(
-        'path' => drupal_get_path('theme', 'myhaccp') . '/images/pdf-icon.png',
+        'path' => drupal_get_path('theme', 'myhaccp_theme') . '/images/pdf-icon.png',
         'alt' => t('PDF icon representing an uploaded file'),
       ));
     }
