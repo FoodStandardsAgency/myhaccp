@@ -1121,18 +1121,50 @@ function myhaccp_form_user_pass_reset_alter(&$form, $form_state) {
 }
 
 /**
- * Given a file will validate the image as either a PDF or an image.
+ * Given a PDF will validate it.
+ *
+ * Also attempts to convert PDFs with version greater than 1.4 down to version
+ * 1.4 of the Adobe PDF standard.
+ */
+function myhaccp_validate_pdf(stdClass $file, $options = array()) {
+  $errors = array();
+
+  // First check whether this is a PDF.
+  if ($file->filemime != 'application/pdf') {
+    return $errors;
+  }
+
+  // Check whether the PDF starts with '%PDF'.
+  if (!myhaccp_validate_valid_pdf($file)) {
+    $errors[] = t('The file you uploaded does not appear to be a valid PDF file.');
+    // Finish processing and return the error.
+    return $errors;
+  };
+
+  // Check the PDF version and try to convert the file if needed.
+  $version = myhaccp_determine_pdf_version($file);
+  if ($version && $version > 1.4) {
+    // Try to convert the file.
+    myhaccp_convert_pdf($file);
+    // Check the version of the updated file.
+    $updated_version = myhaccp_determine_pdf_version($file);
+    if ($updated_version != '1.4') {
+      $errors[] = t('The PDF uploaded has features incompatible with this system. We have tried to convert the file but the conversion failed. Please upload a PDF compatible with the Adobe PDF standard version 1.4');
+    }
+  }
+
+  return $errors;
+}
+
+/**
+ * Given an image will validate it.
  */
 function myhaccp_validate_image(stdClass $file, $options = array()) {
   $errors = array();
 
   // First check whether this is a PDF.
   if ($file->filemime == 'application/pdf') {
-    // Check whether the PDF starts with '%PDF'.
-    myhaccp_validate_valid_pdf($file, $errors);
-    if (empty($errors)) {
-      myhaccp_validate_pdf_version($file, $errors);
-    }
+    return $errors;
   }
 
   // Try to load the image.
@@ -1155,41 +1187,16 @@ function myhaccp_validate_image(stdClass $file, $options = array()) {
  * @return array
  *   The error array. Will be empty if no errors.
  */
-function myhaccp_validate_valid_pdf($file, &$errors) {
+function myhaccp_validate_valid_pdf($file) {
   $path = drupal_realpath($file->uri);
 
   if (file_get_contents($path, FALSE, NULL, 0, 4) === '%PDF') {
     // The characters are present at the beginning of the file so return
     // without error.
-    return array();
+    return TRUE;
   }
-  else {
-    $errors[] = t('The file you uploaded does not appear to be a valid PDF file.');
-  }
-}
 
-/**
- * Validates and attempts to correct the PDF version.
- *
- * If the PDF version is greater than 1.4 we try and convert it.
- *
- * @param object $file
- *   The file object to operate on.
- *
- * @param array $errors
- *   Any errors are added to the array.
- */
-function myhaccp_validate_pdf_version($file, &$errors) {
-  $version = myhaccp_determine_pdf_version($file);
-  if ($version && $version > 1.4) {
-    // Convert the file.
-    myhaccp_convert_pdf($file);
-    // Check the version of the updated file.
-    $updated_version = myhaccp_determine_pdf_version($file);
-    if ($updated_version != '1.4') {
-      $errors[] = t('The PDF uploaded has features incompatible with this system. We have tried to convert the file but the conversion failed. Please upload a PDF compatible with the Adobe PDF standard version 1.4');
-    }
-  }
+  return FALSE;
 }
 
 /**
@@ -1217,6 +1224,8 @@ function myhaccp_convert_pdf($file) {
   $binary_exists = shell_exec('which gs');
   if (!empty($binary_exists)) {
     $path = drupal_realpath($file->uri);
-    shell_exec('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -sOutputFile=' . $path . ' ' . $path);
+    shell_exec('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -sOutputFile=' . $path . 'modified ' . $path);
+    // Overwrite the existing file with the new file.
+    copy($path . 'modified', $path);
   }
 }

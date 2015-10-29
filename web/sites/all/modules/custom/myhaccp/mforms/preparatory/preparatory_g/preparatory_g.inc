@@ -97,6 +97,7 @@ function preparatory_g(&$form_state, &$next_step) {
     '#upload_validators' => array(
       'file_validate_extensions' => array('jpg jpeg png gif pdf'),
       'myhaccp_validate_image' => array(),
+      'myhaccp_validate_pdf' => array(),
     ),
     '#attributes' => array(
       'data-parsley-error-message' => t('If a file is uploaded, it must be of type gif, jpg, jpeg, png or pdf.'),

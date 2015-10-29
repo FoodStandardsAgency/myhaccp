@@ -106,6 +106,18 @@ function prepare_pdf_merge($study, $mpdf, $section) {
 
   $pdf_url = drupal_realpath($file->uri);
 
+  // Detect the PDF version and convert to 1.4 if needed.
+  $version = myhaccp_determine_pdf_version($file);
+  if ($version && $version > 1.4) {
+    // Try to convert the file.
+    myhaccp_convert_pdf($file);
+    // Check the version of the updated file.
+    $updated_version = myhaccp_determine_pdf_version($file);
+    if ($updated_version != '1.4') {
+      return;
+    }
+  }
+
   $mpdf->SetImportUse();
   $page_count = $mpdf->SetSourceFile($pdf_url);
   $page = 1;
