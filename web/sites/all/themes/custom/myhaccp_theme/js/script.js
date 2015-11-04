@@ -116,6 +116,19 @@
           'eventValue': 0
         });
       });
+
+      // Send an event to GA when someone closes the bean block
+      // on the tool page.
+      $('.close-bean-button').click(function(e) {
+        ga('send', {
+          'hitType': 'event',
+          'eventCategory': 'block',
+          'eventAction': 'close block',
+          'eventLabel': '',
+          'eventValue': 0
+        });
+      });
+
     }
   };
 
