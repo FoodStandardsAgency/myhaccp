@@ -815,12 +815,12 @@ function myhaccp_help_modal($nid = FALSE) {
   $menu_prep = implode('</li><li>', $menu_prep);
   $menu_principle = implode('</li><li>', $menu_principle);
 
-  $menu = '<nav class="help-menu"><h2>Help topics</h2><h3>Preparatory</h3><ul class="phase"><li>' . $menu_prep . '</li></ul>';
-  $menu .= '<h3>Principles</h3><ul class="phase"><li>' . $menu_principle . '</li></ul></nav>';
+  $menu = '<nav class="help-menu"><h2>'. t('Help topics') .'</h2><h3>' . t('Preparatory') . '</h3><ul class="phase"><li>' . $menu_prep . '</li></ul>';
+  $menu .= '<h3>' . t('Principles') . '</h3><ul class="phase"><li>' . $menu_principle . '</li></ul></nav>';
 
   $contents = $menu . $node_content;
   // Add a footer close button.
-  $contents .= '<footer class="dialog-footer"><a href="#close" class="close-button">Close help</a></footer>';
+  $contents .= '<footer class="dialog-footer"><a href="#close" class="close-button">' . t('Close help') . '</a></footer>';
 
   return array('#markup' => $contents);
 }
