@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-10-21 16:22+0100\n"
-"PO-Revision-Date: 2015-10-21 16:22+0100\n"
+"POT-Creation-Date: 2015-11-19 22:24+0000\n"
+"PO-Revision-Date: 2015-11-19 22:24+0000\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -13,14 +13,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=((n==1)?(0):((n==2)?(1):(((n!=8)&&(n!=11))?(2):3)));\n"
 
+#: menu:item:10:title
+msgctxt "item:10:title"
+msgid "Create new account"
+msgstr ""
+
 #: menu:item:1208:title
 msgctxt "item:1208:title"
 msgid "Downloads"
 msgstr ""
 
-#: menu:item:1209:title
-msgctxt "item:1209:title"
-msgid "External links"
+#: menu:item:14:title
+msgctxt "item:14:title"
+msgid "Log in"
 msgstr ""
 
 #: menu:item:310:description
@@ -137,11 +142,6 @@ msgid ""
 "sections of the site, often in a top navigation bar."
 msgstr ""
 
-#: menu:menu:main-menu:title
-msgctxt "menu:main-menu:title"
-msgid "Main menu"
-msgstr ""
-
 #: menu:menu:management:description
 msgctxt "menu:management:description"
 msgid "The <em>Management</em> menu contains links for administrative tasks."
@@ -192,20 +192,35 @@ msgctxt "menu:user-menu:title"
 msgid "User menu"
 msgstr ""
 
-#: menu:item:1043:title
-msgctxt "item:1043:title"
-msgid "MyHACCP Web Tool"
-msgstr "Adnodd MyHACCP"
+#: menu:item:1209:title
+msgctxt "item:1209:title"
+msgid "External links"
+msgstr "Dolenni allanol"
+
+#: menu:item:15:title
+msgctxt "item:15:title"
+msgid "Log out"
+msgstr "Allgofnodi"
 
 #: menu:item:1726:title
 msgctxt "item:1726:title"
 msgid "Updates"
 msgstr "Diweddariadau"
 
+#: menu:item:20:title
+msgctxt "item:20:title"
+msgid "Request new password"
+msgstr "Cais am gyfrinair newydd"
+
 #: menu:item:218:title
 msgctxt "item:218:title"
 msgid "Home"
 msgstr "Hafan"
+
+#: menu:item:2:title
+msgctxt "item:2:title"
+msgid "User account"
+msgstr "Cyfrif y defnyddiwr"
 
 #: menu:item:363:title
 msgctxt "item:363:title"
@@ -427,8 +442,8 @@ msgctxt "item:793:title"
 msgid "Business size by type"
 msgstr "Maint y busnes yn ôl math"
 
-#: menu:item:849:title
-msgctxt "item:849:title"
-msgid "Updates"
-msgstr "Updates"
+#: menu:menu:main-menu:title
+msgctxt "menu:main-menu:title"
+msgid "Main menu"
+msgstr "Prif ddewislen"
 
