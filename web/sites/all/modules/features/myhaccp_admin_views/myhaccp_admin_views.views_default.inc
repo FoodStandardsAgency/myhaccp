@@ -626,7 +626,10 @@ function myhaccp_admin_views_views_default_views() {
   $handler = $view->new_display('views_data_export', 'Data export', 'export');
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
-  $handler->display->display_options['style_plugin'] = 'views_data_export_csv';
+  $handler->display->display_options['style_plugin'] = 'views_data_export_xls';
+  $handler->display->display_options['style_options']['provide_file'] = 1;
+  $handler->display->display_options['style_options']['filename'] = '%view-%timestamp-full.xls';
+  $handler->display->display_options['style_options']['parent_sort'] = 0;
   $handler->display->display_options['defaults']['header'] = FALSE;
   $handler->display->display_options['path'] = 'admin/reports/user-study-status/csv';
   $handler->display->display_options['displays'] = array(
