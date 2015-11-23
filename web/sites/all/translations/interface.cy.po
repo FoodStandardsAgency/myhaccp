@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-10-21 16:21+0100\n"
-"PO-Revision-Date: 2015-10-21 16:21+0100\n"
+"POT-Creation-Date: 2015-11-19 22:24+0000\n"
+"PO-Revision-Date: 2015-11-19 22:24+0000\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -201,7 +201,7 @@ msgstr ""
 msgid "By @name"
 msgstr ""
 
-#: modules/node/node.js
+#: modules/node/node.js; modules/node/content_types.js
 msgid "Not published"
 msgstr ""
 
@@ -432,10 +432,6 @@ msgstr ""
 
 #: /cy/tool
 msgid "A field replacing file name."
-msgstr ""
-
-#: /cy/tool
-msgid "Print"
 msgstr ""
 
 #: /cy/tool
@@ -1141,10 +1137,6 @@ msgstr ""
 
 #: /cy/tool
 msgid "The item has been reverted."
-msgstr ""
-
-#: /cy/tool
-msgid "Are you sure you want to delete %title?"
 msgstr ""
 
 #: /cy/tool
@@ -1867,10 +1859,6 @@ msgid "Configure hidden fields globally."
 msgstr ""
 
 #: /cy/tool
-msgid "Printer, email and PDF versions"
-msgstr ""
-
-#: /cy/tool
 msgid ""
 "Adds a printer-friendly version link to content and administrative "
 "pages."
@@ -2006,7 +1994,7 @@ msgstr ""
 msgid "Configure which blocks can be shown on the dashboard."
 msgstr ""
 
-#: /cy/tool
+#: /cy/tool; modules/dashboard/dashboard.js
 msgid "Customize dashboard"
 msgstr ""
 
@@ -2318,10 +2306,6 @@ msgstr ""
 
 #: /cy/tool
 msgid "Registrations"
-msgstr ""
-
-#: /cy/tool
-msgid "Business size by type"
 msgstr ""
 
 #: /cy/tool
@@ -3706,10 +3690,6 @@ msgid "Associated @label via the @label's @property."
 msgstr ""
 
 #: /cy/tool
-msgid "(No information available)"
-msgstr ""
-
-#: /cy/tool
 msgid "Rendered @entity-type"
 msgstr ""
 
@@ -4324,10 +4304,6 @@ msgid "The extension of the file."
 msgstr ""
 
 #: /cy/tool
-msgid "Size"
-msgstr ""
-
-#: /cy/tool
 msgid "The size of the file."
 msgstr ""
 
@@ -4681,10 +4657,6 @@ msgstr ""
 
 #: /cy/tool
 msgid "The user or author name."
-msgstr ""
-
-#: /cy/tool
-msgid "Name (raw)"
 msgstr ""
 
 #: /cy/tool
@@ -7455,10 +7427,6 @@ msgstr ""
 msgid "Apply (this display)"
 msgstr ""
 
-#: /cy/tool/study/8821/preparatory/c-1
-msgid "Please state the process end."
-msgstr ""
-
 #: /cy/node/43/revisions
 msgid "Revisions for %title"
 msgstr ""
@@ -8024,7 +7992,7 @@ msgstr ""
 msgid "Save translations"
 msgstr ""
 
-#: modules/locale/locale.datepicker.js
+#: modules/locale/locale.datepicker.js; modules/dashboard/dashboard.js
 msgid "Done"
 msgstr ""
 
@@ -8216,10 +8184,6 @@ msgstr ""
 msgid "The string has been saved."
 msgstr ""
 
-#: /cy/tool/study/2/principle/1-1
-msgid "Remove a step"
-msgstr ""
-
 #: /cy/admin/structure/taxonomy/file_category
 msgid "Weight for added term"
 msgstr ""
@@ -8266,33 +8230,11 @@ msgid "Registration date"
 msgstr ""
 
 #: /cy/help/guidance/resources
-msgid "Business type"
-msgstr ""
-
-#: /cy/help/guidance/resources
 msgid "Count"
 msgstr ""
 
 #: /cy/help/guidance/resources
-msgid "Business type if other"
-msgstr ""
-
-#: /cy/help/guidance/resources
-msgid "Size of business"
-msgstr ""
-
-#: /cy/help/guidance/resources
-msgid "Postcode area"
-msgstr ""
-
-#: /cy/help/guidance/resources
 msgid "Contact consent"
-msgstr ""
-
-#: /cy/help/guidance/resources
-msgid ""
-"I agree to the FSA contacting me for any research or surveys related "
-"to the use of this site. (field_contact_consent)"
 msgstr ""
 
 #: /cy/help/guidance/resources
@@ -8445,6 +8387,11 @@ msgstr ""
 
 #: /cy/admin_menu/flush-cache?token=NiuXUxtkwJgOkirQCzCBfHd3PbiaD7dY-iK1FalhWC4&destination=help/guidance/resources
 msgid "bzip2"
+msgstr ""
+
+#: /cy/admin_menu/flush-cache?token=NiuXUxtkwJgOkirQCzCBfHd3PbiaD7dY-iK1FalhWC4&destination=help/guidance/resources
+msgctxt "compression format"
+msgid "Zip"
 msgstr ""
 
 #: /cy/admin_menu/flush-cache?token=NiuXUxtkwJgOkirQCzCBfHd3PbiaD7dY-iK1FalhWC4&destination=help/guidance/resources
@@ -8995,16 +8942,6 @@ msgstr ""
 
 #: /cy/admin_menu/flush-cache?token=NiuXUxtkwJgOkirQCzCBfHd3PbiaD7dY-iK1FalhWC4&destination=help/guidance/resources
 msgid ","
-msgstr ""
-
-#: /cy/admin_menu/flush-cache?token=NiuXUxtkwJgOkirQCzCBfHd3PbiaD7dY-iK1FalhWC4&destination=help/guidance/resources
-msgid "Business type (other)"
-msgstr ""
-
-#: /cy/admin_menu/flush-cache?token=NiuXUxtkwJgOkirQCzCBfHd3PbiaD7dY-iK1FalhWC4&destination=help/guidance/resources
-msgid ""
-"I agree to the FSA contacting me for any research or surveys related "
-"to the use of this site."
 msgstr ""
 
 #: /cy/admin_menu/flush-cache?token=NiuXUxtkwJgOkirQCzCBfHd3PbiaD7dY-iK1FalhWC4&destination=help/guidance/resources
@@ -10081,14 +10018,6 @@ msgid "Body"
 msgstr ""
 
 #: /cy/admin_menu/flush-cache?token=NiuXUxtkwJgOkirQCzCBfHd3PbiaD7dY-iK1FalhWC4&destination=help/guidance/resources
-msgid "Business name (optional)"
-msgstr ""
-
-#: /cy/admin_menu/flush-cache?token=NiuXUxtkwJgOkirQCzCBfHd3PbiaD7dY-iK1FalhWC4&destination=help/guidance/resources
-msgid "Country"
-msgstr ""
-
-#: /cy/admin_menu/flush-cache?token=NiuXUxtkwJgOkirQCzCBfHd3PbiaD7dY-iK1FalhWC4&destination=help/guidance/resources
 msgid "!title cache cleared."
 msgstr ""
 
@@ -10305,9 +10234,5586 @@ msgstr ""
 msgid "Canllawiau ar gyfer MyHACCP"
 msgstr ""
 
-#: /cy/admin_menu/flush-cache?token=NiuXUxtkwJgOkirQCzCBfHd3PbiaD7dY-iK1FalhWC4&destination=help/guidance/resources
-msgctxt "compression format"
-msgid "Zip"
+#: /cy/linkit/dashboard/linkit_default
+msgid "Linkit"
+msgstr ""
+
+#: /cy/linkit/dashboard/linkit_default
+msgid "Select profile to use"
+msgstr ""
+
+#: /cy/linkit/dashboard/linkit_default
+msgid "Search for content."
+msgstr ""
+
+#: /cy/linkit/dashboard/linkit_default
+msgid "Start typing to find content or paste a URL."
+msgstr ""
+
+#: /cy/linkit/dashboard/linkit_default
+msgid "Link URL"
+msgstr ""
+
+#: /cy/linkit/dashboard/linkit_default
+msgid "This will be populated by the search, or you can fill it in yourself."
+msgstr ""
+
+#: /cy/linkit/dashboard/linkit_default
+msgid "Insert link"
+msgstr ""
+
+#: sites/all/modules/contrib/linkit/js/linkit.dashboard.js
+msgid "Open file browser"
+msgstr ""
+
+#: sites/all/modules/contrib/linkit/js/linkit.dashboard.js
+msgid "Change profile"
+msgstr ""
+
+#: /cy/block/alert_notice/translate/delete/cy
+msgid "Are you sure you want to delete the @language translation of %label?"
+msgstr ""
+
+#: /cy/user/register
+msgid "Signature settings"
+msgstr ""
+
+#: /cy/user/register
+msgid "Your signature will be publicly displayed at the end of your comments."
+msgstr ""
+
+#: /cy/user/register
+msgid ""
+"Your virtual face or picture. Pictures larger than @dimensions pixels "
+"will be scaled down."
+msgstr ""
+
+#: /cy/user/register
+msgid "Language settings"
+msgstr ""
+
+#: /cy/admin/config/regional/translate
+msgid "English (built-in)"
+msgstr ""
+
+#: /cy/admin/config/regional/translate
+msgid ""
+"This page provides an overview of available translatable strings. "
+"Drupal displays translatable strings in text groups; modules may "
+"define additional text groups containing other translatable strings. "
+"Because text groups provide a method of grouping related strings, they "
+"are often used to focus translation efforts on specific areas of the "
+"Drupal interface."
+msgstr ""
+
+#: /cy/admin/config/regional/translate
+msgid ""
+"See the <a href=\"@languages\">Languages page</a> for more information "
+"on adding support for additional languages."
+msgstr ""
+
+#: misc/tableselect.js
+msgid "Select all rows in this table"
+msgstr ""
+
+#: misc/tableselect.js
+msgid "Deselect all rows in this table"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Provides permission-based access control for actions. Used by Views "
+"Bulk Operations."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Administration and debugging functionality for developers and site "
+"builders."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "@module (<span class=\"admin-enabled\">enabled</span>)"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The administration menu module provides a dropdown menu arranged for "
+"one- or two-click access to most administrative tasks and other common "
+"destinations (to users with the proper permissions). Administration "
+"menu also displays the number of anonymous and authenticated users, "
+"and allows modules to add their own custom menu items. Integration "
+"with the menu varies from module to module; the contributed module <a "
+"href=\"@drupal\">Devel</a>, for instance, makes strong use of the "
+"administration menu module to provide quick access to development "
+"tools."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The administration menu <a href=\"@settings\">settings page</a> allows "
+"you to modify some elements of the menu's behavior and appearance. "
+"Since the appearance of the menu is dependent on your site theme, "
+"substantial customizations require modifications to your site's theme "
+"and CSS files. See the advanced module README.txt file for more "
+"information on theme and CSS customizations."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The menu items displayed in the administration menu depend upon the "
+"actual permissions of the viewer. First, the administration menu is "
+"only displayed to users in roles with the <em>Access administration "
+"menu</em> (admin_menu module) permission. Second, a user must be a "
+"member of a role with the <em>Access administration pages</em> (system "
+"module) permission to view administrative links. And, third, only "
+"currently permitted links are displayed; for example, if a user is not "
+"a member of a role with the permissions <em>Administer "
+"permissions</em> (user module) and <em>Administer users</em> (user "
+"module), the <em>User management</em> menu item is not displayed."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Configure permissions"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "@module (<span class=\"admin-disabled\">disabled</span>)"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Provides a dropdown menu to most administrative tasks and other common "
+"destinations (to users with the proper permissions)."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Clean and minimal theme for the administration menu module."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "A better Toolbar."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Replaces all system object management pages in Drupal core with real "
+"views."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Aggregates syndicated content (RSS, RDF, and Atom feeds)."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Backup or migrate the Drupal Database quickly and without unnecessary "
+"data."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Create Bean (Block Entities)"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "@module (<span class=\"admin-missing\">missing</span>)"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Integrates the Bean module with the Entitycache module"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Add the ability to create Block Types in the UI"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "View Bean (Block Entities) Usage"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Allow deploying bean blocks through Deploy and UUID modules."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "About"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The Block module allows you to create boxes of content, which are "
+"rendered into an area, or region, of one or more pages of a website. "
+"The core Seven administration theme, for example, implements the "
+"regions \"Content\", \"Help\", \"Dashboard main\", and \"Dashboard "
+"sidebar\", and a block may appear in any one of these regions. The <a "
+"href=\"@blocks\">Blocks administration page</a> provides a "
+"drag-and-drop interface for assigning a block to a region, and for "
+"controlling the order of blocks within regions. For more information, "
+"see the online handbook entry for <a href=\"@block\">Block module</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Uses"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Positioning content"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"When working with blocks, remember that all themes do <em>not</em> "
+"implement the same regions, or display regions in the same way. Blocks "
+"are positioned on a per-theme basis. Users with the <em>Administer "
+"blocks</em> permission can disable blocks. Disabled blocks are listed "
+"on the <a href=\"@blocks\">Blocks administration page</a>, but are not "
+"displayed in any region."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Controlling visibility"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Blocks can be configured to be visible only on certain pages, only to "
+"users of certain roles, or only on pages displaying certain <a "
+"href=\"@content-type\">content types</a>. Administrators can also "
+"allow specific blocks to be enabled or disabled by users when they "
+"edit their <a href=\"@user\">My account</a> page. Some dynamic blocks, "
+"such as those generated by modules, will be displayed only on certain "
+"pages."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Creating custom blocks"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Users with the <em>Administer blocks</em> permission can <a "
+"href=\"@block-add\">add custom blocks</a>, which are then listed on "
+"the <a href=\"@blocks\">Blocks administration page</a>. Once created, "
+"custom blocks behave just like default and module-generated blocks."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Controls the visual building blocks a page is constructed with. Blocks "
+"are boxes of content rendered into an area, or region, of a web page."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Allows assigning CSS classes to blocks."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Enables language selector for blocks and optional block translation."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Enables multi-user blogs."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Allows users to create and organize related content in an outline."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Performs bulk exporting of data objects known about by Chaos tools."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "A library of helpful tools by Merlin of Chaos."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Shows how to use the power of Chaos AJAX."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Shows how an external module can provide ctools plugins (for Panels, "
+"etc.)."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Introduction"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "What You See Is What You Get"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "WYSIWYG"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The CKEditor module allows Drupal to replace textarea fields with "
+"CKEditor. CKEditor is an online rich text editor that can be embedded "
+"inside web pages. It is a !wysiwyg editor which means that the text "
+"edited in it looks as similar as possible to the results end users "
+"will see after the document gets published. It brings to the Web "
+"popular editing features found in desktop word processors such as "
+"Microsoft Word and OpenOffice.org Writer. CKEditor is truly "
+"lightweight and does not require any kind of installation on the "
+"client computer."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "CKEditor website"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "CKEditor for Drupal 7 Documentation"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "User's Guide"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Useful links: !ckeditorlink | !devguidelink | !userguidelink."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Administration panel"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Content Authoring"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"CKEditor profiles can be configured in the !adminpath section. "
+"Profiles determine which options are available to users based on the "
+"input format system."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "filters"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"For the Rich Text Editing to work you also need to configure your "
+"!filterlink for the users that may access Rich Text Editing. Either "
+"grant those users <strong>Full HTML</strong> access or use the "
+"following list of tags in the HTML filter:"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "README.txt"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"<strong>Note:</strong> be careful when granting users access to create "
+"tags like %iframe.<br />If you are going to use CKEditor with the "
+"<strong>Filtered HTML</strong> input format, please read the \"Setting "
+"up filters\" section in the !readme file."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Line break converter"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"To have better control over line breaks, you should disable the "
+"<strong>%settingname</strong> setting in the chosen Text format "
+"(recommended)."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "API documentation"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"All configuration options described in the !apidocs that cannot be "
+"easily changed in the administration area can be set in the "
+"<strong>Advanced Options</strong> section in the CKEditor profile."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Troubleshooting"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "the list of common problems"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Take a look at !listlink when installing CKEditor."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "official project page"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"If you are looking for more information, have any trouble with the "
+"configuration, or found an issue with the CKEditor module, please "
+"visit the !officiallink."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "here"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"More information about how to customize CKEditor for your theme can be "
+"found !herelink."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Plugins: Code Snippet and MathJax"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Code Snippet and MathJax are special plugins for CKEditor that are "
+"using external JavaScript libraries to style content inside editing "
+"area. The result that is returned by CKEditor is just an HTML tag that "
+"needs to again processed by a filter (either server side or client "
+"side) in order to display it properly to the user."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "MathJax (Mathematical Formulas)"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"With mathjax plugin, CKEditor produces LaTeX code surrounded by !code. "
+"In order to have it properly rendered on your site you might need to "
+"add !mathjax on your website, the simplest way to do this is to add "
+"this to your theme: !script"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Code Snippet"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"With codesnippet plugin, CKEditor produces code snippets surrounded by "
+"!code. <strong>Note:</strong> You might need to add !highlight on your "
+"website so that the displayed code was rendered nicely as in CKEditor. "
+"The simplest way to do this is to add this to your theme: !script"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Uploading images and files"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "There are three ways for uploading files:"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "CKFinder"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "By using !ckfinder (commercial), an advanced Ajax file manager."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "IMCE"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "By using a dedicated module like !imcelink."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "By using the core upload module."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Enables CKEditor (WYSIWYG HTML editor) for use instead of plain text "
+"fields."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Closeable Beans (Block Entities)"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Close block: add ajax close buttom to block"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"An administrative module to switch between admin pages real fast, like "
+"Alfred or Spotlight on OS X."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Allows administrators to change the color scheme of compatible themes."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Allows users to comment on and discuss published content."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Enables the use of both personal and site-wide contact forms."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Makes contact categories and replies available for translation."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Allows content to be translated into different languages."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Provide modules with a cache that lasts for a single page request."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Provides a simply way to create a conditional for themes to run you "
+"reactions off"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Allow theme layer to provide multiple region layouts and integrate "
+"with context."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Provides a simple UI for settings up a site structure using Context."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The Contextual links module displays links related to regions of pages "
+"on your site to users with <em>access contextual links</em> "
+"permission. For more information, see the online handbook entry for <a "
+"href=\"@contextual\">Contextual links module</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Displaying contextual links"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Contextual links are supplied by modules, to give you quick access to "
+"tasks associated with regions of pages on your site. For instance, if "
+"you have a custom menu block displayed in a sidebar of your site, the "
+"Blocks and Menus modules will supply links to configure the block and "
+"edit the menu. The Contextual links module collects these links into a "
+"list for display by your theme, and also adds JavaScript code to the "
+"page to hide the links initially, and display them when your mouse "
+"hovers over the block."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Provides contextual links to perform actions related to elements on a "
+"page."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Create custom, exportable, reusable content panes for applications "
+"like Panels."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Create custom, exportable, reusable access rulesets for applications "
+"like Panels."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The Dashboard module provides a <a href=\"@dashboard\">Dashboard "
+"page</a> in the administrative interface for organizing administrative "
+"tasks and navigation, and tracking information within your site. The "
+"Dashboard page contains blocks, which you can add to and arrange using "
+"the drag-and-drop interface that appears when you click on the "
+"<em>Customize dashboard</em> link. Within this interface, blocks that "
+"are not primarily used for site administration do not appear by "
+"default, but can be added via the <em>Add other blocks</em> link. For "
+"more information, see the online handbook entry for <a "
+"href=\"@handbook\">Dashboard module</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Tracking user activity"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"By enabling blocks such as <em>Who's online</em> and <em>Who's "
+"new</em>, site users can track who is logged in and new user signups "
+"at a centralized location."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Tracking content activity"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"By enabling blocks such as <em>Recent blog posts</em>, <em>New forum "
+"topics</em> and <em>Recent comments</em>, site users can view newly "
+"added site content at a glance."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Provides a dashboard page in the administrative interface for "
+"organizing administrative tasks and tracking information within your "
+"site."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The Database logging module logs system events in the Drupal database. "
+"For more information, see the online handbook entry for the <a "
+"href=\"@dblog\">Database logging module</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Monitoring your site"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The Database logging module allows you to view an event log on the <a "
+"href=\"@dblog\">Recent log messages</a> page. The log is a "
+"chronological list of recorded events containing usage data, "
+"performance data, errors, warnings and operational information. "
+"Administrators should check the log on a regular basis to ensure their "
+"site is working properly."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Debugging site problems"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"In case of errors or problems with the site, the <a "
+"href=\"@dblog\">Recent log messages</a> page can be useful for "
+"debugging, since it shows the sequence of events. The log messages "
+"include usage information, warnings, and errors."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Logs and records system events to the database."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Makes date/time fields available."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Adds 'All Day' functionality to date fields, including an 'All Day' "
+"theme and 'All Day' checkboxes for the Date select and Date popup "
+"widgets."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "A Date API that can be used by other modules."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Adds an option to the Context module to set a context condition based "
+"on the value of a date field."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Examples of migrating with the Date module"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Enables jquery popup calendars and time entry widgets for selecting "
+"dates and times."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"A Date Repeat API to calculate repeating dates and times from iCal "
+"rules."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Creates the option of Repeating date fields and manages Date fields "
+"that use the Date Repeat API."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Tools to import and auto-create dates and calendars."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Views integration for date fields and date functionality."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Various blocks, pages, and functions for developers."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Generate dummy users, nodes, and taxonomy terms."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Developer blocks and page illustrating relevant node_access records."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Provides an API for opening content in an interactive overlay."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Moves various comment actions into interactive overlays."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Moves various node actions into interactive overlays."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Moves various user actions into interactive overlays."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The Diff module replaces the normal <em>Revisions</em> node tab. Diff "
+"enhances the listing of revisions with an option to view the "
+"differences between any two content revisions. Access to this feature "
+"is controlled with the <em>View revisions</em> permission. The feature "
+"can be disabled for an entire content type on the content type "
+"configuration page. Diff also provides an optional <em>View "
+"changes</em> button while editing a node."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Show differences between content revisions."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Extend the display options for every entity type."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Development functionality for Display Suite."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Contains additional features for Display Suite."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Provides the Display Suite Code format filter."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Manage the layout of forms in Display Suite."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Extend the display options for search results for Drupal Core or "
+"Apache Solr."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "User interface for managing fields, view modes and classes."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "PDF generation library using dompdf."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "In-place content editing."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Provides a library of Form API elements."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "AJAX file manager with Wysiwyg API capable editors support."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Adding elFinder to BUEditor Insert Image dialog"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "File Field Sources elFinder connector"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Enables modules to work with any entity type and to provide entities."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Provides token replacements for all properties that have no tokens and "
+"are known to the entity API."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Allows entities to be translated into different languages."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Allows menu items to be translated on the entity form."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Provides an upgrade path from node-based translation to field-based "
+"translation."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Adds the capability to export pages as EPUB. Requires an EPUB library "
+"and the respective handler module."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Fast filtering on permissions administration form."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Provides feature management for Drupal."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The Field module allows custom data fields to be defined for "
+"<em>entity</em> types (entities include content items, comments, user "
+"accounts, and taxonomy terms). The Field module takes care of storing, "
+"loading, editing, and rendering field data. Most users will not "
+"interact with the Field module directly, but will instead use the <a "
+"href=\"@field-ui-help\">Field UI module</a> user interface. Module "
+"developers can use the Field API to make new entity types "
+"\"fieldable\" and thus allow fields to be attached to them. For more "
+"information, see the online handbook entry for <a "
+"href=\"@field\">Field module</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Enabling field types"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The Field module provides the infrastructure for fields and field "
+"attachment; the field types and input widgets themselves are provided "
+"by additional modules. Some of the modules are required; the optional "
+"modules can be enabled from the <a href=\"@modules\">Modules "
+"administration page</a>. Drupal core includes the following field type "
+"modules: Number (required), Text (required), List (required), Taxonomy "
+"(optional), Image (optional), and File (optional); the required "
+"Options module provides input widgets for other field modules. "
+"Additional fields and widgets may be provided by contributed modules, "
+"which you can find in the <a href=\"@contrib\">contributed module "
+"section of Drupal.org</a>. Currently enabled field and input widget "
+"modules:"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Managing field data storage"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Developers of field modules can either use the default <a "
+"href=\"@sql-store\">Field SQL storage module</a> to store data for "
+"their fields, or a contributed or custom module developed using the <a "
+"href=\"@storage-api\">field storage API</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Field API to add fields to entities like nodes and users."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The Field SQL storage module stores field data in the database. It is "
+"the default field storage module; other field storage mechanisms may "
+"be available as contributed modules. See the <a "
+"href=\"@field-help\">Field module help page</a> for more information "
+"about fields."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Stores field data in an SQL database."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Translate field properties"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The Field UI module provides an administrative user interface (UI) for "
+"attaching and managing fields. Fields can be defined at the "
+"content-type level for content items and comments, at the vocabulary "
+"level for taxonomy terms, and at the site level for user accounts. "
+"Other modules may also enable fields to be defined for their data. "
+"Field types (text, image, number, etc.) are defined by modules, and "
+"collected and managed by the <a href=\"@field\">Field module</a>. For "
+"more information, see the online handbook entry for <a "
+"href=\"@field_ui\" target=\"_blank\">Field UI module</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Planning fields"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"There are several decisions you will need to make before defining a "
+"field for content, comments, etc.:"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "What the field will be called"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"A field has a <em>label</em> (the name displayed in the user "
+"interface) and a <em>machine name</em> (the name used internally). The "
+"label can be changed after you create the field, if needed, but the "
+"machine name cannot be changed after you have created the field."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "What type of data the field will store"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Each field can store one type of data (text, number, file, etc.). When "
+"you define a field, you choose a particular <em>field type</em>, which "
+"corresponds to the type of data you want to store. The field type "
+"cannot be changed after you have created the field."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "How the data will be input and displayed"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Each field type has one or more available <em>widgets</em> associated "
+"with it; each widget provides a mechanism for data input when you are "
+"editing (text box, select list, file upload, etc.). Each field type "
+"also has one or more display options, which determine how the field is "
+"displayed to site visitors. The widget and display options can be "
+"changed after you have created the field."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "How many values the field will store"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"You can store one value, a specific maximum number of values, or an "
+"unlimited number of values in each field. For example, an employee "
+"identification number field might store a single number, whereas a "
+"phone number field might store multiple phone numbers. This setting "
+"can be changed after you have created the field, but if you reduce the "
+"maximum number of values, you may lose information."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Reusing fields"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Once you have defined a field, you can reuse it. For example, if you "
+"define a custom image field for one content type, and you need to have "
+"an image field with the same parameters on another content type, you "
+"can add the same field to the second content type, in the <em>Add "
+"existing field</em> area of the user interface. You could also add "
+"this field to a taxonomy vocabulary, comments, user accounts, etc."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Some settings of a reused field are unique to each use of the field; "
+"others are shared across all places you use the field. For example, "
+"the label of a text field is unique to each use, while the setting for "
+"the number of values is shared."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"There are two main reasons for reusing fields. First, reusing fields "
+"can save you time over defining new fields. Second, reusing fields "
+"also allows you to display, filter, group, and sort content together "
+"by field across content types. For example, the contributed Views "
+"module allows you to create lists and tables of content. So if you use "
+"the same field on multiple content types, you can create a View "
+"containing all of those content types together displaying that field, "
+"sorted by that field, and/or filtered by that field."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Fields on content items"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Fields on content items are defined at the content-type level, on the "
+"<em>Manage fields</em> tab of the content type edit page (which you "
+"can reach from the <a href=\"@types\">Content types page</a>). When "
+"you define a field for a content type, each content item of that type "
+"will have that field added to it. Some fields, such as the Title and "
+"Body, are provided for you when you create a content type, or are "
+"provided on content types created by your installation profile."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Fields on taxonomy terms"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Fields on taxonomy terms are defined at the taxonomy vocabulary level, "
+"on the <em>Manage fields</em> tab of the vocabulary edit page (which "
+"you can reach from the <a href=\"@taxonomy\">Taxonomy page</a>). When "
+"you define a field for a vocabulary, each term in that vocabulary will "
+"have that field added to it. For example, you could define an image "
+"field for a vocabulary to store an icon with each term."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Fields on user accounts"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Fields on user accounts are defined on a site-wide basis on the <a "
+"href=\"@fields\">Manage fields tab</a> of the <a "
+"href=\"@accounts\">Account settings</a> page. When you define a field "
+"for user accounts, each user account will have that field added to it. "
+"For example, you could add a long text field to allow users to include "
+"a biography."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Fields on comments"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Fields on comments are defined at the content-type level, on the "
+"<em>Comment fields</em> tab of the content type edit page (which you "
+"can reach from the <a href=\"@types\">Content types page</a>). When "
+"you add a field for comments, each comment on a content item of that "
+"type will have that field added to it. For example, you could add a "
+"website field to the comments on forum posts, to allow forum "
+"commenters to add a link to their website."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "User interface for the Field API."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The File module defines a <em>File</em> field type for the Field "
+"module, which lets you manage and validate uploaded files attached to "
+"content on your site (see the <a href=\"@field-help\">Field module "
+"help page</a> for more information about fields). For more "
+"information, see the online handbook entry for <a href=\"@file\">File "
+"module</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Attaching files to content"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The File module allows users to attach files to content (e.g., PDF "
+"files, spreadsheets, etc.), when a <em>File</em> field is added to a "
+"given content type using the <a href=\"@fieldui-help\">Field UI "
+"module</a>. You can add validation options to your File field, such as "
+"specifying a maximum file size and allowed file extensions."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Managing attachment display"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"When you attach a file to content, you can specify whether it is "
+"<em>listed</em> or not. Listed files are displayed automatically in a "
+"section at the bottom of your content; non-listed files are available "
+"for embedding in your content, but are not included in the list at the "
+"bottom."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Managing file locations"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"When you create a File field, you can specify a directory where the "
+"files will be stored, which can be within either the <em>public</em> "
+"or <em>private</em> files directory. Files in the public directory can "
+"be accessed directly through the web server; when public files are "
+"listed, direct links to the files are used, and anyone who knows a "
+"file's URL can download the file. Files in the private directory are "
+"not accessible directly through the web server; when private files are "
+"listed, the links are Drupal path requests. This adds to server load "
+"and download time, since Drupal must start up and resolve the path for "
+"each file download request, but allows for access restrictions."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Defines a file field type."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Extends Drupal file entities to be fieldable and viewable."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The Filter module allows administrators to configure text formats. A "
+"text format defines the HTML tags, codes, and other input allowed in "
+"content and comments, and is a key feature in guarding against "
+"potentially damaging input from malicious users. For more information, "
+"see the online handbook entry for <a href=\"@filter\">Filter "
+"module</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Configuring text formats"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Configure text formats on the <a href=\"@formats\">Text formats "
+"page</a>. <strong>Improper text format configuration is a security "
+"risk</strong>. To ensure security, untrusted users should only have "
+"access to text formats that restrict them to either plain text or a "
+"safe set of HTML tags, since certain HTML tags can allow embedding "
+"malicious links or scripts in text. More trusted registered users may "
+"be granted permission to use less restrictive text formats in order to "
+"create rich content."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Applying filters to text"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Each text format uses filters to manipulate text, and most formats "
+"apply several different filters to text in a specific order. Each "
+"filter is designed for a specific purpose, and generally either adds, "
+"removes, or transforms elements within user-entered text before it is "
+"displayed. A filter does not change the actual content, but instead, "
+"modifies it temporarily before it is displayed. One filter may remove "
+"unapproved HTML tags, while another automatically adds HTML to make "
+"URLs display as clickable links."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Defining text formats"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"One format is included by default: <em>Plain text</em> (which removes "
+"all HTML tags). Additional formats may be created by your installation "
+"profile when you install Drupal, and more can be created by an "
+"administrator on the <a href=\"@text-formats\">Text formats page</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Choosing a text format"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Users with access to more than one text format can use the <em>Text "
+"format</em> fieldset to choose between available text formats when "
+"creating or editing multi-line content. Administrators can define the "
+"text formats available to each user role, and control the order of "
+"formats listed in the <em>Text format</em> fieldset on the <a "
+"href=\"@text-formats\">Text formats page</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Filters content in preparation for display."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Allows administrators to force users to change their password"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Form building framework."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Form builder support for CCK, Webform, and Profile modules."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Form builder integration for the Webform module."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Provides discussion forums."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Allows your site to be tracked by Google Analytics by adding a "
+"Javascript tracking code to every page."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The Help module provides <a href=\"@help-page\">Help reference "
+"pages</a> and context-sensitive advice to guide you through the use "
+"and configuration of modules. It is a starting point for the online <a "
+"href=\"@handbook\">Drupal handbooks</a>. The handbooks contain more "
+"extensive and up-to-date information, are annotated with "
+"user-contributed comments, and serve as the definitive reference point "
+"for all Drupal documentation. For more information, see the online "
+"handbook entry for the <a href=\"@help\">Help module</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Providing a help reference"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The Help module displays explanations for using each module listed on "
+"the main <a href=\"@help\">Help reference page</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Providing context-sensitive help"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The Help module displays context-sensitive advice and explanations on "
+"various pages."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Manages the display of online help."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Mitigates spam form submissions using the honeypot method."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Provides a set of tools to allow sites to be built using HTML5."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The Image module allows you to manipulate images on your website. It "
+"exposes a setting for using the <em>Image toolkit</em>, allows you to "
+"configure <em>Image styles</em> that can be used for resizing or "
+"adjusting images on display, and provides an <em>Image</em> field for "
+"attaching images to content. For more information, see the online "
+"handbook entry for <a href=\"@image\">Image module</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Manipulating images"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"With the Image module you can scale, crop, resize, rotate and "
+"desaturate images without affecting the original image using <a "
+"href=\"@image\">image styles</a>. When you change an image style, the "
+"module automatically refreshes all created images. Every image style "
+"must have a name, which will be used in the URL of the generated "
+"images. There are two common approaches to naming image styles (which "
+"you use will depend on how the image style is being applied):"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Based on where it will be used: eg. <em>profile-picture</em>"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Describing its appearance: eg. <em>square-85x85</em>"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"After you create an image style, you can add effects: crop, scale, "
+"resize, rotate, and desaturate (other contributed modules provide "
+"additional effects). For example, by combining effects as crop, scale, "
+"and desaturate, you can create square, grayscale thumbnails."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Attaching images to content as fields"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Image module also allows you to attach images to content as fields. To "
+"add an image field to a <a href='@content-type'>content type</a>, go "
+"to the content type's <em>manage fields</em> page, and add a new field "
+"of type <em>Image</em>. Attaching images to content this way allows "
+"image styles to be applied and maintained, and also allows you more "
+"flexibility when theming."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Provides image manipulation tools."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"To use the Internal links filter, simply enable the Internal links "
+"title filter for one or more of your <a href=\"@text_formats\">text "
+"formats</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"If you like, you can also enable the Internal links \"hide bad\" "
+"filter, which hides internal links to pages not yet published or to "
+"bad internal paths, rather than displaying links which would simply "
+"yield a \"page not found\" error."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"If you enable both filters, be sure to move the action of the \"hide "
+"bad\" filter before the \"title\" filter. There would not be much use "
+"in wasting queries on getting titles and re-writing links to "
+"unpublished content, only to remove the links with the \"hide bad\" "
+"filter, before display output."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Note: For best performance, sites which uses these filters should "
+"cache the output. Use of these filters on each page load will add "
+"significant additional load in terms of database queries and "
+"processing. Caching output is especially recommended for high-volume "
+"sites with a lot of cross-linking between articles."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Input filters which add node titles, as HTML 'title' attribute to "
+"internal links or unlinks unpublished nodes."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "This module improves support for multilingual content in Drupal sites:"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Shows content depending on page language."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Handles multilingual variables."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Extended language option for chosen content types. For these content "
+"types transations will be allowed for all defined languages, not only "
+"for enabled ones."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Provides a block for language selection and two theme functions: "
+"<em>i18n_flags</em> and <em>i18n_links</em>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "This is the base module for several others adding different features:"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Multilingual menu items."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Multilingual taxonomy adds a language field for taxonomy vocabularies "
+"and terms."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"For more information, see the online handbook entry for <a "
+"href=\"@i18n\">Internationalization module</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Extends Drupal support for multilingual features."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Update jQuery and jQuery UI to a more recent version."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Allows version-dependent and shared usage of external libraries."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Defines simple link field types."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Provides an easy interface for inserting links."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The List module defines various fields for storing a list of items, "
+"for use with the Field module. Usually these items are entered through "
+"a select list, checkboxes, or radio buttons. See the <a "
+"href=\"@field-help\">Field module help page</a> for more information "
+"about fields."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Defines list field types. Use with Options to create selection lists."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The Locale module allows your Drupal site to be presented in languages "
+"other than the default English, and to be multilingual. The Locale "
+"module works by maintaining a database of translations, and examining "
+"text as it is about to be displayed. When a translation of the text is "
+"available in the language to be displayed, the translation is "
+"displayed rather than the original text. When a translation is "
+"unavailable, the original text is displayed, and then stored for "
+"review by a translator. For more information, see the online handbook "
+"entry for <a href=\"@locale\">Locale module</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Translating interface text"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Translations of text in the Drupal interface may be provided by:"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Translating within your site, using the Locale module's integrated <a "
+"href='@translate'>translation interface</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Importing files from a set of existing translations, known as a "
+"translation package. A translation package enables the display of a "
+"specific version of Drupal in a specific language, and contains files "
+"in the Gettext Portable Object (<em>.po</em>) format. Although not all "
+"languages are available for every version of Drupal, translation "
+"packages for many languages are available for download from the <a "
+"href=\"@translations\">Drupal translations page</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"If an existing translation package does not meet your needs, the "
+"Gettext Portable Object (<em>.po</em>) files within a package may be "
+"modified, or new <em>.po</em> files may be created, using a desktop "
+"Gettext editor. The Locale module's <a href='@import'>import</a> "
+"feature allows the translated strings from a new or modified "
+"<em>.po</em> file to be added to your site. The Locale module's <a "
+"href='@export'>export</a> feature generates files from your site's "
+"translated strings, that can either be shared with others or edited "
+"offline by a Gettext translation editor."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Configuring a multilingual site"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Language negotiation allows your site to automatically change language "
+"based on the domain or path used for each request. Users may "
+"(optionally) select their preferred language on their <em>My "
+"account</em> page, and your site can be configured to honor a web "
+"browser's preferred language settings. Site content can be translated "
+"using the <a href='@content-help'>Content translation module</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Adds language handling functionality and enables the translation of "
+"the user interface to languages other than English."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Provides on-page localization"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Provides automatic downloads and updates for translations."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"<p>The Login Toboggan module improves the Drupal login system by "
+"offering the following features:\n"
+"      <ol>\n"
+"      <li>Allow users to login using either their username OR their "
+"e-mail address.</li>\n"
+"      <li>Allow users to login immediately.</li>\n"
+"      <li>Provide a login form on Access Denied pages for "
+"non-logged-in (anonymous) users.</li>\n"
+"      <li>The module provides two login block options: One uses "
+"JavaScript to display the form within the block immediately upon "
+"clicking 'log in'. The other brings the user to a separate page, but "
+"returns the user to their original page upon login.</li>\n"
+"      <li>Customize the registration form with two e-mail fields to "
+"ensure accuracy.</li>\n"
+"      <li>Optionally redirect the user to a specific page when using "
+"the 'Immediate login' feature.</li>\n"
+"      <li>Optionally redirect the user to a specific page upon "
+"validation of their e-mail address.</li>\n"
+"      <li>Optionally display a user message indicating a successful "
+"login.</li>\n"
+"      <li>Optionally combine both the login and registration form on "
+"one page.</li>\n"
+"      <li>Optionally display an 'Request new password' link on the "
+"user login form.</li>\n"
+"      <li>Optionally have unvalidated users purged from the system at "
+"a pre-defined interval (please read the CAVEATS section of INSTALL.txt "
+"for important information on configuring this feature!).</li>\n"
+"      </ol>\n"
+"      These features may be turned on or off in the Login Toboggan <a "
+"href=\"!url\">settings</a>.</p>\n"
+"      <p>Because this module completely reorients the Drupal login "
+"process you will probably want to edit the welcome e-mail on the <a "
+"href=\"!user_settings\">user settings</a> page. Note when the 'Set "
+"password' option is enabled, the [user:validate-url] token becomes a "
+"verification url that the user MUST visit in order to enable "
+"authenticated status). The following is an example welcome "
+"e-mail:</p>\n"
+"      "
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"<p>Note that if you have set the 'Visitors can create accounts but "
+"administrator approval is required' option for account approval, and "
+"are also using the 'Set password' feature of LoginToboggan, the user "
+"will immediately receive the permissions of the pre-authorized user "
+"role. LoginToboggan prevents the pre-authorized role from "
+"automatically inheriting the authorized role permissions. You may wish "
+"to create a pre-authorized role with the exact same permissions as the "
+"anonymous user if you wish the newly created user to only have "
+"anonymous permissions.</p><p>In order for a site administrator to "
+"unblock a user who is awaiting administrator approval, they must "
+"either click on the validation link they receive in their notification "
+"e-mail, or manually remove the user from the site's pre-authorized "
+"role -- afterwards the user will then receive 'authenticated user' "
+"permissions. In either case, the user will receive an account "
+"activated e-mail if it's enabled on the user settings page -- it's "
+"recommended that you edit the default text of the activation e-mail to "
+"match LoginToboggan's workflow as described. </p><p>If you are using "
+"the 'Visitors can create accounts and no administrator approval is "
+"required' option, removal of the pre-authorized role will happen "
+"automatically when the user validates their account via "
+"e-mail.</p><p>Also be aware that LoginToboggan only affects "
+"registrations initiated by users--any user account created by an "
+"administrator will not use any LoginToboggan functionality."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Improves Drupal's login system."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Integrates LoginToboggan with Content Access module, so that "
+"Non-validated users are handled correctly"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Integrates LoginToboggan with Rules module"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Integrates LoginToboggan with Variable module"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"<p>The masquerade module adds a link on a user's profile page that "
+"allows permitted users to masquerade as that user. Upon masquerading, "
+"a link to \"switch back\" to the original user will appear in the "
+"menu. While masquerading, the option to masquerade as another user "
+"will not appear. All masquerading transactions are logged, and "
+"$user->masquerading will be set; this could be displayed via "
+"theme.</p><p>In the masquerade settings a list of roles are presented; "
+"any checked role is considered an \"administrator\" and requires the "
+"second level \"masquerade as admin\" permission to masquerade as. User "
+"#1 is automatically considered an administrator, regardless of "
+"roles.</p>"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "This module allows permitted users to masquerade as other users."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The Media module is a File Browser to the Internet, media provides a "
+"framework for managing files and multimedia assets, regardless of "
+"whether they are hosted on your own site or a 3rd party site. It "
+"replaces the Drupal core upload field with a unified User Interface "
+"where editors and administrators can upload, manage, and reuse files "
+"and multimedia assets. Media module also provides rich integration "
+"with WYSIWYG module to let content creators access media assets in "
+"rich text editor. Javascript is required to use the Media module.  For "
+"more information check <a href=\"@media_faq\">Media Module page</a>"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Media Repository"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Media module allows you to maintain a <a href=\"@mediarepo\">media "
+"asset repository</a> where in you can add, remove, reuse your media "
+"assets. You can add the media file using upload form or from a url and "
+"also do bulk operations on the media assets."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Attaching media assets to content types"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Media assets can be attached to content types as fields. To add a "
+"media field to a <a href=\"@content-type\">content type</a>, go to the "
+"content type's <em>manage fields</em> page, and add a new field of "
+"type <em>Multimedia Asset</em>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Using media assets in WYSIWYG"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Media module provides rich integration with WYSIWYG editors, using "
+"Media Browser plugin you can select media asset from library to add to "
+"the rich text editor moreover you can add media asset from the media "
+"browser itself using either upload method or add from url method. To "
+"configure media with WYSIWYG you need two steps of configuration:"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Enable WYSIWYG plugin on your desired <a "
+"href=\"@wysiwyg-profile\">WYSIWYG profile</a>. Please note that you "
+"will need to have <a href=\"@wysiwyg\">WYSIWYG</a> module enabled."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Enable the <em>Convert Media tags to markup</em> filter on the <a "
+"href=\"@input-format\">Input format</a> you are using with the WYSIWYG "
+"profile."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Provides the core Media API"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Adds support for uploading multiple files at a time."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Provides a field type that stores media-specific data. <em>Deprecated "
+"by the core File field type.</em>"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Provides an API for accessing media on various internet services"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Adds support for embedding media using client-side WYSIWYG editors."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Enables files inside of the WYSIWYG editor to be displayed using a "
+"separate view mode."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The Menu module provides an interface for managing menus. A menu is a "
+"hierarchical collection of links, which can be within or external to "
+"the site, generally used for navigation. Each menu is rendered in a "
+"block that can be enabled and positioned through the <a "
+"href=\"@blocks\">Blocks administration page</a>. You can view and "
+"manage menus on the <a href=\"@menus\">Menus administration page</a>. "
+"For more information, see the online handbook entry for the <a "
+"href=\"@menu\">Menu module</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Managing menus"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Users with the <em>Administer menus and menu items</em> permission can "
+"add, edit and delete custom menus on the <a href=\"@menu\">Menus "
+"administration page</a>. Custom menus can be special site menus, menus "
+"of external links, or any combination of internal and external links. "
+"You may create an unlimited number of additional menus, each of which "
+"will automatically have an associated block. By selecting <em>list "
+"links</em>, you can add, edit, or delete links for a given menu. The "
+"links listing page provides a drag-and-drop interface for controlling "
+"the order of links, and creating a hierarchy within the menu."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Displaying menus"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"After you have created a menu, you must enable and position the "
+"associated block on the <a href=\"@blocks\">Blocks administration "
+"page</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Allows administrators to customize the site navigation menu."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Adding menu blocks"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"To add new menu blocks, use the \"<a href=\"!add-url\">Add menu "
+"block</a>\" link on the <a href=\"!block-url\">administer blocks "
+"page</a>. You will then be able to configure your menu block before "
+"adding it."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Configuring menu blocks"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"When adding or configuring a menu block, several configuration options "
+"are available:"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"For menu trees that start with the 1st level, the default block title "
+"will be the menu name. For menu trees that start with the 2nd level or "
+"deeper, the default block title will be the title for the parent menu "
+"item of the specified level."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"For example, if the active menu trail for the Mangement menu is: "
+"Administer › Structure › Menus › Main menu, then a menu block "
+"configured to start with the 1st level of the Management menu will "
+"display a block title of “Management”. And a menu block configured "
+"to start with the 3rd level of the Management menu will display a "
+"block title of “Structure”."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"For menu trees that start with the 2nd level or deeper, the default "
+"block title will be the title for the parent menu item of the "
+"specified level. If this option is checked, the block title will be a "
+"link to that menu item."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"To help identify the block on the administer blocks page, you can "
+"specify a unique title to be used on that page. If blank, the regular "
+"title will be used."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Menu name"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Select the menu to use for the tree of links."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Blocks that start with the 1st level will always be visible. Blocks "
+"that start with the 2nd level or deeper will only be visible when the "
+"trail to the active menu item is in the block’s tree."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"From the starting level, specify the maximum depth of the tree. Blocks "
+"with a maximum depth of 1 will just be a single un-nested list of "
+"links with none of those links’ children displayed."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Make the starting level follow the active menu item"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Expand all children"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "All children of this menu will be expanded."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Sort"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"If you select a specific menu item, you alter the “starting level” "
+"and “maximum depth” options to be relative to the fixed parent "
+"item. The tree of links will only contain children of the selected "
+"parent item."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Styling menu blocks"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Themers should be aware of the myriad of classes, templates and theme "
+"functions available to them. See the <a href=\"!url\">online "
+"documentation</a> or the README.txt file for detailed information "
+"about each of them."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Menu block API"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Developers can use the API of this module to create their own menu "
+"trees outside the confines of blocks. All of the publicly available "
+"API functions are documented in the menu_block.module file."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"In addition, Menu block implements HOOK_get_menus() and "
+"HOOK_menu_block_tree_alter(). See menu_block.api.php for "
+"documentation."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Provides configurable blocks of menu items."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Provides export interface for Menu block module."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"This module adds support for multilingual menus. You can setup "
+"multilingual options for each menu:"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Menus can be fully multilingual with translatable (or localized) menu "
+"items."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Menus can be configured to have a fixed language. All menu items share "
+"this language setting and the menu will be visible in that language "
+"only."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Menus can also be configured to have no translations."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The multilingual options of a menu must be configured before "
+"individual menu items can be translated. Go to the <a "
+"href=\"@menu-admin\">Menus administration page</a> and follow the "
+"\"edit menu\" link to the menu in question."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"To search and translate strings, use the <a "
+"href=\"@translate-interface\">translation interface</a> pages."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Supports translatable custom menu items."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Development package to provide functionality of multi-step forms and "
+"related helpers."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Describes the use of Mforms module and provides POC screens"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Modernizr integration for Drupal. Extends the library by providing two "
+"APIs: (1) for test management (2) for exposing Modernizr.load() to "
+"Drupal"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Filter the modules list."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "PDF generation library using mPDF."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Extended node options for multilingual content"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Enables multilingual forum, translates names and containers."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "API module for multilingual content selection"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Administrative views."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Admin overrides and adjustments"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Configuration for bean type and field settings for the Content bean "
+"type."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Configuration for bean type and field settings for the Notice bean "
+"type."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Configuration for content type and field settings for the Basic Page "
+"content type."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Configuration for content type and field settings for the Guidance "
+"content type."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Configuration for content type and field settings for the Resource "
+"(download) content type."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Configuration for content type and field settings for the Resource "
+"(link) content type."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Configuration for content type and field settings for the Webform "
+"content type."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Exports and manages contexts for blocks and layout where not otherwise "
+"covered by a different feature module."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Feature to store configuration of potentially shared field bases."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "A basic prototype module for testing and building forms."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Contains the context for the home page layout."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Displays a closeable notice on the MyHACCP Tool page"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Offers language preferences at registration"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Settings for language configuration."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Translator role and associated permissions."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Allows PDF downloads on the help pages."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Configuration for MyHACCP user profiles."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The Node module manages the creation, editing, deletion, settings, and "
+"display of the main site content. Content items managed by the Node "
+"module are typically displayed as pages on your site, and include a "
+"title, some meta-data (author, creation time, content type, etc.), and "
+"optional fields containing text or other data (fields are managed by "
+"the <a href=\"@field\">Field module</a>). For more information, see "
+"the online handbook entry for <a href=\"@node\">Node module</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Creating content"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"When new content is created, the Node module records basic information "
+"about the content, including the author, date of creation, and the <a "
+"href=\"@content-type\">Content type</a>. It also manages the "
+"<em>publishing options</em>, which define whether or not the content "
+"is published, promoted to the front page of the site, and/or sticky at "
+"the top of content lists. Default settings can be configured for each "
+"<a href=\"@content-type\">type of content</a> on your site."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Creating custom content types"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The Node module gives users with the <em>Administer content types</em> "
+"permission the ability to <a href=\"@content-new\">create new content "
+"types</a> in addition to the default ones already configured. Creating "
+"custom content types allows you the flexibility to add <a "
+"href=\"@field\">fields</a> and configure default settings that suit "
+"the differing needs of various site content."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Administering content"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The <a href=\"@content\">Content administration page</a> allows you to "
+"review and bulk manage your site content."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Creating revisions"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The Node module also enables you to create multiple versions of any "
+"content, and revert to older versions using the <em>Revision "
+"information</em> settings."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "User permissions"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The Node module makes a number of permissions available for each "
+"content type, which can be set by role on the <a "
+"href=\"@permissions\">permissions page</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Allows content to be submitted to the site and displayed on pages."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The Number module defines various numeric field types for the Field "
+"module. Numbers can be in integer, decimal, or floating-point form, "
+"and they can be formatted when displayed. Number fields can be limited "
+"to a specific set of input values or to a range of values. See the <a "
+"href=\"@field-help\">Field module help page</a> for more information "
+"about fields."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Defines numeric field types."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Allows users to log into your site using OpenID."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The Options module defines checkbox, selection, and other input "
+"widgets for the Field module. See the <a href=\"@field-help\">Field "
+"module help page</a> for more information about fields."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Defines selection, check box and radio button widgets for text and "
+"numeric fields."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"A custom form element for entering the options in select lists, "
+"radios, or checkboxes."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Displays the Drupal administration interface in an overlay."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Provides a UI and API to manage pages within the site."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"This module allows you to enforce a specific level of password "
+"complexity for the user passwords on the system."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Enhances the password reset landing page by letting user change their "
+"password there (and potentially username and email address)."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "This module moves the current password fields into a dedicated tab."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The Path module allows you to specify an alias, or custom URL, for any "
+"existing internal system path. Aliases should not be confused with URL "
+"redirects, which allow you to forward a changed or inactive URL to a "
+"new URL. In addition to making URLs more readable, aliases also help "
+"search engines index content more effectively. Multiple aliases may be "
+"used for a single internal system path. To automate the aliasing of "
+"paths, you can install the contributed module <a "
+"href=\"@pathauto\">Pathauto</a>. For more information, see the online "
+"handbook entry for the <a href=\"@path\">Path module</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Creating aliases"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Users with sufficient <a href=\"@permissions\">permissions</a> can "
+"create aliases under the <em>URL path settings</em> section when they "
+"create or edit content. Some examples of aliases are: "
+msgstr ""
+
+#: /cy/admin/modules
+msgid "<em>member/jane-smith</em> aliased to internal path <em>user/123</em>"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "<em>about-us/team</em> aliased to internal path <em>node/456</em>"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Managing aliases"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The Path module provides a way to search and view a <a "
+"href=\"@aliases\">list of all aliases</a> that are in use on your "
+"website. Aliases can be added, edited and deleted through this list."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Allows users to rename URLs."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Define translations for generic paths"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Provides a mechanism for modules to automatically generate aliases for "
+"the content they manage."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Maximum alias and component length"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The <strong>maximum alias length</strong> and <strong>maximum "
+"component length</strong> values default to 100 and have a limit of "
+"@max from Pathauto. This length is limited by the length of the "
+"\"alias\" column of the url_alias database table. The default database "
+"schema for this column is @max. If you set a length that is equal to "
+"that of the one set in the \"alias\" column it will cause problems in "
+"situations where the system needs to append additional words to the "
+"aliased URL. You should enter a value that is the length of the "
+"\"alias\" column minus the length of any strings that might get added "
+"to the end of the URL. The length of strings that might get added to "
+"the end of your URLs depends on which modules you have enabled and on "
+"your Pathauto settings. The recommended and default value is 100."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Provides the ability to add aliases for multilanguage content"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Provides the ability to add aliases for multilanguage nodes"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Provides the ability to add aliases for multilanguage taxonomy"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Provides the ability to add aliases for multilanguage user"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Adds the capability to export pages as PDF. Requires a PDF library and "
+"the respective handler module."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Allows embedded PHP code/snippets to be evaluated."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "EPUB generation library using PHPePub."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Allows your site to capture votes on different topics in the form of "
+"multiple choice questions."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Generates a printer-friendly version of Drupal pages."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Manages the printer-friendly versions link display conditions. Without "
+"this module, those links are not displayed."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Supports configurable user profiles."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Adds Organic groups permissions to control profile access on the group "
+"level."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Adds separate pages for viewing and editing profiles."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Translate profile2 types."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Example of qTip FAPI"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Tooltip integration with the Forms api via the qTip2 plugin"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Basic functionality that is shared among the different Rabbit Hole "
+"modules."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Adds Rabbit Hole functionality for files."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Adds Rabbit Hole functionality for nodes."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Adds Rabbit Hole functionality for taxonomy terms."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Adds Rabbit Hole functionality for users."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The RDF module enriches your content with metadata to let other "
+"applications (e.g., search engines, aggregators, and so on) better "
+"understand its relationships and attributes. This semantically "
+"enriched, machine-readable output for Drupal sites uses the <a "
+"href=\"@rdfa\">RDFa specification</a> which allows RDF data to be "
+"embedded in HTML markup. Other modules can define mappings of their "
+"data to RDF terms, and the RDF module makes this RDF data available to "
+"the theme. The core Drupal modules define RDF mappings for their data "
+"model, and the core Drupal themes output this RDF metadata information "
+"along with the human-readable visual information. For more "
+"information, see the online handbook entry for <a href=\"@rdf\">RDF "
+"module</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Enriches your content with metadata to let other applications (e.g. "
+"search engines, aggregators) better understand its relationships and "
+"attributes."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"This module allows site administrators to grant some roles the "
+"authority to assign selected roles to users, without them needing the "
+"<em>administer permissions</em> permission."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"It provides its own tab in the user profile so that roles can be "
+"assigned without needing access to the user edit form."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Allows site administrators to grant some roles the authority to assign "
+"selected roles to users."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The Search module provides the ability to index and search for content "
+"by exact keywords, and for users by username or e-mail. For more "
+"information, see the online handbook entry for <a "
+"href=\"@search-module\">Search module</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Searching content and users"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Users with <em>Use search</em> permission can use the search block and "
+"<a href=\"@search\">Search page</a>. Users with the <em>View published "
+"content</em> permission can search for content containing exact "
+"keywords. Users with the <em>View user profiles</em> permission can "
+"search for users containing the keyword anywhere in the user name, and "
+"users with the <em>Administer users</em> permission can search for "
+"users by email address. Additionally, users with <em>Use advanced "
+"search</em> permission can find content using more complex search "
+"methods and filtering by choosing the <em>Advanced search</em> option "
+"on the <a href=\"@search\">Search page</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Indexing content with cron"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"To provide keyword searching, the search engine maintains an index of "
+"words found in the content and its fields, along with text added to "
+"your content by other modules (such as comments from the core Comment "
+"module, and taxonomy terms from the core Taxonomy module). To build "
+"and maintain this index, a correctly configured <a href=\"@cron\">cron "
+"maintenance task</a> is required. Users with <em>Administer "
+"search</em> permission can further configure the cron settings on the "
+"<a href=\"@searchsettings\">Search settings page</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Content reindexing"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Content-related actions on your site (creating, editing, or deleting "
+"content and comments) automatically cause affected content items to be "
+"marked for indexing or reindexing at the next cron run. When content "
+"is marked for reindexing, the previous content remains in the index "
+"until cron runs, at which time it is replaced by the new content. "
+"Unlike content-related actions, actions related to the structure of "
+"your site do not cause affected content to be marked for reindexing. "
+"Examples of structure-related actions that affect content include "
+"deleting or editing taxonomy terms, enabling or disabling modules that "
+"add text to content (such as Taxonomy, Comment, and field-providing "
+"modules), and modifying the fields or display parameters of your "
+"content types. If you take one of these actions and you want to ensure "
+"that the search index is updated to reflect your changed site "
+"structure, you can mark all content for reindexing by clicking the "
+"\"Re-index site\" button on the <a href=\"@searchsettings\">Search "
+"settings page</a>. If you have a lot of content on your site, it may "
+"take several cron runs for the content to be reindexed."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Configuring search settings"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Indexing behavior can be adjusted using the <a "
+"href=\"@searchsettings\">Search settings page</a>. Users with "
+"<em>Administer search</em> permission can control settings such as the "
+"<em>Number of items to index per cron run</em>, <em>Indexing "
+"settings</em> (word length), <em>Active search modules</em>, and "
+"<em>Content ranking</em>, which lets you adjust the priority in which "
+"indexed content is returned in results."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Search block"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The Search module includes a default <em>Search form</em> block, which "
+"can be enabled and configured on the <a href=\"@blocks\">Blocks "
+"administration page</a>. The block is available to users with the "
+"<em>Search content</em> permission."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Extending Search module"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"By default, the Search module only supports exact keyword matching in "
+"content searches. You can modify this behavior by installing a "
+"language-specific stemming module for your language (such as <a "
+"href=\"http://drupal.org/project/porterstemmer\">Porter Stemmer</a> "
+"for American English), which allows words such as walk, walking, and "
+"walked to be matched in the Search module. Another approach is to use "
+"a third-party search technology with stemming or partial word matching "
+"features built in, such as <a "
+"href=\"http://drupal.org/project/apachesolr\">Apache Solr</a> or <a "
+"href=\"http://drupal.org/project/sphinx\">Sphinx</a>. These and other "
+"<a href=\"@contrib-search\">search-related contributed modules</a> can "
+"be downloaded by visiting Drupal.org."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Enables site-wide keyword searching."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Modify search form, including enforcing search restrictions by content "
+"type."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Provides the capability to send the web page by email"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Allows users to manage customizable lists of shortcut links."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The Simplify module allows particular fields to be hidden from the "
+"user interface. This helps to de-clutter forms and present a more "
+"user-friendly experience to content editors."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Field types"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Different types of fields can be hidden with the Simplify module. "
+"Currently supported field types include:"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Nodes (e.g., publishing options)"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Users (e.g., contact settings)"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Comments (e.g., text format selection)"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Taxonomy (e.g., relations)"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Blocks (e.g., text format selection)"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Global configuration"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Fields can be hidden globally on the <a href=\"@global\">Simplify "
+"administration page</a>. Globally hidden fields are hidden from all "
+"forms of that field type throughout the site. For example, if the "
+"Publishing Options field is selected on the global configuration page, "
+"that field will be hidden from <em>all</em> node forms (articles, "
+"pages, etc.)."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Type-specific configuration"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Fields can also be hidden more specifically based on their field type:"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Node fields can be hidden per <a href=\"@type\">content type</a>"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Comment fields can be hidden per <a href=\"@type\">content type</a>"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Taxonomy fields can be hidden per <a href=\"@type\">vocabulary</a>"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"For example, if the Menu Settings field is selected for the Article "
+"content type, that field will be hidden from <em>Article</em> node "
+"forms, but will remain visible for <em>Page</em> node forms."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Note that if a field is selected on the global configuration page, "
+"that field will be disabled on the type-specific configuration page."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Example use case"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The global and type-specific configurations can be used together. Say "
+"you weren't using node revisions at all on your site; you would select "
+"the Revision Information field on the global configuration page so "
+"that it was hidden from all node forms (articles, pages, etc.). Say "
+"that you then wanted to allow content editors to create menu items for "
+"Page nodes, but not for Article nodes; you would select the Menu "
+"Settings field for just the Article content type (not for the Page "
+"content type nor on the global configuration page) so that it was "
+"hidden from just the Article node forms."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Simplifies the user interface by hiding particular fields."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Display a site map."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Logs access statistics for your site."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Provides a quick and easy way of replacing text."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Tools for importing and exporting string override settings."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"This module adds support for other modules to translate user defined "
+"strings. Depending on which modules you have enabled that use this "
+"feature you may see different text groups to translate."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"This works differently to Drupal standard localization system: The "
+"strings will be translated from the <a "
+"href=\"@configure-strings\">source language</a>, which defaults to the "
+"site default language (it may not be English), so changing the default "
+"language may cause all these translations to be broken."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"If you are missing strings to translate, use the <a "
+"href=\"@refresh-strings\">refresh strings</a> page."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Read more on the <em>Internationalization handbook</em>: <a "
+"href=\"http://drupal.org/node/313293\">Translating user defined "
+"strings</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Provides support for translation of user defined strings."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Enforces variable values defined by modules that need settings set to "
+"operate properly."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Create custom styles for applications such as Panels."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Synchronizes taxonomy and fields accross translations of the same "
+"content."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The Syslog module logs events by sending messages to the logging "
+"facility of your web server's operating system. Syslog is an operating "
+"system administrative logging tool that provides valuable information "
+"for use in system management and security auditing. Most suited to "
+"medium and large sites, Syslog provides filtering tools that allow "
+"messages to be routed by type and severity. For more information, see "
+"the online handbook entry for <a href='@syslog'>Syslog module</a> and "
+"PHP's <a href='@php_openlog'>openlog</a> and <a "
+"href='@php_syslog'>syslog</a> functions."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Logging for UNIX, Linux, and Mac OS X"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"On UNIX, Linux, and Mac OS X, the file <em>/etc/syslog.conf</em> "
+"defines the routing configuration. Messages can be flagged with the "
+"codes <code>LOG_LOCAL0</code> through <code>LOG_LOCAL7</code>. For "
+"information on Syslog facilities, severity levels, and how to set up "
+"<em>syslog.conf</em>, see the <em>syslog.conf</em> manual page on your "
+"command line."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Logging for Microsoft Windows"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"On Microsoft Windows, messages are always sent to the Event Log using "
+"the code <code>LOG_USER</code>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Logs and records system events to syslog."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The System module is integral to the site, and provides basic but "
+"extensible functionality for use by other modules and themes. Some "
+"integral elements of Drupal are contained in and managed by the System "
+"module, including caching, enabling and disabling modules and themes, "
+"preparing and displaying the administrative page, and configuring "
+"fundamental site settings. A number of key system maintenance "
+"operations are also part of the System module. For more information, "
+"see the online handbook entry for <a href=\"@system\">System "
+"module</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Managing modules"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The System module allows users with the appropriate permissions to "
+"enable and disable modules on the <a href=\"@modules\">Modules "
+"administration page</a>. Drupal comes with a number of core modules, "
+"and each module provides a discrete set of features and may be enabled "
+"or disabled depending on the needs of the site. Many additional "
+"modules contributed by members of the Drupal community are available "
+"for download at the <a href=\"@drupal-modules\">Drupal.org module "
+"page</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Managing themes"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The System module allows users with the appropriate permissions to "
+"enable and disable themes on the <a href=\"@themes\">Appearance "
+"administration page</a>. Themes determine the design and presentation "
+"of your site. Drupal comes packaged with several core themes, and "
+"additional contributed themes are available at the <a "
+"href=\"@drupal-themes\">Drupal.org theme page</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Managing caching"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The System module allows users with the appropriate permissions to "
+"manage caching on the <a href='@cache-settings'>Performance settings "
+"page</a>. Drupal has a robust caching system that allows the efficient "
+"re-use of previously-constructed web pages and web page components. "
+"Pages requested by anonymous users are stored in a compressed format; "
+"depending on your site configuration and the amount of your web "
+"traffic tied to anonymous visitors, the caching system may "
+"significantly increase the speed of your site."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Performing system maintenance"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"In order for the site and its modules to continue to operate well, a "
+"set of routine administrative operations must run on a regular basis. "
+"The System module manages this task by making use of a system cron "
+"job. You can verify the status of cron tasks by visiting the <a "
+"href=\"@status\">Status report page</a>. For more information, see the "
+"online handbook entry for <a href=\"@handbook\">configuring cron "
+"jobs</a>. You can set up cron job by visiting <a href=\"@cron\">Cron "
+"configuration</a> page"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Configuring basic site settings"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The System module also handles basic configuration options for your "
+"site, including <a href=\"@date-time-settings\">Date and time "
+"settings</a>, <a href=\"@file-system\">File system settings</a>, <a "
+"href=\"@clean-url\">Clean URL support</a>, <a href=\"@site-info\">Site "
+"name and other information</a>, and a <a "
+"href=\"@maintenance-mode\">Maintenance mode</a> for taking your site "
+"temporarily offline."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Configuring actions"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Actions are individual tasks that the system can do, such as "
+"unpublishing a piece of content or banning a user. Modules, such as "
+"the <a href=\"@trigger-help\">Trigger module</a>, can fire these "
+"actions when certain system events happen; for example, when a new "
+"post is added or when a user logs in. Modules may also provide "
+"additional actions. Visit the <a href=\"@actions\">Actions page</a> to "
+"configure actions."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Handles general site configuration for administrators."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The Taxonomy module allows you to classify the content of your "
+"website. To classify content, you define <em>vocabularies</em> that "
+"contain related <em>terms</em>, and then assign the vocabularies to "
+"content types. For more information, see the online handbook entry for "
+"the <a href=\"@taxonomy\">Taxonomy module</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Creating vocabularies"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Users with sufficient <a href=\"@perm\">permissions</a> can create "
+"<em>vocabularies</em> and <em>terms</em> through the <a "
+"href=\"@taxo\">Taxonomy page</a>. The page listing the terms provides "
+"a drag-and-drop interface for controlling the order of the terms and "
+"sub-terms within a vocabulary, in a hierarchical fashion. A "
+"<em>controlled vocabulary</em> classifying music by genre with terms "
+"and sub-terms could look as follows:"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "<em>vocabulary</em>: Music"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "<em>term</em>: Jazz"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "<em>sub-term</em>: Swing"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "<em>sub-term</em>: Fusion"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "<em>term</em>: Rock"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "<em>sub-term</em>: Country rock"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "<em>sub-term</em>: Hard rock"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"You can assign a sub-term to multiple parent terms. For example, "
+"<em>fusion</em> can be assigned to both <em>rock</em> and "
+"<em>jazz</em>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Terms in a <em>free-tagging vocabulary</em> can be built gradually as "
+"you create or edit content. This is often done used for blogs or photo "
+"management applications."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Assigning vocabularies to content types"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Before you can use a new vocabulary to classify your content, a new "
+"Taxonomy term field must be added to a <a href=\"@ctedit\">content "
+"type</a> on its <em>manage fields</em> page. When adding a taxonomy "
+"field, you choose a <em>widget</em> to use to enter the taxonomy "
+"information on the content editing page: a select list, checkboxes, "
+"radio buttons, or an auto-complete field (to build a free-tagging "
+"vocabulary). After choosing the field type and widget, on the "
+"subsequent <em>field settings</em> page you can choose the desired "
+"vocabulary, whether one or multiple terms can be chosen from the "
+"vocabulary, and other settings. The same vocabulary can be added to "
+"multiple content types, by using the \"Add existing field\" section on "
+"the manage fields page."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Classifying content"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"After the vocabulary is assigned to the content type, you can start "
+"classifying content. The field with terms will appear on the content "
+"editing screen when you edit or <a href=\"@addnode\">add new "
+"content</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Viewing listings and RSS feeds by term"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Each taxonomy term automatically provides a page listing content that "
+"has its classification, and a corresponding RSS feed. For example, if "
+"the taxonomy term <em>country rock</em> has the ID 123 (you can see "
+"this by looking at the URL when hovering on the linked term, which you "
+"can click to navigate to the listing page), then you will find this "
+"list at the path <em>taxonomy/term/123</em>. The RSS feed will use the "
+"path <em>taxonomy/term/123/feed</em> (the RSS icon for this term's "
+"listing will automatically display in your browser's address bar when "
+"viewing the listing page)."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Extending Taxonomy module"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"There are <a href=\"@taxcontrib\">many contributed modules</a> that "
+"extend the behavior of the Taxonomy module for both display and "
+"organization of terms."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Enables the categorization of content."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Fixes the crooked access checks for Taxonomy pages"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Enables multilingual taxonomy."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "PDF generation library using TCPDF."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Controls access to context based upon term depth"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Provides a framework for unit and functional testing."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The Text module defines various text field types for the Field module. "
+"A text field may contain plain text only, or optionally, may use "
+"Drupal's <a href='@filter-help'>text filters</a> to securely manage "
+"HTML output. Text input fields may be either a single line (text "
+"field), multiple lines (text area), or for greater input control, a "
+"select box, checkbox, or radio buttons. If desired, the field can be "
+"validated, so that it is limited to a set of allowed values. See the "
+"<a href='@field-help'>Field module help page</a> for more information "
+"about fields."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Defines simple text field types."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Replaces entity legacy fields with regular fields."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Provides a user interface for the Token API and some missing core "
+"tokens."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Provides a toolbar that shows the top-level administration menu items "
+"and links from other modules."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Enables tracking of recent content for users."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Redirect to translated page when available. SEO for multilingual "
+"sites."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Simple translation sets API for generic objects"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Converts non-latin text to US-ASCII and sanitizes file names."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Enables actions to be fired on certain system events, such as when new "
+"content is created."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Checks for available updates, and can securely install or update "
+"modules and themes via a web interface."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The User module allows users to register, log in, and log out. It also "
+"allows users with proper permissions to manage user roles (used to "
+"classify users) and permissions associated with those roles. For more "
+"information, see the online handbook entry for <a href=\"@user\">User "
+"module</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Creating and managing users"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The User module allows users with the appropriate <a "
+"href=\"@permissions\">permissions</a> to create user accounts through "
+"the <a href=\"@people\">People administration page</a>, where they can "
+"also assign users to one or more roles, and block or delete user "
+"accounts. If allowed, users without accounts (anonymous users) can "
+"create their own accounts on the <a href=\"@register\">Create new "
+"account</a> page."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "User roles and permissions"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"<em>Roles</em> are used to group and classify users; each user can be "
+"assigned one or more roles. By default there are two roles: "
+"<em>anonymous user</em> (users that are not logged in) and "
+"<em>authenticated user</em> (users that are registered and logged in). "
+"Depending on choices you made when you installed Drupal, the "
+"installation process may have defined more roles, and you can create "
+"additional custom roles on the <a href=\"@roles\">Roles page</a>. "
+"After creating roles, you can set permissions for each role on the <a "
+"href=\"@permissions_user\">Permissions page</a>. Granting a permission "
+"allows users who have been assigned a particular role to perform an "
+"action on the site, such as viewing a particular type of content, "
+"editing or creating content, administering settings for a particular "
+"module, or using a particular function of the site (such as search)."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"The <a href=\"@accounts\">Account settings page</a> allows you to "
+"manage settings for the displayed name of the anonymous user role, "
+"personal contact forms, user registration, and account cancellation. "
+"On this page you can also manage settings for account personalization "
+"(including signatures and user pictures), and adapt the text for the "
+"e-mail messages that are sent automatically during the user "
+"registration process."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Manages the user registration and login system."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Translate emails sent from the User module."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Variable Information and basic variable API"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Variable Administration UI"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"An example module showing how to use the Variable API and providing "
+"some variables."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "API to use variable realms from different modules"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Database storage for variable realms. This is an API module."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Multilingual variables that switch language depending on page "
+"language."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Provides views integration for variable, included a default variable "
+"argument."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Create customized lists and queries from your database."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Provides a way of selecting multiple rows and applying operations to "
+"them."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Allows Views content to be used in Panels, Dashboard and other modules "
+"which use the CTools Content API."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Plugin to export views data into various file formats"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Output several Views fields into a fieldset."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Administrative interface to views. Without this module, you cannot "
+"create or edit your views."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Optional: Enable Webform on multiple types by visiting the <a "
+"href=\"!url\">Webform settings</a> page."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"<p>This module lets you create forms or questionnaires and define "
+"their content. Submissions from these forms are stored in the database "
+"and optionally also sent by e-mail to a predefined address.</p>\n"
+"      <p>Here is how to create one:</p>\n"
+"      <ul>\n"
+"        <li>!webform-types-message</li>\n"
+"        <li>Go to <a href=\"!create-content\">Create content</a> and "
+"add a !types piece of content.</li>\n"
+"        <li>After saving the new content, you will be redirected to "
+"the main field list of the form that will be created. Add the fields "
+"you would like on your form.</li>\n"
+"        <li>Once finished adding fields, you may want to send e-mails "
+"to administrators or back to the user who filled out the form. Click "
+"on the <em>Emails</em> sub-tab underneath the <em>Webform</em> tab on "
+"the piece of content.</li>\n"
+"        <li>Finally, visit the <em>Form settings</em> sub-tab under "
+"the <em>Webform</em> tab to configure remaining configurations options "
+"for your form.\n"
+"          <ul>\n"
+"          <li>Add a confirmation message and/or redirect URL that is "
+"to be displayed after successful submission.</li>\n"
+"          <li>Set a submission limit.</li>\n"
+"          <li>Determine which roles may submit the form.</li>\n"
+"          <li>Advanced configuration options such as allowing drafts "
+"or show users a message indicating how they can edit their "
+"submissions.</li>\n"
+"          </ul>\n"
+"        </li>\n"
+"        <li>Your form is now ready for viewing. After receiving "
+"submissions, you can check the results users have submitted by "
+"visiting the <em>Results</em> tab on the piece of content.</li>\n"
+"      </ul>\n"
+"      <p>Help on adding and configuring the components will be shown "
+"after you add your first component.</p>\n"
+"      "
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Enables the creation of forms and questionnaires."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "PDF generation library using wkhtmltopdf."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "XHProf integration."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "UI for xhprof runs."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Creates an XML sitemap conforming to the <a "
+"href=\"http://sitemaps.org/\">sitemaps.org protocol</a>."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Adds user configurable links to the sitemap."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Submit the sitemap to search engines."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Enables multilingual XML sitemaps."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Adds menu item links to the sitemap."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Adds content links to the sitemap."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Add taxonomy term links to the sitemap."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Adds user profile links to the sitemap."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Bean"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Performance and scalability"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Multilingual - Internationalization"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Chaos tool suite"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Date/Time"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Dialog"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Spark"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Multilingual - Entity Translation"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Statistics"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Spam control"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Multilingual"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "DEV tools"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Frontend"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Security"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "User Interface"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Organic groups"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "UI"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Variable"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Example modules"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Save configuration"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Required"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Unavailable"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Filter list"
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Download additional <a href=\"@modules\">contributed modules</a> to "
+"extend Drupal's functionality."
+msgstr ""
+
+#: /cy/admin/modules
+msgid ""
+"Regularly review available updates to maintain a secure and current "
+"site. Always run the <a href=\"@update-php\">update script</a> each "
+"time a module is updated. Enable the Update manager module to update "
+"and install modules and themes."
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Version: !module-version"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Requires: !module-list"
+msgstr ""
+
+#: /cy/admin/modules
+msgid "Required by: !module-list"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "contexts"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Contexts"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Access All Blocks"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid ""
+"Allows users to access all rendered blocks via an AJAX callback. If "
+"you have some blocks that should not be rendered for some users but "
+"need those users to be able to use context UI, then implement "
+"hook_context_allow_ajax_block_access with the necessary logic."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Support for the Linkit module <em>(buttons: Linkit)</em>"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Plugin to count symbols, symbols without blanks and words"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Plugin for inserting files from IMCE without image dialog"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Plugin for inserting Drupal embeded media"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Plugin for inserting Drupal teaser and page breaks."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Plugin for inserting images from Drupal media module"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Support for Linkit module"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Determine the language from the URL (Path prefix or domain)."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Session"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Determine the language from a request/session parameter."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Follow the user's language preference."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Browser"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Determine the language from the browser's language settings."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Interface"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Use the detected interface language."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "URL fallback"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Use an already detected language for URLs if none is found."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Use the default site language (@language_name)."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Realm list"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "List of variables that can be set for a realm."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Realm weight"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Override default weight for realm variables."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Multilingual variables, main variable names."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Multilingual variables, real variable names."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Web Property ID"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid ""
+"This ID is unique to each site you want to track separately, and is in "
+"the form of UA-xxxxxxx-yy. To get a Web Property ID, <a "
+"href=\"@analytics\">register your site with Google Analytics</a>, or "
+"if you already have registered your site, go to your Google Analytics "
+"Settings page to see the ID next to every site profile. <a "
+"href=\"@webpropertyid\">Find more information in the "
+"documentation</a>."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Multilingual support"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid ""
+"Enable multilingual support for this content type. If enabled, a "
+"language selection field will be added to the editing form, allowing "
+"you to select from one of the <a href=\"!languages\">enabled "
+"languages</a>. If disabled, new posts are saved with the default "
+"language. Existing content will not be affected by changing this "
+"option."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Site default language"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Source for the Main links"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "No Main links"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid ""
+"Select what should be displayed as the Main links (typically at the "
+"top of the page)."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Source for the Secondary links"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "No Secondary links"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Select the source for the Secondary links."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Menu parent"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Select the menu parent"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Menu options"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Select the available menus"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Length of trimmed posts"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid ""
+"The maximum number of characters used in the trimmed version of a "
+"post. Drupal will use this setting to determine at which offset long "
+"posts should be trimmed. The trimmed version of a post is typically "
+"used as a teaser when displaying the post on the main page, in XML "
+"feeds, etc. To disable teasers, set to 'Unlimited'. Note that this "
+"setting will only affect new or updated content and will not affect "
+"existing teasers."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Preview before submitting"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Must users preview posts before submitting?"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Default options"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid ""
+"Users with the <em>administer nodes</em> permission will be able to "
+"override these options."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Display author and date information."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Author username and publish date will be displayed."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Text used in the link to the printer-friendly version."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Fersiwn hwylus i'w hargraffu"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Site map title"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid ""
+"Page title that will be used on the <a href=\"@link\">site map "
+"page</a>. It should only be set to override the translatable built-in "
+"\"Site map\" title. Note: If you set something here, the title will no "
+"longer be translatable."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Site map message"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Message that will be used on the <a href=\"@link\">site map page</a>."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "The site map provides an overview of all website content."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Menus to include in the site map"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid ""
+"Menus to include that will be used on the <a href=\"@link\">site map "
+"page</a>."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "RSS feed for front page"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "The RSS feed for the front page, default is rss.xml."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "The name of this website."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Site email address"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid ""
+"The <em>From</em> address in automated e-mails sent during "
+"registration and new password requests, and other notifications. (Use "
+"an address ending in your site's domain to help prevent this e-mail "
+"being flagged as spam.)"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid ""
+"Your site's motto, tag line, or catchphrase (often displayed alongside "
+"the title of the site)."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Anonymous user"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "The name used to indicate anonymous users."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Default front page"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid ""
+"The home page displays content from this relative URL. If unsure, "
+"specify \"node\"."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Number of posts on main page"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid ""
+"The maximum number of posts displayed on overview pages such as the "
+"front page."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Default 403 (access denied) page"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid ""
+"This page is displayed when the requested document is denied to the "
+"current user. Leave blank to display a generic \"access denied\" page."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Default 404 (not found) page"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid ""
+"This page is displayed when no other content matches the requested "
+"document. Leave blank to display a generic \"page not found\" page."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Feed description"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Description of your site, included in each feed."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Number of items in each feed"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Default number of items to include in each feed."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Feed content"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Titles only"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Titles plus teaser"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Full text"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Global setting for the default display of content items in each feed."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Default country"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "First day of week"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Default time zone"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Users may set their own time zone."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Remind users at login if their time zone is not set."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Only applied if users may set their own time zone."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Time zone for new users"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Default time zone."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Empty time zone."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Users may set their own time zone at registration."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Date format"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Put site into maintenance mode"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid ""
+"When enabled, only users with the \"Use the site in maintenance mode\" "
+"<a href=\"@permissions-url\">permission</a> are able to access your "
+"site to perform maintenance; all other visitors see the maintenance "
+"mode message configured below. Authorized users can log in directly "
+"via the <a href=\"@user-login\">user login</a> page."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Maintenance mode message"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Message to show visitors when the site is in maintenance mode."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Global theme settings."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Theme settings"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Logo, icons and other specific theme settings."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Cache pages for anonymous users"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Cache blocks"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid ""
+"Block caching is inactive if you have enabled modules defining content "
+"access restrictions."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Minimum cache lifetime"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid ""
+"Cached pages will not be re-created until at least this much time has "
+"elapsed."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Expiration of cached pages"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "The maximum time an external cache can use an old version of a page."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid ""
+"External resources can be optimized automatically, which can reduce "
+"both the size and number of requests made to your website."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Compress cached pages."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Aggregate and compress CSS files."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Aggregate JavaScript files."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Public registrations"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Require e-mail verification when a visitor creates an account"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid ""
+"If this box is checked, new users will be required to validate their "
+"e-mail address prior to logging into the site, and will be assigned a "
+"system-generated password. With it unchecked, users will be logged in "
+"immediately upon registering, and may select their own passwords "
+"during registration."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "User registration guidelines"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid ""
+"This text is displayed at the top of the user registration form and is "
+"useful for helping or instructing your users."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid ""
+"Available variables are: [site:name], [site:url], [user:name], "
+"[user:mail], [site:login-url], [site:url-brief], [user:edit-url], "
+"[user:one-time-login-url], [user:cancel-url]."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Welcome, new user created by administrator"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid ""
+"Customize welcome e-mail messages sent to new member accounts created "
+"by an administrator."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Welcome, no approval required"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid ""
+"Customize welcome e-mail messages sent to new members upon "
+"registering, when no administrator approval is required."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Welcome, awaiting administrator approval"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid ""
+"Customize welcome e-mail messages sent to new members upon "
+"registering, when administrative approval is required."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Password recovery email"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Customize e-mail messages sent to users who request a new password."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Account activation email"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid ""
+"Enable and customize e-mail messages sent to users upon account "
+"activation (when an administrator activates an account of a user who "
+"has already registered, on a site where administrative approval is "
+"required)."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Notify user when account is activated."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Account blocked email"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid ""
+"Enable and customize e-mail messages sent to users when their accounts "
+"are blocked."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Notify user when account is blocked."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Account cancellation confirmation"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid ""
+"Edit the e-mail messages sent to users when they attempt to cancel "
+"their accounts."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Account deleted email"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid ""
+"Enable and customize e-mail messages sent to users when their accounts "
+"are deleted."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Notify user when account is deleted."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Signature support"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Picture support"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Picture directory"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid ""
+"Subdirectory in the file upload directory where pictures will be "
+"stored."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Default picture"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid ""
+"URL of picture to display for users with no custom picture selected. "
+"Leave blank for none."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Picture maximum dimensions"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Maximum dimensions for pictures, in pixels."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Picture maximum file size"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Maximum file size for pictures, in kB."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Picture guidelines"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid ""
+"This text is displayed at the picture upload form in addition to the "
+"default guidelines. It's useful for helping or instructing your users."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Text used in the link to the PDF version."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Fersiwn PDF"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Languages for content"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Determines which languages will be allowed for content creation."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Enable translation for language"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Translatable text formats"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid ""
+"The translation system only translates strings with the selected text "
+"formats. All other strings will be ignored and removed from the list "
+"of translatable strings."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid ""
+"Language that will be used as the source language for string "
+"translations. The default is the site default language."
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Debug string translation"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "Context editor"
+msgstr ""
+
+#: /cy/admin/modules/list/confirm
+msgid "The configuration options have been saved."
+msgstr ""
+
+#: /cy/admin/modules?filter=context&enabled=1&disabled=1&required=1&unavailable=1
+msgid ""
+"Associate menus, views, blocks, etc. with different contexts to "
+"structure your site."
+msgstr ""
+
+#: /cy/admin/modules?filter=context&enabled=1&disabled=1&required=1&unavailable=1
+msgid "context_ui"
+msgstr ""
+
+#: /cy/admin/structure/context
+msgid "Enabled, name"
+msgstr ""
+
+#: /cy/admin/structure/context
+msgid "Order"
+msgstr ""
+
+#: /cy/admin/structure/context
+msgid "Up"
+msgstr ""
+
+#: /cy/admin/structure/context
+msgid "Down"
+msgstr ""
+
+#: /cy/admin/structure/context
+msgid ""
+"Context allows you to manage contextual conditions and reactions for "
+"different portions of your site. You can think of each context as "
+"representing a \"section\" of your site. For each context, you can "
+"choose the conditions that trigger this context to be active and "
+"choose different aspects of Drupal that should react to this active "
+"context."
+msgstr ""
+
+#: sites/all/modules/contrib/context/plugins/context_reaction_block.js
+msgid ""
+"Desired block weight exceeds available weight options, please check "
+"weights for blocks before saving"
+msgstr ""
+
+#: sites/all/modules/contrib/context/plugins/context_reaction_block.js
+msgid "Now Editing: "
+msgstr ""
+
+#: /cy/cysylltu-%C3%A2-ni
+msgid "You have already submitted this form."
+msgstr ""
+
+#: /cy/cysylltu-%C3%A2-ni
+msgid "<a href=\"!url\">View your previous submissions</a>."
+msgstr ""
+
+#: /cy/node/49/submissions
+msgid "#"
+msgstr ""
+
+#: /cy/node/49/submissions
+msgid "IP Address"
+msgstr ""
+
+#: /cy/node/49/submissions
+msgid "Submissions for %user"
+msgstr ""
+
+#: /cy/node/49/submissions
+msgid "am"
+msgstr ""
+
+#: /cy/node/49/submissions
+msgid "pm"
+msgstr ""
+
+#: /cy/node/49/submissions
+msgid "Showing all results."
+msgstr ""
+
+#: /cy/node/49/submissions
+msgid "@total results total."
+msgstr ""
+
+#: /cy/node/49/submissions
+msgid "Go back to the form"
+msgstr ""
+
+#: modules/node/content_types.js
+msgid "Requires a title"
+msgstr ""
+
+#: modules/node/content_types.js
+msgid "Don't display post information"
+msgstr ""
+
+#: /cy
+msgid "Bulk generate"
+msgstr ""
+
+#: /cy/admin/config/regional/translate/edit/114?destination=admin/config/regional/translate/translate%3Fpage%3D13
+msgid ""
+"The form has become outdated. Copy any unsaved work in the form below "
+"and then <a href=\"@link\">reload this page</a>."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Unknown"
+msgstr ""
+
+#: /cy/admin/config
+msgid "CTools CSS Cache"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Exists"
+msgstr ""
+
+#: /cy/admin/config
+msgid ""
+"The timezone has been set to <a "
+"href=\"@regional_settings\">@timezone</a>."
+msgstr ""
+
+#: /cy/admin/config
+msgid ""
+"The first day of the week has been set to <a "
+"href=\"@regional_settings\">@day</a>."
+msgstr ""
+
+#: /cy/admin/config
+msgid ""
+"The medium date format type has been set to @value. You may find it "
+"helpful to add new format types like Date, Time, Month, or Year, with "
+"appropriate formats, at <a href=\"@regional_date_time\">Date and "
+"time</a> settings."
+msgstr ""
+
+#: /cy/admin/config
+msgid "System date settings"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Dialog jQuery version"
+msgstr ""
+
+#: /cy/admin/config
+msgid "jQuery @version"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Not enabled"
+msgstr ""
+
+#: /cy/admin/config
+msgid ""
+"Your server is capable of displaying file upload progress through APC, "
+"but it is not enabled. Add <code>apc.rfc1867 = 1</code> to your "
+"php.ini configuration. Alternatively, it is recommended to use <a "
+"href=\"http://pecl.php.net/package/uploadprogress\">PECL "
+"uploadprogress</a>, which supports more than one simultaneous upload."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Upload progress"
+msgstr ""
+
+#: /cy/admin/config
+msgid "GD library rotate and desaturate effects"
+msgstr ""
+
+#: /cy/admin/config
+msgid "jQuery Update"
+msgstr ""
+
+#: /cy/admin/config
+msgid "jQuery %jquery (<a href=\"@link\">configure</a>) and jQuery UI %ui"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Missing translations"
+msgstr ""
+
+#: /cy/admin/config
+msgid ""
+"Missing translations for: @languages. See the <a "
+"href=\"!updates\">Available translation updates</a> page for more "
+"information."
+msgstr ""
+
+#: /cy/admin/config
+msgid ""
+"If the site is experiencing problems with permissions to content, you "
+"may have to rebuild the permissions cache. Rebuilding will remove all "
+"privileges to content and replace them with permissions based on the "
+"current modules and settings. Rebuilding may take some time if there "
+"is a lot of content or complex permission settings. After rebuilding "
+"has completed, content will automatically use the new permissions."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Node Access Permissions"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Rebuild permissions"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Drupal"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Web server"
+msgstr ""
+
+#: /cy/admin/config
+msgid "PHP"
+msgstr ""
+
+#: /cy/admin/config
+msgid "more information"
+msgstr ""
+
+#: /cy/admin/config
+msgid "PHP register globals"
+msgstr ""
+
+#: /cy/admin/config
+msgid "PHP extensions"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Database system"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Database system version"
+msgstr ""
+
+#: /cy/admin/config
+msgid "PHP memory limit"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Protected"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Configuration file"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Public files directory"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Private files directory"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Temporary files directory"
+msgstr ""
+
+#: /cy/admin/config
+msgid ""
+"For more information, see the online handbook entry for <a "
+"href=\"@cron-handbook\">configuring cron jobs</a>."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Last run !time ago"
+msgstr ""
+
+#: /cy/admin/config
+msgid "You can <a href=\"@cron\">run cron manually</a>."
+msgstr ""
+
+#: /cy/admin/config
+msgid "To run cron from outside the site, go to <a href=\"!cron\">!cron</a>"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Cron maintenance tasks"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Writable (<em>public</em> download method)"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Database updates"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Up to date"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Access to update.php"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Standard PHP"
+msgstr ""
+
+#: /cy/admin/config
+msgid "PHP Mbstring Extension"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Error"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Unicode library"
+msgstr ""
+
+#: /cy/admin/config
+msgid ""
+"Update notifications are not enabled. It is <strong>highly "
+"recommended</strong> that you enable the update manager module from "
+"the <a href=\"@module\">module administration page</a> in order to "
+"stay up-to-date on new releases. For more information, <a "
+"href=\"@update\">Update status handbook page</a>."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Update notifications"
+msgstr ""
+
+#: /cy/admin/config
+msgid "The source node for this current node's translation set."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The explanation of the most recent changes made to the node."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The content type of the node."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Tokens related to content types."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The name of the content type."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The unique machine-readable name of the content type."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The optional description of the content type."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The number of nodes belonging to the content type."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The URL of the content type's edit page."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The URL of the taxonomy term's edit page."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Parents"
+msgstr ""
+
+#: /cy/admin/config
+msgid "An array of all the term's parents, starting with the root."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Root term"
+msgstr ""
+
+#: /cy/admin/config
+msgid "The root term of the taxonomy term."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The unique machine-readable name of the vocabulary."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The URL of the vocabulary's edit page."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Base name"
+msgstr ""
+
+#: /cy/admin/config
+msgid "The base name of the file."
+msgstr ""
+
+#: /cy/admin/config
+msgid "File byte size"
+msgstr ""
+
+#: /cy/admin/config
+msgid "The size of the file, in bytes."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Account cancellation URL"
+msgstr ""
+
+#: /cy/admin/config
+msgid "The URL of the confirm delete page for the user account."
+msgstr ""
+
+#: /cy/admin/config
+msgid "One-time login URL"
+msgstr ""
+
+#: /cy/admin/config
+msgid "The URL of the one-time login page for the user account."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The user roles associated with the user account."
+msgstr ""
+
+#: /cy/admin/config
+msgid "IP address"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Tokens related to menu links."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Link ID"
+msgstr ""
+
+#: /cy/admin/config
+msgid "The unique ID of the menu link."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The title of the menu link."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The URL of the menu link."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The menu link's parent."
+msgstr ""
+
+#: /cy/admin/config
+msgid "An array of all the menu link's parents, starting with the root."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Root"
+msgstr ""
+
+#: /cy/admin/config
+msgid "The menu link's root."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Tokens related to the current page request."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The title of the current page."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The URL of the current page."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Page number"
+msgstr ""
+
+#: /cy/admin/config
+msgid "The page number of the current page when viewing paged lists."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Query string value"
+msgstr ""
+
+#: /cy/admin/config
+msgid "The value of a specific query string field of the current page."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Tokens related to URLs."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The path component of the URL."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Relative URL"
+msgstr ""
+
+#: /cy/admin/config
+msgid "The relative URL."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Absolute URL"
+msgstr ""
+
+#: /cy/admin/config
+msgid "The absolute URL."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Brief URL"
+msgstr ""
+
+#: /cy/admin/config
+msgid "The URL without the protocol and trailing backslash."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Unaliased URL"
+msgstr ""
+
+#: /cy/admin/config
+msgid "The unaliased URL."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Arguments"
+msgstr ""
+
+#: /cy/admin/config
+msgid ""
+"The specific argument of the current page (e.g. 'arg:1' on the page "
+"'node/1' returns '1')."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Array"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Tokens related to arrays of strings."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The first element of the array."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Last"
+msgstr ""
+
+#: /cy/admin/config
+msgid "The last element of the array."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The number of elements in the array."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Reversed"
+msgstr ""
+
+#: /cy/admin/config
+msgid "The array reversed."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Keys"
+msgstr ""
+
+#: /cy/admin/config
+msgid "The array of keys of the array."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Imploded"
+msgstr ""
+
+#: /cy/admin/config
+msgid ""
+"The values of the array joined together with a custom string "
+"in-between each value."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The specific value of the array."
+msgstr ""
+
+#: /cy/admin/config
+msgid "A random number from 0 to @max."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Hash"
+msgstr ""
+
+#: /cy/admin/config
+msgid "A random hash. The possible hashing algorithms are: @hash-algos."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Latest differences"
+msgstr ""
+
+#: /cy/admin/config
+msgid ""
+"The differences between the current revision and the previous revision "
+"of this node."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Latest differences (marked down)"
+msgstr ""
+
+#: /cy/admin/config
+msgid ""
+"The differences between the current revision and the previous revision "
+"of this node, but with a marked-down form of each revision used for "
+"comparison."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Tokens associated with file types."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The name of the file type."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The unique machine-readable name of the file type."
+msgstr ""
+
+#: /cy/admin/config
+msgid "File count"
+msgstr ""
+
+#: /cy/admin/config
+msgid "The number of files belonging to the file type."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The URL of the file type's edit page."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The file type of the file."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Download URL"
+msgstr ""
+
+#: /cy/admin/config
+msgid "The URL to download the file directly."
+msgstr ""
+
+#: /cy/admin/config
+msgid "User role names"
+msgstr ""
+
+#: /cy/admin/config
+msgid ""
+"The role names the user account is a member of as comma separated "
+"list."
+msgstr ""
+
+#: /cy/admin/config
+msgid "User role ids"
+msgstr ""
+
+#: /cy/admin/config
+msgid "The role ids the user account is a member of as comma separated list."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Validate URL"
+msgstr ""
+
+#: /cy/admin/config
+msgid "The URL of the account validation page, provided by logintoboggan."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Tokens related to menus."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The name of the menu."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The unique machine-readable name of the menu."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The optional description of the menu."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Menu link count"
+msgstr ""
+
+#: /cy/admin/config
+msgid "The number of menu links belonging to the menu."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The URL of the menu's edit page."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The menu of the menu link."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The URL of the menu link's edit page."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The menu link for this node."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Tokens related to individual content items, or \"nodes\"."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Content ID"
+msgstr ""
+
+#: /cy/admin/config
+msgid "The unique ID of the content item, or \"node\"."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The unique ID of the node's latest revision."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Translation set ID"
+msgstr ""
+
+#: /cy/admin/config
+msgid ""
+"The unique ID of the original-language version of this node, if one "
+"exists."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Content type name"
+msgstr ""
+
+#: /cy/admin/config
+msgid "The human-readable name of the node type."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The main body text of the node."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The summary of the node's main body text."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Password Expiration Date"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Tokens related to expired passwords."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Expire Date @title Format"
+msgstr ""
+
+#: /cy/admin/config
+msgid "The Date the Password Expires in the @title Format."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Expire Date interval"
+msgstr ""
+
+#: /cy/admin/config
+msgid "The Date the Password Expires in x days format"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Tokens for site-wide settings and other global information."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Dates"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Tokens related to times and dates."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Tokens related to uploaded files."
+msgstr ""
+
+#: /cy/admin/config
+msgid "URL (brief)"
+msgstr ""
+
+#: /cy/admin/config
+msgid "The URL of the site's front page without the protocol."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Short format"
+msgstr ""
+
+#: /cy/admin/config
+msgid "A date in 'short' format. (%date)"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Medium format"
+msgstr ""
+
+#: /cy/admin/config
+msgid "A date in 'medium' format. (%date)"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Long format"
+msgstr ""
+
+#: /cy/admin/config
+msgctxt "Long month name"
+msgid "October"
+msgstr ""
+
+#: /cy/admin/config
+msgid "A date in 'long' format. (%date)"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Custom format"
+msgstr ""
+
+#: /cy/admin/config
+msgid "the PHP documentation"
+msgstr ""
+
+#: /cy/admin/config
+msgid "A date in a custom format. See !php-date for details."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Time-since"
+msgstr ""
+
+#: /cy/admin/config
+msgid "@count[2] years"
+msgstr ""
+
+#: /cy/admin/config
+msgid "A date in 'time-since' format. (%date)"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Raw timestamp"
+msgstr ""
+
+#: /cy/admin/config
+msgid "A date in UNIX timestamp format (%date)"
+msgstr ""
+
+#: /cy/admin/config
+msgid "The location of the file relative to Drupal root."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Tokens related to taxonomy terms."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Vocabularies"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Tokens related to taxonomy vocabularies."
+msgstr ""
+
+#: /cy/admin/config
+msgid ""
+"The number of nodes tagged with terms belonging to the taxonomy "
+"vocabulary."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The parent term of the taxonomy term, if one exists."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Tokens related to individual user accounts."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Current user"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Tokens related to the currently logged in user."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The URL of the account edit page."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Tokens for variable values."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Variable realm"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Text length"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Drupal path"
+msgstr ""
+
+#: /cy/admin/config
+msgid "File path"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Day of week"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Time zone"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Date type"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Time interval"
+msgstr ""
+
+#: /cy/admin/config
+msgid "User mail text"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Properties"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Multiple"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Mail text"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Subject"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Select"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Mail parts"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Formatted text"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Multiple language"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Joined path"
+msgstr ""
+
+#: /cy/admin/config
+msgid ""
+"The array values each cleaned by Pathauto and then joined with the "
+"slash into a string that resembles an URL."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Tokens related to views."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The human-readable name of the view."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The description of the view."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The machine-readable name of the view."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The title of current display of the view."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The URL of the view."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Tokens related to the current date and time."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Original @entity"
+msgstr ""
+
+#: /cy/admin/config
+msgid "The original @entity data if the @entity is being updated or saved."
+msgstr ""
+
+#: /cy/admin/config
+msgid "A date in '@type' format. (%date)"
+msgstr ""
+
+#: /cy/admin/config
+msgid "@type field."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Also known as %labels."
+msgstr ""
+
+#: /cy/admin/config
+msgid "The following tokens or token types are not defined as arrays:"
+msgstr ""
+
+#: /cy/admin/config
+msgid ""
+"The following tokens or token types are missing required name and/or "
+"description information:"
+msgstr ""
+
+#: /cy/admin/config
+msgid "The following token types do not have any tokens defined:"
+msgstr ""
+
+#: /cy/admin/config
+msgid "The following token types are not defined but have tokens:"
+msgstr ""
+
+#: /cy/admin/config
+msgid "The following token or token types are defined by multiple modules:"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Views Data Export temporary directory"
+msgstr ""
+
+#: /cy/admin/config
+msgid "XML sitemap cache directory"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Writable"
+msgstr ""
+
+#: /cy/admin/config
+msgid "XML sitemap maximum file size"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Last attempted generation on !date (!interval ago)."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Printer, email and PDF versions - PDF generation library"
+msgstr ""
+
+#: /cy/admin/config
+msgid "%lib directory"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Non-writable permissions"
+msgstr ""
+
+#: /cy/admin/config
+msgid ""
+"You must change the %libdir permissions to be writable, as %lib "
+"requires write-access to that directory."
+msgstr ""
+
+#: /cy/admin/config
+msgid "All required tests are present in current Modernizr build."
+msgstr ""
+
+#: /cy/admin/config
+msgid "Modernizr Tests"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Hide descriptions"
+msgstr ""
+
+#: /cy/admin/config
+msgid "Compress layout by hiding descriptions."
+msgstr ""
+
+#: /cy/tool/study/1119/preparatory/e
+msgid ""
+"Please state how the product is to be stored and handling and storage "
+"instructions."
+msgstr ""
+
+#: /cy/tool/study/1119/preparatory/f
+msgid "Please specify if the product is suitable for the elderly."
+msgstr ""
+
+#: /cy/tool/study/1119/preparatory/f
+msgid ""
+"Please specify if the product is suitable for the immunosuppressed / "
+"immunocompromised."
+msgstr ""
+
+#: /cy/tool/study/1119/preparatory/f
+msgid ""
+"Please specify how how you have considered the likely abuse / "
+"unintended use of the product by the consumer."
+msgstr ""
+
+#: /cy/tool/study/1119/preparatory/g
+msgid "If a file is uploaded, it must be of type gif, jpg, jpeg, png or pdf."
+msgstr ""
+
+#: /cy/tool/study/1119/preparatory/g
+msgid ""
+"If you only have a hard copy, please specify the location where it is "
+"retained and any document reference."
+msgstr ""
+
+#: /cy/search/node/canllawiau%5D
+msgid "results"
+msgstr ""
+
+#: /cy/i18n_string/save
+msgid "Translation saved locally."
+msgstr ""
+
+#: /cy/tool/study/1119/principle/3
+msgid ""
+"State the target value e.g.  74 degrees Celsius where the critical "
+"limit  is  72 degrees Celsius."
+msgstr ""
+
+#: /cy/tool/study/1119/principle/3
+msgid "Please specify the target value."
+msgstr ""
+
+#: /cy/tool/study/1119/principle/3
+msgid "This is the value between the critical limit and the target value."
+msgstr ""
+
+#: /cy/tool/study/1119/principle/3
+msgid "Please specify the tolerance."
+msgstr ""
+
+#: /cy/tool/study/1119/principle/4
+msgid "Please state who will check the records."
+msgstr ""
+
+#: /cy/tool/study/1119/principle/5
+msgid ""
+"The competencies of staff should be reviewed. It may be necessary to "
+"train staff, refresh their training, provide on-the-job experience, "
+"records of which should be kept to reflect that staff are capable of "
+"performing the task they are undertaking"
+msgstr ""
+
+#: /cy/user/1509/edit
+msgid "Masquerade settings"
+msgstr ""
+
+#: /cy/user/1509/edit
+msgid "Enter the users this user is able to masquerade as"
+msgstr ""
+
+#: /cy/user/1509/edit
+msgid ""
+"Enter a comma separated list of user names that this user can "
+"masquerade as."
+msgstr ""
+
+#: /cy/user/1509/edit
+msgid "Hide on-page translation from you"
+msgstr ""
+
+#: /cy/user/1509/edit
+msgid "Localization client"
+msgstr ""
+
+#: /cy/user/1509/edit
+msgid "Masquerade autocomplete"
+msgstr ""
+
+#: /cy/printpdf/canllawiau-myhaccp
+msgid "Printer-friendly PDF"
+msgstr ""
+
+#: /cy/printpdf/canllawiau-myhaccp
+msgid "Source URL"
+msgstr ""
+
+#: /cy/admin/people
+msgid "@count[3] min"
+msgstr ""
+
+#: /cy/admin/content
+msgid "Usernames"
+msgstr ""
+
+#: /cy/admin/content
+msgid "Enter a comma separated list of user names."
+msgstr ""
+
+#: /cy/admin/content
+msgid "new"
+msgstr ""
+
+#: /cy/admin/content
+msgid "updated"
+msgstr ""
+
+#: /cy/cysylltu-%C3%A2-ni
+msgid "Save Draft"
+msgstr ""
+
+#: /cy/cysylltu-%C3%A2-ni
+msgid "Submitted on %date"
+msgstr ""
+
+#: /cy/cysylltu-%C3%A2-ni
+msgid "Submitted by user: %username"
+msgstr ""
+
+#: /cy/cysylltu-%C3%A2-ni
+msgid "Submitted values are"
+msgstr ""
+
+#: /cy/cysylltu-%C3%A2-ni
+msgid "The results of this submission may be viewed at:"
+msgstr ""
+
+#: /cy/cysylltu-%C3%A2-ni
+msgid "Form submission from: %title"
+msgstr ""
+
+#: /cy/node/49/done?sid=84
+msgid "Webform confirmation"
+msgstr ""
+
+#: /cy/cysylltu-%C3%A2-ni
+msgid "%value is not a valid email address."
+msgstr ""
+
+#: /cy/node/49/webform
+msgid "Mandatory"
+msgstr ""
+
+#: /cy/node/49/webform
+msgid "New component name"
+msgstr ""
+
+#: /cy/node/49/webform/emails
+msgid "Value of !component"
+msgstr ""
+
+#: /cy/node/49/webform/emails
+msgid "Value of \"!component\""
+msgstr ""
+
+#: /cy/node/49/webform/emails
+msgid "Address"
+msgstr ""
+
+#: /cy/node/49/webform/emails
+msgid "Component value"
+msgstr ""
+
+#: /cy/node/49/webform/emails
+msgid "E-mail to"
+msgstr ""
+
+#: /cy/node/49/webform/emails
+msgid "From"
+msgstr ""
+
+#: /cy/node/49/webform/emails
+msgid "email@example.com"
+msgstr ""
+
+#: /cy/help/guidance/resources
+msgid "Maint"
+msgstr ""
+
+#: /cy/users/finnlewis
+msgid "Switch back"
+msgstr ""
+
+#: /cy/users/finnlewis
+msgid "You are masquerading as <a href=\"@user-url\">%masq_as</a>."
+msgstr ""
+
+#: /cy/users/finnlewis
+msgid "Quick switches:"
+msgstr ""
+
+#: modules/user/user.permissions.js
+msgid "This permission is inherited from the authenticated user role."
+msgstr ""
+
+#: sites/all/modules/contrib/admin_menu/admin_menu.admin.js
+msgid "Also allow !name role to !permission?"
+msgstr ""
+
+#: /cy/user/reset/11645/1447173823/GLkfxN0fU9BQDVBrjXtNW-QNSmLvhnz25k4A239z1a0
+msgid "Reset password"
+msgstr ""
+
+#: /cy/help/21?_format=drupal_dialog
+msgid "Help topics"
+msgstr ""
+
+#: /cy/help/21?_format=drupal_dialog
+msgid "Close help"
 msgstr ""
 
 #: sites/all/modules/contrib/l10n_client/l10n_client.js; sites/all/modules/contrib/dialog/misc/ajax.js
@@ -10546,10 +16052,10 @@ msgid "Fri"
 msgstr "Gwener"
 
 msgid "start one now?"
-msgstr "dechrau un nawr?"
+msgstr "ddechrau un nawr?"
 
 msgid "You haven't yet started a study. Would you like to !start"
-msgstr "Nid ydych wedi dechrau astudiaeth eto. Beth am !start astudiaeth?"
+msgstr "Nid ydych wedi dechrau astudiaeth eto. Beth am !start"
 
 msgid "Resume"
 msgstr "Ailddechrau"
@@ -10989,7 +16495,7 @@ msgstr ""
 "deunyddiau crai, un astudiaeth ynghylch pob llinell gynhyrchu neu bob "
 "cynnyrch sy’n cael ei gynhyrchu, ac un astudiaeth ynghylch "
 "dosbarthu’r cynnyrch (fe’i defnyddir ar gyfer systemau mwy "
-"cymhleth / amrywiaeth eang o gynhyrchion fel rheol)."
+"cymhleth/amrywiaeth eang o gynhyrchion fel rheol)."
 
 msgid "-- Please select --"
 msgstr "-- Dewiswch --"
@@ -11981,9 +17487,9 @@ msgid ""
 "a HACCP system, to demonstrate you have control they should be well "
 "established, fully operational (including records) and verified."
 msgstr ""
-"Mae'r rhain yn 'rhag-ofynion' i'r broses o weithredu system HACCP. Er "
-"mwyn dangos bod gennych reolaeth, dylent fod wedi ennill eu plwyf, yn "
-"cael eu gweithredu'n llwyr (gan gynnwys cofnodion) ac yn cael eu "
+"Mae'r rhain yn \"rhag-ofynion\" i'r broses o weithredu system HACCP. "
+"Er mwyn dangos bod gennych reolaeth, dylent fod wedi ennill eu plwyf, "
+"yn cael eu gweithredu'n llwyr (gan gynnwys cofnodion) ac yn cael eu "
 "gwirio."
 
 msgid "Supplier approval"
@@ -13074,9 +18580,9 @@ msgid ""
 "Preparatory Introduction stage of this new study where you can enter "
 "the new study's name."
 msgstr ""
-"Pan fyddwch chi'n clicio ar 'Cyflwyno', bydd yr astudiaeth bresennol a "
-"ddewiswyd yn cael ei chopïo. Ar ôl hynny, bydd modd i chi roi enw "
-"newydd i'r astudiaeth ar y dudalen 'Camau Paratoi: Cyflwyniad'."
+"Pan fyddwch chi'n clicio ar \"Cyflwyno\", bydd yr astudiaeth bresennol "
+"a ddewiswyd yn cael ei chopïo. Ar ôl hynny, bydd modd i chi roi enw "
+"newydd i'r astudiaeth ar y dudalen \"Camau Paratoi: Cyflwyniad\"."
 
 #: /cy/tool/study/8766/preparatory/g
 msgid ""
@@ -13233,9 +18739,9 @@ msgid ""
 "A 'decision tree' is a tool that can be used to help identify a "
 "critical control point. You do not have to use a decision tree."
 msgstr ""
-"Mae 'coeden benderfynu' yn ddiagram sy'n cael ei ddefnyddio i helpu i "
-"bennu Pwyntiau Rheoli Critigol. Nid oes rhaid i chi ddefnyddio coeden "
-"benderfynu."
+"Mae \"coeden benderfynu\" yn ddiagram sy'n cael ei ddefnyddio i helpu "
+"i bennu Pwyntiau Rheoli Critigol. Nid oes rhaid i chi ddefnyddio "
+"coeden benderfynu."
 
 #: /cy/tool/study/1119/principle/2-1
 msgid "Please confirm whether you are using a decision tree."
@@ -13297,7 +18803,7 @@ msgstr ""
 
 #: /cy/tool/study/1119/principle/2-2
 msgid "Please indicate whether this process step is a critical control point."
-msgstr "Nodwch os yw'r cam hwn yn y broses yn bwynt rheoli critigol."
+msgstr "Nodwch os yw'r cam hwn yn y broses yn Bwynt Rheoli Critigol."
 
 msgid "Control Measure"
 msgstr "Mesur rheoli"
@@ -13640,8 +19146,8 @@ msgid ""
 "to be able to perform the task."
 msgstr ""
 "Fydd unrhyw un arall yn cynnal y gweithgaredd monitro hwn yn "
-"absenoldeb yr unigolyn sy'n gyfrifol? Mae'n rhaid i'r diprwy gael ei "
-"hyfforddi a bod yn gymwys i gyflawni'r dasg."
+"absenoldeb yr unigolyn sy'n gyfrifol? Mae'n rhaid i'r diprwy fod wedi "
+"cael hyfforddiant a bod yn gymwys i gyflawni'r dasg."
 
 msgid "6. Where are the results of monitoring recorded?"
 msgstr "6. Ble y mae canlyniadau'r gweithgareddau monitro'n cael eu cofnodi?"
@@ -14032,12 +19538,25 @@ msgstr "Cam Paratoi:"
 msgid "Principles:"
 msgstr "Egwyddor:"
 
+msgctxt "Do you consider the team to have sufficient skills?"
+msgid "Yes"
+msgstr "Oes"
+
+msgctxt "Do you consider the team to have sufficient skills?"
+msgid "No"
+msgstr "Nac oes"
+
 msgid ""
 "Please explain why you have answered no to this question and how you "
 "propose to address this issue."
 msgstr ""
 "Esboniwch pam yr ydych wedi ateb 'Nac oes' i'r cwestiwn hwn a sut yr "
 "ydych yn bwriadu mynd i'r afael â'r mater."
+
+#: /cy/tool/study/8770/pdf
+msgctxt "is/is not"
+msgid "is not"
+msgstr "Nid yw'r"
 
 #: /cy/tool/study/8770/pdf
 msgid ""
@@ -14051,12 +19570,32 @@ msgstr ""
 msgid "will formally sign off the HACCP plan."
 msgstr "fydd yn cymeradwyo'r cynllun HACCP yn ffurfiol."
 
+msgctxt ""
+"Is this the same person who will formally sign off the whole HACCP "
+"plan?"
+msgid "Yes"
+msgstr "Bydd"
+
+msgctxt ""
+"Is this the same person who will formally sign off the whole HACCP "
+"plan?"
+msgid "No"
+msgstr "Na fydd"
+
 msgid ""
 "4. What verification activities do you carry out? Mark all those that "
 "apply."
 msgstr ""
 "4. Pa gamau gwirio yr ydych chi'n eu cynnal? Ticiwch bob blwch sy'n "
 "berthnasol."
+
+msgctxt "Are all verification records maintained?"
+msgid "Yes"
+msgstr "Ydynt"
+
+msgctxt "Are all verification records maintained?"
+msgid "No"
+msgstr "Nac ydynt"
 
 msgid "Technological advances in production"
 msgstr "Datblygiadau technolegol mewn cynhyrchu"
@@ -14144,9 +19683,30 @@ msgstr ""
 "Newidiadau/materion amgylcheddol (h.y. newidiadau lleol y tu allan i'r "
 "gweithred bwyd, newidiadau yn yr hinsawdd)"
 
+msgctxt "Are all records from reviews documented?"
+msgid "Yes"
+msgstr "Ydynt"
+
+msgctxt "Are all records from reviews documented?"
+msgid "No"
+msgstr "Nac ydynt"
+
+msgctxt "Are the records accessible, accurate and up to date?"
+msgid "Yes"
+msgstr "Ydynt"
+
+msgctxt "Are the records accessible, accurate and up to date?"
+msgid "No"
+msgstr "Nac ydynt"
+
 #: /cy/tool/study/8770/pdf
 msgid "The maximum length of time we retain this information for is"
 msgstr "Y cyfnod hiraf yr ydym yn cadw'r wybodaeth hon:"
+
+#: /cy/tool/study/8772/pdf
+msgctxt "is/is not"
+msgid "is"
+msgstr "Mae'r"
 
 #: /cy/tool/study/8772/pdf
 msgid ""
@@ -14164,6 +19724,26 @@ msgstr ""
 "Ar gyfer pob perygl sylweddol, nodwch y mesur rheoli (cam a/neu "
 "weithgarwch i atal neu i ddileu perygl neu i'w leihau i lefel "
 "dderbyniol)."
+
+msgctxt "Decision tree"
+msgid "Yes"
+msgstr "Ydy"
+
+msgctxt "Decision tree"
+msgid "No"
+msgstr "Nac ydy"
+
+msgctxt "Decision tree"
+msgid "N/A"
+msgstr "Dd/B"
+
+msgctxt "CCP"
+msgid "Yes"
+msgstr "Ydy"
+
+msgctxt "CCP"
+msgid "No"
+msgstr "Nac ydy"
 
 #: /cy/tool/study/8770/principle/2-2
 msgid "Be very careful to answer the questions correctly."
@@ -14205,6 +19785,78 @@ msgstr ""
 "72°C, a chaiff cynnyrch ei ystyried yn dderbyniol ar dymheredd sy'n "
 "uwch na hynny."
 
+msgctxt "Is the critical limit appropriate to control the specific hazard?"
+msgid "Yes"
+msgstr "Ydy"
+
+msgctxt "Is the critical limit appropriate to control the specific hazard?"
+msgid "No"
+msgstr "Nac ydy"
+
+msgctxt "Is the critical limit measurable or observable in real time?"
+msgid "Yes"
+msgstr "Ydy"
+
+msgctxt "Is the critical limit measurable or observable in real time?"
+msgid "No"
+msgstr "Nac ydy"
+
+msgctxt "Is there a target value?"
+msgid "Yes"
+msgstr "Oes"
+
+msgctxt "Is there a target value?"
+msgid "No"
+msgstr "Nac oes"
+
+msgctxt "Is the product suitable for consumption by the general public?"
+msgid "Yes"
+msgstr "Ydy"
+
+msgctxt "Is the product suitable for consumption by the general public?"
+msgid "No"
+msgstr "Nac ydy"
+
+msgctxt "Is the product suitable for the young?"
+msgid "Yes"
+msgstr "Ydy"
+
+msgctxt "Is the product suitable for the young?"
+msgid "No"
+msgstr "Nac ydy"
+
+msgctxt "Is the product suitable for the elderly?"
+msgid "Yes"
+msgstr "Ydy"
+
+msgctxt "Is the product suitable for the elderly?"
+msgid "No"
+msgstr "Nac ydy"
+
+msgctxt "Is the product suitable for pregnant ladies?"
+msgid "Yes"
+msgstr "Ydy"
+
+msgctxt "Is the product suitable for pregnant ladies?"
+msgid "No"
+msgstr "Nac ydy"
+
+msgctxt "Is the product suitable for the immunosuppressed / immunocompromised?"
+msgid "Yes"
+msgstr "Ydy"
+
+msgctxt "Is the product suitable for the immunosuppressed / immunocompromised?"
+msgid "No"
+msgstr "Nac ydy"
+
+msgctxt "Is the product suitable for people with allergies or intolerances?"
+msgid "Yes"
+msgstr "Ydy"
+
+msgctxt "Is the product suitable for people with allergies or intolerances?"
+msgid "No"
+msgstr "Nac ydy"
+
 msgid "Not updated"
 msgstr "Heb ei diweddaru"
 
@@ -14215,6 +19867,14 @@ msgid ""
 msgstr ""
 "Bydd clicio ar unrhyw fotwm o fewn yr astudiaeth yn arbed eich gwaith. "
 "Os hoffech ddod yn ôl i'r astudiaeth hon yn hwyrach, gallwch"
+
+msgctxt "Have you completed a flow diagram?"
+msgid "Yes"
+msgstr "Ydw"
+
+msgctxt "Have you completed a flow diagram?"
+msgid "No"
+msgstr "Nac ydw"
 
 #: /cy/tool/study/8770/principle/1-1
 msgid ""
@@ -14273,6 +19933,42 @@ msgstr ""
 "hwn, dylai'r perygl gael disgrifiad mewn cromfachau ar ei ôl (h.y. "
 "Salmonela spp (cyflwyno) Salmonela spp (cynyddu)). Mae'n bwysig eich "
 "bod yn darllen yr wybodaeth ychwanegol.<br> !link"
+
+msgctxt "Are you using a decision tree?"
+msgid "Yes"
+msgstr "Ydw"
+
+msgctxt "Are you using a decision tree?"
+msgid "No"
+msgstr "Nac ydw"
+
+msgctxt "Will the monitoring records be checked and signed off by anyone?"
+msgid "Yes"
+msgstr "Byddant"
+
+msgctxt "Will the monitoring records be checked and signed off by anyone?"
+msgid "No"
+msgstr "Na fyddant"
+
+msgctxt ""
+"Are all personnel trained and competent for performing the activities "
+"stated?"
+msgid "Yes"
+msgstr "Ydynt"
+
+msgctxt ""
+"Are all personnel trained and competent for performing the activities "
+"stated?"
+msgid "No"
+msgstr "Nac ydynt"
+
+msgctxt "Are records of competency maintained?"
+msgid "Yes"
+msgstr "Ydynt"
+
+msgctxt "Are records of competency maintained?"
+msgid "No"
+msgstr "Nac ydynt"
 
 msgid "Critical Control Points"
 msgstr "Pwyntiau Rheoli Critigol"
@@ -14493,193 +20189,162 @@ msgstr ""
 msgid "User account"
 msgstr "Cyfrif y defnyddiwr"
 
-msgctxt ""
-"Are all personnel trained and competent for performing the activities "
-"stated?"
+#: /cy/tool
+msgid "Print"
+msgstr "Argraffu"
+
+#: /cy/tool
+msgid "Are you sure you want to delete %title?"
+msgstr "Ydych chi'n siŵr eich bod am ddileu %title?"
+
+#: /cy/tool
+msgid "Printer, email and PDF versions"
+msgstr "Fersiynau i'w hargraffu, mewn e-bost a PDF"
+
+#: /cy/tool
+msgid "Business size by type"
+msgstr "Maint y busnes yn ôl math"
+
+#: /cy/tool
+msgid "(No information available)"
+msgstr "(Dim gwybodaeth ar gael)"
+
+#: /cy/tool
+msgid "Size"
+msgstr "Maint"
+
+#: /cy/tool
+msgid "Name (raw)"
+msgstr "Enw"
+
+#: /cy/tool/study/8821/preparatory/c-1
+msgid "Please state the process end."
+msgstr "Nodwch ymhle fydd y broses yn gorffen."
+
+#: /cy/tool/study/2/principle/1-1
+msgid "Remove a step"
+msgstr "Dileu cam"
+
+#: /cy/help/guidance/resources
+msgid "Business type"
+msgstr "Math o fusnes"
+
+#: /cy/help/guidance/resources
+msgid "Business type if other"
+msgstr "Math o fusnes os \"arall\""
+
+#: /cy/help/guidance/resources
+msgid "Size of business"
+msgstr "Maint y busnes"
+
+#: /cy/help/guidance/resources
+msgid "Postcode area"
+msgstr "Cod post"
+
+#: /cy/help/guidance/resources
+msgid ""
+"I agree to the FSA contacting me for any research or surveys related "
+"to the use of this site. (field_contact_consent)"
+msgstr ""
+"Rwy'n cytuno i'r ASB gysylltu â mi fel rhan o arolwg neu waith "
+"ymchwil sy'n ymwneud â defnydd o'r wefan hon. (field_contact_consent)"
+
+#: /cy/admin_menu/flush-cache?token=NiuXUxtkwJgOkirQCzCBfHd3PbiaD7dY-iK1FalhWC4&destination=help/guidance/resources
+msgid "Business type (other)"
+msgstr "Math o fusnes (arall)"
+
+#: /cy/admin_menu/flush-cache?token=NiuXUxtkwJgOkirQCzCBfHd3PbiaD7dY-iK1FalhWC4&destination=help/guidance/resources
+msgid ""
+"I agree to the FSA contacting me for any research or surveys related "
+"to the use of this site."
+msgstr ""
+"Rwy'n cytuno i'r ASB gysylltu â mi fel rhan o arolwg neu waith "
+"ymchwil sy'n ymwneud â defnydd o'r wefan hon."
+
+#: /cy/admin_menu/flush-cache?token=NiuXUxtkwJgOkirQCzCBfHd3PbiaD7dY-iK1FalhWC4&destination=help/guidance/resources
+msgid "Business name (optional)"
+msgstr "Enw'r busnes (dewisol)"
+
+#: /cy/admin_menu/flush-cache?token=NiuXUxtkwJgOkirQCzCBfHd3PbiaD7dY-iK1FalhWC4&destination=help/guidance/resources
+msgid "Country"
+msgstr "Gwlad"
+
+#: /cy/block/alert_notice/view
+msgid "Access Denied"
+msgstr "Mynediad wedi'i wrthod"
+
+#: /cy/block/alert_notice/view
+msgid "You are not authorized to access this page."
+msgstr "Nid oes caniatâd gennych i weld y dudalen hon."
+
+#: /cy/admin/modules
+msgid ""
+"\n"
+"[user:name],\n"
+"\n"
+"Thank you for registering.\n"
+"\n"
+"IMPORTANT:\n"
+"For full site access, you will need to click on this link or copy and "
+"paste it in your browser:\n"
+"\n"
+"[user:validate-url]\n"
+"\n"
+"This will verify your account and log you into the site. In the future "
+"you will be able to log in to [site:login-url] using the username and "
+"password that you created during registration.\n"
+msgstr ""
+"[user:name], Diolch i chi am gofrestru. PWYSIG: I gael mynediad llawn "
+"i'r wefan, bydd angen i chi glicio ar y ddolen hon, neu gopïo'r "
+"ddolen a'i phastio yn eich porwr gwe: [user:validate-url] Bydd hyn yn "
+"agor eich cyfrif a chewch ddefnyddio'r wefan yn llawn. Yn y dyfodol, "
+"gallwch fewngofnodi drwy [site:login-url] gyda'r enw defnyddiwr a'r "
+"cyfrinair a grëwyd gennych yn ystod y broses gofrestru. "
+
+msgctxt "Is every process step identified on the flow diagram?"
 msgid "Yes"
 msgstr "Ydynt"
 
-msgctxt ""
-"Are all personnel trained and competent for performing the activities "
-"stated?"
+msgctxt "Is every process step identified on the flow diagram?"
 msgid "No"
 msgstr "Nac ydynt"
 
-msgctxt "Are all records from reviews documented?"
-msgid "Yes"
-msgstr "Ydynt"
+#: /cy/tool/study/1119/principle/1-2
+msgid ""
+"You must add at least a step number and step name in the previous "
+"question as well as at least a hazard for the step."
+msgstr ""
+"Yn y cwestiwn blaenorol, mae'n rhaid i chi roi rhif ac enw'r cam o "
+"leiaf, yn ogystal ag un perygl ar gyfer y cam."
 
-msgctxt "Are all records from reviews documented?"
-msgid "No"
-msgstr "Nac ydynt"
+#: /cy/tool/study/1119/principle/1-3
+msgid "You have no significant hazards so you cannot continue"
+msgstr ""
+"Gan nad oes gennych unrhyw beryglon sylweddol, nid oes modd i chi "
+"barhau."
 
-msgctxt "Are all verification records maintained?"
-msgid "Yes"
-msgstr "Ydynt"
+#: /cy/tool/study/1119/principle/3
+msgid "You have no critical control points so you cannot continue"
+msgstr ""
+"Gan nad oes gennych unrhyw Bwyntiau Rheoli Critigol, nid oes modd i "
+"chi barhau."
 
-msgctxt "Are all verification records maintained?"
-msgid "No"
-msgstr "Nac ydynt"
+#: /cy/tool/study/1119/principle/3
+msgid "Please specify the critical limit for this critical control point."
+msgstr "Nodwch y terfyn critigol ar gyfer y Pwynt Rheoli Critigol hwn."
 
-msgctxt "Are records of competency maintained?"
-msgid "Yes"
-msgstr "Ydynt"
+msgid ""
+"Describe what will happen to the affected product? E.g. will the "
+"product be disposed of ? If so, how? Please provide all details."
+msgstr ""
+"Disgrifiwch beth fydd yn digwydd i'r cynnyrch dan sylw e.e. fyddwch "
+"chi'n cael gwared ar y cynnyrch? Os felly, sut? Rhowch fanylion."
 
-msgctxt "Are records of competency maintained?"
-msgid "No"
-msgstr "Nac ydynt"
+#: /cy/help/21?_format=drupal_dialog
+msgid "Preparatory"
+msgstr "Cam Paratoi"
 
-msgctxt "Are the records accessible, accurate and up to date?"
-msgid "Yes"
-msgstr "Ydynt"
-
-msgctxt "Are the records accessible, accurate and up to date?"
-msgid "No"
-msgstr "Nac ydynt"
-
-msgctxt "Are you using a decision tree?"
-msgid "Yes"
-msgstr "Ydw"
-
-msgctxt "Are you using a decision tree?"
-msgid "No"
-msgstr "Nac ydw"
-
-msgctxt "CCP"
-msgid "Yes"
-msgstr "Ydy"
-
-msgctxt "CCP"
-msgid "No"
-msgstr "Nac ydy"
-
-msgctxt "Decision tree"
-msgid "Yes"
-msgstr "Ydy"
-
-msgctxt "Decision tree"
-msgid "No"
-msgstr "Nac ydy"
-
-msgctxt "Decision tree"
-msgid "N/A"
-msgstr "Dd/B"
-
-msgctxt "Do you consider the team to have sufficient skills?"
-msgid "Yes"
-msgstr "Oes"
-
-msgctxt "Do you consider the team to have sufficient skills?"
-msgid "No"
-msgstr "Nac oes"
-
-msgctxt "Have you completed a flow diagram?"
-msgid "Yes"
-msgstr "Ydw"
-
-msgctxt "Have you completed a flow diagram?"
-msgid "No"
-msgstr "Nac ydw"
-
-msgctxt "Is the critical limit appropriate to control the specific hazard?"
-msgid "Yes"
-msgstr "Ydy"
-
-msgctxt "Is the critical limit appropriate to control the specific hazard?"
-msgid "No"
-msgstr "Nac ydy"
-
-msgctxt "Is the critical limit measurable or observable in real time?"
-msgid "Yes"
-msgstr "Ydy"
-
-msgctxt "Is the critical limit measurable or observable in real time?"
-msgid "No"
-msgstr "Nac ydy"
-
-msgctxt "Is the product suitable for consumption by the general public?"
-msgid "Yes"
-msgstr "Ydy"
-
-msgctxt "Is the product suitable for consumption by the general public?"
-msgid "No"
-msgstr "Nac ydy"
-
-msgctxt "Is the product suitable for people with allergies or intolerances?"
-msgid "Yes"
-msgstr "Ydy"
-
-msgctxt "Is the product suitable for people with allergies or intolerances?"
-msgid "No"
-msgstr "Nac ydy"
-
-msgctxt "Is the product suitable for pregnant ladies?"
-msgid "Yes"
-msgstr "Ydy"
-
-msgctxt "Is the product suitable for pregnant ladies?"
-msgid "No"
-msgstr "Nac ydy"
-
-msgctxt "Is the product suitable for the elderly?"
-msgid "Yes"
-msgstr "Ydy"
-
-msgctxt "Is the product suitable for the elderly?"
-msgid "No"
-msgstr "Nac ydy"
-
-msgctxt "Is the product suitable for the immunosuppressed / immunocompromised?"
-msgid "Yes"
-msgstr "Ydy"
-
-msgctxt "Is the product suitable for the immunosuppressed / immunocompromised?"
-msgid "No"
-msgstr "Nac ydy"
-
-msgctxt "Is the product suitable for the young?"
-msgid "Yes"
-msgstr "Ydy"
-
-msgctxt "Is the product suitable for the young?"
-msgid "No"
-msgstr "Nac ydy"
-
-msgctxt "Is there a target value?"
-msgid "Yes"
-msgstr "Oes"
-
-msgctxt "Is there a target value?"
-msgid "No"
-msgstr "Nac oes"
-
-msgctxt ""
-"Is this the same person who will formally sign off the whole HACCP "
-"plan?"
-msgid "Yes"
-msgstr "Bydd"
-
-msgctxt ""
-"Is this the same person who will formally sign off the whole HACCP "
-"plan?"
-msgid "No"
-msgstr "Na fydd"
-
-#: /cy/tool/study/8770/pdf
-msgctxt "is/is not"
-msgid "is not"
-msgstr "Nid yw'r"
-
-#: /cy/tool/study/8772/pdf
-msgctxt "is/is not"
-msgid "is"
-msgstr "Mae'r"
-
-msgctxt "Will the monitoring records be checked and signed off by anyone?"
-msgid "Yes"
-msgstr "Byddant"
-
-msgctxt "Will the monitoring records be checked and signed off by anyone?"
-msgid "No"
-msgstr "Na fyddant"
+#: /cy/help/21?_format=drupal_dialog
+msgid "Principles"
+msgstr "Egwyddor"
 
