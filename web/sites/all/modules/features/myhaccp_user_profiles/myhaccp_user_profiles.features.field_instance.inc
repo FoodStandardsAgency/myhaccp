@@ -10,7 +10,7 @@
 function myhaccp_user_profiles_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'profile2-main-field_business_name'
+  // Exported field_instance: 'profile2-main-field_business_name'.
   $field_instances['profile2-main-field_business_name'] = array(
     'bundle' => 'main',
     'default_value' => NULL,
@@ -44,7 +44,7 @@ function myhaccp_user_profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-main-field_business_other'
+  // Exported field_instance: 'profile2-main-field_business_other'.
   $field_instances['profile2-main-field_business_other'] = array(
     'bundle' => 'main',
     'default_value' => NULL,
@@ -80,7 +80,7 @@ function myhaccp_user_profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-main-field_business_type'
+  // Exported field_instance: 'profile2-main-field_business_type'.
   $field_instances['profile2-main-field_business_type'] = array(
     'bundle' => 'main',
     'default_value' => NULL,
@@ -113,7 +113,7 @@ function myhaccp_user_profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-main-field_contact_consent'
+  // Exported field_instance: 'profile2-main-field_contact_consent'.
   $field_instances['profile2-main-field_contact_consent'] = array(
     'bundle' => 'main',
     'default_value' => array(
@@ -151,7 +151,7 @@ function myhaccp_user_profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-main-field_country'
+  // Exported field_instance: 'profile2-main-field_country'.
   $field_instances['profile2-main-field_country'] = array(
     'bundle' => 'main',
     'default_value' => NULL,
@@ -160,9 +160,9 @@ function myhaccp_user_profiles_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'list',
+        'module' => 'i18n_field',
         'settings' => array(),
-        'type' => 'list_default',
+        'type' => 'i18n_list_default',
         'weight' => 0,
       ),
     ),
@@ -184,7 +184,7 @@ function myhaccp_user_profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-main-field_postcode'
+  // Exported field_instance: 'profile2-main-field_postcode'.
   $field_instances['profile2-main-field_postcode'] = array(
     'bundle' => 'main',
     'default_value' => NULL,
@@ -225,7 +225,7 @@ function myhaccp_user_profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-main-field_size'
+  // Exported field_instance: 'profile2-main-field_size'.
   $field_instances['profile2-main-field_size'] = array(
     'bundle' => 'main',
     'default_value' => NULL,
@@ -258,7 +258,7 @@ function myhaccp_user_profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-main-field_terms_consent'
+  // Exported field_instance: 'profile2-main-field_terms_consent'.
   $field_instances['profile2-main-field_terms_consent'] = array(
     'bundle' => 'main',
     'default_value' => array(

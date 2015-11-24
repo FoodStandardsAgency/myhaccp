@@ -10,7 +10,7 @@
 function myhaccp_user_profiles_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_business_name'
+  // Exported field_base: 'field_business_name'.
   $field_bases['field_business_name'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -32,7 +32,7 @@ function myhaccp_user_profiles_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_business_other'
+  // Exported field_base: 'field_business_other'.
   $field_bases['field_business_other'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -55,7 +55,7 @@ function myhaccp_user_profiles_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_business_type'
+  // Exported field_base: 'field_business_type'.
   $field_bases['field_business_type'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -91,7 +91,7 @@ function myhaccp_user_profiles_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_contact_consent'
+  // Exported field_base: 'field_contact_consent'.
   $field_bases['field_contact_consent'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -118,7 +118,7 @@ function myhaccp_user_profiles_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_country'
+  // Exported field_base: 'field_country'.
   $field_bases['field_country'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -145,7 +145,7 @@ function myhaccp_user_profiles_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_postcode'
+  // Exported field_base: 'field_postcode'.
   $field_bases['field_postcode'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -168,7 +168,7 @@ function myhaccp_user_profiles_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_size'
+  // Exported field_base: 'field_size'.
   $field_bases['field_size'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -200,7 +200,7 @@ function myhaccp_user_profiles_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_terms_consent'
+  // Exported field_base: 'field_terms_consent'.
   $field_bases['field_terms_consent'] = array(
     'active' => 1,
     'cardinality' => 1,
