@@ -616,7 +616,7 @@ function myhaccp_admin_views_views_default_views() {
   $handler = $view->new_display('page', 'Page', 'page');
   $handler->display->display_options['path'] = 'admin/reports/user-study-status';
   $handler->display->display_options['menu']['type'] = 'normal';
-  $handler->display->display_options['menu']['title'] = 'Completed studies';
+  $handler->display->display_options['menu']['title'] = 'MyHACCP study status';
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['name'] = 'management';
   $handler->display->display_options['menu']['context'] = 0;
