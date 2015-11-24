@@ -1,0 +1,24 @@
+<?php
+/**
+ * @file
+ * Webform related code.
+ */
+
+/* Implements hook_form_alter(). */
+function myhaccp_webform_form_alter(&$form, &$form_state, $form_id) {
+  
+  // We only want to act on specific forms.
+  // webform_client_form_49 = /contact-us
+  // webform_client_form_75 = /feedback
+  if (in_array($form_id, array('webform_client_form_49', 'webform_client_form_75'))) {
+
+    global $language ;
+    $lang_name = $language->language;
+    $form['submitted']['language']['#default_value'] = $lang_name;
+    $form['submitted']['language']['#value'] = $lang_name;
+    // Set #type to hidden.
+    $form['submitted']['language']['#type'] = 'hidden';
+    // Unset title to avoid having label displayed.
+    $form['submitted']['language']['#title'] = '';
+  }
+}
