@@ -398,7 +398,7 @@ function myhaccp_admin_views_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Completed study status';
+  $handler->display->display_options['title'] = 'MyHACCP study status';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'role';
   $handler->display->display_options['access']['role'] = array(
@@ -640,7 +640,7 @@ function myhaccp_admin_views_views_default_views() {
   $handler->display->display_options['segment_size'] = '100';
   $translatables['user_study_status'] = array(
     t('Master'),
-    t('Completed study status'),
+    t('MyHACCP study status'),
     t('more'),
     t('Apply'),
     t('Reset'),
