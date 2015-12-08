@@ -181,6 +181,12 @@ function dialog_library_alter(&$libraries, $module) {
       $libraries['ui']['dependencies'][] = array('dialog', 'seven.jquery.ui');
     }
 
+    // Remove the default dialog styling.
+    if ($module == 'system' && isset($libraries['ui.dialog'])) {
+      $path = 'misc/ui/jquery.ui.dialog.css';
+      unset($libraries['ui.dialog']['css'][$path]);
+    }
+
     // Replace the default dialog theme CSS with custom CSS for seven.theme.
     if ($module == 'dialog' && isset($libraries['drupal.dialog'])) {
       $path = drupal_get_path('module', 'dialog') . '/js/dialog/dialog.theme.css';
@@ -202,7 +208,7 @@ function dialog_library_alter(&$libraries, $module) {
  * The normalized type is a short, lowercase version of the format, such as
  * 'html', 'json' or 'atom'.
  *
- * @return
+ * @return string|bool
  *   The normalized type of a given request as a string or FALSE if a format
  *   could not be detected.
  */
