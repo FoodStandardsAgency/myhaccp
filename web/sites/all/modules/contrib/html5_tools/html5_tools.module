@@ -84,7 +84,9 @@ function html5_tools_field_widget_info() {
  * Implements hook_field_widget_form().
  */
 function html5_tools_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
-  $value = isset($items[$delta]['value']) ? $items[$delta]['value'] : '';
+  // Email field type uses 'email' instead of 'value'.
+  $target = ($field['type'] == 'email') ? 'email' : 'value';
+  $value = isset($items[$delta][$target]) ? $items[$delta][$target] : '';
 
   switch ($instance['widget']['type']) {
     case 'numberfield':
@@ -107,14 +109,16 @@ function html5_tools_field_widget_form(&$form, &$form_state, $field, $instance, 
       break;
   }
 
-  return array('value' => $element);
+  return array($target => $element);
 }
 
 /**
  * Implements hook_field_widget_error().
  */
 function html5_tools_field_widget_error($element, $error, $form, &$form_state) {
-  form_error($element['value'], $error['message']);
+  // Email field type uses 'email' instead of 'value'.
+  $target = isset($element['email']) ? 'email' : 'value';
+  form_error($element[$target], $error['message']);
 }
 
 /**
@@ -122,9 +126,10 @@ function html5_tools_field_widget_error($element, $error, $form, &$form_state) {
  */
 function html5_tools_preprocess_html_tag(&$variables) {
   // Cleanup markup by removing obsolete attributes.
-  if (variable_get('html5_tools_override_style_tags', 1) && ($variables['element']['#tag'] == 'style' || $variables['element']['#tag'] == 'link')) {
+  if (variable_get('html5_tools_override_style_tags', 1) && ($variables['element']['#tag'] == 'style' || ($variables['element']['#tag'] == 'link' && $variables['element']['#attributes']['rel'] == 'stylesheet'))) {
     unset($variables['element']['#attributes']['type']);
   }
+
   if (variable_get('html5_tools_override_script_tags', 1) && $variables['element']['#tag'] == 'script') {
     unset($variables['element']['#attributes']['type']);
   }
@@ -186,7 +191,7 @@ function html5_tools_preprocess_comment(&$variables) {
 function html5_tools_theme($existing, $type, $theme, $path) {
   return array(
     'html5_tools_time' => array(
-      'variables' => array('date' => NULL, 'isodate' => NULL, 'pubdate' => TRUE),
+      'variables' => array('date' => NULL, 'isodate' => NULL),
     ),
   );
 }
@@ -237,15 +242,10 @@ function html5_tools_process_html(&$variables) {
  *   An associative array containing:
  *   - date: Human readable date/time.
  *   - isodate: ISO 8601 formatted date.
- *   - pubdate: (boolean) TRUE if 'isodate' is the publish date for this node
- *     and FALSE otherwise. Defaults to TRUE.
  *
  * @ingroup themeable
  */
 function theme_html5_tools_time($variables) {
-  if ($variables['pubdate']) {
-    $attributes['pubdate'] = 'pubdate';
-  }
   $attributes['datetime'] = $variables['isodate'];
 
   return '<time' . drupal_attributes($attributes) . '>' . $variables['date'] . '</time>';
@@ -427,7 +427,7 @@ function _urlwidget_html5_tools_field_widget_forms(&$form, &$form_state, $field,
 }
 
 /**
- * Custom processing for the URL widget.
+ * Custom processing for the Email widget.
  */
 function _emailwidget_html5_tools_field_widget_forms(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, &$element, $value) {
   $element += array(
