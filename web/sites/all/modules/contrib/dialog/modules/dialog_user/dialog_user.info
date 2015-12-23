@@ -1,13 +1,14 @@
 name = Dialog User
-description = Provides dialog integration to the user module.
+description = Moves various user actions into interactive overlays.
+package = Dialog
 core = 7.x
-package = User interface
-files[] = dialog_user.module
-dependencies[] = dialog
 
-; Information added by drupal.org packaging script on 2013-09-30
-version = "7.x-1.x-dev"
+dependencies[] = dialog
+dependencies[] = user
+
+; Information added by Drupal.org packaging script on 2015-11-16
+version = "7.x-2.0-alpha7"
 core = "7.x"
 project = "dialog"
-datestamp = "1380569460"
+datestamp = "1447633440"
 

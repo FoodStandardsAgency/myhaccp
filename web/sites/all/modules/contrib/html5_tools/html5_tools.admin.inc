@@ -78,8 +78,8 @@ function html5_tools_admin_settings() {
     '#type' => 'checkbox',
     '#default_value' => variable_get('html5_tools_add_chrome_frame_header', 1),
     '#title' => t('Add Google Chrome Frame headers'),
-    '#description' => t('Adds the X-UA-Compatible: IE=Edge,chrome=1 headers for IE browsers. This will not prompt the user to install !gcf, it\'ll just use it if available.', array(
-      '!gcf' => l('Google Chrome Frame', 'http://code.google.com/chrome/chromeframe/'),
+    '#description' => t('Adds the X-UA-Compatible: IE=Edge,chrome=1 headers for IE browsers. This will not prompt the user to install <a href="@gcf">Google Chrome Frame</a>, it will just use it if available.', array(
+      '@gcf' => url('http://code.google.com/chrome/chromeframe/'),
     )),
   );
 
@@ -92,15 +92,15 @@ function html5_tools_admin_settings() {
     '#type' => 'checkbox',
     '#default_value' => variable_get('html5_tools_override_submitted', 1),
     '#title' => t('Alter publication date markup'),
-    '#description' => t('Implements the new &lt;time&gt; element and it\'s <em>pubdate</em> attribute, altering content and comment publication dates with the new HTML5 format by overriding the <em>$submitted</em> variable.'),
+    '#description' => t('Implements the new &lt;time&gt; element, altering content and comment publication dates with the new HTML5 format by overriding the <em>$submitted</em> variable.'),
   );
-  
+
   if (module_exists('views')) {
     $form['html5_tools_overrides']['html5_tools_override_views_field_rewrite_elements'] = array(
       '#type' => 'checkbox',
       '#default_value' => variable_get('html5_tools_override_views_field_rewrite_elements', 0),
       '#title' => t('Make new Elements available in the Views UI'),
-      '#description' => t('This will allow you to use new elements such as <em>&lt;article&gt;</em>, <em>&lt;aside&gt;</em>, etc from views when choosing the custom HTML field'),
+      '#description' => t('This will allow you to use new elements such as <em>&lt;article&gt;</em>, <em>&lt;aside&gt;</em>, etc from views when choosing the custom HTML field.'),
     );
   }
   $form['html5_tools_help_text'] = array(
@@ -131,12 +131,15 @@ function html5_tools_admin_settings_submit($form, &$form_state) {
       'p' => t('P'),
       'strong' => t('STRONG'),
       'em' => t('EM'),
-      'article' => t('Article'),
-      'aside' => t('Aside'),
-      'footer' => t('Footer'),
-      'header' => t('Header'),
-      'menu' => t('Menu'),
-      'nav' => t('Nav'),
+      'article' => t('ARTICLE'),
+      'aside' => t('ASIDE'),
+      'figure' => t('FIGURE'),
+      'figcaption' => t('FIGCAPTION'),
+      'footer' => t('FOOTER'),
+      'header' => t('HEADER'),
+      'menu' => t('MENU'),
+      'nav' => t('NAV'),
+      'section' => t('SECTION'),
     ));
   }
   else {

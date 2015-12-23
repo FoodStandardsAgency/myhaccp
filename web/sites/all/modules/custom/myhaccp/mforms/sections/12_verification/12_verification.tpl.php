@@ -4,7 +4,7 @@
  * Stage output template.
  */
 ?>
-<h3>Validation study</h3>
+<h3><?php print t('Validation study'); ?></h3>
 
 <?php if(!empty($p_6_1)): ?>
   <p><?php print $p_6_1; ?></p>

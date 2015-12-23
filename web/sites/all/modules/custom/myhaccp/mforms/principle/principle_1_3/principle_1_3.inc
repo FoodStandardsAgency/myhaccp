@@ -1,7 +1,12 @@
 <?php
 
 /**
- * Principle 1, Question 3.
+ * @file
+ * Principle 1 question 3 form and validation handler.
+ */
+
+/**
+ * Principle 1 question 3.
  */
 function principle_1_3(&$form_state, &$next_step) {
   // Define following step callback. If none set, that implies it is
@@ -16,9 +21,9 @@ function principle_1_3(&$form_state, &$next_step) {
   $values = myhaccp_prepare_values($data, $form_state);
 
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   drupal_set_title($stage->title, PASS_THROUGH);
@@ -30,7 +35,7 @@ function principle_1_3(&$form_state, &$next_step) {
 
   if ($hazards->countHazards() == 0) {
     // There were no hazards.
-    drupal_set_message('You must add at least a step number and step name in step 1.1 as well as at least a hazard for the step. Please return to 1.1', 'error', FALSE);
+    drupal_set_message(t('You must add at least a step number and step name in step 1.1 as well as at least a hazard for the step. Please return to 1.1'), 'error', FALSE);
     return $form;
   }
 
@@ -40,7 +45,7 @@ function principle_1_3(&$form_state, &$next_step) {
   // filled out correctly in the previous screen.
   if ($instance_count == 0) {
     // There were no hazards over the threshold.
-    drupal_set_message('You have no significant hazards so you cannot continue', 'error', FALSE);
+    drupal_set_message(t('You have no significant hazards so you cannot continue'), 'error', FALSE);
     return $form;
   }
 
@@ -112,9 +117,9 @@ function principle_1_3(&$form_state, &$next_step) {
  */
 function principle_1_3_validate($form, &$form_state) {
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   $validator = $stage->getValidator();
@@ -137,4 +142,3 @@ function principle_1_3_validate($form, &$form_state) {
   $validator->setErrorMessages();
   $form_state = $validator->getFormState();
 }
-

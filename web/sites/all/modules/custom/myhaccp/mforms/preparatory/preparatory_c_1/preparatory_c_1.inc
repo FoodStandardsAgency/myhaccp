@@ -1,6 +1,15 @@
 <?php
 
+/**
+ * @file
+ * Preparatory C 1 stage form and validation handler.
+ */
+
+/**
+ * Preparatory C 1.
+ */
 function preparatory_c_1(&$form_state, &$next_step) {
+  // @ignore comment_comment_eg:function
 
   // Define following step callback. If none set, that implies it is
   // the last step.
@@ -15,9 +24,9 @@ function preparatory_c_1(&$form_state, &$next_step) {
   $values = myhaccp_prepare_values($data, $form_state);
 
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   drupal_set_title($stage->title, PASS_THROUGH);
@@ -91,10 +100,9 @@ Modular HACCP Plan - Typically several separate HACCP studies e.g. one on raw ma
     )),
   );
 
-
   $form['preparatory_c_1']['c_3']['start'] = array(
     '#type' => 'textfield',
-    '#title' => t('It will start at '),
+    '#title' => t('It will start at') . ' ',
     '#default_value' => array_get($values, 'preparatory_c_1.c_3.start', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
@@ -104,7 +112,7 @@ Modular HACCP Plan - Typically several separate HACCP studies e.g. one on raw ma
 
   $form['preparatory_c_1']['c_3']['end'] = array(
     '#type' => 'textfield',
-    '#title' => t('Through to '),
+    '#title' => t('Through to') . ' ',
     '#default_value' => array_get($values, 'preparatory_c_1.c_3.end', FALSE),
     '#attributes' => array(
       'data-parsley-required' => 'true',
@@ -122,9 +130,9 @@ Modular HACCP Plan - Typically several separate HACCP studies e.g. one on raw ma
  */
 function preparatory_c_1_validate($form, &$form_state) {
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   $validator = $stage->getValidator();

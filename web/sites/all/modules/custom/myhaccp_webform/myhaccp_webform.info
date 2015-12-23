@@ -1,0 +1,7 @@
+name = MyHACCP webform edits
+description = Manages multiple email addresses for webforms
+package = MyHACCP
+core = 7.x
+version = 7.x-1.x
+
+dependencies[] = webform

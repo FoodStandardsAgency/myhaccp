@@ -2,13 +2,13 @@
 
 /**
  * @file
- * Theme function for this stage.
+ * Theme function for stage 1.
  *
  * Prepares the passed form_state data and processes it for output.
  */
 
 /**
- * Implements hook_preprocess_preparatory_b().
+ * Preprocess function for 01_management.
  *
  * Prepare the form_state data for presentation in the template file.
  *
@@ -23,7 +23,7 @@ function myhaccp_preprocess_01_management(&$variables) {
   // Iterate over the checkboxes fetching their labels.
   $names = myhaccp_prepare_checkboxes_output('preparatory_b', 'b_1', $preparatory_b);
 
-  // b_1 Logic: IF 'I am the management and can confirm that I am committed.'  is selected:
+  // b_1 Logic: IF 'I am the management and can confirm that I am committed.' is selected.
   if (in_array('N/A - I am the management and can confirm that I am committed.', $names)) {
     $variables['b_1_title'] = t('I am the management and can confirm that I am committed to food safety management based on HACCP.');
     // Don't show any of the checkboxes output.

@@ -1,0 +1,103 @@
+@media print {
+  body {
+    background-color: transparent;
+    font-family: 'cartogothicstd';
+  }
+
+  h1 {
+    border-bottom: 5px solid #DDDDDD;
+  }
+
+  h2 {
+    color: #555;
+  }
+
+  .business-name {
+    font-weight: bold;
+  }
+
+  .business-name span.business-name--title {
+    color: $text;
+    padding-left: 1em;
+  }
+
+  span.description {
+    font-style: italic;
+    font-size: 0.8em;
+  }
+
+  $border_colour: #DDDDDD;
+  table {
+    width: 100%;
+    border-left: 1px solid $border_colour;
+    border-bottom: 1px solid $border_colour;
+    vertical-align: top;
+    thead th {
+      background: #EEE;
+    }
+    tr {
+      vertical-align: top;
+    }
+    td, th {
+      padding: 10px;
+      text-align: left;
+      border-top: 1px solid $border_colour;
+      border-right: 1px solid $border_colour;
+      vertical-align: top;
+    }
+    td:first-child {
+      border-left: 1px solid $border_colour;
+    }
+    thead:first-child tr:first-child th,
+    thead:first-child tr:first-child td {
+        border-top: 0 none;
+    }
+  }
+  div.page-break {
+    page-break-after: always;
+  }
+
+  h1.study-name {
+    padding-top: 8em;
+    border-bottom: 0;
+    color: $text;
+    margin: 0 2em 2em 2em;
+  }
+
+  p.business-name {
+    font-size: 1.7em;
+    color: $text;
+    margin-left: 2.35em;
+  }
+
+  footer.front-page {
+    margin: 0em 4.1em 0 4.1em;
+    padding-bottom: 7em;
+    .date {
+      padding-top: 1em;
+      font-size: 1.3em;
+    }
+  }
+
+  .haccp-plan {
+    table tr {
+      page-break-inside: auto; // set this to 'auto' to allow tables to break across pages.
+    }
+  }
+  .flow-diagram-container {
+    text-align: center;
+    margin-top: 40px;
+    img {
+      max-height: 500px;
+    }
+  }
+
+  .section-appendix-a {
+  }
+
+  footer.pdf-footer {
+    color: $text-lighter;
+    text-align: right;
+    font-size: 0.8em;
+  }
+}

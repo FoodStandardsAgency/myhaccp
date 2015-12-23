@@ -6,7 +6,7 @@
 ?>
 
 <?php if(!empty($e_1)): ?>
-  <h4>Ingredients</h4>
+  <h4><?php print t('Ingredients') ?></h4>
   <p><?php print $e_1; ?></p>
 <?php endif; ?>
 
@@ -40,10 +40,10 @@
   <p><?php print $e_7; ?></p>
 <?php endif; ?>
 
-  <h2>Intended Use</h2>
+  <h2><?php print t('Intended Use') ?></h2>
 
 <?php if (!empty($f_1)) : ?>
-  <p><strong>Name of the product:</strong> <?php print $f_1; ?></p>
+  <p><strong><?php print t('Name of the product') ?>:</strong> <?php print $f_1; ?></p>
 <?php endif; ?>
 
 <?php if (!empty($f_2)): ?>

@@ -1,17 +1,49 @@
 <?php
 
+/**
+ * @file
+ * Handles phases of the form.
+ */
+
+/**
+ * Interface PhaseInterface.
+ */
 interface PhaseInterface {
 
+  /**
+   * Gets this phase's machine name.
+   *
+   * @return string
+   *   The machine name of the phase.
+   */
   public function getName();
 
+  /**
+   * Sets the machine name of the phase.
+   *
+   * @param string $name
+   *   The machine name of the phase.
+   */
   public function setName($name);
 
+  /**
+   * Gets the study this phase belongs to.
+   */
   public function getStudy();
 
+  /**
+   * Sets the study this phase belongs to.
+   *
+   * @param Study $study
+   *   An instance of the Study object.
+   */
   public function setStudy(Study $study);
 
 }
 
+/**
+ * Class Phase.
+ */
 class Phase implements PhaseInterface {
 
   /**

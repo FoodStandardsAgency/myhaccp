@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * @file
+ * Preparatory Review stage.
+ */
+
+/**
+ * Preparatory Review.
+ */
 function preparatory_review(&$form_state, &$next_step) {
 
   // Define following step callback. If none set, that implies it is
@@ -7,9 +15,9 @@ function preparatory_review(&$form_state, &$next_step) {
   $next_step = 'principle_1_question_1';
 
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   $stage = $study->getCurrentStage();
 
   // Set the page title.
@@ -57,12 +65,12 @@ function preparatory_review(&$form_state, &$next_step) {
   $message_output .= '</div>';
 
   // Get the two blocks used for the text.
-  $intro = block_load('block', 2);
+  $intro = block_load('bean', 'preparatory_review_intro');
   $render = _block_render_blocks(array($intro));
   $render_array = _block_get_renderable_array($render);
   $intro_output = drupal_render($render_array);
 
-  $main = block_load('block', 3);
+  $main = block_load('bean', 'preparatory_review_main');
   $render = _block_render_blocks(array($main));
   $render_array = _block_get_renderable_array($render);
   $main_output = drupal_render($render_array);
@@ -76,7 +84,6 @@ function preparatory_review(&$form_state, &$next_step) {
   $form['preparatory_review']['validation']['messages'] = array(
     '#markup' => $intro_output . $message_output,
   );
-
 
   $form['preparatory_review']['node'] = array(
     '#markup' => $main_output,

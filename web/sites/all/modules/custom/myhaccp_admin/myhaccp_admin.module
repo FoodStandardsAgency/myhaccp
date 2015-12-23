@@ -2,8 +2,11 @@
 
 /**
  * @file
+ * Custom reports and other administration functionality.
+ *
  * Small adjustments and changes to admin theme elements that can't be
- * changes in the main theme.
+ * changed in the main theme. Also contains other admin related code like
+ * custom reports.
  */
 
 function myhaccp_admin_preprocess_page() {
@@ -20,9 +23,11 @@ function myhaccp_admin_preprocess_page() {
  * Implements hook_menu()
  */
 function myhaccp_admin_menu() {
-  $items['admin/business_size_by_type'] = array(
-      'page callback' => 'myhaccp_admin_business_size_page',
-      'access arguments' => array('access site reports'),
+  $items['admin/reports/business_size_by_type'] = array(
+    'title' => 'Business size by type',
+    'page callback' => 'myhaccp_admin_business_size_page',
+    'access arguments' => array('access site reports'),
+    'type' => MENU_NORMAL_ITEM,
   );
   return $items;
 }
@@ -95,18 +100,18 @@ function myhaccp_admin_business_size_page() {
  */
 function myhaccp_admin_get_business_types () {
 
-    $business_types = array(
-      'Meat processing or meat products',
-      'Dairy products or cheese production',
-      'Liquid milk and cream production',
-      'Fish and shellfish processing or products',
-      'Fruit and vegetables processing or preserving',
-      'Confectionery products',
-      'Prepared meals',
-      'Sauces or condiments',
-      'Drinks manufacture or water bottling',
-      'Local authority',
-      'other',
+  $business_types = array(
+    'Meat processing or meat products',
+    'Dairy products or cheese production',
+    'Liquid milk and cream production',
+    'Fish and shellfish processing or products',
+    'Fruit and vegetables processing or preserving',
+    'Confectionery products',
+    'Prepared meals',
+    'Sauces or condiments',
+    'Drinks manufacture or water bottling',
+    'Local authority',
+    'other',
   );
 
   return $business_types;
@@ -117,14 +122,14 @@ function myhaccp_admin_get_business_types () {
  */
 function myhaccp_admin_get_business_sizes () {
 
-    $business_sizes = array(
-      'less than 5',
-      '5 - 10',
-      '11 - 20',
-      '21 - 30',
-      '31 - 40',
-      '41 - 50',
-      '50+',
+  $business_sizes = array(
+    'less than 5',
+    '5 - 10',
+    '11 - 20',
+    '21 - 30',
+    '31 - 40',
+    '41 - 50',
+    '50+',
   );
 
   return $business_sizes;
@@ -152,4 +157,143 @@ function myhaccp_admin_get_sizes_per_business_type($business_type) {
 
   return $rows;
 
+}
+
+/**
+ * Implements hook_form_alter().
+ *
+ * Alter the consent exposed filter to display better options.
+ */
+function myhaccp_admin_form_views_exposed_form_alter(&$form, $form_state) {
+  if (isset($form['field_contact_consent_value'])) {
+    $form['field_contact_consent_value']['#options']['All'] = '- Either -';
+    $form['field_contact_consent_value']['#options'][0] = 'No';
+    $form['field_contact_consent_value']['#options'][1] = 'Yes';
+  }
+}
+
+/**
+ * Implements hook_system_info_alter()
+ */
+function myhaccp_admin_system_info_alter(&$info, $file, $type) {
+  // Remove the date_migration_example module from the features page as it
+  // displays a unmet dependency "migrate (Missing)" and confuses the features
+  // page.
+  if ($type == 'module' && $file->name == 'date_migrate_example') {
+    unset($info['features']);
+  }
+}
+
+/**
+ * Implements hook_init()
+ *
+ * Let realms be overriden by query string parameters on
+ * the admin/config/people/accounts page.
+ */
+function myhaccp_admin_init() {
+  if (arg(0) == 'admin' && (arg(2) == 'people' || arg(3) == 'accounts') && ($params = variable_realm_params()) && user_access('administer users')) {
+    foreach ($params as $realm_name => $realm_key) {
+      variable_realm_switch($realm_name, $realm_key, FALSE);
+    }
+    variable_realm_rebuild();
+  }
+}
+
+/**
+ * Implements hook_views_data().
+ */
+function myhaccp_admin_views_data() {
+  $data['mforms_storage']['table']['group'] = t('Studies');
+
+  $data['mforms_storage']['table']['base'] = array(
+    'field' => 'uid',
+    'title' => t('User ID'),
+    'help' => t('mforms_storage table contains studies data and can be related to users.'),
+    'weight' => -10,
+  );
+
+  $data['mforms_storage']['table']['join'] = array(
+    'users' => array(
+      'left_field' => 'uid',
+      'field' => 'uid',
+    ),
+  );
+
+  $data['mforms_storage']['uid'] = array(
+    'title' => t('User related to a study'),
+    'help' => t('The user that created a study.'),
+    'relationship' => array(
+      'base' => 'users',
+      'base field' => 'uid',
+      'handler' => 'views_handler_relationship',
+      'label' => t('Study owner'),
+    ),
+  );
+
+  $data['mforms_storage']['status'] = array(
+    'title' => t('Study status'),
+    'help' => t('A boolean indicating whether a study has been completed.'),
+    'field' => array(
+      'handler' => 'views_handler_field_boolean',
+      'click sortable' => TRUE,
+    ),
+    'filter' => array(
+      'handler' => 'views_handler_filter_boolean_operator',
+      'label' => t('Completed study'),
+      'type' => 'yes-no',
+      'use equal' => TRUE,
+    ),
+    'sort' => array(
+      'handler' => 'views_handler_sort',
+    ),
+  );
+
+  $data['mforms_storage']['iid'] = array(
+    'title' => t('Study ID'),
+    'help' => t("The unique study identifier, also used in the study's url"),
+    'field' => array(
+      'handler' => 'views_handler_field_numeric',
+      'click sortable' => TRUE,
+    ),
+    'filter' => array(
+      'handler' => 'views_handler_filter_numeric',
+    ),
+    'sort' => array(
+      'handler' => 'views_handler_sort',
+    ),
+  );
+
+  $data['mforms_storage']['created'] = array(
+    'title' => t('Study date created'),
+    'help' => t('The date the study was created.'),
+    'field' => array(
+      'handler' => 'views_handler_field_date',
+      'click sortable' => TRUE,
+    ),
+    'filter' => array(
+      'handler' => module_exists('date_views') ? 'date_views_filter_handler_simple' : 'views_handler_filter_date',
+      'label' => t('Study date created'),
+    ),
+    'sort' => array(
+      'handler' => 'views_handler_sort_date',
+    ),
+  );
+
+  $data['mforms_storage']['updated'] = array(
+    'title' => t('Study date updated'),
+    'help' => t('The date the study was last updated.'),
+    'field' => array(
+      'handler' => 'views_handler_field_date',
+      'click sortable' => TRUE,
+    ),
+    'filter' => array(
+      'handler' => module_exists('date_views') ? 'date_views_filter_handler_simple' : 'views_handler_filter_date',
+      'label' => t('Study date created'),
+    ),
+    'sort' => array(
+      'handler' => 'views_handler_sort_date',
+    ),
+  );
+
+  return $data;
 }

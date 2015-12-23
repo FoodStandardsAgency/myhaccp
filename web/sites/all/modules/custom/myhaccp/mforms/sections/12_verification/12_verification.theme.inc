@@ -2,13 +2,13 @@
 
 /**
  * @file
- * Theme function for this stage.
+ * Theme function for stage 12.
  *
  * Prepares the passed form_state data and processes it for output.
  */
 
 /**
- * Implements hook_preprocess_principle_6().
+ * Preprocess function for principle_12_verification.
  *
  * Prepare the form_state data for presentation in the template file.
  *
@@ -30,16 +30,16 @@ function myhaccp_preprocess_12_verification(&$variables) {
   // 3. Is this the same person who will formally sign off the whole HACCP plan (which may contain several HACCP studies)?
   // 3a. Who will formally sign off the HACCP plan?
   if (!empty($principle_6['6_3']) && $principle_6['6_3'] == 'no') {
-    $variables['p_6_2'] = '<p><strong>' . nl2br($principle_6['6_2']) . '</strong>' . t(' is responsible for ensuring the contents of the HACCP plan are validated.') . '</p>';
-    $variables['p_6_3'] = '<p><strong>' . $principle_6['6_3a'] . '</strong>' . t(' will formally sign off the HACCP plan.') . '</p>';
+    $variables['p_6_2'] = '<p><strong>' . nl2br($principle_6['6_2']) . '</strong> ' . t('is responsible for ensuring the contents of the HACCP plan are validated.') . '</p>';
+    $variables['p_6_3'] = '<p><strong>' . $principle_6['6_3a'] . '</strong> ' . t('will formally sign off the HACCP plan.') . '</p>';
   }
   elseif (!empty($principle_6['6_3']) && $principle_6['6_3'] == 'yes') {
-    $variables['p_6_2'] = '<p><strong>' . nl2br($principle_6['6_2']) . '</strong>' . t(' is responsible for ensuring the contents of the HACCP plan are validated and will  also formally sign off the HACCP plan.') . '</p>';
+    $variables['p_6_2'] = '<p><strong>' . nl2br($principle_6['6_2']) . '</strong> ' . t('is responsible for ensuring the contents of the HACCP plan are validated and will  also formally sign off the HACCP plan.') . '</p>';
   }
 
   $variables['p_6_4_title'] = t('The following verification activities are undertaken:');
 
-  // 4. Verification activities
+  // 4. Verification activities.
   $content = '';
 
   // Internal audits.
@@ -136,7 +136,7 @@ function myhaccp_preprocess_12_verification(&$variables) {
 
   // 10. List any other mechanisms which are in place to automatically 'trigger' a review.
   if (!empty($principle_6['6_10'])) {
-    $variables['p_6_10'] = '<p><strong>Other mechanisms that will automatically trigger a review:</strong> ' . $principle_6['6_10'] . '</p>';
+    $variables['p_6_10'] = '<p><strong>' . t('Other mechanisms that will automatically trigger a review') . ':</strong> ' . $principle_6['6_10'] . '</p>';
   }
 
   // 11. Are all records from reviews documented, brought to the attention of senior management (for companies where this is appropriate) and used to keep the HACCP plan up-to-date?

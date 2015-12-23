@@ -1,0 +1,74 @@
+<?php
+
+/**
+ * Implements hook_install().
+ */
+function myhaccp_language_configuration_install() {
+  myhaccp_language_configuration_set_default_variabes();
+  myhaccp_language_configuration_enable_menu_translation();
+}
+
+/**
+ * Set default variables to enable translation of user emails.
+ */
+function myhaccp_language_configuration_update_7001() {
+  myhaccp_language_configuration_set_default_variabes();
+
+}
+
+/**
+ * Update i18n_mode for menus.
+ */
+function myhaccp_language_configuration_update_7002() {
+  myhaccp_language_configuration_enable_menu_translation();
+}
+
+/**
+ * Callback to set default variables to enable translation of user emails.
+ */
+function myhaccp_language_configuration_set_default_variabes() {
+  variable_set('variable_module_list', array(
+    'i18n' =>
+      array (
+        0 => 'i18n_language_list',
+      ),
+    'i18n_string' =>
+      array (
+        0 => 'i18n_string_translate_langcode_en',
+        1 => 'i18n_string_allowed_formats',
+        2 => 'i18n_string_source_language',
+        3 => 'i18n_string_debug',
+      ),
+    )
+  );
+
+  variable_set('variable_realm_list_language', array(
+      0 => 'user_mail_register_admin_created_[mail_part]',
+      1 => 'user_mail_register_no_approval_required_[mail_part]',
+      2 => 'user_mail_register_pending_approval_[mail_part]',
+      3 => 'user_mail_password_reset_[mail_part]',
+      4 => 'user_mail_status_activated_[mail_part]',
+      5 => 'user_mail_status_blocked_[mail_part]',
+      6 => 'user_mail_cancel_confirm_[mail_part]',
+      7 => 'user_mail_status_canceled_[mail_part]',
+    )
+  );
+}
+
+/**
+ * Update the menus to use i18n_mode 5.
+ */
+function myhaccp_language_configuration_enable_menu_translation() {
+  $menus = array(
+    'main-menu',
+    'user-menu',
+    'menu-footer-links-external',
+    'menu-footer-links-internal',
+  );
+  foreach ($menus as $menu_name) {
+    db_update('menu_custom')
+      ->fields(array('i18n_mode' => 5))
+      ->condition('menu_name', $menu_name)
+      ->execute();
+  }
+}

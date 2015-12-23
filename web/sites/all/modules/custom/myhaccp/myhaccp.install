@@ -1,7 +1,12 @@
 <?php
 
 /**
- * Implementation of hook_schema().
+ * @file
+ * Install file and updates for MyHACCP.
+ */
+
+/**
+ * Implements hook_schema().
  */
 function myhaccp_schema() {
   $schema = array();
@@ -108,7 +113,7 @@ function myhaccp_update_7001() {
     ->fields(array(
       'link_path' => 'tool',
       'router_path' => 'tool',
-     ))
+    ))
     ->condition('link_path', 'prototype')
     ->execute();
 }
@@ -194,4 +199,788 @@ function myhaccp_update_7005() {
     ))
     ->condition('field_name', 'field_business_type')
     ->execute();
+}
+
+/**
+ * Add a business name field to the profile.
+ */
+function myhaccp_update_7006() {
+  $field = array(
+    'field_name' => 'field_business_name',
+    'type' => 'text',
+  );
+  field_create_field($field);
+
+  $instance = array(
+    'field_name' => 'field_business_name',
+    'entity_type' => 'profile2',
+    'label' => 'Business name',
+    'bundle' => 'main',
+    'required' => FALSE,
+    'settings' => array(),
+    'description' => t('Enter an optional business name. This is only used when printing your MyHACCP study on the cover sheet.'),
+    'widget' => array(
+      'type' => 'textfield',
+      'weight' => 5,
+    ),
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'type' => 'text_default',
+        'weight' => '5',
+        'settings' => array(),
+        'module' => 'text',
+      ),
+    ),
+  );
+  field_create_instance($instance);
+}
+
+/**
+ * Add the clone permission for authenticated users.
+ */
+function myhaccp_update_7007() {
+  module_enable(array('myhaccp'));
+  // The authenticated role should have the 'own' permission.
+  user_role_grant_permissions(2, array('clone own myhaccp study'));
+  // The site manager should have the 'any' permission.
+  user_role_grant_permissions(5, array('clone any myhaccp study'));
+  // The administrator should have the 'any' permission.
+  user_role_grant_permissions(3, array('clone any myhaccp study'));
+}
+
+/**
+ * Update the field label of field_business_name
+ * to read "Business name (optional)".
+ */
+function myhaccp_update_7008() {
+  // Fetch an instance info array for field_business_name.
+  $instance_info = field_info_instance('profile2', 'field_business_name', 'main');
+  // Change label in the instance definition.
+  $instance_info['label'] = 'Business name (optional)';
+  // Update the description.
+  $instance_info['description'] = "Enter a business name. This only appears on the cover sheet of your downloaded MyHACCP study.";
+  // Write the changed definition back.
+  field_update_instance($instance_info);
+}
+
+/**
+ * Create a landscape image style for PDF output images.
+ */
+function myhaccp_update_7009() {
+  $style = image_style_save(array('name' => 'pdf_flow_diagram_landscape'));
+  $effect = array(
+    'name' => 'image_scale',
+    'data' => array(
+      'width' => 0,
+      'height' => 2048,
+      'upscale' => FALSE,
+    ),
+    'isid' => $style['isid'],
+  );
+  image_effect_save($effect);
+}
+
+/**
+ * Enable the bean module.
+ */
+function myhaccp_update_7010() {
+  module_load_include('inc', 'bean', 'includes/bean.core');
+  module_enable(array('bean'));
+  cache_clear_all();
+}
+
+/**
+ * Enable the bean feature and language features.
+ */
+function myhaccp_update_7011() {
+  module_enable(array('myhaccp_language_permissions', 'myhaccp_pdf_download'));
+  features_revert_module('myhaccp_language_permissions');
+  require_once DRUPAL_ROOT . '/includes/locale.inc';
+  module_enable(array(
+    'myhaccp_language_configuration',
+    'myhaccp_user_profiles'
+  ));
+  features_revert_module('myhaccp_language_configuration');
+  features_revert_module('myhaccp_admin_views');
+  features_revert_module('myhaccp_language_configuration');
+  features_revert_module('myhaccp_user_profiles');
+  module_enable(array(
+    'myhaccp_bean_type_content'
+  ));
+  cache_clear_all();
+  features_revert_module('myhaccp_bean_type_content');
+}
+
+/**
+ * Delete the home page node and content type.
+ */
+function myhaccp_update_7012() {
+  node_delete(9);
+  node_type_delete('homepage');
+  // Delete all the homepage variables.
+  variable_del('node_preview_homepage');
+  variable_del('additional_settings__active_tab_homepage');
+  variable_del('honeypot_form_homepage_node_form');
+  variable_del('menu_options_homepage');
+  variable_del('menu_parent_homepage');
+  variable_del('node_options_homepage');
+  variable_del('node_submitted_homepage');
+  variable_del('menu_options_homepage');
+  variable_del('rh_module_homepage');
+  variable_del('rh_node_override_homepage');
+  variable_del('save_continue_homepage');
+  variable_del('simplify_nodes_homepage');
+  node_types_rebuild();
+  menu_rebuild();
+}
+
+/**
+ * Enable the home page feature.
+ */
+function myhaccp_update_7013() {
+  module_enable(array('myhaccp_home_page'));
+}
+
+/**
+ * Delete the article content type.
+ */
+function myhaccp_update_7014() {
+  node_type_delete('article');
+  // Delete all the article variables.
+  variable_del('node_preview_article');
+  variable_del('additional_settings__active_tab_article');
+  variable_del('honeypot_form_article_node_form');
+  variable_del('menu_options_article');
+  variable_del('menu_parent_article');
+  variable_del('node_options_article');
+  variable_del('node_submitted_article');
+  variable_del('menu_options_article');
+  variable_del('rh_module_article');
+  variable_del('rh_node_override_article');
+  variable_del('save_continue_article');
+  variable_del('simplify_nodes_article');
+  node_types_rebuild();
+  menu_rebuild();
+}
+
+/**
+ * Enable the resources page feature.
+ */
+function myhaccp_update_7015() {
+  module_enable(array('myhaccp_resources_page'));
+  features_revert_module('myhaccp_resources_page');
+}
+
+/**
+ * Delete the content block content type.
+ */
+function myhaccp_update_7016() {
+  node_delete(90);
+  node_delete(88);
+  node_type_delete('content_block');
+  // Delete all the content_block variables.
+  variable_del('node_preview_content_block');
+  variable_del('additional_settings__active_tab_content_block');
+  variable_del('honeypot_form_content_block_node_form');
+  variable_del('menu_options_content_block');
+  variable_del('menu_parent_content_block');
+  variable_del('node_options_content_block');
+  variable_del('node_submitted_content_block');
+  variable_del('menu_options_content_block');
+  variable_del('rh_module_content_block');
+  variable_del('rh_node_override_content_block');
+  variable_del('save_continue_content_block');
+  variable_del('simplify_nodes_content_block');
+  node_types_rebuild();
+  menu_rebuild();
+}
+
+/**
+ * Delete the resources page content type.
+ */
+function myhaccp_update_7017() {
+  node_type_delete('resources_page');
+  // Delete all the resources_page variables.
+  variable_del('node_preview_resources_page');
+  variable_del('additional_settings__active_tab_resources_page');
+  variable_del('honeypot_form_resources_page_node_form');
+  variable_del('menu_options_resources_page');
+  variable_del('menu_parent_resources_page');
+  variable_del('node_options_resources_page');
+  variable_del('node_submitted_resources_page');
+  variable_del('menu_options_resources_page');
+  variable_del('rh_module_resources_page');
+  variable_del('rh_node_override_resources_page');
+  variable_del('save_continue_resources_page');
+  variable_del('simplify_nodes_resources_page');
+  node_types_rebuild();
+  menu_rebuild();
+}
+
+/**
+ * Enable the content type features.
+ */
+function myhaccp_update_7018() {
+  module_load_include('inc', 'l10n_update', 'l10n_update.batch');
+  title_field_replacement_batch_set('node', 'page', 'title');
+  title_field_replacement_batch_set('node', 'guidance', 'title');
+  title_field_replacement_batch_set('node', 'webform', 'title');
+  title_field_replacement_batch_set('node', 'resource_download', 'title');
+  title_field_replacement_batch_set('node', 'resource_link', 'title');
+  module_enable(array(
+    'myhaccp_content_type_guidance',
+    'myhaccp_content_type_resource_download',
+    'myhaccp_content_type_resource_link',
+    'myhaccp_content_type_basic_page'
+  ));
+}
+
+/**
+ * Revert the content type features.
+ */
+function myhaccp_update_7019() {
+  features_revert_module('myhaccp_content_type_guidance');
+  features_revert_module('myhaccp_content_type_resource_download');
+  features_revert_module('myhaccp_content_type_resource_link');
+  features_revert_module('myhaccp_content_type_basic_page');
+}
+
+/**
+ * Converts the footer block into a bean.
+ */
+function myhaccp_update_7020() {
+  $bean = bean_create(array('type' => 'content'));
+  $bean->label = 'Footer: GOV.UK info';
+  $bean->title = '';
+  $bean->delta = 'footer_gov';
+  $bean->field_description = array(
+    'en' => array(
+      0 => array(
+        'value' => '<p class="copyright-message"><a href="https://www.gov.uk"><img alt="GOV.UK logo" class="gov-uk-logo" src="/sites/all/themes/custom/myhaccp/images/gov-uk.jpg"></a>&copy; Crown Copyright</p>',
+        'format' => 'full_html',
+      ),
+    ),
+  );
+  $bean->save();
+}
+
+/**
+ * Removes all blocks in favour of context module.
+ */
+function myhaccp_update_7021() {
+  // Disable all blocks.
+  db_update('block')
+    ->fields(array('status' => 0))
+    ->condition('theme', 'myhaccp')
+    ->execute();
+}
+
+/**
+ * Enable the Context feature to position all blocks again.
+ */
+function myhaccp_update_7022() {
+  module_enable(array('myhaccp_context'));
+  features_revert_module('myhaccp_context');
+}
+
+/**
+ * Enable the notices module to place an alert notice on the tool page.
+ */
+function myhaccp_update_7023() {
+  module_enable(array('myhaccp_notices'));
+  features_revert_module('myhaccp_context');
+}
+
+/**
+ * Add the css to the bean alert notice block.
+ */
+function myhaccp_update_7025() {
+  module_enable(array('block_class'));
+  $class = 'alert--myhaccp';
+  db_update('block')
+    ->fields(array('css_class' => $class))
+    ->condition('module', 'myhaccp_notices')
+    ->condition('delta', 'notice')
+    ->execute();
+}
+
+/**
+ * Convert preparatory and principle intro and review blocks into beans.
+ */
+function myhaccp_update_7026() {
+  // Prepare a list of the blocks we want to convert.
+  $blocks = array(
+    2 => array(
+      'delta' => 'preparatory_review_intro',
+      'label' => 'Preparatory stages review intro',
+    ),
+    3 => array(
+      'delta' => 'preparatory_review_main',
+      'label' => 'Preparatory stages review main',
+    ),
+    4 => array(
+      'delta' => 'principle_review_intro',
+      'label' => 'Principle stages review intro',
+    ),
+    5 => array(
+      'delta' => 'principle_review_main',
+      'label' => 'Principle stages review main',
+    ),
+  );
+  // Iterate over the blocks.
+  foreach ($blocks as $bid => $block_info) {
+    $block = block_custom_block_get($bid);
+    $content = $block['body'];
+    // Create the bean.
+    $bean = bean_create(array('type' => 'content'));
+    $bean->label = $block_info['label'];
+    $bean->title = '';
+    $bean->delta = $block_info['delta'];
+    $bean->field_description = array(
+      'en' => array(
+        0 => array(
+          'value' => $content,
+          'format' => 'full_html',
+        ),
+      ),
+    );
+    $bean->save();
+  }
+}
+
+/**
+ * Deletes unused blocks.
+ */
+function myhaccp_update_7027() {
+  $deltas = array(1, 2, 3, 4, 5, 6);
+  foreach ($deltas as $delta) {
+    db_delete('block_custom')
+      ->condition('bid', $delta)
+      ->execute();
+    db_delete('block')
+      ->condition('module', 'block')
+      ->condition('delta', $delta)
+      ->execute();
+    db_delete('block_role')
+      ->condition('module', 'block')
+      ->condition('delta', $delta)
+      ->execute();
+  }
+}
+
+/**
+ * Update all the menu links in the main menu so they are translatable.
+ */
+function myhaccp_update_7028() {
+  $items = db_select('menu_links')
+    ->fields('menu_links', array('mlid', 'link_title'))
+    ->condition('menu_links.menu_name', 'main-menu')
+    ->execute()->fetchAllKeyed();
+  foreach ($items as $mlid => $item) {
+    $item = menu_link_load($mlid);
+    $options = $item['options'];
+    $options['alter'] = TRUE;
+    db_update('menu_links')
+      ->fields(array('options' => serialize($options), 'customized' => 1))
+      ->condition('mlid', $mlid)
+      ->execute();
+  }
+}
+
+/**
+ * Update all the menu links in the footer menus so they are translatable.
+ */
+function myhaccp_update_7029() {
+  $items = db_select('menu_links')
+    ->fields('menu_links', array('mlid', 'link_title'))
+    ->condition('menu_links.menu_name', 'menu-footer-links%', 'LIKE')
+    ->execute()->fetchAllKeyed();
+  foreach ($items as $mlid => $item) {
+    $item = menu_link_load($mlid);
+    $options = $item['options'];
+    $options['alter'] = TRUE;
+    db_update('menu_links')
+      ->fields(array('options' => serialize($options), 'customized' => 1))
+      ->condition('mlid', $mlid)
+      ->execute();
+  }
+}
+
+/**
+ * Inserts the Welsh language as features doesn't seem to want to do it.
+ */
+function myhaccp_update_7030() {
+  require_once DRUPAL_ROOT . '/includes/locale.inc';
+  features_revert_module('myhaccp_language_permissions');
+  // Check whether the language is already set up. This is so staging can be
+  // updated.
+  $exists = db_select('languages')
+    ->condition('language', 'cy')
+    ->fields('languages', array('language'))
+    ->execute()->fetchCol();
+  if (empty($exists)) {
+    locale_add_language('cy',
+      'Welsh',
+      'Cymraeg',
+      LANGUAGE_LTR,
+      '',
+      'cy',
+      TRUE,
+      FALSE);
+  }
+  // Additional params, locale_add_language does not implement.
+  db_update('languages')
+    ->fields(array(
+      'plurals' => 4,
+      'formula' => '(($n==1)?(0):(($n==2)?(1):((($n!=8)&&($n!=11))?(2):3)))',
+      'weight' => 0,
+    ))
+    ->condition('language', 'cy')
+    ->execute();
+  variable_set('entity_translation_hide_translation_links_guidance', 0);
+  variable_set('entity_translation_node_metadata_guidance', "0");
+  variable_set('entity_translation_revision_enabled', TRUE);
+  variable_set('language_default', (object) array(
+    'language' => 'en',
+    'name' => 'English',
+    'native' => 'English',
+    'direction' => 0,
+    'enabled' => 1,
+    'plurals' => 0,
+    'formula' => '',
+    'domain' => '',
+    'prefix' => '',
+    'weight' => 0,
+    'javascript' => '',
+  ));
+  variable_set('language_negotiation_language', array(
+    'locale-url' =>
+      array(
+        'callbacks' =>
+          array(
+            'language' => 'locale_language_from_url',
+            'switcher' => 'locale_language_switcher_url',
+            'url_rewrite' => 'locale_language_url_rewrite_url',
+          ),
+        'file' => 'includes/locale.inc',
+      ),
+    'locale-user' =>
+      array(
+        'callbacks' =>
+          array(
+            'language' => 'locale_language_from_user',
+          ),
+        'file' => 'includes/locale.inc',
+      ),
+    'language-default' =>
+      array(
+        'callbacks' =>
+          array(
+            'language' => 'language_from_default',
+          ),
+      ),
+  ));
+  variable_set('language_negotiation_language_content', array(
+    'locale-url' =>
+      array(
+        'callbacks' =>
+          array(
+            'language' => 'locale_language_from_url',
+            'switcher' => 'locale_language_switcher_url',
+            'url_rewrite' => 'locale_language_url_rewrite_url',
+          ),
+        'file' => 'includes/locale.inc',
+      ),
+    'locale-user' =>
+      array(
+        'callbacks' =>
+          array(
+            'language' => 'locale_language_from_user',
+          ),
+        'file' => 'includes/locale.inc',
+      ),
+    'locale-interface' =>
+      array(
+        'callbacks' =>
+          array(
+            'language' => 'locale_language_from_interface',
+          ),
+        'file' => 'includes/locale.inc',
+      ),
+    'language-default' =>
+      array(
+        'callbacks' =>
+          array(
+            'language' => 'language_from_default',
+          ),
+      ),
+  ));
+  variable_set('language_negotiation_language_url', array(
+    'locale-url' =>
+      array(
+        'callbacks' =>
+          array(
+            'language' => 'locale_language_from_url',
+            'switcher' => 'locale_language_switcher_url',
+            'url_rewrite' => 'locale_language_url_rewrite_url',
+          ),
+        'file' => 'includes/locale.inc',
+      ),
+    'locale-url-fallback' =>
+      array(
+        'callbacks' =>
+          array(
+            'language' => 'locale_language_url_fallback',
+          ),
+        'file' => 'includes/locale.inc',
+      ),
+  ));
+}
+
+/**
+ * Import the Welsh language PO files into the system.
+ */
+function myhaccp_update_7031() {
+  // Refresh all the strings in the menu.
+  module_load_include('inc', 'i18n_string', 'i18n_string.admin');
+  i18n_string_refresh_group('menu');
+
+  // Import the menu translations.
+  $path = DRUPAL_ROOT . '/sites/all/translations/';
+  $file = new stdClass();
+  $file->filename = 'menu.cy.po';
+  $file->uri = $path . $file->filename;
+  _locale_import_po($file, 'cy', LOCALE_IMPORT_KEEP, 'menu');
+
+  // Import the interface translations.
+  $path = DRUPAL_ROOT . '/sites/all/translations/';
+  $file = new stdClass();
+  $file->filename = 'interface.cy.po';
+  $file->uri = $path . $file->filename;
+  _locale_import_po($file, 'cy', LOCALE_IMPORT_KEEP, 'default');
+}
+
+/**
+ * Enable the MyHACCP Language module to allow language selection at registration.
+ */
+function myhaccp_update_7032() {
+  // Enable the myhaccp_language module.
+  module_enable(array('myhaccp_language'));
+}
+
+/**
+ * Updates the theme name to myhaccp_theme.
+ */
+function myhaccp_update_7033() {
+  // Clear the cache and change the default theme.
+  variable_set('theme_default', 'myhaccp_theme');
+  // Change all the blocks to the new theme.
+  db_update('block')
+    ->fields(array(
+      'theme' => 'myhaccp_theme',
+    ))
+    ->condition('theme', 'myhaccp')
+    ->execute();
+
+  $settings = array(
+    'toggle_logo' => 1,
+    'toggle_name' => 1,
+    'toggle_slogan' => 1,
+    'toggle_node_user_picture' => 1,
+    'toggle_comment_user_picture' => 1,
+    'toggle_comment_user_verification' => 1,
+    'toggle_favicon' => 1,
+    'default_logo' => 1,
+    'logo_path' => '',
+    'logo_upload' => '',
+    'default_favicon' => 0,
+    'favicon_path' => 'sites/all/themes/custom/myhaccp/favicon.ico',
+    'favicon_upload' => '',
+    'cleanup_poorthemers_helper' => 0,
+    'cleanup_rebuild_registry' => 0,
+    'cleanup_test' => 0,
+    'cleanup_mediaquery_indicator' => 0,
+    'cleanup_script_place_footer' => 1,
+    'cleanup_js_onefile' => 0,
+    'cleanup_js_jquery_latest' => 0,
+    'cleanup_js_jquerycdn' => 0,
+    'cleanup_js_jquerycdn_version' => '0',
+    'cleanup_respondjs' => 1,
+    'cleanup_modernizr' => 0,
+    'cleanup_selectivizr' => 0,
+    'cleanup_js_nuke_module' => 0,
+    'cleanup_js_nuke_module_contrib' => 0,
+    'cleanup_js_nuke_misc' => 0,
+    'cleanup_js_freeform' => '',
+    'cleanup_css_onefile' => 0,
+    'cleanup_css_reset' => 0,
+    'cleanup_css_reset_html5' => 0,
+    'cleanup_css_normalize' => 0,
+    'cleanup_css_layout' => 0,
+    'cleanup_css_default' => 0,
+    'cleanup_css_cleanupstyles' => 0,
+    'cleanup_css_nuke_theme' => 0,
+    'cleanup_css_nuke_admin' => 0,
+    'cleanup_css_nuke_module_contrib' => 0,
+    'cleanup_css_nuke_module_all' => 0,
+    'cleanup_css_nuke_book' => 0,
+    'cleanup_css_nuke_systemtoolbar' => 1,
+    'cleanup_css_nuke_system_message' => 1,
+    'cleanup_css_nuke_system_menus' => 1,
+    'cleanup_css_nuke_system_theme' => 1,
+    'cleanup_css_freeform' => 'modules/contrib/ds/layouts/ds_2col_stacked_fluid/ds_2col_stacked_fluid.css',
+    'cleanup_classes_body_html' => 1,
+    'cleanup_classes_body_loggedin' => 1,
+    'cleanup_classes_body_front' => 0,
+    'cleanup_classes_body_layout' => 0,
+    'cleanup_classes_body_toolbar' => 0,
+    'cleanup_classes_body_pagenode' => 1,
+    'cleanup_classes_body_nodetype' => 0,
+    'cleanup_classes_body_path' => 0,
+    'cleanup_classes_body_path_first' => 0,
+    'cleanup_classes_body_status' => 0,
+    'cleanup_classes_body_freeform' => '',
+    'cleanup_region_wrapper' => 1,
+    'cleanup_classes_region' => 1,
+    'cleanup_classes_region_freeform' => '',
+    'cleanup_classes_block' => 1,
+    'cleanup_classes_block_id' => 1,
+    'cleanup_classes_block_id_as_class' => 1,
+    'cleanup_classes_block_contentdiv' => 1,
+    'cleanup_classes_block_freeform' => '',
+    'cleanup_classes_node' => 0,
+    'cleanup_classes_node_state' => 0,
+    'cleanup_classes_node_id' => 0,
+    'cleanup_classes_node_freeform' => '',
+    'cleanup_classes_node_links_inline' => 0,
+    'cleanup_classes_node_links_links' => 0,
+    'cleanup_classes_field_field' => 0,
+    'cleanup_classes_field_name' => 0,
+    'cleanup_classes_field_type' => 0,
+    'cleanup_classes_field_label' => 1,
+    'cleanup_classes_field_freeform' => '',
+    'cleanup_classes_form_container_wrapper' => 0,
+    'cleanup_classes_form_container_type' => 0,
+    'cleanup_classes_form_container_name' => 0,
+    'cleanup_classes_form_container_widget' => 0,
+    'cleanup_classes_form_container_id' => 0,
+    'cleanup_classes_form_wrapper_formitem' => 0,
+    'cleanup_classes_form_wrapper_formtype' => 1,
+    'cleanup_classes_form_wrapper_formname' => 0,
+    'cleanup_classes_form_freeform' => '',
+    'cleanup_classes_form_label' => 1,
+    'cleanup_classes_form_input' => 0,
+    'cleanup_form_required' => 1,
+    'cleanup_classes_form_description' => 1,
+    'cleanup_classes_form_placeholder_label' => 0,
+    'cleanup_classes_form_placeholder_link' => '',
+    'cleanup_classes_form_placeholder_email' => '',
+    'cleanup_classes_menu_items_mlid' => 1,
+    'cleanup_classes_menu_wrapper' => 1,
+    'cleanup_classes_menu_items_firstlast' => 1,
+    'cleanup_classes_menu_items_active' => 0,
+    'cleanup_classes_menu_collapsed' => 0,
+    'cleanup_classes_menu_leaf' => 1,
+    'cleanup_classes_view' => 1,
+    'cleanup_classes_view_name' => 1,
+    'cleanup_classes_view_view_id' => 0,
+    'cleanup_classes_view_row' => 1,
+    'cleanup_classes_view_row_count' => 1,
+    'cleanup_classes_view_row_first_last' => 1,
+    'cleanup_classes_view_row_rename' => 0,
+    'panels_seperator' => 1,
+    'cleanup_classes_state' => 0,
+    'cleanup_404' => 0,
+    'cleanup_frontpage_default_message' => 1,
+    'cleanup_content_block_wrapper' => 1,
+    'cleanup_goodies_login' => 0,
+    'cleanup_mobile' => 1,
+    'cleanup_viewport' => 1,
+    'cleanup_viewport_maximumscale' => 0,
+    'favicon_mimetype' => 'image/vnd.microsoft.icon',
+  );
+  variable_set('theme_myhaccp_theme_settings', $settings);
+  theme_enable(array('myhaccp_theme'));
+  drupal_theme_rebuild();
+}
+
+/**
+ * Change the footer gov.uk image location for the new theme name.
+ */
+function myhaccp_update_7034() {
+  $bean = bean_load_delta('footer_gov');
+  $bean->field_description['en'][0]['value'] = str_replace('/custom/myhaccp/', '/custom/myhaccp_theme/', $bean->field_description['en'][0]['value']);
+  $bean->save();
+}
+
+/**
+ * Revert the context feature.
+ */
+function myhaccp_update_7035() {
+  features_revert_module('myhaccp_context');
+}
+
+/**
+ * Remove old theme entries from database.
+ */
+function myhaccp_update_7036() {
+  db_delete('system')
+    ->condition('filename', 'sites/all/themes/custom/myhaccp/myhaccp.info')
+    ->condition('name', 'myhaccp')
+    ->execute();
+  variable_delete('theme_myhaccp_settings');
+}
+
+/**
+ * Make absolutely sure the myhaccp module is enabled after the theme change.
+ */
+function myhaccp_update_7037() {
+  module_enable(array('myhaccp'));
+}
+
+/**
+ * Update all the menu links in the user menu so they are translatable.
+ */
+function myhaccp_update_7038() {
+  $items = db_select('menu_links')
+    ->fields('menu_links', array('mlid', 'link_title'))
+    ->condition('menu_links.menu_name', 'user-menu')
+    ->execute()->fetchAllKeyed();
+  foreach ($items as $mlid => $item) {
+    $item = menu_link_load($mlid);
+    $options = $item['options'];
+    $options['alter'] = TRUE;
+    db_update('menu_links')
+      ->fields(array('options' => serialize($options), 'customized' => 1))
+      ->condition('mlid', $mlid)
+      ->execute();
+  }
+}
+
+/**
+ * Update pathauto language settings.
+ */
+function myhaccp_update_7039() {
+  module_enable(array('pathauto_i18n', 'pathauto_i18n_node'));
+  variable_set('pathauto_i18n_default_node_guidance', TRUE);
+  variable_set('pathauto_i18n_default_node_page', TRUE);
+  variable_set('pathauto_node_guidance_cy_pattern', 'cymorth/canllawiau/[node:title]');
+}
+
+/**
+ * Install the webform feature.
+ */
+function myhaccp_update_7040() {
+  module_enable(array('myhaccp_content_type_webform'));
+  features_revert_module('myhaccp_content_type_webform');
+}
+
+/**
+ * Fix the favicon path.
+ */
+function myhaccp_update_7041() {
+  $theme_settings = variable_get('theme_myhaccp_theme_settings', array());
+  $theme_settings['favicon_path'] = 'sites/all/themes/custom/myhaccp_theme/favicon.ico';
+  variable_set('theme_myhaccp_theme_settings', $theme_settings);
 }

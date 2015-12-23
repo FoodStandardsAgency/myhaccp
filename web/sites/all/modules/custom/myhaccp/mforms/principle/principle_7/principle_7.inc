@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Principle 7 stage form and validation handler.
+ */
+
+/**
  * Principle 7.
  */
 function principle_7(&$form_state, &$next_step) {
@@ -16,9 +21,9 @@ function principle_7(&$form_state, &$next_step) {
   $values = myhaccp_prepare_values($data, $form_state);
 
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   drupal_set_title($stage->title, PASS_THROUGH);
@@ -49,21 +54,21 @@ function principle_7(&$form_state, &$next_step) {
     '#type' => 'checkboxes',
     '#title' => t('1. Select all forms of documentation relating to this HACCP study that your business retains.'),
     '#options' => array(
-      'scope' => 'Scope of the study',
-      'reference' => 'Reference to prerequisite programmes',
-      'team' => 'HACCP team members with details of their role, experience, training and qualifications',
-      'product' => 'Product description',
-      'use' => 'Intended use of the product',
-      'flow' => 'Flow diagram, and the confirmation that it is correct',
-      'hazards' => 'Relevant hazards (as determined from the hazard analysis) and control measures',
-      'details' => 'Details of all CCP’s that have been determined',
-      'evidence' => 'Evidence of how CCP’s were determined',
-      'ccps' => 'The critical limits at the CCP’s, with targets and tolerances where relevant',
-      'monitoring' => 'The monitoring plan for each CCP',
-      'corrective' => 'The corrective action plan for each CCP',
-      'dates' => 'Details and date(s) of validation activities',
-      'verification' => 'Details of verification activities, including the programme for scheduled review and a list of factors that should initiate a review',
-      'procedures' => 'Reference to relevant procedures/work instructions and record forms',
+      'scope' => t('Scope of the study'),
+      'reference' => t('Reference to prerequisite programmes'),
+      'team' => t('HACCP team members with details of their role, experience, training and qualifications'),
+      'product' => t('Product description'),
+      'use' => t('Intended use of the product'),
+      'flow' => t('Flow diagram, and the confirmation that it is correct'),
+      'hazards' => t('Relevant hazards (as determined from the hazard analysis) and control measures'),
+      'details' => t('Details of all CCP’s that have been determined'),
+      'evidence' => t('Evidence of how CCP’s were determined'),
+      'ccps' => t('The critical limits at the CCP’s, with targets and tolerances where relevant'),
+      'monitoring' => t('The monitoring plan for each CCP'),
+      'corrective' => t('The corrective action plan for each CCP'),
+      'dates' => t('Details and date(s) of validation activities'),
+      'verification' => t('Details of verification activities, including the programme for scheduled review and a list of factors that should initiate a review'),
+      'procedures' => t('Reference to relevant procedures/work instructions and record forms'),
     ),
     '#help_text' => t('Do you keep hold of any of the following documents?'),
     '#help_link' => 33,
@@ -111,8 +116,8 @@ function principle_7(&$form_state, &$next_step) {
     '#type' => 'radios',
     '#title' => t('5. Are the records accessible, accurate and up to date?'),
     '#options' => array(
-      'yes' => t('Yes'),
-      'no' => t('No'),
+      'yes' => t('Yes', array(), array('context' => 'Are the records accessible, accurate and up to date?')),
+      'no' => t('No', array(), array('context' => 'Are the records accessible, accurate and up to date?')),
     ),
     '#default_value' => array_get($values, "principle_7.7_5", FALSE),
     '#attributes' => array(
@@ -132,9 +137,9 @@ function principle_7(&$form_state, &$next_step) {
  */
 function principle_7_validate($form, &$form_state) {
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   $validator = $stage->getValidator();
@@ -159,4 +164,3 @@ function principle_7_validate($form, &$form_state) {
   $validator->setErrorMessages();
   $form_state = $validator->getFormState();
 }
-

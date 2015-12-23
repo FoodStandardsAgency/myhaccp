@@ -1,114 +1,177 @@
 <?php
 
 /**
- * Implement hook_menu().
+ * @file
+ * Provides dialog integration for user.module.
  */
-function dialog_user_menu() {
-  $items['user/login/%dialog_js'] = array(
-    'page callback' => 'dialog_user_ajax_callback',
-    'page arguments' => array(1, 2),
-    'access callback' => 'user_is_anonymous',
-    'type' => MENU_CALLBACK,
-  );
-  $items['user/register/%dialog_js'] = array(
-    'page callback' => 'dialog_user_ajax_callback',
-    'page arguments' => array(1, 2),
-    'access callback' => 'user_register_access',
-    'type' => MENU_CALLBACK,
-  );
-  $items['user/password/%dialog_js'] = array(
-    'page callback' => 'dialog_user_ajax_callback',
-    'page arguments' => array(1, 2),
-    'access callback' => 'user_is_anonymous',
-    'type' => MENU_CALLBACK,
-  );
-  return $items;
+
+/**
+ * Implement hook_block_view_alter().
+ */
+function dialog_user_block_view_alter(&$data, $block) {
+  switch ($block->delta) {
+    case 'login':
+      // Attach the library for handling the dialog in the response.
+      $data['content']['#attached']['library'][] = array('system', 'drupal.ajax');
+      break;
+  }
 }
 
 /**
-* Menu callback for our ajax links.
-*/
-function dialog_user_ajax_callback($type, $js) {
-  switch ($type) {
-    case 'login':
-      $title = t('Login');
-      $form_id = 'user_login';
-      $path = 'user/login';
-      break;
-    case 'register':
-      $title = t('Register');
-      $form_id = 'user_register_form';
-      $path = 'user/register';
-      break;
-    case 'password':
-      // @TODO Why doesn't request new password work?
-      $title = t('Request new password');
-      $form_id = 'user_pass';
-      $path = 'user/pass';
-      break;
+ * Implement hook_form_FORM_ID_alter().
+ */
+function dialog_user_form_user_login_block_alter(&$form, &$form_state, $form_id) {
+  // Modify the user links.
+  if (variable_get('user_register', USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL)) {
+    // Use a dialog for creating a new account.
+    $items[] = l(t('Create new account'), 'user/register', array(
+      'attributes' => array(
+        'title' => t('Create a new user account.'),
+        'class' => array('use-ajax'),
+        'data-dialog' => 'true',
+        'data-dialog-options' => '{"width":"50%"}',
+      )
+    ));
   }
+  // Use a dialog for requesting a new password.
+  $items[] = l(t('Request new password'), 'user/password', array(
+      'attributes' => array(
+        'title' => t('Request new password via e-mail.'),
+        'class' => array('use-ajax'),
+        'data-dialog' => 'true',
+        'data-dialog-options' => '{"width":"50%"}',
+      ))
+  );
+  $form['links'] = array(
+    '#markup' => theme('item_list', array('items' => $items))
+  );
+}
 
-  if ($js) {
-    dialog_display(TRUE);
-    $content = drupal_get_form($form_id);
-    $output[] = dialog_command_display($content, array('title' => $title));
-    ajax_deliver(array('#type' => 'ajax', '#commands' => $output));
+/**
+ * Implement hook_form_FORM_ID_alter().
+ */
+function dialog_user_form_user_login_alter(&$form, &$form_state, $form_id) {
+  // Wrap the form in a <div> with a known ID so it can be targeted via AJAX.
+  $form['#prefix'] = '<div id="dialog-user-user-login">';
+  $form['#suffix'] = '</div>';
+
+  // Make the 'Log in' button the primary action.
+  $form['actions']['submit']['#attributes']['class'][] = 'button--primary';
+
+  // Add an AJAX submission callback.
+  $form['actions']['submit']['#ajax'] = array(
+    'callback' => 'dialog_user_user_login_submit',
+    'event' => 'click',
+  );
+}
+
+/**
+ * Ajax callback for the user login form.
+ *
+ * @see dialog_user_form_user_login_alter()
+ */
+function dialog_user_user_login_submit($form, &$form_state) {
+  // Display form errors, otherwise close the dialog and reload the page.
+  if (form_get_errors()) {
+    unset($form['#prefix'], $form['#suffix']);
+    $status_messages = array('#theme' => 'status_messages');
+    $output = drupal_render($form);
+    $output = '<div>' . drupal_render($status_messages) . $output . '</div>';
+    $commands[] = ajax_command_html('#dialog-user-user-login', $output);
   }
   else {
-    drupal_goto($path);
+    $commands[] = dialog_command_close_modal_dialog();
+    $commands[] = dialog_command_reload();
   }
+
+  return array(
+    '#type' => 'ajax',
+    '#commands' => $commands,
+  );
 }
 
 /**
- * Implement hook_form_alter().
+ * Implement hook_form_FORM_ID_alter().
  */
-function dialog_user_form_alter(&$form, &$form_state, $form_id) {
-  $forms = array('user_register_form', 'user_pass', 'user_login');
-  if (in_array($form_id, $forms)) {
-    if (dialog_display() || isset($form_state['values']['dialog_display'])) {
-      $form['dialog_display'] = array('#type' => 'value', '#value' => TRUE);
-      $form['#prefix'] = '<div id="dialog-form-wrapper">';
-      $form['#suffix'] = '</div>';
+function dialog_user_form_user_register_form_alter(&$form, &$form_state, $form_id) {
+  // Wrap the form in a <div> with a known ID so it can be targeted via AJAX.
+  $form['#prefix'] = '<div id="dialog-user-user-register-form">';
+  $form['#suffix'] = '</div>';
 
-      // Make enter press work on textfields.
-      $textfields = array('name', 'pass', 'email');
-      foreach ($textfields as $textfield) {
-        if (isset($form[$textfield])) {
-          $form[$textfield]['#ajax'] = array(
-            'event' => '',
-            'keypress' => TRUE,
-            'callback' => 'drupal_render',
-            'wrapper' => 'dialog-form-wrapper',
-          );
-        }
-        if (isset($form['account'][$textfield])) {
-          $form['account'][$textfield]['#ajax'] = array(
-            'event' => '',
-            'keypress' => TRUE,
-            'callback' => 'drupal_render',
-            'wrapper' => 'dialog-form-wrapper',
-          );
-        }
-      }
+  // Make the 'Create new account' button the primary action.
+  $form['actions']['submit']['#attributes']['class'][] = 'button--primary';
 
-      $form['submit']['#ajax'] = array(
-        'callback' => 'drupal_render',
-        'wrapper' => 'dialog-form-wrapper',
-      );
-
-      $form['#submit'][] = 'dialog_user_ajax_form_submit';
-      $form['#process'][] = 'dialog_process_ajax_form';
-    }
-  }
+  // Add an AJAX submission callback.
+  $form['actions']['submit']['#ajax'] = array(
+    'callback' => 'dialog_user_user_register_form_submit',
+    'event' => 'click',
+  );
 }
 
 /**
- * Ajax submit handler for forms inside dialogs.
+ * Ajax callback for the user register form.
+ *
+ * @see dialog_user_form_user_register_form_alter()
  */
-function dialog_user_ajax_form_submit(&$form, &$form_state) {
-  if (isset($form_state['redirect'])) {
-    $commands = array();
-    $commands[] = dialog_command_redirect($form_state['redirect']);
-    ajax_render($commands);
+function dialog_user_user_register_form_submit($form, &$form_state) {
+  // Display form errors, otherwise close the dialog and reload the page.
+  if (form_get_errors()) {
+    unset($form['#prefix'], $form['#suffix']);
+    $status_messages = array('#theme' => 'status_messages');
+    $output = drupal_render($form);
+    $output = '<div>' . drupal_render($status_messages) . $output . '</div>';
+    $commands[] = ajax_command_html('#dialog-user-user-register-form', $output);
   }
+  else {
+    $commands[] = dialog_command_close_modal_dialog();
+    $commands[] = dialog_command_reload();
+  }
+
+  return array(
+    '#type' => 'ajax',
+    '#commands' => $commands,
+  );
+}
+
+/**
+ * Implement hook_form_FORM_ID_alter().
+ */
+function dialog_user_form_user_pass_alter(&$form, &$form_state, $form_id) {
+  // Wrap the form in a <div> with a known ID so it can be targeted via AJAX.
+  $form['#prefix'] = '<div id="dialog-user-user-pass">';
+  $form['#suffix'] = '</div>';
+
+  // Make the 'E-mail new password' button the primary action.
+  $form['actions']['submit']['#attributes']['class'][] = 'button--primary';
+
+  // Add an AJAX submission callback.
+  $form['actions']['submit']['#ajax'] = array(
+    'callback' => 'dialog_user_user_pass_submit',
+    'event' => 'click',
+  );
+}
+
+/**
+ * Ajax callback for the user password reset form.
+ *
+ * @see dialog_user_form_user_pass_alter()
+ */
+function dialog_user_user_pass_submit($form, &$form_state) {
+  // Display form errors, otherwise close the dialog and reload the page.
+  if (form_get_errors()) {
+    unset($form['#prefix'], $form['#suffix']);
+    $status_messages = array('#theme' => 'status_messages');
+    $output = drupal_render($form);
+    $output = '<div>' . drupal_render($status_messages) . $output . '</div>';
+    $commands[] = ajax_command_html('#dialog-user-user-pass', $output);
+  }
+  else {
+    $commands[] = dialog_command_close_modal_dialog();
+    $commands[] = dialog_command_reload();
+  }
+
+  return array(
+    '#type' => 'ajax',
+    '#commands' => $commands,
+  );
 }

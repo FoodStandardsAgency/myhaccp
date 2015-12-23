@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * @file
+ * Principle 2 part 1 form and validation handler.
+ */
+
+/**
+ * Principle 2 part 1.
+ */
 function principle_2_1(&$form_state, &$next_step) {
 
   // Define following step callback. If none set, that implies it is
@@ -15,9 +23,9 @@ function principle_2_1(&$form_state, &$next_step) {
   $values = myhaccp_prepare_values($data, $form_state);
 
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   drupal_set_title($stage->title, PASS_THROUGH);
@@ -48,13 +56,13 @@ function principle_2_1(&$form_state, &$next_step) {
   // Ensure data has been entered on principle_1_1.
   if ($hazards->countHazards() == 0) {
     // There were no hazards.
-    drupal_set_message('You must add at least a step number and step name in step 1.1 as well as at least a hazard for the step. Please return to 1.1', 'error', FALSE);
+    drupal_set_message(t('You must add at least a step number and step name in step 1.1 as well as at least a hazard for the step. Please return to 1.1'), 'error', FALSE);
     return $form;
   }
 
   // Ensure there are hazards over the threshold.
   if ($hazards->countHazardsOverThreshold() == 0) {
-    drupal_set_message('You have no significant hazards so you cannot continue', 'error', FALSE);
+    drupal_set_message(t('You have no significant hazards so you cannot continue'), 'error', FALSE);
     return $form;
   }
 
@@ -65,8 +73,8 @@ function principle_2_1(&$form_state, &$next_step) {
     '#help_link' => 28,
     '#help_text' => t("A 'decision tree' is a tool that can be used to help identify a critical control point. You do not have to use a decision tree."),
     '#options' => array(
-      'yes' => t('Yes'),
-      'no' => t('No'),
+      'yes' => t('Yes', array(), array('context' => 'Are you using a decision tree?')),
+      'no' => t('No', array(), array('context' => 'Are you using a decision tree?')),
     ),
     '#default_value' => array_get($values, 'principle_2_1.2_1_1', array()),
     '#attributes' => array(
@@ -128,9 +136,9 @@ function principle_2_1(&$form_state, &$next_step) {
  */
 function principle_2_1_validate($form, &$form_state) {
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   $validator = $stage->getValidator();

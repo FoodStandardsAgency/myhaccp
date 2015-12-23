@@ -1,0 +1,153 @@
+// Styles for ctools modal dialogs.
+
+#modalContent {
+  // Override the absolute positioning of the usual ctools dialog so its fixed
+  // within the viewport.
+  //  position: fixed!important;
+  #modal-content {
+    // Remove some of the space at the top of the embedded page.
+    padding-top: 0;
+    article {
+      > h2 {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+// jQuery UI based modals.
+.ui-widget-overlay {
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+}
+
+.ui-dialog {
+  top: 4em !important;
+  border: 0.4em solid #222;
+  font-size: 0.8em;
+  line-height: 1.6em;
+  max-width: 1200px;
+  .ui-dialog-titlebar {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    background: #6b6b6b;
+    color: #fff;
+    padding: 15px 49px 15px 15px;
+  }
+  .ui-dialog-title {
+    margin-top: -8px;
+  }
+  .ui-dialog-content {
+    padding: 0 1em;
+    position: static;
+    //overflow-y: hidden;
+    //overflow-x: hidden;
+  }
+  &.ui-corner-all {
+    @include border-radius(0);
+  }
+  .ui-dialog-content {
+    padding: 0 1em;
+    .help-content {
+      width: 72%;
+      .node {
+        padding-right: 2em;
+        padding-top: 0.5em;
+        padding-left: 1em;
+        border-right: 2px solid $grey-1;
+        &.active {
+          display: block;
+        }
+        &.hidden {
+          display: none;
+        }
+        h2 {
+          margin-top: 0;
+        }
+      }
+    }
+    .help-menu {
+      width: 28%;
+      float: right;
+      font-size: 0.95em;
+      h2 {
+        padding-left: 0.6em;
+        margin-top: 0;
+        color: #000;
+        line-height: 1.3;
+      }
+      h3 {
+        padding-left: 0.75em;
+        margin-top: 0.75em;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+        font-size: 1.05em;
+        li {
+          a {
+            padding: 0.5em 1em;
+            line-height: 1.5em;
+            display: block;
+            &.active {
+              border-left: 2px solid $grey-2;
+              background: $grey-1;
+            }
+            &:focus {
+              outline: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.ui-dialog .dialog-footer {
+  border-top: 1px solid $grey-1;
+  margin-top: 1em;
+  padding: 1em 0;
+  .close-button {
+    @include agile-button($size: small);
+  }
+}
+
+.ui-widget-header {
+  background: none;
+  border: none;
+  height: 10px;
+}
+
+.ui-dialog .ui-dialog-titlebar-close {
+  background-image: none;
+  background-color: black;
+  border: none;
+  height: 30px;
+  width: 30px;
+  z-index: 200;
+  margin: 0;
+  top: 10%;
+  @include border-radius(0);
+  &:hover {
+    border: none;
+    background-image: none;
+    background-color: #666666;
+  }
+  .ui-icon-closethick {
+    margin-top: -9px;
+  }
+  &.ui-button-icon-only .ui-icon {
+    //margin-left: -9px;
+    //background-image: url("../images/ui-icons_ffffff_256x240.png");
+  }
+}
+
+.ui-dialog .ui-widget-content.ui-dialog-content {
+  background: #ffffff;
+  overflow: auto;
+  padding: 1em;
+}
+
+
+

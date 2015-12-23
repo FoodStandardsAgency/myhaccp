@@ -1,6 +1,15 @@
 <?php
 
+/**
+ * @file
+ * Preparatory H stage form and validation handler.
+ */
+
+/**
+ * Preparatory H.
+ */
 function preparatory_h(&$form_state, &$next_step) {
+  // @ignore comment_comment_eg:function
 
   // Define following step callback. If none set, that implies it is
   // the last step.
@@ -15,9 +24,9 @@ function preparatory_h(&$form_state, &$next_step) {
   $values = myhaccp_prepare_values($data, $form_state);
 
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   drupal_set_title($stage->title, PASS_THROUGH);
@@ -59,8 +68,8 @@ function preparatory_h(&$form_state, &$next_step) {
   $form['preparatory_h']['h_2'] = array(
     '#type' => 'radios',
     '#options' => array(
-      'yes' => t('Yes'),
-      'no' => t('No'),
+      'yes' => t('Yes', array(), array('context' => 'Is every process step identified on the flow diagram?')),
+      'no' => t('No', array(), array('context' => 'Is every process step identified on the flow diagram?')),
     ),
     '#title' => t('2. Is every process step identified on the flow diagram?'),
     '#help_link' => 22,
@@ -167,9 +176,9 @@ function preparatory_h(&$form_state, &$next_step) {
  */
 function preparatory_h_validate($form, &$form_state) {
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   $validator = $stage->getValidator();

@@ -122,7 +122,7 @@ function prlp_user_pass_reset_submit($form, &$form_state) {
         drupal_set_message(t('You have tried to use a one-time login link that has expired. Please request a new one using the form below.'));
         $form_state['redirect'] = 'user/password';
       }
-      elseif ($account->uid && $timestamp >= $account->login && $timestamp <= $current && $hashed_pass == user_pass_rehash($account->pass, $timestamp, $account->login)) {
+      elseif ($account->uid && $timestamp >= $account->login && $timestamp <= $current && $hashed_pass == user_pass_rehash($account->pass, $timestamp, $account->login, $account->uid)) {
         /*
          * BEGIN: CHANGED from user_pass_reset.
          */
@@ -132,6 +132,18 @@ function prlp_user_pass_reset_submit($form, &$form_state) {
           $_SESSION = array();
         }
         user_profile_form_submit($form, $form_state);
+        // Get the index of the 'The changes have been saved.' message which was
+        // added by user_profile_form_submit().
+        $message_index = array_search(t('The changes have been saved.'), $_SESSION['messages']['status']);
+        // Replace the message with a custom message.
+        $_SESSION['messages']['status'][$message_index] = variable_get($account->access ? 'prlp_confirmation_message_existing_users' : 'prlp_confirmation_message_new_users');
+        // Remove empty values.
+        $_SESSION['messages']['status'] = array_filter($_SESSION['messages']['status']);
+        // If status messages array is empty, remove it completely to prevent
+        // an empty message from being displayed.
+        if (empty($_SESSION['messages']['status'])) {
+          unset($_SESSION['messages']['status']);
+        }
         /*
          * END: CHANGED from user_pass_reset.
          */
@@ -155,7 +167,9 @@ function prlp_user_pass_reset_submit($form, &$form_state) {
         }
         else {
           $destination = str_replace('%uid', $user->uid, $destination);
-          $form_state['redirect'] = $destination;
+          // Handle URL parameters in destination.
+          $destination = drupal_parse_url($destination);
+          $form_state['redirect'] = array($destination['path'], $destination);
         }
       }
       else {

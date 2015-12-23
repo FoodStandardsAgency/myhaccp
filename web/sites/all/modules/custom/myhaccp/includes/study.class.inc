@@ -1,32 +1,144 @@
 <?php
 
+/**
+ * @file
+ * Handles the MyHACCP study.
+ */
+
+// @ignore comment_comment_see:file
+
+/**
+ * Interface StudyInterface.
+ */
 interface StudyInterface {
 
+  /**
+   * Returns the sessions's IID.
+   *
+   * @return int
+   *   Returns the session iid or sends the user to their study overview page.
+   */
   public function getCurrentStudy();
 
+  /**
+   * Sets the IID for the session.
+   *
+   * @param int $iid
+   *   The study ID being used.
+   */
   public function setCurrentStudy($iid);
 
+  /**
+   * Adds a phase to a study.
+   *
+   * @param Phase $phase
+   *   The phase added.
+   */
   public function addPhase(Phase $phase);
 
+  /**
+   * Returns a phase object.
+   *
+   * @param string $phase
+   *   The name of the phase.
+   *
+   * @return Phase|bool
+   *   The phase object or FALSE if not found.
+   */
   public function getPhase($phase);
 
+  /**
+   * Gets the phases.
+   */
   public function getPhases();
 
+  /**
+   * Gets a specific stage.
+   *
+   * @param string $name
+   *   The stage name to find the stage for.
+   *
+   * @throws Exception
+   *   Message explaining the stage could not be found.
+   *
+   * @return Stage
+   *   The stage if found.
+   */
   public function getStage($name);
 
+  /**
+   * Gets the current stage.
+   *
+   * @throws exception
+   *   Exception if the stage could not be retrieved.
+   *
+   * @return Stage
+   *   The stage to be returned.
+   */
   public function getCurrentStage();
 
-  public function setCurrentStage($stage);
+  /**
+   * Sets the current stage the user is on.
+   *
+   * @param Stage $stage
+   *   The stage to set.
+   *
+   * @see MformsDatabaseStore::getStore()
+   */
+  public function setCurrentStage(Stage $stage);
 
+  /**
+   * Gets the completion status of the study.
+   */
   public function getValidationStatus();
 
+  /**
+   * Sets the completion status of the study.
+   *
+   * @param int $status
+   *   The status integer to be set.
+   *
+   * @throws exception
+   *   Only integer values are allowed.
+   */
   public function setValidationStatus($status);
 
+  /**
+   * Sets the status of the study in the database.
+   *
+   * @param int $status
+   *   The integer to store, 0 for incomplete, 1 for complete.
+   *
+   * @throws exception
+   *   Only integer values are allowed.
+   */
   public function setStatus($status);
 
+  /**
+   * Gets the current status of the study from the database.
+   *
+   * @return int
+   *   The status integer (0 for incomplete, 1 for complete).
+   */
   public function getStatus();
+
+  /**
+   * Clones a study.
+   */
+  public function cloneStudy($iid);
+
+  /**
+   * Returns the user object of the owner of this study.
+   *
+   * @return object
+   *   The user object representing the study owner.
+   */
+  public function getCurrentStudyOwner();
 }
 
+/**
+ * Class Study.
+ */
 class Study implements StudyInterface {
 
   protected $phases = array();
@@ -75,6 +187,7 @@ class Study implements StudyInterface {
    * Sets the IID of the study.
    *
    * @param int $iid
+   *   The study ID being used.
    */
   public function setIID($iid) {
     $this->iid = $iid;
@@ -159,6 +272,9 @@ class Study implements StudyInterface {
     return FALSE;
   }
 
+  /**
+   * Gets the phases.
+   */
   public function getPhases() {
     return $this->phases;
   }
@@ -171,7 +287,6 @@ class Study implements StudyInterface {
    * @param string $url
    *   The stage part of the url.
    *
-   * @throws Exception
    * @return Stage stage
    *   Returns the stage if found.
    */
@@ -183,7 +298,6 @@ class Study implements StudyInterface {
       }
     }
     return FALSE;
-//    throw new Exception('Stage not found for url' . $phase . '/' . $url);
   }
 
   /**
@@ -193,6 +307,8 @@ class Study implements StudyInterface {
    *   The stage name to find the stage for.
    *
    * @throws Exception
+   *   Message explaining the stage could not be found.
+   *
    * @return Stage
    *   The stage if found.
    */
@@ -212,6 +328,8 @@ class Study implements StudyInterface {
    * Gets the current stage.
    *
    * @throws exception
+   *   Exception if the stage could not be retrieved.
+   *
    * @return Stage
    *   The stage to be returned.
    */
@@ -268,7 +386,7 @@ class Study implements StudyInterface {
    *
    * @see MformsDatabaseStore::getStore()
    */
-  public function setCurrentStage($stage) {
+  public function setCurrentStage(Stage $stage) {
     $this->currentStage = $stage;
   }
 
@@ -316,7 +434,10 @@ class Study implements StudyInterface {
    * Sets the completion status of the study.
    *
    * @param int $status
+   *   The status integer to be set.
+   *
    * @throws exception
+   *   Only integer values are allowed.
    */
   public function setValidationStatus($status) {
     if (!is_int($status)) {
@@ -330,7 +451,9 @@ class Study implements StudyInterface {
    *
    * @param int $status
    *   The integer to store, 0 for incomplete, 1 for complete.
+   *
    * @throws exception
+   *   Only integer values are allowed.
    */
   public function setStatus($status) {
     if (!is_int($status)) {
@@ -356,4 +479,97 @@ class Study implements StudyInterface {
     $status = $query->execute()->fetchField();
     return $status;
   }
+
+  /**
+   * Clones a study.
+   *
+   * @param int $iid
+   *   The IID of the study to clone.
+   *
+   * @return mixed
+   *   The IID of the cloned (new) study.
+   */
+  public function cloneStudy($iid) {
+    $record = $this->createStudy($iid);
+    $new_iid = $record['iid'];
+    $this->cloneMformsStorageSteps($iid, $new_iid);
+    return $new_iid;
+  }
+
+  /**
+   * Creates a new study.
+   *
+   * @param int $iid
+   *   The unique IID of the study.
+   *
+   * @return array
+   *   The record written to the database.
+   */
+  public function createStudy($iid) {
+    $user = $this->getStudyOwner($iid);
+    $record = array(
+      'uid' => $user->uid,
+      'created' => time(),
+    );
+    // Write the new record.
+    drupal_write_record('mforms_storage', $record);
+    // Return the record.
+    return $record;
+  }
+
+  /**
+   * Copies all the rows related to the iid into new rows referencing new_iid.
+   *
+   * @param $iid
+   *   The IID of the study steps to be cloned.
+   * @param $new_iid
+   *   The IID of the new study being cloned into.
+   */
+  protected function cloneMformsStorageSteps($iid, $new_iid) {
+    // Fetch all the steps of the current IID.
+    $steps = db_select('mforms_storage_steps', 's')
+      ->fields('s', array('store_key', 'store_data'))
+      ->condition('s.iid', $iid)
+      ->execute()->fetchAllKeyed();
+    // Iterate over each step.
+    foreach ($steps as $store_key => $store_data) {
+      $record = array(
+        'iid' => $new_iid,
+        'store_key' => $store_key,
+        'store_data' => $store_data,
+      );
+      // Store the step data against the new_iid.
+      drupal_write_record('mforms_storage_steps', $record);
+    }
+  }
+
+  /**
+   * Returns the user object of the owner of this study.
+   *
+   * @return object
+   *   The user object representing the study owner.
+   */
+  public function getCurrentStudyOwner() {
+    $iid = $this->getIID();
+    return $this->getStudyOwner($iid);
+  }
+
+  /**
+   * Returns the user object of the owner of the given study.
+   *
+   * @param int $iid
+   *   The IID of the study of which the owner is to be fetched.
+   *
+   * @return object
+   *   The user object representing the study owner.
+   */
+  public function getStudyOwner($iid) {
+    $uid = db_select('mforms_storage', 'ms')
+      ->fields('ms', array('uid'))
+      ->condition('ms.iid', $iid)
+      ->execute()
+      ->fetchField();
+    return user_load($uid);
+  }
+
 }

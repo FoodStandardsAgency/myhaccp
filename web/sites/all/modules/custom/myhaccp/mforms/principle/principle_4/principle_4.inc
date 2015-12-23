@@ -1,9 +1,16 @@
 <?php
 
 /**
+ * @file
+ * Principle 4 stage form and validation handler.
+ */
+
+/**
  * Principle 4.
  */
 function principle_4(&$form_state, &$next_step) {
+  // @ignore comment_comment_eg:function
+
   // Define following step callback. If none set, that implies it is
   // the last step.
   $next_step = 'principle_5';
@@ -16,9 +23,9 @@ function principle_4(&$form_state, &$next_step) {
   $values = myhaccp_prepare_values($data, $form_state);
 
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   drupal_set_title($stage->title, PASS_THROUGH);
@@ -48,7 +55,7 @@ function principle_4(&$form_state, &$next_step) {
 
   // Ensure there are hazards over the threshold.
   if ($hazards->countHazardsOverThreshold() == 0) {
-    drupal_set_message('You have no significant hazards so you cannot continue', 'error');
+    drupal_set_message(t('You have no significant hazards so you cannot continue'), 'error');
     return $form;
   }
 
@@ -61,7 +68,7 @@ function principle_4(&$form_state, &$next_step) {
   // Bail out here with a message if there are no instances of the fieldsets
   // filled out correctly in the previous screen.
   if ($instance_count == 0) {
-    drupal_set_message('You have no critical control points so you cannot continue');
+    drupal_set_message(t('You have no critical control points so you cannot continue'));
     return $form;
   }
 
@@ -152,8 +159,8 @@ function principle_4(&$form_state, &$next_step) {
     $form['principle_4'][$hazard_key]['4_7'] = array(
       '#type' => 'radios',
       '#options' => array(
-        'yes' => t('Yes'),
-        'no' => t('No'),
+        'yes' => t('Yes', array(), array('context' => 'Will the monitoring records be checked and signed off by anyone?')),
+        'no' => t('No', array(), array('context' => 'Will the monitoring records be checked and signed off by anyone?')),
       ),
       '#title' => t('7. Will the monitoring records be checked and signed off by anyone?'),
       '#default_value' => array_get($values, "principle_4.$hazard_key.4_7", FALSE),
@@ -210,9 +217,9 @@ function principle_4(&$form_state, &$next_step) {
  */
 function principle_4_validate($form, &$form_state) {
   // Get the dependency injection container.
-  global $container;
+  global $_myhaccp_container;
   // Get the current study.
-  $study = $container['study'];
+  $study = $_myhaccp_container['study'];
   // Get the stage.
   $stage = $study->getCurrentStage();
   $validator = $stage->getValidator();
@@ -267,4 +274,3 @@ function principle_4_validate($form, &$form_state) {
   $validator->setErrorMessages();
   $form_state = $validator->getFormState();
 }
-

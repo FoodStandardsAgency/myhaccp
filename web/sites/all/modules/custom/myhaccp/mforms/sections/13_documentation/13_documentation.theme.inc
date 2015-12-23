@@ -2,13 +2,13 @@
 
 /**
  * @file
- * Theme function for this stage.
+ * Theme function for stage 13.
  *
  * Prepares the passed form_state data and processes it for output.
  */
 
 /**
- * Implements hook_preprocess_principle_7().
+ * Preprocess function for 13_documentation.
  *
  * Prepare the form_state data for presentation in the template file.
  *
@@ -46,7 +46,7 @@ function myhaccp_preprocess_13_documentation(&$variables) {
 
   // 4. What is the maximum length of time that you retain this information for?
   if (!empty($principle_7['7_4'])) {
-    $variables['p_7_4'] = t('The maximum length of time we retain this information for is ') . '<strong>' . $principle_7['7_4'] . '</strong>';
+    $variables['p_7_4'] = t('The maximum length of time we retain this information for is') . ' <strong>' . $principle_7['7_4'] . '</strong>';
   }
 
   // 5. Are the records accessible, accurate and up to date?

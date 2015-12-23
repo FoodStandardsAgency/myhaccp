@@ -1,0 +1,68 @@
+<?php
+
+/**
+ * @file
+ * Displays notices on the tool page.
+ */
+
+/**
+ * Implements hook_block_info().
+ */
+function myhaccp_notices_block_info() {
+  $blocks = array();
+
+  $blocks['notice'] = array(
+    'info' => t('MyHACCP: Most recent notice'),
+    'cache' => DRUPAL_CACHE_PER_USER,
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function myhaccp_notices_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'notice':
+      if ($bean = myhaccp_notices_get_most_recent_notice()) {
+        $bean_block = block_load('bean', $bean->delta);
+        $rendered = _block_render_blocks(array($bean_block));
+        // If the block was previously closed then the rendered block will
+        // be empty and there is nothing to display.
+        if ($rendered) {
+          $render_array = $rendered['bean_' . $bean->delta]->content;
+          $block['subject'] = '';
+          $block['content'] = '<div class="' . $bean->delta . ' notice-block">' . render($render_array) . '</div>';
+        }
+      }
+      break;
+  }
+
+  return $block;
+}
+
+/**
+ * Gets the most recent notice node.
+ *
+ * @return bool|object
+ *   A FALSE boolean if none found or the node object.
+ */
+function myhaccp_notices_get_most_recent_notice() {
+  // Fetch the most recent published notice.
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'bean')
+    ->entityCondition('bundle', 'notice')
+    ->propertyOrderBy('created', 'DESC')
+    ->range(0, 1);
+  $result = $query->execute();
+
+  if (isset($result['bean'])) {
+    $result = reset($result['bean']);
+    $bean = bean_load($result->bid);
+    return $bean;
+  }
+  return FALSE;
+}

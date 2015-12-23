@@ -1,0 +1,33 @@
+.front {
+
+  .block-bean-homepage-intro {
+    border-bottom: 5px solid $dark-background;
+    h2.title {
+      font-size: 1.35em;
+    }
+  }
+
+  .block-bean-homepage-first {
+    width: 100%;
+  }
+
+  .block-bean-homepage-second {
+    width: 100%;
+  }
+
+  @media (min-width: $break_sm_up) {
+    .block-bean-homepage-first {
+      @include column-split(half, first);
+    }
+
+    .block-bean-homepage-second {
+      @include column-split(half, false, last);
+    }
+  }
+
+  // What's next?
+  .block-bean-homepage-second ol {
+    @extend %big-numbered-list;
+  }
+
+}

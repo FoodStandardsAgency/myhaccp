@@ -2,13 +2,13 @@
 
 /**
  * @file
- * Theme function for this stage.
+ * Theme function for stage 6.
  *
  * Prepares the passed form_state data and processes it for output.
  */
 
 /**
- * Implements hook_preprocess_principle_1_1().
+ * Preprocess function for 06_identify.
  *
  * Prepare the form_state data for presentation in the template file.
  *
@@ -32,7 +32,6 @@ function myhaccp_preprocess_06_identify(&$variables) {
   }
 
   // Now generate a table of hazards per step.
-
   // First the table headers.
   $header = array(
     array('data' => t('Step No.')),
@@ -40,14 +39,14 @@ function myhaccp_preprocess_06_identify(&$variables) {
     array('data' => t('Biological')),
     array('data' => t('Chemical')),
     array('data' => t('Physical')),
-    array('data' => t('Allergens'))
+    array('data' => t('Allergens')),
   );
 
   // Now the table rows.
   foreach ($steps as $step) {
     // Steps must have a number and name.
     if (!empty($step['wrapper']['step_no']) && !empty($step['wrapper']['step_name'])) {
-      // Split hazards on new lines using <br />
+      // Split hazards on new lines using <br>.
       $biological = nl2br($step['hazards_wrapper']['biological']);
       $chemical = nl2br($step['hazards_wrapper']['chemical']);
       $physical = nl2br($step['hazards_wrapper']['physical']);
@@ -65,7 +64,7 @@ function myhaccp_preprocess_06_identify(&$variables) {
         // Physical.
         array('data' => $physical),
         // Allergens.
-        array('data' => $allergens)
+        array('data' => $allergens),
       );
     }
   }
