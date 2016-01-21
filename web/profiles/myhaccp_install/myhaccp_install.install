@@ -1,0 +1,44 @@
+<?php
+/**
+ * @file
+ * Install, update and uninstall functions for the MyHACCP installation profile.
+ */
+
+/**
+ * Implements hook_install().
+ *
+ * Perform actions to set up the site for this profile.
+ *
+ * @see system_install()
+ */
+function myhaccp_install_install() {
+  
+  // Enable themes
+  $themes = array(
+    'myhaccp_theme',
+    'adminimal',
+  );
+  theme_enable($themes);
+  variable_set('theme_default', 'myhaccp_theme');
+  variable_set('admin_theme', 'adminimal');
+  variable_set('node_admin_theme', 1);
+
+  // Main menu links
+  $item = array(
+    'link_title' => st('Home'),
+    'link_path' => '<front>',
+    'menu_name' => 'main-menu',
+  );
+  menu_link_save($item);
+  $item = array(
+    'link_title' => st('MyHACCP Web Tool'),
+    'link_path' => 'tool',
+    'menu_name' => 'main-menu',
+  );
+  menu_link_save($item);
+
+  // Set JQuery version
+  variable_set('jquery_update_jquery_version', '1.8');
+  
+  
+}
