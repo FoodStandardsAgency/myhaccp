@@ -53,6 +53,7 @@ dependencies[] = entity_translation_i18n_menu
 dependencies[] = features
 dependencies[] = file_entity
 dependencies[] = fpa
+dependencies[] = googleanalytics
 dependencies[] = honeypot
 dependencies[] = html5_tools
 dependencies[] = i18n

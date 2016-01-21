@@ -1,7 +1,7 @@
 name = MyHACCP Content Authoring
 description = Configuration for conent authoring and input
 core = 7.x
-package = Features
+package = MyHACCP
 version = 7.x-1.0
 dependencies[] = features
 dependencies[] = filter
