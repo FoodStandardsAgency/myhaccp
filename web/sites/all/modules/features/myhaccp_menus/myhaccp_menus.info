@@ -1,0 +1,15 @@
+name = MyHACCP Menus
+description = Defualt menu settings
+core = 7.x
+package = MyHACCP
+version = 7.x-1.0
+dependencies[] = features
+dependencies[] = menu
+dependencies[] = myhaccp_context
+features[features_api][] = api:2
+features[menu_links][] = main-menu_home:<front>
+features[menu_links][] = main-menu_myhaccp-web-tool:tool
+features[menu_links][] = user-menu_log-in:user/login
+features[menu_links][] = user-menu_log-out:user/logout
+features[menu_links][] = user-menu_register:user/register
+features[menu_links][] = user-menu_user-account:user
