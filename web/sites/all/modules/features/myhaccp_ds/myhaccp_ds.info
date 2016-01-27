@@ -1,0 +1,10 @@
+name = MyHACCP DS
+description = Display suite settings
+core = 7.x
+package = MyHACCP
+version = 7.x-1.0
+dependencies[] = ctools
+dependencies[] = ds
+features[ctools][] = ds:ds:1
+features[ds_view_modes][] = full_without_title
+features[features_api][] = api:2
