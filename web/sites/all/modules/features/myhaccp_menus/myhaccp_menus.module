@@ -7,7 +7,7 @@
 function myhaccp_menus_menu_block_blocks() {
   // The array key is the block delta used by menu block.
   return array(
-    'myhaccp_menus-1' => array(
+    '1' => array(
       'parent'      => 'main-menu:0',
       'title_link'  => 0,
       'admin_title' => '',
@@ -17,7 +17,7 @@ function myhaccp_menus_menu_block_blocks() {
       'expanded'    => 0,
       'sort'        => 0,
     ),
-    'myhaccp_menus-2' => array(
+    '2' => array(
       'parent'      => 'main-menu:0',
       'title_link'  => 0,
       'admin_title' => '',
@@ -27,8 +27,8 @@ function myhaccp_menus_menu_block_blocks() {
       'expanded'    => 0,
       'sort'        => 0,
     ),
-    'myhaccp_menus-3' => array(
-      'parent'        => 'main-menu:0',
+    '3' => array(
+      'parent'      => 'main-menu:0',
       'title_link'  => 0,
       'admin_title' => '',
       'level'       => 3,

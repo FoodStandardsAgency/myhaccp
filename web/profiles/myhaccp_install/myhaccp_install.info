@@ -133,6 +133,7 @@ dependencies[] = myhaccp_content_type_resource_download
 dependencies[] = myhaccp_content_type_resource_link
 dependencies[] = myhaccp_content_type_webform
 dependencies[] = myhaccp_context
+dependencies[] = myhaccp_ds
 dependencies[] = myhaccp_field_bases
 dependencies[] = myhaccp_home_page
 dependencies[] = myhaccp_language_configuration
