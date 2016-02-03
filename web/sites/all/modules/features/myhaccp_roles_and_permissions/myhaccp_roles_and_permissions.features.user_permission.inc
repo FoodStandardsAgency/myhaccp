@@ -186,16 +186,6 @@ function myhaccp_roles_and_permissions_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'administer profiles'.
-  $permissions['administer profiles'] = array(
-    'name' => 'administer profiles',
-    'roles' => array(
-      'administrator' => 'administrator',
-      'site manager' => 'site manager',
-    ),
-    'module' => 'profile2',
-  );
-
   // Exported permission: 'administer search'.
   $permissions['administer search'] = array(
     'name' => 'administer search',
@@ -586,16 +576,6 @@ function myhaccp_roles_and_permissions_user_default_permissions() {
     'module' => 'file_entity',
   );
 
-  // Exported permission: 'edit any main profile'.
-  $permissions['edit any main profile'] = array(
-    'name' => 'edit any main profile',
-    'roles' => array(
-      'administrator' => 'administrator',
-      'site manager' => 'site manager',
-    ),
-    'module' => 'profile2',
-  );
-
   // Exported permission: 'edit any myhaccp study'.
   $permissions['edit any myhaccp study'] = array(
     'name' => 'edit any myhaccp study',
@@ -653,16 +633,6 @@ function myhaccp_roles_and_permissions_user_default_permissions() {
       'site manager' => 'site manager',
     ),
     'module' => 'file_entity',
-  );
-
-  // Exported permission: 'edit own main profile'.
-  $permissions['edit own main profile'] = array(
-    'name' => 'edit own main profile',
-    'roles' => array(
-      'administrator' => 'administrator',
-      'authenticated user' => 'authenticated user',
-    ),
-    'module' => 'profile2',
   );
 
   // Exported permission: 'edit own myhaccp study'.
@@ -849,16 +819,6 @@ function myhaccp_roles_and_permissions_user_default_permissions() {
     'module' => 'filter',
   );
 
-  // Exported permission: 'view any main profile'.
-  $permissions['view any main profile'] = array(
-    'name' => 'view any main profile',
-    'roles' => array(
-      'administrator' => 'administrator',
-      'site manager' => 'site manager',
-    ),
-    'module' => 'profile2',
-  );
-
   // Exported permission: 'view any myhaccp study'.
   $permissions['view any myhaccp study'] = array(
     'name' => 'view any myhaccp study',
@@ -890,16 +850,6 @@ function myhaccp_roles_and_permissions_user_default_permissions() {
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'file_entity',
-  );
-
-  // Exported permission: 'view own main profile'.
-  $permissions['view own main profile'] = array(
-    'name' => 'view own main profile',
-    'roles' => array(
-      'administrator' => 'administrator',
-      'authenticated user' => 'authenticated user',
-    ),
-    'module' => 'profile2',
   );
 
   // Exported permission: 'view own myhaccp study'.

@@ -21,7 +21,6 @@ dependencies[] = search
 dependencies[] = syslog
 dependencies[] = taxonomy
 dependencies[] = text
-dependencies[] = toolbar
 dependencies[] = translation
 
 ; Contrib modules
@@ -76,6 +75,7 @@ dependencies[] = media
 dependencies[] = menu_block
 dependencies[] = mforms
 dependencies[] = modernizr
+dependencies[] = module_filter
 dependencies[] = password_policy
 dependencies[] = pathauto
 dependencies[] = pathauto_i18n

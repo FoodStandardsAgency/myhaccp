@@ -14,9 +14,6 @@ function myhaccp_install_install() {
   
   // Hide errors
   variable_set('error_level', ERROR_REPORTING_HIDE);
-  
-  // Set JQuery version
-  variable_set('jquery_update_jquery_version', '1.8');
 }
 
 /**
@@ -26,6 +23,7 @@ function myhaccp_install_install_tasks(&$install_state) {
 
   $tasks= array(
     'myhaccp_install_features_revert' => array(),
+    'myhaccp_install_module_settings' => array(),
     'myhaccp_install_block_settings' => array(),
   );
   
@@ -166,11 +164,28 @@ function myhaccp_install_features_revert() {
 }
 
 /**
+ * Module specific settings
+ */
+function myhaccp_install_module_settings() {
+
+  // Disable toolbar module
+  if (module_exists('toolbar')) {
+    module_disable('toolbar');
+  }
+  
+  // Set JQuery version
+  variable_set('jquery_update_jquery_version', '1.8');
+}
+
+/**
  * Block and menu settings
  */
 function myhaccp_install_block_settings() {
   
   $theme = 'myhaccp_theme';
+  
+  // Disable menu block
+  
 
   // Add missing menu link
   $item = array(
