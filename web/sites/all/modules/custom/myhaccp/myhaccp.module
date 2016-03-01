@@ -1143,13 +1143,13 @@ function myhaccp_validate_pdf(stdClass $file, $options = array()) {
 
   // Check the PDF version and try to convert the file if needed.
   $version = myhaccp_determine_pdf_version($file);
-  if ($version && $version > 1.4) {
+  if ($version && ($version > 1.4 || $version < 1.4)) {
     // Try to convert the file.
     myhaccp_convert_pdf($file);
     // Check the version of the updated file.
     $updated_version = myhaccp_determine_pdf_version($file);
     if ($updated_version != '1.4') {
-      $errors[] = t('The PDF uploaded has features incompatible with this system. We have tried to convert the file but the conversion failed. Please upload a PDF compatible with the Adobe PDF standard version 1.4');
+      $errors[] = t('The PDF uploaded has features incompatible with this system. We have tried to convert the file but the conversion failed. Please upload a PDF compatible with the Adobe PDF standard version 1.4. If you need help with this please contact myhaccp@foodstandards.gsi.gov.uk');
     }
   }
 
