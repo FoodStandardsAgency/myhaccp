@@ -1,5 +1,5 @@
 name = MyHACCP
-description = HACCP in a box installation
+description = MyHACCP installation profile. A starting point for Drupal developers wishing to setup a site based on the UK Food Standards Agency's MyHACCP site.
 core = 7.x
 
 ; Core modules
