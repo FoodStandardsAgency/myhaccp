@@ -20,6 +20,13 @@ function myhaccp_preprocess_10_critical(&$variables) {
   $study = $variables['study'];
   $data = $study->getStage('principle_3')->getData();
   $principle_3 = $data['principle_3'];
+  $variables['ccps'] = TRUE;
+
+  if (myhaccp_check_ccps() == FALSE) {
+    $variables['p_3_table'] = '<h3>' . t('There are no Critical Control Points') . '</h3>';
+    $variables['ccps'] = FALSE;
+    return;
+  }
 
   // Get details of all Hazards.
   $hazards = Hazards::getInstance();
@@ -41,15 +48,15 @@ function myhaccp_preprocess_10_critical(&$variables) {
     if (!empty($hazards->hazards[$h_key]->controlMeasure)) {
       $rows[] = array(
         // Step No.
-        array('data' => $hazards->hazards[$h_key]->step->no),
+        array('data' => htmlspecialchars($hazards->hazards[$h_key]->step->no)),
         // Step Name.
-        array('data' => $hazards->hazards[$h_key]->step->name),
+        array('data' => htmlspecialchars($hazards->hazards[$h_key]->step->name)),
         // Hazard.
         array('data' => $hazards->hazards[$h_key]->name),
         // Critical limit.
-        array('data' => nl2br($ccp_hazard['3_1'])),
+        array('data' => nl2br(htmlspecialchars($ccp_hazard['3_1']))),
         // How was the critical limit determined?
-        array('data' => nl2br($ccp_hazard['3_2'])),
+        array('data' => nl2br(htmlspecialchars($ccp_hazard['3_2']))),
         // Will the critical limit control the specific hazard?
         array(
           'data' => $ccp_hazard['3_3'] == 'yes' ? t('Yes', array(), array(
