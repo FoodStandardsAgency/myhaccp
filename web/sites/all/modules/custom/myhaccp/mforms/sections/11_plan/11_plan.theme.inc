@@ -21,6 +21,11 @@ function myhaccp_preprocess_11_plan(&$variables) {
   $data = $study->getStage('principle_5')->getData();
   $principle_5 = $data['principle_5'];
 
+  if (myhaccp_check_ccps() == FALSE) {
+    $variables['p_5_table'] = '<h3>' . t('There are no Critical Control Points') . '</h3>';
+    return;
+  }
+
   // Get details of all Hazards.
   $hazards = Hazards::getInstance();
   $by_step = $hazards->getHazardsByStep();
@@ -55,7 +60,7 @@ function myhaccp_preprocess_11_plan(&$variables) {
         // Hazard.
         array('data' => $hazards->hazards[$h_key]->name),
         // Control measure.
-        array('data' => nl2br($hazards->hazards[$h_key]->controlMeasure)),
+        array('data' => nl2br(check_plain($hazards->hazards[$h_key]->controlMeasure))),
         // Critical limit.
         array('data' => $critical_limit),
         // Monitoring procedures.
@@ -93,16 +98,16 @@ function _principle_3_cl(Study $study, $h_key) {
   if ($h_key) {
     // 1. What is the critical limit for this critical control point (what separates safe from potentially unsafe product)?
     if (!empty($principle_3[$h_key]['3_1'])) {
-      $content .= '<p><strong>' . $principle_3[$h_key]['3_1'] . '</strong></p><br />';
+      $content .= '<p><strong>' . check_plain($principle_3[$h_key]['3_1']) . '</strong></p><br />';
     }
 
     // Is there a target value?
     if (!empty($values[$h_key]['3_6'])) {
-      $content .= '<p><strong>Target value:</strong> ' . $principle_3[$h_key]['3_6'] . '</p><br />';
+      $content .= '<p><strong>Target value:</strong> ' . check_plain($principle_3[$h_key]['3_6']) . '</p><br />';
     }
 
     if (!empty($values[$h_key]['3_7'])) {
-      $content .= '<p><strong>Tolerances:</strong> ' . $principle_3[$h_key]['3_7'] . '</p>';
+      $content .= '<p><strong>Tolerances:</strong> ' . check_plain($principle_3[$h_key]['3_7']) . '</p>';
     }
 
     return $content;
@@ -130,32 +135,32 @@ function _principle_4_m(Study $study, $h_key) {
   if ($h_key) {
     // 1. What monitoring activities are going to take place at this CCP?
     if (!empty($principle_4[$h_key]['4_1'])) {
-      $content .= '<p>' . nl2br($principle_4[$h_key]['4_1']) . '</p><br />';
+      $content .= '<p>' . nl2br(strip_tags($principle_4[$h_key]['4_1'])) . '</p><br />';
     }
 
     // 2. Specify how frequently the monitoring activities are to be carried out.
     if (!empty($principle_4[$h_key]['4_2'])) {
-      $content .= '<p>' . t('Monitoring activity frequency') . ': ' . nl2br($principle_4[$h_key]['4_2']) . '</p><br />';
+      $content .= '<p>' . t('Monitoring activity frequency') . ': ' . nl2br(strip_tags($principle_4[$h_key]['4_2'])) . '</p><br />';
     }
 
     // 3. Define how the monitoring activities are carried out.
     if (!empty($principle_4[$h_key]['4_3'])) {
-      $content .= '<p>' . t('How the monitoring activities are carried out') . ': ' . nl2br($principle_4[$h_key]['4_3']) . '</p><br />';
+      $content .= '<p>' . t('How the monitoring activities are carried out') . ': ' . nl2br(strip_tags($principle_4[$h_key]['4_3'])) . '</p><br />';
     }
 
     // 4. Who is responsible for monitoring actions at this CCP?
     if (!empty($principle_4[$h_key]['4_4'])) {
-      $content .= '<p>' . t('The following people are responsible for monitoring actions at this CCP') . ': ' . nl2br($principle_4[$h_key]['4_4']) . '</p><br />';
+      $content .= '<p>' . t('The following people are responsible for monitoring actions at this CCP') . ': ' . nl2br(strip_tags($principle_4[$h_key]['4_4'])) . '</p><br />';
     }
 
     // 5. Please state the name and job title of the deputy if applicable:
     if (!empty($principle_4[$h_key]['4_5'])) {
-      $content .= '<p>' . t('The deputy is') . ': ' . $principle_4[$h_key]['4_5'] . '</p><br />';
+      $content .= '<p>' . t('The deputy is') . ': ' . strip_tags($principle_4[$h_key]['4_5']) . '</p><br />';
     }
 
     // 6. Where are the results of monitoring recorded?
     if (!empty($principle_4[$h_key]['4_6'])) {
-      $content .= '<p>' . t('The results of monitoring are recorded') . ': ' . $principle_4[$h_key]['4_6'] . '</p><br />';
+      $content .= '<p>' . t('The results of monitoring are recorded') . ': ' . strip_tags($principle_4[$h_key]['4_6']) . '</p><br />';
     }
 
     // 7. Will the monitoring records be checked and signed off by anyone?
@@ -194,22 +199,22 @@ function _principle_5_mp(Study $study, $h_key) {
   if ($h_key) {
     // 1. Corrective action to be taken.
     if (!empty($principle_5[$h_key]['5_1'])) {
-      $content .= '<p>' . t('Corrective action to be taken') . ': ' . nl2br($principle_5[$h_key]['5_1']) . '</p><br />';
+      $content .= '<p>' . t('Corrective action to be taken') . ': ' . nl2br(strip_tags($principle_5[$h_key]['5_1'])) . '</p><br />';
     }
 
     // 2. Detail personnel who have the authority to take the stated corrective action.
     if (!empty($principle_5[$h_key]['5_2'])) {
-      $content .= '<p>' . t('Personnel who have the authority to take the stated corrective action') . ': ' . nl2br($principle_5[$h_key]['5_2']) . '</p><br />';
+      $content .= '<p>' . t('Personnel who have the authority to take the stated corrective action') . ': ' . nl2br(strip_tags($principle_5[$h_key]['5_2'])) . '</p><br />';
     }
 
     // 3. What happens to the product created during the period that a CCP was out of control? Detail any variation in handling this product that relates to, a parameter, eg degree of control lost.
     if (!empty($principle_5[$h_key]['5_3'])) {
-      $content .= '<p>' . nl2br($principle_5[$h_key]['5_3']) . '</p><br />';
+      $content .= '<p>' . nl2br(strip_tags($principle_5[$h_key]['5_3'])) . '</p><br />';
     }
 
     // 4. Where are you going to document what you have done with the product produced during the time period that a CCP was 'out of control' (for example since the last good check)?
     if (!empty($principle_5[$h_key]['5_4'])) {
-      $content .= '<p>' . t('Actions for product produced when the CPP was out of control will be recorded in') . ': ' . nl2br($principle_5[$h_key]['5_4']) . '</p><br />';
+      $content .= '<p>' . t('Actions for product produced when the CPP was out of control will be recorded in') . ': ' . nl2br(strip_tags($principle_5[$h_key]['5_4'])) . '</p><br />';
     }
 
     // 5. Are all personnel (identified in any of the steps from 1-6 for all CCP’s) trained and competent for performing the activities stated?
