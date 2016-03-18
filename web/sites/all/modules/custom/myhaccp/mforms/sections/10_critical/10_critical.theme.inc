@@ -48,15 +48,15 @@ function myhaccp_preprocess_10_critical(&$variables) {
     if (!empty($hazards->hazards[$h_key]->controlMeasure)) {
       $rows[] = array(
         // Step No.
-        array('data' => htmlspecialchars($hazards->hazards[$h_key]->step->no)),
+        array('data' => $hazards->hazards[$h_key]->step->no),
         // Step Name.
-        array('data' => htmlspecialchars($hazards->hazards[$h_key]->step->name)),
+        array('data' => check_plain($hazards->hazards[$h_key]->step->name)),
         // Hazard.
         array('data' => $hazards->hazards[$h_key]->name),
         // Critical limit.
-        array('data' => nl2br(htmlspecialchars($ccp_hazard['3_1']))),
+        array('data' => nl2br(check_plain($ccp_hazard['3_1']))),
         // How was the critical limit determined?
-        array('data' => nl2br(htmlspecialchars($ccp_hazard['3_2']))),
+        array('data' => nl2br(check_plain($ccp_hazard['3_2']))),
         // Will the critical limit control the specific hazard?
         array(
           'data' => $ccp_hazard['3_3'] == 'yes' ? t('Yes', array(), array(
