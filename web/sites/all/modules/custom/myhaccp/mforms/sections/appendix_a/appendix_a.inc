@@ -108,7 +108,7 @@ function prepare_pdf_merge($study, $mpdf, $section) {
 
   // Detect the PDF version and convert to 1.4 if needed.
   $version = myhaccp_determine_pdf_version($file);
-  if ($version && $version > 1.4) {
+  if ($version && ($version > 1.4 || $version < 1.4)) {
     // Try to convert the file.
     myhaccp_convert_pdf($file);
     // Check the version of the updated file.

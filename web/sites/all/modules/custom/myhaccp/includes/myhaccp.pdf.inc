@@ -81,6 +81,7 @@ function myhaccp_output_pdf($iid) {
       if (isset($section['type']) && $section['type'] == 'appendix') {
         continue;
       }
+
       $output = '<section class="page section-' . str_replace('_', '-', $key) . '">';
       // We need to fake the page title for the plan section.
       if ($key == '11_plan') {
@@ -149,4 +150,19 @@ function myhaccp_output_pdf($iid) {
     }
     drupal_exit('tool');
   }
+}
+
+/**
+ * Determines whether there are any CCPs in principle 2.2.
+ */
+function myhaccp_check_ccps() {
+  // Load principle 2.2.
+  $principle_2_2 = mforms_get_vals('myhaccp', 'principle_2_2');
+  $ccps = array();
+  foreach ($principle_2_2['principle_2_2']['instance_table'] as $key => $item) {
+    if ($item['ccp'] == 'yes') {
+      $ccps[] = $key;
+    }
+  }
+  return !empty($ccps);
 }
