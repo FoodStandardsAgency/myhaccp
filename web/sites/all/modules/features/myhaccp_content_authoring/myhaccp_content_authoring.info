@@ -1,0 +1,15 @@
+name = MyHACCP Content Authoring
+description = Configuration for conent authoring and input
+core = 7.x
+package = MyHACCP
+version = 7.x-1.0
+dependencies[] = features
+dependencies[] = filter
+dependencies[] = intlinks
+features[ckeditor_profile][] = Advanced
+features[ckeditor_profile][] = CKEditor Global Profile
+features[ckeditor_profile][] = Full
+features[features_api][] = api:2
+features[filter][] = full_html
+features[filter][] = plain_text
+features_exclude[dependencies][ckeditor] = ckeditor

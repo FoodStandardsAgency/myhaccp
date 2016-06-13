@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the MyHACCP Roles and Permissions feature.
+ */
+
+include_once 'myhaccp_roles_and_permissions.features.inc';

@@ -27,7 +27,7 @@ function myhaccp_list() {
   else {
     $output['intro'] = array(
       '#type' => 'markup',
-      '#markup' => t('Welcome to the MyHACCP Web Tool, from here you can start new studies and resume studies you have previously started. While using the Web Tool to undertake a Study you will find help available through help icons, which can be clicked on to reveal specific help for that question.'),
+      '#markup' => t('<p>Welcome to the MyHACCP Web Tool, from here you can start new studies and resume studies you have previously started. While using the Web Tool to undertake a Study you will find help available through help icons, which can be clicked on to reveal specific help for that question.</p>'),
     );
   }
 
@@ -314,8 +314,32 @@ function myhaccp_study_preview($iid) {
  *   The rendered page output.
  */
 function myhaccp_study_finish($iid) {
+
+  $default_content = '
+<h2>Note to developers</h2>
+<p>Default content for this page can be set by creating a Basic Page and setting 
+  the node in the myhaccp module -> myhaccp.pages.inc file on line 326 or 
+  editing the $default_content variable on line 318.</p>
+<p>The default content for the FSA site can be viewed here: 
+  <a href="https://myhaccp.food.gov.uk/node/39">https://myhaccp.food.gov.uk/node/39</a></p>  ';
+  
   // Load the node with the text to show.
   $node = node_load(39);
+  if (!$node) {
+    $node = new stdClass();
+    $node->type = "page";
+    $node->nid = 1000;
+    $node->created = time();
+    $node->language = 'en';
+    $node->promote = 0;
+    $node->sticky = 0;
+    $node->status = 1;
+    node_object_prepare($node);
+    $node->body['en'][] = array(
+      'value' => $default_content,
+      'format' => 'full_html',
+    );
+  }
   $node->title = NULL;
   $node_output = node_view($node, 'full');
 
