@@ -67,12 +67,14 @@
               show: function(event, api) {
                 // Send an event to Google Analytics.
                 // Fetch the current question.
-                ga('send', {
-                  'hitType': 'event',
-                  'eventCategory': 'help',
-                  'eventAction': 'inline',
-                  'eventLabel': question
-                });
+                if (typeof(ga) != "undefined") {
+                  ga('send', {
+                    'hitType': 'event',
+                    'eventCategory': 'help',
+                    'eventAction': 'inline',
+                    'eventLabel': question
+                  });
+                }
               }
             }
           });

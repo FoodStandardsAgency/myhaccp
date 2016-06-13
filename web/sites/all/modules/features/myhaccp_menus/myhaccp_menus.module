@@ -1,0 +1,41 @@
+<?php
+/**
+ * @file
+ * Drupal needs this blank file.
+ */
+
+function myhaccp_menus_menu_block_blocks() {
+  // The array key is the block delta used by menu block.
+  return array(
+    '1' => array(
+      'parent'      => 'main-menu:0',
+      'title_link'  => 0,
+      'admin_title' => '',
+      'level'       => 1,
+      'follow'      => '0',
+      'depth'       => 1,
+      'expanded'    => 0,
+      'sort'        => 0,
+    ),
+    '2' => array(
+      'parent'      => 'main-menu:0',
+      'title_link'  => 0,
+      'admin_title' => '',
+      'level'       => 2,
+      'follow'      => '0',
+      'depth'       => 1,
+      'expanded'    => 0,
+      'sort'        => 0,
+    ),
+    '3' => array(
+      'parent'      => 'main-menu:0',
+      'title_link'  => 0,
+      'admin_title' => '',
+      'level'       => 3,
+      'follow'      => '0',
+      'depth'       => 0,
+      'expanded'    => 0,
+      'sort'        => 0,
+    ),
+  );
+}

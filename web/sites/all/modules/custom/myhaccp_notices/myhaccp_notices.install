@@ -21,7 +21,7 @@ function myhaccp_notices_install() {
   $bean->field_description = array(
     'en' => array(
       0 => array(
-        'value' => '<p>Notice: update released 08/10/2015, for more information please read the <a href="/node/102">release notes here</a>.</p>',
+        'value' => '<p>This site has been ben installed using the MyHACCP install profile. Change this message by editing the Temporary Alert Messages block.</p>',
         'format' => 'full_html',
       ),
     ),

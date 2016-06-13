@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the MyHACCP DS feature.
+ */
+
+include_once 'myhaccp_ds.features.inc';
