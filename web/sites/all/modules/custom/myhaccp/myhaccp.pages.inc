@@ -322,7 +322,7 @@ function myhaccp_study_finish($iid) {
   editing the $default_content variable on line 318.</p>
 <p>The default content for the FSA site can be viewed here: 
   <a href="https://myhaccp.food.gov.uk/node/39">https://myhaccp.food.gov.uk/node/39</a></p>  ';
-  
+
   // Load the node with the text to show.
   $node = node_load(39);
   if (!$node) {
@@ -379,8 +379,17 @@ function myhaccp_study_finish($iid) {
   }
 
   $download_text = $validation_status == VALID ? t('Download your HACCP study') : t('Download your incomplete HACCP study');
-  // Offer a download link.
-  $download = l($download_text, "tool/study/$iid/pdf", array(
+  // Offer a download link for the PDF version.
+  $download_pdf = l($download_text, "tool/study/$iid/pdf", array(
+    'attributes' => array(
+      'class' => array('download-link'),
+      'data-valid' => $validation_status,
+      'data-status' => $study->getStatus(),
+    ),
+  ));
+
+  // Offer a download link for the Word version.
+  $download_word = l($download_text, "tool/study/$iid/doc", array(
     'attributes' => array(
       'class' => array('download-link'),
       'data-valid' => $validation_status,
@@ -390,7 +399,7 @@ function myhaccp_study_finish($iid) {
 
   // Output the page.
   $output = drupal_render($node_output);
-  $output .= $complete . ' ' . $download;
+  $output .= $complete . ' ' . $download_pdf . $download_word;
   return $output;
 }
 
