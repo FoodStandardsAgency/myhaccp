@@ -41,12 +41,12 @@ function myhaccp_word_01_management($study, $section) {
   $variables['b_2'] = $preparatory_b['b_2'] ? $preparatory_b['b_2'] : '';
 
   // Output to section.
-  $section->addTitle($variables['b_1_title'], 3);
+  $section->addTitle(htmlspecialchars($variables['b_1_title']), 3);
   foreach ($variables['b_1'] as $list_item) {
-    $section->addListItem($list_item, 0, 'fs', NULL, 'ps');
+    $section->addListItem(htmlspecialchars($list_item), 0, 'fs', NULL, 'ps');
   }
   if ($variables['b_2']) {
-    $section->addTitle($variables['b_2_title'], 3);
+    $section->addTitle(htmlspecialchars($variables['b_2_title']), 3);
     $section->addText($variables['b_2'], 'fs', 'ps');
   }
 }

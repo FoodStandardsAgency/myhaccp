@@ -67,16 +67,16 @@ function myhaccp_word_06_identify($study, $section) {
     // Steps must have a number and name.
     if (!empty($step['wrapper']['step_no']) && !empty($step['wrapper']['step_name'])) {
       // Split hazards on new lines using <br />.
-      $biological = nl2p($step['hazards_wrapper']['biological'], FALSE);
-      $chemical = nl2p($step['hazards_wrapper']['chemical'], FALSE);
-      $physical = nl2p($step['hazards_wrapper']['physical'], FALSE);
-      $allergens = nl2p($step['hazards_wrapper']['allergens'], FALSE);
+      $biological = nl2p(htmlspecialchars($step['hazards_wrapper']['biological']), FALSE);
+      $chemical = nl2p(htmlspecialchars($step['hazards_wrapper']['chemical']), FALSE);
+      $physical = nl2p(htmlspecialchars($step['hazards_wrapper']['physical']), FALSE);
+      $allergens = nl2p(htmlspecialchars($step['hazards_wrapper']['allergens']), FALSE);
 
       $rows[] = array(
         // Step No.
         array('data' => $step['wrapper']['step_no']),
         // Step Name.
-        array('data' => $step['wrapper']['step_name']),
+        array('data' => htmlspecialchars($step['wrapper']['step_name'])),
         // Biological.
         array('data' => $biological),
         // Chemical.
@@ -89,7 +89,7 @@ function myhaccp_word_06_identify($study, $section) {
     }
   }
 
-  foreach ($rows as $row) {
+  foreach ($rows as $delta => $row) {
     $table->addRow();
     foreach($row as $cell_content) {
       $cell = $table->addCell(NULL);

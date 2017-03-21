@@ -148,43 +148,43 @@ It will start at <strong>@start</strong> through to <strong>@end</strong>.</p>',
     $section->addTextBreak(1, 'fs', array('spaceAfter' => 0));
   }
 
-  $section->addTitle($variables['c_4_title'], 3);
+  $section->addTitle(htmlspecialchars($variables['c_4_title']), 3);
 
   if (!empty($physical_hazards)) {
     Html::addHtml($section, t('<h4>Physical</h4>'));
     foreach ($physical_hazards as $list_item) {
-      $section->addListItem($list_item, 0, 'fs-list', NULL, 'ps-list');
+      $section->addListItem(htmlspecialchars($list_item), 0, 'fs-list', NULL, 'ps-list');
     }
     $section->addTextBreak(1, 'fs', array('spaceAfter' => 0));
   }
   if (!empty($chemical_hazards)) {
     Html::addHtml($section, t('<h4>Chemical</h4>'));
     foreach ($chemical_hazards as $list_item) {
-      $section->addListItem($list_item, 0, 'fs-list', NULL, 'ps-list');
+      $section->addListItem(htmlspecialchars($list_item), 0, 'fs-list', NULL, 'ps-list');
     }
     $section->addTextBreak(1, 'fs', array('spaceAfter' => 0));
   }
   if (!empty($biological_hazards)) {
     Html::addHtml($section, t('<h4>Biological</h4>'));
     foreach ($biological_hazards as $list_item) {
-      $section->addListItem($list_item, 0, 'fs-list', NULL, 'ps-list');
+      $section->addListItem(htmlspecialchars($list_item), 0, 'fs-list', NULL, 'ps-list');
     }
     $section->addTextBreak(1, 'fs', array('spaceAfter' => 0));
   }
   if (!empty($allergens_hazards)) {
     Html::addHtml($section, t('<h4>Allergens</h4>'));
     foreach ($allergens_hazards as $list_item) {
-      $section->addListItem($list_item, 0, 'fs-list', NULL, 'ps-list');
+      $section->addListItem(htmlspecialchars($list_item), 0, 'fs-list', NULL, 'ps-list');
     }
     $section->addTextBreak(1, 'fs', array('spaceAfter' => 0));
   }
 
-  $section->addTitle($variables['a_1_title'], 3);
+  $section->addTitle(htmlspecialchars($variables['a_1_title']), 3);
   foreach ($variables['a_1'] as $list_item) {
-    $section->addListItem($list_item, 0, 'fs-list', NULL, 'ps-list');
+    $section->addListItem(htmlspecialchars($list_item), 0, 'fs-list', NULL, 'ps-list');
   }
   $section->addTextBreak(1, 'fs', 'ps');
-  $section->addTitle($variables['a_2_title'], 3);
+  $section->addTitle(htmlspecialchars($variables['a_2_title']), 3);
   Html::addHtml($section, $variables['a_2']);
 
   if ($c_5) {

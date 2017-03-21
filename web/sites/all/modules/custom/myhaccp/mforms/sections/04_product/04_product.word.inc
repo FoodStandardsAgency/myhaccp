@@ -113,7 +113,7 @@ function myhaccp_word_04_product($study, $section) {
 
   for ($i = 2; $i < 8; $i++) {
     if (!empty($variables['e_' . $i])) {
-      $section->addTitle($variables['e_' . $i . '_title'], 4);
+      $section->addTitle(htmlspecialchars($variables['e_' . $i . '_title']), 4);
       Html::addHtml($section, nl2p($variables['e_' . $i], FALSE));
       $section->addTextBreak(1, 'fs', array('spaceAfter' => 0));
     }
@@ -141,7 +141,7 @@ function myhaccp_word_04_product($study, $section) {
   }
 
   if (!empty($variables['f_8'])) {
-    $section->addTitle($variables['f_8_title'], 4);
+    $section->addTitle(htmlspecialchars($variables['f_8_title']), 4);
     Html::addHtml($section, nl2p($variables['f_8'], FALSE));
   }
 

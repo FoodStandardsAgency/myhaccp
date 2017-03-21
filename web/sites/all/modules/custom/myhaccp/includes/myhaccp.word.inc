@@ -32,7 +32,7 @@ function myhaccp_output_word($iid) {
     $name = $study->getName();
     // Get the study user.
     $user = $study->getCurrentStudyOwner();
-    // Instantiate a new B  usiness object.
+    // Instantiate a new Business object.
     $business = new Business();
     // Set the user.
     $business->setUser($user);
@@ -40,6 +40,7 @@ function myhaccp_output_word($iid) {
     $business_name = $business->getBusinessName();
     $filename = transliteration_clean_filename($name . '.docx');
     $phpWord = new \PhpOffice\PhpWord\PhpWord();
+    \PhpOffice\PhpWord\Settings::setOutputEscapingEnabled(true);
 
     $word_section = $phpWord->addSection();
     // Set the PHPWord configuration and styles.
@@ -78,11 +79,7 @@ function myhaccp_output_word($iid) {
         'marginLeft' => Converter::inchToTwip(.6),
       ));
 
-      if ($key == '01_management') {
-        $word_section->getStyle()->setPageNumberingStart(1);
-      }
-
-      $word_section->addTitle($section['title'], 2);
+      $word_section->addTitle(htmlspecialchars($section['title']), 2);
       // Reset the footer.
       $word_section->addFooter();
 
@@ -100,7 +97,12 @@ function myhaccp_output_word($iid) {
         if (file_exists($include_path)) {
           include $include_path;
           if (function_exists($function)) {
-            $function($study, $word_section);
+            try {
+              $function($study, $word_section);
+            }
+            catch (Exception $e) {
+              throw new Exception('Error occurred in function ' . $function . ": \n\n" . $e);
+            }
           }
         }
       }
@@ -181,11 +183,17 @@ function nl2p($string, $line_breaks = TRUE, $xml = TRUE) {
   }
   else {
     return '<p>' . preg_replace(
-        array("/([\n]{2,})/i", "/([\r\n]{3,})/i", "/([^>])\n([^<])/i"),
+        array(
+          "/([\n]{2,})/i",
+          "/([\r\n]{3,})/i",
+          "/([^>])\n([^<])/i",
+          "/([\r]{1,})/i",
+        ),
         array(
           "</p>\n<p>",
           "</p>\n<p>",
-          '$1<br' . ($xml == TRUE ? ' /' : '') . '>$2'
+          '$1<br' . ($xml == TRUE ? ' /' : '') . '>$2',
+          "</p>\n<p>",
         ),
         trim($string)) . '</p>';
   }

@@ -52,7 +52,7 @@ function myhaccp_word_12_verification($study, $section) {
 
   $variables['p_6_4_title'] = t('The following verification activities are undertaken:');
 
-  $section->addTitle($variables['p_6_4_title'], 3);
+  $section->addTitle(htmlspecialchars($variables['p_6_4_title']), 3);
 
   // 4. Verification activities.
   // Internal audits.
