@@ -5,6 +5,9 @@
  * Handles the output of a study as a Word doc.
  */
 
+use \PhpOffice\PhpWord\Shared\Html;
+use \PhpOffice\PhpWord\Shared\Converter;
+
 /**
  * Outputs a study as a Word doc.
  */
@@ -12,7 +15,6 @@ function myhaccp_output_word($iid) {
   // Get the dependency injection container.
   global $_myhaccp_container;
   $configuration = $_myhaccp_container['configuration'];
-
   require 'vendor/autoload.php';
 
   // Set the session IID.
@@ -38,73 +40,51 @@ function myhaccp_output_word($iid) {
     $business_name = $business->getBusinessName();
     $filename = transliteration_clean_filename($name . '.docx');
     $phpWord = new \PhpOffice\PhpWord\PhpWord();
-    $word_section = $phpWord->addSection();
-    // Get the stylesheets involved.
-    $style_path = drupal_get_path('theme', 'myhaccp_theme');
-    $stylesheet = file_get_contents($style_path . '/css/pdf-style.css');
-//    $mpdf->list_indent_first_level = 1;
-    // These could be used to help with tables not breaking across pages.
-//    $mpdf->shrink_tables_to_fit = 1.2;
-//    $mpdf->WriteHTML($stylesheet, 1);
 
+    $word_section = $phpWord->addSection();
+    // Set the PHPWord configuration and styles.
+    $configuration->setPHPWordConfig($phpWord);
+
+    // Get the sections for the document.
     $sections = $configuration->getPDFSections();
 
-    $cover = '<link rel="stylesheet" type="text/css" href="' . $style_path . '/css/pdf-style.css"></link>';
-
-    // Prepare the cover page.
-//    $mpdf->AddPageByArray(array(
-//      'resetpagenum' => 0,
-//      'suppress' => 'on',
-//    ));
     $date = format_date(time(), 'custom', 'd/m/Y');
-    $cover .= '<h1 class="study-name">' . t('MyHACCP Study') . ': ' . $name . '</h1>';
-    $cover .= '<p class="business-name">' . t('Business name') . ': <span class="business-name--title">' . $business_name . '</span></p>';
+    $word_section->addTitle(t('MyHACCP Study') . ': ' . $name, 1);
+    $word_section->addText(t('Business name') . ': ' . $business_name, array(
+      'size' => 16,
+      'bold' => TRUE,
+    ));
+
     $cover_footer = '<footer class="front-page"><h3 class="origin">' . t('This document was created using the MyHACCP web tool.') . '</h3>';
     $cover_footer .= '<p>http://myhaccp.food.gov.uk</p>';
     $cover_footer .= '<p class="date">' . t('Date generated') . ': ' . $date . '</p></footer>';
-//    $mpdf->SetHTMLFooter($cover_footer);
-    // Write the cover to the PDF.
-//    $mpdf->WriteHTML($cover, 2);
 
-//    $mpdf->AddPageByArray(array(
-//      'resetpagenum' => 1,
-//      'suppress' => 'off',
-//      'margin-top' => 40,
-//    ));
+    $footer = $word_section->addFooter();
+    Html::addHTML($footer, $cover_footer);
 
-    // Reset the footer.
-//    $mpdf->SetHTMLFooter('');
-
-    // Add page count to footer.
-//    $mpdf->SetHTMLFooter('<footer class="pdf-footer">{PAGENO} / {nbpg}</footer>');
-
-    \PhpOffice\PhpWord\Shared\Html::addHtml($word_section, $cover);
-
-    // Prepare each page.
+    // Prepare each section.
     foreach ($sections as $key => $section) {
-      $word_section = $phpWord->addSection();
+
       // Skip appendixes as they'll be handled differently.
       if (isset($section['type']) && $section['type'] == 'appendix') {
         continue;
       }
 
-      $output = '<section class="page section-' . str_replace('_', '-', $key) . '">';
-      // We need to fake the page title for the plan section.
-      if ($key == '11_plan') {
-//        $mpdf->SetTopMargin('25');
-//        $mpdf->SetHTMLHeader('<h1>' . $section['title'] . '</h1>');
-      }
-      else {
-        // Reset back to normal.
-//        $mpdf->SetTopMargin('12');
-//        $mpdf->SetHTMLHeader('');
-        $output .= '<h1>' . $section['title'] . '</h1>';
+      $word_section = $phpWord->addSection(array(
+        'orientation' => isset($section['orientation']) && $section['orientation'] == 'L' ? 'landscape' : 'portrait',
+        'marginTop' => Converter::inchToTwip(.6),
+        'marginRight' => Converter::inchToTwip(.6),
+        'marginBottom' => Converter::inchToTwip(.6),
+        'marginLeft' => Converter::inchToTwip(.6),
+      ));
+
+      if ($key == '01_management') {
+        $word_section->getStyle()->setPageNumberingStart(1);
       }
 
-      // Get the orientation.
-      if ($key !== '01_management') {
-//        $mpdf->AddPage($section['orientation']);
-      }
+      $word_section->addTitle($section['title'], 2);
+      // Reset the footer.
+      $word_section->addFooter();
 
       // Check the validation status of the needed stages.
       $statuses = array();
@@ -115,37 +95,39 @@ function myhaccp_output_word($iid) {
       }
       // If all statuses are valid then all good.
       if (count(array_keys($statuses, VALID)) == count($statuses)) {
-        $output .= theme($key, array('study' => $study));
+        $include_path = drupal_get_path('module', 'myhaccp') . '/mforms/sections/' . $key . '/' . $key . '.word.inc';
+        $function = 'myhaccp_word_' . $key;
+        if (file_exists($include_path)) {
+          include $include_path;
+          if (function_exists($function)) {
+            $function($study, $word_section);
+          }
+        }
       }
       else {
         // There were some failed stages.
-        $output .= '<section class="page error"><h3>' . t('One or more stages that contribute to this section do not pass validation, so the content for this section cannot be displayed.') . '</h3><p>' . t('Please return to your HACCP study review pages to find and correct the problem.') . '</p></section>';
+        $output = '<h3>' . t('One or more stages that contribute to this section do not pass validation, so the content for this section cannot be displayed.') . '</h3><p>' . t('Please return to your HACCP study review pages to find and correct the problem.') . '</p>';
+        Html::addHtml($word_section, $output);
       }
 
-      $output .= '</section>';
-
-      $output = str_replace('<br>', '<br/>', $output);
-
-      \PhpOffice\PhpWord\Shared\Html::addHtml($word_section, $output);
     }
 
     // Process Appendixes.
-//    foreach ($sections as $key => $section) {
-//      // Skip non appendixes as they've already been handled.
-//      if (!isset($section['type']) || $section['type'] != 'appendix') {
-//        continue;
-//      }
-//
-//      // Appendixes have a process function which gets called and handles the
-//      // output.
-//      if (isset($section['process_function'])) {
-//        $function = $section['process_function'];
-//        module_load_include('inc', 'myhaccp', 'mforms/sections/' . $key . '/' . $key);
-//        if (function_exists($function)) {
-//          $function($study, $mpdf, $section);
-//        }
-//      }
-//    }
+    foreach ($sections as $key => $section) {
+      // Skip non appendixes as they've already been handled.
+      if (!isset($section['type']) || $section['type'] != 'appendix') {
+        continue;
+      }
+
+      $include_path = drupal_get_path('module', 'myhaccp') . '/mforms/sections/' . $key . '/' . $key . '.word.inc';
+      $function = 'myhaccp_word_' . $key;
+      if (file_exists($include_path)) {
+        include $include_path;
+        if (function_exists($function)) {
+          $function($study, $word_section);
+        }
+      }
+    }
 
     header("Content-Description: File Transfer");
     header('Content-Disposition: attachment; filename="' . $filename . '"');
@@ -161,7 +143,6 @@ function myhaccp_output_word($iid) {
     if (file_exists($_myhaccp_temp_file_name)) {
       unlink($_myhaccp_temp_file_name);
     }
-    drupal_exit('tool');
   }
 }
 
@@ -178,4 +159,34 @@ function myhaccp_check_ccps() {
     }
   }
   return !empty($ccps);
+}
+
+/**
+ * Similar to nl2br but creates paragraphs.
+ */
+function nl2p($string, $line_breaks = TRUE, $xml = TRUE) {
+
+  $string = str_replace(array('<p>', '</p>', '<br>', '<br />'), '', $string);
+
+  // It is conceivable that people might still want single line-breaks
+  // without breaking into a new paragraph.
+  if ($line_breaks == true) {
+    return '<p>' . preg_replace(array(
+        "/([\n]{2,})/i",
+        "/([^>])\n([^<])/i"
+      ), array(
+        "</p>\n<p>",
+        '$1<br' . ($xml == TRUE ? ' /' : '') . '>$2'
+      ), trim($string)) . '</p>';
+  }
+  else {
+    return '<p>' . preg_replace(
+        array("/([\n]{2,})/i", "/([\r\n]{3,})/i", "/([^>])\n([^<])/i"),
+        array(
+          "</p>\n<p>",
+          "</p>\n<p>",
+          '$1<br' . ($xml == TRUE ? ' /' : '') . '>$2'
+        ),
+        trim($string)) . '</p>';
+  }
 }
