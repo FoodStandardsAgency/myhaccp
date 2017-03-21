@@ -324,4 +324,116 @@ class Configuration {
     );
   }
 
+  /**
+   * Sets PHPWord configuration.
+   *
+   * @param \PhpOffice\PhpWord\PhpWord $phpWord
+   *   The PhpWord Class.
+   */
+  public function setPHPWordConfig($phpWord) {
+    // Heading 1.
+    $phpWord->addTitleStyle(1, array(
+      'bold' => TRUE,
+      'size' => 20,
+    ), array(
+      'spaceBefore' => \PhpOffice\PhpWord\Shared\Converter::inchToTwip(2.5),
+      'spaceAfter' => \PhpOffice\PhpWord\Shared\Converter::inchToTwip(0.5),
+    ));
+    // Heading 2.
+    $phpWord->addTitleStyle(2, array(
+      'bold' => FALSE,
+      'color' => '006F51',
+      'name' => 'Arial',
+      'size' => 20,
+    ), array(
+      'spaceAfter' => 240,
+      'borderBottomColor' => 'dddddd',
+      'borderBottomSize' => 25,
+      'lineHeight' => 1.25,
+    ));
+    // Heading 3.
+    $phpWord->addTitleStyle(3, array(
+      'bold' => FALSE,
+      'color' => '888888',
+      'name' => 'Arial',
+      'size' => 13,
+    ), array(
+      'spaceAfter' => 240,
+      'line-height' => 1.5,
+    ));
+    // Heading 4.
+    $phpWord->addTitleStyle(4, array(
+      'bold' => FALSE,
+      'color' => '888888',
+      'name' => 'Arial',
+      'size' => 11,
+    ), array(
+      'spaceAfter' => 240,
+      'line-height' => 1.5,
+    ));
+    // Paragraph style.
+    $phpWord->addParagraphStyle('ps', array(
+      'spaceAfter' => 240,
+      'line-height' => 1.5,
+    ));
+    // Paragraph style for lists.
+    $phpWord->addParagraphStyle('ps-list', array(
+      'spaceAfter' => 0,
+      'line-height' => 1.25,
+    ));
+    $phpWord->setDefaultParagraphStyle(array(
+      'spaceAfter' => 0,
+      'line-height' => 1.25,
+    ));
+    $phpWord->setDefaultFontName('Arial');
+    $phpWord->setDefaultFontSize(11);
+    // Body copy style.
+    $phpWord->addFontStyle('fs',
+      array(
+        'name' => 'Arial',
+        'size' => 11,
+        'color' => '000000',
+      ),
+      array(
+        'spaceAfter' => 175,
+        'line-height' => 1.5,
+      )
+    );
+    $phpWord->addFontStyle('fs-list',
+      array(
+        'name' => 'Arial',
+        'size' => 11,
+        'color' => '000000',
+      ),
+      array(
+        'spaceAfter' => 0,
+        'line-height' => 1.25,
+      )
+    );
+    $phpWord->addFontStyle('fs-theader',
+      array(
+        'name' => 'Arial',
+        'size' => 11,
+        'color' => '000000',
+        'bold' => TRUE,
+      ),
+      array(
+        'spaceAfter' => 0,
+        'line-height' => 1.25,
+      )
+    );
+    $phpWord->addTableStyle('ts',
+      array(
+        'borderSize' => 1,
+        'borderColor' => 'DDDDDD',
+        'cellMargin' => 80,
+        'width' => 100 * 50,
+        'unit' => 'pct',
+      ),
+      array(
+        'bgColor' => 'EEEEEE',
+      )
+    );
+  }
+
 }
