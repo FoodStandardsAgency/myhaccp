@@ -126,7 +126,7 @@ function myhaccp_output_word($iid) {
       if (file_exists($include_path)) {
         include $include_path;
         if (function_exists($function)) {
-          $function($study, $word_section);
+          $function($study, $section, $phpWord);
         }
       }
     }

@@ -114,8 +114,17 @@ function myhaccp_list() {
 
     // Download the PDF.
     $options[] = array(
-      'title' => t('Download'),
+      'title' => t('Download PDF'),
       'href' => 'tool/study/' . $result->iid . '/pdf',
+      'attributes' => array(
+        'class' => 'link--download',
+      ),
+    );
+
+    // Download the Word document.
+    $options[] = array(
+      'title' => t('Download Word'),
+      'href' => 'tool/study/' . $result->iid . '/doc',
       'attributes' => array(
         'class' => 'link--download',
       ),
@@ -378,7 +387,7 @@ function myhaccp_study_finish($iid) {
     ));
   }
 
-  $download_text = $validation_status == VALID ? t('Download your HACCP study') : t('Download your incomplete HACCP study');
+  $download_text = $validation_status == VALID ? t('Download your HACCP study as a PDF') : t('Download your incomplete HACCP study as a PDF');
   // Offer a download link for the PDF version.
   $download_pdf = l($download_text, "tool/study/$iid/pdf", array(
     'attributes' => array(
@@ -388,6 +397,7 @@ function myhaccp_study_finish($iid) {
     ),
   ));
 
+  $download_text = $validation_status == VALID ? t('Download your HACCP study as a Word document') : t('Download your incomplete HACCP study as a Word document');
   // Offer a download link for the Word version.
   $download_word = l($download_text, "tool/study/$iid/doc", array(
     'attributes' => array(
