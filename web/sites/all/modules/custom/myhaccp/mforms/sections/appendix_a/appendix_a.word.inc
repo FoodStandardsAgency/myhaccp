@@ -76,6 +76,9 @@ function myhaccp_word_appendix_a($study, $section, $phpWord) {
     $success = file_exists($_myhaccp_temp_file_name) || image_style_create_derivative($style, $file->uri, $_myhaccp_temp_file_name);
     if (!$success) {
       watchdog('myhaccp', 'There was a problem creating the image derivative for the PDF in the temp directory.', array(), WATCHDOG_ERROR);
+      // Don't add the image.
+      _word_doc_image_error_message($word_section);
+      return;
     }
   }
   // Add a new section and place the image.
@@ -88,13 +91,7 @@ function myhaccp_word_appendix_a($study, $section, $phpWord) {
   ));
 
   // Check if this document is a PDF in which case we can't .
-  if ($file->filemime == 'application/pdf') {
-    $output = '<h3>' . t('Replace this page with your flow diagram.') . '</h3>';
-    $output .= '<p>' . t('As your uploaded PDF in section G is not compatible with this output format (Microsoft Word), when printed, please replace this page with your printed flow diagram.') . '</p>';
-
-    Html::addHtml($word_section, $output);
-    return;
-  }
+  _word_doc_image_error_message($word_section);
 
   $image_height = $file->metadata['height'];
   $image_width = $file->metadata['width'];
@@ -116,4 +113,15 @@ function myhaccp_word_appendix_a($study, $section, $phpWord) {
     'marginLeft'    => 0,
     'wrappingStyle' => 'infront',
   ));
+}
+
+/**
+ * Error message output in the document if a file doesn't embed.
+ */
+function _word_doc_image_error_message($word_section) {
+  $output = '<h3>' . t('Replace this page with your flow diagram.') . '</h3>';
+  $output .= '<p>' . t('There was a problem adding your uploaded flow diagram to the document. When printed, please replace this page with your printed flow diagram.') . '</p>';
+
+  Html::addHtml($word_section, $output);
+  return;
 }
