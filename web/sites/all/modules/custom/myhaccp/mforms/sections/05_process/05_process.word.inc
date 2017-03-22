@@ -7,6 +7,8 @@
  * Prepares the passed form_state data and processes it for output.
  */
 
+use \PhpOffice\PhpWord\Shared\Html;
+
 /**
  * Preprocess function for 05_process.
  *
@@ -59,7 +61,8 @@ function myhaccp_word_05_process($study, $section) {
     $variables['h_2'] = '';
   }
 
-  // 3. Is the flow diagram an accurate representation of the process from start to finish?
+  // 3. Is the flow diagram an accurate representation of the process from start
+  // to finish?
   if (!empty($preparatory_h['h_3']) && $preparatory_h['h_3'] == 'yes') {
     $variables['h_3'] = t('The flow diagram is an accurate representation of the process from start to finish.');
   }
@@ -67,7 +70,8 @@ function myhaccp_word_05_process($study, $section) {
     $variables['h_3'] = '';
   }
 
-  // 4. Is the process flow diagram correct for all shifts (e.g. days, nights and weekend)?
+  // 4. Is the process flow diagram correct for all shifts (e.g. days, nights
+  // and weekend)?
   if (!empty($preparatory_h['h_4']) && $preparatory_h['h_4'] == 'yes') {
     $variables['h_4'] = t('The flow diagram is correct for all shifts (e.g. days, nights and weekend).');
   }
@@ -83,7 +87,8 @@ function myhaccp_word_05_process($study, $section) {
     $variables['h_5'] = '';
   }
 
-  // 6. Has the team leader signed off and dated the flow diagram as being correct?
+  // 6. Has the team leader signed off and dated the flow diagram as being
+  // correct?
   if (!empty($preparatory_h['h_6']) && $preparatory_h['h_6'] == 'yes') {
     $variables['h_6'] = t('The HACCP lead has signed off and dated the flow diagram as being correct.');
   }
@@ -91,7 +96,8 @@ function myhaccp_word_05_process($study, $section) {
     $variables['h_6'] = '';
   }
 
-  // 7. Please state who in your organisation is responsible for making changes to the flow diagram and storing out of date versions.
+  // 7. Please state who in your organisation is responsible for making changes
+  // to the flow diagram and storing out of date versions.
   if (!empty($preparatory_h['h_7'])) {
     $h7 = explode("\r\n", trim($preparatory_h['h_7']));
     $h7 = implode('</li><li>', $h7);
@@ -99,4 +105,21 @@ function myhaccp_word_05_process($study, $section) {
     $variables['h_7'] = $h7;
   }
 
+  // Output.
+  $section->addText($variables['g_1'], 'fs', 'ps');
+  if (!empty($variables['flow_diagram_text'])) {
+    $section->addText($variables['flow_diagram_text'], 'fs', 'ps');
+  }
+  if (!empty($variables['g_3'])) {
+    $section->addTitle(t('A copy of our flow diagram can be obtained from the following location') . ':', 4);
+    $section->addText($variables['g_3']);
+  }
+  $section->addTitle(t('On-site confirmation of flow diagram'), 3);
+
+  for ($i = 1; $i < 7; $i++) {
+    if (!empty($variables['h_' . $i])) {
+      Html::addHtml($section, nl2p($variables['h_' . $i], FALSE));
+      $section->addTextBreak(1, 'fs', array('spaceAfter' => 0));
+    }
+  }
 }
