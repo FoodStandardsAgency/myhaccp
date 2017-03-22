@@ -54,12 +54,6 @@ function myhaccp_word_appendix_a($study, $section, $phpWord) {
 
   Html::addHtml($word_section, $output);
 
-  // Check if this document is a PDF in which case it needs special handling.
-  if ($file->filemime == 'application/pdf') {
-    // @todo add an appropriate message to the doc?
-    return;
-  }
-
   // Prepare an image derivative of the flow diagram image
   // at a reasonable maximum size (2048px wide).
   // Due to issues with private file permissions (see case 12347) we need to
@@ -71,12 +65,18 @@ function myhaccp_word_appendix_a($study, $section, $phpWord) {
   global $_myhaccp_temp_file_name;
   // Prepare a filename in the temporary directory for a copy of the file.
   $_myhaccp_temp_file_name = file_directory_temp() . '/' . md5($file->uri) . '.' . $extension;
-  // Output the image derivative into the temporary file location.
-  $orientation = $file->metadata['width'] > $file->metadata['height'] ? 'landscape' : 'portrait';
-  $style = $orientation == 'portrait' ? image_style_load('pdf_flow_diagram') : image_style_load('pdf_flow_diagram_landscape');
-  $success = file_exists($_myhaccp_temp_file_name) || image_style_create_derivative($style, $file->uri, $_myhaccp_temp_file_name);
-  if (!$success) {
-    watchdog('myhaccp', 'There was a problem creating the image derivative for the PDF in the temp directory.', array(), WATCHDOG_ERROR);
+  // We're unable to process PDF attachments.
+  if ($file->filemime == 'application/pdf') {
+    $orientation = 'portrait';
+  }
+  else {
+    $orientation = $file->metadata['width'] > $file->metadata['height'] ? 'landscape' : 'portrait';
+    $style = $orientation == 'portrait' ? image_style_load('pdf_flow_diagram') : image_style_load('pdf_flow_diagram_landscape');
+    // Output the image derivative into the temporary file location.
+    $success = file_exists($_myhaccp_temp_file_name) || image_style_create_derivative($style, $file->uri, $_myhaccp_temp_file_name);
+    if (!$success) {
+      watchdog('myhaccp', 'There was a problem creating the image derivative for the PDF in the temp directory.', array(), WATCHDOG_ERROR);
+    }
   }
   // Add a new section and place the image.
   $word_section = $phpWord->addSection(array(
@@ -87,22 +87,31 @@ function myhaccp_word_appendix_a($study, $section, $phpWord) {
     'marginLeft' => Converter::inchToTwip(.6),
   ));
 
+  // Check if this document is a PDF in which case we can't .
+  if ($file->filemime == 'application/pdf') {
+    $output = '<h3>' . t('Replace this page with your flow diagram.') . '</h3>';
+    $output .= '<p>' . t('As your uploaded PDF in section G is not compatible with this output format (Microsoft Word), when printed, please replace this page with your printed flow diagram.') . '</p>';
+
+    Html::addHtml($word_section, $output);
+    return;
+  }
+
   $image_height = $file->metadata['height'];
   $image_width = $file->metadata['width'];
   if ($orientation == 'landscape') {
     $ratio = $image_height / $image_width;
-    $width = Converter::inchToPixel(7.85);
-    $height = Converter::inchToPixel(7.85 * $ratio);
+    $width = 7.85;
+    $height = 7.85 * $ratio;
   }
   else {
     $ratio = $image_width / $image_height;
-    $height = Converter::inchToPixel(7.85);
-    $width = Converter::inchToPixel(7.85 * $ratio);
+    $height = 7.85;
+    $width = 7.85 * $ratio;
   }
 
   $word_section->addImage($_myhaccp_temp_file_name, array(
-    'width'         => $width,
-    'height'        => $height,
+    'width'         => Converter::inchToPixel($width),
+    'height'        => Converter::inchToPixel($height),
     'marginTop'     => 0,
     'marginLeft'    => 0,
     'wrappingStyle' => 'infront',
