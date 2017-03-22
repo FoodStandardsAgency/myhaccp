@@ -119,13 +119,7 @@ function myhaccp_word_04_product($study, $section) {
     }
   }
 
-  $section->addTitle(t('Intended use'), array(
-    'size' => 20,
-    'color' => '888888',
-    array(
-      'spaceAfter' => 240,
-    ),
-  ));
+  $section->addTitle(t('Intended use'), 3);
 
   if (!empty($variables['e_' . $i])) {
     Html::addHtml($section, '<p><strong>' . t('Name of the product') . ':</strong>' . $variables['f_1'] . '</p>');
