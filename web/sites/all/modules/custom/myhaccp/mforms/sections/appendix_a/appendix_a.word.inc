@@ -7,6 +7,9 @@
  * Prepares the passed form_state data and processes it for output.
  */
 
+use \PhpOffice\PhpWord\Shared\Html;
+use \PhpOffice\PhpWord\Shared\Converter;
+
 /**
  * Process function for appendix a.
  *
@@ -16,7 +19,8 @@
  *   The study object.
  * @param $mpdf
  */
-function myhaccp_word_appendix_a(Study $study, $mpdf, $section) {
+function myhaccp_word_appendix_a($study, $section, $phpWord) {
+  /** @var \PhpOffice\PhpWord\Element\Section $section */
   $data = $study->getStage('preparatory_g')->getData();
   $preparatory_g = $data['preparatory_g'];
 
@@ -34,21 +38,27 @@ function myhaccp_word_appendix_a(Study $study, $mpdf, $section) {
     return;
   }
 
-  // Check if this document is a PDF in which case it needs special handling.
-  if ($file->filemime == 'application/pdf') {
-    prepare_pdf_merge($study, $mpdf, $section);
-    return;
-  }
-
   // Insert a blank page with the header.
-  $mpdf->AddPageByArray(array());
+  $word_section = $phpWord->addSection(array(
+    'orientation' => 'portrait',
+    'marginTop' => Converter::inchToTwip(.6),
+    'marginRight' => Converter::inchToTwip(.6),
+    'marginBottom' => Converter::inchToTwip(.6),
+    'marginLeft' => Converter::inchToTwip(.6),
+  ));
 
   $output = '<section>';
-  $output .= '<h1>' . $section['title'] . '</h1>';
+  $output .= '<h2>' . $section['title'] . '</h2>';
   $output .= '<p>' . t('The flow diagram begins on the next page.') . '</p>';
   $output .= '</section>';
 
-  $mpdf->WriteHTML($output, 2);
+  Html::addHtml($word_section, $output);
+
+  // Check if this document is a PDF in which case it needs special handling.
+  if ($file->filemime == 'application/pdf') {
+    // @todo add an appropriate message to the doc?
+    return;
+  }
 
   // Prepare an image derivative of the flow diagram image
   // at a reasonable maximum size (2048px wide).
@@ -62,93 +72,39 @@ function myhaccp_word_appendix_a(Study $study, $mpdf, $section) {
   // Prepare a filename in the temporary directory for a copy of the file.
   $_myhaccp_temp_file_name = file_directory_temp() . '/' . md5($file->uri) . '.' . $extension;
   // Output the image derivative into the temporary file location.
-  $orientation = $file->metadata['width'] > $file->metadata['height'] ? 'L' : 'P';
-  $style = $orientation == 'P' ? image_style_load('pdf_flow_diagram') : image_style_load('pdf_flow_diagram_landscape');
+  $orientation = $file->metadata['width'] > $file->metadata['height'] ? 'landscape' : 'portrait';
+  $style = $orientation == 'portrait' ? image_style_load('pdf_flow_diagram') : image_style_load('pdf_flow_diagram_landscape');
   $success = file_exists($_myhaccp_temp_file_name) || image_style_create_derivative($style, $file->uri, $_myhaccp_temp_file_name);
   if (!$success) {
     watchdog('myhaccp', 'There was a problem creating the image derivative for the PDF in the temp directory.', array(), WATCHDOG_ERROR);
   }
-  // Prepare the output.
-  $output = '<section class="page"><div class="flow-diagram-container">
-    <img src="' . $_myhaccp_temp_file_name . '" /></div></section>';
-
-  $mpdf->addPagebyArray(array(
+  // Add a new section and place the image.
+  $word_section = $phpWord->addSection(array(
     'orientation' => $orientation,
+    'marginTop' => Converter::inchToTwip(.6),
+    'marginRight' => Converter::inchToTwip(.6),
+    'marginBottom' => Converter::inchToTwip(.6),
+    'marginLeft' => Converter::inchToTwip(.6),
   ));
 
-  // Write the page output.
-  $mpdf->WriteHTML($output, 2);
-}
-
-/**
- * Renders the PDF as Appendix A.
- */
-function prepare_pdf_merge($study, $mpdf, $section) {
-
-  $data = $study->getStage('preparatory_g')->getData();
-  $preparatory_g = $data['preparatory_g'];
-
-  // Check we have some data for this form item.
-  if (empty($preparatory_g['g_2'])) {
-    return;
+  $image_height = $file->metadata['height'];
+  $image_width = $file->metadata['width'];
+  if ($orientation == 'landscape') {
+    $ratio = $image_height / $image_width;
+    $width = Converter::inchToPixel(7.85);
+    $height = Converter::inchToPixel(7.85 * $ratio);
+  }
+  else {
+    $ratio = $image_width / $image_height;
+    $height = Converter::inchToPixel(7.85);
+    $width = Converter::inchToPixel(7.85 * $ratio);
   }
 
-  // Attempt to load the file.
-  $file = is_array($preparatory_g['g_2']) && array_key_exists('fid', $preparatory_g['g_2']) ? file_load($preparatory_g['g_2']['fid']) : file_load($preparatory_g['g_2']);
-
-  if (empty($file)) {
-    return;
-  }
-
-  if ($file->filemime != 'application/pdf') {
-    return;
-  }
-
-  $pdf_url = drupal_realpath($file->uri);
-
-  // Detect the PDF version and convert to 1.4 if needed.
-  $version = myhaccp_determine_pdf_version($file);
-  if ($version && ($version > 1.4 || $version < 1.4)) {
-    // Try to convert the file.
-    myhaccp_convert_pdf($file);
-    // Check the version of the updated file.
-    $updated_version = myhaccp_determine_pdf_version($file);
-    if ($updated_version != '1.4') {
-      return;
-    }
-  }
-
-  $mpdf->SetImportUse();
-  $page_count = $mpdf->SetSourceFile($pdf_url);
-  $page = 1;
-
-  // Insert a blank page with the header.
-  $mpdf->AddPageByArray(array());
-
-  $output = '<section>';
-  $output .= '<h1>' . $section['title'] . '</h1>';
-  $output .= '<p>' . t('The flow diagram begins on the next page.') . '</p>';
-  $output .= '</section>';
-
-  $mpdf->WriteHTML($output, 2);
-
-  // Iterate over all the pages (most likely just 1).
-  while ($page <= $page_count) {
-
-    $output = '<section>';
-
-    // Import the page and make use of it.
-    $template_id = $mpdf->ImportPage($page);
-    $dimensions = $mpdf->getTemplateSize($template_id);
-    $mpdf->SetPageTemplate($template_id);
-    $orientation = $dimensions['w'] > $dimensions['h'] ? 'L' : 'P';
-    $mpdf->addPagebyArray(array(
-      'orientation' => $orientation,
-      'sheet-size' => $orientation == 'L' ? array($dimensions['h'], $dimensions['w']) : array($dimensions['w'], $dimensions['h']),
-    ));
-    $page ++;
-    $output .= '</section>';
-
-    $mpdf->WriteHTML($output, 2);
-  }
+  $word_section->addImage($_myhaccp_temp_file_name, array(
+    'width'         => $width,
+    'height'        => $height,
+    'marginTop'     => 0,
+    'marginLeft'    => 0,
+    'wrappingStyle' => 'infront',
+  ));
 }
