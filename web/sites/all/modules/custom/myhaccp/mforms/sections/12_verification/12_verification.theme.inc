@@ -110,7 +110,7 @@ function myhaccp_preprocess_12_verification(&$variables) {
 
   // 6. Are all verification records maintained?
   if (!empty($principle_6['6_6']) && $principle_6['6_6'] == 'yes') {
-    $variables['p_6_6'] = '<p>' . t('All verification records are maintained') . '</p>';
+    $variables['p_6_6'] = t('All verification records are maintained');
   }
 
   // 7. How often is the whole HACCP plan formally reviewed?

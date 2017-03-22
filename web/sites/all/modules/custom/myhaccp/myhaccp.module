@@ -129,6 +129,14 @@ function myhaccp_menu() {
     'file' => 'includes/myhaccp.pdf.inc',
     'type' => MENU_NORMAL_ITEM,
   );
+  $items['tool/study/%/doc'] = array(
+    'page callback' => 'myhaccp_output_word',
+    'page arguments' => array(2),
+    'access callback' => 'myhaccp_access',
+    'access arguments' => array('view', 2),
+    'file' => 'includes/myhaccp.word.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
   $items['tool/study/%/clone'] = array(
     'page callback' => 'myhaccp_study_clone',
     'page arguments' => array(2),

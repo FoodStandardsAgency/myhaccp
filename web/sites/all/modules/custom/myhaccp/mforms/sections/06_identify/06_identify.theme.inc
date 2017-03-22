@@ -46,7 +46,7 @@ function myhaccp_preprocess_06_identify(&$variables) {
   foreach ($steps as $step) {
     // Steps must have a number and name.
     if (!empty($step['wrapper']['step_no']) && !empty($step['wrapper']['step_name'])) {
-      // Split hazards on new lines using <br>.
+      // Split hazards on new lines using <br />.
       $biological = nl2br($step['hazards_wrapper']['biological']);
       $chemical = nl2br($step['hazards_wrapper']['chemical']);
       $physical = nl2br($step['hazards_wrapper']['physical']);
