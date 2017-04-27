@@ -90,20 +90,25 @@ function myhaccp_word_appendix_a($study, $section, $phpWord) {
     'marginLeft' => Converter::inchToTwip(.6),
   ));
 
-  // Check if this document is a PDF in which case we can't .
-  _word_doc_image_error_message($word_section);
-
   $image_height = $file->metadata['height'];
   $image_width = $file->metadata['width'];
+  // Assuming 96 dpi (Windows).
+  $dpi = 96;
+  $image_height_inches = $file->metadata['height'] / $dpi;
+  $image_width_inches = $file->metadata['width'] / $dpi;
+  // The largest dimension an image can be (in inches).
+  $max_dimension = 7.85;
   if ($orientation == 'landscape') {
     $ratio = $image_height / $image_width;
-    $width = 7.85;
-    $height = 7.85 * $ratio;
+    // Avoid scaling up a small image.
+    $width = $image_width_inches > $max_dimension ? $max_dimension : $image_width_inches;
+    $height = $image_height_inches > $max_dimension ? $max_dimension * $ratio : $image_height_inches * $ratio;
   }
   else {
     $ratio = $image_width / $image_height;
-    $height = 7.85;
-    $width = 7.85 * $ratio;
+    // Avoid scaling up a small image.
+    $height = $image_height_inches > $max_dimension ? $max_dimension : $image_height_inches;
+    $width = $image_width_inches > $max_dimension ? $max_dimension * $ratio : $image_width_inches * $ratio;
   }
 
   $word_section->addImage($_myhaccp_temp_file_name, array(
