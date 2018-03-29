@@ -1,8 +1,29 @@
-Theme structure:
+Themes allow you to change the look and feel of your Drupal site. You can use
+themes contributed by others or create your own.
 
-/contrib - Contributed themes with no modification.
+WHAT TO PLACE IN THIS DIRECTORY?
+--------------------------------
 
-/custom - Our custom themes for the project.
-/custom/cleanup - A custom fork of the Mothership base theme. Removes a lot of unwanted bloat from Drupal.
-/custom/myhaccp - A sub-theme of cleanup, provides CSS (using SASS / Compass), Javascript and theme overrides for the MyHACCP site.
+Placing downloaded and custom themes in this directory separates downloaded and
+custom themes from Drupal core's themes. This allows Drupal core to be updated
+without overwriting these files.
 
+DOWNLOAD ADDITIONAL THEMES
+--------------------------
+
+Contributed themes from the Drupal community may be downloaded at
+https://www.drupal.org/project/project_theme.
+
+MULTISITE CONFIGURATION
+-----------------------
+
+In multisite configurations, themes found in this directory are available to
+all sites. Alternatively, the sites/your_site_name/themes directory pattern
+may be used to restrict themes to a specific site instance.
+
+MORE INFORMATION
+-----------------
+
+Refer to the "Appearance" section of the README.txt in the Drupal root directory
+for further information on customizing the appearance of Drupal with custom
+themes.
