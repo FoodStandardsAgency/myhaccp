@@ -210,3 +210,10 @@ function myhaccp_install_block_settings() {
     ))->fields(array('title' => '<none>'))->execute();
   }
 }
+
+/**
+ * Enable varnish and warden modules.
+ */
+function myhaccp_update_7000() {
+  module_enable(array('varnish', 'warden'));
+}
