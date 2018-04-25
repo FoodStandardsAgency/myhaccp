@@ -46,6 +46,25 @@
         user: nginx
       tags: ['cron']
 
+    - name: make sure SSL certificate is installed
+      copy:
+        content: "{{ ssl_certificate }}"
+        dest: "/etc/nginx/ssl/food.gov.uk.pem"
+        owner: root
+        group: root
+        mode: 0644
+        tags: ['certs']
+
+    - name: make sure SSL private key is installed
+      copy:
+        content: "{{ ssl_private_key }}"
+        dest: "/etc/nginx/ssl/food.gov.uk.key"
+        owner: root
+        group: root
+        mode: 0600
+        tags: ['certs']
+
+
   vars:
     wkv_site_env: "prod"
 
@@ -160,12 +179,12 @@
     certbot_email: "{{ support_email }}"
     certbot_domains:
       - "{{ domain1_name }}"
-#      - "{{ domain2_name }}"
+        #- "{{ domain2_name }}"
     certbot_renewal_docroot: /var/www/letsencrypt-auto
     #certbot_commands: allows yo uto customize the command to run, see ansible/playbook/roles/certbot/defaults/main.yml
 
     # We need to make sure not to leak sites ahead of launch
-    basicauth_enabled: True
+    basicauth_enabled: False
     basicauth_credentials:
       - username: wunder
         password: Ia4xoh
@@ -228,14 +247,14 @@
         use_dhparam: True
         backends:
           - 127.0.0.1:8081
-#      - server_name: "{{ domain2_name }}"
-#        # Certbot is configured to smash all certificates into the first one
-#        # So domain2 uses domain1 certificate
-#        ssl_certificate: "/etc/letsencrypt/live/{{ domain1_name }}/fullchain.pem"
-#        ssl_certificate_key: "/etc/letsencrypt/live/{{ domain1_name}}/privkey.pem"
-#        use_dhparam: True
-#        backends:
-#          - 127.0.0.1:8081
+      - server_name: "{{ domain2_name }}"
+        # Certbot is configured to smash all certificates into the first one
+        # So domain2 uses domain1 certificate
+        ssl_certificate: "/etc/nginx/ssl/food.gov.uk.pem"
+        ssl_certificate_key: "/etc/nginx/ssl/food.gov.uk.key"
+        use_dhparam: True
+        backends:
+          - 127.0.0.1:8081
 
     # Forward to www and https.
     httpforwards:
