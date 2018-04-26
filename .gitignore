@@ -1,33 +1,23 @@
-
-# .htaccess
-web/.htaccess
-
-# files directory
-web/sites/default/files
-private
-
-# settings.php
-web/sites/default/settings.php
-
-# SASS
-.sass-cache
-
-# IDE and OS files
-.idea
+# Generic ones
 .DS_Store
-*.sublime-project
-*.sublime-workspace
-config.codekit
+.vagrant
+drupal/current
+drupal/builds
+drupal/.make_cache
+drupal/drupal.sqlite
+.idea
+ansible
+local.*
+test/composer.lock
+test/vendor
+test/bin
+VERSION
 
-# Behat
-behat/vendor
-behat/bin
-behat/composer.phar
-behat/composer.lock
-behat/behat.yml
+# Ignore ansible retry files
+conf/*.retry
 
-# mPDF cache
-web/sites/all/libraries/mpdf/ttfontdata
+# Ignore secrets folder
+secrets
 
-# source maps
-.map
+# Ignore python virtualenv created by provision.sh
+.virtualenv
