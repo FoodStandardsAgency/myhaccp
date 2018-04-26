@@ -53,7 +53,7 @@
         owner: root
         group: root
         mode: 0644
-        tags: ['certs']
+      tags: ['certs']
 
     - name: make sure SSL private key is installed
       copy:
@@ -62,7 +62,7 @@
         owner: root
         group: root
         mode: 0600
-        tags: ['certs']
+      tags: ['certs']
 
 
   vars:
