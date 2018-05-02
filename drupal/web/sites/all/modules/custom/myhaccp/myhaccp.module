@@ -1222,10 +1222,10 @@ function myhaccp_determine_pdf_version($file) {
  */
 function myhaccp_convert_pdf($file) {
   $binary_exists = shell_exec('which gs');
-  if (!empty($binary_exists)) {
+  #if (!empty($binary_exists)) {
     $path = drupal_realpath($file->uri);
     shell_exec('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -sOutputFile=' . $path . 'modified ' . $path);
     // Overwrite the existing file with the new file.
     copy($path . 'modified', $path);
-  }
+  #}
 }
