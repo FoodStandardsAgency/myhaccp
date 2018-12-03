@@ -2,7 +2,7 @@
 // This file is for common configurations across ALL environments
 
 if (file_exists('/var/www/site-php')) {
-  require('/var/www/site-php/mysite/mysite-settings.inc');
+  require('/var/www/site-php/foodmyhaccp/foodmyhaccp-settings.inc');
 }
 
 if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
