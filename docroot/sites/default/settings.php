@@ -7,6 +7,11 @@ if (file_exists('/var/www/site-php')) {
 
 if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
   $env = $_ENV['AH_SITE_ENVIRONMENT'];
+
+  $files_private_conf_path = conf_path();
+  $conf['file_private_path'] = '/mnt/files/' . $_ENV['AH_SITE_GROUP'] . '.' . $_ENV['AH_SITE_ENVIRONMENT'] . '/' . $files_private_conf_path . '/files-private';
+
+  $conf['print_pdf_autoconfig'] = 0;
 }
 else {
 // WKV_ENV_SITE is a legacy environment indicator.
@@ -21,11 +26,6 @@ switch ($env) {
     $conf['varnish_version'] = "4";
 
     $base_domain = "https://myhaccp.fsa.prod.wunder.io";
-
-    $files_private_conf_path = conf_path();
-    $conf['file_private_path'] = '/mnt/files/' . $_ENV['AH_SITE_GROUP'] . '.' . $_ENV['AH_SITE_ENVIRONMENT'] . '/' . $files_private_conf_path . '/files-private';
-
-    $conf['print_pdf_autoconfig'] = 0;
 
     break;
 
