@@ -1,9 +1,20 @@
 <?php
 // This file is for common configurations across ALL environments
 
-switch (getenv("WKV_SITE_ENV")) {
-case "prod":
-    ini_set('error_reporting', !E_NOTICE & !E_WARNING);
+if (file_exists('/var/www/site-php')) {
+  require('/var/www/site-php/mysite/mysite-settings.inc');
+}
+
+if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
+  $env = $_ENV['AH_SITE_ENVIRONMENT'];
+}
+else {
+// WKV_ENV_SITE is a legacy environment indicator.
+  $env = getenv('WKV_SITE_ENV');
+}
+
+switch ($env) {
+  case "prod":
     $conf['simple_environment_indicator'] = '#d4000f Prod';
     $conf['reverse_proxy_addresses'] = array('127.0.0.1');
     $conf['varnish_control_terminal'] = '127.0.0.1:6082';
@@ -14,11 +25,10 @@ case "prod":
 
     break;
 
-case "local":
+  case "local":
     #  Folder so far not used for any filetypes (but future might be different)
     $conf['simple_environment_indicator'] = '#88b700 Local';
-
-    $conf['stage_file_proxy_origin'] = 'https://myhaccp.fsa.prod.wunder.io';
+    $conf['stage_file_proxy_origin'] = 'https://myhaccp.food.gov.uk';
 
     $conf['preprocess_css'] = '0';
     $conf['preprocess_js'] = '0';
@@ -29,9 +39,7 @@ case "local":
 
     $conf['file_private_path'] = "/var/www/html/docroot/sites/default/files/private";
     break;
-
 }
-
 
 // Varnish
 $conf['cache_backends'][] = 'sites/all/modules/contrib/varnish/varnish.cache.inc';
@@ -52,20 +60,21 @@ $conf['varnish_control_key'] = getenv('VARNISH_CONTROL_KEY');
 
 
 if (php_sapi_name() == 'cli') {
-    # Big memory limits for migration/imports etc. Max exec time will be unlimited automatically.
-    // ini_set('memory_limit', '2G');
+  # Big memory limits for migration/imports etc. Max exec time will be unlimited automatically.
+  // ini_set('memory_limit', '2G');
 
-    # The base_url may be modified by domain, but we need some base_url for drush purges,
-    # that otherwise suppose the hostname is "default". Varnish purges with that assumption will fail.
-    # Only for drush. Domain-module may want to alter this per subdomain.
-    $base_url = $base_domain;
-} else {
-    # Admin-pages occasionally have very heavy actions. Upping time limit for admin pages to 5 minutes.
-    # Other page views (except cli) are limited to 45 seconds.
-    // if (arg(0) == 'admin') {
-    //     ini_set('max_execution_time', 300); //300 seconds = 5 minutes
-    //     ini_set('memory_limit', '1G');
-    // }
+  # The base_url may be modified by domain, but we need some base_url for drush purges,
+  # that otherwise suppose the hostname is "default". Varnish purges with that assumption will fail.
+  # Only for drush. Domain-module may want to alter this per subdomain.
+  $base_url = $base_domain;
+}
+else {
+  # Admin-pages occasionally have very heavy actions. Upping time limit for admin pages to 5 minutes.
+  # Other page views (except cli) are limited to 45 seconds.
+  // if (arg(0) == 'admin') {
+  //     ini_set('max_execution_time', 300); //300 seconds = 5 minutes
+  //     ini_set('memory_limit', '1G');
+  // }
 }
 
 # Session lengt
@@ -73,22 +82,6 @@ ini_set('session.gc_probability', 1);
 ini_set('session.gc_divisor', 100);
 ini_set('session.gc_maxlifetime', 259200); // 3 days
 ini_set('session.cookie_lifetime', 259200); // 3 days
-
-$databases = array (
-  'default' =>
-  array (
-    'default' =>
-    array (
-      'database' => getenv('DB_NAME_DRUPAL'),
-      'username' => getenv('DB_USER_DRUPAL'),
-      'password' => getenv('DB_PASS_DRUPAL'),
-      'host'     => getenv('DB_HOST_DRUPAL'),
-      'port'     => '',
-      'driver'   => 'mysql',
-      'prefix'   => '',
-    ),
-  ),
-);
 
 // if (drupal_is_cli() && extension_loaded('newrelic')) {
 //     newrelic_ignore_transaction();
