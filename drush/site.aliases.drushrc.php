@@ -1,79 +1,89 @@
 <?php
-// If the .vagrant folder exists find the ssh key for the virtual machine
-if (file_exists(drush_server_home() . '/.vagrant.d')) {
-  $home = drush_server_home();
-  // Solve the key file to use
-  $path = explode('/', dirname(__FILE__));
-  array_pop($path);
-  array_pop($path);
-  $path[] = '.vagrant';
-  $path = implode('/', $path);
-  $key = shell_exec('find ' . $path . ' -iname private_key');
-  if (!$key) {
-    $key = $home . '/.vagrant.d/insecure_private_key';
-  }
-  $key = rtrim($key);
 
-} else {
-  // .vagrant directory doesn't exist, just use empty key
-  $key = "";
+if (!isset($drush_major_version)) {
+  $drush_version_components = explode('.', DRUSH_VERSION);
+  $drush_major_version = $drush_version_components[0];
 }
-
-$aliases['local'] = array(
-  'parent' => '@parent',
-  'site' => 'wundertools',
-  'env' => 'vagrant',
-  'root' => '/vagrant/drupal/web',
-  'remote-host' => 'local.wundertools.com',
-  'remote-user' => 'vagrant',
-  'ssh-options' => '-i ' . $key,
-  'path-aliases' => array(
-    '%files' => '/vagrant/drupal/files',
-    '%dump-dir' => '/home/vagrant',
-  ),
-);
-
+// Site foodmyhaccp, environment dev.
 $aliases['dev'] = array(
-  'uri' => 'https://dev.wundertools.com',
-  'remote-user' => 'www-admin',
-  'remote-host' => 'dev.wundertools.com',
-  'root' => '/var/www/dev.wundertools.com/web',
+  'root' => '/var/www/html/foodmyhaccp.dev/docroot',
+  'ac-site' => 'foodmyhaccp',
+  'ac-env' => 'dev',
+  'ac-realm' => 'prod',
+  'uri' => 'foodmyhaccpdev.prod.acquia-sites.com',
+  'remote-host' => 'foodmyhaccpdev.ssh.prod.acquia-sites.com',
+  'remote-user' => 'foodmyhaccp.dev',
   'path-aliases' => array(
-    '%dump-dir' => '/home/www-admin',
-  ),
-  'command-specific' => array(
-    'sql-sync' => array(
-      'no-cache' => TRUE,
-    ),
+    '%drush-script' => 'drush' . $drush_major_version,
   ),
 );
-
-$aliases['stage'] = array(
-  'uri' => 'https://stage.wundertools.com',
-  'remote-user' => 'www-admin',
-  'remote-host' => 'stage.wundertools.com',
-  'root' => '/var/www/stage.wundertools.com/web',
-  'path-aliases' => array(
-    '%dump-dir' => '/home/www-admin',
-  ),
-  'command-specific' => array(
-    'sql-sync' => array(
-      'no-cache' => TRUE,
-    ),
-  ),
+$aliases['dev.livedev'] = array(
+  'parent' => '@foodmyhaccp.dev',
+  'root' => '/mnt/gfs/foodmyhaccp.dev/livedev/docroot',
 );
 
+if (!isset($drush_major_version)) {
+  $drush_version_components = explode('.', DRUSH_VERSION);
+  $drush_major_version = $drush_version_components[0];
+}
+// Site foodmyhaccp, environment prod.
 $aliases['prod'] = array(
-  'uri' => 'https://wundertools.com',
-  'remote-user' => 'www-admin',
-  'remote-host' => 'wundertools.com',
-  'root' => '/var/www/wundertools.com/web',
+  'root' => '/var/www/html/foodmyhaccp.prod/docroot',
+  'ac-site' => 'foodmyhaccp',
+  'ac-env' => 'prod',
+  'ac-realm' => 'prod',
+  'uri' => 'foodmyhaccp.prod.acquia-sites.com',
+  'remote-host' => 'foodmyhaccp.ssh.prod.acquia-sites.com',
+  'remote-user' => 'foodmyhaccp.prod',
   'path-aliases' => array(
-    '%dump-dir' => '/home/www-admin',
+    '%drush-script' => 'drush' . $drush_major_version,
   ),
-  'command-specific' => array(
-    'sql-sync' => array(
-      'no-cache' => TRUE,
-    ),
+);
+$aliases['prod.livedev'] = array(
+  'parent' => '@foodmyhaccp.prod',
+  'root' => '/mnt/gfs/foodmyhaccp.prod/livedev/docroot',
+);
+
+if (!isset($drush_major_version)) {
+  $drush_version_components = explode('.', DRUSH_VERSION);
+  $drush_major_version = $drush_version_components[0];
+}
+// Site foodmyhaccp, environment ra.
+$aliases['ra'] = array(
+  'root' => '/var/www/html/foodmyhaccp.ra/docroot',
+  'ac-site' => 'foodmyhaccp',
+  'ac-env' => 'ra',
+  'ac-realm' => 'prod',
+  'uri' => 'foodmyhaccpra.prod.acquia-sites.com',
+  'remote-host' => 'foodmyhaccpra.ssh.prod.acquia-sites.com',
+  'remote-user' => 'foodmyhaccp.ra',
+  'path-aliases' => array(
+    '%drush-script' => 'drush' . $drush_major_version,
   ),
+);
+$aliases['ra.livedev'] = array(
+  'parent' => '@foodmyhaccp.ra',
+  'root' => '/mnt/gfs/foodmyhaccp.ra/livedev/docroot',
+);
+
+if (!isset($drush_major_version)) {
+  $drush_version_components = explode('.', DRUSH_VERSION);
+  $drush_major_version = $drush_version_components[0];
+}
+// Site foodmyhaccp, environment test.
+$aliases['test'] = array(
+  'root' => '/var/www/html/foodmyhaccp.test/docroot',
+  'ac-site' => 'foodmyhaccp',
+  'ac-env' => 'test',
+  'ac-realm' => 'prod',
+  'uri' => 'foodmyhaccpstg.prod.acquia-sites.com',
+  'remote-host' => 'foodmyhaccpstg.ssh.prod.acquia-sites.com',
+  'remote-user' => 'foodmyhaccp.test',
+  'path-aliases' => array(
+    '%drush-script' => 'drush' . $drush_major_version,
+  ),
+);
+$aliases['test.livedev'] = array(
+  'parent' => '@foodmyhaccp.test',
+  'root' => '/mnt/gfs/foodmyhaccp.test/livedev/docroot',
 );
