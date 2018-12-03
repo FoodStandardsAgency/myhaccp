@@ -22,10 +22,12 @@ case "local":
 
     $conf['preprocess_css'] = '0';
     $conf['preprocess_js'] = '0';
-    $cookie_domain = '.local.';
+    // $cookie_domain = '.ddev.local.';
     $conf['reverse_proxy_addresses'] = array('127.0.0.1');
     $conf['varnish_control_terminal'] = '127.0.0.1:6082';
-    $base_domain = "https://myhaccp.ddev.local";
+    // $base_domain = "https://myhaccp.ddev.local";
+
+    $conf['file_private_path'] = "/var/www/html/docroot/sites/default/files/private";
     break;
 
 }
@@ -110,3 +112,9 @@ $databases = array (
 //     $pcs = explode('.', $_SERVER['SERVER_ADDR']);
 //     header('X-Webserver: '. end($pcs));
 // }
+
+// Automatically generated include for settings managed by ddev.
+$ddev_settings = dirname(__FILE__) . '/settings.ddev.php';
+if (is_readable($ddev_settings)) {
+  require $ddev_settings;
+}
