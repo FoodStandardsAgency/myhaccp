@@ -18,6 +18,24 @@ else {
   $env = getenv('WKV_SITE_ENV');
 }
 
+// Memcache.
+$conf['cache_backends'][] = 'sites/all/modules/contrib/memcache/memcache.inc';
+$conf['cache_default_class'] = 'MemCacheDrupal';
+// The 'cache_form' bin must be assigned no non-volatile storage.
+$conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
+$conf['memcache_key_prefix'] = 'myhaccp';
+$conf['memcache_servers'] = array(
+  '127.0.0.1:11211' => 'default',
+);
+$conf['memcache_bins'] = array(
+  'cache' => 'default',
+  'cache_filter' => 'default',
+  'cache_menu' => 'default'
+);
+$conf['lock_inc'] = 'sites/all/modules/contrib/memcache/memcache-lock.inc';
+$conf['memcache_stampede_protection'] = TRUE;
+$conf['memcache_pagecache_header'] = TRUE;
+
 switch ($env) {
   case "prod":
     $conf['simple_environment_indicator'] = '#d4000f Prod';
@@ -42,6 +60,10 @@ switch ($env) {
     // $base_domain = "https://myhaccp.ddev.local";
 
     $conf['file_private_path'] = "/var/www/html/docroot/sites/default/files/private";
+
+    $conf['memcache_servers'] = array(
+      'memcached:11211' => 'default',
+    );
     break;
 }
 
