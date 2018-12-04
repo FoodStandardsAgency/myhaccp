@@ -10,7 +10,6 @@ $conf['cache_backends'][] = DRUPAL_ROOT . 'sites/all/modules/contrib/memcache/me
 $conf['cache_default_class'] = 'MemCacheDrupal';
 // The 'cache_form' bin must be assigned no non-volatile storage.
 $conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
-$conf['memcache_key_prefix'] = 'myhaccp';
 $conf['memcache_bins'] = array(
   'cache' => 'default',
   'cache_filter' => 'default',
@@ -82,6 +81,7 @@ switch ($env) {
 
     $conf['file_private_path'] = "/var/www/html/docroot/sites/default/files/private";
 
+    $conf['memcache_key_prefix'] = 'myhaccp';
     $conf['memcache_servers'] = array(
       'memcached:11211' => 'default',
     );
