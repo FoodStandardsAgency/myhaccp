@@ -67,6 +67,20 @@ switch ($env) {
 
     break;
 
+  case "test":
+    $conf['shield_allow_cli'] = 1;
+    $conf['shield_enabled'] = 1;
+    $conf['shield_method'] = '1';
+    $conf['shield_pass'] = 'q2BJM7bvKB#!';
+    $conf['shield_user'] = 'fsamyhaccp';
+    break;
+  case "dev":
+    $conf['shield_allow_cli'] = 1;
+    $conf['shield_enabled'] = 1;
+    $conf['shield_method'] = '1';
+    $conf['shield_pass'] = 'q2BJM7bvKB#!';
+    $conf['shield_user'] = 'fsamyhaccp';
+    break;
   case "local":
     #  Folder so far not used for any filetypes (but future might be different)
     $conf['simple_environment_indicator'] = '#88b700 Local';
