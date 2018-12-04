@@ -6,7 +6,7 @@ if (file_exists('/var/www/site-php')) {
 }
 
 // Default Memcache.
-$conf['cache_backends'][] = DRUPAL_ROOT . 'sites/all/modules/contrib/memcache/memcache.inc';
+$conf['cache_backends'][] = 'sites/all/modules/contrib/memcache/memcache.inc';
 $conf['cache_default_class'] = 'MemCacheDrupal';
 // The 'cache_form' bin must be assigned no non-volatile storage.
 $conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
@@ -16,7 +16,7 @@ $conf['memcache_bins'] = array(
   'cache_menu' => 'default'
 );
 # Move semaphore out of the database and into memory for performance purposes
-$conf['lock_inc'] = DRUPAL_ROOT . 'sites/all/modules/contrib/memcache/memcache-lock.inc';
+$conf['lock_inc'] = 'sites/all/modules/contrib/memcache/memcache-lock.inc';
 $conf['memcache_stampede_protection'] = TRUE;
 $conf['memcache_pagecache_header'] = TRUE;
 
