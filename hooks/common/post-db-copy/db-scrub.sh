@@ -75,7 +75,7 @@ UPDATE users SET mail=CONCAT('user', uid, '@example.com'), init=CONCAT('user', u
 -- Admin user should not be same but not really well known
 -- UPDATE users SET pass='$REPLACE THIS$' WHERE uid = 1;
 
-TRUNCATE accesslog;
+-- TRUNCATE accesslog;
 TRUNCATE access;
 TRUNCATE cache;
 TRUNCATE cache_filter;
