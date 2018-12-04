@@ -14,6 +14,7 @@ hooks:
   post-import-db:
   - exec: drush updb
   - exec: drush en -y stage_file_proxy
+  - exec: drush dis -y acquia_purge acquia_connector shield
   - exec: drush cc all
 
 
