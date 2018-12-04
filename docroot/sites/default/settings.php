@@ -5,6 +5,23 @@ if (file_exists('/var/www/site-php')) {
   require('/var/www/site-php/foodmyhaccp/foodmyhaccp-settings.inc');
 }
 
+// Default Memcache.
+$conf['cache_backends'][] = DRUPAL_ROOT . 'sites/all/modules/contrib/memcache/memcache.inc';
+$conf['cache_default_class'] = 'MemCacheDrupal';
+// The 'cache_form' bin must be assigned no non-volatile storage.
+$conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
+$conf['memcache_key_prefix'] = 'myhaccp';
+$conf['memcache_bins'] = array(
+  'cache' => 'default',
+  'cache_filter' => 'default',
+  'cache_menu' => 'default'
+);
+# Move semaphore out of the database and into memory for performance purposes
+$conf['lock_inc'] = DRUPAL_ROOT . 'sites/all/modules/contrib/memcache/memcache-lock.inc';
+$conf['memcache_stampede_protection'] = TRUE;
+$conf['memcache_pagecache_header'] = TRUE;
+
+// Acquia config.
 if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
   $env = $_ENV['AH_SITE_ENVIRONMENT'];
 
@@ -12,29 +29,33 @@ if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
   $conf['file_private_path'] = '/mnt/files/' . $_ENV['AH_SITE_GROUP'] . '.' . $_ENV['AH_SITE_ENVIRONMENT'] . '/' . $files_private_conf_path . '/files-private';
 
   $conf['print_pdf_autoconfig'] = 0;
+
+  if (isset($conf['memcache_servers'])) {
+    $conf['memcache_stampede_protection_ignore'] = array(
+      // Ignore some cids in 'cache_bootstrap'.
+      'cache_bootstrap' => array(
+        'module_implements',
+        'variables',
+        'lookup_cache',
+        'schema:runtime:*',
+        'theme_registry:runtime:*',
+        '_drupal_file_scan_cache',
+      ),
+      // Ignore all cids in the 'cache' bin starting with 'i18n:string:'
+      'cache' => array(
+        'i18n:string:*',
+      ),
+      // Disable stampede protection for the entire 'cache_path' and 'cache_rules'
+      // bins.
+      'cache_path',
+      'cache_rules',
+    );
+  }
 }
 else {
 // WKV_ENV_SITE is a legacy environment indicator.
   $env = getenv('WKV_SITE_ENV');
 }
-
-// Memcache.
-$conf['cache_backends'][] = 'sites/all/modules/contrib/memcache/memcache.inc';
-$conf['cache_default_class'] = 'MemCacheDrupal';
-// The 'cache_form' bin must be assigned no non-volatile storage.
-$conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
-$conf['memcache_key_prefix'] = 'myhaccp';
-$conf['memcache_servers'] = array(
-  '127.0.0.1:11211' => 'default',
-);
-$conf['memcache_bins'] = array(
-  'cache' => 'default',
-  'cache_filter' => 'default',
-  'cache_menu' => 'default'
-);
-$conf['lock_inc'] = 'sites/all/modules/contrib/memcache/memcache-lock.inc';
-$conf['memcache_stampede_protection'] = TRUE;
-$conf['memcache_pagecache_header'] = TRUE;
 
 switch ($env) {
   case "prod":
