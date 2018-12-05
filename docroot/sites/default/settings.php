@@ -63,7 +63,7 @@ switch ($env) {
     $conf['varnish_control_terminal'] = '127.0.0.1:6082';
     $conf['varnish_version'] = "4";
 
-    $base_domain = "https://myhaccp.fsa.prod.wunder.io";
+    // $base_domain = "https://myhaccp.fsa.prod.wunder.io";
 
     break;
 
