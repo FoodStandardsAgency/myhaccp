@@ -76,7 +76,7 @@ echo "$site.$target_env: Scrubbing database $db_name"
 -- UPDATE users SET pass='$REPLACE THIS$' WHERE uid = 1;
 
 -- TRUNCATE accesslog;
-TRUNCATE access;
+-- TRUNCATE access;
 TRUNCATE cache;
 TRUNCATE cache_filter;
 TRUNCATE cache_menu;
