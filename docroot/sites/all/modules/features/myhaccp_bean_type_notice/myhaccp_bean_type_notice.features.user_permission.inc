@@ -10,16 +10,6 @@
 function myhaccp_bean_type_notice_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: 'administer backup and migrate'.
-  $permissions['administer backup and migrate'] = array(
-    'name' => 'administer backup and migrate',
-    'roles' => array(
-      'administrator' => 'administrator',
-      'help and guidance manager' => 'help and guidance manager',
-    ),
-    'module' => 'backup_migrate',
-  );
-
   // Exported permission: 'create any notice bean'.
   $permissions['create any notice bean'] = array(
     'name' => 'create any notice bean',
