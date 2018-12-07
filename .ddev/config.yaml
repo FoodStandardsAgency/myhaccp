@@ -2,7 +2,7 @@ APIVersion: v1.4.1
 name: myhaccp
 type: drupal7
 docroot: docroot
-php_version: "5.6"
+php_version: "7.2"
 webserver_type: nginx-fpm
 router_http_port: "80"
 router_https_port: "443"
