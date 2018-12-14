@@ -5,6 +5,8 @@
  * Handles the output of a study as a PDF.
  */
 
+ use Mpdf\Mpdf;
+
 /**
  * Outputs a study as a PDF.
  */
@@ -37,8 +39,8 @@ function myhaccp_output_pdf($iid) {
     $filename = transliteration_clean_filename($name . '.pdf');
     // Load the mPDF library and start a new PDF.
     $path = libraries_get_path('mpdf');
-    include_once $path . '/mpdf.php';
-    $mpdf = new mPDF('', 'A4');
+    require_once $path . '/vendor/autoload.php';
+    $mpdf = new mPDF();
     // Get the stylesheets involved.
     $style_path = drupal_get_path('theme', 'myhaccp_theme');
     $stylesheet = file_get_contents($style_path . '/css/pdf-style.css');
