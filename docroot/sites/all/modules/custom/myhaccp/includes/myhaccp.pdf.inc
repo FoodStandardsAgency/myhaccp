@@ -40,7 +40,7 @@ function myhaccp_output_pdf($iid) {
     // Load the mPDF library and start a new PDF.
     $path = libraries_get_path('mpdf');
     require_once $path . '/vendor/autoload.php';
-    $mpdf = new mPDF();
+    $mpdf = new mPDF(['tempDir' => file_directory_temp()]);
     // Get the stylesheets involved.
     $style_path = drupal_get_path('theme', 'myhaccp_theme');
     $stylesheet = file_get_contents($style_path . '/css/pdf-style.css');
