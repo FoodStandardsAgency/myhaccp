@@ -59,15 +59,10 @@ else {
 switch ($env) {
   case "prod":
     $conf['simple_environment_indicator'] = '#d4000f Prod';
-    $conf['reverse_proxy_addresses'] = array('127.0.0.1');
-    $conf['varnish_control_terminal'] = '127.0.0.1:6082';
-    $conf['varnish_version'] = "4";
-
-    // $base_domain = "https://myhaccp.fsa.prod.wunder.io";
-
     break;
 
   case "test":
+    $conf['stage_file_proxy_origin'] = 'http://foodmyhaccp.prod.acquia-sites.com';
     $conf['shield_allow_cli'] = 1;
     $conf['shield_enabled'] = 1;
     $conf['shield_method'] = '1';
@@ -75,6 +70,7 @@ switch ($env) {
     $conf['shield_user'] = 'fsamyhaccp';
     break;
   case "dev":
+    $conf['stage_file_proxy_origin'] = 'http://foodmyhaccp.prod.acquia-sites.com';
     $conf['shield_allow_cli'] = 1;
     $conf['shield_enabled'] = 1;
     $conf['shield_method'] = '1';
@@ -82,16 +78,13 @@ switch ($env) {
     $conf['shield_user'] = 'fsamyhaccp';
     break;
   case "local":
-    #  Folder so far not used for any filetypes (but future might be different)
     $conf['simple_environment_indicator'] = '#88b700 Local';
-    $conf['stage_file_proxy_origin'] = 'https://myhaccp.food.gov.uk';
+    $conf['stage_file_proxy_origin'] = 'http://foodmyhaccp.prod.acquia-sites.com';
 
     $conf['preprocess_css'] = '0';
     $conf['preprocess_js'] = '0';
-    // $cookie_domain = '.ddev.local.';
     $conf['reverse_proxy_addresses'] = array('127.0.0.1');
     $conf['varnish_control_terminal'] = '127.0.0.1:6082';
-    // $base_domain = "https://myhaccp.ddev.local";
 
     $conf['file_private_path'] = "/var/www/html/docroot/sites/default/files/private";
 
@@ -102,18 +95,6 @@ switch ($env) {
     break;
 }
 
-// Varnish
-$conf['cache_backends'][] = 'sites/all/modules/contrib/varnish/varnish.cache.inc';
-$conf['cache_class_cache_page'] = 'VarnishCache';
-$conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
-$conf['page_cache_invoke_hooks'] = false;
-
-// Varnish reverse proxy on localhost
-$conf['reverse_proxy'] = true;
-
-// Varnish reverse proxy on localhost
-$conf['varnish_version'] = "4";
-$conf['varnish_control_key'] = getenv('VARNISH_CONTROL_KEY');
 # PHP-cli has extremely high limits/timeouts for large cron imports, migration etc.
 // ini_set('mysql.connect_timeout', 7200);
 // ini_set('default_socket_timeout', 7200);
