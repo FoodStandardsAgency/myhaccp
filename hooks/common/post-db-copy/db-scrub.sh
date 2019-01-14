@@ -12,7 +12,7 @@ db_name="$3"
 source_env="$4"
 
 # Don't scrub the db if we're restoring to prod env.
-if [[ "$target_env" =~ prod ]]; then exit 0; fi
+if [ "$target_env" != 'prod' ]; then exit 0; fi
 
 echo "$site.$target_env: Scrubbing database $db_name"
 
