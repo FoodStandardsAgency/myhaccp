@@ -1,4 +1,4 @@
-APIVersion: v1.5.0
+APIVersion: v1.5.2
 name: myhaccp
 type: drupal7
 docroot: docroot
@@ -20,11 +20,11 @@ hooks:
   - exec: drush cc all
 
 
-# This config.yaml was created with ddev version v1.5.0 
-# webimage: drud/ddev-webserver:v1.5.0
-# dbimage: drud/ddev-dbserver:v1.5.0-10.2
-# dbaimage: drud/phpmyadmin:v1.5.0
-# bgsyncimage: drud/ddev-bgsync:v1.5.0
+# This config.yaml was created with ddev version v1.5.2 
+# webimage: drud/ddev-webserver:v1.5.2
+# dbimage: drud/ddev-dbserver:v1.5.2-10.2
+# dbaimage: drud/phpmyadmin:v1.5.2
+# bgsyncimage: drud/ddev-bgsync:v1.5.2
 # However we do not recommend explicitly wiring these images into the
 # config.yaml as they may break future versions of ddev.
 # You can update this config.yaml using 'ddev config'.
