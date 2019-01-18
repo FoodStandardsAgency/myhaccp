@@ -56,13 +56,14 @@ else {
   $env = getenv('WKV_SITE_ENV');
 }
 
+$conf['stage_file_proxy_origin'] = 'https://myhaccp.food.gov.uk';
+
 switch ($env) {
   case "prod":
     $conf['simple_environment_indicator'] = '#d4000f Prod';
     break;
 
   case "test":
-    $conf['stage_file_proxy_origin'] = 'http://foodmyhaccp.prod.acquia-sites.com';
     $conf['shield_allow_cli'] = 1;
     $conf['shield_enabled'] = 1;
     $conf['shield_method'] = '1';
@@ -70,7 +71,6 @@ switch ($env) {
     $conf['shield_user'] = 'fsamyhaccp';
     break;
   case "dev":
-    $conf['stage_file_proxy_origin'] = 'http://foodmyhaccp.prod.acquia-sites.com';
     $conf['shield_allow_cli'] = 1;
     $conf['shield_enabled'] = 1;
     $conf['shield_method'] = '1';
@@ -79,7 +79,6 @@ switch ($env) {
     break;
   case "local":
     $conf['simple_environment_indicator'] = '#88b700 Local';
-    $conf['stage_file_proxy_origin'] = 'http://foodmyhaccp.prod.acquia-sites.com';
 
     $conf['preprocess_css'] = '0';
     $conf['preprocess_js'] = '0';
